@@ -37,7 +37,7 @@ export class ChatbotShowcaseComponent {
         break;
       case 'contacto':
         this.chatbotService.addMessage({
-          text: 'Puedes contactar conmigo en este email: manuelfernando.urena@ng-ddr.com',
+          text: 'Puedes contactar conmigo en este email: manuelfernando.urena@ddr-ng.com',
           date: new Date(),
           robot: true,
           load: true

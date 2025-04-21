@@ -1,25 +1,25 @@
 {
-  "name": "@ng-ddr/ddr-frontend-library",
-  "version": "17.0.6",
-  "description": "Biblioteca de frontend de Disco Duro de Roer",
+  "name": "ddr-ng",
+  "version": "19.0.0",
+  "description": "Component library from Disco Duro de Roer",
   "author": {
     "name": "Fernando Ureña",
     "email": "discoduroderoer@gmail.com",
-    "url": "https://ng-ddr.com"
+    "url": "https://ddr-ng.com"
   },
   "maintainers": [
     {
       "name": "Fernando Ureña",
       "email": "discoduroderoer@gmail.com",
-      "url": "https://ng-ddr.com"
+      "url": "https://ddr-ng.com"
     }
   ],
   "peerDependencies": {
-    "@angular/animations": "^17.0.5",
-    "@angular/cdk": "^17.0.2",
-    "@angular/common": "^17.0.5",
-    "@angular/core": "^17.0.5",
-    "@angular/forms": "^17.0.5"
+    "@angular/animations": "^19.2.7",
+    "@angular/cdk": "^19.2.7",
+    "@angular/common": "^19.2.7",
+    "@angular/core": "^19.2.7",
+    "@angular/forms": "^19.2.7"
   },
   "dependencies": {
     "bootstrap": "^5.3.2",
@@ -33,9 +33,9 @@
   },
   "repository": {
     "type": "git",
-    "url": ""
+    "url": "https://github.com/DiscoDurodeRoer/ddr-ng"
   },
   "publishConfig": {
-    "registry": ""
+    "registry": "https://npm.pkg.github.com/"
   }
 }
