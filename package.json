@@ -16,15 +16,15 @@
   },
   "private": true,
   "dependencies": {
-    "@angular/animations": "^17.0.0",
-    "@angular/cdk": "^17.0.0",
-    "@angular/common": "^17.0.0",
-    "@angular/compiler": "^17.0.0",
+    "@angular/animations": "^19.2.7",
+    "@angular/cdk": "^18.2.14",
+    "@angular/common": "^19.2.7",
+    "@angular/compiler": "^19.2.7",
     "@angular/core": "^19.2.7",
-    "@angular/forms": "^17.0.0",
-    "@angular/platform-browser": "^17.0.0",
-    "@angular/platform-browser-dynamic": "^17.0.0",
-    "@angular/router": "^17.0.0",
+    "@angular/forms": "^19.2.7",
+    "@angular/platform-browser": "^19.2.7",
+    "@angular/platform-browser-dynamic": "^19.2.7",
+    "@angular/router": "^19.2.7",
     "bootstrap": "^5.3.2",
     "bootstrap-icons": "^1.11.2",
     "jquery": "^3.6.3",
@@ -38,7 +38,7 @@
   "devDependencies": {
     "@angular-devkit/build-angular": "^19.2.8",
     "@angular/cli": "~19.2.8",
-    "@angular/compiler-cli": "^17.0.5",
+    "@angular/compiler-cli": "^19.2.7",
     "@types/jasmine": "^5.1.4",
     "@types/lodash-es": "^4.17.12",
     "@types/prismjs": "^1.26.5",
@@ -54,6 +54,6 @@
     "ng-packagr": "^19.2.2",
     "prettier": "^3.5.3",
     "prismjs": "^1.30.0",
-    "typescript": "~5.2.2"
+    "typescript": "~5.8.3"
   }
 }
