@@ -3,14 +3,13 @@ import { DdrTooltipDirective } from '@ddr-ng';
 import { BaseShowcaseComponent } from '../base-showcase/base-showcase.component';
 
 @Component({
-  selector: 'app-tooltip-showcase',
-  templateUrl: './tooltip-showcase.component.html',
-  styleUrls: ['./tooltip-showcase.component.scss'],
-  standalone: true,
-  imports: [
-    BaseShowcaseComponent,
-    DdrTooltipDirective
-  ]
+    selector: 'app-tooltip-showcase',
+    templateUrl: './tooltip-showcase.component.html',
+    styleUrls: ['./tooltip-showcase.component.scss'],
+    imports: [
+        BaseShowcaseComponent,
+        DdrTooltipDirective
+    ]
 })
 export class TooltipShowcaseComponent {
 

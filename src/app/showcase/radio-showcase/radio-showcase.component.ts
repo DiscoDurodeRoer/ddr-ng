@@ -6,16 +6,15 @@ import { FormsModule } from '@angular/forms';
 import { JsonPipe } from '@angular/common';
 
 @Component({
-  selector: 'app-radio-showcase',
-  templateUrl: './radio-showcase.component.html',
-  styleUrls: ['./radio-showcase.component.scss'],
-  standalone: true,
-  imports: [
-    BaseShowcaseComponent,
-    DdrRadioComponent,
-    FormsModule,
-    JsonPipe
-  ]
+    selector: 'app-radio-showcase',
+    templateUrl: './radio-showcase.component.html',
+    styleUrls: ['./radio-showcase.component.scss'],
+    imports: [
+        BaseShowcaseComponent,
+        DdrRadioComponent,
+        FormsModule,
+        JsonPipe
+    ]
 })
 export class RadioShowcaseComponent {
 

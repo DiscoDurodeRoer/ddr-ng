@@ -6,23 +6,22 @@ import { DdrInputGroupComponent } from '../ddr-input-group/ddr-input-group.compo
 import { DdrOrientation } from '../../types/types';
 
 @Component({
-  selector: 'ddr-input-password',
-  templateUrl: './ddr-input-password.component.html',
-  styleUrls: ['./ddr-input-password.component.scss'],
-  encapsulation: ViewEncapsulation.None,
-  standalone: true,
-  imports: [
-    DdrInputGroupComponent,
-    DdrNgModelBase,
-    FormsModule
-  ],
-  providers: [
-    {
-      provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => DdrInputPasswordComponent),
-      multi: true,
-    },
-  ],
+    selector: 'ddr-input-password',
+    templateUrl: './ddr-input-password.component.html',
+    styleUrls: ['./ddr-input-password.component.scss'],
+    encapsulation: ViewEncapsulation.None,
+    imports: [
+        DdrInputGroupComponent,
+        DdrNgModelBase,
+        FormsModule
+    ],
+    providers: [
+        {
+            provide: NG_VALUE_ACCESSOR,
+            useExisting: forwardRef(() => DdrInputPasswordComponent),
+            multi: true,
+        },
+    ]
 })
 export class DdrInputPasswordComponent extends DdrNgModelBase {
 

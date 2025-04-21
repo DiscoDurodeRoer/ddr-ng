@@ -6,17 +6,16 @@ import { JsonPipe } from '@angular/common';
 import { BaseShowcaseComponent } from '../base-showcase/base-showcase.component';
 
 @Component({
-  selector: 'app-dropdown-showcase',
-  templateUrl: './dropdown-showcase.component.html',
-  styleUrls: ['./dropdown-showcase.component.scss'],
-  standalone: true,
-  imports: [
-    BaseShowcaseComponent,
-    FormsModule,
-    JsonPipe,
-    DdrButtonComponent,
-    DdrDropdownComponent
-  ]
+    selector: 'app-dropdown-showcase',
+    templateUrl: './dropdown-showcase.component.html',
+    styleUrls: ['./dropdown-showcase.component.scss'],
+    imports: [
+        BaseShowcaseComponent,
+        FormsModule,
+        JsonPipe,
+        DdrButtonComponent,
+        DdrDropdownComponent
+    ]
 })
 export class DropdownShowcaseComponent {
 

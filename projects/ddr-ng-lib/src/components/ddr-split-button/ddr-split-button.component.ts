@@ -9,31 +9,30 @@ import { NgClass } from '@angular/common';
 import { DdrOrientation, DdrSize } from '../../types/types';
 
 @Component({
-  selector: 'ddr-split-button',
-  templateUrl: './ddr-split-button.component.html',
-  styleUrls: ['./ddr-split-button.component.scss'],
-  encapsulation: ViewEncapsulation.None,
-  standalone: true,
-  imports: [
-    DdrButtonComponent,
-    DdrTranslatePipe,
-    DdrClickOutsideDirective,
-    NgClass
-  ],
-  animations: [
-    trigger('overlayAnimation', [
-      state('void', style({
-        transform: 'translateY(5%)',
-        opacity: 0
-      })),
-      state('visible', style({
-        transform: 'translate(0)',
-        opacity: 1
-      })),
-      transition('void => visible', animate('225ms ease-out')),
-      transition('visible => void', animate('195ms ease-in'))
-    ])
-  ],
+    selector: 'ddr-split-button',
+    templateUrl: './ddr-split-button.component.html',
+    styleUrls: ['./ddr-split-button.component.scss'],
+    encapsulation: ViewEncapsulation.None,
+    imports: [
+        DdrButtonComponent,
+        DdrTranslatePipe,
+        DdrClickOutsideDirective,
+        NgClass
+    ],
+    animations: [
+        trigger('overlayAnimation', [
+            state('void', style({
+                transform: 'translateY(5%)',
+                opacity: 0
+            })),
+            state('visible', style({
+                transform: 'translate(0)',
+                opacity: 1
+            })),
+            transition('void => visible', animate('225ms ease-out')),
+            transition('visible => void', animate('195ms ease-in'))
+        ])
+    ]
 })
 export class DdrSplitButtonComponent<T> {
 

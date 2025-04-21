@@ -3,11 +3,10 @@ import { ControlValueAccessor, FormsModule } from '@angular/forms';
 import { Subject } from 'rxjs';
 
 @Component({
-  template: '',
-  standalone: true,
-  imports: [
-    FormsModule
-  ]
+    template: '',
+    imports: [
+        FormsModule
+    ]
 })
 export class DdrNgModelBase implements ControlValueAccessor {
 

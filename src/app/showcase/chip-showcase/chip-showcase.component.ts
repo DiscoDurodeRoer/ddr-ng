@@ -5,16 +5,15 @@ import { JsonPipe } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 @Component({
-  selector: 'app-chip-showcase',
-  templateUrl: './chip-showcase.component.html',
-  styleUrls: ['./chip-showcase.component.scss'],
-  standalone: true,
-  imports: [
-    BaseShowcaseComponent,
-    DdrChipComponent,
-    JsonPipe,
-    FormsModule
-  ]
+    selector: 'app-chip-showcase',
+    templateUrl: './chip-showcase.component.html',
+    styleUrls: ['./chip-showcase.component.scss'],
+    imports: [
+        BaseShowcaseComponent,
+        DdrChipComponent,
+        JsonPipe,
+        FormsModule
+    ]
 })
 export class ChipShowcaseComponent {
 

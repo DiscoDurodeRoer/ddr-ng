@@ -4,23 +4,22 @@ import { DdrNgModelBase } from '../ddr-ngmodel-base/ddr-ngmodel-base.component';
 import { DdrChipValueComponent } from './components/ddr-chip-value/ddr-chip-value.component';
 
 @Component({
-  selector: 'ddr-chip',
-  templateUrl: './ddr-chip.component.html',
-  styleUrls: ['./ddr-chip.component.scss'],
-  encapsulation: ViewEncapsulation.None,
-  standalone: true,
-  imports: [
-    DdrChipValueComponent,
-    FormsModule,
-    DdrNgModelBase
-  ],
-  providers: [
-    {
-      provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => DdrChipComponent),
-      multi: true,
-    },
-  ],
+    selector: 'ddr-chip',
+    templateUrl: './ddr-chip.component.html',
+    styleUrls: ['./ddr-chip.component.scss'],
+    encapsulation: ViewEncapsulation.None,
+    imports: [
+        DdrChipValueComponent,
+        FormsModule,
+        DdrNgModelBase
+    ],
+    providers: [
+        {
+            provide: NG_VALUE_ACCESSOR,
+            useExisting: forwardRef(() => DdrChipComponent),
+            multi: true,
+        },
+    ]
 })
 export class DdrChipComponent extends DdrNgModelBase implements OnInit {
 

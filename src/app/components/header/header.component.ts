@@ -5,16 +5,15 @@ import packageJson from '../../../../projects/ddr-ng-lib/package.json';
 import { FormsModule } from '@angular/forms';
 
 @Component({
-  selector: 'app-header',
-  standalone: true,
-  imports: [
-    DdrDropdownComponent,
-    DdrButtonComponent,
-    FormsModule,
-    RouterLink
-  ],
-  templateUrl: './header.component.html',
-  styleUrl: './header.component.scss'
+    selector: 'app-header',
+    imports: [
+        DdrDropdownComponent,
+        DdrButtonComponent,
+        FormsModule,
+        RouterLink
+    ],
+    templateUrl: './header.component.html',
+    styleUrl: './header.component.scss'
 })
 export class HeaderComponent {
 

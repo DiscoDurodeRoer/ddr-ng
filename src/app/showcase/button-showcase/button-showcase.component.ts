@@ -3,14 +3,13 @@ import { DdrToastService, DdrButtonComponent } from '@ddr-ng';
 import { BaseShowcaseComponent } from '../base-showcase/base-showcase.component';
 
 @Component({
-  selector: 'app-button-showcase',
-  templateUrl: './button-showcase.component.html',
-  styleUrls: ['./button-showcase.component.scss'],
-  standalone: true,
-  imports: [
-    DdrButtonComponent,
-    BaseShowcaseComponent
-  ]
+    selector: 'app-button-showcase',
+    templateUrl: './button-showcase.component.html',
+    styleUrls: ['./button-showcase.component.scss'],
+    imports: [
+        DdrButtonComponent,
+        BaseShowcaseComponent
+    ]
 })
 export class ButtonShowcaseComponent {
   

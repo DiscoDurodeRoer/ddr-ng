@@ -4,15 +4,14 @@ import { BaseShowcaseComponent } from '../base-showcase/base-showcase.component'
 import { FormsModule } from '@angular/forms';
 
 @Component({
-  selector: 'app-input-showcase',
-  templateUrl: './input-showcase.component.html',
-  styleUrls: ['./input-showcase.component.scss'],
-  standalone: true,
-  imports: [
-    BaseShowcaseComponent,
-    DdrInputComponent,
-    FormsModule
-  ]
+    selector: 'app-input-showcase',
+    templateUrl: './input-showcase.component.html',
+    styleUrls: ['./input-showcase.component.scss'],
+    imports: [
+        BaseShowcaseComponent,
+        DdrInputComponent,
+        FormsModule
+    ]
 })
 export class InputShowcaseComponent {
 

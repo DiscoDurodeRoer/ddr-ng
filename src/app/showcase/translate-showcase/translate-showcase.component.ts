@@ -3,14 +3,13 @@ import { DdrTranslatePipe, DdrTranslateService } from '@ddr-ng';
 import { BaseShowcaseComponent } from '../base-showcase/base-showcase.component';
 
 @Component({
-  selector: 'app-translate-showcase',
-  templateUrl: './translate-showcase.component.html',
-  styleUrls: ['./translate-showcase.component.scss'],
-  standalone: true,
-  imports: [
-    BaseShowcaseComponent,
-    DdrTranslatePipe
-  ]
+    selector: 'app-translate-showcase',
+    templateUrl: './translate-showcase.component.html',
+    styleUrls: ['./translate-showcase.component.scss'],
+    imports: [
+        BaseShowcaseComponent,
+        DdrTranslatePipe
+    ]
 })
 export class TranslateShowcaseComponent implements OnInit {
 

@@ -7,24 +7,23 @@ import { DdrTranslatePipe } from '../../pipes/ddr-translate.pipe';
 import { NgClass } from '@angular/common';
 
 @Component({
-  selector: 'ddr-radio',
-  templateUrl: './ddr-radio.component.html',
-  styleUrls: ['./ddr-radio.component.scss'],
-  encapsulation: ViewEncapsulation.None,
-  standalone: true,
-  imports: [
-    FormsModule,
-    DdrNgModelBase,
-    DdrTranslatePipe,
-    NgClass
-  ],
-  providers: [
-    {
-      provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => DdrRadioComponent),
-      multi: true,
-    },
-  ],
+    selector: 'ddr-radio',
+    templateUrl: './ddr-radio.component.html',
+    styleUrls: ['./ddr-radio.component.scss'],
+    encapsulation: ViewEncapsulation.None,
+    imports: [
+        FormsModule,
+        DdrNgModelBase,
+        DdrTranslatePipe,
+        NgClass
+    ],
+    providers: [
+        {
+            provide: NG_VALUE_ACCESSOR,
+            useExisting: forwardRef(() => DdrRadioComponent),
+            multi: true,
+        },
+    ]
 })
 export class DdrRadioComponent<T> extends DdrNgModelBase implements OnInit {
 

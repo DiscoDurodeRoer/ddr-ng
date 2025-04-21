@@ -1,4 +1,4 @@
-import { APP_INITIALIZER, ApplicationConfig, importProvidersFrom } from '@angular/core';
+import { ApplicationConfig, importProvidersFrom, inject, provideAppInitializer } from '@angular/core';
 import { provideRouter } from '@angular/router';
 
 import { DdrTranslateService } from '@ddr-ng';
@@ -16,11 +16,9 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes),
     importProvidersFrom(BrowserAnimationsModule),
     importProvidersFrom(HttpClientModule),
-    {
-      provide: APP_INITIALIZER,
-      useFactory: translateFactory,
-      deps: [DdrTranslateService],
-      multi: true,
-    }
+    provideAppInitializer(() => {
+        const initializerFn = (translateFactory)(inject(DdrTranslateService));
+        return initializerFn();
+      })
   ]
 };

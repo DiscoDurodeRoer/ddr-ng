@@ -5,16 +5,15 @@ import { DdrSize, DdrStatusBadge } from '../../types/types';
 
 
 @Component({
-  selector: 'ddr-badge-pill',
-  templateUrl: './ddr-badge-pill.component.html',
-  styleUrls: ['./ddr-badge-pill.component.scss'],
-  encapsulation: ViewEncapsulation.None,
-  standalone: true,
-  imports: [
-    NgClass,
-    NgStyle,
-    NgTemplateOutlet
-  ]
+    selector: 'ddr-badge-pill',
+    templateUrl: './ddr-badge-pill.component.html',
+    styleUrls: ['./ddr-badge-pill.component.scss'],
+    encapsulation: ViewEncapsulation.None,
+    imports: [
+        NgClass,
+        NgStyle,
+        NgTemplateOutlet
+    ]
 })
 export class DdrBadgePillComponent {
 

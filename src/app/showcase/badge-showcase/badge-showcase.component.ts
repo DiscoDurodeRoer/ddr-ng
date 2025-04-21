@@ -3,15 +3,14 @@ import { DdrToastService, DdrBadgePillComponent } from '@ddr-ng';
 import { BaseShowcaseComponent } from '../base-showcase/base-showcase.component';
 
 @Component({
-  selector: 'app-badge-showcase',
-  templateUrl: './badge-showcase.component.html',
-  styleUrls: ['./badge-showcase.component.scss'],
-  encapsulation: ViewEncapsulation.None,
-  standalone: true,
-  imports: [
-    BaseShowcaseComponent,
-    DdrBadgePillComponent
-  ]
+    selector: 'app-badge-showcase',
+    templateUrl: './badge-showcase.component.html',
+    styleUrls: ['./badge-showcase.component.scss'],
+    encapsulation: ViewEncapsulation.None,
+    imports: [
+        BaseShowcaseComponent,
+        DdrBadgePillComponent
+    ]
 })
 export class BadgeShowcaseComponent {
 

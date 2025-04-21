@@ -20,25 +20,24 @@ import { NgClass, NgTemplateOutlet } from '@angular/common';
 import { DdrInputError, DdrOrientation, DdrSize, DdrTypeInput } from '../../types/types';
 
 @Component({
-  selector: 'ddr-input',
-  templateUrl: './ddr-input.component.html',
-  styleUrls: ['./ddr-input.component.scss'],
-  encapsulation: ViewEncapsulation.None,
-  standalone: true,
-  imports: [
-    FormsModule,
-    DdrNgModelBase,
-    DdrTooltipDirective,
-    NgClass,
-    NgTemplateOutlet
-  ],
-  providers: [
-    {
-      provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => DdrInputComponent),
-      multi: true,
-    },
-  ],
+    selector: 'ddr-input',
+    templateUrl: './ddr-input.component.html',
+    styleUrls: ['./ddr-input.component.scss'],
+    encapsulation: ViewEncapsulation.None,
+    imports: [
+        FormsModule,
+        DdrNgModelBase,
+        DdrTooltipDirective,
+        NgClass,
+        NgTemplateOutlet
+    ],
+    providers: [
+        {
+            provide: NG_VALUE_ACCESSOR,
+            useExisting: forwardRef(() => DdrInputComponent),
+            multi: true,
+        },
+    ]
 })
 export class DdrInputComponent extends DdrNgModelBase {
 

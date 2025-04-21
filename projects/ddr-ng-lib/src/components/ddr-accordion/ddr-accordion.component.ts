@@ -4,26 +4,23 @@ import { DdrButtonComponent } from '../ddr-button/ddr-button.component';
 import { NgClass } from '@angular/common';
 
 @Component({
-  selector: 'ddr-accordion',
-  templateUrl: './ddr-accordion.component.html',
-  styleUrls: ['./ddr-accordion.component.scss'],
-  encapsulation: ViewEncapsulation.None,
-  standalone: true,
-  imports: [
-    DdrButtonComponent,
-    NgClass
-  ],
-  animations: [
-    trigger('slideInOut', [
-      state('open', style({ height: '*' })),
-      state('close', style({ height: 0 })),
-      transition('open <=> close', group(
-        [
-          animate('400ms')
+    selector: 'ddr-accordion',
+    templateUrl: './ddr-accordion.component.html',
+    styleUrls: ['./ddr-accordion.component.scss'],
+    encapsulation: ViewEncapsulation.None,
+    imports: [
+        DdrButtonComponent,
+        NgClass
+    ],
+    animations: [
+        trigger('slideInOut', [
+            state('open', style({ height: '*' })),
+            state('close', style({ height: 0 })),
+            transition('open <=> close', group([
+                animate('400ms')
+            ]))
         ])
-      )
-    ])
-  ]
+    ]
 })
 export class DdrAccordionComponent implements AfterViewInit {
 

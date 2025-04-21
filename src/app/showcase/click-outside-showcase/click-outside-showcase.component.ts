@@ -3,15 +3,14 @@ import { DdrToastService, DdrClickOutsideDirective, DdrButtonComponent } from '@
 import { BaseShowcaseComponent } from '../base-showcase/base-showcase.component';
 
 @Component({
-  selector: 'app-click-outside-showcase',
-  templateUrl: './click-outside-showcase.component.html',
-  styleUrls: ['./click-outside-showcase.component.scss'],
-  standalone: true,
-  imports: [
-    BaseShowcaseComponent,
-    DdrClickOutsideDirective,
-    DdrButtonComponent
-  ]
+    selector: 'app-click-outside-showcase',
+    templateUrl: './click-outside-showcase.component.html',
+    styleUrls: ['./click-outside-showcase.component.scss'],
+    imports: [
+        BaseShowcaseComponent,
+        DdrClickOutsideDirective,
+        DdrButtonComponent
+    ]
 })
 export class ClickOutsideShowcaseComponent {
 

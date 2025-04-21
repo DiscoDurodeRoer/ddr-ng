@@ -16,56 +16,55 @@ import { NgClass, NgStyle, NgTemplateOutlet } from '@angular/common';
 import { DdrOrientation, DdrOrientationDropdown } from '../../types/types';
 
 @Component({
-  selector: 'ddr-dropdown',
-  templateUrl: './ddr-dropdown.component.html',
-  styleUrls: ['./ddr-dropdown.component.scss'],
-  encapsulation: ViewEncapsulation.None,
-  standalone: true,
-  imports: [
-    FormsModule,
-    DdrButtonComponent,
-    DdrInputGroupComponent,
-    DdrCheckboxComponent,
-    DdrTranslatePipe,
-    DdrClickOutsideDirective,
-    DdrTooltipDirective,
-    NgClass,
-    NgStyle,
-    NgTemplateOutlet
-  ],
-  animations: [
-    trigger('overlayAnimationBottom', [
-      state('void', style({
-        transform: 'translateY(5%)',
-        opacity: 0
-      })),
-      state('visible', style({
-        transform: 'translate(0)',
-        opacity: 1
-      })),
-      transition('void => visible', animate('225ms ease-out')),
-      transition('visible => void', animate('195ms ease-in'))
-    ]),
-    trigger('overlayAnimationTop', [
-      state('void', style({
-        transform: 'translateY(100%)',
-        opacity: 0
-      })),
-      state('visible', style({
-        transform: 'translateY(0)',
-        opacity: 1
-      })),
-      transition('void => visible', animate('225ms ease-out')),
-      transition('visible => void', animate('195ms ease-in'))
-    ])
-  ],
-  providers: [
-    {
-      provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => DdrDropdownComponent),
-      multi: true,
-    },
-  ],
+    selector: 'ddr-dropdown',
+    templateUrl: './ddr-dropdown.component.html',
+    styleUrls: ['./ddr-dropdown.component.scss'],
+    encapsulation: ViewEncapsulation.None,
+    imports: [
+        FormsModule,
+        DdrButtonComponent,
+        DdrInputGroupComponent,
+        DdrCheckboxComponent,
+        DdrTranslatePipe,
+        DdrClickOutsideDirective,
+        DdrTooltipDirective,
+        NgClass,
+        NgStyle,
+        NgTemplateOutlet
+    ],
+    animations: [
+        trigger('overlayAnimationBottom', [
+            state('void', style({
+                transform: 'translateY(5%)',
+                opacity: 0
+            })),
+            state('visible', style({
+                transform: 'translate(0)',
+                opacity: 1
+            })),
+            transition('void => visible', animate('225ms ease-out')),
+            transition('visible => void', animate('195ms ease-in'))
+        ]),
+        trigger('overlayAnimationTop', [
+            state('void', style({
+                transform: 'translateY(100%)',
+                opacity: 0
+            })),
+            state('visible', style({
+                transform: 'translateY(0)',
+                opacity: 1
+            })),
+            transition('void => visible', animate('225ms ease-out')),
+            transition('visible => void', animate('195ms ease-in'))
+        ])
+    ],
+    providers: [
+        {
+            provide: NG_VALUE_ACCESSOR,
+            useExisting: forwardRef(() => DdrDropdownComponent),
+            multi: true,
+        },
+    ]
 })
 export class DdrDropdownComponent<T> extends DdrNgModelBase implements OnInit, OnChanges {
 

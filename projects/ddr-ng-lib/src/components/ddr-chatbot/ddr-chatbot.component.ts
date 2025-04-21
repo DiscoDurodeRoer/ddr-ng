@@ -13,36 +13,35 @@ import { DatePipe, NgClass } from '@angular/common';
 import { DdrBadgeNotificationDirective } from '../ddr-badge-notification/ddr-badge-notification.directive';
 
 @Component({
-  selector: 'ddr-chatbot',
-  templateUrl: './ddr-chatbot.component.html',
-  styleUrls: ['./ddr-chatbot.component.scss'],
-  encapsulation: ViewEncapsulation.None,
-  standalone: true,
-  imports: [
-    FormsModule,
-    DdrButtonComponent,
-    DdrCardComponent,
-    DdrBadgeNotificationComponent,
-    DdrBadgeNotificationDirective,
-    DdrInputGroupComponent,
-    NgClass,
-    DatePipe
-  ],
-  providers: [
-    DdrChatbotService
-  ],
-  animations: [
-    trigger('overlayAnimation', [
-      state('void', style({
-        opacity: 0
-      })),
-      state('visible', style({
-        opacity: 1
-      })),
-      transition('void => visible', animate('500ms ease-out')),
-      transition('visible => void', animate('195ms ease-in'))
-    ])
-  ],
+    selector: 'ddr-chatbot',
+    templateUrl: './ddr-chatbot.component.html',
+    styleUrls: ['./ddr-chatbot.component.scss'],
+    encapsulation: ViewEncapsulation.None,
+    imports: [
+        FormsModule,
+        DdrButtonComponent,
+        DdrCardComponent,
+        DdrBadgeNotificationComponent,
+        DdrBadgeNotificationDirective,
+        DdrInputGroupComponent,
+        NgClass,
+        DatePipe
+    ],
+    providers: [
+        DdrChatbotService
+    ],
+    animations: [
+        trigger('overlayAnimation', [
+            state('void', style({
+                opacity: 0
+            })),
+            state('visible', style({
+                opacity: 1
+            })),
+            transition('void => visible', animate('500ms ease-out')),
+            transition('visible => void', animate('195ms ease-in'))
+        ])
+    ]
 })
 export class DdrChatbotComponent implements OnInit, OnChanges, OnDestroy {
 

@@ -21,25 +21,24 @@ import { DdrInputError, DdrOrientation, DdrTypeInput } from '../../types/types';
 
 
 @Component({
-  selector: 'ddr-input-group',
-  templateUrl: './ddr-input-group.component.html',
-  styleUrls: ['./ddr-input-group.component.scss'],
-  encapsulation: ViewEncapsulation.None,
-  standalone: true,
-  imports: [
-    FormsModule, 
-    DdrButtonComponent, 
-    DdrInputComponent,
-    DdrTooltipDirective,
-    NgClass
-  ],
-  providers: [
-    {
-      provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => DdrInputGroupComponent),
-      multi: true,
-    },
-  ],
+    selector: 'ddr-input-group',
+    templateUrl: './ddr-input-group.component.html',
+    styleUrls: ['./ddr-input-group.component.scss'],
+    encapsulation: ViewEncapsulation.None,
+    imports: [
+        FormsModule,
+        DdrButtonComponent,
+        DdrInputComponent,
+        DdrTooltipDirective,
+        NgClass
+    ],
+    providers: [
+        {
+            provide: NG_VALUE_ACCESSOR,
+            useExisting: forwardRef(() => DdrInputGroupComponent),
+            multi: true,
+        },
+    ]
 })
 export class DdrInputGroupComponent extends DdrNgModelBase {
 

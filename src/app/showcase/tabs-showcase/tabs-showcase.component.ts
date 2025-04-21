@@ -3,15 +3,14 @@ import { DdrTabItemComponent, DdrTabsComponent, DdrToastService } from '@ddr-ng'
 import { BaseShowcaseComponent } from '../base-showcase/base-showcase.component';
 
 @Component({
-  selector: 'app-tabs-showcase',
-  templateUrl: './tabs-showcase.component.html',
-  styleUrls: ['./tabs-showcase.component.scss'],
-  standalone: true,
-  imports: [
-    BaseShowcaseComponent,
-    DdrTabsComponent,
-    DdrTabItemComponent
-  ]
+    selector: 'app-tabs-showcase',
+    templateUrl: './tabs-showcase.component.html',
+    styleUrls: ['./tabs-showcase.component.scss'],
+    imports: [
+        BaseShowcaseComponent,
+        DdrTabsComponent,
+        DdrTabItemComponent
+    ]
 })
 export class TabsShowcaseComponent {
 

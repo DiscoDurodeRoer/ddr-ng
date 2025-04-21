@@ -3,15 +3,14 @@ import { DdrButtonComponent, DdrSpinnerComponent, DdrSpinnerService } from '@ddr
 import { BaseShowcaseComponent } from '../base-showcase/base-showcase.component';
 
 @Component({
-  selector: 'app-spinner-showcase',
-  templateUrl: './spinner-showcase.component.html',
-  styleUrls: ['./spinner-showcase.component.scss'],
-  standalone: true,
-  imports: [
-    BaseShowcaseComponent,
-    DdrSpinnerComponent,
-    DdrButtonComponent
-  ]
+    selector: 'app-spinner-showcase',
+    templateUrl: './spinner-showcase.component.html',
+    styleUrls: ['./spinner-showcase.component.scss'],
+    imports: [
+        BaseShowcaseComponent,
+        DdrSpinnerComponent,
+        DdrButtonComponent
+    ]
 })
 export class SpinnerShowcaseComponent {
   

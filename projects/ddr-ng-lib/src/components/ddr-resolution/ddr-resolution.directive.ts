@@ -2,7 +2,8 @@ import { Directive, HostListener, inject, OnInit } from '@angular/core';
 import { DdrResolutionService } from './ddr-resolution.service';
 
 @Directive({
-  selector: '[ddrResolution]'
+    selector: '[ddrResolution]',
+    standalone: false
 })
 export class DdrResolutionDirective implements OnInit{
 

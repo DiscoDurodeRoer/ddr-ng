@@ -2,15 +2,14 @@ import { NgClass, NgStyle } from '@angular/common';
 import { Component, Input, ViewEncapsulation } from '@angular/core';
 
 @Component({
-  selector: 'ddr-progress-bar',
-  templateUrl: './ddr-progress-bar.component.html',
-  styleUrls: ['./ddr-progress-bar.component.scss'],
-  encapsulation: ViewEncapsulation.None,
-  standalone: true,
-  imports: [
-    NgClass,
-    NgStyle
-  ]
+    selector: 'ddr-progress-bar',
+    templateUrl: './ddr-progress-bar.component.html',
+    styleUrls: ['./ddr-progress-bar.component.scss'],
+    encapsulation: ViewEncapsulation.None,
+    imports: [
+        NgClass,
+        NgStyle
+    ]
 })
 export class DdrProgressBarComponent {
 

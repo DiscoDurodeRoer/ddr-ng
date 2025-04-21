@@ -7,16 +7,15 @@ import { DdrTranslatePipe } from '../../pipes/ddr-translate.pipe';
 import { NgClass, NgTemplateOutlet } from '@angular/common';
 
 @Component({
-  selector: 'ddr-treeview',
-  templateUrl: './ddr-treeview.component.html',
-  styleUrls: ['./ddr-treeview.component.scss'],
-  standalone: true,
-  imports: [
-    DdrSplitButtonComponent,
-    DdrTranslatePipe,
-    NgClass,
-    NgTemplateOutlet
-  ]
+    selector: 'ddr-treeview',
+    templateUrl: './ddr-treeview.component.html',
+    styleUrls: ['./ddr-treeview.component.scss'],
+    imports: [
+        DdrSplitButtonComponent,
+        DdrTranslatePipe,
+        NgClass,
+        NgTemplateOutlet
+    ]
 })
 export class DdrTreeviewComponent<T> implements OnInit, OnChanges {
 

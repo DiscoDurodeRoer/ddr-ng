@@ -4,16 +4,15 @@ import { BaseShowcaseComponent } from '../base-showcase/base-showcase.component'
 import { FormsModule } from '@angular/forms';
 
 @Component({
-  selector: 'app-clipboard-showcase',
-  templateUrl: './clipboard-showcase.component.html',
-  styleUrls: ['./clipboard-showcase.component.scss'],
-  standalone: true,
-  imports: [
-    BaseShowcaseComponent,
-    DdrClipboardDirective,
-    DdrTextareaComponent,
-    FormsModule
-  ]
+    selector: 'app-clipboard-showcase',
+    templateUrl: './clipboard-showcase.component.html',
+    styleUrls: ['./clipboard-showcase.component.scss'],
+    imports: [
+        BaseShowcaseComponent,
+        DdrClipboardDirective,
+        DdrTextareaComponent,
+        FormsModule
+    ]
 })
 export class ClipboardShowcaseComponent {
 

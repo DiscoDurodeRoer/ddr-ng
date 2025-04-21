@@ -3,14 +3,13 @@ import { DdrToastService, DdrChatbotService, DdrMessage, DdrChatbotComponent } f
 import { BaseShowcaseComponent } from '../base-showcase/base-showcase.component';
 
 @Component({
-  selector: 'app-chatbot-showcase',
-  templateUrl: './chatbot-showcase.component.html',
-  styleUrls: ['./chatbot-showcase.component.scss'],
-  standalone: true,
-  imports: [
-    BaseShowcaseComponent,
-    DdrChatbotComponent
-  ]
+    selector: 'app-chatbot-showcase',
+    templateUrl: './chatbot-showcase.component.html',
+    styleUrls: ['./chatbot-showcase.component.scss'],
+    imports: [
+        BaseShowcaseComponent,
+        DdrChatbotComponent
+    ]
 })
 export class ChatbotShowcaseComponent {
 

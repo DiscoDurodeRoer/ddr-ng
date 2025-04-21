@@ -5,14 +5,13 @@ import { DdrSkeletonDirective } from '../../directives/ddr-skeleton.directive';
 import { DdrSkeletonMode } from '../../types/types';
 
 @Component({
-  selector: 'ddr-skeleton',
-  templateUrl: './ddr-skeleton.component.html',
-  styleUrls: ['./ddr-skeleton.component.scss'],
-  standalone: true,
-  imports: [
-    DdrLoopNumberPipe,
-    DdrSkeletonDirective
-  ]
+    selector: 'ddr-skeleton',
+    templateUrl: './ddr-skeleton.component.html',
+    styleUrls: ['./ddr-skeleton.component.scss'],
+    imports: [
+        DdrLoopNumberPipe,
+        DdrSkeletonDirective
+    ]
 })
 export class DdrSkeletonComponent {
 

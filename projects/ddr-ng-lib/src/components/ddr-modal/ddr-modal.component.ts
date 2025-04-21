@@ -18,17 +18,16 @@ import { NgClass } from '@angular/common';
 import { DdrSize } from '../../types/types';
 
 @Component({
-  selector: 'ddr-modal',
-  templateUrl: './ddr-modal.component.html',
-  styleUrls: ['./ddr-modal.component.scss'],
-  encapsulation: ViewEncapsulation.None,
-  standalone: true,
-  imports: [
-    FormsModule, 
-    DdrButtonComponent, 
-    DdrClickOutsideDirective,
-    NgClass
-  ]
+    selector: 'ddr-modal',
+    templateUrl: './ddr-modal.component.html',
+    styleUrls: ['./ddr-modal.component.scss'],
+    encapsulation: ViewEncapsulation.None,
+    imports: [
+        FormsModule,
+        DdrButtonComponent,
+        DdrClickOutsideDirective,
+        NgClass
+    ]
 })
 export class DdrModalComponent implements OnInit, OnDestroy {
 

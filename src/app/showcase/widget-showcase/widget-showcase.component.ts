@@ -3,15 +3,14 @@ import { DdrAction, DdrToastService, DdrWidgetComponent, DdrButtonComponent, Ddr
 import { BaseShowcaseComponent } from '../base-showcase/base-showcase.component';
 
 @Component({
-  selector: 'app-widget-showcase',
-  templateUrl: './widget-showcase.component.html',
-  styleUrls: ['./widget-showcase.component.scss'],
-  standalone: true,
-  imports: [
-    BaseShowcaseComponent,
-    DdrWidgetComponent,
-    DdrButtonComponent
-  ]
+    selector: 'app-widget-showcase',
+    templateUrl: './widget-showcase.component.html',
+    styleUrls: ['./widget-showcase.component.scss'],
+    imports: [
+        BaseShowcaseComponent,
+        DdrWidgetComponent,
+        DdrButtonComponent
+    ]
 })
 export class WidgetShowcaseComponent {
 

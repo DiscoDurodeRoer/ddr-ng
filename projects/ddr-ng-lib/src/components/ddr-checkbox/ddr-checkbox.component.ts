@@ -7,24 +7,23 @@ import { DdrTranslatePipe } from '../../pipes/ddr-translate.pipe';
 import { NgClass } from '@angular/common';
 
 @Component({
-  selector: 'ddr-checkbox',
-  templateUrl: './ddr-checkbox.component.html',
-  styleUrls: ['./ddr-checkbox.component.scss'],
-  encapsulation: ViewEncapsulation.None,
-  standalone: true,
-  imports: [
-    FormsModule,
-    DdrNgModelBase,
-    DdrTranslatePipe,
-    NgClass
-  ],
-  providers: [
-    {
-      provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => DdrCheckboxComponent),
-      multi: true,
-    },
-  ],
+    selector: 'ddr-checkbox',
+    templateUrl: './ddr-checkbox.component.html',
+    styleUrls: ['./ddr-checkbox.component.scss'],
+    encapsulation: ViewEncapsulation.None,
+    imports: [
+        FormsModule,
+        DdrNgModelBase,
+        DdrTranslatePipe,
+        NgClass
+    ],
+    providers: [
+        {
+            provide: NG_VALUE_ACCESSOR,
+            useExisting: forwardRef(() => DdrCheckboxComponent),
+            multi: true,
+        },
+    ]
 })
 export class DdrCheckboxComponent<T> extends DdrNgModelBase implements OnInit {
 

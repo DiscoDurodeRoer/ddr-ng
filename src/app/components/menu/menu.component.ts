@@ -4,14 +4,13 @@ import { Router, RouterLink } from '@angular/router';
 import { DdrTreeviewComponent } from '@ddr-ng';
 
 @Component({
-  selector: 'app-menu',
-  standalone: true,
-  imports: [
-    RouterLink,
-    DdrTreeviewComponent
-  ],
-  templateUrl: './menu.component.html',
-  styleUrl: './menu.component.scss'
+    selector: 'app-menu',
+    imports: [
+        RouterLink,
+        DdrTreeviewComponent
+    ],
+    templateUrl: './menu.component.html',
+    styleUrl: './menu.component.scss'
 })
 export class MenuComponent {
 

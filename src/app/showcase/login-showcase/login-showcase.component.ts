@@ -4,14 +4,13 @@ import { DdrAuth, DdrToastService, DdrLoginComponent } from '@ddr-ng';
 import { BaseShowcaseComponent } from '../base-showcase/base-showcase.component';
 
 @Component({
-  selector: 'app-login-showcase',
-  templateUrl: './login-showcase.component.html',
-  styleUrls: ['./login-showcase.component.scss'],
-  standalone: true,
-  imports: [
-    BaseShowcaseComponent,
-    DdrLoginComponent
-  ]
+    selector: 'app-login-showcase',
+    templateUrl: './login-showcase.component.html',
+    styleUrls: ['./login-showcase.component.scss'],
+    imports: [
+        BaseShowcaseComponent,
+        DdrLoginComponent
+    ]
 })
 export class LoginShowcaseComponent {
 

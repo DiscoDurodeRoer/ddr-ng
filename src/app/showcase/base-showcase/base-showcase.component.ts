@@ -5,15 +5,14 @@ import * as prettier from 'prettier/standalone';
 import * as htmlParser from 'prettier/plugins/html';
 
 @Component({
-  selector: 'base-showcase',
-  templateUrl: './base-showcase.component.html',
-  styleUrls: ['./base-showcase.component.scss'],
-  standalone: true,
-  imports: [
-    DdrAccordionComponent,
-    DdrTabsComponent,
-    DdrTabItemComponent
-  ]
+    selector: 'base-showcase',
+    templateUrl: './base-showcase.component.html',
+    styleUrls: ['./base-showcase.component.scss'],
+    imports: [
+        DdrAccordionComponent,
+        DdrTabsComponent,
+        DdrTabItemComponent
+    ]
 })
 export class BaseShowcaseComponent {
 

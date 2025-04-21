@@ -4,15 +4,14 @@ import { BaseShowcaseComponent } from '../base-showcase/base-showcase.component'
 import { FormsModule } from '@angular/forms';
 
 @Component({
-  selector: 'app-toggle-showcase',
-  templateUrl: './toggle-showcase.component.html',
-  styleUrls: ['./toggle-showcase.component.scss'],
-  standalone: true,
-  imports: [
-    BaseShowcaseComponent,
-    DdrToggleComponent,
-    FormsModule
-  ]
+    selector: 'app-toggle-showcase',
+    templateUrl: './toggle-showcase.component.html',
+    styleUrls: ['./toggle-showcase.component.scss'],
+    imports: [
+        BaseShowcaseComponent,
+        DdrToggleComponent,
+        FormsModule
+    ]
 })
 export class ToggleShowcaseComponent {
 

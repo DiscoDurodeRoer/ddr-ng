@@ -3,14 +3,13 @@ import { DdrMessage } from '../../common/ddr-message.model';
 import { NgClass, NgTemplateOutlet } from '@angular/common';
 
 @Component({
-  selector: 'ddr-conversation',
-  templateUrl: './ddr-conversation.component.html',
-  styleUrls: ['./ddr-conversation.component.scss'],
-  standalone: true,
-  imports: [
-    NgClass,
-    NgTemplateOutlet
-  ]
+    selector: 'ddr-conversation',
+    templateUrl: './ddr-conversation.component.html',
+    styleUrls: ['./ddr-conversation.component.scss'],
+    imports: [
+        NgClass,
+        NgTemplateOutlet
+    ]
 })
 export class DdrConversationComponent {
 

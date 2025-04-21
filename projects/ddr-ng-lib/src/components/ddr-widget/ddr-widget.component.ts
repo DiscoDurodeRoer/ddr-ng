@@ -10,19 +10,18 @@ import { NgClass } from '@angular/common';
 import { DdrOrientation, DdrSkeletonMode } from '../../types/types';
 
 @Component({
-  selector: 'ddr-widget',
-  templateUrl: './ddr-widget.component.html',
-  styleUrls: ['./ddr-widget.component.scss'],
-  encapsulation: ViewEncapsulation.None,
-  standalone: true,
-  imports: [
-    DdrCardComponent,
-    DdrSplitButtonComponent,
-    DdrSkeletonComponent,
-    DdrDragDropDirective, 
-    DdrTooltipDirective,
-    NgClass
-  ]
+    selector: 'ddr-widget',
+    templateUrl: './ddr-widget.component.html',
+    styleUrls: ['./ddr-widget.component.scss'],
+    encapsulation: ViewEncapsulation.None,
+    imports: [
+        DdrCardComponent,
+        DdrSplitButtonComponent,
+        DdrSkeletonComponent,
+        DdrDragDropDirective,
+        DdrTooltipDirective,
+        NgClass
+    ]
 })
 export class DdrWidgetComponent {
 

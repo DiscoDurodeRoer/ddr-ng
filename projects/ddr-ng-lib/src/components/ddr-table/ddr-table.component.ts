@@ -27,25 +27,24 @@ import { DdrTranslatePipe } from '../../pipes/ddr-translate.pipe';
 import { NgClass, NgStyle, NgTemplateOutlet } from '@angular/common';
 
 @Component({
-  selector: 'ddr-table',
-  templateUrl: './ddr-table.component.html',
-  styleUrls: ['./ddr-table.component.scss'],
-  encapsulation: ViewEncapsulation.None,
-  standalone: true,
-  imports: [
-    NgxPaginationModule,
-    DdrDropdownComponent,
-    DdrCheckboxComponent,
-    FormsModule,
-    DdrSplitButtonComponent,
-    DdrTranslatePipe,
-    DdrTooltipDirective,
-    DdrButtonComponent,
-    DdrInputComponent,
-    NgClass,
-    NgStyle,
-    NgTemplateOutlet
-  ]
+    selector: 'ddr-table',
+    templateUrl: './ddr-table.component.html',
+    styleUrls: ['./ddr-table.component.scss'],
+    encapsulation: ViewEncapsulation.None,
+    imports: [
+        NgxPaginationModule,
+        DdrDropdownComponent,
+        DdrCheckboxComponent,
+        FormsModule,
+        DdrSplitButtonComponent,
+        DdrTranslatePipe,
+        DdrTooltipDirective,
+        DdrButtonComponent,
+        DdrInputComponent,
+        NgClass,
+        NgStyle,
+        NgTemplateOutlet
+    ]
 })
 export class DdrTableComponent<T extends { [key: string]: any }> implements OnInit, OnChanges {
 

@@ -6,16 +6,15 @@ import { JsonPipe } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 @Component({
-  selector: 'app-checkbox-showcase',
-  templateUrl: './checkbox-showcase.component.html',
-  styleUrls: ['./checkbox-showcase.component.scss'],
-  standalone: true,
-  imports: [
-    BaseShowcaseComponent,
-    DdrCheckboxComponent,
-    JsonPipe,
-    FormsModule
-  ]
+    selector: 'app-checkbox-showcase',
+    templateUrl: './checkbox-showcase.component.html',
+    styleUrls: ['./checkbox-showcase.component.scss'],
+    imports: [
+        BaseShowcaseComponent,
+        DdrCheckboxComponent,
+        JsonPipe,
+        FormsModule
+    ]
 })
 export class CheckboxShowcaseComponent {
 

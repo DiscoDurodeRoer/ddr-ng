@@ -3,16 +3,15 @@ import { DdrTabItemComponent } from './ddr-tab-item/ddr-tab-item.component';
 import { NgClass, NgTemplateOutlet } from '@angular/common';
 
 @Component({
-  selector: 'ddr-tabs',
-  templateUrl: './ddr-tabs.component.html',
-  styleUrls: ['./ddr-tabs.component.scss'],
-  encapsulation: ViewEncapsulation.None,
-  standalone: true,
-  imports: [
-    DdrTabItemComponent,
-    NgClass,
-    NgTemplateOutlet
-  ]
+    selector: 'ddr-tabs',
+    templateUrl: './ddr-tabs.component.html',
+    styleUrls: ['./ddr-tabs.component.scss'],
+    encapsulation: ViewEncapsulation.None,
+    imports: [
+        DdrTabItemComponent,
+        NgClass,
+        NgTemplateOutlet
+    ]
 })
 export class DdrTabsComponent implements AfterViewInit {
 

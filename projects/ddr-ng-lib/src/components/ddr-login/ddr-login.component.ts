@@ -20,20 +20,19 @@ import { DdrTranslatePipe } from '../../pipes/ddr-translate.pipe';
 import { NgClass } from '@angular/common';
 
 @Component({
-  selector: 'ddr-login',
-  templateUrl: './ddr-login.component.html',
-  styleUrls: ['./ddr-login.component.scss'],
-  encapsulation: ViewEncapsulation.None,
-  standalone: true,
-  imports: [
-    FormsModule,
-    DdrButtonComponent,
-    DdrInputComponent,
-    DdrInputGroupComponent,
-    DdrTranslatePipe,
-    DdrInputPasswordComponent,
-    NgClass
-  ]
+    selector: 'ddr-login',
+    templateUrl: './ddr-login.component.html',
+    styleUrls: ['./ddr-login.component.scss'],
+    encapsulation: ViewEncapsulation.None,
+    imports: [
+        FormsModule,
+        DdrButtonComponent,
+        DdrInputComponent,
+        DdrInputGroupComponent,
+        DdrTranslatePipe,
+        DdrInputPasswordComponent,
+        NgClass
+    ]
 })
 export class DdrLoginComponent {
 

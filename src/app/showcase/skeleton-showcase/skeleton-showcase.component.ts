@@ -4,21 +4,20 @@ import { DdrButtonComponent, DdrCardComponent, DdrInputComponent, DdrLoopNumberP
 import { BaseShowcaseComponent } from '../base-showcase/base-showcase.component';
 
 @Component({
-  selector: 'app-skeleton-showcase',
-  templateUrl: './skeleton-showcase.component.html',
-  styleUrls: ['./skeleton-showcase.component.scss'],
-  standalone: true,
-  imports: [
-    BaseShowcaseComponent,
-    DdrSkeletonComponent,
-    DdrCardComponent,
-    FormsModule,
-    DdrButtonComponent,
-    DdrInputComponent,
-    DdrLoopNumberPipe,
-    DdrSkeletonDirective,
-    DdrRadioComponent
-  ]
+    selector: 'app-skeleton-showcase',
+    templateUrl: './skeleton-showcase.component.html',
+    styleUrls: ['./skeleton-showcase.component.scss'],
+    imports: [
+        BaseShowcaseComponent,
+        DdrSkeletonComponent,
+        DdrCardComponent,
+        FormsModule,
+        DdrButtonComponent,
+        DdrInputComponent,
+        DdrLoopNumberPipe,
+        DdrSkeletonDirective,
+        DdrRadioComponent
+    ]
 })
 export class SkeletonShowcaseComponent {
 

@@ -3,14 +3,13 @@ import { DdrAction, DdrSplitButtonComponent, DdrToastService } from '@ddr-ng';
 import { BaseShowcaseComponent } from '../base-showcase/base-showcase.component';
 
 @Component({
-  selector: 'app-split-button-showcase',
-  templateUrl: './split-button-showcase.component.html',
-  styleUrls: ['./split-button-showcase.component.scss'],
-  standalone: true,
-  imports: [
-    BaseShowcaseComponent,
-    DdrSplitButtonComponent
-  ]
+    selector: 'app-split-button-showcase',
+    templateUrl: './split-button-showcase.component.html',
+    styleUrls: ['./split-button-showcase.component.scss'],
+    imports: [
+        BaseShowcaseComponent,
+        DdrSplitButtonComponent
+    ]
 })
 export class SplitButtonShowcaseComponent {
 

@@ -3,15 +3,14 @@ import { DdrButtonComponent, DdrProgressBarComponent } from '@ddr-ng';
 import { BaseShowcaseComponent } from '../base-showcase/base-showcase.component';
 
 @Component({
-  selector: 'app-progress-bar-showcase',
-  templateUrl: './progress-bar-showcase.component.html',
-  styleUrls: ['./progress-bar-showcase.component.scss'],
-  standalone: true,
-  imports: [
-    BaseShowcaseComponent,
-    DdrProgressBarComponent,
-    DdrButtonComponent
-  ]
+    selector: 'app-progress-bar-showcase',
+    templateUrl: './progress-bar-showcase.component.html',
+    styleUrls: ['./progress-bar-showcase.component.scss'],
+    imports: [
+        BaseShowcaseComponent,
+        DdrProgressBarComponent,
+        DdrButtonComponent
+    ]
 })
 export class ProgressBarShowcaseComponent {
 

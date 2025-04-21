@@ -7,28 +7,27 @@ import { NgClass } from '@angular/common';
 import { DdrOrientation } from '../../types/types';
 
 @Component({
-  selector: 'ddr-toast',
-  templateUrl: './ddr-toast.component.html',
-  styleUrls: ['./ddr-toast.component.scss'],
-  encapsulation: ViewEncapsulation.None,
-  standalone: true,
-  imports: [
-    NgClass
-  ],
-  animations: [
-    trigger('overlayAnimation', [
-      state('void', style({
-        transform: 'translateY(5%)',
-        opacity: 0
-      })),
-      state('visible', style({
-        transform: 'translateY(0)',
-        opacity: 1
-      })),
-      transition('void => visible', animate('225ms ease-out')),
-      transition('visible => void', animate('195ms ease-in')),
-    ])
-  ]
+    selector: 'ddr-toast',
+    templateUrl: './ddr-toast.component.html',
+    styleUrls: ['./ddr-toast.component.scss'],
+    encapsulation: ViewEncapsulation.None,
+    imports: [
+        NgClass
+    ],
+    animations: [
+        trigger('overlayAnimation', [
+            state('void', style({
+                transform: 'translateY(5%)',
+                opacity: 0
+            })),
+            state('visible', style({
+                transform: 'translateY(0)',
+                opacity: 1
+            })),
+            transition('void => visible', animate('225ms ease-out')),
+            transition('visible => void', animate('195ms ease-in')),
+        ])
+    ]
 })
 export class DdrToastComponent implements OnInit {
 

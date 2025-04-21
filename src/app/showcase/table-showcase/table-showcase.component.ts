@@ -5,17 +5,16 @@ import { BaseShowcaseComponent } from '../base-showcase/base-showcase.component'
 import { FormsModule } from '@angular/forms';
 
 @Component({
-  selector: 'app-table-showcase',
-  templateUrl: './table-showcase.component.html',
-  styleUrls: ['./table-showcase.component.scss'],
-  standalone: true,
-  imports: [
-    BaseShowcaseComponent,
-    DdrTableComponent,
-    DdrDropdownComponent,
-    FormsModule,
-    DdrInputComponent
-  ]
+    selector: 'app-table-showcase',
+    templateUrl: './table-showcase.component.html',
+    styleUrls: ['./table-showcase.component.scss'],
+    imports: [
+        BaseShowcaseComponent,
+        DdrTableComponent,
+        DdrDropdownComponent,
+        FormsModule,
+        DdrInputComponent
+    ]
 })
 export class TableShowcaseComponent implements OnInit {
 

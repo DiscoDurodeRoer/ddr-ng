@@ -6,52 +6,51 @@ import { NgTemplateOutlet } from '@angular/common';
 import { DdrOrientation } from '../../types/types';
 
 @Component({
-  selector: 'ddr-detail',
-  templateUrl: './ddr-detail.component.html',
-  styleUrls: ['./ddr-detail.component.scss'],
-  encapsulation: ViewEncapsulation.None,
-  standalone: true,
-  imports: [
-    NgTemplateOutlet
-  ],
-  animations: [
-    trigger('slide-right', [
-      transition(':enter', [
-        style({ transform: 'translateX(100%)' }),
-        animate('600ms ease-in', style({ transform: 'translateX(0%)' }))
-      ]),
-      transition(':leave', [
-        animate('600ms ease-in', style({ transform: 'translateX(100%)' }))
-      ])
-    ]),
-    trigger('slide-left', [
-      transition(':enter', [
-        style({ transform: 'translateX(-200%)' }),
-        animate('600ms ease-in', style({ transform: 'translateX(0%)' }))
-      ]),
-      transition(':leave', [
-        animate('600ms ease-in', style({ transform: 'translateX(-200%)' }))
-      ])
-    ]),
-    trigger('slide-top', [
-      transition(':enter', [
-        style({ transform: 'translateY(100%)' }),
-        animate('600ms ease-in', style({ transform: 'translateY(0%)' }))
-      ]),
-      transition(':leave', [
-        animate('600ms ease-in', style({ transform: 'translateY(100%)' }))
-      ])
-    ]),
-    trigger('slide-bottom', [
-      transition(':enter', [
-        style({ transform: 'translateY(-100%)' }),
-        animate('600ms ease-in', style({ transform: 'translateX(0%)' }))
-      ]),
-      transition(':leave', [
-        animate('600ms ease-in', style({ transform: 'translateY(-100%)' }))
-      ])
-    ])
-  ]
+    selector: 'ddr-detail',
+    templateUrl: './ddr-detail.component.html',
+    styleUrls: ['./ddr-detail.component.scss'],
+    encapsulation: ViewEncapsulation.None,
+    imports: [
+        NgTemplateOutlet
+    ],
+    animations: [
+        trigger('slide-right', [
+            transition(':enter', [
+                style({ transform: 'translateX(100%)' }),
+                animate('600ms ease-in', style({ transform: 'translateX(0%)' }))
+            ]),
+            transition(':leave', [
+                animate('600ms ease-in', style({ transform: 'translateX(100%)' }))
+            ])
+        ]),
+        trigger('slide-left', [
+            transition(':enter', [
+                style({ transform: 'translateX(-200%)' }),
+                animate('600ms ease-in', style({ transform: 'translateX(0%)' }))
+            ]),
+            transition(':leave', [
+                animate('600ms ease-in', style({ transform: 'translateX(-200%)' }))
+            ])
+        ]),
+        trigger('slide-top', [
+            transition(':enter', [
+                style({ transform: 'translateY(100%)' }),
+                animate('600ms ease-in', style({ transform: 'translateY(0%)' }))
+            ]),
+            transition(':leave', [
+                animate('600ms ease-in', style({ transform: 'translateY(100%)' }))
+            ])
+        ]),
+        trigger('slide-bottom', [
+            transition(':enter', [
+                style({ transform: 'translateY(-100%)' }),
+                animate('600ms ease-in', style({ transform: 'translateX(0%)' }))
+            ]),
+            transition(':leave', [
+                animate('600ms ease-in', style({ transform: 'translateY(-100%)' }))
+            ])
+        ])
+    ]
 })
 export class DdrDetailComponent {
 

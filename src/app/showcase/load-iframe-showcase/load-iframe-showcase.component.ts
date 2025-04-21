@@ -3,14 +3,13 @@ import { DdrSpinnerService, DdrToastService, DdrLoadIframeDirective } from '@ddr
 import { BaseShowcaseComponent } from '../base-showcase/base-showcase.component';
 
 @Component({
-  selector: 'app-load-iframe-showcase',
-  templateUrl: './load-iframe-showcase.component.html',
-  styleUrls: ['./load-iframe-showcase.component.scss'],
-  standalone: true,
-  imports: [
-    BaseShowcaseComponent,
-    DdrLoadIframeDirective
-  ]
+    selector: 'app-load-iframe-showcase',
+    templateUrl: './load-iframe-showcase.component.html',
+    styleUrls: ['./load-iframe-showcase.component.scss'],
+    imports: [
+        BaseShowcaseComponent,
+        DdrLoadIframeDirective
+    ]
 })
 export class LoadIframeShowcaseComponent implements OnInit {
 

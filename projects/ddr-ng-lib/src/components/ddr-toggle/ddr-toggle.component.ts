@@ -6,23 +6,22 @@ import { DdrTooltipDirective } from '../../directives/ddr-tooltip.directive';
 import { NgClass } from '@angular/common';
 
 @Component({
-  selector: 'ddr-toggle',
-  templateUrl: './ddr-toggle.component.html',
-  styleUrls: ['./ddr-toggle.component.scss'],
-  encapsulation: ViewEncapsulation.None,
-  standalone: true,
-  imports: [
-    DdrNgModelBase,
-    DdrTooltipDirective,
-    NgClass
-  ],
-  providers: [
-    {
-      provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => DdrToggleComponent),
-      multi: true,
-    },
-  ],
+    selector: 'ddr-toggle',
+    templateUrl: './ddr-toggle.component.html',
+    styleUrls: ['./ddr-toggle.component.scss'],
+    encapsulation: ViewEncapsulation.None,
+    imports: [
+        DdrNgModelBase,
+        DdrTooltipDirective,
+        NgClass
+    ],
+    providers: [
+        {
+            provide: NG_VALUE_ACCESSOR,
+            useExisting: forwardRef(() => DdrToggleComponent),
+            multi: true,
+        },
+    ]
 })
 export class DdrToggleComponent extends DdrNgModelBase {
 

@@ -4,15 +4,14 @@ import { BaseShowcaseComponent } from '../base-showcase/base-showcase.component'
 import { FormsModule } from '@angular/forms';
 
 @Component({
-  selector: 'app-textarea-showcase',
-  templateUrl: './textarea-showcase.component.html',
-  styleUrls: ['./textarea-showcase.component.scss'],
-  standalone: true,
-  imports: [
-    BaseShowcaseComponent,
-    DdrTextareaComponent,
-    FormsModule
-  ]
+    selector: 'app-textarea-showcase',
+    templateUrl: './textarea-showcase.component.html',
+    styleUrls: ['./textarea-showcase.component.scss'],
+    imports: [
+        BaseShowcaseComponent,
+        DdrTextareaComponent,
+        FormsModule
+    ]
 })
 export class TextareaShowcaseComponent {
 

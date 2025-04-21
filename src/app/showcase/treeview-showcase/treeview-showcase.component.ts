@@ -4,15 +4,14 @@ import { TreeviewData } from './treeview-data';
 import { BaseShowcaseComponent } from '../base-showcase/base-showcase.component';
 
 @Component({
-  selector: 'app-treeview-showcase',
-  templateUrl: './treeview-showcase.component.html',
-  styleUrls: ['./treeview-showcase.component.scss'],
-  standalone: true,
-  imports: [
-    BaseShowcaseComponent,
-    DdrTreeviewComponent,
-    DdrToggleComponent
-  ]
+    selector: 'app-treeview-showcase',
+    templateUrl: './treeview-showcase.component.html',
+    styleUrls: ['./treeview-showcase.component.scss'],
+    imports: [
+        BaseShowcaseComponent,
+        DdrTreeviewComponent,
+        DdrToggleComponent
+    ]
 })
 export class TreeviewShowcaseComponent {
 

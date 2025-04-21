@@ -5,17 +5,16 @@ import { FormsModule } from '@angular/forms';
 import { BaseShowcaseComponent } from '../base-showcase/base-showcase.component';
 
 @Component({
-  selector: 'app-steps-showcase',
-  templateUrl: './steps-showcase.component.html',
-  styleUrls: ['./steps-showcase.component.scss'],
-  standalone: true,
-  imports: [
-    BaseShowcaseComponent,
-    FormsModule,
-    DdrStepsComponent,
-    DdrStepComponent,
-    DdrInputComponent
-  ]
+    selector: 'app-steps-showcase',
+    templateUrl: './steps-showcase.component.html',
+    styleUrls: ['./steps-showcase.component.scss'],
+    imports: [
+        BaseShowcaseComponent,
+        FormsModule,
+        DdrStepsComponent,
+        DdrStepComponent,
+        DdrInputComponent
+    ]
 })
 export class StepsShowcaseComponent {
 

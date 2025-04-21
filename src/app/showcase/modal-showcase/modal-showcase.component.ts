@@ -3,18 +3,17 @@ import { DdrToastService, DdrModalComponent, DdrButtonComponent, DdrModalService
 import { BaseShowcaseComponent } from '../base-showcase/base-showcase.component';
 
 @Component({
-  selector: 'app-modal-showcase',
-  templateUrl: './modal-showcase.component.html',
-  styleUrls: ['./modal-showcase.component.scss'],
-  standalone: true,
-  imports: [
-    BaseShowcaseComponent,
-    DdrModalComponent,
-    DdrButtonComponent
-  ],
-  providers: [
-    DdrModalService
-  ]
+    selector: 'app-modal-showcase',
+    templateUrl: './modal-showcase.component.html',
+    styleUrls: ['./modal-showcase.component.scss'],
+    imports: [
+        BaseShowcaseComponent,
+        DdrModalComponent,
+        DdrButtonComponent
+    ],
+    providers: [
+        DdrModalService
+    ]
 })
 export class ModalShowcaseComponent {
 

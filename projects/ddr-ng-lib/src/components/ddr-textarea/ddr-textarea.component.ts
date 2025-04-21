@@ -7,25 +7,24 @@ import { NgClass, NgTemplateOutlet } from '@angular/common';
 import { DdrOrientation } from '../../types/types';
 
 @Component({
-  selector: 'ddr-textarea',
-  templateUrl: './ddr-textarea.component.html',
-  styleUrls: ['./ddr-textarea.component.scss'],
-  encapsulation: ViewEncapsulation.None,
-  standalone: true,
-  imports: [
-    FormsModule,
-    DdrNgModelBase,
-    DdrTooltipDirective,
-    NgClass,
-    NgTemplateOutlet
-  ],
-  providers: [
-    {
-      provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => DdrTextareaComponent),
-      multi: true
-    }
-  ]
+    selector: 'ddr-textarea',
+    templateUrl: './ddr-textarea.component.html',
+    styleUrls: ['./ddr-textarea.component.scss'],
+    encapsulation: ViewEncapsulation.None,
+    imports: [
+        FormsModule,
+        DdrNgModelBase,
+        DdrTooltipDirective,
+        NgClass,
+        NgTemplateOutlet
+    ],
+    providers: [
+        {
+            provide: NG_VALUE_ACCESSOR,
+            useExisting: forwardRef(() => DdrTextareaComponent),
+            multi: true
+        }
+    ]
 })
 export class DdrTextareaComponent extends DdrNgModelBase {
 

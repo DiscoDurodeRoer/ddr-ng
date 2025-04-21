@@ -14,15 +14,14 @@ import { NgClass } from '@angular/common';
 import { DdrModeButton, DdrSize, DdrTypeButton } from '../../types/types';
 
 @Component({
-  selector: 'ddr-button',
-  templateUrl: './ddr-button.component.html',
-  styleUrls: ['./ddr-button.component.scss'],
-  encapsulation: ViewEncapsulation.None,
-  standalone: true,
-  imports: [
-    DdrTooltipDirective,
-    NgClass
-  ]
+    selector: 'ddr-button',
+    templateUrl: './ddr-button.component.html',
+    styleUrls: ['./ddr-button.component.scss'],
+    encapsulation: ViewEncapsulation.None,
+    imports: [
+        DdrTooltipDirective,
+        NgClass
+    ]
 })
 export class DdrButtonComponent implements OnInit {
 

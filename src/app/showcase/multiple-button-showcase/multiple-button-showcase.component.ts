@@ -4,15 +4,14 @@ import { BaseShowcaseComponent } from '../base-showcase/base-showcase.component'
 import { FormsModule } from '@angular/forms';
 
 @Component({
-  selector: 'app-multiple-button-showcase',
-  templateUrl: './multiple-button-showcase.component.html',
-  styleUrls: ['./multiple-button-showcase.component.scss'],
-  standalone: true,
-  imports: [
-    BaseShowcaseComponent,
-    DdrMultipleButtonComponent,
-    FormsModule
-  ]
+    selector: 'app-multiple-button-showcase',
+    templateUrl: './multiple-button-showcase.component.html',
+    styleUrls: ['./multiple-button-showcase.component.scss'],
+    imports: [
+        BaseShowcaseComponent,
+        DdrMultipleButtonComponent,
+        FormsModule
+    ]
 })
 export class MultipleButtonShowcaseComponent {
 

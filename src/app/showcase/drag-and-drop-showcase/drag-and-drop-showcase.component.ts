@@ -3,15 +3,14 @@ import { DdrToastService, DdrFileHandle, DdrDragDropDirective, DdrButtonComponen
 import { BaseShowcaseComponent } from '../base-showcase/base-showcase.component';
 
 @Component({
-  selector: 'app-drag-and-drop-showcase',
-  templateUrl: './drag-and-drop-showcase.component.html',
-  styleUrls: ['./drag-and-drop-showcase.component.scss'],
-  standalone: true,
-  imports: [
-    BaseShowcaseComponent,
-    DdrDragDropDirective,
-    DdrButtonComponent
-  ]
+    selector: 'app-drag-and-drop-showcase',
+    templateUrl: './drag-and-drop-showcase.component.html',
+    styleUrls: ['./drag-and-drop-showcase.component.scss'],
+    imports: [
+        BaseShowcaseComponent,
+        DdrDragDropDirective,
+        DdrButtonComponent
+    ]
 })
 export class DragAndDropShowcaseComponent {
 

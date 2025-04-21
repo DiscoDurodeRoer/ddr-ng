@@ -3,14 +3,13 @@ import { DdrConversationComponent, DdrMessage, DdrToastService } from '@ddr-ng';
 import { BaseShowcaseComponent } from '../base-showcase/base-showcase.component';
 
 @Component({
-  selector: 'app-conversation-showcase',
-  templateUrl: './conversation-showcase.component.html',
-  styleUrls: ['./conversation-showcase.component.scss'],
-  standalone: true,
-  imports: [
-    BaseShowcaseComponent,
-    DdrConversationComponent
-  ]
+    selector: 'app-conversation-showcase',
+    templateUrl: './conversation-showcase.component.html',
+    styleUrls: ['./conversation-showcase.component.scss'],
+    imports: [
+        BaseShowcaseComponent,
+        DdrConversationComponent
+    ]
 })
 export class ConversationShowcaseComponent {
 

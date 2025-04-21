@@ -6,18 +6,17 @@ import { DdrTranslatePipe } from '../../pipes/ddr-translate.pipe';
 import { NgClass, NgTemplateOutlet } from '@angular/common';
 
 @Component({
-  selector: 'ddr-steps',
-  templateUrl: './ddr-steps.component.html',
-  styleUrls: ['./ddr-steps.component.scss'],
-  encapsulation: ViewEncapsulation.None,
-  standalone: true,
-  imports: [
-    DdrButtonComponent,
-    DdrTranslatePipe,
-    DdrToastComponent,
-    NgClass,
-    NgTemplateOutlet
-  ]
+    selector: 'ddr-steps',
+    templateUrl: './ddr-steps.component.html',
+    styleUrls: ['./ddr-steps.component.scss'],
+    encapsulation: ViewEncapsulation.None,
+    imports: [
+        DdrButtonComponent,
+        DdrTranslatePipe,
+        DdrToastComponent,
+        NgClass,
+        NgTemplateOutlet
+    ]
 })
 export class DdrStepsComponent implements OnInit, AfterViewInit {
 
