@@ -1,0 +1,25 @@
+{
+  "$schema": "../../node_modules/ng-packagr/ng-package.schema.json",
+  "dest": "../../dist/ddr-ng-lib",
+  "lib": {
+    "entryFile": "src/public-api.ts"
+  },
+  "assets": [
+    "./resources/**/*"
+  ],
+  "allowedNonPeerDependencies": [
+    "bootstrap",
+    "jquery",
+    "font-awesome",
+    "ngx-pagination",
+    "primeng",
+    "primeicons",
+    "lodash-es",
+    "bootstrap-icons",
+    "chart.js",
+    "chartjs-adapter-moment",
+    "wavesurfer.js",
+    "d3",
+    "prismjs"
+  ]
+}

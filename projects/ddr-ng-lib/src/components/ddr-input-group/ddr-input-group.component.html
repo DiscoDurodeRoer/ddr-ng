@@ -1,0 +1,42 @@
+<div class="ddr-input-group" [ngClass]="{'d-inline-flex': inline}">
+  <ddr-input class="ddr-input-group__input" 
+    [border]="true" 
+    [label]="label"
+    [size]="constants.SIZE.MEDIUM" 
+    [type]="type" 
+    [validate]="validate" 
+    [required]="required"
+    [placeholder]="placeholder" 
+    [disabled]="disabled"
+    [templateValidInput]="templateValid || templateValidInput" 
+    [templateErrorsInput]="templateErrors || templateErrorsInput"
+    [readonly]="readonly"
+    [labelBold]="labelBold"
+    [inline]="inline" 
+    [pattern]="pattern"
+    [name]="name" 
+    [autocomplete]="autocomplete"
+    [showTooltip]="showTooltip"
+    [orientationTooltip]="orientationTooltip"
+    [tooltipText]="tooltipText"
+    [(ngModel)]="value" 
+    (hasErrors)="checkInput($event)"
+    (keyup)="onKeyup($event)"
+    (keydown)="onKeydown($event)"
+    (clickInput)="onclickInput($event)">
+  </ddr-input>
+  <ddr-button class="ddr-input-group__button" 
+    [ngClass]="{
+      'ddr-input-group__button--label': label && !inline, 
+      'ddr-input-group__button--no-label': !label || inline, 
+      'ddr-input-group__button--is-valid': errorsInput == constants.INPUT_ERRORS.VALID, 
+      'ddr-input-group__button--is-invalid': errorsInput == constants.INPUT_ERRORS.ERROR
+    }" 
+    [block]="true" 
+    [type]="constants.TYPE_BUTTON.BUTTON" 
+    [icon]="icon"
+    [disabled]="disabled"
+    [size]="constants.SIZE.MEDIUM" 
+    (action)="clickButton($event)">
+  </ddr-button>
+</div>

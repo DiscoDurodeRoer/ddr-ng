@@ -1,0 +1,991 @@
+/* Variables */
+
+$primary: #522888;
+$secondary: #6c757d;
+$selected: #deb7ff;
+$text-color-primary: #000;
+$text-color-secondary: #FFF;
+$surface: #f5f7fb;
+$disabled: #cfcfcf;
+
+/* Skeleton */
+
+$skeleton-background: #000;
+
+/* Tooltip */
+
+$tooltip-color: #FFF;
+$tooltip-background: #a9a9a9;
+
+/* Panels */
+
+$panel-background: #FFF;
+$panel-color: #000;
+
+/* Inputs */
+
+$input-background: #FFF;
+$input-color: #000;
+$input-border-color: #6c757d;
+
+/* Buttons */
+
+$button-background: #522888;
+$button-color: #FFF;
+$button-border-color: #522888;
+
+/* Conversation */
+
+$conversation-background-human: #b9ffb9;
+$conversation-color-human: #000;
+$conversation-background-robot: #e7e7e7;
+$conversation-color-robot: #000;
+
+/* Gradients */
+
+$gradient-color-1: #6726bd;
+$gradient-color-2: #522888;
+$gradient-color-3: #584275;
+
+$gradientHorizontal: linear-gradient(90deg,
+    $gradient-color-1 250px,
+    $gradient-color-2 60%,
+    $gradient-color-3 100%);
+$gradientHorizontalMobile: linear-gradient(90deg,
+    $gradient-color-1 30%,
+    $gradient-color-2 60%,
+    $gradient-color-3 100%);
+$gradientVertical: linear-gradient(180deg,
+    $gradient-color-1 0%,
+    $gradient-color-2 60%,
+    $gradient-color-3 100%);
+$gradientSubmenu: linear-gradient(135deg,
+    $gradient-color-1 0%,
+    $gradient-color-2 60%,
+    $gradient-color-3 100%);
+$gradientInvert: linear-gradient(180deg,
+    $gradient-color-3 0%,
+    $gradient-color-2 60%,
+    $gradient-color-1 100%);
+$gradientHorizontalFooter: linear-gradient(270deg,
+    $gradient-color-1 30%,
+    $gradient-color-2 60%,
+    $gradient-color-3 100%);
+/* Estados */
+
+$color-info: #0dcaf0;
+$color-success: #28a745;
+$color-danger: #dc3545;
+$color-warning: #f0ad4e;
+
+/* Fin variables */
+
+.ddr-purple {
+
+  * {
+    font-family: 'ddr';
+  }
+
+  .bg-ddr {
+    background-color: $primary;
+  }
+
+  .bg-ddr-hover {
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+  }
+
+  .font-ddr-bold {
+    font-family: "ddr bold";
+  }
+
+  .border-bottom-ddr {
+    border-bottom: 1px solid $primary;
+  }
+
+  .active-link {
+    border-left-color: #fff;
+    color: #fff;
+  }
+
+  .color-info {
+    color: $color-info;
+  }
+
+  .color-danger {
+    color: $color-danger;
+  }
+
+  .color-warning {
+    color: $color-warning;
+  }
+
+  .color-success {
+    color: $color-success;
+  }
+
+  .skeleton {
+
+    background-color: $skeleton-background;
+    opacity: 0.2;
+    background-image: linear-gradient(90deg,
+        transparent 0%,
+        rgba(255, 255, 255, 0.33) 50%,
+        transparent 100%);
+  }
+
+  .ddr-tooltip {
+    background: $tooltip-background;
+    border: 1px solid $tooltip-background;
+    color: $tooltip-color;
+
+    &.ddr-tooltip--top::before {
+      border-top-color: $tooltip-background;
+    }
+
+    &.ddr-tooltip--bottom::before {
+      border-bottom-color: $tooltip-background;
+    }
+
+    &.ddr-tooltip--left::before {
+      border-left-color: $tooltip-background;
+    }
+
+    &.ddr-tooltip--right::before {
+      border-right-color: $tooltip-background;
+    }
+  }
+
+
+  .drag-and-drop-border {
+    border: 3px dashed #000;
+  }
+
+
+  /* Ddr app */
+  &.start-app {
+
+    /* Mejorar selectores */
+    .start-app__menu-mobile-detail {
+      .ddr-detail {
+        background: $gradientVertical;
+      }
+    }
+
+    .start-app__header-web {
+      background: $gradientHorizontal;
+    }
+
+    .start-app__header-mobile {
+      background: $gradientHorizontalMobile;
+    }
+
+    .start-app__menu-web {
+      background: $gradientVertical;
+    }
+
+    .start-app__container-web,
+    .start-app__container-mobile {
+      background-color: $surface;
+    }
+
+    .start-app__container-web__footer,
+    .start-app__container-mobile__footer{
+      background: $gradientHorizontalFooter;
+    }
+  }
+
+  /* Components */
+
+  ddr-menu-item {
+    .ddr-menu-item {
+
+      &__sub-menu-vertical,
+      &__sub-menu-horizontal {
+        background: $gradientSubmenu;
+      }
+    }
+  }
+
+  ddr-accordion {
+    .ddr-accordion {
+      background-color: $panel-background;
+    }
+  }
+
+  ddr-tabs {
+    .ddr-tabs {
+      &__title {
+        &--selected {
+          color: $primary;
+          border-bottom: 1px solid $primary;
+        }
+      }
+    }
+  }
+
+  ddr-checkbox {
+    .ddr-checkbox {
+      &__container {
+        &--input {
+          &--active {
+            background-color: $primary;
+            border: 1px solid $primary;
+          }
+
+          &--desactive {
+            border: 1px solid #000;
+          }
+
+          &--icon {
+            color: $text-color-secondary;
+          }
+        }
+      }
+    }
+  }
+
+  ddr-radio {
+    .ddr-radio {
+      &__container {
+        &--input {
+          &--active {
+            background-color: $primary;
+            border: 1px solid $primary;
+          }
+
+          &--desactive {
+            border: 1px solid #000;
+          }
+
+          &--icon {
+            color: $text-color-secondary;
+          }
+        }
+      }
+    }
+  }
+
+  ddr-round-button {
+    .ddr-round-button {
+      &__container {
+        &--input {
+          border-color: $button-border-color;
+
+          &--active {
+            background-color: $button-background;
+            border: 5px solid $button-border-color;
+          }
+        }
+      }
+    }
+  }
+
+  ddr-input {
+    .ddr-input {
+      &__input-container {
+
+        &--label {
+          color: $input-color;
+        }
+
+        &--input {
+
+          background-color: $input-background;
+          color: $input-color;
+
+          &--border {
+            border: 1px solid $input-border-color;
+          }
+
+          &--no-border {
+            border-bottom: 1px solid $input-border-color;
+          }
+
+
+          &:disabled {
+            background: $disabled;
+          }
+
+          &--no-border {
+            border-bottom: 1px solid $input-border-color;
+          }
+
+          &.is-valid {
+            border-color: $color-success;
+          }
+
+          &.is-invalid {
+            border-color: $color-danger;
+          }
+        }
+      }
+    }
+  }
+
+
+  ddr-input-group {
+    .ddr-input-group {
+      &__button {
+        &--is-valid {
+          button {
+            border-color: $color-success !important;
+          }
+        }
+
+        &--is-invalid {
+          button {
+            border-color: $color-danger !important;
+          }
+        }
+      }
+
+      ddr-button {
+        .btn-ddr {
+          background-color: $input-background;
+
+          &--disabled {
+            background-color: $disabled !important;
+          }
+
+          &--border {
+            border-color: $secondary;
+          }
+
+          i {
+            color: $input-color;
+          }
+        }
+      }
+    }
+
+  }
+
+  ddr-textarea {
+    .ddr-textarea {
+      &__textarea-container {
+        &--textarea {
+          background-color: $input-background;
+          border: 1px solid $input-border-color;
+          color: $input-color;
+        }
+      }
+    }
+  }
+
+  ddr-button {
+    .btn-ddr {
+      &--border {
+        border-color: $button-border-color;
+      }
+
+      &--mode-default {
+        border-color: $button-border-color;
+        background: $button-background;
+      }
+
+      &--mode-save {
+        color: $text-color-primary;
+        border-color: $color-success;
+        background: $color-success;
+      }
+
+      &--mode-danger {
+        color: $text-color-primary;
+        border-color: $color-danger;
+        background: $color-danger;
+      }
+
+      &--disabled {
+        color: $text-color-primary;
+        border-color: $disabled;
+        background: $disabled;
+      }
+
+      &--transparent {
+        
+        border-color: $text-color-primary;
+        background: transparent;
+
+        .btn-ddr--text,
+        .btn-ddr--icon{
+          color: $text-color-primary;
+        }
+      }
+
+      &--text,
+      &--icon {
+        color: $text-color-secondary;
+      }
+    }
+  }
+
+
+  ddr-card {
+    .ddr-card {
+      background-color: $panel-background;
+    }
+  }
+
+  ddr-toggle {
+    .ddr-toggle {
+      &__btn {
+        &--on {
+          background: $color-success;
+        }
+
+        &--off {
+          background: #afafaf;
+        }
+      }
+    }
+  }
+
+  ddr-badge-pill {
+    .ddr-badge {
+      &--info {
+        background: $primary;
+        color: $text-color-secondary;
+      }
+
+      &--danger {
+        background: $color-danger;
+        color: $text-color-secondary;
+      }
+
+      &--warning {
+        background: $color-warning;
+        color: $text-color-secondary;
+      }
+
+      &--success {
+        background: $color-success;
+        color: $text-color-secondary;
+      }
+
+    }
+  }
+
+  ddr-progress-bar {
+    .ddr-progress-bar {
+      .progress-bar {
+        background-color: $primary;
+      }
+    }
+  }
+
+  ddr-widget {
+    ddr-card {
+
+      .ddr-card__title {
+        background-color: transparent;
+        color: $panel-color;
+      }
+
+    }
+
+    .ddr-widget {
+      &__actions {
+        ddr-split-button {
+          .ddr-split-button {
+            ddr-button {
+
+              .btn-ddr {
+
+                &--icon {
+                  color: $text-color-primary;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
+  }
+
+  ddr-dropdown {
+
+    .ddr-dropdown {
+
+      &__panel-items {
+        background-color: $panel-background;
+        border: 1px solid #c8c8c8;
+
+        &--search {
+          &--input {
+            border: 0;
+            border-bottom: 1px solid #c8c8c8;
+            background-color: $input-background;
+            color: $input-color;
+          }
+        }
+
+        &--no-results {
+          color: $input-color;
+        }
+
+      }
+
+      ul {
+        border-color: #c8c8c8;
+
+        li {
+          color: #000;
+
+          &:hover {
+            background: $selected;
+          }
+        }
+      }
+
+      ddr-button {
+        .btn-ddr {
+          background: #FFF;
+
+          &--icon {
+            color: #000;
+          }
+        }
+      }
+    }
+
+  }
+
+  ddr-chatbot {
+    .ddr-chatbot__dialog {
+      .ddr-card {
+        border: 1px solid #c7c7c7;
+      }
+
+      .ddr-card__footer {
+        border-top: 1px solid #c7c7c7;
+      }
+
+      &__message {
+        &--human {
+          background: #b9ffb9;
+        }
+
+        &--robot {
+          background: #e7e7e7;
+        }
+      }
+
+    }
+  }
+
+  ddr-table {
+    .ddr-table {
+
+      ddr-split-button {
+        ddr-button {
+          .btn-ddr--icon {
+            color: #FFF;
+          }
+        }
+      }
+
+      &__table {
+        &--border {
+          border-top: 1px solid #000;
+          border-bottom: 1px solid #000;
+        }
+
+        &--body-row {
+
+          &--hoveable:hover {
+            background: $selected;
+            cursor: pointer;
+          }
+        }
+      }
+
+
+    }
+  }
+
+  pagination-controls {
+    .ngx-pagination {
+
+      li {
+        color: $text-color-primary;
+      }
+
+      li.current {
+        background: $primary;
+        color: $text-color-secondary;
+      }
+    }
+  }
+
+  ddr-calendar {
+    .ddr-calendar .p-calendar .p-inputtext {
+      border: 1px solid $input-border-color;
+    }
+  }
+
+  ddr-range {
+
+    .p-slider {
+      .p-slider-handle {
+        background: $primary;
+        border: 2px solid $primary;
+      }
+
+      .p-slider-range {
+        background: $primary;
+      }
+
+      &:not(.p-disabled) .p-slider-handle:hover {
+        background: $primary;
+        border-color: $primary;
+      }
+
+    }
+
+    .p-disabled,
+    .p-component:disabled {
+      opacity: 1;
+    }
+
+  }
+
+  ddr-small-indicator {
+    ddr-card {
+      .ddr-card {
+        background-color: $primary;
+        color: $text-color-primary;
+
+        &__body {
+          color: $text-color-secondary;
+        }
+      }
+
+
+    }
+  }
+
+  ddr-indicator {
+    ddr-card {
+      .ddr-card {
+        background-color: $primary;
+        color: $text-color-primary;
+
+        &__body {
+          color: $text-color-secondary;
+        }
+      }
+    }
+  }
+
+
+  ddr-chip {
+
+    .ddr-chip {
+      &__container {
+        border: 1px solid $input-border-color;
+
+        &__input input {
+          background: $input-background;
+          color: $text-color-primary;
+        }
+      }
+    }
+
+
+    ddr-chip-value {
+      .ddr-chip-value {
+        background: $primary;
+        color: $text-color-secondary;
+      }
+    }
+  }
+
+  ddr-select-icon {
+
+    .ddr-select-icon__icon {
+      border: 1px solid $input-border-color;
+    }
+
+  }
+
+  ddr-steps {
+    .ddr-steps {
+      &__horizontal {
+        &__info-step {
+          &--hover:hover {
+            background-color: #f8f8f8;
+          }
+
+          &__number-step {
+
+            &--open {
+              background-color: $primary;
+
+              span {
+                color: $text-color-secondary;
+              }
+            }
+
+            &--closed {
+              background-color: #7e7e7e;
+
+              span {
+                color: $text-color-secondary;
+              }
+            }
+          }
+        }
+
+        &__line {
+          border-bottom: 1px solid #000;
+        }
+      }
+
+      &__vertical {
+        &__info-step {
+          &--hover:hover {
+            background-color: #f8f8f8;
+          }
+
+          &__number-step {
+
+            &--open {
+              background-color: $primary;
+
+              span {
+                color: $text-color-secondary;
+              }
+            }
+
+            &--closed {
+              background-color: #7e7e7e;
+
+              span {
+                color: $text-color-secondary;
+              }
+            }
+          }
+        }
+
+      }
+
+      &__template {
+        &--line {
+          border-left: 1px solid #000;
+        }
+      }
+
+    }
+
+  }
+
+  ddr-block-list {
+    .ddr-block-item {
+      &--hover {
+        background: $selected;
+      }
+    }
+
+    .ddr-block-data-item {
+
+      &__label {
+        color: #c8c8c8;
+      }
+
+      &__value {
+        color: #000;
+      }
+
+    }
+  }
+
+  ddr-detail {
+    .ddr-detail {
+      background: $panel-background;
+    }
+  }
+
+  ddr-split-button {
+
+    .ddr-split-button {
+
+      color: $text-color-primary;
+
+      &__options {
+
+        background: $panel-background;
+        color: $panel-color;
+
+        ul {
+          border: 1px solid $secondary;
+
+          li {
+            &:hover {
+              background: $selected;
+            }
+          }
+        }
+      }
+
+      &--transparent {
+        ddr-button {
+          .btn-ddr {
+            border: 1px solid $secondary;
+
+            &--text,
+            &--icon {
+              color: $text-color-primary;
+            }
+
+          }
+        }
+      }
+
+      &--transparent.ddr-split-button--no-border {
+        ddr-button {
+          button {
+            color: $text-color-secondary;
+            border: 1px solid $secondary;
+          }
+
+          .btn-ddr {
+
+            &--text,
+            &--icon {
+              color: $text-color-secondary;
+            }
+          }
+        }
+      }
+
+    }
+
+
+  }
+
+  ddr-login {
+    .ddr-login {
+
+      .card-body {
+        background-color: $panel-background;
+        border-color: $panel-color;
+      }
+
+    }
+  }
+
+  ddr-toast {
+    .ddr-toast-container {
+      &__ddr-toast {
+        &--success {
+          background-color: $color-success;
+        }
+
+        &--info {
+          background-color: $color-info;
+        }
+
+        &--danger {
+          background-color: $color-danger;
+        }
+
+        &--warning {
+          background-color: $color-warning;
+
+        }
+      }
+    }
+  }
+
+
+  ddr-toast {
+    .ddr-toast-container {
+      &__ddr-toast {
+        &--success {
+          background-color: $color-success;
+          border-color: $color-success;
+        }
+
+        &--info {
+          background-color: $color-info;
+          border-color: $color-info;
+        }
+
+        &--danger {
+          background-color: $color-danger;
+          border-color: $color-danger;
+        }
+
+        &--warning {
+          background-color: $color-warning;
+          border-color: $color-warning;
+        }
+      }
+    }
+  }
+
+  ddr-modal {
+    .ddr-modal {
+      .card {
+        background-color: $panel-background;
+      }
+    }
+  }
+
+
+  ddr-conversation {
+    .ddr-conversation {
+
+      &__message {
+        &--human {
+          background: $conversation-background-human;
+          color: $conversation-color-human;
+        }
+
+        &--robot {
+          background: $conversation-background-robot;
+          color: $conversation-color-robot;
+        }
+      }
+
+    }
+  }
+
+  ddr-word-cloud {
+    svg {
+      text {
+        fill: $primary;
+      }
+    }
+  }
+
+  ddr-multiple-button {
+    .ddr-multiple-button {
+      &__selected {
+        button {
+          background-color: $selected;
+          border-color: $selected;
+
+          .btn-ddr--text,
+          .btn-ddr--icon {
+            color: $text-color-primary;
+          }
+        }
+      }
+    }
+  }
+
+  ddr-no-data {
+    &__icon {
+      color: $text-color-primary;
+    }
+
+    &__text {
+      color: $text-color-primary;
+    }
+  }
+
+}

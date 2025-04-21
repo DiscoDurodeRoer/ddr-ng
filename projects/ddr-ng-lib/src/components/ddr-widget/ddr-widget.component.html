@@ -1,0 +1,51 @@
+<div class="row ddr-widget">
+  <div class="col-12">
+    <ddr-card
+      [showHeader]="showHeader"
+      [rounded]="rounded"
+      [border]="border"
+      [shadow]="shadow">
+      <div class="row g-0" card-title>
+        <div class="d-inline-block p-1"
+          [ngClass]="{'col-9': (showActions && actions.length > 0) || tooltipText ,'col-12': (!showActions && actions.length == 0 && !tooltipText) }">
+          <h3 class="d-inline-block text-start" >{{ widgetTitle }}</h3>
+          <ng-content select="[info-extra]"></ng-content>
+        </div>
+        @if (showActions || tooltipText) {
+          <div class="col-3 text-end p-0 ddr-widget__actions">
+            @if (tooltipText) {
+              <i
+                class="bi bi-info-circle"
+                ddrTooltip
+                [underlineTooltip]="false"
+                [orientationTooltip]="orientationTooltip"
+                [tooltipText]="tooltipText ? tooltipText : ''">
+              </i>
+            }
+            @if (showActions) {
+              <ddr-split-button
+                [actions]="actions"
+                [showFirst]="false"
+                iconShowOptions="bi bi-three-dots-vertical"
+                [size]="constants.SIZE.MEDIUM"
+                [transparent]="true"
+                (selectAction)="onSelectAction($event)">
+              </ddr-split-button>
+            }
+          </div>
+        }
+      </div>
+      <div card-content>
+        @if (load) {
+          <ng-content select="[widget-content]"></ng-content>
+        }
+        @if (!load) {
+          <ddr-skeleton
+            [mode]="modeSkeleton"
+            [nElements]="nElementsSkeleton">
+          </ddr-skeleton>
+        }
+      </div>
+    </ddr-card>
+  </div>
+</div>

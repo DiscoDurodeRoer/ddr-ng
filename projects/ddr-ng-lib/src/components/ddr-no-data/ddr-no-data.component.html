@@ -1,0 +1,13 @@
+<div class="row ddr-no-data"
+  [ngClass]="{
+    'ddr-no-data--large': size === constants.SIZE.LARGE,
+    'ddr-no-data--medium': size === constants.SIZE.MEDIUM,
+    'ddr-no-data--small': size === constants.SIZE.SMALL
+  }">
+  <div class="col-12 ddr-no-data__icon">
+    <i [class]="icon"></i>
+  </div>
+  <div class="col-12 ddr-no-data__text">
+    <span>{{text | ddrTranslate}}</span>
+  </div>
+</div>

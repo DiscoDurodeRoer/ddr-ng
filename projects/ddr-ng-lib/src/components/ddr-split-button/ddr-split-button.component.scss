@@ -1,0 +1,113 @@
+.ddr-split-button {
+
+    display: inline-flex;
+    align-items: center;
+    position: relative;
+
+    &--transparent {
+        ddr-button button {
+            background: transparent !important;
+        }
+    }
+
+    &--no-border {
+        ddr-button button {
+            border-color: transparent !important;
+        }
+    }
+
+    ddr-button button {
+        img {
+            width: 32px;
+            height: 32px;
+        }
+    }
+
+    &__action-principal {
+
+        &--more-actions {
+            button {
+                border-bottom-right-radius: 0;
+                border-top-right-radius: 0;
+                border-right: 0 !important;
+            }
+        }
+
+    }
+
+    &__action-secondaries-no-border-left {
+        button {
+            border-bottom-left-radius: 0;
+            border-top-left-radius: 0;
+            width: 40px;
+            padding: 0;
+        }
+    }
+
+    &__action-secondaries {
+        button {
+            width: 40px;
+            padding: 0;
+        }
+        button i {
+            font-size: 8px;
+        }
+    }
+
+    &__options {
+
+        &--with-text {
+            min-width: 200px;
+        }
+
+        position: absolute;
+        width: 100%;
+        z-index: 999;
+        background: #fff;
+        color: #000;
+        margin-top: 5px;
+        max-height: 300px;
+        text-align: center;
+        border-radius: 4px;
+
+        &--position-bottom-right {
+            top: 40px;
+            left: 0;
+        }
+
+        &--position-bottom-left {
+            top: 40px;
+            right: 0;
+        }
+
+
+        &--position-top-right {
+            bottom: 40px;
+            left: 0;
+        }
+
+        &--position-top-left {
+            bottom: 40px;
+            right: 0;
+        }
+
+
+        ul {
+            margin: 0px;
+            padding: 0px;
+            max-height: 200px;
+            overflow: auto;
+            border: 1px solid #c8c8c8;
+            overflow-x: hidden;
+            border-radius: 4px;
+
+            li {
+                list-style: none;
+                cursor: pointer;
+                padding: 5px;
+
+            }
+        }
+    }
+
+}

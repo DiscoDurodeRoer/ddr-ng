@@ -1,0 +1,56 @@
+<button
+  ddrTooltip 
+  [tooltipText]="tooltipText"
+  [class]="'btn-ddr cursor-pointer btn-ddr--mode-' + mode"
+  [ngClass]="{
+  'btn-ddr--block': block,
+  'btn-ddr--inline': !block,
+  'btn-ddr--border': border,
+  'btn-ddr--no-border': !border,
+  'btn-ddr--small': size == constants.SIZE.SMALL,
+  'btn-ddr--medium': size == constants.SIZE.MEDIUM,
+  'btn-ddr--large': size == constants.SIZE.LARGE,
+  'btn-ddr--disabled': disabled,
+  'cursor-pointer': !disabled,
+  'cursor-default': disabled,
+  'btn-ddr--floatButton': floatButton,
+  'btn-ddr--floatButton--left_bottom':
+  floatButton && position == constants.ORIENTATION.BOTTOM_LEFT,
+  'btn-ddr--floatButton--center_bottom':
+  floatButton && position == constants.ORIENTATION.BOTTOM_CENTER,
+  'btn-ddr--floatButton--right_bottom':
+  floatButton && position == constants.ORIENTATION.BOTTOM_RIGHT,
+  'btn-ddr--transparent': transparent
+  }"
+  [disabled]="disabled"
+  [type]="type"
+  (click)="clickButton($event)"
+  >
+  @if (icon && iconLeft) {
+    <i
+      [class]="'btn-ddr--icon ' + icon"
+      [ngClass]="{
+      'btn-ddr--icon-margin': text,
+      'btn-ddr--floatButton--items': floatButton
+      }">
+    </i>
+  }
+  @if (img) {
+    <img [src]="img" />
+  }
+  @if (text) {
+    <span class="btn-ddr--text">
+      {{ text }}
+    </span>
+  }
+  @if (icon && !iconLeft) {
+    <i
+      [class]="'btn-ddr--icon ' + icon"
+      [ngClass]="{
+      'btn-ddr--icon-margin-left': text,
+      'btn-ddr--floatButton--items': floatButton
+      }"
+      >
+    </i>
+  }
+</button>

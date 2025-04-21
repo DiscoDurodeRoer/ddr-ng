@@ -1,0 +1,31 @@
+.ddr-badge{
+    margin-left: 5px;
+    margin-right: 5px;
+    cursor: default;
+    user-select: none;
+    text-wrap: wrap;
+
+    &--clickable{
+        cursor: pointer;
+    }
+
+    &--xs-small{
+        font-size: 12px;
+        padding: 5px;
+    }
+
+    &--small{
+        font-size: 14px;
+        padding-top: 5px;
+    }
+
+    &--medium {
+        font-size: 18px;
+        padding-top: 7px;
+    }
+
+    &--large {
+        font-size: 24px;
+        padding-top: 10px;
+    }
+}

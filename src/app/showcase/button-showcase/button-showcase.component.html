@@ -1,0 +1,391 @@
+<base-showcase>
+
+  <div description>
+    <p>Componente que representa un button, usado para ejecutar acciones.</p>
+  </div>
+
+  <div examples>
+
+<div class="row">
+  <div class="col-12">
+    <p>Ejemplo 1: default</p>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-12">
+    <ddr-button
+      icon="bi bi-person"
+      text="texto"
+      (action)="click($event)">
+    </ddr-button>
+  </div>
+</div>
+
+
+<div class="row">
+  <div class="col-12">
+    <p>Ejemplo 2: save</p>
+  </div>
+</div>
+<div class="row">
+  <div class="col-12">
+    <ddr-button
+      mode="save"
+      icon="bi bi-person"
+      text="texto"
+      (action)="click($event)">
+    </ddr-button>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-12">
+    <p>Ejemplo 3: danger</p>
+  </div>
+</div>
+<div class="row">
+  <div class="col-12">
+    <ddr-button
+      mode="danger"
+      icon="bi bi-person"
+      text="texto"
+      (action)="click($event)">
+    </ddr-button>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-12">
+    <p>Ejemplo 4: Disabled</p>
+  </div>
+</div>
+<div class="row">
+  <div class="col-12">
+    <ddr-button
+      icon="bi bi-person"
+      text="texto"
+      disabled
+      (action)="click($event)">
+    </ddr-button>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-12">
+    <p>Ejemplo 5: Flotating Button (Abajo a la derecha)</p>
+  </div>
+</div>
+<div class="row">
+  <div class="col-12">
+    <ddr-button
+      floatButton
+      position="bottom-right"
+      icon="bi bi-person"
+      (action)="click($event)" >
+    </ddr-button>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-12">
+    <p>Ejemplo 6: Submit</p>
+  </div>
+</div>
+<div class="row">
+  <div class="col-12">
+    <form (ngSubmit)="submitForm()">
+      <ddr-button
+        type="submit"
+        icon="bi bi-person"
+        text="submit">
+      </ddr-button>
+    </form>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-12">
+    <p>Ejemplo 7: block</p>
+  </div>
+</div>
+<div class="row">
+  <div class="col-12">
+    <ddr-button
+      block
+      icon="bi bi-person"
+      text="texto"
+      (action)="click($event)">
+    </ddr-button>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-12">
+    <p>Ejemplo 8: Sizes</p>
+  </div>
+</div>
+<div class="row">
+  <div class="col-12">
+    <div class="mb-1">
+      <ddr-button
+        size="large"
+        icon="bi bi-person"
+        text="large"
+        (action)="click($event)">
+      </ddr-button>
+    </div>
+  
+    <div class="mb-1">
+      <ddr-button
+        size="medium"
+        icon="bi bi-person"
+        text="medium"
+        (action)="click($event)">
+      </ddr-button>
+    </div>
+  
+    <div class="mb-1">
+      <ddr-button
+        size="small"
+        icon="bi bi-person"
+        text="small"
+        (action)="click($event)">
+      </ddr-button>
+    </div>
+    
+
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-12">
+    <p>Ejemplo 9: tooltip</p>
+  </div>
+</div>
+<div class="row">
+  <div class="col-12">
+    <div class="mb-1">
+      <ddr-button
+        icon="bi bi-person"
+        text="large"
+        tooltipText="Ejemplo tooltip"
+        (action)="click($event)">
+      </ddr-button>
+    </div>
+    
+
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-12">
+    <p>Ejemplo 10: transparent</p>
+  </div>
+</div>
+<div class="row">
+  <div class="col-12">
+    <div class="mb-1">
+      <ddr-button
+        icon="bi bi-person"
+        text="button"
+        transparent
+        (action)="click($event)">
+      </ddr-button>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-12">
+    <p>Ejemplo 11: icono a la derecha</p>
+  </div>
+</div>
+<div class="row">
+  <div class="col-12">
+    <div class="mb-1">
+      <ddr-button
+        icon="bi bi-person"
+        text="button"
+        [iconLeft]="false"
+        (action)="click($event)">
+      </ddr-button>
+    </div>
+  </div>
+</div>
+
+  </div>
+
+  <div>
+    <div codeHtml></div>
+    <div codeCss></div>
+    <div codeTS></div>
+  </div>
+
+  <div inputs>
+    <table class="table">
+      <thead class="thead-dark">
+        <tr>
+          <th>Nombre</th>
+          <th>Descripción</th>
+          <th>Tipo</th>
+          <th>Valor por defecto</th>
+          <th>Posibles valores (constants)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>icon</td>
+          <td>Icono del botón</td>
+          <td>string</td>
+          <td>undefined</td>
+          <td></td>
+        </tr>
+
+        <tr>
+          <td>text</td>
+          <td>Texto del botón</td>
+          <td>string</td>
+          <td>undefined</td>
+          <td></td>
+        </tr>
+
+        <tr>
+          <td>block</td>
+          <td>Indica si coge todo el ancho posible</td>
+          <td>boolean</td>
+          <td>false</td>
+          <td></td>
+        </tr>
+
+        <tr>
+          <td>disabled</td>
+          <td>Indica si el botón esta deshabilitado</td>
+          <td>boolean</td>
+          <td>false</td>
+          <td></td>
+        </tr>
+
+        <tr>
+          <td>type</td>
+          <td>Tipo del botón</td>
+          <td>string</td>
+          <td>'button'</td>
+          <td>
+            <ul>
+              <li>TypeButtonConstants.BUTTON</li>
+              <li>TypeButtonConstants.SUBMIT</li>
+            </ul>
+          </td>
+        </tr>
+
+        <tr>
+          <td>mode</td>
+          <td>Modo del botón</td>
+          <td>string</td>
+          <td>MODES_BUTTON.DEFAULT</td>
+          <td>
+            <ul>
+              <li>MODES_BUTTON.DEFAULT</li>
+              <li>MODES_BUTTON.SAVE</li>
+              <li>MODES_BUTTON.DANGER</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td>size</td>
+          <td>Tamaño del botón</td>
+          <td>string</td>
+          <td>SIZE.SMALL</td>
+          <td>
+            <ul>
+              <li>SIZE.EXTRA_SMALL</li>
+              <li>SIZE.SMALL</li>
+              <li>SIZE.MEDIUM</li>
+              <li>SIZE.LARGE</li>
+            </ul>
+          </td>
+        </tr>
+
+        <tr>
+          <td>floatButton</td>
+          <td>Boton flotante</td>
+          <td>boolean</td>
+          <td>false</td>
+          <td></td>
+        </tr>
+
+        <tr>
+          <td>iconLeft</td>
+          <td>Indica si muestra el icono a la izquierda</td>
+          <td>boolean</td>
+          <td>true</td>
+          <td></td>
+        </tr>
+        
+        <tr>
+          <td>position</td>
+          <td>Posicion del float button</td>
+          <td>string</td>
+          <td>'bottom-right'</td>
+          <td>
+            <ul>
+              <li>ORIENTATION.TOP</li>
+              <li>ORIENTATION.TOP_RIGHT</li>
+              <li>ORIENTATION.TOP_LEFT</li>
+              <li>ORIENTATION.BOTTOM</li>
+              <li>ORIENTATION.BOTTOM_RIGHT</li>
+              <li>ORIENTATION.BOTTOM_LEFT</li>
+              <li>ORIENTATION.RIGHT</li>
+              <li>ORIENTATION.LEFT</li>
+            </ul>
+          </td>
+        </tr>
+
+        <tr>
+          <td>tooltipText</td>
+          <td>Texto a mostrar en el tooltip</td>
+          <td>string</td>
+          <td>''</td>
+          <td></td>
+        </tr>
+
+        <tr>
+          <td>transparent</td>
+          <td>Indica si el fondo es transparente</td>
+          <td>boolean</td>
+          <td>false</td>
+          <td></td>
+        </tr>
+
+        <tr>
+          <td>border</td>
+          <td>Indica si tiene borde el boton</td>
+          <td>boolean</td>
+          <td>true</td>
+          <td></td>
+        </tr>
+
+      </tbody>
+    </table>
+  </div>
+
+  <div outputs>
+    <table class="table">
+      <thead class="thead-dark">
+        <tr>
+          <th>Nombre</th>
+          <th>Descripción</th>
+          <th>Valor devuelto</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>action</td>
+          <td>Acción al clicar el botón</td>
+          <td>MouseEvent</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</base-showcase>

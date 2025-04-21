@@ -1,0 +1,20 @@
+<div class="ddr-toast-container" [ngClass]="{
+  'ddr-toast-container__top-right': orientation == constants.ORIENTATION.TOP_RIGHT,
+  'ddr-toast-container__top-left': orientation == constants.ORIENTATION.TOP_LEFT,
+  'ddr-toast-container__bottom-right': orientation == constants.ORIENTATION.BOTTOM_RIGHT,
+  'ddr-toast-container__bottom-left': orientation == constants.ORIENTATION.BOTTOM_LEFT
+  }">
+  @for (toast of ddrToastService.toasts; track toast) {
+    <div [@overlayAnimation]="{value: 'visible'}" [class]="'ddr-toast-container__ddr-toast ddr-toast-container__ddr-toast--' + toast.status"
+      [ngClass]="{'ddr-toast-container__ddr-toast--block': block == true}">
+      <div class="ddr-toast-container__ddr-toast--ddr-toast-title text-light">
+        <span class="ddr-toast-container__ddr-toast--ddr-toast-title--title-message">{{toast.title}}</span>
+        <i class="bi bi-x ddr-toast-container__ddr-toast-title---title-icon"
+        (click)="ddrToastService.closeToast(toast)"></i>
+      </div>
+      <div class="ddr-toast-container__ddr-toast--ddr-toast-content text-light">
+        <span>{{toast.message}}</span>
+      </div>
+    </div>
+  }
+</div>

@@ -1,0 +1,107 @@
+.ddr-chatbot {
+
+    &__dialog {
+        position: fixed;
+        right: 20px;
+        bottom: 20px;
+        border-radius: 4px;
+        background-color: #FFF;
+        z-index: 9999;
+
+        &--dialog-expand {
+            width: 70%;
+            div.ddr-card__body {
+                height: 450px;
+            }
+        }
+
+        &--dialog-expand-mobile {
+            width: 90%;
+            height: 70%;
+
+            div.ddr-card__body {
+                height: 500px;
+            }
+        }
+
+        &--dialog-contract {
+            width: 300px;
+        }
+
+        .ddr-card {
+            height: 100%;
+            margin: 0;
+        }
+
+        .ddr-card__body {
+            margin: 0;
+            padding: 10px;
+            overflow: auto;
+            height: 300px;
+        }
+
+        .ddr-card__footer {
+            padding: 10px;
+            height: 80px;
+        }
+
+        &__icon {
+            font-size: 16px;
+            text-align: right;
+            margin: auto;
+        }
+
+
+        // &__messages {
+        //     // overflow-y: auto;
+        //     // overflow-x: hidden;
+        //     // height: calc(100% - 80px);
+        //     // min-height: 300px;
+        // }
+
+        &__message {
+            border-radius: 8px;
+            padding: 10px;
+            margin-bottom: 10px;
+            word-break: break-word;
+
+            &__text {
+                white-space: pre-wrap;
+
+                &--dots-loading {
+
+                    font-size: 32px;
+                    animation: dots-loading-animation 1s infinite alternate;
+
+                    @keyframes dots-loading-animation {
+                        0% {
+                            color: #000000;
+                        }
+
+                        50%,
+                        100% {
+                            color: rgb(0 0 0 / 20%);
+                        }
+                    }
+                }
+            }
+
+            &__date {
+                text-align: end;
+                font-size: 10px;
+                font-style: italic;
+                font-weight: bold;
+            }
+
+            &--human {
+                margin-left: 35px;
+                margin-right: 10px;
+            }
+
+            &--robot {
+                margin-right: 45px;
+            }
+        }
+
+    }
+}

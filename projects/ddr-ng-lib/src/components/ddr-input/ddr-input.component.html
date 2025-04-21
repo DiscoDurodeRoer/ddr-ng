@@ -1,0 +1,73 @@
+<div class="ddr-input">
+  <div class="ddr-input__input-container" [ngClass]="{
+    'ddr-input__input-container--inline': inline
+    }">
+    @if (label) {
+      <label [ngClass]="{
+        'ddr-input__input-container--label--inline': inline,
+        'ddr-input__input-container--label--no-inline': !inline,
+        'fw-bold': labelBold
+        }" class="ddr-input__input-container--label">
+        {{ label + (required ? "(*)" : "") }}
+        @if (showTooltip && tooltipText) {
+          <i
+            class="bi bi-info-circle"
+            ddrTooltip
+            [underlineTooltip]="false"
+            [orientationTooltip]="orientationTooltip"
+            [tooltipText]="tooltipText">
+          </i>
+        }
+      </label>
+    }
+    <input #input="ngModel"
+      class="ddr-input__input-container--input"
+      [name]="name"
+      [type]="type"
+      [placeholder]="placeholder"
+      [disabled]="disabled"
+      [readonly]="readonly"
+      [maxlength]="maxlength"
+      [minlength]="minlength"
+      [required]="required"
+      [pattern]="pattern"
+      [min]="min"
+      [max]="max"
+      [autocomplete]="autocomplete ? 'on':'off'"
+      [(ngModel)]="value"
+      [ngClass]="{
+      'is-valid': validate && input.dirty && !input.errors,
+      'is-invalid': validate && input.dirty && input.errors,
+      'w-100': !inline,
+      'ddr-input__input-container--input--border': border,
+      'ddr-input__input-container--input--no-border': !border,
+      'ddr-input__input-container--input--small':
+      size == constants.SIZE.SMALL,
+      'ddr-input__input-container--input--medium':
+      size == constants.SIZE.MEDIUM,
+      'ddr-input__input-container--input--large':
+      size == constants.SIZE.LARGE,
+      'ddr-input__input-container--input--inline': inline
+      }"
+      ngDefaultControl
+      (keyup)="checkInput()"
+      (keydown)="onKeydown($event)"
+      (click)="onclickInput($event)" />
+    @if (validate && input.dirty && !input.errors) {
+      <div [ngClass]="{
+        'w-auto d-inline-block ms-1 valid-feedback-inline': inline
+        }" class="valid-feedback">
+        <ng-template [ngTemplateOutlet]="templateValid || templateValidInput"/>
+      </div>
+    }
+    @if (validate && input.dirty && input.errors) {
+      <div [ngClass]="{
+        'w-auto d-inline-block ms-1 invalid-feedback-inline': inline
+        }" class="invalid-feedback">
+        <ng-template 
+          [ngTemplateOutlet]="templateErrors || templateErrorsInput"
+          [ngTemplateOutletContext]="{ errors: input.errors }" />
+      </div>
+    }
+  </div>
+</div>

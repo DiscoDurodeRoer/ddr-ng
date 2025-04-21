@@ -1,0 +1,20 @@
+.ddr-progress-bar {
+    position: relative;
+
+    user-select: none;
+
+    &__float-text {
+
+        &--less-50{
+            color: #000;
+        }
+        &--greather-50{
+            color: #FFF;
+        }
+
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+}

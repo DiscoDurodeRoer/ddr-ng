@@ -1,0 +1,7 @@
+@if (ddrSpinner.show) {
+  <div class="ddr-spinner" [ngClass]="{'ddr-spinner--overlay overlay-ddr': !embedded, 'ddr-spinner--overlay-embedded overlay-embedded-ddr': embedded}">
+    <div [ngClass]="{'ddr-spinner--overlay__spinner': !embedded, 'ddr-spinner--overlay-embedded__spinner-embedded': embedded}">
+      <img [src]="pathImgSpinner" alt="spinner">
+    </div>
+  </div>
+}

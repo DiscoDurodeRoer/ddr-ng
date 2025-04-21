@@ -1,0 +1,47 @@
+.ddr-input-group {
+  position: relative;
+  display: flex;
+  margin-bottom: 15px;
+
+  &__input {
+    flex-grow: 1;
+  }
+
+  &__input .ddr-input {
+    margin-bottom: 0;
+  }
+
+  &__input input {
+    border-bottom-right-radius: 0;
+    border-top-right-radius: 0;
+  }
+
+  &__input .valid-feedback,
+  &__input .invalid-feedback {
+    width: 100% !important;
+    position: absolute;
+    bottom: -20px;
+  }
+
+  &__input .valid-feedback-inline,
+  &__input .invalid-feedback-inline {
+    position: absolute;
+    top: 25px;
+    left: 100%;
+  }
+   
+  &__button {
+    flex-grow: 0;
+    align-self: flex-end;
+
+    button {
+      padding: 0;
+      padding-left: 5px;
+      width: 35px;
+      border-left: none;
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+    }
+  }
+
+}

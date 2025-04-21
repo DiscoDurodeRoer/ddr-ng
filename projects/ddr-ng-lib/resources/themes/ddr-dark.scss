@@ -1,0 +1,1000 @@
+/* Variables */
+
+$primary: #25252a;
+$secondary: #FFF;
+$selected: #a9a9a9;
+$text-color-primary: #FFF;
+$text-color-secondary: #000;
+$surface: #202124;
+$disabled: #999;
+
+/* Skeleton */
+
+$skeleton-background: #dfdfdf;
+
+/* Tooltip */
+
+$tooltip-color: #FFF;
+$tooltip-background: #a9a9a9;
+
+/* Panels */
+
+$panel-background: #000;
+$panel-color: #FFF;
+$panel-border-color: #FFF;
+
+/* Inputs */
+
+$input-background: #000;
+$input-color: #FFF;
+$input-border-color: #d7d7d7;
+
+/* Buttons */
+
+$button-background: #000;
+$button-color: #FFF;
+$button-border-color: #FFF;
+
+/* Gradients */
+
+$gradient-color-1: #27313b;
+$gradient-color-2: #25252a;
+$gradient-color-3: #000000;
+
+$gradientHorizontal: linear-gradient(90deg,
+    $gradient-color-1 30%,
+    $gradient-color-2 60%,
+    $gradient-color-3 100%);
+$gradientHorizontalMobile: linear-gradient(90deg,
+    $gradient-color-1 30%,
+    $gradient-color-2 60%,
+    $gradient-color-3 100%);
+$gradientVertical: linear-gradient(180deg,
+    $gradient-color-1 30%,
+    $gradient-color-2 60%,
+    $gradient-color-3 100%);
+$gradientSubmenu: linear-gradient(135deg,
+    $gradient-color-1 30%,
+    $gradient-color-2 60%,
+    $gradient-color-3 100%);
+$gradientHorizontalFooter: linear-gradient(270deg,
+    $gradient-color-1 30%,
+    $gradient-color-2 60%,
+    $gradient-color-3 100%);
+/* Estados */
+
+$color-info: #0dcaf0;
+$color-success: #53a55d;
+$color-danger: #993640;
+$color-warning: #b4894b;
+
+/* Fin variables */
+
+.ddr-dark {
+
+  * {
+    font-family: 'ddr';
+  }
+
+  .bg-ddr {
+    background-color: $primary;
+  }
+
+  .bg-ddr-hover {
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+  }
+
+  .font-ddr-bold {
+    font-family: "ddr bold";
+  }
+
+  .border-bottom-ddr {
+    border-bottom: 1px solid $primary;
+  }
+
+  .active-link {
+    border-left-color: #fff;
+    color: #fff;
+  }
+
+  .skeleton {
+    background-color: $skeleton-background;
+    opacity: 0.2;
+    background-image: linear-gradient(90deg,
+        transparent 0%,
+        rgba(255, 255, 255, 0.33) 50%,
+        transparent 100%);
+  }
+
+  .color-info {
+    color: $color-info;
+  }
+
+  .color-danger {
+    color: $color-danger;
+  }
+
+  .color-warning {
+    color: $color-warning;
+  }
+
+  .color-success {
+    color: $color-success;
+  }
+
+  .table {
+    color: $text-color-primary;
+  }
+
+  .ddr-tooltip {
+    background: $tooltip-background;
+    border: 1px solid $tooltip-background;
+    color: $tooltip-color;
+
+    &.ddr-tooltip--top::before {
+      border-top-color: $tooltip-background;
+    }
+
+    &.ddr-tooltip--bottom::before {
+      border-bottom-color: $tooltip-background;
+    }
+
+    &.ddr-tooltip--left::before {
+      border-left-color: $tooltip-background;
+    }
+
+    &.ddr-tooltip--right::before {
+      border-right-color: $tooltip-background;
+    }
+  }
+
+
+  .drag-and-drop-border {
+    border: 3px dashed #FFF;
+  }
+
+  /* Ddr app */
+  &.start-app {
+
+    /* Mejorar selectores */
+    .start-app__menu-mobile-detail {
+      .ddr-detail {
+        background: $gradientVertical;
+      }
+    }
+
+    .start-app__header-web {
+      background: $gradientHorizontal;
+    }
+
+    .start-app__header-mobile {
+      background: $gradientHorizontalMobile;
+    }
+
+    .start-app__menu-web {
+      background: $gradientVertical;
+    }
+
+    .start-app__container-web,
+    .start-app__container-mobile {
+      background-color: $surface;
+    }
+
+    .start-app__container-web__footer,
+    .start-app__container-mobile__footer{
+      background: $gradientHorizontalFooter;
+    }
+
+  }
+
+  /* Components */
+
+  ddr-menu-item {
+    .ddr-menu-item {
+
+      &__sub-menu-vertical,
+      &__sub-menu-horizontal {
+        background: $gradientSubmenu;
+      }
+    }
+  }
+
+  ddr-accordion {
+    .ddr-accordion {
+      background-color: $panel-background;
+      color: $panel-color;
+    }
+  }
+
+  ddr-tabs {
+    .ddr-tabs {
+      &__title {
+        &--selected {
+          color: $selected;
+          border-bottom: 1px solid $selected;
+        }
+      }
+    }
+  }
+
+  ddr-checkbox {
+    .ddr-checkbox {
+      &__container {
+        &--input {
+          &--active {
+            background-color: $primary;
+            border: 1px solid $primary;
+          }
+
+          &--desactive {
+            border: 1px solid #FFF;
+          }
+
+          &--icon {
+            color: $text-color-primary;
+          }
+        }
+
+      }
+    }
+  }
+
+  ddr-radio {
+    .ddr-radio {
+      &__container {
+        &--input {
+          &--active {
+            background-color: $primary;
+            border: 1px solid $primary;
+          }
+
+          &--desactive {
+            border: 1px solid #fff;
+          }
+
+          &--icon {
+            color: $text-color-primary;
+          }
+        }
+      }
+    }
+  }
+
+  ddr-round-button {
+    .ddr-round-button {
+      &__container {
+        &--input {
+          border-color: #000;
+
+          &--active {
+            background-color: $primary;
+            border: 5px solid #000;
+          }
+        }
+      }
+    }
+  }
+
+  ddr-input {
+
+    .ddr-input {
+      &__input-container {
+
+        &--label {
+          color: $input-color;
+        }
+
+        &--input {
+
+          background-color: $input-background;
+          color: $input-color;
+
+          &--border {
+            border: 1px solid $input-border-color;
+          }
+
+          &:disabled {
+            background: $disabled;
+          }
+
+          &--no-border {
+            border-bottom: 1px solid $input-border-color;
+          }
+
+          &.is-valid {
+            border-color: $color-success;
+          }
+
+          &.is-invalid {
+            border-color: $color-danger;
+          }
+        }
+      }
+    }
+  }
+
+  ddr-input-group {
+    .ddr-input-group {
+      &__button {
+        &--is-valid {
+          button {
+            border-color: $color-success !important;
+          }
+        }
+
+        &--is-invalid {
+          button {
+            border-color: $color-danger !important;
+          }
+        }
+      }
+
+      ddr-button {
+        .btn-ddr {
+          background-color: $input-background;
+
+          &--disabled {
+            background-color: $disabled !important;
+          }
+
+          &--border {
+            border-color: $secondary;
+          }
+
+          i {
+            color: $button-color;
+          }
+        }
+      }
+    }
+
+  }
+
+  ddr-textarea {
+    .ddr-textarea {
+      &__textarea-container {
+        &--textarea {
+          background-color: $input-background;
+          border: 1px solid $input-border-color;
+          color: $input-color;
+        }
+      }
+    }
+  }
+
+  ddr-button {
+    .btn-ddr {
+      &--border {
+        border-color: $button-background;
+      }
+
+      &--mode-default {
+        border-color: $button-border-color;
+        background: $button-background;
+      }
+
+      &--mode-save {
+        color: $button-color;
+        border-color: $color-success;
+        background: $color-success;
+      }
+
+      &--mode-danger {
+        color: $button-color;
+        border-color: $color-danger;
+        background: $color-danger;
+      }
+
+      &--disabled {
+        color: $button-color;
+        border-color: $disabled;
+        background: $disabled;
+      }
+
+      &--transparent {
+        
+        border-color: $text-color-primary;
+        background: transparent;
+
+        .btn-ddr--text,
+        .btn-ddr--icon{
+          color: $text-color-primary;
+        }
+      }
+
+      &--text,
+      &--icon {
+        color: $text-color-primary;
+      }
+    }
+  }
+
+  ddr-card {
+    .ddr-card {
+      background-color: $panel-background;
+      color: $panel-color;
+
+      &__body {
+        border-color: #FFF;
+        border-radius: 4px;
+      }
+    }
+  }
+
+  ddr-toggle {
+    .ddr-toggle {
+      &__btn {
+        &--on {
+          background: $color-success;
+        }
+
+        &--off {
+          background: #afafaf;
+        }
+      }
+    }
+  }
+
+  ddr-badge-pill {
+    .ddr-badge {
+      &--info {
+        background: $primary;
+        color: $text-color-primary;
+      }
+
+      &--danger {
+        background: $color-danger;
+        color: $text-color-primary;
+      }
+
+      &--warning {
+        background: $color-warning;
+        color: $text-color-primary;
+      }
+
+      &--success {
+        background: $color-success;
+        color: $text-color-primary;
+      }
+
+    }
+  }
+
+  ddr-progress-bar {
+    .ddr-progress-bar {
+      .progress-bar {
+        background-color: $primary;
+      }
+    }
+  }
+
+  ddr-widget {
+    ddr-card {
+
+      .ddr-card__title {
+        background-color: transparent;
+        color: $panel-color;
+      }
+
+    }
+
+    .ddr-widget {
+      &__actions {
+        ddr-split-button {
+          .ddr-split-button {
+            ddr-button {
+
+              .btn-ddr {
+
+                &--icon {
+                  color: $text-color-primary;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  ddr-dropdown {
+
+    .ddr-dropdown {
+
+      &__panel-items {
+        background-color: $panel-background;
+        border: 1px solid $input-border-color;
+
+        &--search {
+          &--input {
+            border: 0;
+            border-bottom: 1px solid $input-border-color;
+            background-color: $input-background;
+            color: $input-color;
+          }
+        }
+
+        &--no-results {
+          color: $input-color;
+        }
+      }
+
+      ul {
+        border: #c8c8c8;
+
+        li {
+          color: $text-color-primary;
+
+          &:hover {
+            background: $selected;
+          }
+        }
+      }
+
+      ddr-button {
+        .btn-ddr {
+          &--icon {
+            color: #FFF;
+          }
+        }
+      }
+    }
+
+  }
+
+  ddr-chatbot {
+    .ddr-chatbot__dialog {
+      .ddr-card {
+        &__body {
+          border: 1px solid #c7c7c7;
+          border: 0;
+        }
+
+        &__footer {
+          border-top: 1px solid #c7c7c7;
+        }
+      }
+
+
+      &__message {
+        &--human {
+          background: #b9ffb9;
+        }
+
+        &--robot {
+          background: #b9b9b9;
+        }
+      }
+
+    }
+  }
+
+  ddr-table {
+
+    .ddr-table {
+
+      ddr-split-button {
+        ddr-button {
+          .btn-ddr--icon {
+            color: #FFF;
+          }
+        }
+      }
+
+      &__table {
+        &--border {
+          border-top: 1px solid #FFF;
+          border-bottom: 1px solid #FFF;
+        }
+
+        &--body-row {
+          &--hoveable:hover {
+            background: $selected;
+            cursor: pointer;
+          }
+        }
+      }
+    }
+
+  }
+
+  pagination-controls {
+    .ngx-pagination {
+
+      li,
+      li a {
+        color: $text-color-primary;
+      }
+
+      li.current {
+        background: $primary;
+        color: $text-color-primary;
+      }
+    }
+  }
+
+  ddr-calendar {
+    .ddr-calendar {
+      .p-calendar .p-inputtext {
+
+        &:enabled:focus {
+          box-shadow: none;
+        }
+
+        color: $input-color;
+        background: $input-background;
+        border: 1px solid $input-border-color;
+      }
+
+      .p-datepicker {
+        color: $input-color;
+        background: $input-background;
+      }
+
+      .p-datepicker .p-datepicker-header {
+        color: $input-color;
+        background: $input-background;
+      }
+
+      .p-datepicker:not(.p-datepicker-inline) {
+        color: $input-color;
+        background: $input-background;
+        border: 1px solid $input-border-color;
+      }
+
+      .p-datepicker:not(.p-disabled) table td span:not(.p-highlight):not(.p-disabled):hover {
+        color: $text-color-secondary;
+      }
+
+      .p-datepicker .p-datepicker-header .p-datepicker-title .p-datepicker-year,
+      .p-datepicker .p-datepicker-header .p-datepicker-title .p-datepicker-month {
+        color: $text-color-primary;
+      }
+
+    }
+  }
+
+  ddr-range {
+
+    .p-slider {
+      .p-slider-handle {
+        background: $primary;
+        border: 2px solid $primary;
+      }
+
+      .p-slider-range {
+        background: $primary;
+      }
+
+      &:not(.p-disabled) .p-slider-handle:hover {
+        background: $primary;
+        border-color: $primary;
+      }
+
+    }
+
+    .p-disabled,
+    .p-component:disabled {
+      opacity: 1;
+    }
+
+  }
+
+  ddr-small-indicator {
+    ddr-card {
+      .ddr-card {
+        background-color: $panel-background;
+        color: $text-color-primary;
+
+        &__body {
+          color: $text-color-primary;
+        }
+      }
+
+
+    }
+  }
+
+  ddr-indicator {
+    ddr-card {
+      .ddr-card {
+        background-color: $panel-background;
+        color: $text-color-primary;
+
+        &__body {
+          color: $text-color-primary;
+        }
+      }
+    }
+  }
+
+  ddr-chip {
+
+    .ddr-chip {
+      &__container {
+        border: 1px solid $input-border-color;
+
+        &__input input {
+          background: $input-background;
+          color: $text-color-primary;
+        }
+      }
+    }
+
+    ddr-chip-value {
+      .ddr-chip-value {
+        background: $primary;
+        color: $text-color-primary;
+      }
+    }
+  }
+
+  ddr-select-icon {
+
+    .ddr-select-icon__icon {
+      border: 1px solid $input-border-color;
+    }
+
+  }
+
+  ddr-steps {
+    .ddr-steps {
+      &__horizontal {
+        &__info-step {
+
+          &--hover:hover {
+            background-color: #a1a1a1;
+          }
+
+          &__number-step {
+
+            &--open {
+              background-color: $text-color-primary;
+
+              span {
+                color: $text-color-secondary;
+              }
+            }
+
+            &--closed {
+              background-color: #404040;
+
+              span {
+                color: $text-color-primary;
+              }
+            }
+          }
+        }
+
+        &__line {
+          border-bottom: 1px solid #FFF;
+        }
+      }
+
+      &__vertical {
+        &__info-step {
+
+          &--hover:hover {
+            background-color: #a1a1a1;
+          }
+
+          &__number-step {
+
+            &--open {
+              background-color: #FFF;
+
+              span {
+                color: $text-color-secondary;
+              }
+            }
+
+            &--closed {
+              background-color: #404040;
+
+              span {
+                color: $text-color-primary;
+              }
+            }
+          }
+        }
+
+      }
+
+      &__template {
+        &--line {
+          border-left: 1px solid #FFF;
+        }
+      }
+
+    }
+  }
+
+  ddr-block-list {
+    .ddr-block-item {
+      &--hover {
+        background: $selected;
+      }
+    }
+
+    .ddr-block-data-item {
+
+      &__label {
+        color: #c8c8c8;
+      }
+
+      &__value {
+        color: #b9b9b9;
+      }
+
+    }
+
+    .ddr-block-item {
+      border: 1px solid #a9a9a9;
+    }
+
+  }
+
+  ddr-detail {
+    .ddr-detail {
+      background: $panel-background;
+    }
+  }
+
+  ddr-split-button {
+
+    .ddr-split-button {
+
+      color: $text-color-primary;
+
+      &__options {
+
+        background: $panel-background;
+        color: $panel-color;
+
+        ul {
+          border: 1px solid #c8c8c8;
+
+          li {
+            &:hover {
+              background: $selected;
+            }
+          }
+        }
+      }
+
+
+      &--transparent {
+        ddr-button {
+          .btn-ddr {
+            border: 1px solid $secondary;
+
+            &--text,
+            &--icon {
+              color: $text-color-primary;
+            }
+
+          }
+        }
+      }
+
+      &--transparent.ddr-split-button--no-border {
+        ddr-button {
+          button {
+            color: $text-color-primary;
+            border: 1px solid $secondary;
+          }
+
+          .btn-ddr {
+            &--text {
+              color: $text-color-primary;
+            }
+          }
+        }
+      }
+
+
+    }
+  }
+
+  ddr-login {
+    .ddr-login {
+
+      .card-body {
+        background-color: $panel-background;
+        border-color: $panel-border-color;
+      }
+
+    }
+  }
+
+
+  ddr-toast {
+    .ddr-toast-container {
+      &__ddr-toast {
+        &--success {
+          background-color: $color-success;
+          border-color: $color-success;
+        }
+
+        &--info {
+          background-color: $color-info;
+          border-color: $color-info;
+        }
+
+        &--danger {
+          background-color: $color-danger;
+          border-color: $color-danger;
+        }
+
+        &--warning {
+          background-color: $color-warning;
+          border-color: $color-warning;
+        }
+      }
+    }
+  }
+
+  ddr-modal {
+    .ddr-modal {
+      .card {
+        background-color: $panel-background;
+        border-color: $panel-border-color;
+      }
+    }
+  }
+
+
+  ddr-conversation {
+    .ddr-conversation {
+
+      &__message {
+        &--human {
+          color: #000;
+          background: #b9ffb9;
+        }
+
+        &--robot {
+          color: #000;
+          background: #e7e7e7;
+        }
+      }
+
+    }
+  }
+
+  ddr-word-cloud {
+    svg {
+      text {
+        fill: #FFF;
+      }
+    }
+  }
+
+  ddr-multiple-button {
+    .ddr-multiple-button {
+      &__selected {
+        button {
+          background-color: $selected;
+          border-color: $selected;
+
+          .btn-ddr--text, .btn-ddr--icon {
+            color: $text-color-primary;
+          }
+        }
+      }
+    }
+  }
+
+  ddr-no-data {
+    &__icon {
+      color: $text-color-primary;
+    }
+
+    &__text {
+      color: $text-color-primary;
+    }
+  }
+
+}

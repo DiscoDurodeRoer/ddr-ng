@@ -1,0 +1,404 @@
+<base-showcase [showTranslations]="true">
+
+  <div description>
+    <p>Componente para realizar un login.</p>
+  </div>
+
+  <div examples>
+
+    <div class="row">
+      <div class="col-12">
+        <h3>Ejemplo 1: Estandar</h3>
+      </div>
+    </div>
+
+    <div class="row mt-3">
+      <div class="col-12">
+        <ddr-login 
+          [labelSubmit]="'Login'"
+          (doLogin)="login($event)">
+        </ddr-login>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-12">
+        <h3>Ejemplo 2: Validación</h3>
+      </div>
+    </div>
+
+    <div class="row mt-3">
+      <div class="col-12">
+        <ddr-login 
+          [labelSubmit]="'Login'"
+          [validate]="true" 
+          (doLogin)="login($event)">
+        </ddr-login>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-12">
+        <h3>Ejemplo 2: Creacion de usuarios</h3>
+      </div>
+    </div>
+
+    <div class="row mt-3">
+      <div class="col-12">
+        <ddr-login 
+          [labelSubmit]="'Login'" 
+          [validate]="true" 
+          [showCreateUser]="true"
+          (doLogin)="login($event)"
+          (registerUser)="registerUser($event)">
+        </ddr-login>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-12">
+        <h3>Ejemplo 3: Creacion de usuarios y olvido de contraseña</h3>
+      </div>
+    </div>
+
+    <div class="row mt-3">
+      <div class="col-12">
+        <ddr-login 
+          [labelSubmit]="'Login'" 
+          [validate]="true" 
+          [showForgotPassword]="true"
+          [showCreateUser]="true"
+          (doLogin)="login($event)"
+          (forgotenPassword)="forgotenPassword($event)" 
+          (registerUser)="registerUser($event)">
+        </ddr-login>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-12">
+        <h3>Ejemplo 4: Cabecera</h3>
+      </div>
+    </div>
+
+    <div class="row mt-3">
+      <div class="col-12">
+        <ddr-login 
+          [labelSubmit]="'Login'" 
+          [validate]="true" 
+          [showHeader]="true" 
+          (doLogin)="login($event)">
+          
+          <div login-header>
+            <h2>Titulo login</h2>
+          </div>
+
+        </ddr-login>
+      </div>
+    </div>
+
+  </div>
+
+  <div code>
+    <!-- <ddr-tabs>
+      <ddr-tab-item titleTab="HTML">
+        <pre  class="language-html">
+          <code class="language-html" DdrHighlightCode ngNonBindable>
+&#x3c;&#x65;&#x76;&#x6c;&#x2d;&#x6c;&#x6f;&#x67;&#x69;&#x6e;&#x20;&#xd;&#xa;&#x20;&#x20;&#x5b;&#x6c;&#x61;&#x62;&#x65;&#x6c;&#x53;&#x75;&#x62;&#x6d;&#x69;&#x74;&#x5d;&#x3d;&#x22;&#x27;&#x4c;&#x6f;&#x67;&#x69;&#x6e;&#x27;&#x22;&#x20;&#xd;&#xa;&#x20;&#x20;&#x5b;&#x6c;&#x61;&#x62;&#x65;&#x6c;&#x54;&#x69;&#x74;&#x6c;&#x65;&#x5d;&#x3d;&#x22;&#x27;&#x49;&#x6e;&#x69;&#x63;&#x69;&#x61;&#x72;&#x20;&#x73;&#x65;&#x73;&#x69;&#xf3;&#x6e;&#x27;&#x22;&#x20;&#xd;&#xa;&#x20;&#x20;&#x5b;&#x76;&#x61;&#x6c;&#x69;&#x64;&#x61;&#x74;&#x65;&#x5d;&#x3d;&#x22;&#x74;&#x72;&#x75;&#x65;&#x22;&#x20;&#xd;&#xa;&#x20;&#x20;&#x5b;&#x73;&#x68;&#x6f;&#x77;&#x46;&#x6f;&#x72;&#x67;&#x6f;&#x74;&#x50;&#x61;&#x73;&#x73;&#x77;&#x6f;&#x72;&#x64;&#x5d;&#x3d;&#x22;&#x74;&#x72;&#x75;&#x65;&#x22;&#xd;&#xa;&#x20;&#x20;&#x5b;&#x73;&#x68;&#x6f;&#x77;&#x43;&#x72;&#x65;&#x61;&#x74;&#x65;&#x55;&#x73;&#x65;&#x72;&#x5d;&#x3d;&#x22;&#x74;&#x72;&#x75;&#x65;&#x22;&#xd;&#xa;&#x20;&#x20;&#x28;&#x64;&#x6f;&#x4c;&#x6f;&#x67;&#x69;&#x6e;&#x29;&#x3d;&#x22;&#x6c;&#x6f;&#x67;&#x69;&#x6e;&#x28;&#x24;&#x65;&#x76;&#x65;&#x6e;&#x74;&#x29;&#x22;&#xd;&#xa;&#x20;&#x20;&#x28;&#x66;&#x6f;&#x72;&#x67;&#x6f;&#x74;&#x65;&#x6e;&#x50;&#x61;&#x73;&#x73;&#x77;&#x6f;&#x72;&#x64;&#x29;&#x3d;&#x22;&#x66;&#x6f;&#x72;&#x67;&#x6f;&#x74;&#x65;&#x6e;&#x50;&#x61;&#x73;&#x73;&#x77;&#x6f;&#x72;&#x64;&#x28;&#x24;&#x65;&#x76;&#x65;&#x6e;&#x74;&#x29;&#x22;&#x20;&#xd;&#xa;&#x20;&#x20;&#x28;&#x72;&#x65;&#x67;&#x69;&#x73;&#x74;&#x65;&#x72;&#x55;&#x73;&#x65;&#x72;&#x29;&#x3d;&#x22;&#x72;&#x65;&#x67;&#x69;&#x73;&#x74;&#x65;&#x72;&#x55;&#x73;&#x65;&#x72;&#x28;&#x24;&#x65;&#x76;&#x65;&#x6e;&#x74;&#x29;&#x22;&#x3e;&#xd;&#xa;&#x3c;&#x2f;&#x65;&#x76;&#x6c;&#x2d;&#x6c;&#x6f;&#x67;&#x69;&#x6e;&#x3e;&#xd;&#xa;
+          </code>
+        </pre>
+      </ddr-tab-item>
+      <ddr-tab-item titleTab="CSS">
+
+      </ddr-tab-item>
+      <ddr-tab-item titleTab="TS">
+        -- IDdrAuth
+        <pre  class="language-typescript">
+          <code class="language-typescript" DdrHighlightCode  ngNonBindable>
+&#x65;&#x78;&#x70;&#x6f;&#x72;&#x74;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x20;&#x45;&#x76;&#x6c;&#x41;&#x75;&#x74;&#x68;&#x20;&#x7b;&#xd;&#xa;&#x20;&#x20;&#x69;&#x64;&#x3f;&#x3a;&#x20;&#x73;&#x74;&#x72;&#x69;&#x6e;&#x67;&#x3b;&#xd;&#xa;&#x20;&#x20;&#x75;&#x73;&#x65;&#x72;&#x6e;&#x61;&#x6d;&#x65;&#x3a;&#x20;&#x73;&#x74;&#x72;&#x69;&#x6e;&#x67;&#x3b;&#xd;&#xa;&#x20;&#x20;&#x70;&#x61;&#x73;&#x73;&#x77;&#x6f;&#x72;&#x64;&#x3a;&#x20;&#x73;&#x74;&#x72;&#x69;&#x6e;&#x67;&#x3b;&#xd;&#xa;&#x7d;&#xd;&#xa;
+          </code>
+        </pre>
+
+        -- Showcase
+        <pre  class="language-typescript">
+          <code class="language-typescript" DdrHighlightCode  ngNonBindable>
+&#xd;&#xa;&#x69;&#x6d;&#x70;&#x6f;&#x72;&#x74;&#x20;&#x7b;&#x20;&#x43;&#x6f;&#x6d;&#x70;&#x6f;&#x6e;&#x65;&#x6e;&#x74;&#x20;&#x7d;&#x20;&#x66;&#x72;&#x6f;&#x6d;&#x20;&#x27;&#x40;&#x61;&#x6e;&#x67;&#x75;&#x6c;&#x61;&#x72;&#x2f;&#x63;&#x6f;&#x72;&#x65;&#x27;&#x3b;&#xd;&#xa;&#x69;&#x6d;&#x70;&#x6f;&#x72;&#x74;&#x20;&#x7b;&#x20;&#x45;&#x76;&#x6c;&#x41;&#x75;&#x74;&#x68;&#x2c;&#x20;&#x45;&#x76;&#x6c;&#x54;&#x6f;&#x61;&#x73;&#x74;&#x53;&#x65;&#x72;&#x76;&#x69;&#x63;&#x65;&#x20;&#x7d;&#x20;&#x66;&#x72;&#x6f;&#x6d;&#x20;&#x27;&#x70;&#x72;&#x6f;&#x6a;&#x65;&#x63;&#x74;&#x73;&#x2f;&#x65;&#x76;&#x6c;&#x2d;&#x6c;&#x69;&#x62;&#x2f;&#x73;&#x72;&#x63;&#x2f;&#x70;&#x75;&#x62;&#x6c;&#x69;&#x63;&#x2d;&#x61;&#x70;&#x69;&#x27;&#x3b;&#xd;&#xa;&#x69;&#x6d;&#x70;&#x6f;&#x72;&#x74;&#x20;&#x7b;&#x20;&#x45;&#x76;&#x6c;&#x53;&#x65;&#x73;&#x73;&#x69;&#x6f;&#x6e;&#x53;&#x65;&#x72;&#x76;&#x69;&#x63;&#x65;&#x20;&#x7d;&#x20;&#x66;&#x72;&#x6f;&#x6d;&#x20;&#x27;&#x70;&#x72;&#x6f;&#x6a;&#x65;&#x63;&#x74;&#x73;&#x2f;&#x65;&#x76;&#x6c;&#x2d;&#x6c;&#x69;&#x62;&#x2f;&#x73;&#x72;&#x63;&#x2f;&#x73;&#x65;&#x72;&#x76;&#x69;&#x63;&#x65;&#x73;&#x2f;&#x65;&#x76;&#x6c;&#x2d;&#x73;&#x65;&#x73;&#x73;&#x69;&#x6f;&#x6e;&#x2e;&#x73;&#x65;&#x72;&#x76;&#x69;&#x63;&#x65;&#x27;&#x3b;&#xd;&#xa;&#xd;&#xa;&#x40;&#x43;&#x6f;&#x6d;&#x70;&#x6f;&#x6e;&#x65;&#x6e;&#x74;&#x28;&#x7b;&#xd;&#xa;&#x20;&#x20;&#x73;&#x65;&#x6c;&#x65;&#x63;&#x74;&#x6f;&#x72;&#x3a;&#x20;&#x27;&#x61;&#x70;&#x70;&#x2d;&#x6c;&#x6f;&#x67;&#x69;&#x6e;&#x2d;&#x73;&#x68;&#x6f;&#x77;&#x63;&#x61;&#x73;&#x65;&#x27;&#x2c;&#xd;&#xa;&#x20;&#x20;&#x74;&#x65;&#x6d;&#x70;&#x6c;&#x61;&#x74;&#x65;&#x55;&#x72;&#x6c;&#x3a;&#x20;&#x27;&#x2e;&#x2f;&#x6c;&#x6f;&#x67;&#x69;&#x6e;&#x2d;&#x73;&#x68;&#x6f;&#x77;&#x63;&#x61;&#x73;&#x65;&#x2e;&#x63;&#x6f;&#x6d;&#x70;&#x6f;&#x6e;&#x65;&#x6e;&#x74;&#x2e;&#x68;&#x74;&#x6d;&#x6c;&#x27;&#x2c;&#xd;&#xa;&#x20;&#x20;&#x73;&#x74;&#x79;&#x6c;&#x65;&#x55;&#x72;&#x6c;&#x73;&#x3a;&#x20;&#x5b;&#x27;&#x2e;&#x2f;&#x6c;&#x6f;&#x67;&#x69;&#x6e;&#x2d;&#x73;&#x68;&#x6f;&#x77;&#x63;&#x61;&#x73;&#x65;&#x2e;&#x63;&#x6f;&#x6d;&#x70;&#x6f;&#x6e;&#x65;&#x6e;&#x74;&#x2e;&#x73;&#x63;&#x73;&#x73;&#x27;&#x5d;&#xd;&#xa;&#x7d;&#x29;&#xd;&#xa;&#x65;&#x78;&#x70;&#x6f;&#x72;&#x74;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x20;&#x4c;&#x6f;&#x67;&#x69;&#x6e;&#x53;&#x68;&#x6f;&#x77;&#x63;&#x61;&#x73;&#x65;&#x43;&#x6f;&#x6d;&#x70;&#x6f;&#x6e;&#x65;&#x6e;&#x74;&#x20;&#x7b;&#xd;&#xa;&#xd;&#xa;&#x20;&#x20;&#x63;&#x6f;&#x6e;&#x73;&#x74;&#x72;&#x75;&#x63;&#x74;&#x6f;&#x72;&#x28;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x70;&#x75;&#x62;&#x6c;&#x69;&#x63;&#x20;&#x65;&#x76;&#x6c;&#x53;&#x65;&#x73;&#x73;&#x69;&#x6f;&#x6e;&#x3a;&#x20;&#x45;&#x76;&#x6c;&#x53;&#x65;&#x73;&#x73;&#x69;&#x6f;&#x6e;&#x53;&#x65;&#x72;&#x76;&#x69;&#x63;&#x65;&#x2c;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x70;&#x75;&#x62;&#x6c;&#x69;&#x63;&#x20;&#x65;&#x76;&#x6c;&#x54;&#x6f;&#x61;&#x73;&#x74;&#x53;&#x65;&#x72;&#x76;&#x69;&#x63;&#x65;&#x3a;&#x20;&#x45;&#x76;&#x6c;&#x54;&#x6f;&#x61;&#x73;&#x74;&#x53;&#x65;&#x72;&#x76;&#x69;&#x63;&#x65;&#xd;&#xa;&#x20;&#x20;&#x29;&#x20;&#x7b;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x74;&#x68;&#x69;&#x73;&#x2e;&#x65;&#x76;&#x6c;&#x53;&#x65;&#x73;&#x73;&#x69;&#x6f;&#x6e;&#x2e;&#x73;&#x65;&#x74;&#x45;&#x6c;&#x65;&#x6d;&#x65;&#x6e;&#x74;&#x28;&#x27;&#x74;&#x69;&#x74;&#x6c;&#x65;&#x27;&#x2c;&#x20;&#x27;&#x4c;&#x6f;&#x67;&#x69;&#x6e;&#x27;&#x29;&#x3b;&#xd;&#xa;&#x20;&#x20;&#x7d;&#xd;&#xa;&#xd;&#xa;&#x20;&#x20;&#x6c;&#x6f;&#x67;&#x69;&#x6e;&#x28;&#x24;&#x65;&#x76;&#x65;&#x6e;&#x74;&#x3a;&#x20;&#x45;&#x76;&#x6c;&#x41;&#x75;&#x74;&#x68;&#x29;&#x20;&#x7b;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x74;&#x68;&#x69;&#x73;&#x2e;&#x65;&#x76;&#x6c;&#x54;&#x6f;&#x61;&#x73;&#x74;&#x53;&#x65;&#x72;&#x76;&#x69;&#x63;&#x65;&#x2e;&#x61;&#x64;&#x64;&#x53;&#x75;&#x63;&#x63;&#x65;&#x73;&#x73;&#x4d;&#x65;&#x73;&#x73;&#x61;&#x67;&#x65;&#x28;&#x27;&#x43;&#x6c;&#x69;&#x63;&#x6b;&#x20;&#x65;&#x6e;&#x20;&#x6c;&#x6f;&#x67;&#x69;&#x6e;&#x27;&#x2c;&#x20;&#x4a;&#x53;&#x4f;&#x4e;&#x2e;&#x73;&#x74;&#x72;&#x69;&#x6e;&#x67;&#x69;&#x66;&#x79;&#x28;&#x24;&#x65;&#x76;&#x65;&#x6e;&#x74;&#x29;&#x29;&#x3b;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x63;&#x6f;&#x6e;&#x73;&#x6f;&#x6c;&#x65;&#x2e;&#x6c;&#x6f;&#x67;&#x28;&#x24;&#x65;&#x76;&#x65;&#x6e;&#x74;&#x29;&#x3b;&#xd;&#xa;&#x20;&#x20;&#x7d;&#xd;&#xa;&#xd;&#xa;&#x20;&#x20;&#x66;&#x6f;&#x72;&#x67;&#x6f;&#x74;&#x65;&#x6e;&#x50;&#x61;&#x73;&#x73;&#x77;&#x6f;&#x72;&#x64;&#x28;&#x24;&#x65;&#x76;&#x65;&#x6e;&#x74;&#x3a;&#x20;&#x62;&#x6f;&#x6f;&#x6c;&#x65;&#x61;&#x6e;&#x29;&#x20;&#x7b;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x74;&#x68;&#x69;&#x73;&#x2e;&#x65;&#x76;&#x6c;&#x54;&#x6f;&#x61;&#x73;&#x74;&#x53;&#x65;&#x72;&#x76;&#x69;&#x63;&#x65;&#x2e;&#x61;&#x64;&#x64;&#x53;&#x75;&#x63;&#x63;&#x65;&#x73;&#x73;&#x4d;&#x65;&#x73;&#x73;&#x61;&#x67;&#x65;&#x28;&#x27;&#x43;&#x6c;&#x69;&#x63;&#x6b;&#x20;&#x65;&#x6e;&#x20;&#x6f;&#x6c;&#x76;&#x69;&#x64;&#x61;&#x72;&#x20;&#x63;&#x6f;&#x6e;&#x74;&#x72;&#x61;&#x73;&#x65;&#xf1;&#x61;&#x27;&#x2c;&#x20;&#x24;&#x65;&#x76;&#x65;&#x6e;&#x74;&#x20;&#x2b;&#x20;&#x22;&#x22;&#x29;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x63;&#x6f;&#x6e;&#x73;&#x6f;&#x6c;&#x65;&#x2e;&#x6c;&#x6f;&#x67;&#x28;&#x24;&#x65;&#x76;&#x65;&#x6e;&#x74;&#x29;&#x3b;&#xd;&#xa;&#x20;&#x20;&#x7d;&#xd;&#xa;&#xd;&#xa;&#x20;&#x20;&#x72;&#x65;&#x67;&#x69;&#x73;&#x74;&#x65;&#x72;&#x55;&#x73;&#x65;&#x72;&#x28;&#x24;&#x65;&#x76;&#x65;&#x6e;&#x74;&#x3a;&#x20;&#x62;&#x6f;&#x6f;&#x6c;&#x65;&#x61;&#x6e;&#x29;&#x20;&#x7b;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x74;&#x68;&#x69;&#x73;&#x2e;&#x65;&#x76;&#x6c;&#x54;&#x6f;&#x61;&#x73;&#x74;&#x53;&#x65;&#x72;&#x76;&#x69;&#x63;&#x65;&#x2e;&#x61;&#x64;&#x64;&#x53;&#x75;&#x63;&#x63;&#x65;&#x73;&#x73;&#x4d;&#x65;&#x73;&#x73;&#x61;&#x67;&#x65;&#x28;&#x27;&#x43;&#x6c;&#x69;&#x63;&#x6b;&#x20;&#x65;&#x6e;&#x20;&#x72;&#x65;&#x67;&#x69;&#x73;&#x74;&#x72;&#x6f;&#x20;&#x64;&#x65;&#x20;&#x75;&#x73;&#x75;&#x61;&#x72;&#x69;&#x6f;&#x73;&#x27;&#x2c;&#x20;&#x24;&#x65;&#x76;&#x65;&#x6e;&#x74;&#x20;&#x2b;&#x20;&#x22;&#x22;&#x29;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x63;&#x6f;&#x6e;&#x73;&#x6f;&#x6c;&#x65;&#x2e;&#x6c;&#x6f;&#x67;&#x28;&#x24;&#x65;&#x76;&#x65;&#x6e;&#x74;&#x29;&#x3b;&#xd;&#xa;&#x20;&#x20;&#x7d;&#xd;&#xa;&#x7d;&#xd;&#xa;
+          </code>
+        </pre>
+      </ddr-tab-item>
+    </ddr-tabs> -->
+
+  </div>
+
+
+  <div inputs>
+    <table class="table">
+      <thead class="thead-dark">
+        <tr>
+          <th>Nombre</th>
+          <th>Descripción</th>
+          <th>Tipo</th>
+          <th>Valor por defecto</th>
+          <th>Posibles valores (constants)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>labelSubmit</td>
+          <td>Texto en el botón de submit</td>
+          <td>string</td>
+          <td>undefined</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>labelForgotenPwd</td>
+          <td>Enlace si se olvida la contraseña</td>
+          <td>string</td>
+          <td>undefined</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>labelCreateUser</td>
+          <td>Enlace para registrar un nuevo usuario</td>
+          <td>string</td>
+          <td>undefined</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>labelTitle</td>
+          <td>Título del inicio de sesión</td>
+          <td>string</td>
+          <td>undefined</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>labelValidUsername</td>
+          <td>Texto cuando el formato del usuario es correcto (requerido)</td>
+          <td>string</td>
+          <td>''</td>
+          <td></td>
+        </tr>
+
+        <tr>
+          <td>labelInvalidUsername</td>
+          <td>Texto cuando el formato del usuario es incorrecto</td>
+          <td>string</td>
+          <td>''</td>
+          <td></td>
+        </tr>
+
+        <tr>
+          <td>labelValidPassword</td>
+          <td>Texto cuando el formato del password es correcto (requerido)</td>
+          <td>string</td>
+          <td>''</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>labelInvalidPassword</td>
+          <td>Texto cuando el formato del password es incorrecto</td>
+          <td>string</td>
+          <td>''</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>labelUsername</td>
+          <td>Texto del input del username</td>
+          <td>string</td>
+          <td>undefined</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>labelPlaceholderUsername</td>
+          <td>Texto del input del placeholder del username</td>
+          <td>string</td>
+          <td>undefined</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>labelPassword</td>
+          <td>Texto del input del password</td>
+          <td>string</td>
+          <td>undefined</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>labelPlaceholderPassword</td>
+          <td>Texto del input del placeholder del password</td>
+          <td>string</td>
+          <td>undefined</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>validate</td>
+          <td>Permite validar los campos</td>
+          <td>boolean</td>
+          <td>false</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>showHeader</td>
+          <td>Indica si queremos que muestre la cabecera</td>
+          <td>boolean</td>
+          <td>false</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>labelCompany</td>
+          <td>Texto del input de la compañia</td>
+          <td>string</td>
+          <td>undefined</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>labelPlaceholderCompany</td>
+          <td>Texto del input del placeholder de la compañia</td>
+          <td>string</td>
+          <td>undefined</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>labelValidCompany</td>
+          <td>Texto cuando el formato de la compañia es correcta</td>
+          <td>string</td>
+          <td>undefined</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>labelInvalidCompany</td>
+          <td>Texto cuando el formato de la compañia es incorrecto</td>
+          <td>string</td>
+          <td>undefined</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>showLabelUser</td>
+          <td>Indica si muestra el label del input del usuario</td>
+          <td>boolean</td>
+          <td>true</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>showLabelPassword</td>
+          <td>Indica si muestra el label del input del password</td>
+          <td>boolean</td>
+          <td>true</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>showLabelCompany</td>
+          <td>Indica si muestra el label del input del company</td>
+          <td>boolean</td>
+          <td>true</td>
+          <td></td>
+        </tr>
+        
+      </tbody>
+
+    </table>
+  </div>
+
+  <div outputs>
+    <table class="table">
+      <thead class="thead-dark">
+        <tr>
+          <th>Nombre</th>
+          <th>Descripción</th>
+          <th>Valor devuelto</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>doLogin</td>
+          <td>Evento de iniciar sesión</td>
+          <td>DdrUser</td>
+        </tr>
+        <tr>
+          <td>forgotenPassword</td>
+          <td>Evento contraseña olvidada</td>
+          <td>boolean</td>
+        </tr>
+        <tr>
+          <td>registerUser</td>
+          <td>Evento registrar nuevo usuario</td>
+          <td>boolean</td>
+        </tr>
+      </tbody>
+
+    </table>
+  </div>
+
+  <div translations>
+    <table class="table">
+      <thead class="thead-dark">
+        <tr>
+          <th>Label</th>
+          <th>Descripción</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>login.password</td>
+          <td>Label input password</td>
+        </tr>
+        <tr>
+          <td>login.placeholder.password</td>
+          <td>Placeholder input password</td>
+        </tr>
+        <tr>
+          <td>login.username</td>
+          <td>Label input username</td>
+        </tr>
+        <tr>
+          <td>login.placeholder.username</td>
+          <td>Placeholder input user</td>
+        </tr>
+        <tr>
+          <td>login.company</td>
+          <td>Label input company</td>
+        </tr>
+        <tr>
+          <td>login.placeholder.company</td>
+          <td>Placeholder input company</td>
+        </tr>
+        <tr>
+          <td>login.forgot.password</td>
+          <td>Enlace he olvidado la contraseña</td>
+        </tr>
+        <tr>
+          <td>login.submit</td>
+          <td>Texto del boton de login</td>
+        </tr>
+        <tr>
+          <td>login.create.user</td>
+          <td>Enlace registrar nuevo usuario</td>
+        </tr>
+        <tr>
+          <td>login.valid.username</td>
+          <td>Texto cuando el usuario es correcto</td>
+        </tr>
+        <tr>
+          <td>login.invalid.username</td>
+          <td>Texto cuando el usuario es incorrecto</td>
+        </tr>
+        <tr>
+          <td>login.valid.password</td>
+          <td>Texto cuando el password es correcto</td>
+        </tr>
+        <tr>
+          <td>login.invalid.password</td>
+          <td>Texto cuando el password es incorrecto</td>
+        </tr>
+        <tr>
+          <td>login.valid.company</td>
+          <td>Texto cuando la compañia es correcta</td>
+        </tr>
+        <tr>
+          <td>login.invalid.company</td>
+          <td>Texto cuando la compañia es incorrecta</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</base-showcase>

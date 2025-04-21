@@ -1,0 +1,183 @@
+<base-showcase>
+
+  <div description>
+    <p>Componente para mostrar un toggle, ideal para valores booleanos.</p>
+  </div>
+
+  <div examples>
+
+<div class="row">
+  <div class="col-12">
+    <h3>Ejemplo 1: estandar</h3>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-12">
+    <ddr-toggle 
+      [(ngModel)]="value1" 
+      (toggled)="example1($event)">
+    </ddr-toggle>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-12">
+    <div class="col-12">
+      <p>{{'Valor :' + value1}}</p>
+    </div>  
+  </div>
+</div>
+
+<div class="row mt-3">
+  <div class="col-12">
+    <h3>Ejemplo 2: label</h3>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-12 mt-2">
+    <ddr-toggle 
+      label="Example toggle" 
+      [(ngModel)]="value2" 
+      (toggled)="example2($event)">
+    </ddr-toggle>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-12">
+    <p>{{'Valor :' + value2}}</p>
+  </div>
+</div>
+
+<div class="row mt-3">
+  <div class="col-12">
+    <h3>Ejemplo 3: Label inline</h3>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-12">
+    <ddr-toggle 
+      label="Example inline toggle" 
+      [inline]="true" 
+      [(ngModel)]="value3" 
+      (toggled)="example3($event)">
+    </ddr-toggle>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-12">
+    <p>{{'Valor :' + value3}}</p>
+  </div>
+</div>
+
+<div class="row mt-3">
+  <div class="col-12">
+    <h3>Ejemplo 4: Small</h3>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-12">
+    <ddr-toggle 
+      label="Example small" 
+      [inline]="true"
+      [small]="true"
+      [(ngModel)]="value4" 
+      (toggled)="example4($event)">
+    </ddr-toggle>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-12">
+    <p>{{'Valor :' + value4}}</p>
+  </div>
+</div>
+      
+  </div>
+  
+  <div code>
+    
+  </div>
+
+  <div inputs>
+    <table class="table">
+      <thead class="thead-dark">
+        <tr>
+          <th>Nombre</th>
+          <th>Descripción</th>
+          <th>Tipo</th>
+          <th>Valor por defecto</th>
+          <th>Posibles valores (constants)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>label</td>
+          <td>Label del toggle</td>
+          <td>string</td>
+          <td>undefined</td>
+          <td></td>
+        </tr>
+
+        <tr>
+          <td>Inline</td>
+          <td>Coloca el label y el toggle en linea</td>
+          <td>boolean</td>
+          <td>false</td>
+          <td></td>
+        </tr>
+
+        <tr>
+          <td>required</td>
+          <td>Indica si el input es obligatorio</td>
+          <td>boolean</td>
+          <td>false</td>
+          <td></td>
+        </tr>
+
+        <tr>
+          <td>tooltipText</td>
+          <td>Texto del tooltip a mostrar</td>
+          <td>boolean</td>
+          <td>false</td>
+          <td></td>
+        </tr>
+
+        <tr>
+          <td>small</td>
+          <td>Hace el componente mas pequeño</td>
+          <td>boolean</td>
+          <td>false</td>
+          <td></td>
+        </tr>
+        
+
+      </tbody>
+    </table>
+  </div>
+
+  <div outputs>
+    <table class="table">
+      <thead class="thead-dark">
+        <tr>
+          <th>Nombre</th>
+          <th>Descripción</th>
+          <th>Valor devuelto</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>toggled</td>
+          <td>Evento al clickar el toggle</td>
+          <td>boolean</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</base-showcase>

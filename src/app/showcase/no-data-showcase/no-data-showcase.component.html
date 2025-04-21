@@ -1,0 +1,99 @@
+<base-showcase [showOutputs]="false">
+
+  <div description>
+    <p>Componente indicar que no hay datos.</p>
+  </div>
+
+  <div examples>
+
+<div class="row">
+  <div class="col-12">
+      <h3>Ejemplo 1: estandar</h3>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-12">
+      <ddr-no-data 
+        icon="bi bi-send"
+        text="Texto">
+      </ddr-no-data>
+  </div>
+</div>
+
+  </div>
+
+  <div code>
+    <!-- <ddr-tabs>
+      <ddr-tab-item titleTab="HTML">
+        <pre >
+          <code class="language-html" DdrHighlightCode ngNonBindable>
+            &#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x72;&#x6f;&#x77;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x63;&#x6f;&#x6c;&#x2d;&#x31;&#x32;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x3c;&#x68;&#x33;&#x3e;&#x45;&#x6a;&#x65;&#x6d;&#x70;&#x6c;&#x6f;&#x20;&#x31;&#x3a;&#x20;&#x65;&#x73;&#x74;&#x61;&#x6e;&#x64;&#x61;&#x72;&#x3c;&#x2f;&#x68;&#x33;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#xd;&#xa;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x72;&#x6f;&#x77;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x63;&#x6f;&#x6c;&#x2d;&#x31;&#x32;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x3c;&#x65;&#x76;&#x6c;&#x2d;&#x6e;&#x6f;&#x2d;&#x64;&#x61;&#x74;&#x61;&#x20;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x69;&#x63;&#x6f;&#x6e;&#x3d;&#x22;&#x62;&#x69;&#x20;&#x62;&#x69;&#x2d;&#x73;&#x65;&#x6e;&#x64;&#x22;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x74;&#x65;&#x78;&#x74;&#x3d;&#x22;&#x54;&#x65;&#x78;&#x74;&#x6f;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x3c;&#x2f;&#x65;&#x76;&#x6c;&#x2d;&#x6e;&#x6f;&#x2d;&#x64;&#x61;&#x74;&#x61;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;          
+          </code>
+        </pre>
+      </ddr-tab-item>
+      <ddr-tab-item titleTab="CSS">
+
+      </ddr-tab-item>
+      <ddr-tab-item titleTab="TS">
+
+        <pre  class="language-typescript">
+          <code class="language-typescript" DdrHighlightCode  ngNonBindable>
+&#x69;&#x6d;&#x70;&#x6f;&#x72;&#x74;&#x20;&#x7b;&#x20;&#x43;&#x6f;&#x6d;&#x70;&#x6f;&#x6e;&#x65;&#x6e;&#x74;&#x2c;&#x20;&#x4f;&#x6e;&#x49;&#x6e;&#x69;&#x74;&#x20;&#x7d;&#x20;&#x66;&#x72;&#x6f;&#x6d;&#x20;&#x27;&#x40;&#x61;&#x6e;&#x67;&#x75;&#x6c;&#x61;&#x72;&#x2f;&#x63;&#x6f;&#x72;&#x65;&#x27;&#x3b;&#xd;&#xa;&#x69;&#x6d;&#x70;&#x6f;&#x72;&#x74;&#x20;&#x7b;&#x20;&#x45;&#x76;&#x6c;&#x53;&#x65;&#x73;&#x73;&#x69;&#x6f;&#x6e;&#x53;&#x65;&#x72;&#x76;&#x69;&#x63;&#x65;&#x20;&#x7d;&#x20;&#x66;&#x72;&#x6f;&#x6d;&#x20;&#x27;&#x70;&#x72;&#x6f;&#x6a;&#x65;&#x63;&#x74;&#x73;&#x2f;&#x65;&#x76;&#x6c;&#x2d;&#x6c;&#x69;&#x62;&#x2f;&#x73;&#x72;&#x63;&#x2f;&#x73;&#x65;&#x72;&#x76;&#x69;&#x63;&#x65;&#x73;&#x2f;&#x65;&#x76;&#x6c;&#x2d;&#x73;&#x65;&#x73;&#x73;&#x69;&#x6f;&#x6e;&#x2e;&#x73;&#x65;&#x72;&#x76;&#x69;&#x63;&#x65;&#x27;&#x3b;&#xd;&#xa;&#xd;&#xa;&#x40;&#x43;&#x6f;&#x6d;&#x70;&#x6f;&#x6e;&#x65;&#x6e;&#x74;&#x28;&#x7b;&#xd;&#xa;&#x20;&#x20;&#x73;&#x65;&#x6c;&#x65;&#x63;&#x74;&#x6f;&#x72;&#x3a;&#x20;&#x27;&#x61;&#x70;&#x70;&#x2d;&#x6e;&#x6f;&#x2d;&#x64;&#x61;&#x74;&#x61;&#x2d;&#x73;&#x68;&#x6f;&#x77;&#x63;&#x61;&#x73;&#x65;&#x27;&#x2c;&#xd;&#xa;&#x20;&#x20;&#x74;&#x65;&#x6d;&#x70;&#x6c;&#x61;&#x74;&#x65;&#x55;&#x72;&#x6c;&#x3a;&#x20;&#x27;&#x2e;&#x2f;&#x6e;&#x6f;&#x2d;&#x64;&#x61;&#x74;&#x61;&#x2d;&#x73;&#x68;&#x6f;&#x77;&#x63;&#x61;&#x73;&#x65;&#x2e;&#x63;&#x6f;&#x6d;&#x70;&#x6f;&#x6e;&#x65;&#x6e;&#x74;&#x2e;&#x68;&#x74;&#x6d;&#x6c;&#x27;&#x2c;&#xd;&#xa;&#x20;&#x20;&#x73;&#x74;&#x79;&#x6c;&#x65;&#x55;&#x72;&#x6c;&#x73;&#x3a;&#x20;&#x5b;&#x27;&#x2e;&#x2f;&#x6e;&#x6f;&#x2d;&#x64;&#x61;&#x74;&#x61;&#x2d;&#x73;&#x68;&#x6f;&#x77;&#x63;&#x61;&#x73;&#x65;&#x2e;&#x63;&#x6f;&#x6d;&#x70;&#x6f;&#x6e;&#x65;&#x6e;&#x74;&#x2e;&#x73;&#x63;&#x73;&#x73;&#x27;&#x5d;&#xd;&#xa;&#x7d;&#x29;&#xd;&#xa;&#x65;&#x78;&#x70;&#x6f;&#x72;&#x74;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x20;&#x4e;&#x6f;&#x44;&#x61;&#x74;&#x61;&#x53;&#x68;&#x6f;&#x77;&#x63;&#x61;&#x73;&#x65;&#x43;&#x6f;&#x6d;&#x70;&#x6f;&#x6e;&#x65;&#x6e;&#x74;&#x20;&#x7b;&#xd;&#xa;&#xd;&#xa;&#x20;&#x20;&#x63;&#x6f;&#x6e;&#x73;&#x74;&#x72;&#x75;&#x63;&#x74;&#x6f;&#x72;&#x28;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x70;&#x75;&#x62;&#x6c;&#x69;&#x63;&#x20;&#x65;&#x76;&#x6c;&#x53;&#x65;&#x73;&#x73;&#x69;&#x6f;&#x6e;&#x3a;&#x20;&#x45;&#x76;&#x6c;&#x53;&#x65;&#x73;&#x73;&#x69;&#x6f;&#x6e;&#x53;&#x65;&#x72;&#x76;&#x69;&#x63;&#x65;&#xd;&#xa;&#x20;&#x20;&#x29;&#x20;&#x7b;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x74;&#x68;&#x69;&#x73;&#x2e;&#x65;&#x76;&#x6c;&#x53;&#x65;&#x73;&#x73;&#x69;&#x6f;&#x6e;&#x2e;&#x73;&#x65;&#x74;&#x45;&#x6c;&#x65;&#x6d;&#x65;&#x6e;&#x74;&#x28;&#x27;&#x74;&#x69;&#x74;&#x6c;&#x65;&#x27;&#x2c;&#x20;&#x27;&#x4e;&#x6f;&#x20;&#x64;&#x61;&#x74;&#x61;&#x27;&#x29;&#x3b;&#xd;&#xa;&#x20;&#x20;&#x7d;&#xd;&#xa;&#xd;&#xa;&#x7d;
+          </code>
+        </pre>
+
+      </ddr-tab-item>
+    </ddr-tabs> -->
+
+  </div>
+
+  <div inputs>
+    <table class="table">
+      <thead class="thead-dark">
+        <tr>
+          <th>Nombre</th>
+          <th>Descripción</th>
+          <th>Tipo</th>
+          <th>Valor por defecto</th>
+          <th>Posibles valores (constants)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>icon</td>
+          <td>Icono a mostrar</td>
+          <td>string</td>
+          <td>undefined</td>
+          <td></td>
+        </tr>
+       
+        <tr>
+          <td>text</td>
+          <td>Texto a mostrar</td>
+          <td>string</td>
+          <td>undefined</td>
+          <td></td>
+        </tr>
+
+        <tr>
+          <td>size</td>
+          <td>Tamaño del elemento</td>
+          <td>string</td>
+          <td>SIZE.LARGE</td>
+          <td>
+            <ul>
+              <li>SIZE.SMALL</li>
+              <li>SIZE.MEDIUM</li>
+              <li>SIZE.LARGE</li>
+            </ul>
+          </td>
+        </tr>
+      </tbody>
+   
+    </table>
+  </div>
+
+</base-showcase>
+
+

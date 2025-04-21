@@ -1,0 +1,103 @@
+<div class="row ddr-steps">
+  <div class="col-12">
+    <!-- Horizontal -->
+    @if (!vertical) {
+      <div class="ddr-steps__horizontal">
+        @for (step of steps; track step) {
+          <div class="ddr-steps__horizontal__info-step" [ngClass]="{'ddr-steps__horizontal__info-step--hover': canJumpStep, 'cursor-default': !canJumpStep}" (click)="goToStep(step)">
+            <div class="ddr-steps__horizontal__info-step__number-step" [ngClass]="{
+              'ddr-steps__horizontal__info-step__number-step--open': step.open,
+              'ddr-steps__horizontal__info-step__number-step--closed': !step.open
+              }">
+              @if (!validateIcon || (validateIcon && !step.canGoNext)) {
+                <span>{{step.step}}</span>
+              }
+              @if (validateIcon && step.canGoNext) {
+                <span>
+                  <i class="bi bi-check"></i>
+                </span>
+              }
+            </div>
+            <div class="ddr-steps__horizontal__info-step__title-step">
+              <span>{{step.titleStep}}</span>
+            </div>
+          </div>
+          @if (!step.lastStep) {
+            <div class="ddr-steps__horizontal__line"></div>
+          }
+        }
+      </div>
+      <div class="ddr-steps__template">
+        @for (step of steps; track step) {
+          @if (step.open) {
+            <div class="ddr-steps__template__content">
+              <ng-container [ngTemplateOutlet]="step.contentTemplate"/>
+              @if (showButtons && !openAll && !step.firstStep) {
+                <ddr-button
+                  class="me-1"
+                  [text]="labelPrevious || ('previous' | ddrTranslate)"
+                  (action)="previous(step)">
+                </ddr-button>
+              }
+              @if (showButtons && !openAll && !step.lastStep) {
+                <ddr-button
+                  class="me-1"
+                  [disabled]="!step.canGoNext"
+                  [text]="labelNext || ('next' | ddrTranslate)"
+                  (action)="next(step)">
+                </ddr-button>
+              }
+            </div>
+          }
+        }
+      </div>
+    }
+    <!-- Vertical -->
+    @if (vertical) {
+      @for (step of steps; track step) {
+        <div class="row ddr-steps__vertical__info-step" [ngClass]="{'ddr-steps__vertical__info-step--hover': canJumpStep, 'cursor-default': !canJumpStep}" (click)="goToStep(step)">
+          <div class="col-12">
+            <div class="ddr-steps__vertical__info-step__number-step" [ngClass]="{
+              'ddr-steps__vertical__info-step__number-step--open': step.open,
+              'ddr-steps__vertical__info-step__number-step--closed': !step.open
+              }">
+              @if (!validateIcon || (validateIcon && !step.canGoNext)) {
+                <span>{{step.step}}</span>
+              }
+              @if (validateIcon && step.canGoNext) {
+                <span>
+                  <i class="bi bi-check"></i>
+                </span>
+              }
+            </div>
+            <div class="ddr-steps__vertical__info-step__title-step">
+              <span>{{step.titleStep}}</span>
+            </div>
+          </div>
+        </div>
+        <div class="ddr-steps__template" [ngClass]="{'ddr-steps__template--line': !step.lastStep}">
+          @if (step.open) {
+            <div class="ddr-steps__template__content">
+              <ng-container [ngTemplateOutlet]="step.contentTemplate"/>
+              @if (showButtons && !openAll && !step.firstStep) {
+                <ddr-button
+                  class="me-1"
+                  [text]="labelPrevious || ('previous' | ddrTranslate)"
+                  (action)="previous(step)">
+                </ddr-button>
+              }
+              @if (showButtons && !openAll && !step.lastStep) {
+                <ddr-button
+                  class="me-1"
+                  [disabled]="!step.canGoNext"
+                  [text]="labelNext || ('next' | ddrTranslate)"
+                  (action)="next(step)">
+                </ddr-button>
+              }
+            </div>
+          }
+        </div>
+      }
+    }
+  </div>
+</div>

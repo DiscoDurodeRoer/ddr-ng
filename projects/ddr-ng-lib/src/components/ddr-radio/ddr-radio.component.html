@@ -1,0 +1,17 @@
+<div class="ddr-radio" [ngClass]="{'flex-row': inline,'flex-column': !inline}">
+  @for (option of options; track option) {
+    <div class="ddr-radio__container" [ngClass]="{'me-4': inline}">
+      <div
+        class="ddr-radio__container--input"
+        [ngClass]="{'ddr-radio__container--input--active': option.selected, 'ddr-radio__container--input--desactive': !option.selected}"
+        (click)="onclickRadio(option)">
+        @if (option.selected) {
+          <i class="ddr-radio__container--input--icon bi bi-check" aria-hidden="true"></i>
+        }
+      </div>
+      @if (option.label) {
+        <label class="ddr-radio__container--label">{{option.label | ddrTranslate}}</label>
+      }
+    </div>
+  }
+</div>

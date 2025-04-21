@@ -1,0 +1,19 @@
+<div class="ddr-chip">
+  @if (label) {
+    <label class="ddr-chip__label">
+      {{ label + ":" }}
+    </label>
+  }
+  <div class="ddr-chip__container w-100">
+    <ul>
+      @for (v of value; track v) {
+        <li class="ddr-chip__container__values">
+          <ddr-chip-value [value]="v" (clickValue)="onClickValue($event)" (delete)="onDelete($event)"></ddr-chip-value>
+        </li>
+      }
+      <li class="ddr-chip__container__input">
+        <input class="border-0 w-100" type="text" (keyup)="checkValue()" (keyup.backspace)="removeLastElement()" (keyup.enter)="onInsertElement()" [(ngModel)]="valueInput">
+      </li>
+    </ul>
+  </div>
+</div>

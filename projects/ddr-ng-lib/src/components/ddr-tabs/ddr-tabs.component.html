@@ -1,0 +1,18 @@
+<div class="ddr-tabs">
+  @for (tab of tabsItems; track tab) {
+    <div
+      class="ddr-tabs__title cursor-pointer"
+      (click)="open(tab)"
+      [ngClass]="{'ddr-tabs__title--selected': tab.selected}">
+      @if (tab.icon) {
+        <i [class]="tab.icon + ' me-2'"></i>
+      }
+      <span>{{tab.titleTab}}</span>
+    </div>
+  }
+  @if (contentTemplate) {
+    <div class="ddr-tabs__content">
+      <ng-template [ngTemplateOutlet]="contentTemplate"></ng-template>
+    </div>
+  }
+</div>

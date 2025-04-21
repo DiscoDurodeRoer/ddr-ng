@@ -1,0 +1,25 @@
+ddr-app{
+    ddr-header {
+        .header{
+            ddr-dropdown{
+                .ddr-input__input-container--label {
+                  color: #FFF;
+                }
+            }
+        
+            ddr-button.get-started{
+        
+                cursor: pointer;
+                
+                .btn-ddr--icon {
+                    font-size: 32px;
+                    color: #FFF;
+                }
+            }
+        }
+       
+    }
+}
+
+
+

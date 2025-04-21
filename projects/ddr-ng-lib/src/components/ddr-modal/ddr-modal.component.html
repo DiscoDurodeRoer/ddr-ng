@@ -1,0 +1,51 @@
+@if (show) {
+  <div class="row ddr-modal">
+    <div class="ddr-modal--overlay overlay-ddr">
+      <div class="col-12 ddr-modal--overlay__content" [ngClass]="{
+        'ddr-modal--overlay__content--big': size == constants.SIZE.LARGE,
+        'ddr-modal--overlay__content--medium': size == constants.SIZE.MEDIUM,
+        'ddr-modal--overlay__content--small': size == constants.SIZE.SMALL
+        }">
+        <div class="card" drClickOutside [clickOutsideEnabled]="clickOutsideEnabled" [clickOutsideFirstTime]="true" (clickOutside)="onclickOutside($event)">
+          <div class="card-title">
+            <div class="ddr-modal--overlay__content--title">
+              <ng-content select="[modal-title]"></ng-content>
+            </div>
+            <div class="ddr-modal--overlay__content--close">
+              <i class="bi bi-x " (click)="onClose($event)"></i>
+            </div>
+          </div>
+          <div class="card-body">
+            <ng-content select="[modal-content]"></ng-content>
+          </div>
+          @if (type !== constants.MODAL.NO_BUTTONS) {
+            <div class="ddr-modal--overlay__content--card-buttons">
+              @if (type === constants.MODAL.INFO || type === constants.MODAL.CONFIRM) {
+                <ddr-button
+                  class="ddr-modal--overlay__content--card-buttons__button"
+                  [icon]="'bi bi-check'"
+                  [text]="labelConfirm"
+                  [mode]="constants.MODES_BUTTON.DANGER"
+                  [size]="size"
+                  (click)="onConfirm($event)"
+                  >
+                </ddr-button>
+              }
+              @if (type === constants.MODAL.CONFIRM) {
+                <ddr-button
+                  class="ddr-modal--overlay__content--card-buttons__button"
+                  [icon]="'bi bi-x'"
+                  [text]="labelClose"
+                  [mode]="constants.MODES_BUTTON.DEFAULT"
+                  [size]="size"
+                  (click)="onClose($event)"
+                  >
+                </ddr-button>
+              }
+            </div>
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+}

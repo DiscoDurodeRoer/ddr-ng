@@ -1,0 +1,35 @@
+.ddr-widget {
+    
+    &__actions {
+        ddr-split-button {
+            .ddr-split-button {
+                ddr-button {
+                    .btn-ddr {
+                        border: none;
+
+                        &--icon {
+                            margin: 0;
+                            font-size: 24px;
+                        }
+                    }
+                }
+                &__options ul li{
+                    font-size: 16px;
+                }
+            }
+        }
+    }
+
+    .ddr-tooltip--left {
+        &::before {
+            bottom: 15px;
+        }
+    }
+
+    .ddr-tooltip--right {
+        &::before {
+            bottom: 15px;
+        }
+    }
+
+}

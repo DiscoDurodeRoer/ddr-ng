@@ -1,0 +1,27 @@
+<div class="row">
+    <div class="col-9 p-2">
+        <ddr-dropdown
+          label="Theme"
+          [inline]="true"
+          [(ngModel)]="themeActual"
+          [options]="themesOptions"
+          (selectItem)="changeTheme($event)" />
+    </div>
+    <div class="col-3 text-end p-2">
+        <span class="d-inline-block text-light">{{'v' + version}}</span>
+          <ddr-button class="get-started"
+            icon="bi bi-rocket-takeoff"
+            [border]="false"
+            size="large"
+            [transparent]="true"
+            routerLink="get-started"/>
+          <ddr-button class="get-started"
+            icon="bi bi-filetype-md"
+            [border]="false"
+            size="large"
+            [transparent]="true"
+            routerLink="changelog"/>
+    </div>
+</div>
+
+

@@ -1,0 +1,32 @@
+.ddr-chip {
+    margin: 15px 0;
+
+    &__label {
+        text-transform: uppercase;
+        margin-bottom: 10px;
+    }
+
+    &__container {
+        border-radius: 4px;
+
+        ul {
+            display: flex;
+            flex-wrap: wrap;
+            margin: 0;
+
+            li {
+                margin-right: 5px;
+            }
+        }
+
+        &__input {
+            flex: 1;
+
+            input {
+                height: 36px;
+                border-radius: 4px;
+            }
+        }
+    }
+
+}

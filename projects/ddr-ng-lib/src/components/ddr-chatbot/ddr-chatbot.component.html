@@ -1,0 +1,78 @@
+<div class="row">
+  <div class="col-12">
+    <ddr-button class="ddr-chatbot"
+      ddrNotification
+      [showNotifications]="chatbotservice.messagesNoRead > 0"
+      [numberNotifications]="chatbotservice.messagesNoRead"
+      elementToInsert="button"
+      positionTop="0%"
+      [icon]="icon"
+      [floatButton]="true"
+      (action)="openCloseDialog()">
+    </ddr-button>
+    @if (showDialog) {
+      <ddr-card
+        class="ddr-chatbot__dialog"
+        [ngClass]="{
+        'ddr-chatbot__dialog--dialog-expand': expandDialog && resolutionService.size != constants.RESOLUTIONS.MOBILE,
+        'ddr-chatbot__dialog--dialog-expand-mobile': expandDialog && resolutionService.size == constants.RESOLUTIONS.MOBILE,
+        'ddr-chatbot__dialog--dialog-contract': !expandDialog
+        }"
+        [showFooter]="true"
+        [@overlayAnimation]="{ value: 'visible' }">
+        <div card-title>
+          <div class="row g-0">
+            <div [ngClass]="{'col-11': expandDialog, 'col-10': !expandDialog}">
+              <span>{{titleChat}}</span>
+            </div>
+            <div [ngClass]="{'col-1': expandDialog, 'col-2': !expandDialog}" class=" ddr-chatbot__dialog__icon">
+              @if (!expandDialog) {
+                <i (click)="expandContractDialog()" class="me-2 cursor-pointer bi bi-arrows-angle-expand"></i>
+              }
+              @if (expandDialog) {
+                <i (click)="expandContractDialog()" class="me-2 cursor-pointer bi bi-arrows-angle-contract"></i>
+              }
+              <i (click)="openCloseDialog()" class="me-2 cursor-pointer bi bi-caret-down-fill"></i>
+            </div>
+          </div>
+        </div>
+        <div card-content>
+          <div class="ddr-chatbot__dialog__messages">
+            @for (message of chatbotservice.messages; track message) {
+              <div class="ddr-chatbot__dialog__message"
+                [ngClass]="{
+                'ddr-chatbot__dialog__message--robot': message.robot,
+                'ddr-chatbot__dialog__message--human': !message.robot
+                }">
+                <div class="ddr-chatbot__dialog__message__text">
+                  @if (message.load) {
+                    <span>{{message.text}}</span>
+                  }
+                  @if (!message.load) {
+                    <span>
+                      <i class="bi bi-three-dots ddr-chatbot__dialog__message__text--dots-loading"></i>
+                    </span>
+                  }
+                </div>
+                <div class="ddr-chatbot__dialog__message__date">
+                  {{message.date | date:'HH:mm'}}
+                </div>
+              </div>
+            }
+          </div>
+        </div>
+        <div card-footer>
+          <ddr-input-group
+            icon="bi bi-send"
+            name="message"
+            [placeholder]="placeholder"
+            [disabled]="userTextDisable"
+            [(ngModel)]="messageText"
+            (action)="sendMessage()"
+            (keyup.enter)="sendMessage()">
+          </ddr-input-group>
+        </div>
+      </ddr-card>
+    }
+  </div>
+</div>

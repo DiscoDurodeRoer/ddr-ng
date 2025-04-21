@@ -1,0 +1,37 @@
+.ddr-no-data {
+
+    text-align: center;
+
+    &--large {
+        .ddr-no-data__icon {
+            font-size: 2000%;
+        }
+
+        .ddr-no-data__text {
+            font-size: 300%;
+        }
+    }
+
+    &--medium {
+        .ddr-no-data__icon {
+            font-size: 1000%;
+        }
+
+        .ddr-no-data__text {
+            font-size: 200%;
+        }
+    }
+
+    &--small {
+        .ddr-no-data__icon {
+            font-size: 500%;
+        }
+
+        .ddr-no-data__text {
+            font-size: 150%;
+        }
+    }
+
+
+
+}

@@ -1,0 +1,22 @@
+{
+    "variable1": "variable1",
+    "variable2": "variable2",
+    "showElement": false,
+    "variable3":{
+        "subvariable1": "soy un valor anidado"
+    },
+    "values": [
+        {
+            "label": "label1",
+            "value": "value1"
+        },
+        {
+            "label": "label2",
+            "value": "value2"
+        },
+        {
+            "label": "label3",
+            "value": "value3"
+        }
+    ]
+}

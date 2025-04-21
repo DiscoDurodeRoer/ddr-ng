@@ -1,0 +1,33 @@
+<div class="row ddr-conversation">
+  <div class="col-12">
+    <div class="ddr-conversation__messages">
+      @for (message of messages; track message) {
+        <div class="ddr-conversation__message" [ngClass]="{'flex-row-reverse': !message.robot}"
+          >
+          @if (message.icon) {
+            <div class="ddr-conversation__message__icon align-self-start" [ngClass]="{
+              'ddr-conversation__message--robot': message.robot,
+              'ddr-conversation__message--human': !message.robot
+              }">
+              <i [class]="message.icon"></i>
+            </div>
+          }
+          @if (message.load) {
+            <div class="ddr-conversation__message__text" [ngClass]="{
+              'ddr-conversation__message--robot': message.robot,
+              'ddr-conversation__message--human': !message.robot,
+              'cursor-pointer': canClick
+              }" (click)="onClickMessage(message)">
+              <ng-template 
+                [ngTemplateOutlet]="template ? template : templateDefault"
+                [ngTemplateOutletContext]="{ message }"/>
+              <ng-template #templateDefault>
+                <span>{{message.text}}</span>
+              </ng-template>
+            </div>
+          }
+        </div>
+      }
+    </div>
+  </div>
+</div>

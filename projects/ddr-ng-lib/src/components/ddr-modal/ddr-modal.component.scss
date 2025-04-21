@@ -1,0 +1,97 @@
+.ddr-modal {
+
+  .card {
+    -webkit-box-shadow: 5px 5px 5px 1px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 5px 5px 5px 1px rgba(0, 0, 0, 0.75);
+    box-shadow: 5px 5px 5px 1px rgba(0, 0, 0, 0.75);
+    position: relative;
+  }
+
+  &--overlay {
+
+    &__content {
+
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      -ms-transform: translate(-50%, -50%);
+      transform: translate(-50%, -50%);
+
+      &--big {
+        width: 85%;
+
+        .card {
+          height: 80vh;
+        }
+      }
+
+      &--medium {
+
+        @media (max-width: 568px) {
+          width: 75%;
+        }
+
+        @media (min-width: 568px) {
+          width: 50%;
+        }
+
+        .card {
+          max-height: 90vh;
+        }
+      }
+
+      &--small {
+
+        @media (max-width: 568px) {
+          width: 60%;
+        }
+
+        @media (min-width: 568px) {
+          width: 25%;
+        }
+
+        .card {
+          max-height: 90vh;
+        }
+      }
+
+      .card-body {
+        overflow: auto;
+        margin-bottom: 15px;
+      }
+
+      &--title {
+        display: inline-block;
+        width: calc(100% - 32px);
+        font-weight: 600;
+        text-align: center;
+        padding-top: 10px;
+        padding-left: 10px;
+        font-family: "ddr bold";
+      }
+
+      &--close {
+        display: inline-block;
+        width: 32px;
+        position: absolute;
+
+        i {
+          font-size: 32px;
+          display: inline-block;
+          cursor: pointer;
+        }
+      }
+
+      &--card-buttons {
+        margin-left: 5px;
+        padding-bottom: 20px;
+        text-align: center;
+
+        &__button {
+          margin-left: 20px;
+        }
+      }
+    }
+
+  }
+}

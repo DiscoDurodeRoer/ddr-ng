@@ -1,0 +1,63 @@
+<div class="ddr-textarea">
+  <div class="ddr-textarea__textarea-container" [ngClass]="{'ddr-textarea--inline': inline}">
+    @if (label) {
+      <label class="ddr-textarea__textarea-container--label"
+        [ngClass]="{
+        'ddr-textarea__textarea-container--label--inline': inline,
+        'fw-bold': labelBold
+        }"
+      >{{ label + (required ? "(*):" : "") }}</label>
+      @if (showTooltip && tooltipText) {
+        <i
+          class="bi bi-info-circle"
+          ddrTooltip
+          [underlineTooltip]="false"
+          [orientationTooltip]="orientationTooltip"
+          [tooltipText]="tooltipText">
+        </i>
+      }
+    }
+    <textarea
+      #textarea="ngModel"
+      class="ddr-textarea__textarea-container--textarea"
+      [name]="name"
+      [placeholder]="placeholder"
+      [disabled]="disabled"
+      [readonly]="readonly"
+      [maxlength]="maxlength"
+      [minlength]="minlength"
+      [required]="required"
+      [cols]="cols"
+      [rows]="rows"
+      [(ngModel)]="value"
+      [ngClass]="{
+      'is-valid': validate && textarea.dirty && !textarea.errors,
+      'is-invalid': validate && textarea.dirty && textarea.errors,
+      'ddr-textarea__textarea-container--textarea--no-inline w-100': !inline,
+      'ddr-textarea__textarea-container--textarea--inline': inline
+      }"
+      ngDefaultControl
+      (keyup)="onKeyup()"
+      (blur)="onblur()">
+    </textarea>
+    <!--Validation-->
+    @if (validate && textarea.dirty && !textarea.errors) {
+      <div
+        [ngClass]="{ 'w-auto d-inline-block ms-1': inline }"
+        class="valid-feedback"
+        >
+        <ng-template [ngTemplateOutlet]="templateValid" />
+      </div>
+    }
+    @if (validate && textarea.dirty && textarea.errors) {
+      <div
+        [ngClass]="{ 'w-auto d-inline-block ms-1': inline }"
+        class="invalid-feedback"
+        >
+        <ng-template
+          [ngTemplateOutlet]="templateErrors"
+          [ngTemplateOutletContext]="{ errors: textarea.errors }" />
+      </div>
+    }
+  </div>
+</div>

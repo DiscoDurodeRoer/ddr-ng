@@ -1,0 +1,71 @@
+<base-showcase [showOutputs]="false">
+
+  <div description>
+    <p>Pipe para sanitizar el HTML que se inserte en un template.</p>
+  </div>
+
+  <div examples>
+
+<div class="row">
+  <div class="col-12">
+    <h3>Ejemplo 1: Estandar</h3>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-12">
+    <div [innerHTML]="html | safeHtml"></div>
+  </div>
+</div>
+
+  </div>
+
+  <div code>
+    <!-- <ddr-tabs>
+      <ddr-tab-item titleTab="HTML">
+        <pre class="language-html">
+          <code class="language-html" DdrHighlightCode ngNonBindable>
+&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x72;&#x6f;&#x77;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x63;&#x6f;&#x6c;&#x2d;&#x31;&#x32;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x3c;&#x68;&#x33;&#x3e;&#x45;&#x6a;&#x65;&#x6d;&#x70;&#x6c;&#x6f;&#x20;&#x31;&#x3a;&#x20;&#x45;&#x73;&#x74;&#x61;&#x6e;&#x64;&#x61;&#x72;&#x3c;&#x2f;&#x68;&#x33;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#xd;&#xa;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x72;&#x6f;&#x77;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x63;&#x6f;&#x6c;&#x2d;&#x31;&#x32;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x5b;&#x69;&#x6e;&#x6e;&#x65;&#x72;&#x48;&#x54;&#x4d;&#x4c;&#x5d;&#x3d;&#x22;&#x68;&#x74;&#x6d;&#x6c;&#x20;&#x7c;&#x20;&#x73;&#x61;&#x66;&#x65;&#x48;&#x74;&#x6d;&#x6c;&#x22;&#x3e;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;
+          </code>
+        </pre>
+      </ddr-tab-item>
+      <ddr-tab-item titleTab="CSS">
+        <pre class="language-css">
+          <code class="language-css" >
+          </code>
+        </pre>
+      </ddr-tab-item>
+      <ddr-tab-item titleTab="TS">
+        <pre class="language-typescript">
+          <code class="language-typescript" DdrHighlightCode ngNonBindable>
+&#x69;&#x6d;&#x70;&#x6f;&#x72;&#x74;&#x20;&#x7b;&#x20;&#x43;&#x6f;&#x6d;&#x70;&#x6f;&#x6e;&#x65;&#x6e;&#x74;&#x2c;&#x20;&#x4f;&#x6e;&#x49;&#x6e;&#x69;&#x74;&#x20;&#x7d;&#x20;&#x66;&#x72;&#x6f;&#x6d;&#x20;&#x27;&#x40;&#x61;&#x6e;&#x67;&#x75;&#x6c;&#x61;&#x72;&#x2f;&#x63;&#x6f;&#x72;&#x65;&#x27;&#x3b;&#xd;&#xa;&#x69;&#x6d;&#x70;&#x6f;&#x72;&#x74;&#x20;&#x7b;&#x20;&#x45;&#x76;&#x6c;&#x53;&#x65;&#x73;&#x73;&#x69;&#x6f;&#x6e;&#x53;&#x65;&#x72;&#x76;&#x69;&#x63;&#x65;&#x2c;&#x20;&#x45;&#x76;&#x6c;&#x54;&#x6f;&#x61;&#x73;&#x74;&#x53;&#x65;&#x72;&#x76;&#x69;&#x63;&#x65;&#x20;&#x7d;&#x20;&#x66;&#x72;&#x6f;&#x6d;&#x20;&#x27;&#x70;&#x72;&#x6f;&#x6a;&#x65;&#x63;&#x74;&#x73;&#x2f;&#x65;&#x76;&#x6c;&#x2d;&#x6c;&#x69;&#x62;&#x2f;&#x73;&#x72;&#x63;&#x2f;&#x70;&#x75;&#x62;&#x6c;&#x69;&#x63;&#x2d;&#x61;&#x70;&#x69;&#x27;&#x3b;&#xd;&#xa;&#xd;&#xa;&#x40;&#x43;&#x6f;&#x6d;&#x70;&#x6f;&#x6e;&#x65;&#x6e;&#x74;&#x28;&#x7b;&#xd;&#xa;&#x20;&#x20;&#x73;&#x65;&#x6c;&#x65;&#x63;&#x74;&#x6f;&#x72;&#x3a;&#x20;&#x27;&#x61;&#x70;&#x70;&#x2d;&#x73;&#x61;&#x66;&#x65;&#x2d;&#x68;&#x74;&#x6d;&#x6c;&#x2d;&#x73;&#x68;&#x6f;&#x77;&#x63;&#x61;&#x73;&#x65;&#x27;&#x2c;&#xd;&#xa;&#x20;&#x20;&#x74;&#x65;&#x6d;&#x70;&#x6c;&#x61;&#x74;&#x65;&#x55;&#x72;&#x6c;&#x3a;&#x20;&#x27;&#x2e;&#x2f;&#x73;&#x61;&#x66;&#x65;&#x2d;&#x68;&#x74;&#x6d;&#x6c;&#x2d;&#x73;&#x68;&#x6f;&#x77;&#x63;&#x61;&#x73;&#x65;&#x2e;&#x63;&#x6f;&#x6d;&#x70;&#x6f;&#x6e;&#x65;&#x6e;&#x74;&#x2e;&#x68;&#x74;&#x6d;&#x6c;&#x27;&#x2c;&#xd;&#xa;&#x20;&#x20;&#x73;&#x74;&#x79;&#x6c;&#x65;&#x55;&#x72;&#x6c;&#x73;&#x3a;&#x20;&#x5b;&#x27;&#x2e;&#x2f;&#x73;&#x61;&#x66;&#x65;&#x2d;&#x68;&#x74;&#x6d;&#x6c;&#x2d;&#x73;&#x68;&#x6f;&#x77;&#x63;&#x61;&#x73;&#x65;&#x2e;&#x63;&#x6f;&#x6d;&#x70;&#x6f;&#x6e;&#x65;&#x6e;&#x74;&#x2e;&#x73;&#x63;&#x73;&#x73;&#x27;&#x5d;&#xd;&#xa;&#x7d;&#x29;&#xd;&#xa;&#x65;&#x78;&#x70;&#x6f;&#x72;&#x74;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x20;&#x53;&#x61;&#x66;&#x65;&#x48;&#x74;&#x6d;&#x6c;&#x53;&#x68;&#x6f;&#x77;&#x63;&#x61;&#x73;&#x65;&#x43;&#x6f;&#x6d;&#x70;&#x6f;&#x6e;&#x65;&#x6e;&#x74;&#x20;&#x69;&#x6d;&#x70;&#x6c;&#x65;&#x6d;&#x65;&#x6e;&#x74;&#x73;&#x20;&#x4f;&#x6e;&#x49;&#x6e;&#x69;&#x74;&#x20;&#x7b;&#xd;&#xa;&#xd;&#xa;&#x20;&#x20;&#x70;&#x75;&#x62;&#x6c;&#x69;&#x63;&#x20;&#x68;&#x74;&#x6d;&#x6c;&#x3a;&#x20;&#x73;&#x74;&#x72;&#x69;&#x6e;&#x67;&#x3b;&#xd;&#xa;&#xd;&#xa;&#x20;&#x20;&#x63;&#x6f;&#x6e;&#x73;&#x74;&#x72;&#x75;&#x63;&#x74;&#x6f;&#x72;&#x28;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x70;&#x72;&#x69;&#x76;&#x61;&#x74;&#x65;&#x20;&#x65;&#x76;&#x6c;&#x53;&#x65;&#x73;&#x73;&#x69;&#x6f;&#x6e;&#x3a;&#x20;&#x45;&#x76;&#x6c;&#x53;&#x65;&#x73;&#x73;&#x69;&#x6f;&#x6e;&#x53;&#x65;&#x72;&#x76;&#x69;&#x63;&#x65;&#x2c;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x70;&#x75;&#x62;&#x6c;&#x69;&#x63;&#x20;&#x74;&#x6f;&#x61;&#x73;&#x74;&#x53;&#x65;&#x72;&#x76;&#x69;&#x63;&#x65;&#x3a;&#x20;&#x45;&#x76;&#x6c;&#x54;&#x6f;&#x61;&#x73;&#x74;&#x53;&#x65;&#x72;&#x76;&#x69;&#x63;&#x65;&#xd;&#xa;&#x20;&#x20;&#x29;&#x20;&#x7b;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x74;&#x68;&#x69;&#x73;&#x2e;&#x65;&#x76;&#x6c;&#x53;&#x65;&#x73;&#x73;&#x69;&#x6f;&#x6e;&#x2e;&#x73;&#x65;&#x74;&#x45;&#x6c;&#x65;&#x6d;&#x65;&#x6e;&#x74;&#x28;&#x27;&#x74;&#x69;&#x74;&#x6c;&#x65;&#x27;&#x2c;&#x20;&#x27;&#x52;&#x61;&#x6e;&#x67;&#x65;&#x27;&#x29;&#x3b;&#xd;&#xa;&#x20;&#x20;&#x7d;&#xd;&#xa;&#xd;&#xa;&#x20;&#x20;&#x6e;&#x67;&#x4f;&#x6e;&#x49;&#x6e;&#x69;&#x74;&#x28;&#x29;&#x3a;&#x20;&#x76;&#x6f;&#x69;&#x64;&#x20;&#x7b;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x74;&#x68;&#x69;&#x73;&#x2e;&#x68;&#x74;&#x6d;&#x6c;&#x20;&#x3d;&#x20;&#x27;&#x3c;&#x70;&#x3e;&#x45;&#x6a;&#x65;&#x6d;&#x70;&#x6c;&#x6f;&#x20;&#x64;&#x65;&#x20;&#x3c;&#x62;&#x3e;&#x48;&#x54;&#x4d;&#x4c;&#x3c;&#x2f;&#x62;&#x3e;&#x20;&#x76;&#x69;&#x61;&#x20;&#x3c;&#x75;&#x3e;&#x63;&#x6f;&#x64;&#x69;&#x67;&#x6f;&#x3c;&#x2f;&#x75;&#x3e;&#x3c;&#x2f;&#x70;&#x3e;&#x27;&#xd;&#xa;&#x20;&#x20;&#x7d;&#xd;&#xa;&#xd;&#xa;&#x7d;&#xd;&#xa;
+          </code></pre>
+      </ddr-tab-item>
+    </ddr-tabs> -->
+
+  </div>
+
+  <div inputs>
+    <table class="table">
+      <thead class="thead-dark">
+        <tr>
+          <th>Nombre</th>
+          <th>Descripción</th>
+          <th>Tipo</th>
+          <th>Valor por defecto</th>
+          <th>Posibles valores (constants)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>html</td>
+          <td>HTML a tratar</td>
+          <td>string</td>
+          <td>undefined</td>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</base-showcase>

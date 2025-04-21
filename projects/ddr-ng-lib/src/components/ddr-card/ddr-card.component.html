@@ -1,0 +1,17 @@
+<div class="ddr-card"
+  [ngClass]="{'ddr-card--rounded': rounded, 'border': border, 'ddr-card--shadow': shadow}"
+  [ngStyle]="{'background-color': background ? background : null, 'color': color ? color:  null}">
+  @if (showHeader) {
+    <div class="ddr-card__title bg-ddr">
+      <ng-content select="[card-title]"></ng-content>
+    </div>
+  }
+  <div class="ddr-card__body">
+    <ng-content select="[card-content]"></ng-content>
+  </div>
+  @if (showFooter) {
+    <div class="ddr-card__footer">
+      <ng-content select="[card-footer]"></ng-content>
+    </div>
+  }
+</div>

@@ -1,0 +1,37 @@
+.ddr-checkbox {
+    display: flex;
+
+    &__container {
+
+        height: 38px;
+        display: flex;
+        align-items: center;
+
+        &--input {
+            width: 26px;
+            min-width: 26px;
+            height: 26px;
+            border-radius: 4px;
+            cursor: pointer;
+            display: inline-block;
+            text-align: center;
+            -webkit-box-shadow: 1px 1px 2px 1px rgba(0, 0, 0, 0.75);
+            -moz-box-shadow: 1px 1px 2px 1px rgba(0, 0, 0, 0.75);
+            box-shadow: 1px 1px 2px 1px rgba(0, 0, 0, 0.75);
+
+            &--desactive {
+                background: none;
+            }
+
+        }
+
+        &--label {
+            display: inline-block;
+            margin-left: 5px;
+            font-size: 20px;
+        }
+
+    }
+
+
+}

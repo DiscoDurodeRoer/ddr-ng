@@ -1,0 +1,20 @@
+<div class="ddr-toggle" [ngClass]="{'ddr-toggle__inline': inline}">
+  @if (label) {
+    <div class="ddr-toggle__label" [ngClass]="{'ddr-toggle__label--si-inline ': inline}">
+      <label>{{ label + (required ? "(*):" : ":") }}</label>
+      @if (tooltipText) {
+        <i
+          class="bi bi-info-circle"
+          ddrTooltip
+          [underlineTooltip]="false"
+          [orientationTooltip]="constants.ORIENTATION.BOTTOM"
+          [tooltipText]="tooltipText ? tooltipText : ''">
+        </i>
+      }
+    </div>
+  }
+  <button type="button" class="ddr-toggle__btn"
+    [ngClass]="{'ddr-toggle__btn--on': value, 'ddr-toggle__btn--off': !value, 'ddr-toggle__btn--small': small}" [attr.aria-expanded]="value"
+    (click)="onClick()">
+  </button>
+</div>

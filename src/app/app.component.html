@@ -1,0 +1,88 @@
+<!-- <ddr-app
+  [menuItemsWeb]="menuItems"
+  [menuItemsTablet]="menuItems"
+  [menuItemsMobile]="menuItems"
+  [spinnerActive]="true"
+  [theme]="themeActual"
+  (clickHome)="clickHome($event)"
+  >
+  <div header-mobile class="row g-0 h-100">
+    <div class="col-7 text-start header__title p-2">
+      <span>{{ DdrSession.getElement("title") }}</span>
+    </div>
+    <div class="col-5 text-end p-2">
+      <span class="d-inline-block text-light">{{'v' + version}}</span>
+      @if (route.url != '/get-started') {
+        <ddr-button class="get-started"
+          icon="bi bi-rocket-takeoff"
+          [border]="false"
+          [transparent]="true"
+          (action)="goToGetStarted()"
+          >
+        </ddr-button>
+      }
+    </div>
+  </div>
+  <div detail-title-mobile>
+    <div class="row">
+      <div class="col-12 m-auto">
+        <img class="ms-2 img-fluid" src="assets/img/logo-ddr.png" alt="logo">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12 p-2">
+        <ddr-dropdown
+          placeholder="Elige un theme"
+          [inline]="true"
+          [(ngModel)]="themeActual"
+          [options]="themesOptions"
+          (selectItem)="changeTheme($event)"
+        ></ddr-dropdown>
+      </div>
+    </div>
+  </div>
+  <div header-web class="row g-0 h-100">
+    <div class="col-4 text-start header__title p-2">
+      <span>{{ DdrSession.getElement("title") }}</span>
+    </div>
+    <div class="col-5 p-2">
+      <ddr-dropdown
+        label="Theme"
+        [inline]="true"
+        [(ngModel)]="themeActual"
+        [options]="themesOptions"
+        (selectItem)="changeTheme($event)"
+      ></ddr-dropdown>
+    </div>
+    <div class="col-3 text-end p-2">
+      <span class="d-inline-block text-light">{{'v' + version}}</span>
+      @if (route.url != '/get-started') {
+        <ddr-button class="get-started"
+          icon="bi bi-rocket-takeoff"
+          [border]="false"
+          [transparent]="true"
+          (action)="goToGetStarted()">
+        </ddr-button>
+      }
+      @if (route.url != '/changelog') {
+        <ddr-button class="get-started"
+          icon="bi bi-filetype-md"
+          [border]="false"
+          [transparent]="true"
+          (action)="goToChangelog()">
+        </ddr-button>
+      }
+    </div>
+  </div>
+  <router-outlet content-app></router-outlet>
+</ddr-app> -->
+
+<div class="row mh-100">
+  <div class="col-md-2 col-12">
+    <app-menu/>
+  </div>
+  <div class="col-md-10 col-12">
+    <app-header/>
+    <router-outlet />
+  </div>
+</div>

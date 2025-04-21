@@ -1,0 +1,89 @@
+import { Routes } from '@angular/router';
+import { ChangelogComponent } from './components/changelog/changelog.component';
+import { GetStartedComponent } from './components/get-started/get-started.component';
+import { AccordionShowcaseComponent } from './showcase/accordion-showcase/accordion-showcase.component';
+import { BadgeNotificationShowcaseComponent } from './showcase/badge-notification-showcase/badge-notification-showcase.component';
+import { BadgeShowcaseComponent } from './showcase/badge-showcase/badge-showcase.component';
+import { ButtonShowcaseComponent } from './showcase/button-showcase/button-showcase.component';
+import { CardShowcaseComponent } from './showcase/card-showcase/card-showcase.component';
+import { ChatbotShowcaseComponent } from './showcase/chatbot-showcase/chatbot-showcase.component';
+import { CheckboxShowcaseComponent } from './showcase/checkbox-showcase/checkbox-showcase.component';
+import { ChipShowcaseComponent } from './showcase/chip-showcase/chip-showcase.component';
+import { ClickOutsideShowcaseComponent } from './showcase/click-outside-showcase/click-outside-showcase.component';
+import { ClipboardShowcaseComponent } from './showcase/clipboard-showcase/clipboard-showcase.component';
+import { ConversationShowcaseComponent } from './showcase/conversation-showcase/conversation-showcase.component';
+import { ShowcaseDdrDetailComponent } from './showcase/detail-showcase/detail-showcase.component';
+import { DragAndDropShowcaseComponent } from './showcase/drag-and-drop-showcase/drag-and-drop-showcase.component';
+import { DropdownShowcaseComponent } from './showcase/dropdown-showcase/dropdown-showcase.component';
+import { InputGroupShowcaseComponent } from './showcase/input-group-showcase/input-group-showcase.component';
+import { InputPasswordShowcaseComponent } from './showcase/input-password-showcase/input-password-showcase.component';
+import { InputShowcaseComponent } from './showcase/input-showcase/input-showcase.component';
+import { LoadIframeShowcaseComponent } from './showcase/load-iframe-showcase/load-iframe-showcase.component';
+import { LoginShowcaseComponent } from './showcase/login-showcase/login-showcase.component';
+import { LoopNumberShowcaseComponent } from './showcase/loop-number-showcase/loop-number-showcase.component';
+import { ModalShowcaseComponent } from './showcase/modal-showcase/modal-showcase.component';
+import { MultipleButtonShowcaseComponent } from './showcase/multiple-button-showcase/multiple-button-showcase.component';
+import { NoDataShowcaseComponent } from './showcase/no-data-showcase/no-data-showcase.component';
+import { ProgressBarShowcaseComponent } from './showcase/progress-bar-showcase/progress-bar-showcase.component';
+import { RadioShowcaseComponent } from './showcase/radio-showcase/radio-showcase.component';
+import { ResolutionShowcaseComponent } from './showcase/resolution-showcase/resolution-showcase.component';
+import { SafeHtmlShowcaseComponent } from './showcase/safe-html-showcase/safe-html-showcase.component';
+import { SkeletonShowcaseComponent } from './showcase/skeleton-showcase/skeleton-showcase.component';
+import { SpinnerShowcaseComponent } from './showcase/spinner-showcase/spinner-showcase.component';
+import { SplitButtonShowcaseComponent } from './showcase/split-button-showcase/split-button-showcase.component';
+import { StepsShowcaseComponent } from './showcase/steps-showcase/steps-showcase.component';
+import { TableShowcaseComponent } from './showcase/table-showcase/table-showcase.component';
+import { TabsShowcaseComponent } from './showcase/tabs-showcase/tabs-showcase.component';
+import { TextareaShowcaseComponent } from './showcase/textarea-showcase/textarea-showcase.component';
+import { ToastShowcaseComponent } from './showcase/toast-showcase/toast-showcase.component';
+import { ToggleShowcaseComponent } from './showcase/toggle-showcase/toggle-showcase.component';
+import { TooltipShowcaseComponent } from './showcase/tooltip-showcase/tooltip-showcase.component';
+import { TranslateShowcaseComponent } from './showcase/translate-showcase/translate-showcase.component';
+import { TreeviewShowcaseComponent } from './showcase/treeview-showcase/treeview-showcase.component';
+import { WidgetShowcaseComponent } from './showcase/widget-showcase/widget-showcase.component';
+
+export const routes: Routes = [
+    { path: 'get-started', component: GetStartedComponent },
+    { path: 'button', component: ButtonShowcaseComponent },
+    { path: 'translate', component: TranslateShowcaseComponent },
+    { path: 'spinner', component: SpinnerShowcaseComponent },
+    { path: 'detail', component: ShowcaseDdrDetailComponent },
+    { path: 'click-outside', component: ClickOutsideShowcaseComponent },
+    { path: 'toast', component: ToastShowcaseComponent },
+    { path: 'dropdown', component: DropdownShowcaseComponent },
+    { path: 'login', component: LoginShowcaseComponent },
+    { path: 'modal', component: ModalShowcaseComponent },
+    { path: 'input', component: InputShowcaseComponent },
+    { path: 'textarea', component: TextareaShowcaseComponent },
+    { path: 'resolution', component: ResolutionShowcaseComponent },
+    { path: 'input-group', component: InputGroupShowcaseComponent },
+    { path: 'card', component: CardShowcaseComponent },
+    { path: 'table', component: TableShowcaseComponent },
+    { path: 'checkbox', component: CheckboxShowcaseComponent },
+    { path: 'split-button', component: SplitButtonShowcaseComponent },
+    { path: 'toggle', component: ToggleShowcaseComponent },
+    { path: 'badge', component: BadgeShowcaseComponent },
+    { path: 'badge-notification', component: BadgeNotificationShowcaseComponent },
+    { path: 'progress-bar', component: ProgressBarShowcaseComponent },
+    { path: 'multiple-button', component: MultipleButtonShowcaseComponent },
+    { path: 'drag-and-drop', component: DragAndDropShowcaseComponent },
+    { path: 'load-iframe', component: LoadIframeShowcaseComponent },
+    { path: 'skeleton', component: SkeletonShowcaseComponent },
+    { path: 'widget', component: WidgetShowcaseComponent },
+    { path: 'loop-number', component: LoopNumberShowcaseComponent },
+    { path: 'chatbot', component: ChatbotShowcaseComponent },
+    { path: 'tooltip', component: TooltipShowcaseComponent },
+    { path: 'clipboard', component: ClipboardShowcaseComponent },
+    { path: 'chip', component: ChipShowcaseComponent },
+    { path: 'accordion', component: AccordionShowcaseComponent },
+    { path: 'tabs', component: TabsShowcaseComponent },
+    { path: 'treeview', component: TreeviewShowcaseComponent },
+    { path: 'steps', component: StepsShowcaseComponent },
+    { path: 'radio', component: RadioShowcaseComponent },
+    { path: 'conversation', component: ConversationShowcaseComponent },
+    { path: 'safe-html', component: SafeHtmlShowcaseComponent },
+    { path: 'no-data', component: NoDataShowcaseComponent },
+    { path: 'changelog', component: ChangelogComponent },
+    { path: 'input-password', component: InputPasswordShowcaseComponent },
+    { path: '**', pathMatch: 'full', redirectTo: 'get-started' },
+];

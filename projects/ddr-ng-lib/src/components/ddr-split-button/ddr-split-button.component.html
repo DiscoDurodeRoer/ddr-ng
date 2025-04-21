@@ -1,0 +1,83 @@
+@if (actions && actions.length > 0) {
+  <div class="ddr-split-button" [ngClass]="{'ddr-split-button--transparent': transparent, 'ddr-split-button--no-border': !border}">
+    @if (showFirst && !showFirstOnlyIcon) {
+      <ddr-button
+        class="ddr-split-button__action-principal"
+        [ngClass]="{'ddr-split-button__action-principal--more-actions': actions && actions.length > 1}"
+        [text]="actions[0]?.label | ddrTranslate"
+        [icon]="actions[0]?.icon"
+        [img]="actions[0]?.img"
+        [size]="size"
+        [disabled]="disabled"
+        (action)="sendAction($event, actions[0])">
+      </ddr-button>
+    }
+    @if (showFirst && showFirstOnlyIcon) {
+      <ddr-button
+        class="ddr-split-button__action-principal"
+        [ngClass]="{'ddr-split-button__action-principal--more-actions': actions.length > 1}"
+        [icon]="actions[0]?.icon"
+        [img]="actions[0]?.img"
+        [size]="size"
+        [disabled]="disabled"
+        (action)="sendAction($event, actions[0])">
+      </ddr-button>
+    }
+    @if (actions && actions.length > 1 || !showFirst) {
+      <ddr-button
+        class="ddr-split-button__action-secondaries"
+        [ngClass]="{
+        'ddr-split-button__action-secondaries-no-border-left': showFirst,
+        'ddr-split-button__action-secondaries': !showFirst
+        }"
+        [icon]="iconShowOptions"
+        [size]="size"
+        [disabled]="disabled"
+        (action)="openCloseOptions($event)">
+      </ddr-button>
+    }
+    @if (showOptions) {
+      <div
+        [class]="'ddr-split-button__options ddr-split-button__options--position-' + position"
+        [ngClass]="{'ddr-split-button__options--with-text': !showOnlyIcon }"
+        [@overlayAnimation]="{ value: 'visible' }"
+        drClickOutside
+        [clickOutsideFirstTime]="true"
+        (clickOutside)="hideOptions()">
+        <ul>
+          @for (action of actions; track action; let first = $first) {
+            @if ((first && showFirstInOptions) || !first) {
+              <li (click)="sendAction($event,action)">
+                <div class="row">
+                  @if (!showOnlyIcon) {
+                    <div class="col-3 text-end">
+                      @if (action.icon) {
+                        <i [class]="action.icon"></i>
+                      }
+                      @if (action.img) {
+                        <img [src]="action.img" />
+                      }
+                    </div>
+                    <div class="col-9 text-start">
+                      {{action.label | ddrTranslate}}
+                    </div>
+                  }
+                  @if (showOnlyIcon) {
+                    <div class="col-12 text-center">
+                      @if (action.icon) {
+                        <i [class]="action.icon"></i>
+                      }
+                      @if (action.img) {
+                        <img [src]="action.img" />
+                      }
+                    </div>
+                  }
+                </div>
+              </li>
+            }
+          }
+        </ul>
+      </div>
+    }
+  </div>
+}

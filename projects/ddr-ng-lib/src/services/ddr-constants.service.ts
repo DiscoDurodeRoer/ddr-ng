@@ -1,0 +1,25 @@
+import { Injectable } from '@angular/core';
+import * as CONSTANTS from '../constants/constants-ddr';
+
+@Injectable({
+  providedIn: 'root',
+})
+export class DdrConstantsService {
+  readonly MODES_BUTTON = CONSTANTS.MODES_BUTTON;
+  readonly TYPE_BUTTON = CONSTANTS.TYPE_BUTTON;
+  readonly TOAST = CONSTANTS.TOAST;
+  readonly MODAL = CONSTANTS.MODAL;
+  readonly TYPE_INPUT = CONSTANTS.TYPE_INPUT;
+  readonly RESOLUTIONS = CONSTANTS.RESOLUTIONS;
+  readonly SIZE = CONSTANTS.SIZE;
+  readonly INPUT_ERRORS = CONSTANTS.INPUT_ERRORS;
+  readonly THEME = CONSTANTS.THEME;
+  readonly BADGE = CONSTANTS.BADGE;
+  readonly ORIENTATION_DROPDOWN = CONSTANTS.ORIENTATION_DROPDOWN;
+  readonly ORIENTATION = CONSTANTS.ORIENTATION;
+  readonly SKELETON = CONSTANTS.SKELETON;
+  readonly MODE_SORT = CONSTANTS.MODE_SORT;
+  readonly SELECTION_MODE_CALENDAR = CONSTANTS.SELECTION_MODE_CALENDAR;
+  readonly THEMES = CONSTANTS.THEMES;
+
+}

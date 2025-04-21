@@ -1,0 +1,51 @@
+<div class="row">
+  <div class="col-12">
+    @if (showDescription) {
+      <ddr-accordion titleAccordion="Descripción" [open]="true">
+        <ng-content select="[description]" content-accordion></ng-content>
+      </ddr-accordion>
+    }
+    <ng-template #htmlTemplate>
+      <h1>Hola</h1>
+    </ng-template>
+    <button (click)="obtenerHtml()">HTML</button>
+    @if (showExamples) {
+      <ddr-accordion titleAccordion="Ejemplos" [open]="true">
+        <ng-content select="[examples]" #htmlTemplate content-accordion></ng-content>
+      </ddr-accordion>
+      
+    }
+    @if (showCode) {
+      <ddr-accordion titleAccordion="Codigo" [open]="true">
+        <ddr-tabs content-accordion>
+          <ddr-tab-item titleTab="HTML">
+            <pre class="language-markup"><code class="language-markup">{{codeHtml}}</code></pre>
+          </ddr-tab-item>
+          <ddr-tab-item titleTab="CSS">
+            <pre><code class="language-css" ngNonBindable select="[codeCss]"></code></pre>
+          </ddr-tab-item>
+          <ddr-tab-item titleTab="TS">
+            <pre  class="language-typescript">
+              <code class="language-typescript" ngNonBindable select="[codeTs]"></code>
+            </pre>
+          </ddr-tab-item>
+        </ddr-tabs>
+      </ddr-accordion>
+    }
+    @if (showInputs) {
+      <ddr-accordion titleAccordion="Inputs" [open]="true">
+        <ng-content select="[inputs]" content-accordion></ng-content>
+      </ddr-accordion>
+    }
+    @if (showOutputs) {
+      <ddr-accordion titleAccordion="Outputs" [open]="true">
+        <ng-content select="[outputs]" content-accordion></ng-content>
+      </ddr-accordion>
+    }
+    @if (showTranslations) {
+      <ddr-accordion titleAccordion="Translations" [open]="true">
+        <ng-content select="[translations]" content-accordion></ng-content>
+      </ddr-accordion>
+    }
+  </div>
+</div>

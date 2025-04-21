@@ -1,0 +1,12 @@
+<div class="ddr-progress-bar progress" [ngStyle]="{'height.px': height }">
+  <div class="progress-bar" 
+    role="progressbar"
+    [ngClass]="{'progress-bar-striped': striped, 'progress-bar-animated': animated}"
+    [ngStyle]="{'width.%': value }">
+    <span [ngClass]="{
+      'ddr-progress-bar__float-text': floatText, 
+      'ddr-progress-bar__float-text--less-50': floatText && value <= 50, 
+      'ddr-progress-bar__float-text--greather-50': floatText && value > 50
+    }">{{label}}</span>
+  </div>
+</div>

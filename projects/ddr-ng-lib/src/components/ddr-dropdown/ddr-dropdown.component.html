@@ -1,0 +1,88 @@
+<div class="ddr-dropdown" [ngClass]="{'d-inline-block': inline, 'ddr-dropdown--selectionable': !disabled}">
+  <!-- Option orientations TOP -->
+  @if (showItems && orientation == constants.ORIENTATION_DROPDOWN.TOP) {
+    <div class="ddr-dropdown__panel-items"
+      [ngClass]="{'ddr-dropdown__panel-items--touchUI': touchUI}"
+      [ngStyle]="{'top.px': showFilter ? ((optionsShow.length * -15) <= -180 ? -120 : (optionsShow.length * -15) - 40) : ((optionsShow.length * -15) <= -180 ? -180 : (optionsShow.length * -15) - 40 )}"
+      [@overlayAnimationTop]="{ value: 'visible' }">
+      <ng-container [ngTemplateOutlet]="commonTemplate"></ng-container>
+    </div>
+  }
+  <!-- (keydown)="selectOptionKey($event)" -->
+  <ddr-input-group
+    [label]="label"
+    [inline]="inline"
+    icon="bi bi-caret-down-fill"
+    [placeholder]="placeholder"
+    [readonly]="true"
+    [required]="required"
+    [disabled]="disabled"
+    [(ngModel)]="valueShow"
+    [showTooltip]="showTooltip"
+    [orientationTooltip]="orientationTooltip"
+    [tooltipText]="tooltipText"
+    (action)="showPanelOptions($event)"
+    (clickInput)="showPanelOptions($event)">
+  </ddr-input-group>
+  <!-- Option orientations BOTTOM -->
+  @if (showItems && orientation == constants.ORIENTATION_DROPDOWN.BOTTOM) {
+    <div
+      class="ddr-dropdown__panel-items" [ngClass]="{'ddr-dropdown__panel-items--touchUI': touchUI}" [@overlayAnimationBottom]="{ value: 'visible' }">
+      <ng-container [ngTemplateOutlet]="commonTemplate" />
+    </div>
+  }
+  <!-- Common template orientation BOTTOM and TOP -->
+  <ng-template #commonTemplate>
+    <div drClickOutside [clickOutsideFirstTime]="true" (clickOutside)="hidePanelItems()">
+      <div class="ddr-dropdown__panel-items--search">
+        @if (showFilter && options.length > 0) {
+          <input type="text" [(ngModel)]="filterInput" #search name="value" (keyup)="filter(search.value)"
+            class="form-control ddr-dropdown__panel-items--search--input" [placeholder]="labelPlaceholderFilter || ('dropdown.placeholder.filter' | ddrTranslate)" />
+        }
+      </div>
+      @if (optionsShow.length === 0) {
+        <div [ngClass]="{'ddr-dropdown__panel-items--no-results--no-filter': !showFilter}" class="ddr-dropdown__panel-items--no-results">
+          <span>{{ labelNoResults || ('dropdown.no.results' | ddrTranslate) }}</span>
+        </div>
+      }
+      @if (optionsShow.length > 0) {
+        <ul [ngClass]="{'with-filter': showFilter}">
+          @if (multiple && !isSearching) {
+            <li class="d-flex align-items-center" (click)="clickCheckAll()">
+              <ddr-checkbox class="flex-0 me-2"
+                [binary]="true"
+                [ngModel]="checkAll"
+                (clickCheckBinary)="clickCheckAll()">
+              </ddr-checkbox>
+              {{ labelCheckAll || ('dropdown.check.all' | ddrTranslate)}}
+            </li>
+          }
+          @for (item of optionsShow; track item; let index = $index) {
+            <li class="d-flex align-items-center" (click)="multiple ? clickMultiple(item) : onSelectItem(item)">
+              @if (multiple) {
+                <ddr-checkbox class="flex-0 me-2"
+                  [options]="[optionsCheck[index]]"
+                  [ngModel]="item.selected"
+                  (clickCheck)="clickMultiple(item)">
+                </ddr-checkbox>
+              }
+              <ng-container 
+                [ngTemplateOutlet]="template ? itemTemplate : defaultItemTemplate" 
+                [ngTemplateOutletContext]="{ item: item }"/>
+              <ng-template #defaultItemTemplate let-item="item">
+                {{ translate ? (item?.label | ddrTranslate) : item?.label }}
+              </ng-template>
+              <ng-template #itemTemplate let-item="item">
+                <ng-template [ngTemplateOutlet]="template" [ngTemplateOutletContext]="{ item: item }">
+                </ng-template>
+              </ng-template>
+            </li>
+          }
+        </ul>
+      }
+    </div>
+  </ng-template>
+</div>
+@if (touchUI && showItems) {
+  <div class="overlay-ddr" (click)="hidePanelItems()"></div>
+}
