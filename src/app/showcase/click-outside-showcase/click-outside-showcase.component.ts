@@ -1,21 +1,24 @@
 import { Component, inject } from '@angular/core';
-import { DdrToastService, DdrClickOutsideDirective, DdrButtonComponent } from '@ddr-ng';
+import { DdrToastService, DdrClickOutsideDirective, DdrButtonComponent } from 'ddr-ng';
 import { BaseShowcaseComponent } from '../base-showcase/base-showcase.component';
 
 @Component({
-    selector: 'app-click-outside-showcase',
-    templateUrl: './click-outside-showcase.component.html',
-    styleUrls: ['./click-outside-showcase.component.scss'],
-    imports: [
-        BaseShowcaseComponent,
-        DdrClickOutsideDirective,
-        DdrButtonComponent
-    ]
+  selector: 'app-click-outside-showcase',
+  templateUrl: './click-outside-showcase.component.html',
+  styleUrls: ['./click-outside-showcase.component.scss'],
+  imports: [
+    BaseShowcaseComponent,
+    DdrClickOutsideDirective,
+    DdrButtonComponent
+  ],
+  providers: [
+    DdrToastService
+  ]
 })
 export class ClickOutsideShowcaseComponent {
 
   private readonly ddrToastService: DdrToastService = inject(DdrToastService);
-  
+
   public showEstandar: boolean = true;
   public showDelay: boolean = false;
   public showDesactivated: boolean = false;

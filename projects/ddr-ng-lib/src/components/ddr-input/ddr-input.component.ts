@@ -1,45 +1,43 @@
 import {
   Component,
   ContentChild,
-  ElementRef,
   EventEmitter, forwardRef,
   inject,
   Input,
   numberAttribute,
-  OnInit,
   Output,
   TemplateRef,
   ViewChild,
   ViewEncapsulation
 } from '@angular/core';
-import { FormsModule, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { FormsModule, NG_VALUE_ACCESSOR, NgModel } from '@angular/forms';
 import { DdrConstantsService } from '../../services/ddr-constants.service';
-import { DdrNgModelBase } from '../ddr-ngmodel-base/ddr-ngmodel-base.component';
+import { DdrControlValueAccessor } from '../ddr-ngmodel-base/ddr-control-value-accessor-base.component';
 import { DdrTooltipDirective } from '../../directives/ddr-tooltip.directive';
 import { NgClass, NgTemplateOutlet } from '@angular/common';
 import { DdrInputError, DdrOrientation, DdrSize, DdrTypeInput } from '../../types/types';
 
 @Component({
-    selector: 'ddr-input',
-    templateUrl: './ddr-input.component.html',
-    styleUrls: ['./ddr-input.component.scss'],
-    encapsulation: ViewEncapsulation.None,
-    imports: [
-        FormsModule,
-        DdrNgModelBase,
-        DdrTooltipDirective,
-        NgClass,
-        NgTemplateOutlet
-    ],
-    providers: [
-        {
-            provide: NG_VALUE_ACCESSOR,
-            useExisting: forwardRef(() => DdrInputComponent),
-            multi: true,
-        },
-    ]
+  selector: 'ddr-input',
+  templateUrl: './ddr-input.component.html',
+  styleUrls: ['./ddr-input.component.scss'],
+  encapsulation: ViewEncapsulation.None,
+  imports: [
+    FormsModule,
+    DdrControlValueAccessor,
+    DdrTooltipDirective,
+    NgClass,
+    NgTemplateOutlet
+  ],
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => DdrInputComponent),
+      multi: true,
+    },
+  ]
 })
-export class DdrInputComponent extends DdrNgModelBase {
+export class DdrInputComponent extends DdrControlValueAccessor {
 
   public readonly constants: DdrConstantsService = inject(DdrConstantsService)
 
@@ -60,31 +58,22 @@ export class DdrInputComponent extends DdrNgModelBase {
   @Input({ transform: numberAttribute }) min?: number;
   @Input({ transform: numberAttribute }) max?: number;
   @Input() autocomplete: boolean = false;
-  @Input() showTooltip: boolean = false;
   @Input() orientationTooltip: DdrOrientation = this.constants.ORIENTATION.BOTTOM;
   @Input() tooltipText?: string;
   @Input() labelBold: boolean = false;
 
-  // Only nested components like input-group
-  @Input() templateValidInput!: TemplateRef<any> | null
-  @Input() templateErrorsInput!: TemplateRef<any>| null
+  @Output() hasErrors: EventEmitter<DdrInputError> = new EventEmitter<DdrInputError>();
+  @Output() clickInput: EventEmitter<MouseEvent> = new EventEmitter<MouseEvent>();
+  @Output() keyPressed: EventEmitter<KeyboardEvent> = new EventEmitter<KeyboardEvent>();
+  @Output() keydown: EventEmitter<KeyboardEvent> = new EventEmitter<KeyboardEvent>();
 
-  @Output() hasErrors: EventEmitter<DdrInputError>;
-  @Output() clickInput: EventEmitter<MouseEvent>;
-  @Output() keyup: EventEmitter<KeyboardEvent>;
-  @Output() keydown: EventEmitter<KeyboardEvent>;
+  @ViewChild('input') input!: NgModel;
 
-  @ViewChild('input', { static: false, read: ElementRef }) input?: ElementRef;
-
-  @ContentChild('templateValid', { static: false }) templateValid?: TemplateRef<any>;
-  @ContentChild('templateErrors', { static: false }) templateErrors?: TemplateRef<any>;
+  @ContentChild('templateValid', { static: false }) templateValidOutside: TemplateRef<any> | null = null;
+  @ContentChild('templateErrors', { static: false }) templateErrorsOutside: TemplateRef<any> | null = null;
 
   constructor() {
     super();
-    this.hasErrors = new EventEmitter<DdrInputError>();
-    this.clickInput = new EventEmitter<MouseEvent>();
-    this.keyup = new EventEmitter<KeyboardEvent>();
-    this.keydown = new EventEmitter<KeyboardEvent>();
   }
 
   checkInput() {
@@ -94,7 +83,7 @@ export class DdrInputComponent extends DdrNgModelBase {
     }
 
     if (this.validate && this.input) {
-      if (this.input.nativeElement.validity.valid) {
+      if (this.input.valid) {
         this.hasErrors.emit(this.constants.INPUT_ERRORS.VALID);
       } else {
         this.hasErrors.emit(this.constants.INPUT_ERRORS.ERROR);
@@ -102,7 +91,7 @@ export class DdrInputComponent extends DdrNgModelBase {
     } else {
       this.hasErrors.emit(this.constants.INPUT_ERRORS.NEUTRAL);
     }
-    this.keyup.emit(this.value);
+    this.keyPressed.emit(this.value);
   }
 
   onclickInput($event: any) {

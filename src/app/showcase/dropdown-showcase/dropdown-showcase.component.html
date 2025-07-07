@@ -6,396 +6,285 @@
 
   <div examples>
 
-<div class="row">
-  <div class="col-12">
-    <h3>Ejemplo 1: sin valor inicial</h3>
-  </div>
-</div>
-<div class="row mt-3">
-  <div class="col-12">
-    <ddr-dropdown 
-      [options]="optionsEx1" 
-      labelNoResults="No hay resultados que mostrar"
-      placeholder="Seleccione una opción" 
-      [(ngModel)]="value1" 
-      (selectItem)="selectItemEx1($event)">
-    </ddr-dropdown>
-  </div>
-</div>
+    <!-- <div class="row">
+      <div class="col-12">
+        <h3>Ejemplo 1: sin valor inicial</h3>
+      </div>
+    </div>
+    <div class="row mt-3">
+      <div class="col-12">
+        <ddr-dropdown 
+          [options]="optionsEx1" 
+          labelNoResults="No hay resultados que mostrar"
+          placeholder="Seleccione una opción" 
+          [(ngModel)]="value1" 
+          (selectItem)="selectItemEx1($event)">
+        </ddr-dropdown>
+      </div>
+    </div>
 
-<div class="row mt-3">
-  <div class="col-12">
-    <p>{{'Valor :' + value1}}</p>
-  </div>
-</div>
-  
-<div class="row mt-3">
-  <div class="col-12">
-    <h3>Ejemplo 2: con valor inicial</h3>
-  </div>
-</div>
+    <div class="row mt-3">
+      <div class="col-12">
+        <p>{{'Valor :' + value1}}</p>
+      </div>
+    </div> -->
 
-<div class="row mt-3">
-  <div class="col-12">
-    <ddr-dropdown 
-      [options]="optionsEx2"
-      labelNoResults="No hay resultados que mostrar" 
-      [(ngModel)]="value2" 
-      (selectItem)="selectItemEx2($event)">
-    </ddr-dropdown>
-  </div>
-</div>
-  
-<div class="row mt-3">
-  <div class="col-12">
-    <p>{{'Valor :' + value2}}</p>
-  </div>
-</div>
-  
-<div class="row mt-2">
-  <div class="col-12">
-    <p>Ejemplo 3: sin valor inicial y con objetos</p>
-  </div>
-</div>
+    <!-- <div class="row mt-3">
+      <div class="col-12">
+        <h3>Ejemplo 2: con valor inicial</h3>
+      </div>
+    </div>
 
-<div class="row mt-3">
-  <div class="col-12">
-    <ddr-dropdown 
-      [options]="optionsEx3" 
-      labelNoResults="No hay resultados que mostrar"
-      [(ngModel)]="value3" 
-      (selectItem)="selectItemEx3($event)">
-    </ddr-dropdown>
-  </div>
-</div>
+    <div class="row mt-3">
+      <div class="col-12">
+        <ddr-dropdown 
+          [options]="optionsEx2" 
+          labelNoResults="No hay resultados que mostrar" 
+          [(ngModel)]="value2"
+          (selectItem)="selectItemEx2($event)">
+        </ddr-dropdown>
+      </div>
+    </div>
 
-<div class="row mt-3">
-  <div class="col-12">
-    <p>{{'Valor :' + (value3 | json)}}</p>
-  </div>
-</div>
+    <div class="row mt-3">
+      <div class="col-12">
+        <p>{{'Valor :' + value2}}</p>
+      </div>
+    </div> -->
 
-<div class="row mt-3">
-  <div class="col-12">
-    <h3>Ejemplo 4: con valor inicial y con objetos</h3>
-  </div>
-</div>
+    <div class="row mt-2">
+      <div class="col-12">
+        <p>Ejemplo 3: sin valor inicial y con objetos</p>
+      </div>
+    </div>
 
-<div class="row mt-3">
-  <div class="col-12">
-    <ddr-dropdown 
-      [options]="optionsEx4"
-      labelNoResults="No hay resultados que mostrar" 
-      [(ngModel)]="value4" 
-      (selectItem)="selectItemEx4($event)">
-    </ddr-dropdown>
-  </div>
-</div>
-  
-<div class="row mt-3">
-  <div class="col-12">
-    <p>{{'Valor :' + (value4 | json)}}</p>
-  </div>
-</div>
+    <div class="row mt-3">
+      <div class="col-12">
+        <ddr-dropdown 
+          [options]="optionsEx3" 
+          labelNoResults="No hay resultados que mostrar" 
+          [(ngModel)]="value3"
+          [compareFn]="compareFn"
+          (selectItem)="selectItemEx3($event)">
+        </ddr-dropdown>
+      </div>
+    </div>
 
-<div class="row mt-3">
-  <div class="col-12">
-    <h3>Ejemplo 5: con template</h3>
-  </div>
-</div>
+    <div class="row mt-3">
+      <div class="col-12">
+        <p>{{'Valor :' + (value3 | json)}}</p>
+      </div>
+    </div>
 
-<div class="row mt-3">
-  <div class="col-12">
-    <ddr-dropdown 
-      [options]="optionsEx5"
-      labelNoResults="No hay resultados que mostrar" 
-      [(ngModel)]="value5" 
-      (selectItem)="selectItemEx5($event)">
+    <div class="row mt-3">
+      <div class="col-12">
+        <h3>Ejemplo 4: con valor inicial y con objetos</h3>
+      </div>
+    </div>
 
-      <ng-template #itemTemplate let-item="item">
-        <span>{{item.label + ' ' + (item.value | json)}}</span>
-      </ng-template>
+    <div class="row mt-3">
+      <div class="col-12">
+        <ddr-dropdown 
+          [options]="optionsEx4" 
+          labelNoResults="No hay resultados que mostrar" 
+          [(ngModel)]="value4"
+          [compareFn]="compareFn"
+          (selectItem)="selectItemEx4($event)">
+        </ddr-dropdown>
+      </div>
+    </div>
 
-    </ddr-dropdown>
-  </div>
-</div>
-  
-<div class="row mt-3">
-  <div class="col-12">
-    <p>{{'Valor :' + (value5 | json)}}</p>
-  </div>
-</div>
-  
-<div class="row mt-3">
-  <div class="col-12">
-    <h3>Ejemplo 6: Label</h3>
-  </div>
-</div>
+    <div class="row mt-3">
+      <div class="col-12">
+        <p>{{'Valor :' + (value4 | json)}}</p>
+      </div>
+    </div>
 
-<div class="row mt-3">
-  <div class="col-12">
-    <ddr-dropdown 
-      [options]="optionsEx6" 
-      label="label" 
-      labelNoResults="No hay resultados que mostrar" 
-      [(ngModel)]="value6"
-      (selectItem)="selectItemEx6($event)">
+    <div class="row mt-3">
+      <div class="col-12">
+        <h3>Ejemplo 5: con template</h3>
+      </div>
+    </div>
 
-      <ng-template #itemTemplate let-item="item">
-        <span>{{item.label + ' ' + (item.value | json)}}</span>
-      </ng-template>
+    <div class="row mt-3">
+      <div class="col-12">
+        <ddr-dropdown 
+          [options]="optionsEx5" 
+          labelNoResults="No hay resultados que mostrar" 
+          [(ngModel)]="value5"
+          [compareFn]="compareFn"
+          (selectItem)="selectItemEx5($event)">
 
-    </ddr-dropdown>
-  </div>
-</div>
+          <ng-template #itemTemplate let-item="item">
+            <span>{{item.label + ' ' + (item.value | json)}}</span>
+          </ng-template>
 
-<div class="row mt-3">
-  <div class="col-12">
-    <p>{{'Valor :' + (value6 | json)}}</p>
-  </div>
-</div>
-  
-<div class="row mt-3">
-  <div class="col-12">
-    <h3>Ejemplo 7: Label inline</h3>
-  </div>
-</div>
+        </ddr-dropdown>
+      </div>
+    </div>
 
-<div class="row mt-3">
-  <div class="col-12">
-    <ddr-dropdown 
-      [options]="optionsEx7" 
-      label='label' 
-      [inline]="true" 
-      labelNoResults="No hay resultados que mostrar" 
-      [(ngModel)]="value7"
-      (selectItem)="selectItemEx7($event)">
+    <div class="row mt-3">
+      <div class="col-12">
+        <p>{{'Valor :' + (value5 | json)}}</p>
+      </div>
+    </div>
 
-      <ng-template #itemTemplate let-item="item">
-        <span>{{item.label + ' ' + (item.value | json)}}</span>
-      </ng-template>
+    <div class="row mt-3">
+      <div class="col-12">
+        <h3>Ejemplo 6: Label</h3>
+      </div>
+    </div>
 
-    </ddr-dropdown>
-  </div>
-</div>
+    <div class="row mt-3">
+      <div class="col-12">
+        <ddr-dropdown 
+          [options]="optionsEx6" 
+          label="label" 
+          labelNoResults="No hay resultados que mostrar"
+          [(ngModel)]="value6" 
+          [compareFn]="compareFn"
+          (selectItem)="selectItemEx6($event)">
 
-<div class="row mt-3">
-  <div class="col-12">
-    <p>{{'Valor :' + (value7 | json)}}</p>
-  </div>
-</div>
-  
-<div class="row mt-3">
-  <div class="col-12">
-    <h3>Ejemplo 8: Sin filtro</h3>
-  </div>
-</div>
+          <ng-template #itemTemplate let-item="item">
+            <span>{{item.label + ' ' + (item.value | json)}}</span>
+          </ng-template>
 
-<div class="row mt-3">
-  <div class="col-12">
-    <ddr-dropdown 
-      [options]="optionsEx8" 
-      label="label" 
-      [showFilter]="false" 
-      labelNoResults="No hay resultados que mostrar" 
-      [(ngModel)]="value8"
-      (selectItem)="selectItemEx8($event)">
+        </ddr-dropdown>
+      </div>
+    </div>
 
-      <ng-template #itemTemplate let-item="item">
-        <span>{{item.label + ' ' + (item.value | json)}}</span>
-      </ng-template>
+    <div class="row mt-3">
+      <div class="col-12">
+        <p>{{'Valor :' + (value6 | json)}}</p>
+      </div>
+    </div>
 
-    </ddr-dropdown>
-  </div>
-</div>
-  
-<div class="row mt-3">
-  <div class="col-12">
-    <p>{{'Valor :' + (value8 | json)}}</p>
-  </div>
-</div>
-  
-<div class="row mt-3">
-  <div class="col-12">
-    <h3>Ejemplo 9: Orientacion</h3>
-  </div>
-</div>
+    <div class="row mt-3">
+      <div class="col-12">
+        <h3>Ejemplo 7: Label inline</h3>
+      </div>
+    </div>
 
-<div class="row mt-3">
-  <div class="col-12">
-    <ddr-dropdown 
-      [options]="optionsEx9" 
-      label="label" 
-      orientation="top" 
-      labelNoResults="No hay resultados que mostrar"
-      [(ngModel)]="value9"
-      (selectItem)="selectItemEx9($event)">
+    <div class="row mt-3">
+      <div class="col-12">
+        <ddr-dropdown 
+          [options]="optionsEx7" 
+          label='label' 
+          [inline]="true"
+          labelNoResults="No hay resultados que mostrar" 
+          [(ngModel)]="value7" 
+          [compareFn]="compareFn"
+          (selectItem)="selectItemEx7($event)">
 
-      <ng-template #itemTemplate let-item="item">
-        <span>{{item.label + ' ' + (item.value | json)}}</span>
-      </ng-template>
+          <ng-template #itemTemplate let-item="item">
+            <span>{{item.label + ' ' + (item.value | json)}}</span>
+          </ng-template>
 
-    </ddr-dropdown>
-  </div>
-</div>
+        </ddr-dropdown>
+      </div>
+    </div>
 
-<div class="row mt-3">
-  <div class="col-12">
-    <p>{{'Valor :' + (value9 | json)}}</p>
-  </div>
-</div>
+    <div class="row mt-3">
+      <div class="col-12">
+        <p>{{'Valor :' + (value7 | json)}}</p>
+      </div>
+    </div>
 
-<div class="row mt-3">
-  <div class="col-12">
-    <h3>Ejemplo 10: Reseteo</h3>
-  </div>
-</div>
+    <div class="row mt-3">
+      <div class="col-12">
+        <h3>Ejemplo 8: Sin filtro</h3>
+      </div>
+    </div>
 
-<div class="row mt-3">
-  <div class="col-12">
-    <ddr-dropdown 
-      [options]="optionsEx10"
-      label="label" 
-      labelNoResults="No hay resultados que mostrar" 
-      [(ngModel)]="value10"
-      (selectItem)="selectItemEx10($event)">
+    <div class="row mt-3">
+      <div class="col-12">
+        <ddr-dropdown 
+          [options]="optionsEx8" 
+          label="label" 
+          [showFilter]="false"
+          labelNoResults="No hay resultados que mostrar" 
+          [(ngModel)]="value8" 
+          [compareFn]="compareFn"
+          (selectItem)="selectItemEx8($event)">
 
-      <ng-template #itemTemplate let-item="item">
-        <span>{{item.label + ' ' + (item.value | json)}}</span>
-      </ng-template>
+          <ng-template #itemTemplate let-item="item">
+            <span>{{item.label + ' ' + (item.value | json)}}</span>
+          </ng-template>
 
-    </ddr-dropdown>
-    <ddr-button text="Resetear valor" (action)="resetValueEx10()">
-    </ddr-button>
-    <ddr-button text="Resetear opciones" (action)="resetOptionsEx10()">
-    </ddr-button>
-  </div>
-</div>
+        </ddr-dropdown>
+      </div>
+    </div>
 
-<div class="row mt-3">
-  <div class="col-12">
-    <p>{{'Valor :' + (value10 | json)}}</p>
-  </div>
-</div>
+    <div class="row mt-3">
+      <div class="col-12">
+        <p>{{'Valor :' + (value8 | json)}}</p>
+      </div>
+    </div>
 
-<div class="row mt-3">
-  <div class="col-12">
-    <h3>Ejemplo 11: Multiple</h3>
-  </div>
-</div>
+    <div class="row mt-3">
+      <div class="col-12">
+        <h3>Ejemplo 9: Orientacion</h3>
+      </div>
+    </div>
 
-<div class="row mt-3">
-  <div class="col-12">
-    <ddr-dropdown 
-      [options]="optionsEx11"
-      label="label"
-      [multiple]="true"
-      [labelCheckAll]="'Click here to select all items'"
-      labelNoResults="No hay resultados que mostrar" 
-      [(ngModel)]="value11"
-      (selectMultipleItem)="selectItemEx11($event)">
+    <div class="row mt-3">
+      <div class="col-12">
+        <ddr-dropdown 
+          [options]="optionsEx9" 
+          label="label" 
+          orientation="top"
+          labelNoResults="No hay resultados que mostrar" 
+          [(ngModel)]="value9" 
+          [compareFn]="compareFn"
+          (selectItem)="selectItemEx9($event)">
 
-      <ng-template #itemTemplate let-item="item">
-        <span>{{item.label + ' ' + (item.value | json)}}</span>
-      </ng-template>
+          <ng-template #itemTemplate let-item="item">
+            <span>{{item.label + ' ' + (item.value | json)}}</span>
+          </ng-template>
 
-    </ddr-dropdown>
-  </div>
-</div>
+        </ddr-dropdown>
+      </div>
+    </div>
 
-<div class="row mt-3">
-  <div class="col-12">
-    <p>{{'Valor :' + (value11 | json)}}</p>
-  </div>
-</div>
+    <div class="row mt-3">
+      <div class="col-12">
+        <p>{{'Valor :' + (value9 | json)}}</p>
+      </div>
+    </div>
 
-<div class="row mt-3">
-  <div class="col-12">
-    <h3>Ejemplo 12: Multiple con valores iniciales</h3>
-  </div>
-</div>
+    <div class="row mt-3">
+      <div class="col-12">
+        <h3>Ejemplo 10: Reseteo</h3>
+      </div>
+    </div>
 
-<div class="row mt-3">
-  <div class="col-12">
-    <ddr-dropdown 
-      [options]="optionsEx12"
-      label="label"
-      [multiple]="true"
-      [labelCheckAll]="'Click here to select all items'"
-      labelNoResults="No hay resultados que mostrar" 
-      [(ngModel)]="value12"
-      (selectMultipleItem)="selectItemEx12($event)">
+    <div class="row mt-3">
+      <div class="col-12">
+        <ddr-dropdown 
+          [options]="optionsEx10" 
+          label="label" 
+          labelNoResults="No hay resultados que mostrar"
+          [(ngModel)]="value10" 
+          [compareFn]="compareFn"
+          (selectItem)="selectItemEx10($event)">
 
-      <ng-template #itemTemplate let-item="item">
-        <span>{{item.label + ' ' + (item.value | json)}}</span>
-      </ng-template>
+          <ng-template #itemTemplate let-item="item">
+            <span>{{item.label + ' ' + (item.value | json)}}</span>
+          </ng-template>
 
-    </ddr-dropdown>
-  </div>
-</div>
+        </ddr-dropdown>
+        <ddr-button text="Resetear valor" (action)="resetValueEx10()">
+        </ddr-button>
+        <ddr-button text="Resetear opciones" (action)="resetOptionsEx10()">
+        </ddr-button>
+      </div>
+    </div>
 
-<div class="row mt-3">
-  <div class="col-12">
-    <p>{{'Valor :' + (value12 | json)}}</p>
-  </div>
-</div>
-
-
-<div class="row mt-3">
-  <div class="col-12">
-    <h3>Ejemplo 13: Opciones a mostrar mas grande</h3>
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <ddr-dropdown 
-      [options]="optionsEx13"
-      label="label"
-      [multiple]="true"
-      [touchUI]="true"
-      [labelCheckAll]="'Click here to select all items'"
-      labelNoResults="No hay resultados que mostrar" 
-      [(ngModel)]="value13"
-      (selectMultipleItem)="selectItemEx13($event)">
-
-      <ng-template #itemTemplate let-item="item">
-        <span>{{item.label + ' ' + (item.value | json)}}</span>
-      </ng-template>
-
-    </ddr-dropdown>
-  </div>
-</div>
-
-
-
-<div class="row mt-3">
-  <div class="col-12">
-    <h3>Ejemplo 14: Reset multiple</h3>
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <ddr-dropdown 
-      [options]="optionsEx14"
-      label="label"
-      [multiple]="true"
-      [labelCheckAll]="'Click here to select all items'"
-      labelNoResults="No hay resultados que mostrar" 
-      [(ngModel)]="value14"
-      (selectMultipleItem)="selectItemEx14($event)">
-
-      <ng-template #itemTemplate let-item="item">
-        <span>{{item.label + ' ' + (item.value | json)}}</span>
-      </ng-template>
-
-    </ddr-dropdown>
-
-    <ddr-button text="Resetear valores" (action)="resetValuesEx14()">
-    </ddr-button>
-  </div>
-</div>
+    <div class="row mt-3">
+      <div class="col-12">
+        <p>{{'Valor :' + (value10 | json)}}</p>
+      </div>
+    </div>
 
   </div>
 
@@ -515,13 +404,6 @@
           <td></td>
         </tr>
         <tr>
-          <td>labelCheckAll</td>
-          <td>Texto del item para seleccionar o deseleccionar todos</td>
-          <td>string</td>
-          <td>'Select all items'</td>
-          <td></td>
-        </tr>
-        <tr>
           <td>labelPlaceholderFilter</td>
           <td>Texto del placeholder del input de filtro</td>
           <td>string</td>
@@ -541,14 +423,6 @@
           <td>Muestra las opciones del dropdown con un modal</td>
           <td>boolean</td>
           <td>true</td>
-          <td></td>
-        </tr>
-
-        <tr>
-          <td>showTooltip</td>
-          <td>Indica si se quiere mostrar un tooltip con las opciones seleccionadas</td>
-          <td>boolean</td>
-          <td>false</td>
           <td></td>
         </tr>
 
@@ -586,7 +460,7 @@
           <td>false</td>
           <td></td>
         </tr>
-        
+
       </tbody>
 
     </table>

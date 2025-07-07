@@ -14,9 +14,8 @@
 
 <div class="row">
   <div class="col-12">
-    <ddr-treeview 
-      [nodes]="nodes">
-    </ddr-treeview>
+    <ddr-tree 
+      [nodes]="nodes" />
   </div>
 </div>
 
@@ -28,10 +27,9 @@
 
 <div class="row">
   <div class="col-12">
-    <ddr-treeview 
+    <ddr-tree 
       [nodes]="nodes" 
-      [border]="true">
-    </ddr-treeview>
+      [border]="true" />
   </div>
 </div>
 
@@ -43,11 +41,10 @@
 
 <div class="row">
   <div class="col-12">
-    <ddr-treeview 
+    <ddr-tree
       [nodes]="nodes" 
       [border]="true"
-      (selectAction)="selectAction($event)">
-    </ddr-treeview>
+      (selectAction)="selectAction($event)" />
   </div>
 </div>
 
@@ -59,12 +56,11 @@
 
 <div class="row">
   <div class="col-12">
-    <ddr-treeview 
+    <ddr-tree 
       [nodes]="nodes" 
       [border]="true"
       [actionsOnlyLeafs]="true"
-      (selectAction)="selectAction($event)">
-    </ddr-treeview>
+      (selectAction)="selectAction($event)" />
   </div>
 </div>
 
@@ -76,7 +72,7 @@
 
 <div class="row">
   <div class="col-12">
-    <ddr-treeview 
+    <ddr-tree 
       [nodes]="nodes" 
       [border]="true"
       [actionsOnlyLeafs]="true"
@@ -86,7 +82,7 @@
           [small]="true">
         </ddr-toggle>
       </ng-template>
-    </ddr-treeview>
+    </ddr-tree>
   </div>
 </div>
 
@@ -190,7 +186,7 @@
       </thead>
       <tbody>
         <tr>
-          <td>treeview.no.data</td>
+          <td>tree.no.data</td>
           <td>Texto cuando no hay datos</td>
         </tr>
         

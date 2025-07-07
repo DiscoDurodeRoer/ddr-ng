@@ -1,4 +1,6 @@
 import {
+  AfterViewInit,
+  ChangeDetectorRef,
   Component,
   ElementRef,
   EventEmitter,
@@ -18,22 +20,23 @@ import { NgClass } from '@angular/common';
 import { DdrSize } from '../../types/types';
 
 @Component({
-    selector: 'ddr-modal',
-    templateUrl: './ddr-modal.component.html',
-    styleUrls: ['./ddr-modal.component.scss'],
-    encapsulation: ViewEncapsulation.None,
-    imports: [
-        FormsModule,
-        DdrButtonComponent,
-        DdrClickOutsideDirective,
-        NgClass
-    ]
+  selector: 'ddr-modal',
+  templateUrl: './ddr-modal.component.html',
+  styleUrls: ['./ddr-modal.component.scss'],
+  encapsulation: ViewEncapsulation.None,
+  imports: [
+    FormsModule,
+    DdrButtonComponent,
+    DdrClickOutsideDirective,
+    NgClass
+  ]
 })
 export class DdrModalComponent implements OnInit, OnDestroy {
 
   public readonly constants: DdrConstantsService = inject(DdrConstantsService);
-  public readonly ddrModal: DdrModalService = inject(DdrModalService);
+  public readonly ddrModalService: DdrModalService = inject(DdrModalService);
   public readonly element: ElementRef = inject(ElementRef)
+  private readonly changeDetectorRef: ChangeDetectorRef = inject(ChangeDetectorRef);
 
   @Input({ required: true }) id!: string;
   @Input() type?: string;
@@ -41,38 +44,50 @@ export class DdrModalComponent implements OnInit, OnDestroy {
   @Input() labelClose?: string;
   @Input() clickOutsideEnabled: boolean = true;
   @Input() size: DdrSize = this.constants.SIZE.MEDIUM;
+  @Input() sizeButton: DdrSize = this.constants.SIZE.SMALL;
 
-  @Output() close: EventEmitter<MouseEvent> = new EventEmitter<MouseEvent>();;
+  @Output() close: EventEmitter<MouseEvent> = new EventEmitter<MouseEvent>();
   @Output() accept: EventEmitter<MouseEvent> = new EventEmitter<MouseEvent>();
   @Output() clickOutside: EventEmitter<MouseEvent> = new EventEmitter<MouseEvent>();
 
   public show: boolean = false;
 
   ngOnInit() {
-    if (!this.id) {
-      console.error("Modal must have id");
-      return;
-    }
-    this.ddrModal.add(this);
-    this.show = false;
+    this.ddrModalService.add(this);
+  }
+
+  openModal() {
+    setTimeout(() => {
+      this.show = true;
+    });
+  }
+
+  closeModal() {
+    setTimeout(() => {
+      this.show = false;
+    });
   }
 
   onConfirm($event?: any) {
     this.accept.emit($event);
-    this.ddrModal.close(this.id);
+    this.ddrModalService.close(this.id);
+    this.changeDetectorRef.detectChanges();
   }
 
   onClose($event?: any) {
     this.close.emit($event);
-    this.ddrModal.close(this.id);
+    this.ddrModalService.close(this.id);
+    this.changeDetectorRef.detectChanges();
   }
 
-  onclickOutside($event?: any) {
-    this.ddrModal.close(this.id);
+  onClickOutside($event?: any) {
+    this.ddrModalService.close(this.id);
     this.clickOutside.emit($event);
+    this.changeDetectorRef.detectChanges();
   }
 
   ngOnDestroy(): void {
-    this.ddrModal.remove(this.id);
+    this.ddrModalService.remove(this.id);
+    this.changeDetectorRef.detectChanges();
   }
 }

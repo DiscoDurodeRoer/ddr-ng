@@ -35,11 +35,10 @@
     }
 
     ul {
-      margin: 0px;
-      padding: 0px;
       max-height: 200px;
-      overflow: auto;
-      border-radius: .25rem;
+      overflow-y: auto;
+      overflow-x: hidden;
+      line-height: normal;
 
       &.with-filter {
         border-top: 0;
@@ -48,12 +47,10 @@
       }
 
       li {
-        list-style: none;
         cursor: pointer;
         padding: 5px;
         user-select: none;
         font-size: 16px;
-        // justify-content: center;
       }
     }
 

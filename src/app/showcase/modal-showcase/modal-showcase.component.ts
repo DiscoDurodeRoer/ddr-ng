@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { DdrToastService, DdrModalComponent, DdrButtonComponent, DdrModalService, DdrSize } from '@ddr-ng';
+import { DdrToastService, DdrModalComponent, DdrButtonComponent, DdrModalService, DdrSize } from 'ddr-ng';
 import { BaseShowcaseComponent } from '../base-showcase/base-showcase.component';
 
 @Component({
@@ -12,7 +12,8 @@ import { BaseShowcaseComponent } from '../base-showcase/base-showcase.component'
         DdrButtonComponent
     ],
     providers: [
-        DdrModalService
+        DdrModalService,
+        DdrToastService
     ]
 })
 export class ModalShowcaseComponent {

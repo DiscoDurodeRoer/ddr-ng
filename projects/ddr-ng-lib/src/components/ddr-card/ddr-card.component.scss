@@ -6,16 +6,15 @@
   &__title {
     padding: 5px;
     justify-content: center;
-    font-family: "ddr bold";
+    font-weight: 900;
     font-size: 24px;
-    color: #fff;
     border-top-right-radius: 0.25rem;
     border-top-left-radius: 0.25rem;
   }
 
   &__body,
   &__footer {
-    padding: 20px;
+    padding: 1rem;
   }
 
 

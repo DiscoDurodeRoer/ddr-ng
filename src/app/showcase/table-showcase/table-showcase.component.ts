@@ -1,5 +1,5 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { DdrTableCol, DdrAction, DdrSelectItem, DdrTableItem, DdrTableComponent, DdrDropdownComponent, DdrToastService, DdrInputComponent } from '@ddr-ng';
+import { DdrTableCol, DdrAction, DdrSelectItem, DdrTableItem, DdrTableComponent, DdrDropdownComponent, DdrToastService, DdrInputComponent } from 'ddr-ng';
 import { Person } from './person';
 import { BaseShowcaseComponent } from '../base-showcase/base-showcase.component';
 import { FormsModule } from '@angular/forms';
@@ -14,6 +14,9 @@ import { FormsModule } from '@angular/forms';
         DdrDropdownComponent,
         FormsModule,
         DdrInputComponent
+    ],
+    providers: [
+      DdrToastService
     ]
 })
 export class TableShowcaseComponent implements OnInit {

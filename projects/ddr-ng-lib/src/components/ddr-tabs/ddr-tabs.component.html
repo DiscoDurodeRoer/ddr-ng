@@ -3,7 +3,7 @@
     <div
       class="ddr-tabs__title cursor-pointer"
       (click)="open(tab)"
-      [ngClass]="{'ddr-tabs__title--selected': tab.selected}">
+      [ngClass]="{'ddr-tabs__title--selected': tab.open}">
       @if (tab.icon) {
         <i [class]="tab.icon + ' me-2'"></i>
       }
@@ -12,7 +12,7 @@
   }
   @if (contentTemplate) {
     <div class="ddr-tabs__content">
-      <ng-template [ngTemplateOutlet]="contentTemplate"></ng-template>
+      <ng-container [ngTemplateOutlet]="contentTemplate" />
     </div>
   }
 </div>

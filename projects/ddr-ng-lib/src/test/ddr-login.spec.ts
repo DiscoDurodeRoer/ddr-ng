@@ -9,7 +9,7 @@ import { DdrInputPasswordComponent } from '../components/ddr-input-password/ddr-
 import { DdrConstantsService } from '../services/ddr-constants.service';
 import { DdrInputGroupComponent } from '../components/ddr-input-group/ddr-input-group.component';
 import { DdrTranslatePipe } from '../pipes/ddr-translate.pipe';
-import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient } from '@angular/common/http';
 
 describe('DdrLoginComponent', () => {
     let fixture: ComponentFixture<DdrLoginComponent>;
@@ -26,8 +26,10 @@ describe('DdrLoginComponent', () => {
                 DdrInputGroupComponent,
                 DdrInputPasswordComponent,
                 DdrTranslatePipe,
-                DdrLoginComponent,
-                HttpClientModule
+                DdrLoginComponent
+            ],
+            providers: [
+                provideHttpClient()
             ]
         }).compileComponents()
             .then(() => {
@@ -39,10 +41,10 @@ describe('DdrLoginComponent', () => {
     it('should emit user', waitForAsync(() => {
         fixture.detectChanges();
         fixture.whenStable().then(() => {
-            let inputUsername: DdrInputComponent = fixture.debugElement.query(By.css('.ddr-login__login-form--form--user')).componentInstance;
-            let inputPassword: DdrInputPasswordComponent = fixture.debugElement.query(By.css('.ddr-login__login-form--input-group')).componentInstance;;
-            let button: DdrButtonComponent = fixture.debugElement.query(By.css('.ddr-login__login-form--form--button')).componentInstance;
-            let form = fixture.debugElement.query(By.css('.ddr-login__login-form--form')).nativeElement;
+            const inputUsername: DdrInputComponent = fixture.debugElement.query(By.css('.ddr-login__user-input')).componentInstance;
+            const inputPassword: DdrInputPasswordComponent = fixture.debugElement.query(By.css('.ddr-login__input-password')).componentInstance;;
+            const button: DdrButtonComponent = fixture.debugElement.query(By.css('.ddr-login__submit-button')).componentInstance;
+            const form = fixture.debugElement.query(By.css('form')).nativeElement;
             
             inputUsername.value = 'Test';
             inputPassword.value = 'Test';

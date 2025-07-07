@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { DdrTabItemComponent, DdrTabsComponent, DdrToastService, DdrToggleComponent } from '@ddr-ng';
+import { DdrTabItemComponent, DdrTabsComponent, DdrToastService, DdrToggleComponent } from 'ddr-ng';
 import { BaseShowcaseComponent } from '../base-showcase/base-showcase.component';
 import { FormsModule } from '@angular/forms';
 
@@ -11,6 +11,9 @@ import { FormsModule } from '@angular/forms';
         BaseShowcaseComponent,
         DdrToggleComponent,
         FormsModule
+    ],
+    providers: [
+      DdrToastService
     ]
 })
 export class ToggleShowcaseComponent {

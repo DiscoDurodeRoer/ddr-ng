@@ -18,13 +18,15 @@ export type DdrOrientation =
 
 export type DdrOrientationDropdown = 'top' | 'bottom';
 
+export type DdrOrientationToast = 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right';
+
 export type DdrOrientatioDetail= 'top' | 'bottom' | 'left' | 'right';
 
 export type DdrModalType = 'confirm' | 'info' | 'no-buttons';
 
 export type DdrSelectionModeCalendar = 'single' | 'multiple' | 'range';
 
-export type DdrTypeInput = 'text' | 'date' | 'email' | 'phone' | 'number' | 'url' | 'password';
+export type DdrTypeInput = 'text' | 'email' | 'phone' | 'number' | 'url' | 'password' | 'hidden';
 
 export type DdrResolution = 
     | 'mobile'

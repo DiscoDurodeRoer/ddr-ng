@@ -1,0 +1,30 @@
+<div class="ddr-dropdown-multiple">
+    <ddr-dropdown 
+        [options]="options"
+        [showFilter]="showFilter"
+        [label]="label"
+        [inline]="inline"
+        [orientation]="orientation"
+        [labelPlaceholderFilter]="labelPlaceholderFilter"
+        [labelNoResults]="labelNoResults"
+        [disabled]="disabled"
+        [placeholder]="placeholder"
+        [required]="required"
+        [translate]="translate"
+        [touchUI]="touchUI"
+        [orientationTooltip]="orientationTooltip"
+        [tooltipText]="tooltipText"
+        [closeOnSelect]="false"
+        [allowDeselect]="true"
+        [compareFn]="compareFn"
+        (selectItem)="onSelectItem($event)">
+
+        <ng-template #itemTemplate let-item="item">
+            <ddr-checkbox-binary class="flex-0 me-2"
+                [label]="item.label"
+                [(ngModel)]="item.selected"
+                (clickCheck)="onSelectItem(item)" />           
+        </ng-template>
+
+    </ddr-dropdown>
+</div>

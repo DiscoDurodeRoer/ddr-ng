@@ -11,7 +11,7 @@
             <div class="col-12">
 
                 @for(menuItem of menuItems; track menuItem){      
-                    <ddr-treeview
+                    <ddr-tree
                         [open]="true"    
                     [nodes]="[menuItem]"
                     (clickNode)="goTo($event)"/>

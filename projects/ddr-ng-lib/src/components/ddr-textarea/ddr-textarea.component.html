@@ -4,10 +4,11 @@
       <label class="ddr-textarea__textarea-container--label"
         [ngClass]="{
         'ddr-textarea__textarea-container--label--inline': inline,
+        'ddr-textarea__textarea-container--label--no-inline': !inline,
         'fw-bold': labelBold
         }"
       >{{ label + (required ? "(*):" : "") }}</label>
-      @if (showTooltip && tooltipText) {
+      @if (tooltipText) {
         <i
           class="bi bi-info-circle"
           ddrTooltip

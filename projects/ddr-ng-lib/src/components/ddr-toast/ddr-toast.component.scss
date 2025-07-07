@@ -1,27 +1,26 @@
 .ddr-toast-container {
-  position: absolute;
+  position: fixed;
   z-index: 9999;
 
-  &__top-right {
+  &--top-right {
     top: 10px;
     right: 10px;
   }
 
-  &__top-left {
+  &--top-left {
     top: 10px;
     left: 10px;
   }
 
-  &__bottom-right {
+  &--bottom-right {
     bottom: 10px;
     right: 10px;
   }
 
-  &__bottom-left {
+  &--bottom-left {
     bottom: 10px;
     left: 10px;
   }
-  
 
   &__ddr-toast {
 

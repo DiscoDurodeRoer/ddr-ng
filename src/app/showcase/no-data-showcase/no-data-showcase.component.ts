@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { DdrNoDataComponent } from '@ddr-ng';
+import { DdrNoDataComponent } from 'ddr-ng';
 import { BaseShowcaseComponent } from '../base-showcase/base-showcase.component';
 
 @Component({

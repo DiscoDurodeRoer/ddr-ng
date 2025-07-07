@@ -1,5 +1,5 @@
 import { Component, inject, ViewEncapsulation } from '@angular/core';
-import { DdrToastService, DdrBadgePillComponent } from '@ddr-ng';
+import { DdrToastService, DdrBadgePillComponent } from 'ddr-ng';
 import { BaseShowcaseComponent } from '../base-showcase/base-showcase.component';
 
 @Component({
@@ -10,6 +10,9 @@ import { BaseShowcaseComponent } from '../base-showcase/base-showcase.component'
     imports: [
         BaseShowcaseComponent,
         DdrBadgePillComponent
+    ],
+    providers: [
+      DdrToastService
     ]
 })
 export class BadgeShowcaseComponent {

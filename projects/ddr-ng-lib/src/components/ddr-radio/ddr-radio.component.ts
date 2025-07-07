@@ -1,8 +1,7 @@
 import { Component, forwardRef, Input, OnInit, Output, ViewEncapsulation, EventEmitter, OnChanges, SimpleChanges, booleanAttribute } from '@angular/core';
 import { FormsModule, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { DdrSelectItem } from '../../common/ddr-select-item.model';
-import { DdrNgModelBase } from '../ddr-ngmodel-base/ddr-ngmodel-base.component';
-import { isEqual } from "lodash-es";
+import { DdrControlValueAccessor } from '../ddr-ngmodel-base/ddr-control-value-accessor-base.component';
 import { DdrTranslatePipe } from '../../pipes/ddr-translate.pipe';
 import { NgClass } from '@angular/common';
 
@@ -13,7 +12,7 @@ import { NgClass } from '@angular/common';
     encapsulation: ViewEncapsulation.None,
     imports: [
         FormsModule,
-        DdrNgModelBase,
+        DdrControlValueAccessor,
         DdrTranslatePipe,
         NgClass
     ],
@@ -25,7 +24,7 @@ import { NgClass } from '@angular/common';
         },
     ]
 })
-export class DdrRadioComponent<T> extends DdrNgModelBase implements OnInit {
+export class DdrRadioComponent<T> extends DdrControlValueAccessor implements OnInit {
 
   @Input() options: DdrSelectItem<T>[] = [];
   @Input({ transform: booleanAttribute }) inline: boolean = false;
@@ -38,8 +37,8 @@ export class DdrRadioComponent<T> extends DdrNgModelBase implements OnInit {
 
   ngOnInit(): void {
     this.options.forEach(op => op.selected = false);
-    this.firstValue.subscribe((value: T) => {
-      const optionFound = this.options.find(s => isEqual(value, s.value));
+    this.changeValue.subscribe((value: T) => {
+      const optionFound = this.options.find(s => JSON.stringify(value) == JSON.stringify(s.value));
       if (optionFound) {
         optionFound.selected = true;
         this.value = value;
@@ -48,7 +47,7 @@ export class DdrRadioComponent<T> extends DdrNgModelBase implements OnInit {
     });
     this.changeValue.subscribe((value) => {
       this.options.map(option => option.selected = false)
-      const optionFound = this.options.find(s => isEqual(value, s.value));
+      const optionFound = this.options.find(s => JSON.stringify(value) == JSON.stringify(s.value));
       if (optionFound) {
         optionFound.selected = true;
       }

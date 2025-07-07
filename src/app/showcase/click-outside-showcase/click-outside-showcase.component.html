@@ -17,17 +17,17 @@
     (action)="openDesactivated()">
   </ddr-button>
   @if (showEstandar) {
-    <div drClickOutside (clickOutside)="clickOutside($event)" class="block">
+    <div ddrClickOutside (clickOutside)="clickOutside($event)" class="block">
       <p>Click outside this div</p>
     </div>
   }
   @if (showDelay) {
-    <div drClickOutside [clickOutsideDelay]="5000" (clickOutside)="clickOutside($event)" class="block">
+    <div ddrClickOutside [clickOutsideDelay]="5000" (clickOutside)="clickOutside($event)" class="block">
       <p>Click outside this div</p>
     </div>
   }
   @if (showDesactivated) {
-    <div drClickOutside [clickOutsideEnabled]="false" (clickOutside)="clickOutside($event)"
+    <div ddrClickOutside [clickOutsideEnabled]="false" (clickOutside)="clickOutside($event)"
       class="block">
       <p>Click outside this div</p>
     </div>
@@ -82,13 +82,6 @@
         <td>Habilita el evento de accion</td>
         <td>boolean</td>
         <td>true</td>
-        <td></td>
-      </tr>
-      <tr>
-        <td>clickOutsideFirstTime</td>
-        <td>Indica si debe saltar la accion la primera. Recomendado para cuando se abran elementos desde fuera del elemento que tenga la directiva.</td>
-        <td>boolean</td>
-        <td>false</td>
         <td></td>
       </tr>
     </tbody>

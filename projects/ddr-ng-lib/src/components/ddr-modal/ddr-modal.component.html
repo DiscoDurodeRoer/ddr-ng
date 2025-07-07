@@ -1,12 +1,12 @@
 @if (show) {
   <div class="row ddr-modal">
-    <div class="ddr-modal--overlay overlay-ddr">
+    <div class="ddr-modal--overlay ddr-overlay">
       <div class="col-12 ddr-modal--overlay__content" [ngClass]="{
         'ddr-modal--overlay__content--big': size == constants.SIZE.LARGE,
         'ddr-modal--overlay__content--medium': size == constants.SIZE.MEDIUM,
         'ddr-modal--overlay__content--small': size == constants.SIZE.SMALL
         }">
-        <div class="card" drClickOutside [clickOutsideEnabled]="clickOutsideEnabled" [clickOutsideFirstTime]="true" (clickOutside)="onclickOutside($event)">
+        <div class="card" ddrClickOutside [clickOutsideEnabled]="clickOutsideEnabled" (clickOutside)="onClickOutside($event)">
           <div class="card-title">
             <div class="ddr-modal--overlay__content--title">
               <ng-content select="[modal-title]"></ng-content>
@@ -23,10 +23,10 @@
               @if (type === constants.MODAL.INFO || type === constants.MODAL.CONFIRM) {
                 <ddr-button
                   class="ddr-modal--overlay__content--card-buttons__button"
-                  [icon]="'bi bi-check'"
+                  icon="bi bi-check"
                   [text]="labelConfirm"
                   [mode]="constants.MODES_BUTTON.DANGER"
-                  [size]="size"
+                  [size]="sizeButton"
                   (click)="onConfirm($event)"
                   >
                 </ddr-button>
@@ -34,10 +34,10 @@
               @if (type === constants.MODAL.CONFIRM) {
                 <ddr-button
                   class="ddr-modal--overlay__content--card-buttons__button"
-                  [icon]="'bi bi-x'"
+                  icon="bi bi-x"
                   [text]="labelClose"
                   [mode]="constants.MODES_BUTTON.DEFAULT"
-                  [size]="size"
+                  [size]="sizeButton"
                   (click)="onClose($event)"
                   >
                 </ddr-button>

@@ -2,14 +2,14 @@ import { NgClass, NgStyle } from '@angular/common';
 import { Component, Input, ViewEncapsulation } from '@angular/core';
 
 @Component({
-    selector: 'ddr-card',
-    templateUrl: './ddr-card.component.html',
-    styleUrls: ['./ddr-card.component.scss'],
-    encapsulation: ViewEncapsulation.None,
-    imports: [
-        NgClass,
-        NgStyle
-    ]
+  selector: 'ddr-card',
+  templateUrl: './ddr-card.component.html',
+  styleUrls: ['./ddr-card.component.scss'],
+  encapsulation: ViewEncapsulation.None,
+  imports: [
+    NgClass,
+    NgStyle
+  ]
 })
 export class DdrCardComponent {
   @Input() showHeader: boolean = true;
@@ -19,5 +19,5 @@ export class DdrCardComponent {
   @Input() shadow: boolean = true;
   @Input() background?: string;
   @Input() color?: string;
-  
+
 }

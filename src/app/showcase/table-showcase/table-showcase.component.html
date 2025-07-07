@@ -71,7 +71,7 @@
       [multiple]="true" 
       (selectItem)="selectItemEx4($event)" 
       (selectMultipleItem)="selectMultipleItemEx4($event)">
-      <ng-template #templateRow let-item="item" let-cols="cols">
+      <ng-template #templateCell let-item="item" let-cols="cols">
         @for(col of cols; track col){
           <td>
             <span class="ddr-table__table--body-cell--title-mobile">{{
@@ -103,7 +103,7 @@
       (selectAction)="selectAction($event)"
       (selectMultipleItem)="selectMultipleItemEx5($event)" 
       (changePage)="onChangePage($event)">
-      <ng-template #templateRow let-item="item" let-cols="cols">
+      <ng-template #templateCell let-item="item" let-cols="cols">
         @for(col of cols; track col){
           <td>
             <span class="ddr-table__table--body-cell--title-mobile">{{
@@ -161,13 +161,8 @@
       (selectAction)="selectAction($event)" 
       (changePage)="onChangePage($event)"
       (changeRow)="onChangeTotalItemsPerPage($event)">
-      <ng-template #templateRow let-item="item" let-cols="cols">
-        @for(col of cols; track col){
-          <td>
-            <span class="ddr-table__table--body-cell--title-mobile">{{col.label}}</span>
-            {{ item[col.property] }}
-          </td>
-        }
+      <ng-template #templateCell let-item="item" let-col="col">
+        {{ item[col.property] }}
       </ng-template>
     </ddr-table>
   </div>

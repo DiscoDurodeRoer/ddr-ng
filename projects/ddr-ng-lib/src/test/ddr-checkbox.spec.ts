@@ -2,9 +2,9 @@ import { ComponentFixture, fakeAsync, TestBed, tick, waitForAsync } from '@angul
 import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { DdrCheckboxComponent } from '../components/ddr-checkbox/ddr-checkbox.component';
-import { DdrNgModelBase } from '../components/ddr-ngmodel-base/ddr-ngmodel-base.component';
+import { DdrControlValueAccessor } from '../components/ddr-ngmodel-base/ddr-control-value-accessor-base.component';
 import { DdrTranslatePipe } from '../pipes/ddr-translate.pipe'
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, provideHttpClient } from '@angular/common/http';
 
 describe('DdrCheckboxComponent', () => {
     let fixture: ComponentFixture<DdrCheckboxComponent<string>>;
@@ -14,10 +14,12 @@ describe('DdrCheckboxComponent', () => {
         TestBed.configureTestingModule({
             imports: [
                 FormsModule,
-                DdrNgModelBase,
+                DdrControlValueAccessor,
                 DdrTranslatePipe,
-                DdrCheckboxComponent,
-                HttpClientModule
+                DdrCheckboxComponent
+            ],
+            providers: [
+                provideHttpClient()
             ]
         }).compileComponents()
             .then(() => {
@@ -41,40 +43,38 @@ describe('DdrCheckboxComponent', () => {
 
             let firstCheckbox = fixture.debugElement.query(By.css('.ddr-checkbox__container:first-child .ddr-checkbox__container--input'));
             firstCheckbox.triggerEventHandler('click');
-            
+
             fixture.detectChanges();
             expect(component.clickCheck.emit).withContext('El evento clickCheck debe lanzarse').toHaveBeenCalledWith(['java']);
 
             let secondCheckbox = fixture.debugElement.query(By.css('.ddr-checkbox__container:nth-child(2) .ddr-checkbox__container--input'));
             secondCheckbox.triggerEventHandler('click');
-            
+
             fixture.detectChanges();
             expect(component.clickCheck.emit).withContext('El evento clickCheck debe lanzarse').toHaveBeenCalledWith(['java', 'angular']);
 
             firstCheckbox.triggerEventHandler('click');
-            
+
             fixture.detectChanges();
             expect(component.clickCheck.emit).withContext('El evento clickCheck debe lanzarse').toHaveBeenCalledWith(['angular']);
 
         });
     }));
-    it('should click check binary', fakeAsync(() => {
-        component.binary = true;
+    it('should not click checkbox', fakeAsync(() => {
+        component.disabled = true;
         fixture.detectChanges();
         fixture.whenStable().then(() => {
 
-            spyOn(component.clickCheckBinary, "emit");
+            spyOn(component.clickCheck, "emit");
 
-            let firstCheckbox = fixture.debugElement.query(By.css('.ddr-checkbox__container--input'));
-            firstCheckbox.triggerEventHandler('click');
-            tick();
-            fixture.detectChanges();
-            expect(component.clickCheckBinary.emit).withContext('El evento clickCheckBinary debe lanzarse').toHaveBeenCalledWith(true);
+            const checkboxes = fixture.debugElement.queryAll(By.css('.ddr-checkbox__container--input'));
+            for (const checkbox of checkboxes) {
+                checkbox.triggerEventHandler('click');
+                tick();
+                fixture.detectChanges();
+                expect(component.clickCheck.emit).withContext('El evento clickCheck no debe lanzarse').not.toHaveBeenCalledWith();
+            }
 
-            firstCheckbox.triggerEventHandler('click');
-            tick();
-            fixture.detectChanges();
-            expect(component.clickCheckBinary.emit).withContext('El evento clickCheckBinary debe lanzarse').toHaveBeenCalledWith(false);
 
         });
     }));

@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed, tick, waitForAsync } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { NgxPaginationModule } from 'ngx-pagination';
@@ -7,11 +7,13 @@ import { DdrTableComponent } from '../components/ddr-table/ddr-table.component';
 import { CommonModule } from '@angular/common';
 import { DdrConstantsService } from '../services/ddr-constants.service';
 import { DdrDropdownComponent } from '../components/ddr-dropdown/ddr-dropdown.component';
-import { DdrCheckboxComponent } from '../components/ddr-checkbox/ddr-checkbox.component';
 import { DdrSplitButtonComponent } from '../components/ddr-split-button/ddr-split-button.component';
 import { DdrAction } from '../common/ddr-action.model';
 import { DdrTranslatePipe } from '../pipes/ddr-translate.pipe';
-import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient } from '@angular/common/http';
+import { DdrCheckboxBinaryComponent } from '../components/ddr-checkbox-binary/ddr-checkbox-binary.component';
+import { provideAnimations } from '@angular/platform-browser/animations';
+import { DdrNestedPropertyPipe } from '../pipes/ddr-nested-property.pipe';
 
 
 describe('DdrTableComponent', () => {
@@ -25,12 +27,16 @@ describe('DdrTableComponent', () => {
                 CommonModule,
                 NgxPaginationModule,
                 DdrDropdownComponent,
-                DdrCheckboxComponent,
+                DdrCheckboxBinaryComponent,
                 FormsModule,
                 DdrSplitButtonComponent,
                 DdrTranslatePipe,
                 DdrTableComponent,
-                HttpClientModule
+                DdrNestedPropertyPipe
+            ],
+            providers: [
+                provideHttpClient(),
+                provideAnimations()
             ]
         }).compileComponents()
             .then(() => {
@@ -81,7 +87,9 @@ describe('DdrTableComponent', () => {
         fixture.whenStable().then(() => {
             let firstRow = fixture.debugElement.query(By.css('tbody .ddr-table__table--body-row:first-child'));
             spyOn(component.selectItem, "emit");
-            firstRow.triggerEventHandler('click');
+            firstRow.triggerEventHandler('click', {
+                target: firstRow.nativeElement
+            });
             fixture.detectChanges();
             const returnItem: DdrTableItem<{ rowNumber: number }> = {
                 item: { rowNumber: 1 },
@@ -89,7 +97,7 @@ describe('DdrTableComponent', () => {
                     { label: '', value: 'SAVE' }
                 ]
             }
-            expect(component.selectItem.emit).withContext('El evento selectItem debe lanzarse').toHaveBeenCalledWith({ ...returnItem, selected: false });
+            expect(component.selectItem.emit).withContext('El evento selectItem debe lanzarse').toHaveBeenCalledWith({ ...returnItem });
         });
     }));
 
@@ -99,7 +107,9 @@ describe('DdrTableComponent', () => {
         fixture.whenStable().then(() => {
             let firstRow = fixture.debugElement.query(By.css('tbody .ddr-table__table--body-row:first-child'));
             spyOn(component.selectItem, "emit");
-            firstRow.triggerEventHandler('click');
+            firstRow.triggerEventHandler('click', {
+                target: firstRow.nativeElement
+            });
             fixture.detectChanges();
 
             expect(component.selectItem.emit).withContext('El evento selectItem debe lanzarse').not.toHaveBeenCalled();
@@ -113,7 +123,7 @@ describe('DdrTableComponent', () => {
             let splitButton = fixture.debugElement.query(By.css('tbody .ddr-table__table--body-row:first-child .ddr-table__table--body-row--actions ddr-split-button'));
             let splitButtonComponent: DdrSplitButtonComponent<string> = splitButton.componentInstance
             spyOn(component.selectAction, "emit");
-            splitButtonComponent.sendAction(null, { label: '', value: 'SAVE' });
+            splitButtonComponent.sendAction({ label: '', value: 'SAVE' });
             fixture.detectChanges();
             const returnedAction: DdrAction<{ rowNumber: number }> = {
                 item: { rowNumber: 1 },
@@ -158,18 +168,26 @@ describe('DdrTableComponent', () => {
         fixture.detectChanges();
         fixture.whenStable().then(() => {
 
-            let dropdown: DdrDropdownComponent<number> = fixture.debugElement.query(By.directive(DdrDropdownComponent)).componentInstance;
+            const dropdown: DdrDropdownComponent<number> = fixture.debugElement.query(By.directive(DdrDropdownComponent)).componentInstance;
+            dropdown.showItems = true;
+            fixture.detectChanges();
 
             let rows = fixture.debugElement.queryAll(By.css('tr.ddr-table__table--body-row'));
             expect(rows.length).toBe(10);
 
-            dropdown.writeValue(5);
+            const firstElementDropdown = fixture.debugElement.query(By.css('.ddr-dropdown__panel-items ul li:nth-child(1)'));
+            firstElementDropdown.triggerEventHandler('click');
             fixture.detectChanges();
 
             rows = fixture.debugElement.queryAll(By.css('tr.ddr-table__table--body-row'));
             expect(rows.length).toBe(5);
 
-            dropdown.writeValue(50);
+            dropdown.showItems = true;
+            fixture.detectChanges();
+
+            const fourthElementDropdown = fixture.debugElement.query(By.css('.ddr-dropdown__panel-items ul li:nth-child(4)'));
+
+            fourthElementDropdown.triggerEventHandler('click');
             fixture.detectChanges();
 
             rows = fixture.debugElement.queryAll(By.css('tr.ddr-table__table--body-row'));
@@ -184,24 +202,24 @@ describe('DdrTableComponent', () => {
 
             spyOn(component.selectMultipleItem, "emit");
 
-            let checkbox = fixture.debugElement.query(By.css('tr.ddr-table__table--body-row:nth-child(1) td.ddr-table__table--body-row--checkbox ddr-checkbox'));
-            let checkboxComponent: DdrCheckboxComponent<{ rowNumber: number }> = checkbox.componentInstance;
+            let checkbox = fixture.debugElement.query(By.css('tr.ddr-table__table--body-row:nth-child(1) td.ddr-table__table--body-row--checkbox ddr-checkbox-binary'));
+            let checkboxComponent: DdrCheckboxBinaryComponent = checkbox.componentInstance;
 
-            checkboxComponent.onClickCheckBinary(null);
+            checkboxComponent.onClick([null]);
             fixture.detectChanges();
 
             expect(component.selectMultipleItem.emit).withContext('Debe lanzar el evento selectMultipleItem').toHaveBeenCalledWith([{ rowNumber: 1 }])
-            checkbox = fixture.debugElement.query(By.css('tr.ddr-table__table--body-row:nth-child(5) td.ddr-table__table--body-row--checkbox ddr-checkbox'));
+            checkbox = fixture.debugElement.query(By.css('tr.ddr-table__table--body-row:nth-child(5) td.ddr-table__table--body-row--checkbox ddr-checkbox-binary'));
             checkboxComponent = checkbox.componentInstance;
 
-            checkboxComponent.onClickCheckBinary(null);
+            checkboxComponent.onClick([null]);
             fixture.detectChanges();
 
             expect(component.selectMultipleItem.emit).withContext('Debe lanzar el evento selectMultipleItem').toHaveBeenCalledWith([{ rowNumber: 1 }, { rowNumber: 5 }])
-            checkbox = fixture.debugElement.query(By.css('tr.ddr-table__table--body-row:nth-child(7) td.ddr-table__table--body-row--checkbox ddr-checkbox'));
+            checkbox = fixture.debugElement.query(By.css('tr.ddr-table__table--body-row:nth-child(7) td.ddr-table__table--body-row--checkbox ddr-checkbox-binary'));
             checkboxComponent = checkbox.componentInstance;
 
-            checkboxComponent.onClickCheckBinary(null);
+            checkboxComponent.onClick([null]);
             fixture.detectChanges();
 
             expect(component.selectMultipleItem.emit).withContext('Debe lanzar el evento selectMultipleItem').toHaveBeenCalledWith([{ rowNumber: 1 }, { rowNumber: 5 }, { rowNumber: 7 }])
@@ -216,10 +234,10 @@ describe('DdrTableComponent', () => {
 
             spyOn(component.selectMultipleItem, "emit");
 
-            let checkbox = fixture.debugElement.query(By.css('.ddr-table__table--header-row--checkbox ddr-checkbox'));
-            let checkboxComponent: DdrCheckboxComponent<string> = checkbox.componentInstance;
+            let checkbox = fixture.debugElement.query(By.css('.ddr-table__table--header-row--checkbox ddr-checkbox-binary'));
+            let checkboxComponent: DdrCheckboxBinaryComponent = checkbox.componentInstance;
 
-            checkboxComponent.onClickCheckBinary(null);
+            checkboxComponent.onClick([null]);
             fixture.detectChanges();
 
             expect(component.selectMultipleItem.emit).withContext('Debe lanzar el evento selectMultipleItem').toHaveBeenCalledWith([
@@ -245,7 +263,7 @@ describe('DdrTableComponent', () => {
                 { rowNumber: 20 },
             ]);
 
-            checkboxComponent.onClickCheckBinary(null);
+            checkboxComponent.onClick([]);
             fixture.detectChanges();
 
             expect(component.selectMultipleItem.emit).withContext('Debe lanzar el evento selectMultipleItem').toHaveBeenCalledWith([])

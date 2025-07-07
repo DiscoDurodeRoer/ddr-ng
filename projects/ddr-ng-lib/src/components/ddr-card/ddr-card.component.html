@@ -2,7 +2,7 @@
   [ngClass]="{'ddr-card--rounded': rounded, 'border': border, 'ddr-card--shadow': shadow}"
   [ngStyle]="{'background-color': background ? background : null, 'color': color ? color:  null}">
   @if (showHeader) {
-    <div class="ddr-card__title bg-ddr">
+    <div class="ddr-card__title">
       <ng-content select="[card-title]"></ng-content>
     </div>
   }

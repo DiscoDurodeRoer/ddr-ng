@@ -1,50 +1,48 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
-import { Component, inject, Input, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, EventEmitter, inject, ViewEncapsulation } from '@angular/core';
 import { DdrConstantsService } from '../../services/ddr-constants.service';
+import { NgClass, NgStyle } from '@angular/common';
 import { DdrToast } from './bean/ddr-toast';
-import { DdrToastService } from './ddr-toast.service';
-import { NgClass } from '@angular/common';
-import { DdrOrientation } from '../../types/types';
+import { DdrOrientationToast } from '../../types/types';
 
 @Component({
-    selector: 'ddr-toast',
-    templateUrl: './ddr-toast.component.html',
-    styleUrls: ['./ddr-toast.component.scss'],
-    encapsulation: ViewEncapsulation.None,
-    imports: [
-        NgClass
-    ],
-    animations: [
-        trigger('overlayAnimation', [
-            state('void', style({
-                transform: 'translateY(5%)',
-                opacity: 0
-            })),
-            state('visible', style({
-                transform: 'translateY(0)',
-                opacity: 1
-            })),
-            transition('void => visible', animate('225ms ease-out')),
-            transition('visible => void', animate('195ms ease-in')),
-        ])
-    ]
+  selector: 'ddr-toast',
+  templateUrl: './ddr-toast.component.html',
+  styleUrls: ['./ddr-toast.component.scss'],
+  encapsulation: ViewEncapsulation.None,
+  imports: [
+    NgClass,
+    NgStyle
+  ],
+  animations: [
+    trigger('overlayAnimation', [
+      state('void', style({
+        transform: 'translateY(5%)',
+        opacity: 0
+      })),
+      state('visible', style({
+        transform: 'translateY(0)',
+        opacity: 1
+      })),
+      transition('void => visible', animate('225ms ease-out')),
+      transition('visible => void', animate('195ms ease-in')),
+    ])
+  ]
 })
-export class DdrToastComponent implements OnInit {
+export class DdrToastComponent {
 
   public readonly constants: DdrConstantsService = inject(DdrConstantsService);
-  public readonly ddrToastService: DdrToastService = inject(DdrToastService);
 
-  @Input() timeOut?: number;
-  @Input() orientation: DdrOrientation = this.constants.ORIENTATION.TOP_RIGHT;
-  @Input() block: boolean = false;
+  public toasts: DdrToast[] = [];
+  public orientation!: DdrOrientationToast;
 
-  ngOnInit() {
-    if (this.timeOut) {
-      this.ddrToastService.timeOut = this.timeOut;
-    }
+  closeToast(index: number) {
+    const toast: DdrToast = this.toasts[index];
+    toast.rendered = false;
+    setTimeout(() => {
+      this.toasts.splice(index, 1);
+    }, 195);
   }
 
-  getToastColor(toast: DdrToast) {
-    return ('bg-' + toast.status + ' border-' + toast.status);
-  }
+
 }

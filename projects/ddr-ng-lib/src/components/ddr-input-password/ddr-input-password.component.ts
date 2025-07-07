@@ -1,29 +1,31 @@
 import { Component, ContentChild, EventEmitter, Input, Output, TemplateRef, ViewEncapsulation, forwardRef, inject } from '@angular/core';
 import { FormsModule, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { DdrConstantsService } from '../../services/ddr-constants.service';
-import { DdrNgModelBase } from '../ddr-ngmodel-base/ddr-ngmodel-base.component';
+import { DdrControlValueAccessor } from '../ddr-ngmodel-base/ddr-control-value-accessor-base.component';
 import { DdrInputGroupComponent } from '../ddr-input-group/ddr-input-group.component';
 import { DdrOrientation } from '../../types/types';
+import { NgTemplateOutlet } from '@angular/common';
 
 @Component({
-    selector: 'ddr-input-password',
-    templateUrl: './ddr-input-password.component.html',
-    styleUrls: ['./ddr-input-password.component.scss'],
-    encapsulation: ViewEncapsulation.None,
-    imports: [
-        DdrInputGroupComponent,
-        DdrNgModelBase,
-        FormsModule
-    ],
-    providers: [
-        {
-            provide: NG_VALUE_ACCESSOR,
-            useExisting: forwardRef(() => DdrInputPasswordComponent),
-            multi: true,
-        },
-    ]
+  selector: 'ddr-input-password',
+  templateUrl: './ddr-input-password.component.html',
+  styleUrls: ['./ddr-input-password.component.scss'],
+  encapsulation: ViewEncapsulation.None,
+  imports: [
+    DdrInputGroupComponent,
+    DdrControlValueAccessor,
+    FormsModule,
+    NgTemplateOutlet
+  ],
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => DdrInputPasswordComponent),
+      multi: true,
+    },
+  ]
 })
-export class DdrInputPasswordComponent extends DdrNgModelBase {
+export class DdrInputPasswordComponent extends DdrControlValueAccessor {
 
   public readonly constants: DdrConstantsService = inject(DdrConstantsService)
 
@@ -36,20 +38,20 @@ export class DdrInputPasswordComponent extends DdrNgModelBase {
   @Input() labelValid?: string;
   @Input() labelInvalid?: string;
   @Input() autocomplete: boolean = false;
-  @Input() name: string = 'password';
+  @Input() name: string = '';
   @Input() readonly: boolean = false;
   @Input() disabled: boolean = false;
   @Input() showTooltip: boolean = false;
   @Input() orientationTooltip: DdrOrientation = this.constants.ORIENTATION.BOTTOM;
   @Input() tooltipText?: string;
-  @Input() labelBold:boolean=false;
+  @Input() labelBold: boolean = false;
 
   @Output() hasErrors: EventEmitter<number> = new EventEmitter<number>();
-  @Output() keyup: EventEmitter<KeyboardEvent> = new EventEmitter<KeyboardEvent>();
+  @Output() keyPressed: EventEmitter<KeyboardEvent> = new EventEmitter<KeyboardEvent>();
   @Output() keydown: EventEmitter<KeyboardEvent> = new EventEmitter<KeyboardEvent>();
 
-  @ContentChild('templateValid', { static: false }) templateValid!: TemplateRef<any> | null;
-  @ContentChild('templateErrors', { static: false }) templateErrors!: TemplateRef<any> | null;
+  @ContentChild('templateValid', { static: false }) templateValidOutside: TemplateRef<any> | null = null;
+  @ContentChild('templateErrors', { static: false }) templateErrorsOutside: TemplateRef<any> | null = null;
 
   public showPwd: boolean = false;
 
@@ -61,12 +63,12 @@ export class DdrInputPasswordComponent extends DdrNgModelBase {
     this.showPwd = !this.showPwd;
   }
 
-  onHasErrors($event: number){
+  onHasErrors($event: number) {
     this.hasErrors.emit($event);
   }
 
   onKeyup($event: any) {
-    this.keyup.emit($event);
+    this.keyPressed.emit($event);
   }
 
   onKeydown($event: any) {

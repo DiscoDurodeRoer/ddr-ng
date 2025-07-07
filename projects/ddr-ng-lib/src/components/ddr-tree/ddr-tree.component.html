@@ -1,16 +1,16 @@
-<div class="ddr-treeview">
+<div class="ddr-tree">
   @if (nodes.length == 0) {
-    <div class="ddr-treeview__no-data">
-      {{ labelNoData || ('treeview.no.data' | ddrTranslate)}}
+    <div class="ddr-tree__no-data">
+      {{ labelNoData || ('tree.no.data' | ddrTranslate)}}
     </div>
   }
   @if (nodes.length > 0) {
     @for (node of nodes; track node) {
-      <div class="row ddr-treeview__container" (click)="onClickNode(node)">
-        <div class="col-12 ddr-treeview__container__node" [ngClass]="{'border': border}">
-          <div class="ddr-treeview__container__node__content" [ngClass]="{'ddr-treeview__container__node__content--full-width': !node.children || node.children?.length == 0}">
+      <div class="row ddr-tree__container" [ngClass]="{'cursor-pointer': canClick}" (click)="onClickNode(node)">
+        <div class="col-12 ddr-tree__container__node" [ngClass]="{'border': border}">
+          <div class="ddr-tree__container__node__content" [ngClass]="{'ddr-tree__container__node__content--full-width': !node.children || node.children?.length == 0}">
             @if (node.children && node.children.length > 0) {
-              <span class="ddr-treeview__container__node__content__icon" (click)="openNode(node)">
+              <span class="ddr-tree__container__node__content__icon" (click)="openNode(node)">
                 @if (node.children && node.open) {
                   <i class="bi bi-chevron-down cursor-pointer"></i>
                 }
@@ -20,13 +20,13 @@
               </span>
             }
             @if (node.icon) {
-              <span class="ddr-treeview__container__node__content__icon">
+              <span class="ddr-tree__container__node__content__icon">
                 <i [class]="node.icon"></i>
               </span>
             }
-            <span class="ddr-treeview__container__node__content__text">{{ node.name | ddrTranslate }}</span>
+            <span class="ddr-tree__container__node__content__text">{{ node.name | ddrTranslate }}</span>
             @if (!node.children) {
-              <span class="ddr-treeview__container__node__content__custom">
+              <span class="ddr-tree__container__node__content__custom">
                 <ng-container 
                   [ngTemplateOutlet]="templateNodeInput || templateNode"
                   [ngTemplateOutletContext]="{item: node.data}" />
@@ -34,7 +34,7 @@
             }
           </div>
           @if ((!actionsOnlyLeafs || (actionsOnlyLeafs && !node.children)) && (node.actions && node.actions.length > 0)) {
-            <div class="ddr-treeview__container__node__actions">
+            <div class="ddr-tree__container__node__actions">
               <ddr-split-button class="text-end"
                 [actions]="node.actions"
                 [showFirstOnlyIcon]="true"
@@ -44,14 +44,14 @@
           }
         </div>
         @if (node.open && node.children) {
-          <ddr-treeview class="pe-0"
+          <ddr-tree class="pe-0"
             [border]="border"
             [canClick]="canClick"
             [nodes]="node.children"
             [actionsOnlyLeafs]="actionsOnlyLeafs"
             [templateNodeInput]="templateNodeInput || templateNode"
             (selectAction)="onSelectAction($event, node)">
-          </ddr-treeview>
+          </ddr-tree>
         }
       </div>
     }

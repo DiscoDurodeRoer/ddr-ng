@@ -1,4 +1,4 @@
-import { Directive, EventEmitter, Output, HostListener, ElementRef } from '@angular/core';
+import { Directive, EventEmitter, Output, HostListener, ElementRef, inject } from '@angular/core';
 
 @Directive({
   selector: '[DdrLoadIframe]',
@@ -6,11 +6,9 @@ import { Directive, EventEmitter, Output, HostListener, ElementRef } from '@angu
 })
 export class DdrLoadIframeDirective {
 
-  @Output() loadIframe: EventEmitter<boolean>;
+  @Output() loadIframe: EventEmitter<boolean> = new EventEmitter<boolean>();;
 
-  constructor(private el: ElementRef) {
-    this.loadIframe = new EventEmitter<boolean>();
-  }
+  private el: ElementRef = inject(ElementRef);
 
   @HostListener('load')
   public onLoad(){

@@ -1,6 +1,6 @@
 import { Component, ContentChild, ElementRef, forwardRef, Input, Output, TemplateRef, ViewChild, EventEmitter, ViewEncapsulation, inject } from '@angular/core';
 import { FormsModule, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { DdrNgModelBase } from '../ddr-ngmodel-base/ddr-ngmodel-base.component';
+import { DdrControlValueAccessor } from '../ddr-ngmodel-base/ddr-control-value-accessor-base.component';
 import { DdrConstantsService } from '../../services/ddr-constants.service';
 import { DdrTooltipDirective } from '../../directives/ddr-tooltip.directive';
 import { NgClass, NgTemplateOutlet } from '@angular/common';
@@ -13,7 +13,7 @@ import { DdrOrientation } from '../../types/types';
     encapsulation: ViewEncapsulation.None,
     imports: [
         FormsModule,
-        DdrNgModelBase,
+        DdrControlValueAccessor,
         DdrTooltipDirective,
         NgClass,
         NgTemplateOutlet
@@ -26,7 +26,7 @@ import { DdrOrientation } from '../../types/types';
         }
     ]
 })
-export class DdrTextareaComponent extends DdrNgModelBase {
+export class DdrTextareaComponent extends DdrControlValueAccessor {
 
   public readonly constants: DdrConstantsService = inject(DdrConstantsService)
 
@@ -35,14 +35,13 @@ export class DdrTextareaComponent extends DdrNgModelBase {
   @Input() name: string = '';
   @Input() disabled: boolean = false;
   @Input() readonly: boolean = false;
-  @Input() maxlength: number | null = null;
-  @Input() minlength: number | null = null;
+  @Input() maxlength: string | number | null = null;
+  @Input() minlength: string | number | null = null;
   @Input() required: boolean = false;
   @Input() validate: boolean = false;
   @Input() inline: boolean = false;
   @Input() rows: number = 1;
   @Input() cols: number = 10;
-  @Input() showTooltip: boolean = false;
   @Input() orientationTooltip: DdrOrientation = this.constants.ORIENTATION.BOTTOM;
   @Input() tooltipText?: string;
   @Input() labelBold:boolean=false;
@@ -51,7 +50,7 @@ export class DdrTextareaComponent extends DdrNgModelBase {
   @ContentChild('templateErrors', { static: false }) templateErrors!: TemplateRef<any> | null;
 
   @Output() clickTextarea: EventEmitter<MouseEvent> = new EventEmitter<MouseEvent>();
-  @Output() keyup: EventEmitter<string> = new EventEmitter<string>();
+  @Output() keyPressed: EventEmitter<string> = new EventEmitter<string>();
   @Output() blur: EventEmitter<void> = new EventEmitter<void>();
 
   constructor() {
@@ -63,7 +62,7 @@ export class DdrTextareaComponent extends DdrNgModelBase {
   }
 
   onKeyup() {
-    this.keyup.emit(this.value);
+    this.keyPressed.emit(this.value);
   }
 
   onblur() {

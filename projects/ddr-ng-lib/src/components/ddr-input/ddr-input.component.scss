@@ -16,7 +16,6 @@
     }
 
     &--label {
-      text-transform: uppercase;
 
       &--no-inline {
         margin-bottom: 10px;
@@ -33,7 +32,6 @@
     .invalid-feedback {
       width: 100% !important;
       position: absolute;
-      bottom: -20px;
     }
 
     &--input {
@@ -73,10 +71,6 @@
         font-size: large;
       }
 
-      // &:focus {
-      //   border-color: #28a745;
-      // }
-    
     }
 
 

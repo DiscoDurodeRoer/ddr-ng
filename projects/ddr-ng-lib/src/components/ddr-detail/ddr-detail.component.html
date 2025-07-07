@@ -1,30 +1,30 @@
-@if (showDetail && orientation == constants.ORIENTATION.LEFT) {
-  <div class="ddr-detail" [@slide-left]>
-    <ng-container [ngTemplateOutlet]="contentdetail"/>
-  </div>
+@if (show && orientation == constants.ORIENTATION.LEFT) {
+<div class="ddr-detail" [@slide-left]>
+  <ng-container [ngTemplateOutlet]="contentDetail" />
+</div>
 }
-@if (showDetail &&  orientation == constants.ORIENTATION.RIGHT) {
-  <div class="ddr-detail" [@slide-right]>
-    <ng-container [ngTemplateOutlet]="contentdetail"/>
-  </div>
+@if (show && orientation == constants.ORIENTATION.RIGHT) {
+<div class="ddr-detail" [@slide-right]>
+  <ng-container [ngTemplateOutlet]="contentDetail" />
+</div>
 }
-@if (showDetail &&  orientation == constants.ORIENTATION.TOP) {
-  <div class="ddr-detail" [@slide-top]>
-    <ng-container [ngTemplateOutlet]="contentdetail"></ng-container>
-  </div>
+@if (show && orientation == constants.ORIENTATION.TOP) {
+<div class="ddr-detail" [@slide-top]>
+  <ng-container [ngTemplateOutlet]="contentDetail" />
+</div>
 }
-@if (showDetail && orientation == constants.ORIENTATION.BOTTOM) {
-  <div class="ddr-detail" [@slide-bottom]>
-    <ng-container [ngTemplateOutlet]="contentdetail"/>
-  </div>
+@if (show && orientation == constants.ORIENTATION.BOTTOM) {
+<div class="ddr-detail" [@slide-bottom]>
+  <ng-container [ngTemplateOutlet]="contentDetail" />
+</div>
 }
-<ng-template #contentdetail>
+<ng-template #contentDetail>
   <div class="row ddr-detail__content">
     <div class="col-lg-10 col-md-9 col-10 ddr-detail__content--title">
       <ng-content select="[detail-title]"></ng-content>
     </div>
     <div class="col-lg-2 col-md-3 col-2 text-end ddr-detail__content--close">
-      <i class="bi bi-x " (click)="closeDetail()"></i>
+      <i class="bi bi-x" (click)="closeDetail()"></i>
     </div>
   </div>
   <div class="row">
@@ -33,4 +33,6 @@
     </div>
   </div>
 </ng-template>
-<div class="overlay-ddr" (click)="closeDetail()"></div>
+@if(show){
+  <div class="ddr-overlay" (click)="closeDetail()"></div>
+}

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { DdrBadgeNotificationComponent, DdrBadgeNotificationDirective, DdrButtonComponent } from '@ddr-ng';
+import { DdrBadgeNotificationComponent, DdrBadgeNotificationDirective, DdrButtonComponent } from 'ddr-ng';
 import { BaseShowcaseComponent } from '../base-showcase/base-showcase.component';
 
 @Component({
@@ -8,7 +8,6 @@ import { BaseShowcaseComponent } from '../base-showcase/base-showcase.component'
     styleUrls: ['./badge-notification-showcase.component.scss'],
     imports: [
         BaseShowcaseComponent,
-        DdrBadgeNotificationComponent,
         DdrButtonComponent,
         DdrBadgeNotificationDirective
     ]

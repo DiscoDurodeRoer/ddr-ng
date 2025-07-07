@@ -1,4 +1,6 @@
-<div class="ddr-input">
+<div class="ddr-input" [ngClass]="{
+  'd-none': type == 'hidden'
+}">
   <div class="ddr-input__input-container" [ngClass]="{
     'ddr-input__input-container--inline': inline
     }">
@@ -7,9 +9,9 @@
         'ddr-input__input-container--label--inline': inline,
         'ddr-input__input-container--label--no-inline': !inline,
         'fw-bold': labelBold
-        }" class="ddr-input__input-container--label">
+        }" class="ddr-input__input-container--label user-select-none">
         {{ label + (required ? "(*)" : "") }}
-        @if (showTooltip && tooltipText) {
+        @if (tooltipText) {
           <i
             class="bi bi-info-circle"
             ddrTooltip
@@ -57,15 +59,15 @@
       <div [ngClass]="{
         'w-auto d-inline-block ms-1 valid-feedback-inline': inline
         }" class="valid-feedback">
-        <ng-template [ngTemplateOutlet]="templateValid || templateValidInput"/>
+        <ng-template #templateValid [ngTemplateOutlet]="templateValidOutside"/>
       </div>
     }
     @if (validate && input.dirty && input.errors) {
       <div [ngClass]="{
         'w-auto d-inline-block ms-1 invalid-feedback-inline': inline
         }" class="invalid-feedback">
-        <ng-template 
-          [ngTemplateOutlet]="templateErrors || templateErrorsInput"
+        <ng-template #templateErrors
+          [ngTemplateOutlet]="templateErrorsOutside"
           [ngTemplateOutletContext]="{ errors: input.errors }" />
       </div>
     }

@@ -1,15 +1,14 @@
 import { Component, ContentChild, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges, TemplateRef } from '@angular/core';
 import { DdrTreeNode } from './bean/ddr-tree-node';
-import { cloneDeep } from 'lodash-es';
 import { DdrAction } from '../../common/ddr-action.model';
 import { DdrSplitButtonComponent } from '../ddr-split-button/ddr-split-button.component';
 import { DdrTranslatePipe } from '../../pipes/ddr-translate.pipe';
 import { NgClass, NgTemplateOutlet } from '@angular/common';
 
 @Component({
-    selector: 'ddr-treeview',
-    templateUrl: './ddr-treeview.component.html',
-    styleUrls: ['./ddr-treeview.component.scss'],
+    selector: 'ddr-tree',
+    templateUrl: './ddr-tree.component.html',
+    styleUrls: ['./ddr-tree.component.scss'],
     imports: [
         DdrSplitButtonComponent,
         DdrTranslatePipe,
@@ -17,7 +16,7 @@ import { NgClass, NgTemplateOutlet } from '@angular/common';
         NgTemplateOutlet
     ]
 })
-export class DdrTreeviewComponent<T> implements OnInit, OnChanges {
+export class DdrTreeComponent<T> implements OnChanges {
 
   @Input() border: boolean = false;
   @Input() open: boolean = false;
@@ -38,7 +37,7 @@ export class DdrTreeviewComponent<T> implements OnInit, OnChanges {
   ngOnChanges(changes: SimpleChanges): void {
     if(changes){
       if(changes['nodes']){
-        this.nodes = cloneDeep(this.nodes);
+        this.nodes = [...this.nodes]
       }
       if(changes['open']){
         for (const node of this.nodes) {
@@ -46,10 +45,6 @@ export class DdrTreeviewComponent<T> implements OnInit, OnChanges {
         }
       }
     }
-  }
-
-  ngOnInit() {
-    this.nodes = cloneDeep(this.nodes);
   }
 
   openNode(node: DdrTreeNode<T>) {

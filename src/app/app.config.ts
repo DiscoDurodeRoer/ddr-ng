@@ -1,7 +1,7 @@
 import { ApplicationConfig, importProvidersFrom, inject, provideAppInitializer } from '@angular/core';
 import { provideRouter } from '@angular/router';
 
-import { DdrTranslateService } from '@ddr-ng';
+import { DdrTranslateService } from 'ddr-ng';
 import { routes } from './app.routes';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';

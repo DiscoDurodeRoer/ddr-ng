@@ -1,17 +1,20 @@
 import { Component, inject } from '@angular/core';
-import { DdrTreeNode, DdrAction, DdrToastService, DdrTreeviewComponent, DdrToggleComponent } from '@ddr-ng';
-import { TreeviewData } from './treeview-data';
+import { DdrTreeNode, DdrAction, DdrToastService, DdrTreeComponent, DdrToggleComponent } from 'ddr-ng';
+import { TreeviewData } from './tree-data';
 import { BaseShowcaseComponent } from '../base-showcase/base-showcase.component';
 
 @Component({
-    selector: 'app-treeview-showcase',
-    templateUrl: './treeview-showcase.component.html',
-    styleUrls: ['./treeview-showcase.component.scss'],
-    imports: [
-        BaseShowcaseComponent,
-        DdrTreeviewComponent,
-        DdrToggleComponent
-    ]
+  selector: 'app-treeview-showcase',
+  templateUrl: './treeview-showcase.component.html',
+  styleUrls: ['./treeview-showcase.component.scss'],
+  imports: [
+    BaseShowcaseComponent,
+    DdrTreeComponent,
+    DdrToggleComponent
+  ],
+  providers: [
+    DdrToastService
+  ]
 })
 export class TreeviewShowcaseComponent {
 

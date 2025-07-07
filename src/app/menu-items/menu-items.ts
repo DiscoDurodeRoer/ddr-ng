@@ -1,4 +1,4 @@
-import { DdrTreeNode } from "@ddr-ng";
+import { DdrTreeNode } from "ddr-ng";
 
 
 
@@ -110,9 +110,9 @@ export const menuItems: DdrTreeNode<any>[] =[
         }
       },
       {
-        "name": "TreeView",
+        "name": "Tree",
         "data": {
-          "route": "/treeview"
+          "route": "/tree"
         }
       },
       {

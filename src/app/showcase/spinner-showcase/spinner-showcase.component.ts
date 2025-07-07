@@ -1,5 +1,5 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { DdrButtonComponent, DdrSpinnerComponent, DdrSpinnerService } from '@ddr-ng';
+import { DdrButtonComponent, DdrSpinnerComponent, DdrSpinnerService } from 'ddr-ng';
 import { BaseShowcaseComponent } from '../base-showcase/base-showcase.component';
 
 @Component({

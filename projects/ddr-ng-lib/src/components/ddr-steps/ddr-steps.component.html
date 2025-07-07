@@ -9,7 +9,7 @@
               'ddr-steps__horizontal__info-step__number-step--open': step.open,
               'ddr-steps__horizontal__info-step__number-step--closed': !step.open
               }">
-              @if (!validateIcon || (validateIcon && !step.canGoNext)) {
+              @if (!validateIcon || (validateIcon && step.canGoNext == false)) {
                 <span>{{step.step}}</span>
               }
               @if (validateIcon && step.canGoNext) {
@@ -31,7 +31,7 @@
         @for (step of steps; track step) {
           @if (step.open) {
             <div class="ddr-steps__template__content">
-              <ng-container [ngTemplateOutlet]="step.contentTemplate"/>
+              <ng-container [ngTemplateOutlet]="step.stepContentTemplate"/>
               @if (showButtons && !openAll && !step.firstStep) {
                 <ddr-button
                   class="me-1"
@@ -78,21 +78,21 @@
         <div class="ddr-steps__template" [ngClass]="{'ddr-steps__template--line': !step.lastStep}">
           @if (step.open) {
             <div class="ddr-steps__template__content">
-              <ng-container [ngTemplateOutlet]="step.contentTemplate"/>
+              @if(step.stepContentTemplate){
+                <ng-container [ngTemplateOutlet]="step.stepContentTemplate"/>
+              }
               @if (showButtons && !openAll && !step.firstStep) {
                 <ddr-button
-                  class="me-1"
+                  class="me-1 mt-1 mb-1"
                   [text]="labelPrevious || ('previous' | ddrTranslate)"
-                  (action)="previous(step)">
-                </ddr-button>
+                  (action)="previous(step)" />
               }
               @if (showButtons && !openAll && !step.lastStep) {
                 <ddr-button
-                  class="me-1"
+                  class="me-1 mt-1 mb-1"
                   [disabled]="!step.canGoNext"
                   [text]="labelNext || ('next' | ddrTranslate)"
-                  (action)="next(step)">
-                </ddr-button>
+                  (action)="next(step)" />
               }
             </div>
           }

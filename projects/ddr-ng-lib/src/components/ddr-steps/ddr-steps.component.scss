@@ -1,6 +1,6 @@
 .ddr-steps {
 
-    &__horizontal{
+    &__horizontal {
 
         display: flex;
         height: 36px;
@@ -10,14 +10,14 @@
             display: flex;
             padding: 0px 10px;
             align-items: center;
-    
+
             &--hover:hover {
                 cursor: pointer;
                 background-color: #f8f8f8;
             }
-    
+
             &__number-step {
-    
+
                 flex: 1;
                 display: inline-block;
                 width: 24px;
@@ -27,7 +27,7 @@
                 border-radius: 50%;
                 margin-bottom: -5px;
                 user-select: none;
-    
+
                 span {
                     display: inline-block;
                     position: absolute;
@@ -36,21 +36,21 @@
                     transform: translate(-50%, -50%);
                 }
             }
-    
+
             &__title-step {
-    
+
                 flex: 1;
                 display: inline-block;
                 width: calc(100% - 30px);
                 padding-left: 15px;
-    
+
                 span {
                     display: inline-block;
                     font-size: 24px;
                 }
             }
 
-           
+
         }
 
         &__line {
@@ -58,19 +58,19 @@
             height: 50%;
         }
     }
-    
-    &__vertical{
+
+    &__vertical {
         &__info-step {
 
             padding: 0px 10px;
-    
+
             &--hover:hover {
                 cursor: pointer;
                 background-color: #f8f8f8;
             }
-    
+
             &__number-step {
-    
+
                 display: inline-block;
                 width: 24px;
                 height: 24px;
@@ -78,7 +78,7 @@
                 border-radius: 50%;
                 margin-bottom: -5px;
                 user-select: none;
-    
+
                 span {
                     display: inline-block;
                     color: #FFF;
@@ -88,13 +88,13 @@
                     transform: translate(-50%, -50%);
                 }
             }
-    
+
             &__title-step {
-    
+
                 display: inline-block;
                 width: calc(100% - 30px);
                 padding-left: 15px;
-    
+
                 span {
                     display: inline-block;
                     font-size: 24px;
@@ -104,7 +104,7 @@
     }
 
     &__template {
-       
+
         position: relative;
         margin-left: 22px;
         min-height: 20px;
@@ -117,15 +117,14 @@
             opacity: 0.2;
         }
 
-        &__content{
-
+        &__content {
             display: inline-block;
             width: calc(100% - 30px);
             padding-left: 30px;
-            padding-top: 5px;
-            padding-bottom: 5px;
+            padding-top: 1%;
+            padding-bottom: 1%;
         }
-        
+
     }
 
 }

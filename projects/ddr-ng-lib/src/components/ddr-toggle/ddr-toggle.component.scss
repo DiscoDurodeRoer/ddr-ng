@@ -1,14 +1,13 @@
 .ddr-toggle {
-  margin-top: 5px;
-  // margin-bottom: 5px;
   display: inline-block;
+  margin-top: 5px;
+  user-select: none;
 
   &__inline {
     display: flex;
   }
 
   &__label {
-    text-transform: uppercase;
     margin-bottom: 10px;
     margin-top: 10px;
 

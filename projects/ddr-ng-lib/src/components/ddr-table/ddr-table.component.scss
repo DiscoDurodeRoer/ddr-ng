@@ -1,13 +1,9 @@
 .ddr-table {
+    caret-color: transparent;
 
     &__table {
         width: 100%;
         margin: auto;
-
-        &--header-row,
-        &--body-row {
-            text-align: center;
-        }
 
         &--header-row {
             &--checkbox {
@@ -36,18 +32,9 @@
         }
 
         &--body-row {
-            text-align: center;
 
             &--checkbox {
                 vertical-align: middle;
-            }
-
-            &--mobile {
-                td {
-                    display: flex;
-                    width: 100%;
-                    align-items: center;
-                }
             }
 
             td {
@@ -60,26 +47,28 @@
                 text-align: right;
             }
 
-            @media (max-width: 568px) {
-                &--actions {
-                    justify-content: flex-end;
-                    width: 100%;
-                }
-            }
-
-            @media (min-width: 568px) {
-                &--actions {
-                    width: 15%;
-                }
-            }
-
             &--hoveable:hover {
                 cursor: pointer;
             }
         }
 
+        &--foot-cell {
+            padding: 10px;
+        }
+
+
         @media (max-width: 568px) {
+
+            thead {
+                display: none;
+            }
+
             &--body-cell {
+
+                display: flex;
+                width: 100%;
+                align-items: center;
+
                 &--title-mobile {
                     display: flex;
                     flex: 1;
@@ -98,21 +87,29 @@
                 }
             }
 
+            &--body-row {
+                &--actions {
+                    display: flex;
+                    justify-content: flex-end;
+                    width: 100%;
+                }
+            }
         }
 
         @media (min-width: 568px) {
+
             &--body-cell {
                 &--title-mobile {
                     display: none;
                 }
             }
-        }
 
-        &--foot-cell {
-            padding: 10px;
+            &--body-row {
+                &--actions {
+                    width: 15%;
+                }
+            }
         }
 
     }
-
-
 }

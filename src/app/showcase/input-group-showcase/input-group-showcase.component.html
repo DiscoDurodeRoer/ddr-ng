@@ -41,6 +41,7 @@
       [icon]="'bi bi-phone'"
       [required]="true"
       [validate]="true"
+      minlength="5"
       [(ngModel)]="value2"
       (action)="click($event)">
 
@@ -78,7 +79,7 @@
     <ddr-input-group
       [label]="'Label'"
       [inline]="true"
-      [icon]="'bi bi-phone'"
+      icon="bi bi-phone"
       [required]="true"
       [validate]="true"
       [(ngModel)]="value3"
@@ -279,7 +280,7 @@
           <td>MouseEvent</td>
         </tr>
         <tr>
-          <td>keyup</td>
+          <td>keyPressed</td>
           <td>Evento al escribir en el input (soltar tecla)</td>
           <td>KeyboardEvent</td>
         </tr>

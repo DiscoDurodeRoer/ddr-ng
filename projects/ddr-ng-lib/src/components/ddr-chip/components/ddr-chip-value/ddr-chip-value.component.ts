@@ -15,9 +15,7 @@ export class DdrChipValueComponent {
   @Output() clickValue: EventEmitter<string> = new EventEmitter<string>();
 
   onClickValue($event: MouseEvent) {
-    if ($event) {
-      $event.stopPropagation();
-    }
+    $event?.stopPropagation();
     this.clickValue.emit(this.value);
   }
 

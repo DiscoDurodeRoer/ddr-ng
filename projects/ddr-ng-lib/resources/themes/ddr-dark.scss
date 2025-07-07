@@ -1,3 +1,9 @@
+/* Importaciones */
+
+@use '../reset.scss';
+@use '../fonts.scss';
+@use '../styles.scss';
+
 /* Variables */
 
 $primary: #25252a;
@@ -73,21 +79,17 @@ $color-warning: #b4894b;
 .ddr-dark {
 
   * {
-    font-family: 'ddr';
+    font-family: 'Cairo';
   }
 
-  .bg-ddr {
+  .ddr-background {
     background-color: $primary;
   }
 
-  .bg-ddr-hover {
+  .ddr-background-hover {
     &:hover {
       background-color: rgba(255, 255, 255, 0.1);
     }
-  }
-
-  .font-ddr-bold {
-    font-family: "ddr bold";
   }
 
   .border-bottom-ddr {
@@ -183,7 +185,7 @@ $color-warning: #b4894b;
     }
 
     .start-app__container-web__footer,
-    .start-app__container-mobile__footer{
+    .start-app__container-mobile__footer {
       background: $gradientHorizontalFooter;
     }
 
@@ -234,6 +236,7 @@ $color-warning: #b4894b;
 
           &--icon {
             color: $text-color-primary;
+            display: inline-block;
           }
         }
 
@@ -357,7 +360,6 @@ $color-warning: #b4894b;
       &__textarea-container {
         &--textarea {
           background-color: $input-background;
-          border: 1px solid $input-border-color;
           color: $input-color;
         }
       }
@@ -394,12 +396,12 @@ $color-warning: #b4894b;
       }
 
       &--transparent {
-        
+
         border-color: $text-color-primary;
         background: transparent;
 
         .btn-ddr--text,
-        .btn-ddr--icon{
+        .btn-ddr--icon {
           color: $text-color-primary;
         }
       }
@@ -518,6 +520,12 @@ $color-warning: #b4894b;
 
         &--no-results {
           color: $input-color;
+        }
+
+        &__item {
+          &--active {
+            background-color: $selected;
+          }
         }
       }
 
@@ -811,34 +819,10 @@ $color-warning: #b4894b;
     }
   }
 
-  ddr-block-list {
-    .ddr-block-item {
-      &--hover {
-        background: $selected;
-      }
-    }
-
-    .ddr-block-data-item {
-
-      &__label {
-        color: #c8c8c8;
-      }
-
-      &__value {
-        color: #b9b9b9;
-      }
-
-    }
-
-    .ddr-block-item {
-      border: 1px solid #a9a9a9;
-    }
-
-  }
-
   ddr-detail {
     .ddr-detail {
-      background: $panel-background;
+      background: $primary;
+      color: $text-color-secondary;
     }
   }
 
@@ -979,7 +963,8 @@ $color-warning: #b4894b;
           background-color: $selected;
           border-color: $selected;
 
-          .btn-ddr--text, .btn-ddr--icon {
+          .btn-ddr--text,
+          .btn-ddr--icon {
             color: $text-color-primary;
           }
         }

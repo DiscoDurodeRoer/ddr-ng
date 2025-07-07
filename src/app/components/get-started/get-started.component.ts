@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { DdrCardComponent } from '@ddr-ng';
+import { DdrCardComponent } from 'ddr-ng';
 
 @Component({
     selector: 'app-get-started',

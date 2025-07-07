@@ -3,6 +3,7 @@
   border: 1px solid;
   padding: 0px 15px;
   text-align: center;
+  user-select: none;
 
   &--border {
     border-width: 1px;
@@ -24,22 +25,35 @@
     border-radius: 50%;
     height: 25px;
     width: 25px;
-    // background: #FF4F79;
-    box-shadow: 10px 10px 5px #aaaaaa;
     z-index: 1000;
 
-    &--left_bottom {
+    &--bottom-left {
       bottom: 30px;
       left: 40px;
     }
 
-    &--right_bottom {
+    &--bottom-right {
       bottom: 30px;
       right: 40px;
     }
 
-    &--center_bottom {
+    &--bottom-center {
       bottom: 30px;
+      right: 50%;
+    }
+
+    &--top-left {
+      top: 30px;
+      left: 40px;
+    }
+
+    &--top-right {
+      top: 30px;
+      right: 40px;
+    }
+
+    &--top-center {
+      top: 30px;
       right: 50%;
     }
 

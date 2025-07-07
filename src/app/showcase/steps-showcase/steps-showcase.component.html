@@ -40,10 +40,10 @@
       <div class="col-12">
         <ddr-steps labelNext="Siguiente" labelPrevious="Previo" (changeStep)="changeStep($event)">
 
-          <ddr-step titleStep="Paso 1" [canGoNext]="animalEx2.name">
+          <ddr-step titleStep="Paso 1" [canGoNext]="!!animalEx2.name">
             <ddr-input [(ngModel)]="animalEx2.name"></ddr-input>
           </ddr-step>
-          <ddr-step titleStep="Paso 2" [canGoNext]="animalEx2.paws">
+          <ddr-step titleStep="Paso 2" [canGoNext]="!!animalEx2.paws">
             <ddr-input [(ngModel)]="animalEx2.paws"></ddr-input>
           </ddr-step>
           <ddr-step titleStep="Paso 3">
@@ -189,10 +189,10 @@
         <ddr-steps [vertical]="true" [showButtons]="false" [validateIcon]="true" [leaveValidateVerticalOpened]="true"
           (changeStep)="changeStep($event)">
 
-          <ddr-step titleStep="Paso 1" [canGoNext]="animalEx8.name">
+          <ddr-step titleStep="Paso 1" [canGoNext]="!!animalEx8.name">
             <ddr-input [(ngModel)]="animalEx8.name"></ddr-input>
           </ddr-step>
-          <ddr-step titleStep="Paso 2" [canGoNext]="animalEx8.paws">
+          <ddr-step titleStep="Paso 2" [canGoNext]="!!animalEx8.paws">
             <ddr-input [(ngModel)]="animalEx8.paws"></ddr-input>
           </ddr-step>
           <ddr-step titleStep="Paso 3">

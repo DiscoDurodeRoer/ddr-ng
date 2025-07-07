@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { DdrInputComponent, DdrStepComponent, DdrStepsComponent, DdrToastService } from '@ddr-ng';
+import { DdrInputComponent, DdrStepComponent, DdrStepsComponent, DdrToastService } from 'ddr-ng';
 import { Animal } from './animal';
 import { FormsModule } from '@angular/forms';
 import { BaseShowcaseComponent } from '../base-showcase/base-showcase.component';
@@ -14,6 +14,9 @@ import { BaseShowcaseComponent } from '../base-showcase/base-showcase.component'
         DdrStepsComponent,
         DdrStepComponent,
         DdrInputComponent
+    ],
+    providers: [
+      DdrToastService
     ]
 })
 export class StepsShowcaseComponent {

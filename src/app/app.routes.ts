@@ -39,8 +39,11 @@ import { ToastShowcaseComponent } from './showcase/toast-showcase/toast-showcase
 import { ToggleShowcaseComponent } from './showcase/toggle-showcase/toggle-showcase.component';
 import { TooltipShowcaseComponent } from './showcase/tooltip-showcase/tooltip-showcase.component';
 import { TranslateShowcaseComponent } from './showcase/translate-showcase/translate-showcase.component';
-import { TreeviewShowcaseComponent } from './showcase/treeview-showcase/treeview-showcase.component';
+import { TreeviewShowcaseComponent } from './showcase/tree-showcase/tree-showcase.component';
 import { WidgetShowcaseComponent } from './showcase/widget-showcase/widget-showcase.component';
+import { DropdownMultipleShowcaseComponent } from './showcase/dropdown-multiple-showcase/dropdown-multiple-showcase.component';
+import { InputFileShowcaseComponent } from './showcase/input-file-showcase/input-file-showcase.component';
+import { CheckboxBinaryShowcaseComponent } from './showcase/checkbox-binary-showcase/checkbox-binary-showcase.component';
 
 export const routes: Routes = [
     { path: 'get-started', component: GetStartedComponent },
@@ -51,6 +54,7 @@ export const routes: Routes = [
     { path: 'click-outside', component: ClickOutsideShowcaseComponent },
     { path: 'toast', component: ToastShowcaseComponent },
     { path: 'dropdown', component: DropdownShowcaseComponent },
+    { path: 'dropdown-multiple', component: DropdownMultipleShowcaseComponent },
     { path: 'login', component: LoginShowcaseComponent },
     { path: 'modal', component: ModalShowcaseComponent },
     { path: 'input', component: InputShowcaseComponent },
@@ -85,5 +89,7 @@ export const routes: Routes = [
     { path: 'no-data', component: NoDataShowcaseComponent },
     { path: 'changelog', component: ChangelogComponent },
     { path: 'input-password', component: InputPasswordShowcaseComponent },
+    { path: 'input-file', component: InputFileShowcaseComponent },
+    { path: 'checkbox-binary', component: CheckboxBinaryShowcaseComponent},
     { path: '**', pathMatch: 'full', redirectTo: 'get-started' },
 ];

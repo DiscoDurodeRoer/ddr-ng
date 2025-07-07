@@ -1,7 +1,11 @@
 @if (ddrSpinner.show) {
-  <div class="ddr-spinner" [ngClass]="{'ddr-spinner--overlay overlay-ddr': !embedded, 'ddr-spinner--overlay-embedded overlay-embedded-ddr': embedded}">
+  <div class="ddr-spinner" [ngClass]="{'ddr-spinner--overlay ddr-overlay': !embedded, 'ddr-spinner--overlay-embedded ddr-overlay-embedded': embedded}">
     <div [ngClass]="{'ddr-spinner--overlay__spinner': !embedded, 'ddr-spinner--overlay-embedded__spinner-embedded': embedded}">
-      <img [src]="pathImgSpinner" alt="spinner">
+      @if(pathImgSpinner){
+        <img [src]="pathImgSpinner" alt="spinner">
+      }@else{
+        <div class="ddr-spinner__spinner-default spinner-border" role="status"></div>
+      }
     </div>
   </div>
 }

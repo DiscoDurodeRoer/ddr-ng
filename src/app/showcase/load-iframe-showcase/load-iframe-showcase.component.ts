@@ -1,19 +1,22 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { DdrSpinnerService, DdrToastService, DdrLoadIframeDirective } from '@ddr-ng';
+import { DdrSpinnerService, DdrToastService, DdrLoadIframeDirective } from 'ddr-ng';
 import { BaseShowcaseComponent } from '../base-showcase/base-showcase.component';
 
 @Component({
-    selector: 'app-load-iframe-showcase',
-    templateUrl: './load-iframe-showcase.component.html',
-    styleUrls: ['./load-iframe-showcase.component.scss'],
-    imports: [
-        BaseShowcaseComponent,
-        DdrLoadIframeDirective
-    ]
+  selector: 'app-load-iframe-showcase',
+  templateUrl: './load-iframe-showcase.component.html',
+  styleUrls: ['./load-iframe-showcase.component.scss'],
+  imports: [
+    BaseShowcaseComponent,
+    DdrLoadIframeDirective
+  ],
+  providers: [
+    DdrToastService
+  ]
 })
 export class LoadIframeShowcaseComponent implements OnInit {
 
-  private readonly ddrSpinner: DdrSpinnerService = inject(DdrSpinnerService); 
+  private readonly ddrSpinner: DdrSpinnerService = inject(DdrSpinnerService);
   private readonly ddrToastService: DdrToastService = inject(DdrToastService);
 
   ngOnInit(): void {

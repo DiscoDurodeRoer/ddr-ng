@@ -1,15 +1,18 @@
 import { Component, inject } from '@angular/core';
-import { DdrConversationComponent, DdrMessage, DdrToastService } from '@ddr-ng';
+import { DdrConversationComponent, DdrMessage, DdrToastService } from 'ddr-ng';
 import { BaseShowcaseComponent } from '../base-showcase/base-showcase.component';
 
 @Component({
-    selector: 'app-conversation-showcase',
-    templateUrl: './conversation-showcase.component.html',
-    styleUrls: ['./conversation-showcase.component.scss'],
-    imports: [
-        BaseShowcaseComponent,
-        DdrConversationComponent
-    ]
+  selector: 'app-conversation-showcase',
+  templateUrl: './conversation-showcase.component.html',
+  styleUrls: ['./conversation-showcase.component.scss'],
+  imports: [
+    BaseShowcaseComponent,
+    DdrConversationComponent
+  ],
+  providers: [
+    DdrToastService
+  ]
 })
 export class ConversationShowcaseComponent {
 

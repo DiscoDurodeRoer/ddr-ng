@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { DdrResolutionService } from '@ddr-ng';
+import { DdrResolutionService } from 'ddr-ng';
 import { BaseShowcaseComponent } from '../base-showcase/base-showcase.component';
 
 @Component({

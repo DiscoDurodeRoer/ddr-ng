@@ -9,30 +9,30 @@ import { NgClass } from '@angular/common';
 import { DdrOrientation, DdrSize } from '../../types/types';
 
 @Component({
-    selector: 'ddr-split-button',
-    templateUrl: './ddr-split-button.component.html',
-    styleUrls: ['./ddr-split-button.component.scss'],
-    encapsulation: ViewEncapsulation.None,
-    imports: [
-        DdrButtonComponent,
-        DdrTranslatePipe,
-        DdrClickOutsideDirective,
-        NgClass
-    ],
-    animations: [
-        trigger('overlayAnimation', [
-            state('void', style({
-                transform: 'translateY(5%)',
-                opacity: 0
-            })),
-            state('visible', style({
-                transform: 'translate(0)',
-                opacity: 1
-            })),
-            transition('void => visible', animate('225ms ease-out')),
-            transition('visible => void', animate('195ms ease-in'))
-        ])
-    ]
+  selector: 'ddr-split-button',
+  templateUrl: './ddr-split-button.component.html',
+  styleUrls: ['./ddr-split-button.component.scss'],
+  encapsulation: ViewEncapsulation.None,
+  imports: [
+    DdrButtonComponent,
+    DdrTranslatePipe,
+    DdrClickOutsideDirective,
+    NgClass
+  ],
+  animations: [
+    trigger('overlayAnimation', [
+      state('void', style({
+        transform: 'translateY(5%)',
+        opacity: 0
+      })),
+      state('visible', style({
+        transform: 'translate(0)',
+        opacity: 1
+      })),
+      transition('void => visible', animate('225ms ease-out')),
+      transition('visible => void', animate('195ms ease-in'))
+    ])
+  ]
 })
 export class DdrSplitButtonComponent<T> {
 
@@ -51,28 +51,23 @@ export class DdrSplitButtonComponent<T> {
   @Input() iconShowOptions: string = 'bi bi-caret-down-fill';
 
   @Output() selectAction: EventEmitter<DdrAction<T>> = new EventEmitter<DdrAction<T>>();
-  @Output() openCloseActions: EventEmitter<boolean> = new EventEmitter<boolean>();
+  @Output() openActions: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   public showOptions: boolean = false;
 
-  openCloseOptions($event: MouseEvent) {
-    if ($event) {
-      $event.stopPropagation();
-    }
+  togglePanelOptions() {
     this.showOptions = !this.showOptions
-    this.openCloseActions.emit(this.showOptions);
+    this.openActions.emit(this.showOptions);
   }
 
-  sendAction($event: MouseEvent | null, action: DdrAction<T>) {
-    if ($event) {
-      $event.stopPropagation();
-    }
+  sendAction(action: DdrAction<T>) {
     this.selectAction.emit(action);
     this.showOptions = false;
   }
 
   hideOptions() {
     this.showOptions = false;
+    console.log("hideOptions");
   }
 
 }

@@ -1,17 +1,20 @@
 import { Component, inject } from '@angular/core';
-import { DdrToastService, DdrInputGroupComponent } from '@ddr-ng';
+import { DdrToastService, DdrInputGroupComponent } from 'ddr-ng';
 import { BaseShowcaseComponent } from '../base-showcase/base-showcase.component';
 import { FormsModule } from '@angular/forms';
 
 @Component({
-    selector: 'app-input-group-showcase',
-    templateUrl: './input-group-showcase.component.html',
-    styleUrls: ['./input-group-showcase.component.scss'],
-    imports: [
-        BaseShowcaseComponent,
-        DdrInputGroupComponent,
-        FormsModule
-    ]
+  selector: 'app-input-group-showcase',
+  templateUrl: './input-group-showcase.component.html',
+  styleUrls: ['./input-group-showcase.component.scss'],
+  imports: [
+    BaseShowcaseComponent,
+    DdrInputGroupComponent,
+    FormsModule
+  ],
+  providers: [
+    DdrToastService
+  ]
 })
 export class InputGroupShowcaseComponent {
 

@@ -159,7 +159,7 @@
 
 - Muestra label en valores singles
 
-### DdrNgModelBase
+### DdrControlValueAccessor
 
 - Mejorado para valores nulos
 

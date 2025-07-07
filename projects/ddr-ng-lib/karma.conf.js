@@ -25,14 +25,6 @@ module.exports = function (config) {
     jasmineHtmlReporter: {
       suppressAll: true // removes the duplicated traces
     },
-    coverageReporter: {
-      dir: require('path').join(__dirname, './coverage/evl-post-call-analitycs'),
-      subdir: '.',
-      reporters: [
-        { type: 'html' },
-        { type: 'text-summary' }
-      ]
-    },
     reporters: ['kjhtml', 'spec'],
     specReporter: {
       maxLogLines: 5,             // limit number of lines logged per test

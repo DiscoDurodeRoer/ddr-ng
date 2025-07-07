@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { DdrRadioComponent, DdrSelectItem } from '@ddr-ng';
+import { DdrRadioComponent, DdrSelectItem } from 'ddr-ng';
 import { Example } from './example';
 import { BaseShowcaseComponent } from '../base-showcase/base-showcase.component';
 import { FormsModule } from '@angular/forms';

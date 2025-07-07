@@ -1,3 +1,9 @@
+/* Importaciones */
+
+@use '../reset.scss';
+@use '../fonts.scss';
+@use '../styles.scss';
+
 /* Variables */
 
 $primary: #4682b4;
@@ -79,21 +85,17 @@ $color-warning: #f0ad4e;
 .ddr-blue {
 
   * {
-    font-family: 'ddr';
+    font-family: 'Cairo';
   }
 
-  .bg-ddr {
+  .ddr-background {
     background-color: $primary;
   }
 
-  .bg-ddr-hover {
+  .ddr-background-hover {
     &:hover {
       background-color: rgba(255, 255, 255, 0.1);
     }
-  }
-
-  .font-ddr-bold {
-    font-family: "ddr bold";
   }
 
   .border-bottom-ddr {
@@ -160,38 +162,38 @@ $color-warning: #f0ad4e;
 
 
   /* Ddr app */
-  &.start-app {
+  // &.start-app {
 
-    /* Mejorar selectores */
-    .start-app__menu-mobile-detail {
-      .ddr-detail {
-        background: $gradientVertical;
-      }
-    }
+  //   /* Mejorar selectores */
+  //   .start-app__menu-mobile-detail {
+  //     .ddr-detail {
+  //       background: $gradientVertical;
+  //     }
+  //   }
 
-    .start-app__header-web {
-      background: $gradientHorizontal;
-    }
+  //   .start-app__header-web {
+  //     background: $gradientHorizontal;
+  //   }
 
-    .start-app__header-mobile {
-      background: $gradientHorizontalMobile;
-    }
+  //   .start-app__header-mobile {
+  //     background: $gradientHorizontalMobile;
+  //   }
 
-    .start-app__menu-web {
-      background: $gradientVertical;
-    }
+  //   .start-app__menu-web {
+  //     background: $gradientVertical;
+  //   }
 
-    .start-app__container-web,
-    .start-app__container-mobile {
-      background-color: $surface;
-    }
+  //   .start-app__container-web,
+  //   .start-app__container-mobile {
+  //     background-color: $surface;
+  //   }
 
-    .start-app__container-web__footer,
-    .start-app__container-mobile__footer{
-      background: $gradientHorizontalFooter;
-    }
+  //   .start-app__container-web__footer,
+  //   .start-app__container-mobile__footer {
+  //     background: $gradientHorizontalFooter;
+  //   }
 
-  }
+  // }
 
   /* Components */
 
@@ -237,6 +239,7 @@ $color-warning: #f0ad4e;
 
           &--icon {
             color: $text-color-secondary;
+            display: inline-block;
           }
         }
       }
@@ -364,7 +367,6 @@ $color-warning: #f0ad4e;
       &__textarea-container {
         &--textarea {
           background-color: $input-background;
-          border: 1px solid $input-border-color;
           color: $input-color;
         }
       }
@@ -399,14 +401,14 @@ $color-warning: #f0ad4e;
         border-color: $disabled;
         background: $disabled;
       }
-      
+
       &--transparent {
-        
+
         border-color: $text-color-primary;
         background: transparent;
 
         .btn-ddr--text,
-        .btn-ddr--icon{
+        .btn-ddr--icon {
           color: $text-color-primary;
         }
       }
@@ -522,6 +524,12 @@ $color-warning: #f0ad4e;
 
         &--no-results {
           color: $input-color;
+        }
+
+        &__item {
+          &--active {
+            background-color: $selected;
+          }
         }
 
       }
@@ -780,29 +788,10 @@ $color-warning: #f0ad4e;
 
   }
 
-  ddr-block-list {
-    .ddr-block-item {
-      &--hover {
-        background: $selected;
-      }
-    }
-
-    .ddr-block-data-item {
-
-      &__label {
-        color: #c8c8c8;
-      }
-
-      &__value {
-        color: #000;
-      }
-
-    }
-  }
-
   ddr-detail {
     .ddr-detail {
-      background: $panel-background;
+      background: $primary;
+      color: $text-color-secondary;
     }
   }
 

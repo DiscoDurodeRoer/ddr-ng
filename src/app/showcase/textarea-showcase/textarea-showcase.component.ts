@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { DdrTextareaComponent } from '@ddr-ng';
+import { DdrTextareaComponent } from 'ddr-ng';
 import { BaseShowcaseComponent } from '../base-showcase/base-showcase.component';
 import { FormsModule } from '@angular/forms';
 

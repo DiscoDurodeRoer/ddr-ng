@@ -47,7 +47,7 @@ export class DdrTooltipDirective implements OnInit {
         this.tooltipElement = document.createElement('span');
         this.tooltipElement.innerText = this.tooltipText || '';
       }
-      this.tooltipElement.className = 'ddr-tooltip';
+      this.tooltipElement.className = 'ddr-tooltip user-select-none';
       if(this.tooltipWidth){
         this.tooltipElement.style.width = this.tooltipWidth; 
       }

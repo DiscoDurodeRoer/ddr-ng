@@ -5,13 +5,13 @@ import { NgClass } from '@angular/common';
 import { DdrSize } from '../../types/types';
 
 @Component({
-    selector: 'ddr-no-data',
-    templateUrl: './ddr-no-data.component.html',
-    styleUrls: ['./ddr-no-data.component.scss'],
-    imports: [
-        DdrTranslatePipe,
-        NgClass
-    ]
+  selector: 'ddr-no-data',
+  templateUrl: './ddr-no-data.component.html',
+  styleUrls: ['./ddr-no-data.component.scss'],
+  imports: [
+    DdrTranslatePipe,
+    NgClass
+  ]
 })
 export class DdrNoDataComponent {
 

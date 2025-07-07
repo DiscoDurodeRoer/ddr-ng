@@ -5,6 +5,7 @@
   letter-spacing: 1px;
   background: none;
   display: inline-block;
+  margin: 15px 0;
 
   &--inline {
     display: flex;
@@ -13,7 +14,6 @@
   &__textarea-container {
 
     &--label {
-      text-transform: uppercase;
 
       &--inline {
         flex-grow: 0;
@@ -21,6 +21,9 @@
         margin-right: 10px;
       }
 
+      &--no-inline {
+        margin-bottom: 10px;
+      }
 
     }
 

@@ -1,9 +1,10 @@
 
 import { trigger, transition, style, animate } from '@angular/animations';
-import { Component, OnInit, Output, EventEmitter, ViewEncapsulation, Input, inject } from '@angular/core';
+import { Component, Output, EventEmitter, ViewEncapsulation, Input, inject, OnInit } from '@angular/core';
 import { DdrConstantsService } from '../../services/ddr-constants.service';
 import { NgTemplateOutlet } from '@angular/common';
-import { DdrOrientation } from '../../types/types';
+import { DdrOrientatioDetail } from '../../types/types';
+import { DdrDetailService } from './ddr-detail.service';
 
 @Component({
     selector: 'ddr-detail',
@@ -52,21 +53,27 @@ import { DdrOrientation } from '../../types/types';
         ])
     ]
 })
-export class DdrDetailComponent {
+export class DdrDetailComponent implements OnInit {
 
-  public readonly constants: DdrConstantsService = inject(DdrConstantsService)
+    public readonly constants: DdrConstantsService = inject(DdrConstantsService)
+    public readonly ddrDetailService: DdrDetailService = inject(DdrDetailService);
 
-  @Input() orientation: DdrOrientation = this.constants.ORIENTATION.LEFT;
+    @Input({ required: true }) id!: string;
+    @Input() orientation: DdrOrientatioDetail = this.constants.ORIENTATION.LEFT;
 
-  @Output() close: EventEmitter<boolean> = new EventEmitter<boolean>();
+    @Output() close: EventEmitter<boolean> = new EventEmitter<boolean>();
 
-  public showDetail: boolean = true;
+    public show: boolean = false;
 
-  closeDetail() {
-    this.showDetail = false;
-    setTimeout(() => {
-      this.close.emit(true);
-    }, 600);
-  }
+    ngOnInit(): void {
+        this.ddrDetailService.add(this)
+    }
+
+    closeDetail() {
+        this.show = false;
+        setTimeout(() => {
+            this.close.emit(true);
+        }, 600);
+    }
 
 }

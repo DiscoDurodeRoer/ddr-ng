@@ -3,7 +3,7 @@ import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { DdrToggleComponent } from '../components/ddr-toggle/ddr-toggle.component';
 import { DdrTranslatePipe } from '../pipes/ddr-translate.pipe';
-import { DdrNgModelBase } from '../components/ddr-ngmodel-base/ddr-ngmodel-base.component';
+import { DdrControlValueAccessor } from '../components/ddr-ngmodel-base/ddr-control-value-accessor-base.component';
 
 describe('DdrRadioComponent', () => {
     let fixture: ComponentFixture<DdrToggleComponent>;
@@ -13,7 +13,7 @@ describe('DdrRadioComponent', () => {
         TestBed.configureTestingModule({
             imports: [
                 FormsModule,
-                DdrNgModelBase,
+                DdrControlValueAccessor,
                 DdrTranslatePipe,
                 DdrToggleComponent
             ]

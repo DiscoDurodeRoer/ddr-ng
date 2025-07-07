@@ -1,43 +1,39 @@
 <div class="row ddr-table">
   <div class="col-12">
     <table class="ddr-table__table">
-      @if (showHeader && resolutionService.size != constants.RESOLUTIONS.MOBILE) {
-        <thead>
-          <tr class="ddr-table__table--header-row">
-            @if (multiple && items && items.length > 0) {
-              <th class="ddr-table__table--header-row--checkbox" [ngStyle]="{'width.%': 10}">
-                <ddr-checkbox
-                  [binary]="true"
-                  [(ngModel)]="checkAll"
-                  (clickCheckBinary)="selectAll()">
-                </ddr-checkbox>
-              </th>
-            }
-            @for (col of cols; track col) {
-              <th class="ddr-table__table--header-cell" [ngStyle]="{'width.%': widthCells }">
-                @if (col.tooltip) {
-                  <i ddrTooltip [tooltipText]="col.tooltip | ddrTranslate" [orientationTooltip]="constants.ORIENTATION.BOTTOM" class="bi bi-info-circle ddr-table__table--header-cell--tooltip"></i>
-                }
-                {{ col.label | ddrTranslate }}
-                @if (canSort && col.canSort) {
-                  <i class="bi d-inline-block me-1 cursor-pointer ddr-table__table--header-cell--sort"
-                    [ngClass]="{
-                    'bi-arrow-down-up': !col.modeSort || col.modeSort == constants.MODE_SORT.NO_SORT,
-                    'bi bi-sort-down-alt': col.modeSort == constants.MODE_SORT.DESCENDING,
-                    'bi bi-sort-up': col.modeSort == constants.MODE_SORT.ASCENDING
-                  }" (click)="onSort(col)"></i>
-                }
-              </th>
-            }
-            @if (showActions && items.length > 0) {
-              <th [ngStyle]="{'width.%': 10}"></th>
-            }
-          </tr>
-        </thead>
-      }
+      <thead>
+        <tr class="ddr-table__table--header-row">
+          @if (multiple && items && items.length > 0) {
+            <th class="ddr-table__table--header-row--checkbox" [ngStyle]="{'width.%': 10}">
+              <ddr-checkbox-binary
+                [(ngModel)]="checkAll"
+                (clickCheck)="selectAll()"/>
+            </th>
+          }
+          @for (col of cols; track col.property) {
+            <th class="ddr-table__table--header-cell" [ngStyle]="{'width.%': widthCells }">
+              @if (col.tooltip) {
+                <i ddrTooltip [tooltipText]="col.tooltip | ddrTranslate" [orientationTooltip]="constants.ORIENTATION.BOTTOM" class="bi bi-info-circle ddr-table__table--header-cell--tooltip"></i>
+              }
+              {{ col.label | ddrTranslate }}
+              @if (canSort && col.canSort) {
+                <i class="bi d-inline-block me-1 cursor-pointer ddr-table__table--header-cell--sort"
+                  [ngClass]="{
+                  'bi-arrow-down-up': !col.modeSort || col.modeSort == constants.MODE_SORT.NO_SORT,
+                  'bi bi-sort-down-alt': col.modeSort == constants.MODE_SORT.DESCENDING,
+                  'bi bi-sort-up': col.modeSort == constants.MODE_SORT.ASCENDING
+                }" (click)="onSort(col)"></i>
+              }
+            </th>
+          }
+          @if (showActions && items.length > 0) {
+            <th [ngStyle]="{'width.%': 10}"></th>
+          }
+        </tr>
+      </thead>
       <tbody>
         @if (items.length == 0) {
-          <tr class="ddr-table__table--body-row" [ngClass]="{'ddr-table__table--border': showBorder}">
+          <tr class="ddr-table__table--body-row text-center" [ngClass]="{'ddr-table__table--border': showBorder}">
             <td [ngStyle]="{'width.%': 100}" [attr.colspan]="colspan">{{ labelNoResults }}</td>
           </tr>
         }
@@ -45,91 +41,42 @@
           @for (
             it of items
             | paginate: { id, itemsPerPage: rows, currentPage: page, totalItems }; track
-            it; let index = $index) {
+            index; let index = $index) {
             <tr class="ddr-table__table--body-row" [ngClass]="{
-              'ddr-table__table--body-row--mobile':
-              resolutionService.size == constants.RESOLUTIONS.MOBILE,
               'ddr-table__table--body-row--hoveable': canSelectItems,
               'ddr-table__table--border': showBorder
-              }" (click)="onSelectItem(it)">
+              }" (click)="onSelectItem($event, it)">
               @if (multiple) {
                 <td class="ddr-table__table--body-row--checkbox">
-                  <ddr-checkbox
-                    [binary]="true"
+                  <ddr-checkbox-binary
                     [(ngModel)]="it.selected"
-                    (clickCheckBinary)="sendMultipleItems()">
-                  </ddr-checkbox>
+                    (clickCheck)="sendMultipleItems()" />
                 </td>
               }
-              @if (templateRow || templateRowInput) {
-                <ng-template 
-                  [ngTemplateOutlet]="templateRow || templateRowInput" 
-                  [ngTemplateOutletContext]="{ item: it.item, cols: cols }" />
+              
+              @for (col of cols; track col.property) {
+                <td class="ddr-table__table--body-cell">
+                  <span class="ddr-table__table--body-cell--title-mobile">{{ col.label | ddrTranslate }}</span>
+                  <span class="ddr-table__table--body-cell--text-mobile">
+                    @if (templateCell) {
+                      <ng-template 
+                        [ngTemplateOutlet]="templateCell" 
+                        [ngTemplateOutletContext]="{ item: it.item, col }" />
+                    } @else {
+                      {{ it.item | ddrNestedProperty: col.property }}
+                    }
+                  </span>
+                </td>
               }
-              @if (!templateRow && !templateRowInput) {
-                @for (col of cols; track col) {
-                  <td class="ddr-table__table--body-cell">
-                    <span class="ddr-table__table--body-cell--title-mobile">{{ col.label | ddrTranslate }}</span>
-                    <span class="ddr-table__table--body-cell--text-mobile">{{ col.property ? it.item[col.property] : "" }}</span>
-                  </td>
-                }
-              }
+              
               @if (showActions && it.actions && it.actions.length > 0) {
                 <td class="ddr-table__table--body-row--actions">
                   <ddr-split-button
                     [actions]="it.actions"
                     [showFirstOnlyIcon]="true"
-                    (selectAction)="onSelectAction($event, it.item, index)">
-                  </ddr-split-button>
+                    (selectAction)="onSelectAction($event, it.item, index)"/>
                 </td>
               }
-            </tr>
-          }
-        }
-        @if (addNewItem) {
-          @if (showNewItem) {
-            <tr>
-              <!-- Standard form -->
-              @if (templateFormRow) {
-                <ng-template 
-                  [ngTemplateOutlet]="templateFormRow" 
-                  [ngTemplateOutletContext]="{ item: newItem.item, cols: cols }" />
-              }
-              @if (!templateFormRow) {
-                @for (col of cols; track col) {
-                  <td class="ddr-table__table--body-cell p-2">
-                    <ddr-input [label]="col.label" [(ngModel)]="newItem.item[col.property]"></ddr-input>
-                  </td>
-                }
-              }
-            </tr>
-          }
-          @if (showNewItem) {
-            <tr>
-              <td [attr.colspan]="colspan" class="text-end p-2">
-                <ddr-button class="me-1"
-                  icon="bi bi-plus-lg"
-                  [text]="labelAddItem || ('add.new.item' | ddrTranslate)"
-                  [mode]="constants.MODES_BUTTON.DEFAULT"
-                  (action)="onSaveNewItem()">
-                </ddr-button>
-                <ddr-button
-                  [text]="labelCancelAddItem || ('cancel.add.new.item' | ddrTranslate)"
-                  [mode]="constants.MODES_BUTTON.DANGER"
-                  (action)="onCancelNewItem()">
-                </ddr-button>
-              </td>
-            </tr>
-          }
-          @if (!showNewItem) {
-            <tr>
-              <td [attr.colspan]="colspan" class="text-end p-2">
-                <ddr-button
-                  icon="bi bi-plus-lg"
-                  [text]="labelAddItem || ('add.new.item' | ddrTranslate)"
-                  (action)="onNewItem()">
-                </ddr-button>
-              </td>
             </tr>
           }
         }
@@ -163,8 +110,8 @@
                     @if (showTotal && showPagination && totalItems > rows) {
                       <span class="d-inline-block">
                         {{ rows * (page - 1) + 1 }}
-                        {{ "to" | ddrTranslate }}
-                        {{ totalItems < (rows * page) ? totalItems : (rows * page) }} {{ "of" | ddrTranslate }}
+                        {{ labelToPagination || ("to" | ddrTranslate) }}
+                        {{ totalItems < (rows * page) ? totalItems : (rows * page) }} {{ labelOfPagination || ("of" | ddrTranslate) }}
                         {{ totalItems }} {{ labelRegisters }}
                       </span>
                     }

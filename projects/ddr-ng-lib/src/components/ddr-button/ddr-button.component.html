@@ -14,12 +14,18 @@
   'cursor-pointer': !disabled,
   'cursor-default': disabled,
   'btn-ddr--floatButton': floatButton,
-  'btn-ddr--floatButton--left_bottom':
+  'btn-ddr--floatButton--bottom-left':
   floatButton && position == constants.ORIENTATION.BOTTOM_LEFT,
-  'btn-ddr--floatButton--center_bottom':
+  'btn-ddr--floatButton--bottom-center':
   floatButton && position == constants.ORIENTATION.BOTTOM_CENTER,
-  'btn-ddr--floatButton--right_bottom':
+  'btn-ddr--floatButton--bottom-right':
   floatButton && position == constants.ORIENTATION.BOTTOM_RIGHT,
+  'btn-ddr--floatButton--top-left':
+  floatButton && position == constants.ORIENTATION.TOP_LEFT,
+  'btn-ddr--floatButton--top-center':
+  floatButton && position == constants.ORIENTATION.TOP_CENTER,
+  'btn-ddr--floatButton--top-right':
+  floatButton && position == constants.ORIENTATION.TOP_RIGHT,
   'btn-ddr--transparent': transparent
   }"
   [disabled]="disabled"

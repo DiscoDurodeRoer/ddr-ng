@@ -5,37 +5,49 @@
     [size]="constants.SIZE.MEDIUM" 
     [type]="type" 
     [validate]="validate" 
+    [maxlength]="maxlength"
+    [minlength]="minlength"
+    [min]="min"
+    [max]="max"
     [required]="required"
     [placeholder]="placeholder" 
     [disabled]="disabled"
-    [templateValidInput]="templateValid || templateValidInput" 
-    [templateErrorsInput]="templateErrors || templateErrorsInput"
     [readonly]="readonly"
     [labelBold]="labelBold"
     [inline]="inline" 
     [pattern]="pattern"
     [name]="name" 
     [autocomplete]="autocomplete"
-    [showTooltip]="showTooltip"
     [orientationTooltip]="orientationTooltip"
     [tooltipText]="tooltipText"
     [(ngModel)]="value" 
     (hasErrors)="checkInput($event)"
-    (keyup)="onKeyup($event)"
+    (keyPressed)="onKeyup($event)"
     (keydown)="onKeydown($event)"
     (clickInput)="onclickInput($event)">
+
+    <ng-template #templateValid>
+      <ng-container [ngTemplateOutlet]="templateValidOutside"></ng-container>
+    </ng-template>
+
+    <ng-template #templateErrors let-errors="errors">
+      <ng-container 
+        [ngTemplateOutlet]="templateErrorsOutside"
+        [ngTemplateOutletContext]="{ errors }"></ng-container>
+    </ng-template>
+
   </ddr-input>
   <ddr-button class="ddr-input-group__button" 
     [ngClass]="{
       'ddr-input-group__button--label': label && !inline, 
       'ddr-input-group__button--no-label': !label || inline, 
-      'ddr-input-group__button--is-valid': errorsInput == constants.INPUT_ERRORS.VALID, 
-      'ddr-input-group__button--is-invalid': errorsInput == constants.INPUT_ERRORS.ERROR
+      'ddr-input-group__button--is-valid': validate && errorsInput == constants.INPUT_ERRORS.VALID, 
+      'ddr-input-group__button--is-invalid': (validate && errorsInput == constants.INPUT_ERRORS.ERROR) || (required && !value && errorsInput != constants.INPUT_ERRORS.NEUTRAL)
     }" 
     [block]="true" 
     [type]="constants.TYPE_BUTTON.BUTTON" 
     [icon]="icon"
-    [disabled]="disabled"
+    [disabled]="disabled || disabledButton"
     [size]="constants.SIZE.MEDIUM" 
     (action)="clickButton($event)">
   </ddr-button>

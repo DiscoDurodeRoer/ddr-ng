@@ -4,8 +4,8 @@
   "compileOnSave": false,
   "compilerOptions": {
     "paths": {
-      "@ddr-ng": [
-        "./dist/ddr-ng-lib"
+      "ddr-ng": [
+        "./dist/ddr-ng"
       ]
     },
     "outDir": "./dist/out-tsc",

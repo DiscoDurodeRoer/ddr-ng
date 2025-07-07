@@ -6,42 +6,36 @@ import { DdrModalComponent } from './ddr-modal.component';
 })
 export class DdrModalService {
 
-  private modals: DdrModalComponent[];
+  private modals: DdrModalComponent[] = [];
 
-  constructor() {
-    this.modals = [];
-  }
-
-  add(modal: any) {
-    if (!this.modals.find(x => x.id === modal.id)) {
+  add(modal: DdrModalComponent) {
+    if (!this.getModal(modal.id)) {
       this.modals.push(modal);
+    } else {
+      console.warn(`Modal with ID ${modal.id} is already registered`);
     }
   }
 
   remove(id: string) {
-    this.modals = this.modals.filter(x => x.id !== id);
+    this.modals = this.modals.filter(modal => modal.id !== id);
   }
 
   open(id: string) {
-    const modal = this.modals.find(x => x.id === id);
+    const modal = this.getModal(id);
     if (modal) {
-      modal.show = true;
+      modal.openModal();
     }
   }
 
   close(id: string) {
-    const modal = this.modals.find(x => x.id === id);
+    const modal = this.getModal(id);
     if (modal) {
-      modal.show = false;
+      modal.closeModal();
     }
   }
 
-  isOpen(id: string) {
-    const modal = this.modals.find(x => x.id === id);
-    if (modal) {
-      return modal.show;
-    }
-    return false;
+  private getModal(id: string) {
+    return this.modals.find(modal => modal.id === id);
   }
 
 }

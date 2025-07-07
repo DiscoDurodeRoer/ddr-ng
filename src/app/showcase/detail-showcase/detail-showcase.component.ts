@@ -1,16 +1,19 @@
 import { Component, inject } from '@angular/core';
-import { DdrToastService, DdrDetailComponent, DdrButtonComponent, DdrOrientation } from '@ddr-ng';
+import { DdrToastService, DdrDetailComponent, DdrButtonComponent, DdrOrientation } from 'ddr-ng';
 import { BaseShowcaseComponent } from '../base-showcase/base-showcase.component';
 
 @Component({
-    selector: 'app-showcase-detail',
-    templateUrl: './detail-showcase.component.html',
-    styleUrls: ['./detail-showcase.component.scss'],
-    imports: [
-        BaseShowcaseComponent,
-        DdrDetailComponent,
-        DdrButtonComponent
-    ]
+  selector: 'app-showcase-detail',
+  templateUrl: './detail-showcase.component.html',
+  styleUrls: ['./detail-showcase.component.scss'],
+  imports: [
+    BaseShowcaseComponent,
+    DdrDetailComponent,
+    DdrButtonComponent
+  ],
+  providers: [
+    DdrToastService
+  ]
 })
 export class ShowcaseDdrDetailComponent {
 
@@ -29,7 +32,7 @@ export class ShowcaseDdrDetailComponent {
     this.toastService.addInfoMessage("Exito", "Cerrando el detalle");
   }
 
-  changeOrientation(orientation: DdrOrientation){
+  changeOrientation(orientation: DdrOrientation) {
     this.orientation = orientation;
   }
 

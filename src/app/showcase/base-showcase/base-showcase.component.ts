@@ -1,5 +1,5 @@
 import { Component, ContentChild, ElementRef, inject, Input, TemplateRef, ViewChild, ViewContainerRef } from '@angular/core';
-import { DdrAccordionComponent, DdrTabItemComponent, DdrTabsComponent } from '@ddr-ng';
+import { DdrAccordionComponent, DdrTabItemComponent, DdrTabsComponent } from 'ddr-ng';
 import Prism from 'prismjs';
 import * as prettier from 'prettier/standalone';
 import * as htmlParser from 'prettier/plugins/html';

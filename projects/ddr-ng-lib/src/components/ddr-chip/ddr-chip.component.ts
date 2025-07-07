@@ -1,6 +1,6 @@
 import { Component, EventEmitter, forwardRef, Input, OnInit, Output, ViewEncapsulation } from '@angular/core';
 import { FormsModule, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { DdrNgModelBase } from '../ddr-ngmodel-base/ddr-ngmodel-base.component';
+import { DdrControlValueAccessor } from '../ddr-ngmodel-base/ddr-control-value-accessor-base.component';
 import { DdrChipValueComponent } from './components/ddr-chip-value/ddr-chip-value.component';
 
 @Component({
@@ -11,7 +11,7 @@ import { DdrChipValueComponent } from './components/ddr-chip-value/ddr-chip-valu
     imports: [
         DdrChipValueComponent,
         FormsModule,
-        DdrNgModelBase
+        DdrControlValueAccessor
     ],
     providers: [
         {
@@ -21,7 +21,7 @@ import { DdrChipValueComponent } from './components/ddr-chip-value/ddr-chip-valu
         },
     ]
 })
-export class DdrChipComponent extends DdrNgModelBase implements OnInit {
+export class DdrChipComponent extends DdrControlValueAccessor implements OnInit {
 
   @Input() separator!: string;
   @Input() maxValues: number = 0;

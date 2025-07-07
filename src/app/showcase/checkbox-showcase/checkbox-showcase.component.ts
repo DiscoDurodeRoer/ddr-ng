@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { DdrCheckboxComponent, DdrSelectItem } from '@ddr-ng';
+import { DdrCheckboxComponent, DdrSelectItem } from 'ddr-ng';
 import { Example } from '../dropdown-showcase/example';
 import { BaseShowcaseComponent } from '../base-showcase/base-showcase.component';
 import { JsonPipe } from '@angular/common';

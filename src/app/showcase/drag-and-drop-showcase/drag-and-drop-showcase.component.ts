@@ -1,16 +1,19 @@
 import { Component, inject } from '@angular/core';
-import { DdrToastService, DdrFileHandle, DdrDragDropDirective, DdrButtonComponent } from '@ddr-ng'
+import { DdrToastService, DdrFileHandle, DdrDragDropDirective, DdrButtonComponent } from 'ddr-ng'
 import { BaseShowcaseComponent } from '../base-showcase/base-showcase.component';
 
 @Component({
-    selector: 'app-drag-and-drop-showcase',
-    templateUrl: './drag-and-drop-showcase.component.html',
-    styleUrls: ['./drag-and-drop-showcase.component.scss'],
-    imports: [
-        BaseShowcaseComponent,
-        DdrDragDropDirective,
-        DdrButtonComponent
-    ]
+  selector: 'app-drag-and-drop-showcase',
+  templateUrl: './drag-and-drop-showcase.component.html',
+  styleUrls: ['./drag-and-drop-showcase.component.scss'],
+  imports: [
+    BaseShowcaseComponent,
+    DdrDragDropDirective,
+    DdrButtonComponent
+  ],
+  providers: [
+    DdrToastService
+  ]
 })
 export class DragAndDropShowcaseComponent {
 
@@ -18,11 +21,11 @@ export class DragAndDropShowcaseComponent {
 
   public dragAndDropEnabled: boolean = true;
 
-  loadFiles($event: DdrFileHandle[]){
+  loadFiles($event: DdrFileHandle[]) {
     this.ddrToastService.addSuccessMessage("Exito", "Fichero recogidos " + JSON.stringify($event));
   }
 
-  toggleEnabled(){
+  toggleEnabled() {
     this.dragAndDropEnabled = !this.dragAndDropEnabled;
   }
 

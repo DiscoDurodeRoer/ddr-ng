@@ -1,0 +1,25 @@
+<div class="ddr-input-file">
+  <input
+    #ddrFileInput
+    type="file"
+    [attr.accept]="accept"
+    [attr.multiple]="multiple ? true : null"
+    class="d-none"
+    (change)="onFileSelected($event)" />
+
+  <ddr-input-group
+    [label]="label"
+    icon="bi bi-upload"
+    [ngModel]="fileNames" 
+    [inline]="inline"
+    [required]="required" 
+    [disabled]="disabled"
+    [labelBold]="labelBold"
+    [readonly]="true"
+    [name]="name"
+    [orientationTooltip]="orientationTooltip"
+    [tooltipText]="tooltipText"
+    [type]="constants.TYPE_INPUT.TEXT"
+    (action)="ddrFileInput.click()"
+    (clickInput)="ddrFileInput.click()" />
+</div>

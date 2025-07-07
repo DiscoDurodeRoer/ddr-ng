@@ -6,6 +6,7 @@
         height: 38px;
         display: flex;
         align-items: center;
+        user-select: none;
 
         &--input {
             width: 26px;
@@ -13,8 +14,10 @@
             height: 26px;
             border-radius: 4px;
             cursor: pointer;
-            display: inline-block;
-            text-align: center;
+            display: flex;
+            align-content: center;
+            align-items: center;
+            justify-content: center;
             -webkit-box-shadow: 1px 1px 2px 1px rgba(0, 0, 0, 0.75);
             -moz-box-shadow: 1px 1px 2px 1px rgba(0, 0, 0, 0.75);
             box-shadow: 1px 1px 2px 1px rgba(0, 0, 0, 0.75);
@@ -23,12 +26,21 @@
                 background: none;
             }
 
+            &--disabled {
+                cursor: default;
+                opacity: 0.5;
+            }
+
+            &--icon {
+                padding-top: 4px;
+            }
+
+
         }
 
         &--label {
             display: inline-block;
             margin-left: 5px;
-            font-size: 20px;
         }
 
     }

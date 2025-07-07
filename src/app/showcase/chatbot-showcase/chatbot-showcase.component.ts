@@ -1,15 +1,18 @@
 import { Component, inject } from '@angular/core';
-import { DdrToastService, DdrChatbotService, DdrMessage, DdrChatbotComponent } from '@ddr-ng';
+import { DdrToastService, DdrChatbotService, DdrMessage, DdrChatbotComponent } from 'ddr-ng';
 import { BaseShowcaseComponent } from '../base-showcase/base-showcase.component';
 
 @Component({
-    selector: 'app-chatbot-showcase',
-    templateUrl: './chatbot-showcase.component.html',
-    styleUrls: ['./chatbot-showcase.component.scss'],
-    imports: [
-        BaseShowcaseComponent,
-        DdrChatbotComponent
-    ]
+  selector: 'app-chatbot-showcase',
+  templateUrl: './chatbot-showcase.component.html',
+  styleUrls: ['./chatbot-showcase.component.scss'],
+  imports: [
+    BaseShowcaseComponent,
+    DdrChatbotComponent
+  ], 
+  providers: [
+    DdrToastService
+  ]
 })
 export class ChatbotShowcaseComponent {
 
@@ -37,7 +40,7 @@ export class ChatbotShowcaseComponent {
         break;
       case 'contacto':
         this.chatbotService.addMessage({
-          text: 'Puedes contactar conmigo en este email: manuelfernando.urena@ddr-ng.com',
+          text: 'Puedes contactar conmigo en este email: manuelfernando.urenaddr-ng.com',
           date: new Date(),
           robot: true,
           load: true

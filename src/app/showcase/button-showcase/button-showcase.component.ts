@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { DdrToastService, DdrButtonComponent } from '@ddr-ng';
+import { DdrToastService, DdrButtonComponent } from 'ddr-ng';
 import { BaseShowcaseComponent } from '../base-showcase/base-showcase.component';
 
 @Component({
@@ -9,6 +9,9 @@ import { BaseShowcaseComponent } from '../base-showcase/base-showcase.component'
     imports: [
         DdrButtonComponent,
         BaseShowcaseComponent
+    ],
+    providers: [
+      DdrToastService
     ]
 })
 export class ButtonShowcaseComponent {

@@ -49,6 +49,7 @@
             width: 40px;
             padding: 0;
         }
+
         button i {
             font-size: 8px;
         }
@@ -63,11 +64,7 @@
         position: absolute;
         width: 100%;
         z-index: 999;
-        background: #fff;
-        color: #000;
         margin-top: 5px;
-        max-height: 300px;
-        text-align: center;
         border-radius: 4px;
 
         &--position-bottom-right {
@@ -91,23 +88,22 @@
             right: 0;
         }
 
-
         ul {
-            margin: 0px;
-            padding: 0px;
-            max-height: 200px;
-            overflow: auto;
-            border: 1px solid #c8c8c8;
-            overflow-x: hidden;
             border-radius: 4px;
+            max-height: 200px;
+            overflow-x: hidden;
+            overflow-y: auto;
 
             li {
-                list-style: none;
                 cursor: pointer;
                 padding: 5px;
-
+                line-height: 1.2;
+                margin: 0;
             }
+
         }
+
+
     }
 
 }

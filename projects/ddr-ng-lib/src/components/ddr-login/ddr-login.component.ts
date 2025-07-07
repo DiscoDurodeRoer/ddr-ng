@@ -18,21 +18,23 @@ import { DdrInputPasswordComponent } from '../ddr-input-password/ddr-input-passw
 import { FormsModule } from '@angular/forms';
 import { DdrTranslatePipe } from '../../pipes/ddr-translate.pipe';
 import { NgClass } from '@angular/common';
+import { DdrCardComponent } from '../ddr-card/ddr-card.component';
 
 @Component({
-    selector: 'ddr-login',
-    templateUrl: './ddr-login.component.html',
-    styleUrls: ['./ddr-login.component.scss'],
-    encapsulation: ViewEncapsulation.None,
-    imports: [
-        FormsModule,
-        DdrButtonComponent,
-        DdrInputComponent,
-        DdrInputGroupComponent,
-        DdrTranslatePipe,
-        DdrInputPasswordComponent,
-        NgClass
-    ]
+  selector: 'ddr-login',
+  templateUrl: './ddr-login.component.html',
+  styleUrls: ['./ddr-login.component.scss'],
+  encapsulation: ViewEncapsulation.None,
+  imports: [
+    FormsModule,
+    DdrButtonComponent,
+    DdrInputComponent,
+    DdrInputGroupComponent,
+    DdrTranslatePipe,
+    DdrInputPasswordComponent,
+    NgClass,
+    DdrCardComponent
+  ]
 })
 export class DdrLoginComponent {
 
@@ -56,14 +58,10 @@ export class DdrLoginComponent {
   @Input() labelPlaceholderUsername?: string;
   @Input() labelPassword?: string;
   @Input() labelPlaceholderPassword?: string;
-  @Input() labelCompany?: string;
-  @Input() labelPlaceholderCompany?: string;
-  @Input() labelValidCompany?: string;
-  @Input() labelInvalidCompany?: string;
 
   @Output() doLogin: EventEmitter<DdrAuth> = new EventEmitter<DdrAuth>();
-  @Output() forgotenPassword: EventEmitter<boolean> = new EventEmitter<boolean>();
-  @Output() registerUser: EventEmitter<boolean> = new EventEmitter<boolean>();
+  @Output() forgotenPassword: EventEmitter<void> = new EventEmitter<void>();
+  @Output() registerUser: EventEmitter<void> = new EventEmitter<void>();
 
   public user: DdrAuth = {
     username: '',
@@ -83,13 +81,13 @@ export class DdrLoginComponent {
    * Recuperar contraseña
    */
   recoverPassword() {
-    this.forgotenPassword.emit(true);
+    this.forgotenPassword.emit();
   }
 
   /**
    * Registro de usuarios
    */
   createUser() {
-    this.registerUser.emit(true);
+    this.registerUser.emit();
   }
 }

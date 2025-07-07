@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
-import { DdrButtonComponent, DdrDropdownComponent, DdrSelectItem, DdrTheme } from '@ddr-ng';
+import { DdrButtonComponent, DdrDropdownComponent, DdrSelectItem, DdrTheme } from 'ddr-ng';
 import packageJson from '../../../../projects/ddr-ng-lib/package.json';
 import { FormsModule } from '@angular/forms';
 
@@ -34,7 +34,7 @@ export class HeaderComponent {
   public themeActual: DdrTheme = 'ddr-blue';
   public version: string = packageJson.version
 
-  changeTheme(theme: string){
+  changeTheme(theme: DdrSelectItem<string>){
 
   }
 }

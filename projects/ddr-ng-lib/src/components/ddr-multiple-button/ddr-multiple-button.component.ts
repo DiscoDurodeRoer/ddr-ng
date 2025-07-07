@@ -10,7 +10,7 @@ import {
 } from '@angular/core';
 import { DdrButton } from './bean/ddr-button';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
-import { DdrNgModelBase } from '../ddr-ngmodel-base/ddr-ngmodel-base.component';
+import { DdrControlValueAccessor } from '../ddr-ngmodel-base/ddr-control-value-accessor-base.component';
 import { DdrConstantsService } from '../../services/ddr-constants.service';
 import { DdrButtonComponent } from '../ddr-button/ddr-button.component';
 import { DdrTranslatePipe } from '../../pipes/ddr-translate.pipe';
@@ -26,7 +26,7 @@ import { DdrSize } from '../../types/types';
     imports: [
         DdrButtonComponent,
         DdrTranslatePipe,
-        DdrNgModelBase,
+        DdrControlValueAccessor,
         NgClass
     ],
     providers: [
@@ -37,7 +37,7 @@ import { DdrSize } from '../../types/types';
         },
     ]
 })
-export class DdrMultipleButtonComponent extends DdrNgModelBase {
+export class DdrMultipleButtonComponent extends DdrControlValueAccessor {
 
   private constants: DdrConstantsService = inject(DdrConstantsService);
 

@@ -1,24 +1,36 @@
-import { AfterViewInit, Component, ContentChildren, EventEmitter, Input, OnInit, Output, QueryList, ViewEncapsulation } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, ContentChildren, EventEmitter, forwardRef, inject, Input, OnInit, Output, QueryList, ViewEncapsulation } from '@angular/core';
 import { DdrStepComponent } from './ddr-step/ddr-step.component';
 import { DdrButtonComponent } from '../ddr-button/ddr-button.component';
 import { DdrToastComponent } from '../ddr-toast/ddr-toast.component';
 import { DdrTranslatePipe } from '../../pipes/ddr-translate.pipe';
 import { NgClass, NgTemplateOutlet } from '@angular/common';
+import { NG_VALUE_ACCESSOR } from '@angular/forms';
+import { DdrControlValueAccessor } from '../ddr-ngmodel-base/ddr-control-value-accessor-base.component';
 
 @Component({
-    selector: 'ddr-steps',
-    templateUrl: './ddr-steps.component.html',
-    styleUrls: ['./ddr-steps.component.scss'],
-    encapsulation: ViewEncapsulation.None,
-    imports: [
-        DdrButtonComponent,
-        DdrTranslatePipe,
-        DdrToastComponent,
-        NgClass,
-        NgTemplateOutlet
-    ]
+  selector: 'ddr-steps',
+  templateUrl: './ddr-steps.component.html',
+  styleUrls: ['./ddr-steps.component.scss'],
+  encapsulation: ViewEncapsulation.None,
+  imports: [
+    DdrButtonComponent,
+    DdrTranslatePipe,
+    DdrToastComponent,
+    NgClass,
+    NgTemplateOutlet,
+    DdrControlValueAccessor
+  ],
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => DdrStepsComponent),
+      multi: true,
+    },
+  ]
 })
-export class DdrStepsComponent implements OnInit, AfterViewInit {
+export class DdrStepsComponent extends DdrControlValueAccessor implements OnInit, AfterViewInit {
+
+  private changeDetectorRef: ChangeDetectorRef = inject(ChangeDetectorRef);
 
   @Input() openAll: boolean = false;
   @Input() vertical: boolean = false;
@@ -30,16 +42,26 @@ export class DdrStepsComponent implements OnInit, AfterViewInit {
   @Input() labelPrevious?: string;
 
   @Output() changeStep: EventEmitter<number> = new EventEmitter<number>();
-  @Output() lastStep: EventEmitter<boolean> = new EventEmitter<boolean>();
+  @Output() lastStep: EventEmitter<void> = new EventEmitter<void>();
 
   @ContentChildren(DdrStepComponent) steps!: QueryList<DdrStepComponent>;
-
-  private currentStep: number = 1;
 
   ngOnInit(): void {
     if (!this.showButtons) {
       this.canJumpStep = true;
     }
+
+    this.changeValue.subscribe(v => {
+
+      if (this.steps) {
+        const steps = this.steps.toArray();
+        for (let index = 0; index < steps.length; index++) {
+          const step = steps[index];
+          step.open = false;
+        }
+        this.steps.toArray()[v - 1].open = true;
+      }
+    })
   }
 
   ngAfterViewInit() {
@@ -54,23 +76,25 @@ export class DdrStepsComponent implements OnInit, AfterViewInit {
         step.firstStep = step.step == 1;
         step.lastStep = step.step == steps.length;
       }
-      this.currentStep = 1;
+      this.value = 1;
     }
     if (this.openAll && this.vertical) {
       this.canJumpStep = false;
     }
+
+    this.changeDetectorRef.detectChanges();
   }
 
   goToStep(step: DdrStepComponent) {
-    if (this.canJumpStep && this.currentStep != step.step) {
-      if (!this.vertical || ((this.vertical && !this.leaveValidateVerticalOpened) || !this.steps.toArray()[this.currentStep - 1].canGoNext)) {
-        this.steps.toArray()[this.currentStep - 1].open = false;
+    if (this.canJumpStep && this.value != step.step) {
+      if (!this.vertical || ((this.vertical && !this.leaveValidateVerticalOpened) || !this.steps.toArray()[this.value - 1].canGoNext)) {
+        this.steps.toArray()[this.value - 1].open = false;
       }
       this.steps.toArray()[step.step - 1].open = true;
-      this.currentStep = step.step;
-      this.changeStep.emit(this.currentStep);
-      if (this.steps.length == this.currentStep) {
-        this.lastStep.emit(true);
+      this.value = step.step;
+      this.changeStep.emit(this.value);
+      if (this.steps.length == this.value) {
+        this.lastStep.emit();
       }
     }
   }
@@ -79,10 +103,10 @@ export class DdrStepsComponent implements OnInit, AfterViewInit {
     const index = step.step - 2;
     step.open = false;
     this.steps.toArray()[index].open = true;
-    this.currentStep = step.step - 1;
-    this.changeStep.emit(this.currentStep);
-    if (this.steps.length == this.currentStep) {
-      this.lastStep.emit(true);
+    this.value = step.step - 1;
+    this.changeStep.emit(this.value);
+    if (this.steps.length == this.value) {
+      this.lastStep.emit();
     }
   }
 
@@ -90,10 +114,10 @@ export class DdrStepsComponent implements OnInit, AfterViewInit {
     const index = step.step;
     step.open = false;
     this.steps.toArray()[index].open = true;
-    this.currentStep = step.step + 1;
-    this.changeStep.emit(this.currentStep);
-    if (this.steps.length == this.currentStep) {
-      this.lastStep.emit(true);
+    this.value = step.step + 1;
+    this.changeStep.emit(this.value);
+    if (this.steps.length == this.value) {
+      this.lastStep.emit();
     }
   }
 

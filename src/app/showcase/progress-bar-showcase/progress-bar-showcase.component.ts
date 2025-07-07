@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { DdrButtonComponent, DdrProgressBarComponent } from '@ddr-ng';
+import { DdrButtonComponent, DdrProgressBarComponent } from 'ddr-ng';
 import { BaseShowcaseComponent } from '../base-showcase/base-showcase.component';
 
 @Component({

@@ -1,6 +1,6 @@
 import { Component, EventEmitter, forwardRef, inject, Input, OnInit, Output, ViewEncapsulation } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
-import { DdrNgModelBase } from '../ddr-ngmodel-base/ddr-ngmodel-base.component';
+import { DdrControlValueAccessor } from '../ddr-ngmodel-base/ddr-control-value-accessor-base.component';
 import { DdrConstantsService } from '../../services/ddr-constants.service';
 import { DdrTooltipDirective } from '../../directives/ddr-tooltip.directive';
 import { NgClass } from '@angular/common';
@@ -11,7 +11,7 @@ import { NgClass } from '@angular/common';
     styleUrls: ['./ddr-toggle.component.scss'],
     encapsulation: ViewEncapsulation.None,
     imports: [
-        DdrNgModelBase,
+        DdrControlValueAccessor,
         DdrTooltipDirective,
         NgClass
     ],
@@ -23,7 +23,7 @@ import { NgClass } from '@angular/common';
         },
     ]
 })
-export class DdrToggleComponent extends DdrNgModelBase {
+export class DdrToggleComponent extends DdrControlValueAccessor {
 
   public readonly constants: DdrConstantsService = inject(DdrConstantsService);
 

@@ -1,29 +1,17 @@
 <div class="ddr-checkbox" [ngClass]="{'flex-row': inline,'flex-column': !inline}">
-  @if (!binary) {
-    @for (option of options; track option) {
-      <div class="ddr-checkbox__container" [ngClass]="{'me-4': inline}">
-        <div
-          class="ddr-checkbox__container--input"
-          [ngClass]="{'ddr-checkbox__container--input--active': option.selected, 'ddr-checkbox__container--input--desactive': !option.selected}"
-          (click)="onClickCheck($event, option)">
-          <i [hidden]="!option.selected" class="ddr-checkbox__container--input--icon bi bi-check" aria-hidden="true"></i>
-        </div>
-        @if (option.label) {
-          <label class="ddr-checkbox__container--label">{{option.label | ddrTranslate}}</label>
-        }
-      </div>
-    }
-  }
-  @if (binary) {
-    <div class="ddr-checkbox__container">
+  @for (option of options; track option) {
+    <div class="ddr-checkbox__container" [ngClass]="{'me-4': inline}">
       <div
         class="ddr-checkbox__container--input"
-        [ngClass]="{'ddr-checkbox__container--input--active': value, 'ddr-checkbox__container--input--desactive': !value}"
-        (click)="onClickCheckBinary($event)">
-        <i [hidden]="!value" class="ddr-checkbox__container--input--icon bi bi-check" aria-hidden="true"></i>
+        [ngClass]="{
+          'ddr-checkbox__container--input--active': option.selected, 'ddr-checkbox__container--input--desactive': !option.selected,
+          'ddr-checkbox__container--input--disabled': disabled
+        }"
+        (click)="onClickCheck($event, option)">
+        <i [hidden]="!option.selected" class="ddr-checkbox__container--input--icon bi bi-check" aria-hidden="true"></i>
       </div>
-      @if (labelBinary) {
-        <label class="ddr-checkbox__container--label">{{labelBinary}}</label>
+      @if (option.label) {
+        <label class="ddr-checkbox__container--label">{{option.label | ddrTranslate}}</label>
       }
     </div>
   }

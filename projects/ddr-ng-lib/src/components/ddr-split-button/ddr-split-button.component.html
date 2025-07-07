@@ -9,7 +9,7 @@
         [img]="actions[0]?.img"
         [size]="size"
         [disabled]="disabled"
-        (action)="sendAction($event, actions[0])">
+        (action)="sendAction(actions[0])">
       </ddr-button>
     }
     @if (showFirst && showFirstOnlyIcon) {
@@ -20,7 +20,7 @@
         [img]="actions[0]?.img"
         [size]="size"
         [disabled]="disabled"
-        (action)="sendAction($event, actions[0])">
+        (action)="sendAction(actions[0])">
       </ddr-button>
     }
     @if (actions && actions.length > 1 || !showFirst) {
@@ -33,7 +33,7 @@
         [icon]="iconShowOptions"
         [size]="size"
         [disabled]="disabled"
-        (action)="openCloseOptions($event)">
+        (action)="togglePanelOptions()">
       </ddr-button>
     }
     @if (showOptions) {
@@ -41,13 +41,12 @@
         [class]="'ddr-split-button__options ddr-split-button__options--position-' + position"
         [ngClass]="{'ddr-split-button__options--with-text': !showOnlyIcon }"
         [@overlayAnimation]="{ value: 'visible' }"
-        drClickOutside
-        [clickOutsideFirstTime]="true"
+        ddrClickOutside
         (clickOutside)="hideOptions()">
         <ul>
           @for (action of actions; track action; let first = $first) {
             @if ((first && showFirstInOptions) || !first) {
-              <li (click)="sendAction($event,action)">
+              <li (click)="sendAction(action)">
                 <div class="row">
                   @if (!showOnlyIcon) {
                     <div class="col-3 text-end">

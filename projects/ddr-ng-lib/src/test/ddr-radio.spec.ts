@@ -3,7 +3,7 @@ import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { DdrRadioComponent } from '../components/ddr-radio/ddr-radio.component';
 import { DdrTranslatePipe } from '../pipes/ddr-translate.pipe';
-import { DdrNgModelBase } from '../components/ddr-ngmodel-base/ddr-ngmodel-base.component'
+import { DdrControlValueAccessor } from '../components/ddr-ngmodel-base/ddr-control-value-accessor-base.component'
 import { HttpClientModule } from '@angular/common/http';
 
 describe('DdrRadioComponent', () => {
@@ -14,7 +14,7 @@ describe('DdrRadioComponent', () => {
         TestBed.configureTestingModule({
             imports: [
                 FormsModule,
-                DdrNgModelBase,
+                DdrControlValueAccessor,
                 DdrTranslatePipe,
                 DdrRadioComponent,
                 HttpClientModule

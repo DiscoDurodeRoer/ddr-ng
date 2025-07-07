@@ -1,13 +1,12 @@
 import { Component, inject } from '@angular/core';
 import { menuItems } from '../../menu-items/menu-items';
 import { Router, RouterLink } from '@angular/router';
-import { DdrTreeviewComponent } from '@ddr-ng';
+import { DdrTreeComponent } from 'ddr-ng';
 
 @Component({
     selector: 'app-menu',
     imports: [
-        RouterLink,
-        DdrTreeviewComponent
+        DdrTreeComponent
     ],
     templateUrl: './menu.component.html',
     styleUrl: './menu.component.scss'
