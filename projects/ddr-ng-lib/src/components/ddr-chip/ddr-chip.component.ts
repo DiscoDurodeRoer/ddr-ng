@@ -7,6 +7,7 @@ import { DdrChipValueComponent } from './components/ddr-chip-value/ddr-chip-valu
   selector: 'ddr-chip',
   templateUrl: './ddr-chip.component.html',
   styleUrls: ['./ddr-chip.component.scss'],
+  standalone: true,
   encapsulation: ViewEncapsulation.None,
   imports: [
     DdrChipValueComponent,

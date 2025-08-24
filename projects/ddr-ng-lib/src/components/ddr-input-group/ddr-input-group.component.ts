@@ -24,6 +24,7 @@ import { AutocompleteType, DdrInputError, DdrOrientatioTooltip, DdrSize, DdrType
   selector: 'ddr-input-group',
   templateUrl: './ddr-input-group.component.html',
   styleUrls: ['./ddr-input-group.component.scss'],
+  standalone: true,
   encapsulation: ViewEncapsulation.None,
   imports: [
     FormsModule,

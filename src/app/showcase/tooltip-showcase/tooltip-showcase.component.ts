@@ -6,6 +6,7 @@ import { FormsModule } from '@angular/forms';
 @Component({
     selector: 'tooltip-showcase',
     templateUrl: './tooltip-showcase.component.html',
+    standalone: true,
     imports: [
         BaseShowcaseComponent,
         DdrTooltipDirective,

@@ -10,6 +10,7 @@ import { map } from 'rxjs/internal/operators/map';
     selector: 'app-root',
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.scss'],
+    standalone: true,
     encapsulation: ViewEncapsulation.None,
     imports: [
         RouterOutlet,

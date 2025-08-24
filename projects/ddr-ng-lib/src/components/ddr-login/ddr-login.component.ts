@@ -23,6 +23,7 @@ import { DdrCardComponent } from '../ddr-card/ddr-card.component';
   selector: 'ddr-login',
   templateUrl: './ddr-login.component.html',
   styleUrls: ['./ddr-login.component.scss'],
+  standalone: true,
   encapsulation: ViewEncapsulation.None,
   imports: [
     FormsModule,

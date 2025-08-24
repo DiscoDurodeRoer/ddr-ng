@@ -10,6 +10,7 @@ import { Subscription } from 'rxjs/internal/Subscription';
   selector: 'ddr-radio',
   templateUrl: './ddr-radio.component.html',
   styleUrls: ['./ddr-radio.component.scss'],
+  standalone: true,
   encapsulation: ViewEncapsulation.None,
   imports: [
     FormsModule,

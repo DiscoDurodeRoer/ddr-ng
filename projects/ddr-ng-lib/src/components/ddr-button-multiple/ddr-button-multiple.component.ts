@@ -1,7 +1,6 @@
 import {
   Component,
   Input,
-  OnInit,
   Output,
   EventEmitter,
   ViewEncapsulation,
@@ -17,11 +16,11 @@ import { DdrTranslatePipe } from '../../pipes/ddr-translate.pipe';
 import { NgClass } from '@angular/common';
 import { DdrSize } from '../../types/types';
 
-
 @Component({
   selector: 'ddr-button-multiple',
   templateUrl: './ddr-button-multiple.component.html',
   styleUrls: ['./ddr-button-multiple.component.scss'],
+  standalone: true,
   encapsulation: ViewEncapsulation.None,
   imports: [
     DdrButtonComponent,

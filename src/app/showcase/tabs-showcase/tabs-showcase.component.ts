@@ -5,6 +5,7 @@ import { BaseShowcaseComponent } from '../base-showcase/base-showcase.component'
 @Component({
   selector: 'tabs-showcase',
   templateUrl: './tabs-showcase.component.html',
+  standalone: true,
   imports: [
     BaseShowcaseComponent,
     DdrTabsComponent,

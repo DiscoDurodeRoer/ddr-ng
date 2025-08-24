@@ -1,6 +1,6 @@
 # DDR-NG
 
-[![npm version](https://img.shields.io/badge/npm-v19.0.2-blue)](https://www.npmjs.com/package/ddr-ng/v/19.0.2)
+[![npm version](https://img.shields.io/badge/npm-v18.0.0-blue)](https://www.npmjs.com/package/ddr-ng/v/18.0.0)
 
 [![Discord](https://img.shields.io/badge/discord-ddr--ng-5865F2?logo=discord&logoColor=white)](https://discord.gg/Drgv4JRqxu)
 
@@ -14,6 +14,7 @@
 |-------|-----------------|
 |20.x.x | ✅ Full support |
 |19.x.x | ✅ Full support |
+|18.x.x | ✅ Full support |
 
 # 🚀 Getting Started with ddr-ng
 

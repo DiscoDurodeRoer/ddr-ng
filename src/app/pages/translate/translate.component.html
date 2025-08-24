@@ -7,19 +7,19 @@
 
                 <div class="row mt-3">
                     <div class="col-12">
-                        <span class="h3">{{'translate.page.p1' | ddrTranslate}}</span>
+                        <span class="h3">&#123;&#123;'translate.page.p1' | ddrTranslate&#125;&#125;</span>
                     </div>
                 </div>
 
                 <div class="row mt-3">
                     <div class="col-12">
-                        <span>{{'translate.page.p2' | ddrTranslate}}</span>
+                        <span>&#123;&#123;'translate.page.p2' | ddrTranslate&#125;&#125;</span>
                     </div>
                 </div>
 
                 <div class="row mt-3">
                     <div class="col-12">
-                        <span>{{'translate.page.p3' | ddrTranslate}}</span>
+                        <span>&#123;&#123;'translate.page.p3' | ddrTranslate&#125;&#125;</span>
                     </div>
                 </div>
 
@@ -31,7 +31,7 @@
 
                 <div class="row mt-3">
                     <div class="col-12">
-                        <span>{{'translate.page.p4' | ddrTranslate}}</span>
+                        <span>&#123;&#123;'translate.page.p4' | ddrTranslate&#125;&#125;</span>
                     </div>
                 </div>
 
@@ -51,42 +51,52 @@
 
                 <div class="row mt-3">
                     <div class="col-12">
-                        <span>{{'translate.page.p5' | ddrTranslate}}</span>
+                        <span>&#123;&#123;'translate.page.p5' | ddrTranslate&#125;&#125;</span>
                     </div>
                 </div>
 
                 <div class="row mt-3">
                     <div class="col-12">
-                        <span>{{'translate.page.p6' | ddrTranslate}}</span>
+                        <span>&#123;&#123;'translate.page.p6' | ddrTranslate&#125;&#125;</span>
                     </div>
                 </div>
 
                 <div class="row mt-3">
                     <div class="col-12">
                         <span></span>
-<pre class="language-typescript"><code class="language-typescript" ngNonBindable>import &#123; provideHttpClient &#125; from "&#64;angular/common/http";
-import &#123; ApplicationConfig, provideAppInitializer, inject &#125; from "&#64;angular/core";
-import &#123; provideRouter &#125; from "&#64;angular/router";
-import &#123; DdrTranslateService &#125; from "ddr-ng";
-import &#123; routes &#125; from "./app.routes";
+<pre class="language-typescript"><code class="language-typescript" ngNonBindable>import &#123; APP_INITIALIZER, ApplicationConfig &#125; from '&#64;angular/core';
+import &#123; provideRouter &#125; from '&#64;angular/router';
+
+import &#123; DdrTranslateService &#125; from 'ddr-ng';
+import &#123; routes &#125; from './app.routes';
+import &#123; provideHttpClient &#125; from '&#64;angular/common/http';
+import &#123; environment &#125; from '../environments/environment';
+
+export function initTranslationsFactory(translateService: DdrTranslateService) &#123;
+  return () => &#123;
+    return translateService.getData(`/i18n/`, 'en');
+  &#125;;
+&#125;
 
 export const appConfig: ApplicationConfig = &#123;
   providers: [
     provideRouter(routes),
     provideHttpClient(),
-    provideAppInitializer(() => &#123;
-      const translateService = inject(DdrTranslateService);
-      return translateService.getData(`/i18n/`, 'en');
-    &#125;),
+    &#123;
+      provide: APP_INITIALIZER,
+      useFactory: initTranslationsFactory,
+      deps: [DdrTranslateService],
+      multi: true
+    &#125;
   ]
-&#125;;
+&#125;; 
 </code></pre>
                     </div>
                 </div>
 
                 <div class="row mt-3">
                     <div class="col-12">
-                        <span>{{'translate.page.p7' | ddrTranslate}}</span>
+                        <span>&#123;&#123;'translate.page.p7' | ddrTranslate&#125;&#125;</span>
                     </div>
                 </div>
 
@@ -97,8 +107,9 @@ import &#123; DdrTranslatePipe, DdrTranslateService &#125; from 'ddr-ng';
     
 &#64;Component(&#123;
   selector: 'app-example',
-  template: '&lt;div&gt;{{'example' | ddrTranslate}}&lt;/div&gt;',
+  template: '&lt;div&gt;&#123;&#123;'example' | ddrTranslate&#125;&#125;&lt;/div&gt;',
   styleUrls: ['./example.component.scss'],
+  standalone: true,
   imports: [ DdrTranslatePipe ]
 &#125;)
 export class ExampleComponent implements OnInit &#123;
@@ -115,13 +126,13 @@ export class ExampleComponent implements OnInit &#123;
 
                 <div class="row mt-3">
                     <div class="col-12">
-                        <span class="h3">{{'translate.page.p8' | ddrTranslate}}</span>
+                        <span class="h3">&#123;&#123;'translate.page.p8' | ddrTranslate&#125;&#125;</span>
                     </div>
                 </div>
 
                 <div class="row mt-3">
                     <div class="col-12">
-                        <span>{{'translate.page.p9' | ddrTranslate}}</span>
+                        <span>&#123;&#123;'translate.page.p9' | ddrTranslate&#125;&#125;</span>
                     </div>
                 </div>
 
@@ -139,6 +150,7 @@ import &#123; DdrButtonComponent, DdrTranslateService &#125; from 'ddr-ng';
     &lt;/div&gt;
     `,
   styleUrls: ['./example.component.scss'],
+  standalone: true,
   imports: [ DdrButtonComponent ]
 &#125;)
 export class ExampleComponent &#123;

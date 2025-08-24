@@ -6,6 +6,7 @@ declare var Prism: any;
     selector: 'app-get-started',
     templateUrl: './get-started.component.html',
     styleUrls: ['./get-started.component.scss'],
+    standalone: true,
     imports: [
         DdrCardComponent,
         DdrButtonComponent,

@@ -5,6 +5,7 @@ import { Component, Input, ViewEncapsulation } from '@angular/core';
   selector: 'ddr-card',
   templateUrl: './ddr-card.component.html',
   styleUrls: ['./ddr-card.component.scss'],
+  standalone: true,
   encapsulation: ViewEncapsulation.None,
   imports: [
     NgClass,

@@ -14,6 +14,7 @@ import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'clipboard-showcase',
   templateUrl: './clipboard-showcase.component.html',
+  standalone: true,
   imports: [
     BaseShowcaseComponent,
     DdrClipboardDirective,

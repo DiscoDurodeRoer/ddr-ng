@@ -9,6 +9,7 @@ import { NgClass, NgTemplateOutlet } from '@angular/common';
   selector: 'ddr-tree',
   templateUrl: './ddr-tree.component.html',
   styleUrls: ['./ddr-tree.component.scss'],
+  standalone: true,
   imports: [
     DdrButtonSplitComponent,
     DdrTranslatePipe,

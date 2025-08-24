@@ -22,6 +22,7 @@ import { DdrSetFocusDirective } from '../../directives/ddr-set-focus.directive';
   selector: 'ddr-input',
   templateUrl: './ddr-input.component.html',
   styleUrls: ['./ddr-input.component.scss'],
+  standalone: true,
   encapsulation: ViewEncapsulation.None,
   imports: [
     FormsModule,
@@ -109,7 +110,7 @@ export class DdrInputComponent extends DdrControlValueAccessor {
     this.clickInput.emit($event);
   }
 
-  onFocusLost(){
+  onFocusLost() {
     this.focusLost.emit();
   }
 

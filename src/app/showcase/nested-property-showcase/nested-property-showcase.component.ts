@@ -5,6 +5,7 @@ import { DdrNestedPropertyPipe, DdrTranslatePipe } from 'ddr-ng';
 @Component({
   selector: 'nested-property-showcase',
   templateUrl: './nested-property-showcase.component.html',
+  standalone: true,
   imports: [
     BaseShowcaseComponent,
     DdrNestedPropertyPipe,

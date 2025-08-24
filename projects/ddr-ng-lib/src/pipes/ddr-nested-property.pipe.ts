@@ -1,7 +1,8 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
-  name: 'ddrNestedProperty'
+  name: 'ddrNestedProperty',
+  standalone: true
 })
 export class DdrNestedPropertyPipe implements PipeTransform {
 

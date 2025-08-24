@@ -2,7 +2,8 @@ import { inject, Pipe, PipeTransform } from '@angular/core';
 import { DomSanitizer, SafeHtml, SafeResourceUrl, SafeStyle, SafeUrl } from '@angular/platform-browser';
 
 @Pipe({
-  name: 'ddrSafe'
+  name: 'ddrSafe',
+  standalone: true
 })
 export class DdrSafePipe implements PipeTransform {
 

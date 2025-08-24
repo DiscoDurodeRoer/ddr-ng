@@ -6,6 +6,7 @@ declare var Prism: any;
   selector: 'themes',
   templateUrl: './themes.component.html',
   styleUrl: './themes.component.scss',
+  standalone: true,
   imports: [
     DdrCardComponent,
     DdrTranslatePipe

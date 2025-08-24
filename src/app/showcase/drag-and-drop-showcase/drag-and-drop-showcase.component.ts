@@ -6,6 +6,7 @@ import { BaseShowcaseComponent } from '../base-showcase/base-showcase.component'
   selector: 'drag-and-drop-showcase',
   templateUrl: './drag-and-drop-showcase.component.html',
   styleUrls: ['./drag-and-drop-showcase.component.scss'],
+  standalone: true,
   imports: [
     BaseShowcaseComponent,
     DdrDragDropDirective,

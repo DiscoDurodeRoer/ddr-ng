@@ -13,6 +13,7 @@ import { FormsModule } from '@angular/forms';
   selector: 'input-group-showcase',
   templateUrl: './input-group-showcase.component.html',
   styleUrls: ['./input-group-showcase.component.scss'],
+  standalone: true,
   imports: [
     BaseShowcaseComponent,
     DdrInputGroupComponent,

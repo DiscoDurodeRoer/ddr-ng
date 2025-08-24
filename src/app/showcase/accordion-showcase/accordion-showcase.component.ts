@@ -5,6 +5,7 @@ import { BaseShowcaseComponent } from '../base-showcase/base-showcase.component'
 @Component({
     selector: 'accordion-showcase',
     templateUrl: './accordion-showcase.component.html',
+    standalone: true,
     imports: [
         BaseShowcaseComponent,
         DdrAccordionComponent,

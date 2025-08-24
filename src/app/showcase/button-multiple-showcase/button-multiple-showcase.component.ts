@@ -6,6 +6,7 @@ import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'button-multiple-showcase',
   templateUrl: './button-multiple-showcase.component.html',
+  standalone: true,
   imports: [
     BaseShowcaseComponent,
     DdrButtonMultipleComponent,

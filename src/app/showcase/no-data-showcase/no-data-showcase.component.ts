@@ -12,6 +12,7 @@ import { FormsModule } from '@angular/forms';
 @Component({
     selector: 'no-data-showcase',
     templateUrl: './no-data-showcase.component.html',
+    standalone: true,
     imports: [
         BaseShowcaseComponent,
         DdrNoDataComponent,

@@ -14,6 +14,7 @@ import { Subscription } from 'rxjs/internal/Subscription';
   selector: 'ddr-dropdown-multiple',
   templateUrl: './ddr-dropdown-multiple.component.html',
   styleUrl: './ddr-dropdown-multiple.component.scss',
+  standalone: true,
   imports: [
     DdrDropdownComponent,
     DdrCheckboxBinaryComponent,

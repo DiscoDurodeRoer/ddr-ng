@@ -14,6 +14,7 @@ import { BaseShowcaseComponent } from '../base-showcase/base-showcase.component'
   selector: 'tree-showcase',
   styleUrl: './tree-showcase.component.scss',
   templateUrl: './tree-showcase.component.html',
+  standalone: true,
   imports: [
     BaseShowcaseComponent,
     DdrTreeComponent,

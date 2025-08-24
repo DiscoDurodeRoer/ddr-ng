@@ -12,6 +12,7 @@ import { BaseShowcaseComponent } from '../base-showcase/base-showcase.component'
 @Component({
   selector: 'login-showcase',
   templateUrl: './login-showcase.component.html',
+  standalone: true,
   imports: [
     BaseShowcaseComponent,
     DdrLoginComponent,

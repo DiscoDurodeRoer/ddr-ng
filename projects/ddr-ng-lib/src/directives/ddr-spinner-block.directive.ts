@@ -2,7 +2,8 @@ import { Directive, Input, ViewContainerRef, ComponentRef, OnChanges, SimpleChan
 import { DdrSpinnerComponent } from '../components/ddr-spinner/ddr-spinner.component';
 
 @Directive({
-  selector: '[ddrSpinnerBlock]'
+  selector: '[ddrSpinnerBlock]',
+  standalone: true
 })
 export class DdrSpinnerBlockDirective implements OnChanges {
 

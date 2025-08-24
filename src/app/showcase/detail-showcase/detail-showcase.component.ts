@@ -16,6 +16,7 @@ import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'detail-showcase',
   templateUrl: './detail-showcase.component.html',
+  standalone: true,
   imports: [
     BaseShowcaseComponent,
     DdrDetailComponent,

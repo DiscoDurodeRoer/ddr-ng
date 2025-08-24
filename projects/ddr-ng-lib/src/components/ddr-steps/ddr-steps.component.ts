@@ -12,6 +12,7 @@ import { Subscription } from 'rxjs/internal/Subscription';
   selector: 'ddr-steps',
   templateUrl: './ddr-steps.component.html',
   styleUrls: ['./ddr-steps.component.scss'],
+  standalone: true,
   encapsulation: ViewEncapsulation.None,
   imports: [
     DdrButtonComponent,

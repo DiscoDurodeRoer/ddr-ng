@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, EventEmitter, forwardRef, Input, OnChanges, OnDestroy, OnInit, Output, SimpleChanges, ViewEncapsulation } from '@angular/core';
+import { AfterViewInit, Component, EventEmitter, forwardRef, Input, OnChanges, OnDestroy, Output, SimpleChanges, ViewEncapsulation } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { DdrControlValueAccessor } from '../ddr-ngmodel-base/ddr-control-value-accessor-base.component';
 import { DdrSelectItem } from '../../common/ddr-select-item.model';
@@ -9,6 +9,7 @@ import { Subscription } from 'rxjs/internal/Subscription';
   selector: 'ddr-checkbox-binary',
   templateUrl: './ddr-checkbox-binary.component.html',
   styleUrl: './ddr-checkbox-binary.component.scss',
+  standalone: true,
   encapsulation: ViewEncapsulation.None,
   imports: [
     DdrCheckboxComponent

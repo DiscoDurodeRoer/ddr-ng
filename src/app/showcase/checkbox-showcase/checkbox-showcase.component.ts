@@ -8,6 +8,7 @@ import { ProgrammingLanguage } from './bean/programming-language';
 @Component({
   selector: 'checkbox-showcase',
   templateUrl: './checkbox-showcase.component.html',
+  standalone: true,
   imports: [
     BaseShowcaseComponent,
     DdrCheckboxComponent,

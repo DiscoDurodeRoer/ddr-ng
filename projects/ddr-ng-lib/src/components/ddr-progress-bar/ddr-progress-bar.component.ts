@@ -5,6 +5,7 @@ import { Component, Input, ViewEncapsulation } from '@angular/core';
   selector: 'ddr-progress-bar',
   templateUrl: './ddr-progress-bar.component.html',
   styleUrls: ['./ddr-progress-bar.component.scss'],
+  standalone: true,
   encapsulation: ViewEncapsulation.None,
   imports: [
     NgClass,

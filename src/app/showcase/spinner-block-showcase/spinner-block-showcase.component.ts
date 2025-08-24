@@ -5,6 +5,7 @@ import { DdrSpinnerBlockDirective, DdrButtonComponent, DdrCardComponent, DdrTran
 @Component({
   selector: 'spinner-block',
   templateUrl: './spinner-block-showcase.component.html',
+  standalone: true,
   imports: [
     BaseShowcaseComponent,
     DdrSpinnerBlockDirective,

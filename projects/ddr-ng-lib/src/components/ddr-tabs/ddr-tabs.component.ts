@@ -6,6 +6,7 @@ import { NgClass, NgTemplateOutlet } from '@angular/common';
   selector: 'ddr-tabs',
   templateUrl: './ddr-tabs.component.html',
   styleUrls: ['./ddr-tabs.component.scss'],
+  standalone: true,
   encapsulation: ViewEncapsulation.None,
   imports: [
     DdrTabItemComponent,

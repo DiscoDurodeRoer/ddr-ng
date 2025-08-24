@@ -10,6 +10,7 @@ import { NgTemplateOutlet } from '@angular/common';
   selector: 'ddr-input-password',
   templateUrl: './ddr-input-password.component.html',
   styleUrls: ['./ddr-input-password.component.scss'],
+  standalone: true,
   encapsulation: ViewEncapsulation.None,
   imports: [
     DdrInputGroupComponent,

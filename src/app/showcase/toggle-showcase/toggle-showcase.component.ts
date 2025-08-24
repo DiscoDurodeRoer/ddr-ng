@@ -6,6 +6,7 @@ import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'toggle-showcase',
   templateUrl: './toggle-showcase.component.html',
+  standalone: true,
   imports: [
     BaseShowcaseComponent,
     DdrToggleComponent,

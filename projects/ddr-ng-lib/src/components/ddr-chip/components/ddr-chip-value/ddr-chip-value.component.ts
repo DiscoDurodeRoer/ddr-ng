@@ -6,6 +6,7 @@ import { Component, EventEmitter, Input, ViewEncapsulation, Output } from '@angu
   templateUrl: './ddr-chip-value.component.html',
   styleUrls: ['./ddr-chip-value.component.scss'],
   encapsulation: ViewEncapsulation.None,
+  standalone: true,
   imports: [
     NgClass
   ]

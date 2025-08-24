@@ -5,6 +5,7 @@ import { BaseShowcaseComponent } from '../base-showcase/base-showcase.component'
 @Component({
   selector: 'progress-bar-showcase',
   templateUrl: './progress-bar-showcase.component.html',
+  standalone: true,
   imports: [
     BaseShowcaseComponent,
     DdrProgressBarComponent,

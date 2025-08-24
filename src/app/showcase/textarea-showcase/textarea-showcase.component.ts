@@ -11,6 +11,7 @@ import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'textarea-showcase',
   templateUrl: './textarea-showcase.component.html',
+  standalone: true,
   imports: [
     BaseShowcaseComponent,
     DdrTextareaComponent,

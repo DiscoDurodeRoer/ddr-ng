@@ -3,7 +3,8 @@ import { ControlValueAccessor } from '@angular/forms';
 import { Subject } from 'rxjs';
 
 @Component({
-  template: ''
+  template: '',
+  standalone: true
 })
 export class DdrControlValueAccessor implements ControlValueAccessor {
 

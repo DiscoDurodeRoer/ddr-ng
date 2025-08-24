@@ -8,6 +8,7 @@ import { DdrBadgePillComponent } from '../ddr-badge-pill/ddr-badge-pill.componen
   selector: 'ddr-badge-notification',
   templateUrl: './ddr-badge-notification.component.html',
   styleUrls: ['./ddr-badge-notification.component.scss'],
+  standalone: true,
   encapsulation: ViewEncapsulation.None,
   imports: [
     DdrBadgePillComponent,

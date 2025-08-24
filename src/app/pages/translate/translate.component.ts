@@ -7,6 +7,7 @@ import 'prismjs/components/prism-typescript';
   selector: 'app-translate',
   templateUrl: './translate.component.html',
   styleUrl: './translate.component.scss',
+  standalone: true,
   imports: [
     DdrCardComponent,
     DdrTranslatePipe

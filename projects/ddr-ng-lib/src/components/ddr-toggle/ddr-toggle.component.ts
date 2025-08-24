@@ -10,6 +10,7 @@ import { DdrOrientatioTooltip, DdrSize } from '../../types/types';
   selector: 'ddr-toggle',
   templateUrl: './ddr-toggle.component.html',
   styleUrls: ['./ddr-toggle.component.scss'],
+  standalone: true,
   encapsulation: ViewEncapsulation.None,
   imports: [
     DdrControlValueAccessor,

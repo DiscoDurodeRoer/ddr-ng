@@ -10,6 +10,7 @@ import { DdrDetailService } from './ddr-detail.service';
     selector: 'ddr-detail',
     templateUrl: './ddr-detail.component.html',
     styleUrls: ['./ddr-detail.component.scss'],
+    standalone: true,
     encapsulation: ViewEncapsulation.None,
     imports: [
         NgTemplateOutlet

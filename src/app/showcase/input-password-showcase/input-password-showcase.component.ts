@@ -2,7 +2,7 @@ import { Component, inject } from '@angular/core';
 import {
   DdrInputPasswordComponent,
   DdrToastService,
-  DdrTranslatePipe, 
+  DdrTranslatePipe,
   DdrTranslateService
 } from 'ddr-ng';
 import { BaseShowcaseComponent } from '../base-showcase/base-showcase.component';
@@ -11,6 +11,7 @@ import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'input-password-showcase',
   templateUrl: './input-password-showcase.component.html',
+  standalone: true,
   imports: [
     BaseShowcaseComponent,
     DdrInputPasswordComponent,

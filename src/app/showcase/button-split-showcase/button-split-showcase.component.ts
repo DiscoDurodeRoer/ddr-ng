@@ -15,6 +15,7 @@ import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'button-split-showcase',
   templateUrl: './button-split-showcase.component.html',
+  standalone: true,
   imports: [
     BaseShowcaseComponent,
     DdrButtonSplitComponent,

@@ -14,6 +14,7 @@ import { FormsModule } from '@angular/forms';
   selector: 'click-outside-showcase',
   templateUrl: './click-outside-showcase.component.html',
   styleUrls: ['./click-outside-showcase.component.scss'],
+  standalone: true,
   imports: [
     BaseShowcaseComponent,
     DdrClickOutsideDirective,

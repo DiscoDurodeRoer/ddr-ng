@@ -1,13 +1,13 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { 
-  DdrButtonComponent, 
-  DdrCardComponent, 
-  DdrInputComponent, 
-  DdrLoopNumberPipe, 
-  DdrRadioComponent, 
-  DdrSelectItem, 
-  DdrSkeletonDirective, 
+import {
+  DdrButtonComponent,
+  DdrCardComponent,
+  DdrInputComponent,
+  DdrLoopNumberPipe,
+  DdrRadioComponent,
+  DdrSelectItem,
+  DdrSkeletonDirective,
   DdrTranslatePipe
 } from 'ddr-ng';
 import { BaseShowcaseComponent } from '../base-showcase/base-showcase.component';
@@ -15,6 +15,7 @@ import { BaseShowcaseComponent } from '../base-showcase/base-showcase.component'
 @Component({
   selector: 'skeleton-showcase',
   templateUrl: './skeleton-showcase.component.html',
+  standalone: true,
   imports: [
     BaseShowcaseComponent,
     DdrCardComponent,

@@ -16,6 +16,7 @@ import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'table-showcase',
   templateUrl: './table-showcase.component.html',
+  standalone: true,
   imports: [
     BaseShowcaseComponent,
     DdrTableComponent,

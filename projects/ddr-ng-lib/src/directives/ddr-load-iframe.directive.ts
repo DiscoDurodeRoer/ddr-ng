@@ -1,7 +1,8 @@
 import { Directive, EventEmitter, Output, HostListener, ElementRef, inject } from '@angular/core';
 
 @Directive({
-  selector: '[ddrLoadIframe]'
+  selector: '[ddrLoadIframe]',
+  standalone: true
 })
 export class DdrLoadIframeDirective {
 

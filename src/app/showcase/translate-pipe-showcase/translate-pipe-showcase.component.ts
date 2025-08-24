@@ -5,6 +5,7 @@ import { BaseShowcaseComponent } from '../base-showcase/base-showcase.component'
 @Component({
   selector: 'translate-showcase',
   templateUrl: './translate-pipe-showcase.component.html',
+  standalone: true,
   imports: [
     BaseShowcaseComponent,
     DdrTranslatePipe

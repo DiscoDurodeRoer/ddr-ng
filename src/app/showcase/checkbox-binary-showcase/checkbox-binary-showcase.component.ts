@@ -11,6 +11,7 @@ import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'checkbox-binary-showcase',
   templateUrl: './checkbox-binary-showcase.component.html',
+  standalone: true,
   imports: [
     BaseShowcaseComponent,
     DdrCheckboxBinaryComponent,

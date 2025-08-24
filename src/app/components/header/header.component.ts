@@ -12,6 +12,7 @@ import { environment } from '../../../environments/environment';
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss',
+  standalone: true,
   imports: [
     DdrDropdownComponent,
     DdrButtonComponent,
@@ -58,7 +59,7 @@ export class HeaderComponent implements OnInit {
   ];
   public themeActual: DdrTheme = 'ddr-blue';
 
-  public version: string = '19.0.2';
+  public version: string = '18.0.0';
   public versions: DdrSelectItem<string>[] = [];
   public components: DdrSelectItem<ItemSearch>[] = []
   public search: string = '';

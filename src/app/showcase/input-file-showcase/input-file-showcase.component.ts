@@ -5,6 +5,7 @@ import { DdrFileHandle, DdrInputFileComponent, DdrToastService, DdrTranslatePipe
 @Component({
   selector: 'input-file-showcase',
   templateUrl: './input-file-showcase.component.html',
+  standalone: true,
   imports: [
     BaseShowcaseComponent,
     DdrInputFileComponent,

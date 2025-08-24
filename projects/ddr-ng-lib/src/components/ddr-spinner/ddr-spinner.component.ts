@@ -5,6 +5,7 @@ import { NgClass } from '@angular/common';
   selector: 'ddr-spinner',
   templateUrl: './ddr-spinner.component.html',
   styleUrls: ['./ddr-spinner.component.scss'],
+  standalone: true,
   encapsulation: ViewEncapsulation.None,
   imports: [
     NgClass

@@ -1175,7 +1175,7 @@
     "get.started.p6": "We will add the following in styles:",
     "get.started.p7": "If you want to have all available themes, you can add them all in styles",
     "get.started.p8": "In the main container, you must add the class of the theme being used",
-    "get.started.p9": "In app.config, it is recommended to add provideHttpClient() in providers",
+    "get.started.p9": "In app.config, it is recommended to add provideHttpClient() and provideAnimations() in providers",
     "get.started.p10": "Now you can use everything exported from the library, check the showcases for examples.",
     "get.started.copy": "Copy",
     "get.started.copy.text": "Code copied",
@@ -1220,6 +1220,7 @@
     "header.discord": "Discord",
     "header.translate": "Translate",
     "header.changelog": "Changelog",
+    "18.0.0.change.1": "- Angular 18 support",
     "19.0.2.change.1": "- Angular 19 support",
     "20.0.2.change.1": "- Angular 20 support"
 }

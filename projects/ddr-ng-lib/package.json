@@ -1,6 +1,6 @@
 {
   "name": "ddr-ng",
-  "version": "19.0.2",
+  "version": "18.0.0",
   "description": "Angular component library by Disco Duro de Roer",
   "author": {
     "name": "Fernando Ureña",
@@ -15,11 +15,11 @@
     }
   ],
   "peerDependencies": {
-    "@angular/animations": "^19.0.0",
-    "@angular/cdk": "^19.0.0",
-    "@angular/common": "^19.0.0",
-    "@angular/core": "^19.0.0",
-    "@angular/forms": "^19.0.0"
+    "@angular/animations": "^18.0.0",
+    "@angular/cdk": "^18.0.0",
+    "@angular/common": "^18.0.0",
+    "@angular/core": "^18.0.0",
+    "@angular/forms": "^18.0.0"
   },
   "dependencies": {
     "bootstrap": "^5.3.2",

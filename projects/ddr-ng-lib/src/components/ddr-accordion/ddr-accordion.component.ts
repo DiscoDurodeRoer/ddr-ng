@@ -7,6 +7,7 @@ import { NgClass } from '@angular/common';
   selector: 'ddr-accordion',
   templateUrl: './ddr-accordion.component.html',
   styleUrls: ['./ddr-accordion.component.scss'],
+  standalone: true,
   encapsulation: ViewEncapsulation.None,
   imports: [
     DdrButtonComponent,

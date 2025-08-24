@@ -5,6 +5,7 @@ import { BaseShowcaseComponent } from '../base-showcase/base-showcase.component'
 @Component({
     selector: 'badge-notification-showcase',
     templateUrl: './badge-notification-showcase.component.html',
+    standalone: true,
     imports: [
         BaseShowcaseComponent,
         DdrButtonComponent,

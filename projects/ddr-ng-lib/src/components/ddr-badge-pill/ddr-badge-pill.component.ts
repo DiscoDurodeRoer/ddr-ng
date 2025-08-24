@@ -5,15 +5,16 @@ import { DdrSize, DdrStatusBadge } from '../../types/types';
 
 
 @Component({
-    selector: 'ddr-badge-pill',
-    templateUrl: './ddr-badge-pill.component.html',
-    styleUrls: ['./ddr-badge-pill.component.scss'],
-    encapsulation: ViewEncapsulation.None,
-    imports: [
-        NgClass,
-        NgStyle,
-        NgTemplateOutlet
-    ]
+  selector: 'ddr-badge-pill',
+  templateUrl: './ddr-badge-pill.component.html',
+  styleUrls: ['./ddr-badge-pill.component.scss'],
+  standalone: true,
+  encapsulation: ViewEncapsulation.None,
+  imports: [
+    NgClass,
+    NgStyle,
+    NgTemplateOutlet
+  ]
 })
 export class DdrBadgePillComponent {
 
@@ -26,12 +27,12 @@ export class DdrBadgePillComponent {
   @Input() canClick: boolean = true;
   @Input() size: DdrSize = this.constants.SIZE.MEDIUM;
   @ContentChild("templateContent", { static: false }) templateContentOutside?: TemplateRef<any>;
-  
+
   @Output() clickBadge: EventEmitter<MouseEvent> = new EventEmitter<MouseEvent>();
 
-  onclickBadge($event: MouseEvent){
+  onclickBadge($event: MouseEvent) {
     if (this.canClick) {
-      this.clickBadge.emit($event); 
+      this.clickBadge.emit($event);
     }
   }
 

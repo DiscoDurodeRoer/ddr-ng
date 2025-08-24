@@ -9,6 +9,7 @@ import { DdrOrientationToast } from '../../types/types';
   selector: 'ddr-toast',
   templateUrl: './ddr-toast.component.html',
   styleUrls: ['./ddr-toast.component.scss'],
+  standalone: true,
   encapsulation: ViewEncapsulation.None,
   imports: [
     NgClass,

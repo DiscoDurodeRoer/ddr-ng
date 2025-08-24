@@ -10,6 +10,7 @@ import { DdrOrientatioTooltip } from '../../types/types';
   selector: 'ddr-textarea',
   templateUrl: './ddr-textarea.component.html',
   styleUrls: ['./ddr-textarea.component.scss'],
+  standalone: true,
   encapsulation: ViewEncapsulation.None,
   imports: [
     FormsModule,

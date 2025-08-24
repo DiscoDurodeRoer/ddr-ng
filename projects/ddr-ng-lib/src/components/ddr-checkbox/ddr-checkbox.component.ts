@@ -10,6 +10,7 @@ import { Subscription } from 'rxjs';
   selector: 'ddr-checkbox',
   templateUrl: './ddr-checkbox.component.html',
   styleUrls: ['./ddr-checkbox.component.scss'],
+  standalone: true,
   encapsulation: ViewEncapsulation.None,
   imports: [
     FormsModule,

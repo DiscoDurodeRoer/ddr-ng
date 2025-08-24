@@ -14,6 +14,7 @@ import { Person } from './bean/person';
 @Component({
   selector: 'steps-showcase',
   templateUrl: './steps-showcase.component.html',
+  standalone: true,
   imports: [
     BaseShowcaseComponent,
     DdrStepsComponent,

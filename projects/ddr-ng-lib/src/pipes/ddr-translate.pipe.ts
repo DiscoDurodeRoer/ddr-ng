@@ -3,7 +3,8 @@ import { DdrTranslateService } from '../services/ddr-translate.service';
 
 @Pipe({
   name: 'ddrTranslate',
-  pure: false
+  pure: false,
+  standalone: true
 })
 export class DdrTranslatePipe implements PipeTransform {
 

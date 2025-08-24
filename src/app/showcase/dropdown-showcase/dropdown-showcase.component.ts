@@ -19,6 +19,7 @@ import { ProgrammingLanguage } from './bean/programming-language';
   selector: 'dropdown-showcase',
   templateUrl: './dropdown-showcase.component.html',
   styleUrls: ['./dropdown-showcase.component.scss'],
+  standalone: true,
   imports: [
     BaseShowcaseComponent,
     DdrButtonComponent,

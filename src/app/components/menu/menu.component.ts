@@ -7,6 +7,7 @@ import { DdrCardComponent, DdrTreeComponent } from 'ddr-ng';
   selector: 'app-menu',
   templateUrl: './menu.component.html',
   styleUrl: './menu.component.scss',
+  standalone: true,
   imports: [
     DdrTreeComponent,
     DdrCardComponent

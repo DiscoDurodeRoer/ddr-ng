@@ -20,6 +20,7 @@ import { Subscription } from 'rxjs/internal/Subscription';
   selector: 'ddr-dropdown',
   templateUrl: './ddr-dropdown.component.html',
   styleUrls: ['./ddr-dropdown.component.scss'],
+  standalone: true,
   encapsulation: ViewEncapsulation.None,
   imports: [
     FormsModule,

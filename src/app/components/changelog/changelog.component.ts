@@ -9,6 +9,7 @@ import { FormsModule } from '@angular/forms';
     selector: 'app-changelog',
     templateUrl: './changelog.component.html',
     styleUrls: ['./changelog.component.scss'],
+    standalone: true,
     imports: [
         DdrTreeComponent,
         DdrDropdownComponent,

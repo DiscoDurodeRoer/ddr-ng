@@ -15,6 +15,7 @@ import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'toast-showcase',
   templateUrl: './toast-showcase.component.html',
+  standalone: true,
   imports: [
     BaseShowcaseComponent,
     DdrButtonMultipleComponent,

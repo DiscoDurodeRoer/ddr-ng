@@ -7,6 +7,7 @@ import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'chip-showcase',
   templateUrl: './chip-showcase.component.html',
+  standalone: true,
   imports: [
     BaseShowcaseComponent,
     DdrChipComponent,

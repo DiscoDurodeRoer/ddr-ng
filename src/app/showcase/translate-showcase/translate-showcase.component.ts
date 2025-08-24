@@ -10,6 +10,7 @@ import {
 @Component({
   selector: 'translate-showcase',
   templateUrl: './translate-showcase.component.html',
+  standalone: true,
   imports: [
     BaseShowcaseComponent,
     DdrButtonComponent,

@@ -1,5 +1,5 @@
 import { Component, EventEmitter, forwardRef, inject, Input, Output, ViewEncapsulation } from '@angular/core';
-import { DdrOrientation, DdrOrientatioTooltip } from '../../types/types';
+import { DdrOrientatioTooltip } from '../../types/types';
 import { DdrConstantsService } from '../../services/ddr-constants.service';
 import { DdrInputGroupComponent } from '../ddr-input-group/ddr-input-group.component';
 import { FormsModule, NG_VALUE_ACCESSOR } from '@angular/forms';
@@ -11,6 +11,7 @@ import { DomSanitizer } from '@angular/platform-browser';
   selector: 'ddr-input-file',
   templateUrl: './ddr-input-file.component.html',
   styleUrl: './ddr-input-file.component.scss',
+  standalone: true,
   encapsulation: ViewEncapsulation.None,
   imports: [
     DdrInputGroupComponent,

@@ -23,6 +23,7 @@ import { DdrSize } from '../../types/types';
   selector: 'ddr-modal',
   templateUrl: './ddr-modal.component.html',
   styleUrls: ['./ddr-modal.component.scss'],
+  standalone: true,
   encapsulation: ViewEncapsulation.None,
   imports: [
     FormsModule,

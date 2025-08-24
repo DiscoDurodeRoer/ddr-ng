@@ -12,7 +12,8 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { DdrFileHandle } from "../common/ddr-file-handler.model";
 
 @Directive({
-  selector: "[ddrDragDrop]"
+  selector: "[ddrDragDrop]",
+  standalone: true
 })
 export class DdrDragDropDirective {
 

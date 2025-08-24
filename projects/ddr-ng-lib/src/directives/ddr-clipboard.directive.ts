@@ -1,7 +1,8 @@
 import { Directive, ElementRef, inject, Input, OnDestroy, OnInit, Renderer2 } from '@angular/core';
 
 @Directive({
-  selector: '[ddrClipboard]'
+  selector: '[ddrClipboard]',
+  standalone: true
 })
 export class DdrClipboardDirective implements OnInit, OnDestroy  {
 

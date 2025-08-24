@@ -1,7 +1,8 @@
 import { Directive, ElementRef, EventEmitter, HostListener, inject, Input, OnChanges, Output, Renderer2, SimpleChanges } from '@angular/core';
 
 @Directive({
-  selector: '[ddrSetFocus]'
+  selector: '[ddrSetFocus]',
+  standalone: true
 })
 export class DdrSetFocusDirective implements OnChanges {
 

@@ -8,6 +8,7 @@ declare var Prism: any;
   selector: 'base-showcase',
   templateUrl: './base-showcase.component.html',
   styleUrls: ['./base-showcase.component.scss'],
+  standalone: true,
   imports: [
     DdrAccordionComponent,
     DdrTabsComponent,

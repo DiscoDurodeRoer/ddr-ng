@@ -5,6 +5,7 @@ import { BaseShowcaseComponent } from '../base-showcase/base-showcase.component'
 @Component({
   selector: 'load-iframe-showcase',
   templateUrl: './load-iframe-showcase.component.html',
+  standalone: true,
   imports: [
     BaseShowcaseComponent,
     DdrLoadIframeDirective,
@@ -21,7 +22,7 @@ export class LoadIframeShowcaseComponent {
 
   load() {
     this.ddrToastService.addSuccessMessage(
-      this.ddrTranslateService.getTranslate('success'), 
+      this.ddrTranslateService.getTranslate('success'),
       this.ddrTranslateService.getTranslate('load.iframe.success')
     );
   }

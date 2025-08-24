@@ -12,6 +12,7 @@ import { DdrOrientationButtonSplit, DdrSize } from '../../types/types';
   selector: 'ddr-button-split',
   templateUrl: './ddr-button-split.component.html',
   styleUrls: ['./ddr-button-split.component.scss'],
+  standalone: true,
   encapsulation: ViewEncapsulation.None,
   imports: [
     DdrButtonComponent,

@@ -14,6 +14,7 @@ import { ProgrammingLanguage } from './bean/programming-language';
 @Component({
   selector: 'radio-showcase',
   templateUrl: './radio-showcase.component.html',
+  standalone: true,
   imports: [
     BaseShowcaseComponent,
     DdrRadioComponent,

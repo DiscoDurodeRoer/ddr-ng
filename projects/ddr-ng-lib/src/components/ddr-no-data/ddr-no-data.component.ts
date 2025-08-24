@@ -8,6 +8,7 @@ import { DdrSize } from '../../types/types';
   selector: 'ddr-no-data',
   templateUrl: './ddr-no-data.component.html',
   styleUrls: ['./ddr-no-data.component.scss'],
+  standalone: true,
   imports: [
     DdrTranslatePipe,
     NgClass

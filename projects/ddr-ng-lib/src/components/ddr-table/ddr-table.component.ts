@@ -32,6 +32,7 @@ import { DdrNestedPropertyPipe } from '../../pipes/ddr-nested-property.pipe';
   selector: 'ddr-table',
   templateUrl: './ddr-table.component.html',
   styleUrls: ['./ddr-table.component.scss'],
+  standalone: true,
   encapsulation: ViewEncapsulation.None,
   imports: [
     NgxPaginationModule,

@@ -2,7 +2,8 @@ import { Pipe, PipeTransform } from '@angular/core';
 import { DdrLoopNumberParams } from './bean/ddr-loop-number-params';
 
 @Pipe({
-  name: 'ddrLoopNumber'
+  name: 'ddrLoopNumber',
+  standalone: true
 })
 export class DdrLoopNumberPipe implements PipeTransform {
 
