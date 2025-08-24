@@ -174,6 +174,7 @@ import { BaseShowcaseComponent } from '../base-showcase/base-showcase.component'
     selector: 'accordion-showcase',
     templateUrl: './accordion-showcase.component.html',
     styleUrls: ['./accordion-showcase.component.scss'],
+    standalone: true,
     imports: [
         BaseShowcaseComponent,
         DdrAccordionComponent,
@@ -435,7 +436,8 @@ import { BaseShowcaseComponent } from '../base-showcase/base-showcase.component'
   selector: 'badge-showcase',
   templateUrl: './badge-showcase.component.html',
   styleUrls: ['./badge-showcase.component.scss'],
-  encapsulation: ViewEncapsulation.None,
+  encapsulation: ViewEncapsulation.None,,
+  standalone: true,
   imports: [
     BaseShowcaseComponent,
     DdrBadgePillComponent,
@@ -647,6 +649,7 @@ import { FormsModule } from '@angular/forms';
   selector: 'detail-showcase',
   templateUrl: './detail-showcase.component.html',
   styleUrls: ['./detail-showcase.component.scss'],
+  standalone: true,
   imports: [
     BaseShowcaseComponent,
     DdrDetailComponent,
@@ -961,6 +964,7 @@ import { BaseShowcaseComponent } from '../base-showcase/base-showcase.component'
     selector: 'card-showcase',
     templateUrl: './card-showcase.component.html',
     styleUrls: ['./card-showcase.component.scss'],
+    standalone: true,
     imports: [
         BaseShowcaseComponent,
         DdrCardComponent,
@@ -1244,6 +1248,7 @@ import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'chip-showcase',
   templateUrl: './chip-showcase.component.html',
+  standalone: true,
   imports: [
     BaseShowcaseComponent,
     DdrChipComponent,
@@ -1508,6 +1513,7 @@ import { FormsModule } from '@angular/forms';
   selector: 'modal-showcase',
   templateUrl: './modal-showcase.component.html',
   styleUrls: ['./modal-showcase.component.scss'],
+  standalone: true,
   imports: [
     BaseShowcaseComponent,
     DdrModalComponent,
@@ -1828,6 +1834,7 @@ import { FormsModule } from '@angular/forms';
     selector: 'no-data-showcase',
     templateUrl: './no-data-showcase.component.html',
     styleUrls: ['./no-data-showcase.component.scss'],
+    standalone: true,
     imports: [
         BaseShowcaseComponent,
         DdrNoDataComponent,
@@ -2167,6 +2174,7 @@ import { Person } from './bean/person';
   selector: 'steps-showcase',
   templateUrl: './steps-showcase.component.html',
   styleUrls: ['./steps-showcase.component.scss'],
+  standalone: true,
   imports: [
     BaseShowcaseComponent,
     DdrStepsComponent,
@@ -2578,6 +2586,7 @@ import { BaseShowcaseComponent } from '../base-showcase/base-showcase.component'
   selector: 'tabs-showcase',
   templateUrl: './tabs-showcase.component.html',
   styleUrls: ['./tabs-showcase.component.scss'],
+  standalone: true,
   imports: [
     BaseShowcaseComponent,
     DdrTabsComponent,
@@ -2927,6 +2936,7 @@ import { FormsModule } from '@angular/forms';
   selector: 'table-showcase',
   templateUrl: './table-showcase.component.html',
   styleUrls: ['./table-showcase.component.scss'],
+  standalone: true,
   imports: [
     BaseShowcaseComponent,
     DdrTableComponent,
@@ -4030,6 +4040,7 @@ import { BaseShowcaseComponent } from '../base-showcase/base-showcase.component'
   selector: 'tree-showcase',
   styleUrl: './tree-showcase.component.scss',
   templateUrl: './tree-showcase.component.html',
+  standalone: true,
   imports: [
     BaseShowcaseComponent,
     DdrTreeComponent,
@@ -4885,6 +4896,7 @@ import { BaseShowcaseComponent } from '../base-showcase/base-showcase.component'
   selector: 'button-showcase',
   templateUrl: './button-showcase.component.html',
   styleUrls: ['./button-showcase.component.scss'],
+  standalone: true,
   imports: [
     BaseShowcaseComponent,
     DdrButtonComponent,
@@ -5346,6 +5358,7 @@ import { FormsModule } from '@angular/forms';
   selector: 'multiple-button-showcase',
   templateUrl: './multiple-button-showcase.component.html',
   styleUrls: ['./multiple-button-showcase.component.scss'],
+  standalone: true,
   imports: [
     BaseShowcaseComponent,
     DdrButtonMultipleComponent,
@@ -5726,6 +5739,7 @@ import { FormsModule } from '@angular/forms';
   selector: 'button-split-showcase',
   templateUrl: './button-split-showcase.component.html',
   styleUrls: ['./button-split-showcase.component.scss'],
+  standalone: true,
   imports: [
     BaseShowcaseComponent,
     DdrButtonSplitComponent,
@@ -6334,6 +6348,7 @@ import { FormsModule } from '@angular/forms';
   selector: 'input-showcase',
   templateUrl: './input-showcase.component.html',
   styleUrls: ['./input-showcase.component.scss'],
+  standalone: true,
   imports: [
     BaseShowcaseComponent,
     DdrInputComponent,
@@ -7057,6 +7072,7 @@ import { FormsModule } from '@angular/forms';
   selector: 'input-group-showcase',
   templateUrl: './input-group-showcase.component.html',
   styleUrls: ['./input-group-showcase.component.scss'],
+  standalone: true,
   imports: [
     BaseShowcaseComponent,
     DdrInputGroupComponent,
@@ -7600,6 +7616,7 @@ import { FormsModule } from '@angular/forms';
   selector: 'input-password-showcase',
   templateUrl: './input-password-showcase.component.html',
   styleUrls: ['./input-password-showcase.component.scss'],
+  standalone: true,
   imports: [
     BaseShowcaseComponent,
     DdrInputPasswordComponent,
@@ -7922,6 +7939,7 @@ import { DdrFileHandle, DdrInputFileComponent, DdrToastService, DdrTranslatePipe
   selector: 'input-file-showcase',
   templateUrl: './input-file-showcase.component.html',
   styleUrl: './input-file-showcase.component.scss',
+  standalone: true,
   imports: [
     BaseShowcaseComponent,
     DdrInputFileComponent,
@@ -8251,6 +8269,7 @@ import { FormsModule } from '@angular/forms';
   selector: 'textarea-showcase',
   templateUrl: './textarea-showcase.component.html',
   styleUrls: ['./textarea-showcase.component.scss'],
+  standalone: true,
   imports: [
     BaseShowcaseComponent,
     DdrTextareaComponent,
@@ -8626,6 +8645,7 @@ import { ProgrammingLanguage } from './example';
   selector: 'radio-showcase',
   templateUrl: './radio-showcase.component.html',
   styleUrls: ['./radio-showcase.component.scss'],
+  standalone: true,
   imports: [
     BaseShowcaseComponent,
     DdrRadioComponent,
@@ -9040,6 +9060,7 @@ import { ProgrammingLanguage } from './bean/programming-language';
   selector: 'checkbox-showcase',
   templateUrl: './checkbox-showcase.component.html',
   styleUrls: ['./checkbox-showcase.component.scss'],
+  standalone: true,
   imports: [
     BaseShowcaseComponent,
     DdrCheckboxComponent,
@@ -9484,6 +9505,7 @@ import { FormsModule } from '@angular/forms';
   selector: 'checkbox-binary-showcase',
   templateUrl: './checkbox-binary-showcase.component.html',
   styleUrls: ['./checkbox-binary-showcase.component.scss'],
+  standalone: true,
   imports: [
     BaseShowcaseComponent,
     DdrCheckboxBinaryComponent,
@@ -10061,6 +10083,7 @@ import { ProgrammingLanguage } from './bean/programming-language';
   selector: 'dropdown-showcase',
   templateUrl: './dropdown-showcase.component.html',
   styleUrls: ['./dropdown-showcase.component.scss'],
+  standalone: true,
   imports: [
     BaseShowcaseComponent,
     DdrButtonComponent,
@@ -11540,6 +11563,7 @@ import { ProgrammingLanguage } from './bean/programming-language';
   selector: 'dropdown-multiple-showcase',
   templateUrl: './dropdown-multiple-showcase.component.html',
   styleUrl: './dropdown-multiple-showcase.component.scss',
+  standalone: true,
   imports: [
     BaseShowcaseComponent,
     DdrDropdownMultipleComponent,
@@ -12570,6 +12594,7 @@ import { BaseShowcaseComponent } from '../base-showcase/base-showcase.component'
   selector: 'progress-bar-showcase',
   templateUrl: './progress-bar-showcase.component.html',
   styleUrls: ['./progress-bar-showcase.component.scss'],
+  standalone: true,
   imports: [
     BaseShowcaseComponent,
     DdrProgressBarComponent,
@@ -12957,6 +12982,7 @@ import { BaseShowcaseComponent } from '../base-showcase/base-showcase.component'
   selector: 'login-showcase',
   templateUrl: './login-showcase.component.html',
   styleUrls: ['./login-showcase.component.scss'],
+  standalone: true,
   imports: [
     BaseShowcaseComponent,
     DdrLoginComponent,
@@ -13356,6 +13382,7 @@ import { BaseShowcaseComponent } from '../base-showcase/base-showcase.component'
     selector: 'loop-number-showcase',
     templateUrl: './loop-number-showcase.component.html',
     styleUrls: ['./loop-number-showcase.component.scss'],
+    standalone: true,
     imports: [
         BaseShowcaseComponent,
         DdrLoopNumberPipe,
@@ -13431,6 +13458,7 @@ import { BaseShowcaseComponent } from '../base-showcase/base-showcase.component'
   selector: 'safe-showcase',
   templateUrl: './safe-showcase.component.html',
   styleUrls: ['./safe-showcase.component.scss'],
+  standalone: true,
   imports: [
     BaseShowcaseComponent,
     DdrSafePipe,
@@ -13540,6 +13568,7 @@ import { DdrNestedPropertyPipe, DdrTranslatePipe } from 'ddr-ng';
   selector: 'nested-property-showcase',
   templateUrl: './nested-property-showcase.component.html',
   styleUrl: './nested-property-showcase.component.scss',
+  standalone: true,
   imports: [
     BaseShowcaseComponent,
     DdrNestedPropertyPipe,
@@ -13718,6 +13747,7 @@ import { BaseShowcaseComponent } from '../base-showcase/base-showcase.component'
     selector: 'badge-notification-showcase',
     templateUrl: './badge-notification-showcase.component.html',
     styleUrls: ['./badge-notification-showcase.component.scss'],
+    standalone: true,
     imports: [
         BaseShowcaseComponent,
         DdrButtonComponent,
@@ -13849,6 +13879,7 @@ import { FormsModule } from '@angular/forms';
   selector: 'click-outside-showcase',
   templateUrl: './click-outside-showcase.component.html',
   styleUrls: ['./click-outside-showcase.component.scss'],
+  standalone: true,
   imports: [
     BaseShowcaseComponent,
     DdrClickOutsideDirective,
@@ -13985,6 +14016,7 @@ import { FormsModule } from '@angular/forms';
   selector: 'clipboard-showcase',
   templateUrl: './clipboard-showcase.component.html',
   styleUrls: ['./clipboard-showcase.component.scss'],
+  standalone: true,
   imports: [
     BaseShowcaseComponent,
     DdrClipboardDirective,
@@ -14067,6 +14099,7 @@ import { BaseShowcaseComponent } from '../base-showcase/base-showcase.component'
   selector: 'drag-and-drop-showcase',
   templateUrl: './drag-and-drop-showcase.component.html',
   styleUrls: ['./drag-and-drop-showcase.component.scss'],
+  standalone: true,
   imports: [
     BaseShowcaseComponent,
     DdrDragDropDirective,
@@ -14139,6 +14172,7 @@ import { BaseShowcaseComponent } from '../base-showcase/base-showcase.component'
   selector: 'load-iframe-showcase',
   templateUrl: './load-iframe-showcase.component.html',
   styleUrls: ['./load-iframe-showcase.component.scss'],
+  standalone: true,
   imports: [
     BaseShowcaseComponent,
     DdrLoadIframeDirective,
@@ -14304,6 +14338,7 @@ import { BaseShowcaseComponent } from '../base-showcase/base-showcase.component'
   selector: 'skeleton-showcase',
   templateUrl: './skeleton-showcase.component.html',
   styleUrls: ['./skeleton-showcase.component.scss'],
+  standalone: true,
   imports: [
     BaseShowcaseComponent,
     DdrCardComponent,
@@ -14529,6 +14564,7 @@ import { JsonPipe } from '@angular/common';
     selector: 'tooltip-showcase',
     templateUrl: './tooltip-showcase.component.html',
     styleUrls: ['./tooltip-showcase.component.scss'],
+    standalone: true,
     imports: [
         BaseShowcaseComponent,
         DdrTooltipDirective,
@@ -14696,6 +14732,7 @@ import { BaseShowcaseComponent } from '../base-showcase/base-showcase.component'
   selector: 'spinner-showcase',
   templateUrl: './spinner-showcase.component.html',
   styleUrls: ['./spinner-showcase.component.scss'],
+  standalone: true,
   imports: [
     BaseShowcaseComponent,
     DdrButtonComponent,
@@ -14881,6 +14918,7 @@ import { ddrSpinnerBlockDirective, DdrButtonComponent, DdrCardComponent, DdrTran
   selector: 'spinner-block',
   templateUrl: './spinner-block-showcase.component.html',
   styleUrl: './spinner-block-showcase.component.scss',
+  standalone: true,
   imports: [
     BaseShowcaseComponent,
     ddrSpinnerBlockDirective,
@@ -15042,6 +15080,7 @@ import { FormsModule } from '@angular/forms';
   selector: 'toast-showcase',
   templateUrl: './toast-showcase.component.html',
   styleUrls: ['./toast-showcase.component.scss'],
+  standalone: true,
   imports: [
     BaseShowcaseComponent,
     DdrButtonComponent,
@@ -15257,6 +15296,7 @@ import { BaseShowcaseComponent } from '../base-showcase/base-showcase.component'
   selector: 'translate-showcase',
   templateUrl: './translate-pipe-showcase.component.html',
   styleUrls: ['./translate-pipe-showcase.component.scss'],
+  standalone: true,
   imports: [
     BaseShowcaseComponent,
     DdrTranslatePipe
@@ -15293,6 +15333,7 @@ import {
   selector: 'translate-showcase',
   templateUrl: './translate-showcase.component.html',
   styleUrl: './translate-showcase.component.scss',
+  standalone: true,
   imports: [
     BaseShowcaseComponent,
     DdrButtonComponent,
@@ -15448,6 +15489,7 @@ import { FormsModule } from '@angular/forms';
   selector: 'toggle-showcase',
   templateUrl: './toggle-showcase.component.html',
   styleUrls: ['./toggle-showcase.component.scss'],
+  standalone: true,
   imports: [
     BaseShowcaseComponent,
     DdrToggleComponent,
