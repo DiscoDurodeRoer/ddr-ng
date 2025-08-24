@@ -15,6 +15,7 @@
 |-------|-----------------|
 |20.x.x | ✅ Full support |
 |19.x.x | ✅ Full support |
+|18.x.x | ✅ Full support |
 
 # 🚀 Getting Started with ddr-ng
 
