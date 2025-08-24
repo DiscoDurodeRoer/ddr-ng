@@ -135,6 +135,7 @@ export const appConfig: ApplicationConfig = &#123;
   providers: [
     provideBrowserGlobalErrorListeners(),
     provideHttpClient(), // add this
+    provideAnimations(), // add this
     provideZoneChangeDetection(&#123; eventCoalescing: true &#125;),
     provideRouter(routes)
   ]
