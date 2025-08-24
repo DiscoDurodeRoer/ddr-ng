@@ -1,6 +1,6 @@
 # DDR-NG
 
-[![npm version](https://badge.fury.io/js/ddr-ng.svg)](https://badge.fury.io/js/ddr-ng)
+[![npm version](https://img.shields.io/badge/npm-v19.0.2-blue)](https://www.npmjs.com/package/ddr-ng/v/19.0.2)
 
 [![Discord](https://img.shields.io/badge/discord-ddr--ng-5865F2?logo=discord&logoColor=white)](https://discord.gg/Drgv4JRqxu)
 
