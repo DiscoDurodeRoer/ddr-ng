@@ -1,8 +1,7 @@
 export const MODES_BUTTON = {
     DEFAULT: 'default',
     SAVE: 'save',
-    DANGER: 'danger',
-    DISABLED: 'disabled'
+    DANGER: 'danger'
 } as const;
 
 export const TYPE_BUTTON = {
@@ -46,7 +45,6 @@ export const SELECTION_MODE_CALENDAR = {
 
 export const TYPE_INPUT = {
     TEXT: 'text',
-    DATE: 'date',
     EMAIL: 'email',
     PHONE: 'phone',
     NUMBER: 'number',
@@ -69,8 +67,7 @@ export const RESOLUTIONS = {
 export const SIZE = {
     LARGE: 'large',
     MEDIUM: 'medium',
-    SMALL: 'small',
-    EXTRA_SMALL: 'xs-small'
+    SMALL: 'small'
 } as const;
 
 export const ORIENTATION_DROPDOWN = {

@@ -3,7 +3,7 @@
   margin-top: 5px;
   user-select: none;
 
-  &__inline {
+  &--inline {
     display: flex;
   }
 
@@ -11,16 +11,14 @@
     margin-bottom: 10px;
     margin-top: 10px;
 
-    &--si-inline {
+    &--inline {
       margin-right: 10px;
     }
   }
 
-  &__btn {
+  &__button {
     display: inline-block;
     outline: 0;
-    width: 4.5rem;
-    height: 38px;
     position: relative;
     cursor: pointer;
     user-select: none;
@@ -29,6 +27,16 @@
     padding: 2px;
     transition: all 0.4s ease;
     border: 1px solid #e8eae9;
+
+    &--large {
+      width: 5.5rem;
+      height: 48px;
+    }
+
+    &--medium {
+      width: 4.5rem;
+      height: 38px;
+    }
 
     &--small {
       width: 3.5rem;

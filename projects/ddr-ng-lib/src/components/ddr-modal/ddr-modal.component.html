@@ -1,17 +1,17 @@
 @if (show) {
   <div class="row ddr-modal">
-    <div class="ddr-modal--overlay ddr-overlay">
-      <div class="col-12 ddr-modal--overlay__content" [ngClass]="{
-        'ddr-modal--overlay__content--big': size == constants.SIZE.LARGE,
-        'ddr-modal--overlay__content--medium': size == constants.SIZE.MEDIUM,
-        'ddr-modal--overlay__content--small': size == constants.SIZE.SMALL
+    <div class="ddr-overlay">
+      <div class="col-12 ddr-modal__content" [ngClass]="{
+        'ddr-modal__content--large': size == constants.SIZE.LARGE,
+        'ddr-modal__content--medium': size == constants.SIZE.MEDIUM,
+        'ddr-modal__content--small': size == constants.SIZE.SMALL
         }">
         <div class="card" ddrClickOutside [clickOutsideEnabled]="clickOutsideEnabled" (clickOutside)="onClickOutside($event)">
           <div class="card-title">
-            <div class="ddr-modal--overlay__content--title">
+            <div class="ddr-modal__content--title">
               <ng-content select="[modal-title]"></ng-content>
             </div>
-            <div class="ddr-modal--overlay__content--close">
+            <div class="ddr-modal__content--close">
               <i class="bi bi-x " (click)="onClose($event)"></i>
             </div>
           </div>
@@ -19,10 +19,10 @@
             <ng-content select="[modal-content]"></ng-content>
           </div>
           @if (type !== constants.MODAL.NO_BUTTONS) {
-            <div class="ddr-modal--overlay__content--card-buttons">
+            <div class="ddr-modal__content--card-buttons">
               @if (type === constants.MODAL.INFO || type === constants.MODAL.CONFIRM) {
                 <ddr-button
-                  class="ddr-modal--overlay__content--card-buttons__button"
+                  class="ddr-modal__content--card-buttons__button"
                   icon="bi bi-check"
                   [text]="labelConfirm"
                   [mode]="constants.MODES_BUTTON.DANGER"
@@ -33,7 +33,7 @@
               }
               @if (type === constants.MODAL.CONFIRM) {
                 <ddr-button
-                  class="ddr-modal--overlay__content--card-buttons__button"
+                  class="ddr-modal__content--card-buttons__button"
                   icon="bi bi-x"
                   [text]="labelClose"
                   [mode]="constants.MODES_BUTTON.DEFAULT"

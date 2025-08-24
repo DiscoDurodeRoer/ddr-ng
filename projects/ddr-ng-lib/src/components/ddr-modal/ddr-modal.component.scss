@@ -7,91 +7,87 @@
     position: relative;
   }
 
-  &--overlay {
+  &__content {
 
-    &__content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
 
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      -ms-transform: translate(-50%, -50%);
-      transform: translate(-50%, -50%);
+    &--large {
+      width: 85%;
 
-      &--big {
-        width: 85%;
-
-        .card {
-          height: 80vh;
-        }
-      }
-
-      &--medium {
-
-        @media (max-width: 568px) {
-          width: 75%;
-        }
-
-        @media (min-width: 568px) {
-          width: 50%;
-        }
-
-        .card {
-          max-height: 90vh;
-        }
-      }
-
-      &--small {
-
-        @media (max-width: 568px) {
-          width: 60%;
-        }
-
-        @media (min-width: 568px) {
-          width: 25%;
-        }
-
-        .card {
-          max-height: 90vh;
-        }
-      }
-
-      .card-body {
-        overflow: auto;
-        margin-bottom: 15px;
-      }
-
-      &--title {
-        display: inline-block;
-        width: calc(100% - 32px);
-        font-weight: 600;
-        text-align: center;
-        padding-top: 10px;
-        padding-left: 10px;
-        font-family: "ddr bold";
-      }
-
-      &--close {
-        display: inline-block;
-        width: 32px;
-        position: absolute;
-
-        i {
-          font-size: 32px;
-          display: inline-block;
-          cursor: pointer;
-        }
-      }
-
-      &--card-buttons {
-        margin-right: 10px;
-        padding-bottom: 20px;
-        text-align: right;
-
-        &__button {
-          margin-left: 20px;
-        }
+      .card {
+        height: 80vh;
       }
     }
 
+    &--medium {
+
+      @media (max-width: 992px) {
+        width: 75%;
+      }
+
+      @media (min-width: 992px) {
+        width: 50%;
+      }
+
+      .card {
+        max-height: 90vh;
+      }
+    }
+
+    &--small {
+
+      @media (max-width: 992px) {
+        width: 60%;
+      }
+
+      @media (min-width: 992px) {
+        width: 25%;
+      }
+
+      .card {
+        max-height: 90vh;
+      }
+    }
+
+    .card-body {
+      overflow: auto;
+      margin-bottom: 15px;
+    }
+
+    &--title {
+      display: inline-block;
+      width: calc(100% - 32px);
+      font-weight: 600;
+      text-align: center;
+      padding-top: 10px;
+      padding-left: 10px;
+      font-family: "ddr bold";
+    }
+
+    &--close {
+      display: inline-block;
+      width: 32px;
+      position: absolute;
+
+      i {
+        font-size: 32px;
+        display: inline-block;
+        cursor: pointer;
+      }
+    }
+
+    &--card-buttons {
+      margin-right: 10px;
+      padding-bottom: 20px;
+      text-align: right;
+
+      &__button {
+        margin-left: 20px;
+      }
+    }
   }
 }

@@ -3,6 +3,7 @@
         [options]="options"
         [showFilter]="showFilter"
         [label]="label"
+        [name]="name"
         [inline]="inline"
         [orientation]="orientation"
         [labelPlaceholderFilter]="labelPlaceholderFilter"
@@ -11,12 +12,14 @@
         [placeholder]="placeholder"
         [required]="required"
         [translate]="translate"
-        [touchUI]="touchUI"
-        [orientationTooltip]="orientationTooltip"
+        [modalOptions]="modalOptions"
+        [tooltipOrientation]="tooltipOrientation"
         [tooltipText]="tooltipText"
         [closeOnSelect]="false"
         [allowDeselect]="true"
+        [validate]="validate"
         [compareFn]="compareFn"
+        [transparent]="transparent"
         (selectItem)="onSelectItem($event)">
 
         <ng-template #itemTemplate let-item="item">

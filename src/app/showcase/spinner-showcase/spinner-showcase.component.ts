@@ -1,24 +1,29 @@
-import { Component, inject, OnInit } from '@angular/core';
-import { DdrButtonComponent, DdrSpinnerComponent, DdrSpinnerService } from 'ddr-ng';
+import { Component, inject } from '@angular/core';
+import {
+  DdrButtonComponent,
+  DdrSpinnerService,
+  DdrTranslatePipe
+} from 'ddr-ng';
 import { BaseShowcaseComponent } from '../base-showcase/base-showcase.component';
 
 @Component({
-    selector: 'app-spinner-showcase',
-    templateUrl: './spinner-showcase.component.html',
-    styleUrls: ['./spinner-showcase.component.scss'],
-    imports: [
-        BaseShowcaseComponent,
-        DdrSpinnerComponent,
-        DdrButtonComponent
-    ]
+  selector: 'spinner-showcase',
+  templateUrl: './spinner-showcase.component.html',
+  styleUrls: ['./spinner-showcase.component.scss'],
+  imports: [
+    BaseShowcaseComponent,
+    DdrButtonComponent,
+    DdrTranslatePipe
+  ],
+  providers: [
+    DdrSpinnerService
+  ]
 })
 export class SpinnerShowcaseComponent {
-  
+
   private readonly ddrSpinnerService: DdrSpinnerService = inject(DdrSpinnerService)
 
-  public embedded: boolean = false;
-
-  activateSpinner(){
+  showSpinner() {
     this.ddrSpinnerService.showSpinner();
 
     setTimeout(() => {
@@ -26,8 +31,14 @@ export class SpinnerShowcaseComponent {
     }, 5000);
   }
 
-  changeMode(){
-    this.embedded = !this.embedded;
+  showSpinnerImg() {
+    this.ddrSpinnerService.spinnerPathImg = './img/spinner/spinner.gif';
+    this.ddrSpinnerService.showSpinner();
+
+    setTimeout(() => {
+      this.ddrSpinnerService.hideSpinner();
+      this.ddrSpinnerService.spinnerPathImg = '';
+    }, 5000);
   }
 
 }

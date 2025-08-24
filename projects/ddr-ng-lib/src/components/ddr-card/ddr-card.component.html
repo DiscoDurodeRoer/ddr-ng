@@ -1,5 +1,9 @@
 <div class="ddr-card"
-  [ngClass]="{'ddr-card--rounded': rounded, 'border': border, 'ddr-card--shadow': shadow}"
+  [ngClass]="{
+      'ddr-card--rounded': rounded, 
+      'border': border, 
+      'ddr-card--shadow': shadow
+    }"
   [ngStyle]="{'background-color': background ? background : null, 'color': color ? color:  null}">
   @if (showHeader) {
     <div class="ddr-card__title">

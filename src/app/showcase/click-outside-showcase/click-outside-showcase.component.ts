@@ -1,15 +1,25 @@
 import { Component, inject } from '@angular/core';
-import { DdrToastService, DdrClickOutsideDirective, DdrButtonComponent } from 'ddr-ng';
+import {
+  DdrToastService,
+  DdrClickOutsideDirective,
+  DdrTranslatePipe,
+  DdrTranslateService,
+  DdrButton,
+  DdrButtonMultipleComponent
+} from 'ddr-ng';
 import { BaseShowcaseComponent } from '../base-showcase/base-showcase.component';
+import { FormsModule } from '@angular/forms';
 
 @Component({
-  selector: 'app-click-outside-showcase',
+  selector: 'click-outside-showcase',
   templateUrl: './click-outside-showcase.component.html',
   styleUrls: ['./click-outside-showcase.component.scss'],
   imports: [
     BaseShowcaseComponent,
     DdrClickOutsideDirective,
-    DdrButtonComponent
+    DdrButtonMultipleComponent,
+    DdrTranslatePipe,
+    FormsModule
   ],
   providers: [
     DdrToastService
@@ -18,36 +28,30 @@ import { BaseShowcaseComponent } from '../base-showcase/base-showcase.component'
 export class ClickOutsideShowcaseComponent {
 
   private readonly ddrToastService: DdrToastService = inject(DdrToastService);
+  private readonly ddrTranslateService: DdrTranslateService = inject(DdrTranslateService);
 
-  public showEstandar: boolean = true;
-  public showDelay: boolean = false;
-  public showDesactivated: boolean = false;
-  public actualMode: string = 'estandar';
+  public buttonsModes: DdrButton[] = [
+    {
+      text: 'clickoutside.standard',
+      value: 'standard'
+    },
+    {
+      text: 'clickoutside.delay',
+      value: 'delay'
+    },
+    {
+      text: 'clickoutside.disactivated',
+      value: 'disactivated'
+    },
+  ]
+  public modeClickoutside: string = 'standard'
 
-  clickOutside($event: any) {
-    this.ddrToastService.addSuccessMessage('Exito', 'Has clickado fuera del bloque');
+  clickOutside($event: MouseEvent) {
     console.log($event);
-  }
-
-  openEstandar() {
-    this.showEstandar = true;
-    this.showDelay = false;
-    this.showDesactivated = false;
-    this.actualMode = 'estandar';
-  }
-
-  openDelay() {
-    this.showEstandar = false;
-    this.showDelay = true;
-    this.showDesactivated = false;
-    this.actualMode = 'delay';
-  }
-
-  openDesactivated() {
-    this.showEstandar = false;
-    this.showDelay = false;
-    this.showDesactivated = true;
-    this.actualMode = 'desactivated';
+    this.ddrToastService.addSuccessMessage(
+      this.ddrTranslateService.getTranslate('success'),
+      this.ddrTranslateService.getTranslate('clickoutside.event.click')
+    );
   }
 
 }

@@ -19,5 +19,4 @@ export class DdrCardComponent {
   @Input() shadow: boolean = true;
   @Input() background?: string;
   @Input() color?: string;
-
 }

@@ -1,41 +1,166 @@
 import { Component, inject } from '@angular/core';
-import { DdrTreeNode, DdrAction, DdrToastService, DdrTreeComponent, DdrToggleComponent } from 'ddr-ng';
-import { TreeviewData } from './tree-data';
+import {
+  DdrTreeNode,
+  DdrAction,
+  DdrToastService,
+  DdrTreeComponent,
+  DdrTranslatePipe,
+  DdrTranslateService
+} from 'ddr-ng';
+import { TreeData } from './bean/tree-data';
 import { BaseShowcaseComponent } from '../base-showcase/base-showcase.component';
 
 @Component({
-  selector: 'app-treeview-showcase',
-  templateUrl: './treeview-showcase.component.html',
-  styleUrls: ['./treeview-showcase.component.scss'],
+  selector: 'tree-showcase',
+  styleUrl: './tree-showcase.component.scss',
+  templateUrl: './tree-showcase.component.html',
   imports: [
     BaseShowcaseComponent,
     DdrTreeComponent,
-    DdrToggleComponent
+    DdrTranslatePipe
   ],
   providers: [
     DdrToastService
   ]
 })
-export class TreeviewShowcaseComponent {
+export class TreeShowcaseComponent {
 
-  private toast: DdrToastService = inject(DdrToastService);
+  private ddrToastService: DdrToastService = inject(DdrToastService);
+  private ddrTranslateService: DdrTranslateService = inject(DdrTranslateService);
 
-  nodes: DdrTreeNode<TreeviewData>[] = [
+  public nodesEx1: DdrTreeNode<TreeData>[] = [
+    {
+      name: 'E1',
+      data: {
+        value: 'E1'
+      },
+      children: [
+        {
+          name: 'E1.1',
+          data: {
+            value: 'E1.1'
+          },
+          children: [
+            {
+              name: 'E1.1.1',
+              data: {
+                value: 'E1.1.1'
+              },
+            }
+          ]
+        },
+        {
+          name: 'E1.2',
+          data: {
+            value: 'E1.2'
+          }
+        }
+      ]
+    },
+    {
+      name: 'E2',
+      data: {
+        value: 'E2'
+      },
+      children: []
+    }
+  ];
+
+  public nodesEx2: DdrTreeNode<TreeData>[] = [
+    {
+      name: 'E1',
+      data: {
+        value: 'E1'
+      },
+      children: [
+        {
+          name: 'E1.1',
+          data: {
+            value: 'E1.1'
+          },
+          children: [
+            {
+              name: 'E1.1.1',
+              data: {
+                value: 'E1.1.1'
+              },
+            }
+          ]
+        },
+        {
+          name: 'E1.2',
+          data: {
+            value: 'E1.2'
+          }
+        }
+      ]
+    },
+    {
+      name: 'E2',
+      data: {
+        value: 'E2'
+      },
+      children: []
+    }
+  ];
+
+  public nodesEx3: DdrTreeNode<TreeData>[] = [
     {
       name: 'E1',
       icon: 'bi bi-bell',
       data: {
-        property1: 'E1',
-        property2: 'E1'
+        value: 'E1'
+      },
+      children: [
+        {
+          name: 'E1.1',
+          icon: 'bi bi-bell',
+          data: {
+            value: 'E1.1'
+          },
+          children: [
+            {
+              name: 'E1.1.1',
+              icon: 'bi bi-bell',
+              data: {
+                value: 'E1.1.1'
+              },
+            }
+          ]
+        },
+        {
+          name: 'E1.2',
+          icon: 'bi bi-bell',
+          data: {
+            value: 'E1.2'
+          }
+        }
+      ]
+    },
+    {
+      name: 'E2',
+      icon: 'bi bi-bell',
+      data: {
+        value: 'E2'
+      },
+      children: []
+    }
+  ];
+
+  public nodesEx4: DdrTreeNode<TreeData>[] = [
+    {
+      name: 'E1',
+      data: {
+        value: 'E1'
       },
       actions: [
         {
-          label: 'Editar',
+          label: 'tree.action.update',
           icon: 'bi bi-pencil',
           value: 'ACTION_1'
         },
         {
-          label: 'Borrar',
+          label: 'tree.action.delete',
           icon: 'bi bi-trash3',
           value: 'ACTION_2'
         }
@@ -43,19 +168,17 @@ export class TreeviewShowcaseComponent {
       children: [
         {
           name: 'E1.1',
-          icon: 'bi bi-bell',
           data: {
-            property1: 'E1.1',
-            property2: 'E1.1',
+            value: 'E1.1'
           },
           actions: [
             {
-              label: 'Editar',
+              label: 'tree.action.update',
               icon: 'bi bi-pencil',
               value: 'ACTION_1'
             },
             {
-              label: 'Borrar',
+              label: 'tree.action.delete',
               icon: 'bi bi-trash3',
               value: 'ACTION_2'
             }
@@ -63,39 +186,17 @@ export class TreeviewShowcaseComponent {
           children: [
             {
               name: 'E1.1.1',
-              icon: 'bi bi-bell',
               data: {
-                property1: 'E1.1.1',
-                property2: 'E1.1.1',
+                value: 'E1.1.1'
               },
               actions: [
                 {
-                  label: 'Editar',
+                  label: 'tree.action.update',
                   icon: 'bi bi-pencil',
                   value: 'ACTION_1'
                 },
                 {
-                  label: 'Borrar',
-                  icon: 'bi bi-trash3',
-                  value: 'ACTION_2'
-                }
-              ],
-            },
-            {
-              name: 'E1.1.2',
-              icon: 'bi bi-bell',
-              data: {
-                property1: 'E1.1.2',
-                property2: 'E1.1.2',
-              },
-              actions: [
-                {
-                  label: 'Editar',
-                  icon: 'bi bi-pencil',
-                  value: 'ACTION_1'
-                },
-                {
-                  label: 'Borrar',
+                  label: 'tree.action.delete',
                   icon: 'bi bi-trash3',
                   value: 'ACTION_2'
                 }
@@ -105,39 +206,17 @@ export class TreeviewShowcaseComponent {
         },
         {
           name: 'E1.2',
-          icon: 'bi bi-bell',
           data: {
-            property1: 'E1.1.2',
-            property2: 'E1.1.2',
+            value: 'E1.2'
           },
           actions: [
             {
-              label: 'Editar',
+              label: 'tree.action.update',
               icon: 'bi bi-pencil',
               value: 'ACTION_1'
             },
             {
-              label: 'Borrar',
-              icon: 'bi bi-trash3',
-              value: 'ACTION_2'
-            }
-          ],
-        },
-        {
-          name: 'E1.3',
-          icon: 'bi bi-bell',
-          data: {
-            property1: 'E1.3',
-            property2: 'E1.3',
-          },
-          actions: [
-            {
-              label: 'Editar',
-              icon: 'bi bi-pencil',
-              value: 'ACTION_1'
-            },
-            {
-              label: 'Borrar',
+              label: 'tree.action.delete',
               icon: 'bi bi-trash3',
               value: 'ACTION_2'
             }
@@ -147,91 +226,287 @@ export class TreeviewShowcaseComponent {
     },
     {
       name: 'E2',
-      icon: 'bi bi-bell',
       data: {
-        property1: 'E2',
-        property2: 'E2',
+        value: 'E2'
       },
       actions: [
         {
-          label: 'Editar',
+          label: 'tree.action.update',
           icon: 'bi bi-pencil',
           value: 'ACTION_1'
         },
         {
-          label: 'Borrar',
+          label: 'tree.action.delete',
           icon: 'bi bi-trash3',
           value: 'ACTION_2'
         }
       ],
       children: []
-    },
+    }
+  ];
+
+  public nodesEx5: DdrTreeNode<TreeData>[] = [
     {
-      name: 'E3',
-      icon: 'bi bi-bell',
+      name: 'E1',
       data: {
-        property1: 'E3',
-        property2: 'E3',
+        value: 'E1'
       },
       actions: [
         {
-          label: 'Editar',
+          label: 'tree.action.update',
           icon: 'bi bi-pencil',
           value: 'ACTION_1'
         },
         {
-          label: 'Borrar',
+          label: 'tree.action.delete',
           icon: 'bi bi-trash3',
           value: 'ACTION_2'
         }
       ],
       children: [
         {
-          name: 'E3.1',
-          icon: 'bi bi-bell',
+          name: 'E1.1',
           data: {
-            property1: 'E3.1',
-            property2: 'E3.1',
+            value: 'E1.1'
           },
           actions: [
             {
-              label: 'Editar',
+              label: 'tree.action.update',
               icon: 'bi bi-pencil',
               value: 'ACTION_1'
             },
             {
-              label: 'Borrar',
+              label: 'tree.action.delete',
               icon: 'bi bi-trash3',
               value: 'ACTION_2'
             }
           ],
+          children: [
+            {
+              name: 'E1.1.1',
+              data: {
+                value: 'E1.1.1'
+              },
+              actions: [
+                {
+                  label: 'tree.action.update',
+                  icon: 'bi bi-pencil',
+                  value: 'ACTION_1'
+                },
+                {
+                  label: 'tree.action.delete',
+                  icon: 'bi bi-trash3',
+                  value: 'ACTION_2'
+                }
+              ],
+            }
+          ]
         },
         {
-          name: 'E3.2',
-          icon: 'bi bi-bell',
+          name: 'E1.2',
           data: {
-            property1: 'E3.2',
-            property2: 'E3.2',
+            value: 'E1.2'
           },
           actions: [
             {
-              label: 'Editar',
+              label: 'tree.action.update',
               icon: 'bi bi-pencil',
               value: 'ACTION_1'
             },
             {
-              label: 'Borrar',
+              label: 'tree.action.delete',
               icon: 'bi bi-trash3',
               value: 'ACTION_2'
             }
           ],
         }
       ]
+    },
+    {
+      name: 'E2',
+      data: {
+        value: 'E2'
+      },
+      actions: [
+        {
+          label: 'tree.action.update',
+          icon: 'bi bi-pencil',
+          value: 'ACTION_1'
+        },
+        {
+          label: 'tree.action.delete',
+          icon: 'bi bi-trash3',
+          value: 'ACTION_2'
+        }
+      ],
+      children: []
     }
   ];
 
-  selectAction($event: DdrAction<TreeviewData>) {
-    this.toast.addSuccessMessage('Elemento seleccionado', JSON.stringify($event));
+  public nodesEx6: DdrTreeNode<TreeData>[] = [
+    {
+      name: 'E1',
+      data: {
+        value: 'E1'
+      },
+      children: [
+        {
+          name: 'E1.1',
+          data: {
+            value: 'E1.1'
+          },
+          children: [
+            {
+              name: 'E1.1.1',
+              data: {
+                value: 'E1.1.1'
+              }
+            }
+          ]
+        },
+        {
+          name: 'E1.2',
+          data: {
+            value: 'E1.2'
+          }
+        }
+      ]
+    },
+    {
+      name: 'E2',
+      data: {
+        value: 'E2'
+      },
+      children: []
+    }
+  ];
+
+  public nodesEx7: DdrTreeNode<TreeData>[] = [
+    {
+      name: 'E1',
+      data: {
+        value: 'E1'
+      },
+      children: [
+        {
+          name: 'E1.1',
+          data: {
+            value: 'E1.1'
+          },
+          children: [
+            {
+              name: 'E1.1.1',
+              data: {
+                value: 'E1.1.1'
+              }
+            }
+          ]
+        },
+        {
+          name: 'E1.2',
+          data: {
+            value: 'E1.2'
+          }
+        }
+      ]
+    },
+    {
+      name: 'E2',
+      data: {
+        value: 'E2'
+      },
+      children: []
+    }
+  ];
+
+  public nodesEx8: DdrTreeNode<TreeData>[] = [
+    {
+      name: 'E1',
+      data: {
+        value: 'E1'
+      },
+      children: [
+        {
+          name: 'E1.1',
+          data: {
+            value: 'E1.1'
+          },
+          children: [
+            {
+              name: 'E1.1.1',
+              data: {
+                value: 'E1.1.1'
+              }
+            }
+          ]
+        },
+        {
+          name: 'E1.2',
+          data: {
+            value: 'E1.2'
+          }
+        }
+      ]
+    },
+    {
+      name: 'E2',
+      data: {
+        value: 'E2'
+      },
+      children: []
+    }
+  ];
+
+  public nodesEx10: DdrTreeNode<TreeData>[] = [
+    {
+      name: 'E1',
+      data: {
+        value: 'E1'
+      },
+      children: [
+        {
+          name: 'E1.1',
+          data: {
+            value: 'E1.1'
+          },
+          children: [
+            {
+              name: 'E1.1.1',
+              data: {
+                value: 'E1.1.1'
+              }
+            }
+          ]
+        },
+        {
+          name: 'E1.2',
+          data: {
+            value: 'E1.2'
+          }
+        }
+      ]
+    },
+    {
+      name: 'E2',
+      data: {
+        value: 'E2'
+      },
+      children: []
+    }
+  ];
+
+  selectAction(action: DdrAction<TreeData>) {
+    this.ddrToastService.addSuccessMessage(
+      this.ddrTranslateService.getTranslate('success'),
+      JSON.stringify(action)
+    );
+  }
+
+  clickNode(nodeData: TreeData) {
+    this.ddrToastService.addSuccessMessage(
+      this.ddrTranslateService.getTranslate('success'),
+      JSON.stringify(nodeData)
+    );
   }
 
 }

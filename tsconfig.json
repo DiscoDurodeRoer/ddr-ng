@@ -5,7 +5,7 @@
   "compilerOptions": {
     "paths": {
       "ddr-ng": [
-        "./dist/ddr-ng"
+        "/node_modules/ddr-ng"
       ]
     },
     "outDir": "./dist/out-tsc",

@@ -1,22 +1,27 @@
 import { Directive, EventEmitter, Output, HostListener, ElementRef, inject } from '@angular/core';
 
 @Directive({
-  selector: '[DdrLoadIframe]',
-  standalone: true
+  selector: '[ddrLoadIframe]'
 })
 export class DdrLoadIframeDirective {
 
-  @Output() loadIframe: EventEmitter<boolean> = new EventEmitter<boolean>();;
+  @Output() loadIframe: EventEmitter<void> = new EventEmitter<void>();
 
   private el: ElementRef = inject(ElementRef);
 
   @HostListener('load')
-  public onLoad(){
+  public onLoad() {
 
-    if(!this.el.nativeElement.contentDocument || 
-      this.el.nativeElement.contentDocument.body.children.length > 0){
-      this.loadIframe.emit(true);
+    const iframe = this.el.nativeElement;
+
+    if (iframe.tagName === 'IFRAME') {
+      const doc = (iframe as HTMLIFrameElement).contentDocument;
+
+      if (!doc || doc.body.children.length > 0) {
+        this.loadIframe.emit();
+      }
     }
+
 
   }
 

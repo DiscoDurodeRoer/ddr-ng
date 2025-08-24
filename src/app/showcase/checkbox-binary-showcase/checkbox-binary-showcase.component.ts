@@ -1,22 +1,38 @@
-import { Component } from '@angular/core';
-import { DdrCheckboxBinaryComponent } from 'ddr-ng';
+import { Component, inject } from '@angular/core';
+import {
+  DdrCheckboxBinaryComponent,
+  DdrToastService,
+  DdrTranslatePipe,
+  DdrTranslateService
+} from 'ddr-ng';
 import { BaseShowcaseComponent } from '../base-showcase/base-showcase.component';
-import { JsonPipe } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 @Component({
-  selector: 'app-checkbox-showcase',
+  selector: 'checkbox-binary-showcase',
   templateUrl: './checkbox-binary-showcase.component.html',
-  styleUrls: ['./checkbox-binary-showcase.component.scss'],
   imports: [
     BaseShowcaseComponent,
     DdrCheckboxBinaryComponent,
-    JsonPipe,
+    DdrTranslatePipe,
     FormsModule
+  ],
+  providers: [
+    DdrToastService
   ]
 })
 export class CheckboxBinaryShowcaseComponent {
 
-  value: boolean = true;
+  private ddrToastService: DdrToastService = inject(DdrToastService);
+  private ddrTranslateService: DdrTranslateService = inject(DdrTranslateService);
+
+  public value: boolean = true;
+
+  clickCheck(value: boolean) {
+    this.ddrToastService.addSuccessMessage(
+      this.ddrTranslateService.getTranslate('success'),
+      value + ''
+    )
+  }
 
 }

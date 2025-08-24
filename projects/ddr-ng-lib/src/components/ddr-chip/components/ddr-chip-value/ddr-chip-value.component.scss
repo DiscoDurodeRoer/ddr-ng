@@ -1,8 +1,12 @@
 .ddr-chip-value {
     display: flex;
     padding: 5px;
-    cursor: pointer;
-    
+    margin-right: 5px;
+
+    &--can-delete {
+        cursor: pointer;
+    }
+
     &__icon {
         margin-right: 5px;
     }

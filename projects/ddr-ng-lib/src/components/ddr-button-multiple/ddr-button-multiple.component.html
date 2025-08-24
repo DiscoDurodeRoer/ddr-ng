@@ -1,0 +1,36 @@
+@if (buttons && buttons.length > 0) {
+  <div class="ddr-button-multiple">
+    @if (buttons.length == 1) {
+      <ddr-button
+        [ngClass]="{
+        'ddr-button-multiple__selected': showSelectedButton && value == buttons[0].value
+        }"
+        [text]="buttons[0].text | ddrTranslate"
+        [icon]="buttons[0].icon"
+        [tooltipText]="buttons[0].tooltipText"
+        [size]="size"
+        [transparent]="transparent"
+        (action)="clickButton(buttons[0])"
+      ></ddr-button>
+    }
+    @if (buttons.length > 1) {
+      @for (button of buttons; track button; let index = $index) {
+        <ddr-button
+          [ngClass]="{
+          'ddr-button-multiple__selected': showSelectedButton && value == button.value,
+          'ddr-button-multiple__first-button': index == 0,
+          'ddr-button-multiple__intermediate-button':
+          index > 0 && index < buttons.length - 1,
+          'ddr-button-multiple__last-button': index == buttons.length - 1
+          }"
+          [text]="button.text | ddrTranslate"
+          [icon]="button.icon"
+          [tooltipText]="button.tooltipText"
+          [size]="size"
+          [transparent]="transparent"
+          (action)="clickButton(button)"
+        ></ddr-button>
+      }
+    }
+  </div>
+}

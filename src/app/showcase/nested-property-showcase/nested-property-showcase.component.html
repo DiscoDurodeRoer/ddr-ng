@@ -1,0 +1,95 @@
+<base-showcase component="ddr-nested-property" type="pipe"  [showOutputs]="false" [showInputs]="false">
+
+  <div description>
+    <p>{{'nested.property.description' | ddrTranslate}}</p>
+  </div>
+
+  <div examples>
+
+<div class="row">
+  <div class="col-12">
+    <span class="h3">{{'nested.property.example.1' | ddrTranslate}}</span>
+  </div>
+</div>
+
+<div class="row mt-3">
+  <div class="col-12">
+    <div>{{objEx1 | ddrNestedProperty: 'value'}}</div>
+  </div>
+</div>
+
+<div class="row mt-3">
+  <div class="col-12">
+    <span class="h3">{{'nested.property.example.2' | ddrTranslate}}</span>
+  </div>
+</div>
+
+<div class="row mt-3">
+  <div class="col-12">
+    <div>{{objEx2 | ddrNestedProperty: 'value'}}</div>
+  </div>
+</div>
+
+<div class="row mt-3">
+  <div class="col-12">
+    <span class="h3">{{'nested.property.example.3' | ddrTranslate}}</span>
+  </div>
+</div>
+
+<div class="row mt-3">
+  <div class="col-12">
+    <div>{{objEx3 | ddrNestedProperty: 'value.valueNested'}}</div>
+  </div>
+</div>
+
+<div class="row mt-3">
+  <div class="col-12">
+    <span class="h3">{{'nested.property.example.4' | ddrTranslate}}</span>
+  </div>
+</div>
+
+<div class="row mt-3">
+  <div class="col-12">
+    <div>{{objEx4 | ddrNestedProperty: '1'}}</div>
+  </div>
+</div>
+
+<div class="row mt-3">
+  <div class="col-12">
+    <span class="h3">{{'nested.property.example.5' | ddrTranslate}}</span>
+  </div>
+</div>
+
+<div class="row mt-3">
+  <div class="col-12">
+    <div>{{objEx5 | ddrNestedProperty: '1.valueNested'}}</div>
+  </div>
+</div>
+
+<div class="row mt-3">
+  <div class="col-12">
+    <span class="h3">{{'nested.property.example.6' | ddrTranslate}}</span>
+  </div>
+</div>
+
+<div class="row mt-3">
+  <div class="col-12">
+    <div>{{objEx6 | ddrNestedProperty: 'value.2'}}</div>
+  </div>
+</div>
+
+<div class="row mt-3">
+  <div class="col-12">
+    <span class="h3">{{'nested.property.example.7' | ddrTranslate}}</span>
+  </div>
+</div>
+
+<div class="row mt-3">
+  <div class="col-12">
+    <div>{{objEx7 | ddrNestedProperty: 'value.1.valueNested'}}</div>
+  </div>
+</div>
+
+  </div>
+
+</base-showcase>

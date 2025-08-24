@@ -9,11 +9,6 @@
         cursor: pointer;
     }
 
-    &--xs-small {
-        font-size: 12px;
-        padding: 5px;
-    }
-
     &--small {
         font-size: 14px;
         padding-top: 5px;
@@ -28,5 +23,6 @@
     &--large {
         font-size: 24px;
         padding-top: 10px;
+        height: 48px;
     }
 }

@@ -1,18 +1,18 @@
 <div class="ddr-chip">
   @if (label) {
-    <label class="ddr-chip__label">
+    <label class="ddr-chip__label" [attr.for]="name">
       {{ label + ":" }}
     </label>
   }
-  <div class="ddr-chip__container w-100">
+  <div class="ddr-chip__container">
     <ul>
       @for (v of value; track v) {
         <li class="ddr-chip__container__values">
-          <ddr-chip-value [value]="v" (clickValue)="onClickValue($event)" (delete)="onDelete($event)"></ddr-chip-value>
+          <ddr-chip-value [value]="v" [canDelete]="canDelete" (clickValue)="onClickValue($event)" (delete)="onDelete($event)" />
         </li>
       }
       <li class="ddr-chip__container__input">
-        <input class="border-0 w-100" type="text" (keyup)="checkValue()" (keyup.backspace)="removeLastElement()" (keyup.enter)="onInsertElement()" [(ngModel)]="valueInput">
+        <input autocapitalize="none" class="border-0 w-100" type="text" (keyup)="checkValue()" (keyup.backspace)="removeLastElement()" (keyup.enter)="onInsertElement()" [attr.id]="name" [attr.name]="name" [(ngModel)]="valueInput">
       </li>
     </ul>
   </div>

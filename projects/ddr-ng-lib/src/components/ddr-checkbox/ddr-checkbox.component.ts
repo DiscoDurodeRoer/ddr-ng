@@ -1,9 +1,10 @@
-import { Component, forwardRef, Input, OnInit, Output, ViewEncapsulation, EventEmitter } from '@angular/core';
+import { Component, forwardRef, Input, OnInit, Output, ViewEncapsulation, EventEmitter, OnDestroy } from '@angular/core';
 import { FormsModule, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { DdrSelectItem } from '../../common/ddr-select-item.model';
 import { DdrControlValueAccessor } from '../ddr-ngmodel-base/ddr-control-value-accessor-base.component';
 import { DdrTranslatePipe } from '../../pipes/ddr-translate.pipe';
 import { NgClass } from '@angular/common';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'ddr-checkbox',
@@ -24,21 +25,23 @@ import { NgClass } from '@angular/common';
     },
   ]
 })
-export class DdrCheckboxComponent<T> extends DdrControlValueAccessor implements OnInit {
+export class DdrCheckboxComponent<T> extends DdrControlValueAccessor implements OnInit, OnDestroy {
 
-  @Input() options: DdrSelectItem<T>[] = [];
+  @Input({ required: true }) options: DdrSelectItem<T>[] = [];
 
   @Input() disabled: boolean = false;
   @Input() inline: boolean = false;
 
   @Output() clickCheck: EventEmitter<T[]> = new EventEmitter<T[]>();
 
+  private subscription: Subscription = new Subscription();
+
   constructor() {
     super();
   }
 
   ngOnInit(): void {
-    this.changeValue.subscribe((value: T[]) => {
+    this.subscription = this.changeValue.subscribe((value: T[]) => {
       if (value instanceof Array) {
         const options = this.options.filter(s => value.find(v => JSON.stringify(v) == JSON.stringify(s.value)));
         options.forEach(op => op.selected = true);
@@ -56,6 +59,10 @@ export class DdrCheckboxComponent<T> extends DdrControlValueAccessor implements 
         this.clickCheck.emit(this.value);
       }
     }
+  }
+
+  ngOnDestroy(): void {
+    this.subscription?.unsubscribe();
   }
 
 }

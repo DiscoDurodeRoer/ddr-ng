@@ -1,234 +1,129 @@
-<base-showcase>
+<base-showcase component="ddr-badge-pill" type="component"  [showCodeCSS]="true" [showTemplates]="true" [showStyles]="true">
 
   <div description>
-    <p>Componente para mostrar información al usuario a modo de leyenda.</p>
+    <p>{{'badge.description' | ddrTranslate}}</p>
   </div>
 
   <div examples>
 
 <div class="row">
   <div class="col-12 ">
-    Ejemplo 1: Estandar
+    <span class="h3">{{'badge.example.1' | ddrTranslate}}</span>
   </div>
 </div>
 
 <div class="row mt-3">
   <div class="col-12">
     <ddr-badge-pill 
-      text="Ejemplo 1"
-      type="info"
-      (clickBadge)="clickBadge($event)">
-    </ddr-badge-pill>
+      text="Badge" 
+      type="info" 
+      (clickBadge)="clickBadge($event)" />
     <ddr-badge-pill 
-      text="Ejemplo 2" 
-      type="danger"
-      (clickBadge)="clickBadge($event)">
-    </ddr-badge-pill>
+      text="Badge" 
+      type="danger" 
+      (clickBadge)="clickBadge($event)" />
     <ddr-badge-pill 
-      text="Ejemplo 3" 
-      type="warning"
-      (clickBadge)="clickBadge($event)">
-    </ddr-badge-pill>
+      text="Badge" 
+      type="warning" 
+      (clickBadge)="clickBadge($event)" />
     <ddr-badge-pill 
-      text="Ejemplo 4" 
-      type="success"
-      (clickBadge)="clickBadge($event)">
-    </ddr-badge-pill>
+      text="Badge" 
+      type="success" 
+      (clickBadge)="clickBadge($event)" />
   </div>
 </div>
 
 <div class="row mt-3">
   <div class="col-12">
-    Ejemplo 2: Tamaños
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <ddr-badge-pill 
-      text="Pequeño"
-      size="small"
-      type="info"
-      (clickBadge)="clickBadge($event)">
-    </ddr-badge-pill>
-    <ddr-badge-pill 
-      text="Mediano"
-      size="medium"
-      type="info"
-      (clickBadge)="clickBadge($event)">
-    </ddr-badge-pill>
-    <ddr-badge-pill 
-      text="Grande"
-      size="large"
-      type="info"
-      (clickBadge)="clickBadge($event)">
-    </ddr-badge-pill>
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    Ejemplo 3: Personalizado
+    <span class="h3">{{'badge.example.2' | ddrTranslate}}</span>
   </div>
 </div>
 
 <div class="row mt-3">
   <div class="col-12">
     <ddr-badge-pill 
-      text="Ejemplo 3" 
-      customClass="myclass"
-      (clickBadge)="clickBadge($event)">
-    </ddr-badge-pill>
+      text="Badge" 
+      size="small" 
+      type="info" 
+      (clickBadge)="clickBadge($event)" />
+    <ddr-badge-pill 
+      text="Badge" 
+      size="medium" 
+      type="info" 
+      (clickBadge)="clickBadge($event)" />
+    <ddr-badge-pill 
+      text="Badge" 
+      size="large" 
+      type="info" 
+      (clickBadge)="clickBadge($event)" />
   </div>
 </div>
 
 <div class="row mt-3">
   <div class="col-12">
-    Ejemplo 4: Template
+    <span class="h3">{{'badge.example.3' | ddrTranslate}}</span>
   </div>
 </div>
 
 <div class="row mt-3">
   <div class="col-12">
     <ddr-badge-pill 
-      type="info"
+      text="Badge"
+      customClass="myclass" 
+      (clickBadge)="clickBadge($event)" />
+  </div>
+</div>
+
+<div class="row mt-3">
+  <div class="col-12">
+    <span class="h3">{{'badge.example.4' | ddrTranslate}}</span>
+  </div>
+</div>
+
+<div class="row mt-3">
+  <div class="col-12">
+    <ddr-badge-pill 
+      text="Badge"
+      background="cyan" 
+      (clickBadge)="clickBadge($event)" />
+  </div>
+</div>
+
+<div class="row mt-3">
+  <div class="col-12">
+    <span class="h3">{{'badge.example.5' | ddrTranslate}}</span>
+  </div>
+</div>
+
+<div class="row mt-3">
+  <div class="col-12">
+    <ddr-badge-pill 
+      [canClick]="false"
+      text="Badge"
+      type="info" />
+  </div>
+</div>
+
+<div class="row mt-3">
+  <div class="col-12">
+    <span class="h3">{{'badge.example.6' | ddrTranslate}}</span>
+  </div>
+</div>
+
+<div class="row mt-3">
+  <div class="col-12">
+    <ddr-badge-pill 
+      type="info" 
       (clickBadge)="clickBadge($event)">
-      <ng-template #template>
-        <span>Ejemplo 4 con template</span>
+      <ng-template #templateContent>
+        <span>Badge</span>
       </ng-template>
     </ddr-badge-pill>
   </div>
 </div>
 
-  </div>
-
-  <div code>
-    <!-- <ddr-tabs>
-      <ddr-tab-item titleTab="HTML">
-
-        <pre  class="language-html">
-          <code class="language-html" DdrHighlightCode ngNonBindable>
-&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x72;&#x6f;&#x77;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x63;&#x6f;&#x6c;&#x2d;&#x31;&#x32;&#x20;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x45;&#x6a;&#x65;&#x6d;&#x70;&#x6c;&#x6f;&#x20;&#x31;&#x3a;&#x20;&#x45;&#x73;&#x74;&#x61;&#x6e;&#x64;&#x61;&#x72;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#xd;&#xa;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x72;&#x6f;&#x77;&#x20;&#x6d;&#x74;&#x2d;&#x33;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x63;&#x6f;&#x6c;&#x2d;&#x31;&#x32;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x3c;&#x65;&#x76;&#x6c;&#x2d;&#x62;&#x61;&#x64;&#x67;&#x65;&#x2d;&#x70;&#x69;&#x6c;&#x6c;&#x20;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x74;&#x65;&#x78;&#x74;&#x3d;&#x22;&#x45;&#x6a;&#x65;&#x6d;&#x70;&#x6c;&#x6f;&#x20;&#x31;&#x22;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x5b;&#x74;&#x79;&#x70;&#x65;&#x5d;&#x3d;&#x22;&#x63;&#x6f;&#x6e;&#x73;&#x74;&#x61;&#x6e;&#x74;&#x73;&#x2e;&#x42;&#x61;&#x64;&#x67;&#x65;&#x43;&#x6f;&#x6e;&#x73;&#x74;&#x61;&#x6e;&#x74;&#x73;&#x2e;&#x49;&#x4e;&#x46;&#x4f;&#x22;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x28;&#x63;&#x6c;&#x69;&#x63;&#x6b;&#x42;&#x61;&#x64;&#x67;&#x65;&#x29;&#x3d;&#x22;&#x63;&#x6c;&#x69;&#x63;&#x6b;&#x42;&#x61;&#x64;&#x67;&#x65;&#x28;&#x24;&#x65;&#x76;&#x65;&#x6e;&#x74;&#x29;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x3c;&#x2f;&#x65;&#x76;&#x6c;&#x2d;&#x62;&#x61;&#x64;&#x67;&#x65;&#x2d;&#x70;&#x69;&#x6c;&#x6c;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x3c;&#x65;&#x76;&#x6c;&#x2d;&#x62;&#x61;&#x64;&#x67;&#x65;&#x2d;&#x70;&#x69;&#x6c;&#x6c;&#x20;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x74;&#x65;&#x78;&#x74;&#x3d;&#x22;&#x45;&#x6a;&#x65;&#x6d;&#x70;&#x6c;&#x6f;&#x20;&#x32;&#x22;&#x20;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x5b;&#x74;&#x79;&#x70;&#x65;&#x5d;&#x3d;&#x22;&#x63;&#x6f;&#x6e;&#x73;&#x74;&#x61;&#x6e;&#x74;&#x73;&#x2e;&#x42;&#x61;&#x64;&#x67;&#x65;&#x43;&#x6f;&#x6e;&#x73;&#x74;&#x61;&#x6e;&#x74;&#x73;&#x2e;&#x44;&#x41;&#x4e;&#x47;&#x45;&#x52;&#x22;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x28;&#x63;&#x6c;&#x69;&#x63;&#x6b;&#x42;&#x61;&#x64;&#x67;&#x65;&#x29;&#x3d;&#x22;&#x63;&#x6c;&#x69;&#x63;&#x6b;&#x42;&#x61;&#x64;&#x67;&#x65;&#x28;&#x24;&#x65;&#x76;&#x65;&#x6e;&#x74;&#x29;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x3c;&#x2f;&#x65;&#x76;&#x6c;&#x2d;&#x62;&#x61;&#x64;&#x67;&#x65;&#x2d;&#x70;&#x69;&#x6c;&#x6c;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x3c;&#x65;&#x76;&#x6c;&#x2d;&#x62;&#x61;&#x64;&#x67;&#x65;&#x2d;&#x70;&#x69;&#x6c;&#x6c;&#x20;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x74;&#x65;&#x78;&#x74;&#x3d;&#x22;&#x45;&#x6a;&#x65;&#x6d;&#x70;&#x6c;&#x6f;&#x20;&#x33;&#x22;&#x20;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x5b;&#x74;&#x79;&#x70;&#x65;&#x5d;&#x3d;&#x22;&#x63;&#x6f;&#x6e;&#x73;&#x74;&#x61;&#x6e;&#x74;&#x73;&#x2e;&#x42;&#x61;&#x64;&#x67;&#x65;&#x43;&#x6f;&#x6e;&#x73;&#x74;&#x61;&#x6e;&#x74;&#x73;&#x2e;&#x57;&#x41;&#x52;&#x4e;&#x49;&#x4e;&#x47;&#x22;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x28;&#x63;&#x6c;&#x69;&#x63;&#x6b;&#x42;&#x61;&#x64;&#x67;&#x65;&#x29;&#x3d;&#x22;&#x63;&#x6c;&#x69;&#x63;&#x6b;&#x42;&#x61;&#x64;&#x67;&#x65;&#x28;&#x24;&#x65;&#x76;&#x65;&#x6e;&#x74;&#x29;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x3c;&#x2f;&#x65;&#x76;&#x6c;&#x2d;&#x62;&#x61;&#x64;&#x67;&#x65;&#x2d;&#x70;&#x69;&#x6c;&#x6c;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x3c;&#x65;&#x76;&#x6c;&#x2d;&#x62;&#x61;&#x64;&#x67;&#x65;&#x2d;&#x70;&#x69;&#x6c;&#x6c;&#x20;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x74;&#x65;&#x78;&#x74;&#x3d;&#x22;&#x45;&#x6a;&#x65;&#x6d;&#x70;&#x6c;&#x6f;&#x20;&#x34;&#x22;&#x20;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x5b;&#x74;&#x79;&#x70;&#x65;&#x5d;&#x3d;&#x22;&#x63;&#x6f;&#x6e;&#x73;&#x74;&#x61;&#x6e;&#x74;&#x73;&#x2e;&#x42;&#x61;&#x64;&#x67;&#x65;&#x43;&#x6f;&#x6e;&#x73;&#x74;&#x61;&#x6e;&#x74;&#x73;&#x2e;&#x53;&#x55;&#x43;&#x43;&#x45;&#x53;&#x53;&#x22;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x28;&#x63;&#x6c;&#x69;&#x63;&#x6b;&#x42;&#x61;&#x64;&#x67;&#x65;&#x29;&#x3d;&#x22;&#x63;&#x6c;&#x69;&#x63;&#x6b;&#x42;&#x61;&#x64;&#x67;&#x65;&#x28;&#x24;&#x65;&#x76;&#x65;&#x6e;&#x74;&#x29;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x3c;&#x2f;&#x65;&#x76;&#x6c;&#x2d;&#x62;&#x61;&#x64;&#x67;&#x65;&#x2d;&#x70;&#x69;&#x6c;&#x6c;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#xd;&#xa;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x72;&#x6f;&#x77;&#x20;&#x6d;&#x74;&#x2d;&#x33;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x63;&#x6f;&#x6c;&#x2d;&#x31;&#x32;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x45;&#x6a;&#x65;&#x6d;&#x70;&#x6c;&#x6f;&#x20;&#x32;&#x3a;&#x20;&#x54;&#x61;&#x6d;&#x61;&#xf1;&#x6f;&#x73;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#xd;&#xa;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x72;&#x6f;&#x77;&#x20;&#x6d;&#x74;&#x2d;&#x33;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x63;&#x6f;&#x6c;&#x2d;&#x31;&#x32;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x3c;&#x65;&#x76;&#x6c;&#x2d;&#x62;&#x61;&#x64;&#x67;&#x65;&#x2d;&#x70;&#x69;&#x6c;&#x6c;&#x20;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x74;&#x65;&#x78;&#x74;&#x3d;&#x22;&#x50;&#x65;&#x71;&#x75;&#x65;&#xf1;&#x6f;&#x22;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x5b;&#x73;&#x69;&#x7a;&#x65;&#x5d;&#x3d;&#x22;&#x63;&#x6f;&#x6e;&#x73;&#x74;&#x61;&#x6e;&#x74;&#x73;&#x2e;&#x53;&#x69;&#x7a;&#x65;&#x43;&#x6f;&#x6e;&#x73;&#x74;&#x61;&#x6e;&#x74;&#x73;&#x2e;&#x53;&#x4d;&#x41;&#x4c;&#x4c;&#x22;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x5b;&#x74;&#x79;&#x70;&#x65;&#x5d;&#x3d;&#x22;&#x63;&#x6f;&#x6e;&#x73;&#x74;&#x61;&#x6e;&#x74;&#x73;&#x2e;&#x42;&#x61;&#x64;&#x67;&#x65;&#x43;&#x6f;&#x6e;&#x73;&#x74;&#x61;&#x6e;&#x74;&#x73;&#x2e;&#x49;&#x4e;&#x46;&#x4f;&#x22;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x28;&#x63;&#x6c;&#x69;&#x63;&#x6b;&#x42;&#x61;&#x64;&#x67;&#x65;&#x29;&#x3d;&#x22;&#x63;&#x6c;&#x69;&#x63;&#x6b;&#x42;&#x61;&#x64;&#x67;&#x65;&#x28;&#x24;&#x65;&#x76;&#x65;&#x6e;&#x74;&#x29;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x3c;&#x2f;&#x65;&#x76;&#x6c;&#x2d;&#x62;&#x61;&#x64;&#x67;&#x65;&#x2d;&#x70;&#x69;&#x6c;&#x6c;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x3c;&#x65;&#x76;&#x6c;&#x2d;&#x62;&#x61;&#x64;&#x67;&#x65;&#x2d;&#x70;&#x69;&#x6c;&#x6c;&#x20;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x74;&#x65;&#x78;&#x74;&#x3d;&#x22;&#x4d;&#x65;&#x64;&#x69;&#x61;&#x6e;&#x6f;&#x22;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x5b;&#x73;&#x69;&#x7a;&#x65;&#x5d;&#x3d;&#x22;&#x63;&#x6f;&#x6e;&#x73;&#x74;&#x61;&#x6e;&#x74;&#x73;&#x2e;&#x53;&#x69;&#x7a;&#x65;&#x43;&#x6f;&#x6e;&#x73;&#x74;&#x61;&#x6e;&#x74;&#x73;&#x2e;&#x4d;&#x45;&#x44;&#x49;&#x55;&#x4d;&#x22;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x5b;&#x74;&#x79;&#x70;&#x65;&#x5d;&#x3d;&#x22;&#x63;&#x6f;&#x6e;&#x73;&#x74;&#x61;&#x6e;&#x74;&#x73;&#x2e;&#x42;&#x61;&#x64;&#x67;&#x65;&#x43;&#x6f;&#x6e;&#x73;&#x74;&#x61;&#x6e;&#x74;&#x73;&#x2e;&#x49;&#x4e;&#x46;&#x4f;&#x22;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x28;&#x63;&#x6c;&#x69;&#x63;&#x6b;&#x42;&#x61;&#x64;&#x67;&#x65;&#x29;&#x3d;&#x22;&#x63;&#x6c;&#x69;&#x63;&#x6b;&#x42;&#x61;&#x64;&#x67;&#x65;&#x28;&#x24;&#x65;&#x76;&#x65;&#x6e;&#x74;&#x29;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x3c;&#x2f;&#x65;&#x76;&#x6c;&#x2d;&#x62;&#x61;&#x64;&#x67;&#x65;&#x2d;&#x70;&#x69;&#x6c;&#x6c;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x3c;&#x65;&#x76;&#x6c;&#x2d;&#x62;&#x61;&#x64;&#x67;&#x65;&#x2d;&#x70;&#x69;&#x6c;&#x6c;&#x20;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x74;&#x65;&#x78;&#x74;&#x3d;&#x22;&#x47;&#x72;&#x61;&#x6e;&#x64;&#x65;&#x22;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x5b;&#x73;&#x69;&#x7a;&#x65;&#x5d;&#x3d;&#x22;&#x63;&#x6f;&#x6e;&#x73;&#x74;&#x61;&#x6e;&#x74;&#x73;&#x2e;&#x53;&#x69;&#x7a;&#x65;&#x43;&#x6f;&#x6e;&#x73;&#x74;&#x61;&#x6e;&#x74;&#x73;&#x2e;&#x4c;&#x41;&#x52;&#x47;&#x45;&#x22;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x5b;&#x74;&#x79;&#x70;&#x65;&#x5d;&#x3d;&#x22;&#x63;&#x6f;&#x6e;&#x73;&#x74;&#x61;&#x6e;&#x74;&#x73;&#x2e;&#x42;&#x61;&#x64;&#x67;&#x65;&#x43;&#x6f;&#x6e;&#x73;&#x74;&#x61;&#x6e;&#x74;&#x73;&#x2e;&#x49;&#x4e;&#x46;&#x4f;&#x22;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x28;&#x63;&#x6c;&#x69;&#x63;&#x6b;&#x42;&#x61;&#x64;&#x67;&#x65;&#x29;&#x3d;&#x22;&#x63;&#x6c;&#x69;&#x63;&#x6b;&#x42;&#x61;&#x64;&#x67;&#x65;&#x28;&#x24;&#x65;&#x76;&#x65;&#x6e;&#x74;&#x29;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x3c;&#x2f;&#x65;&#x76;&#x6c;&#x2d;&#x62;&#x61;&#x64;&#x67;&#x65;&#x2d;&#x70;&#x69;&#x6c;&#x6c;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#xd;&#xa;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x72;&#x6f;&#x77;&#x20;&#x6d;&#x74;&#x2d;&#x33;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x63;&#x6f;&#x6c;&#x2d;&#x31;&#x32;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x45;&#x6a;&#x65;&#x6d;&#x70;&#x6c;&#x6f;&#x20;&#x33;&#x3a;&#x20;&#x50;&#x65;&#x72;&#x73;&#x6f;&#x6e;&#x61;&#x6c;&#x69;&#x7a;&#x61;&#x64;&#x6f;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#xd;&#xa;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x72;&#x6f;&#x77;&#x20;&#x6d;&#x74;&#x2d;&#x33;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x63;&#x6f;&#x6c;&#x2d;&#x31;&#x32;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x3c;&#x65;&#x76;&#x6c;&#x2d;&#x62;&#x61;&#x64;&#x67;&#x65;&#x2d;&#x70;&#x69;&#x6c;&#x6c;&#x20;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x74;&#x65;&#x78;&#x74;&#x3d;&#x22;&#x45;&#x6a;&#x65;&#x6d;&#x70;&#x6c;&#x6f;&#x20;&#x33;&#x22;&#x20;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x63;&#x75;&#x73;&#x74;&#x6f;&#x6d;&#x43;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x6d;&#x79;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x22;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x28;&#x63;&#x6c;&#x69;&#x63;&#x6b;&#x42;&#x61;&#x64;&#x67;&#x65;&#x29;&#x3d;&#x22;&#x63;&#x6c;&#x69;&#x63;&#x6b;&#x42;&#x61;&#x64;&#x67;&#x65;&#x28;&#x24;&#x65;&#x76;&#x65;&#x6e;&#x74;&#x29;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x3c;&#x2f;&#x65;&#x76;&#x6c;&#x2d;&#x62;&#x61;&#x64;&#x67;&#x65;&#x2d;&#x70;&#x69;&#x6c;&#x6c;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#xd;&#xa;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x72;&#x6f;&#x77;&#x20;&#x6d;&#x74;&#x2d;&#x33;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x63;&#x6f;&#x6c;&#x2d;&#x31;&#x32;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x45;&#x6a;&#x65;&#x6d;&#x70;&#x6c;&#x6f;&#x20;&#x34;&#x3a;&#x20;&#x54;&#x65;&#x6d;&#x70;&#x6c;&#x61;&#x74;&#x65;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#xd;&#xa;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x72;&#x6f;&#x77;&#x20;&#x6d;&#x74;&#x2d;&#x33;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x63;&#x6f;&#x6c;&#x2d;&#x31;&#x32;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x3c;&#x65;&#x76;&#x6c;&#x2d;&#x62;&#x61;&#x64;&#x67;&#x65;&#x2d;&#x70;&#x69;&#x6c;&#x6c;&#x20;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x5b;&#x74;&#x79;&#x70;&#x65;&#x5d;&#x3d;&#x22;&#x63;&#x6f;&#x6e;&#x73;&#x74;&#x61;&#x6e;&#x74;&#x73;&#x2e;&#x42;&#x61;&#x64;&#x67;&#x65;&#x43;&#x6f;&#x6e;&#x73;&#x74;&#x61;&#x6e;&#x74;&#x73;&#x2e;&#x49;&#x4e;&#x46;&#x4f;&#x22;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x28;&#x63;&#x6c;&#x69;&#x63;&#x6b;&#x42;&#x61;&#x64;&#x67;&#x65;&#x29;&#x3d;&#x22;&#x63;&#x6c;&#x69;&#x63;&#x6b;&#x42;&#x61;&#x64;&#x67;&#x65;&#x28;&#x24;&#x65;&#x76;&#x65;&#x6e;&#x74;&#x29;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x3c;&#x6e;&#x67;&#x2d;&#x74;&#x65;&#x6d;&#x70;&#x6c;&#x61;&#x74;&#x65;&#x20;&#x23;&#x74;&#x65;&#x6d;&#x70;&#x6c;&#x61;&#x74;&#x65;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x3c;&#x73;&#x70;&#x61;&#x6e;&#x3e;&#x45;&#x6a;&#x65;&#x6d;&#x70;&#x6c;&#x6f;&#x20;&#x34;&#x20;&#x63;&#x6f;&#x6e;&#x20;&#x74;&#x65;&#x6d;&#x70;&#x6c;&#x61;&#x74;&#x65;&#x3c;&#x2f;&#x73;&#x70;&#x61;&#x6e;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x3c;&#x2f;&#x6e;&#x67;&#x2d;&#x74;&#x65;&#x6d;&#x70;&#x6c;&#x61;&#x74;&#x65;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x3c;&#x2f;&#x65;&#x76;&#x6c;&#x2d;&#x62;&#x61;&#x64;&#x67;&#x65;&#x2d;&#x70;&#x69;&#x6c;&#x6c;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;
-          </code>
-        </pre>
-      </ddr-tab-item>
-      <ddr-tab-item titleTab="CSS">
-        <pre  class="language-css">
-          <code class="language-css" ngNonBindable>
-&#x2e;&#x6d;&#x79;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x7b;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x62;&#x61;&#x63;&#x6b;&#x67;&#x72;&#x6f;&#x75;&#x6e;&#x64;&#x3a;&#x20;&#x6f;&#x72;&#x61;&#x6e;&#x67;&#x65;&#x3b;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x63;&#x6f;&#x6c;&#x6f;&#x72;&#x3a;&#x20;&#x77;&#x68;&#x69;&#x74;&#x65;&#x3b;&#xd;&#xa;&#x7d;
-          </code>
-        </pre>
-      </ddr-tab-item>
-      <ddr-tab-item titleTab="TS">
-        <pre  class="language-typescript">
-          <code class="language-typescript" DdrHighlightCode  ngNonBindable>
-&#x69;&#x6d;&#x70;&#x6f;&#x72;&#x74;&#x20;&#x7b;&#x20;&#x43;&#x6f;&#x6d;&#x70;&#x6f;&#x6e;&#x65;&#x6e;&#x74;&#x2c;&#x20;&#x4f;&#x6e;&#x49;&#x6e;&#x69;&#x74;&#x2c;&#x20;&#x56;&#x69;&#x65;&#x77;&#x45;&#x6e;&#x63;&#x61;&#x70;&#x73;&#x75;&#x6c;&#x61;&#x74;&#x69;&#x6f;&#x6e;&#x20;&#x7d;&#x20;&#x66;&#x72;&#x6f;&#x6d;&#x20;&#x27;&#x40;&#x61;&#x6e;&#x67;&#x75;&#x6c;&#x61;&#x72;&#x2f;&#x63;&#x6f;&#x72;&#x65;&#x27;&#x3b;&#xd;&#xa;&#x69;&#x6d;&#x70;&#x6f;&#x72;&#x74;&#x20;&#x7b;&#x20;&#x45;&#x76;&#x6c;&#x54;&#x6f;&#x61;&#x73;&#x74;&#x53;&#x65;&#x72;&#x76;&#x69;&#x63;&#x65;&#x20;&#x7d;&#x20;&#x66;&#x72;&#x6f;&#x6d;&#x20;&#x27;&#x70;&#x72;&#x6f;&#x6a;&#x65;&#x63;&#x74;&#x73;&#x2f;&#x65;&#x76;&#x6c;&#x2d;&#x6c;&#x69;&#x62;&#x2f;&#x73;&#x72;&#x63;&#x2f;&#x70;&#x75;&#x62;&#x6c;&#x69;&#x63;&#x2d;&#x61;&#x70;&#x69;&#x27;&#x3b;&#xd;&#xa;&#x69;&#x6d;&#x70;&#x6f;&#x72;&#x74;&#x20;&#x7b;&#x20;&#x45;&#x76;&#x6c;&#x53;&#x65;&#x73;&#x73;&#x69;&#x6f;&#x6e;&#x53;&#x65;&#x72;&#x76;&#x69;&#x63;&#x65;&#x20;&#x7d;&#x20;&#x66;&#x72;&#x6f;&#x6d;&#x20;&#x27;&#x70;&#x72;&#x6f;&#x6a;&#x65;&#x63;&#x74;&#x73;&#x2f;&#x65;&#x76;&#x6c;&#x2d;&#x6c;&#x69;&#x62;&#x2f;&#x73;&#x72;&#x63;&#x2f;&#x73;&#x65;&#x72;&#x76;&#x69;&#x63;&#x65;&#x73;&#x2f;&#x65;&#x76;&#x6c;&#x2d;&#x73;&#x65;&#x73;&#x73;&#x69;&#x6f;&#x6e;&#x2e;&#x73;&#x65;&#x72;&#x76;&#x69;&#x63;&#x65;&#x27;&#x3b;&#xd;&#xa;&#x69;&#x6d;&#x70;&#x6f;&#x72;&#x74;&#x20;&#x7b;&#x20;&#x45;&#x76;&#x6c;&#x43;&#x6f;&#x6e;&#x73;&#x74;&#x61;&#x6e;&#x74;&#x73;&#x53;&#x65;&#x72;&#x76;&#x69;&#x63;&#x65;&#x20;&#x7d;&#x20;&#x66;&#x72;&#x6f;&#x6d;&#x20;&#x27;&#x70;&#x72;&#x6f;&#x6a;&#x65;&#x63;&#x74;&#x73;&#x2f;&#x65;&#x76;&#x6c;&#x2d;&#x6c;&#x69;&#x62;&#x2f;&#x73;&#x72;&#x63;&#x2f;&#x73;&#x65;&#x72;&#x76;&#x69;&#x63;&#x65;&#x73;&#x2f;&#x65;&#x76;&#x6c;&#x2d;&#x63;&#x6f;&#x6e;&#x73;&#x74;&#x61;&#x6e;&#x74;&#x73;&#x2e;&#x73;&#x65;&#x72;&#x76;&#x69;&#x63;&#x65;&#x27;&#x3b;&#xd;&#xa;&#xd;&#xa;&#x40;&#x43;&#x6f;&#x6d;&#x70;&#x6f;&#x6e;&#x65;&#x6e;&#x74;&#x28;&#x7b;&#xd;&#xa;&#x20;&#x20;&#x73;&#x65;&#x6c;&#x65;&#x63;&#x74;&#x6f;&#x72;&#x3a;&#x20;&#x27;&#x61;&#x70;&#x70;&#x2d;&#x62;&#x61;&#x64;&#x67;&#x65;&#x2d;&#x73;&#x68;&#x6f;&#x77;&#x63;&#x61;&#x73;&#x65;&#x27;&#x2c;&#xd;&#xa;&#x20;&#x20;&#x74;&#x65;&#x6d;&#x70;&#x6c;&#x61;&#x74;&#x65;&#x55;&#x72;&#x6c;&#x3a;&#x20;&#x27;&#x2e;&#x2f;&#x62;&#x61;&#x64;&#x67;&#x65;&#x2d;&#x73;&#x68;&#x6f;&#x77;&#x63;&#x61;&#x73;&#x65;&#x2e;&#x63;&#x6f;&#x6d;&#x70;&#x6f;&#x6e;&#x65;&#x6e;&#x74;&#x2e;&#x68;&#x74;&#x6d;&#x6c;&#x27;&#x2c;&#xd;&#xa;&#x20;&#x20;&#x73;&#x74;&#x79;&#x6c;&#x65;&#x55;&#x72;&#x6c;&#x73;&#x3a;&#x20;&#x5b;&#x27;&#x2e;&#x2f;&#x62;&#x61;&#x64;&#x67;&#x65;&#x2d;&#x73;&#x68;&#x6f;&#x77;&#x63;&#x61;&#x73;&#x65;&#x2e;&#x63;&#x6f;&#x6d;&#x70;&#x6f;&#x6e;&#x65;&#x6e;&#x74;&#x2e;&#x73;&#x63;&#x73;&#x73;&#x27;&#x5d;&#x2c;&#xd;&#xa;&#x20;&#x20;&#x65;&#x6e;&#x63;&#x61;&#x70;&#x73;&#x75;&#x6c;&#x61;&#x74;&#x69;&#x6f;&#x6e;&#x3a;&#x20;&#x56;&#x69;&#x65;&#x77;&#x45;&#x6e;&#x63;&#x61;&#x70;&#x73;&#x75;&#x6c;&#x61;&#x74;&#x69;&#x6f;&#x6e;&#x2e;&#x4e;&#x6f;&#x6e;&#x65;&#xd;&#xa;&#x7d;&#x29;&#xd;&#xa;&#x65;&#x78;&#x70;&#x6f;&#x72;&#x74;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x20;&#x42;&#x61;&#x64;&#x67;&#x65;&#x53;&#x68;&#x6f;&#x77;&#x63;&#x61;&#x73;&#x65;&#x43;&#x6f;&#x6d;&#x70;&#x6f;&#x6e;&#x65;&#x6e;&#x74;&#x20;&#x69;&#x6d;&#x70;&#x6c;&#x65;&#x6d;&#x65;&#x6e;&#x74;&#x73;&#x20;&#x4f;&#x6e;&#x49;&#x6e;&#x69;&#x74;&#x20;&#x7b;&#xd;&#xa;&#xd;&#xa;&#x20;&#x20;&#x63;&#x6f;&#x6e;&#x73;&#x74;&#x72;&#x75;&#x63;&#x74;&#x6f;&#x72;&#x28;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x70;&#x72;&#x69;&#x76;&#x61;&#x74;&#x65;&#x20;&#x65;&#x76;&#x6c;&#x53;&#x65;&#x73;&#x73;&#x69;&#x6f;&#x6e;&#x3a;&#x20;&#x45;&#x76;&#x6c;&#x53;&#x65;&#x73;&#x73;&#x69;&#x6f;&#x6e;&#x53;&#x65;&#x72;&#x76;&#x69;&#x63;&#x65;&#x2c;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x70;&#x72;&#x69;&#x76;&#x61;&#x74;&#x65;&#x20;&#x74;&#x6f;&#x61;&#x73;&#x74;&#x53;&#x65;&#x72;&#x76;&#x69;&#x63;&#x65;&#x3a;&#x20;&#x45;&#x76;&#x6c;&#x54;&#x6f;&#x61;&#x73;&#x74;&#x53;&#x65;&#x72;&#x76;&#x69;&#x63;&#x65;&#x2c;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x70;&#x75;&#x62;&#x6c;&#x69;&#x63;&#x20;&#x63;&#x6f;&#x6e;&#x73;&#x74;&#x61;&#x6e;&#x74;&#x73;&#x3a;&#x20;&#x45;&#x76;&#x6c;&#x43;&#x6f;&#x6e;&#x73;&#x74;&#x61;&#x6e;&#x74;&#x73;&#x53;&#x65;&#x72;&#x76;&#x69;&#x63;&#x65;&#xd;&#xa;&#x20;&#x20;&#x29;&#x20;&#x7b;&#x20;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x74;&#x68;&#x69;&#x73;&#x2e;&#x65;&#x76;&#x6c;&#x53;&#x65;&#x73;&#x73;&#x69;&#x6f;&#x6e;&#x2e;&#x73;&#x65;&#x74;&#x45;&#x6c;&#x65;&#x6d;&#x65;&#x6e;&#x74;&#x28;&#x27;&#x74;&#x69;&#x74;&#x6c;&#x65;&#x27;&#x2c;&#x20;&#x27;&#x42;&#x61;&#x64;&#x67;&#x65;&#x27;&#x29;&#x3b;&#xd;&#xa;&#x20;&#x20;&#x7d;&#xd;&#xa;&#x20;&#x20;&#x6e;&#x67;&#x4f;&#x6e;&#x49;&#x6e;&#x69;&#x74;&#x28;&#x29;&#x20;&#x7b;&#xd;&#xa;&#x20;&#x20;&#x7d;&#xd;&#xa;&#xd;&#xa;&#x20;&#x20;&#x63;&#x6c;&#x69;&#x63;&#x6b;&#x42;&#x61;&#x64;&#x67;&#x65;&#x28;&#x24;&#x65;&#x76;&#x65;&#x6e;&#x74;&#x29;&#x7b;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x74;&#x68;&#x69;&#x73;&#x2e;&#x74;&#x6f;&#x61;&#x73;&#x74;&#x53;&#x65;&#x72;&#x76;&#x69;&#x63;&#x65;&#x2e;&#x61;&#x64;&#x64;&#x53;&#x75;&#x63;&#x63;&#x65;&#x73;&#x73;&#x4d;&#x65;&#x73;&#x73;&#x61;&#x67;&#x65;&#x28;&#x22;&#x45;&#x78;&#x69;&#x74;&#x6f;&#x22;&#x2c;&#x20;&#x22;&#x43;&#x6c;&#x69;&#x63;&#x6b;&#x20;&#x65;&#x6e;&#x20;&#x65;&#x6c;&#x20;&#x62;&#x61;&#x64;&#x67;&#x65;&#x22;&#x29;&#x3b;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x63;&#x6f;&#x6e;&#x73;&#x6f;&#x6c;&#x65;&#x2e;&#x6c;&#x6f;&#x67;&#x28;&#x24;&#x65;&#x76;&#x65;&#x6e;&#x74;&#x29;&#x3b;&#x20;&#x20;&#x20;&#x20;&#xd;&#xa;&#x20;&#x20;&#x7d;&#xd;&#xa;&#xd;&#xa;&#x7d;&#xd;&#xa;
-          </code>
-        </pre>
-      </ddr-tab-item>
-    </ddr-tabs> -->
-
-  </div>
 
 
-  <div inputs>
-    <table class="table">
-      <thead class="thead-dark">
-        <tr>
-          <th>Nombre</th>
-          <th>Descripción</th>
-          <th>Tipo</th>
-          <th>Valor por defecto</th>
-          <th>Posibles valores (constants)</th>
-        </tr>
-      </thead>
-      <tbody>
-
-        <tr>
-          <td>text</td>
-          <td>Texto dentro del badge</td>
-          <td>string</td>
-          <td>''</td>
-          <td></td>
-        </tr>
-
-        <tr>
-          <td>customClass</td>
-          <td>Clase personalizada del badge</td>
-          <td>string</td>
-          <td>''</td>
-          <td></td>
-        </tr>
-
-        <tr>
-          <td>type</td>
-          <td>Tipo predefinido del badge</td>
-          <td>string</td>
-          <td>BADGE.INFO</td>
-          <td>
-            <ul>
-              <li>BADGE.INFO</li>
-              <li>BADGE.DANGER</li>
-              <li>BADGE.WARNING</li>
-              <li>BADGE.SUCCESS</li>
-            </ul>
-          </td>
-        </tr>
-
-        <tr>
-          <td>size</td>
-          <td>Tamaño del texto del badge</td>
-          <td>string</td>
-          <td>SIZE.MEDIUM</td>
-          <td>
-            <ul>
-              <li>SIZE.EXTRA_SMALL</li>
-              <li>SIZE.SMALL</li>
-              <li>SIZE.MEDIUM</li>
-              <li>SIZE.LARGE</li>
-            </ul>
-          </td>
-        </tr>
-
-        <tr>
-          <td>canClick</td>
-          <td>Indica si se puede o no clickar</td>
-          <td>boolean</td>
-          <td>true</td>
-          <td></td>
-        </tr>
-
-        <tr>
-          <td>background</td>
-          <td>Color del background del badge</td>
-          <td>string</td>
-          <td>undefined</td>
-          <td></td>
-        </tr>
-        
-      </tbody>
-
-    </table>
-  </div>
-
-  <div outputs>
-    <table class="table">
-      <thead class="thead-dark">
-        <tr>
-          <th>Nombre</th>
-          <th>Descripción</th>
-          <th>Valor devuelto</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <th>clickBadge</th>
-          <th>Evento al clickar el badge</th>
-          <th>MouseEvent</th>
-        </tr>
-      </tbody>
-
-    </table>
   </div>
 
 </base-showcase>

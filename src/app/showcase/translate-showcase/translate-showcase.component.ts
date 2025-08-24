@@ -1,23 +1,34 @@
-import { Component, inject, OnInit } from '@angular/core';
-import { DdrTranslatePipe, DdrTranslateService } from 'ddr-ng';
+import { Component, inject } from '@angular/core';
 import { BaseShowcaseComponent } from '../base-showcase/base-showcase.component';
+import {
+  DdrButtonComponent,
+  DdrToastService,
+  DdrTranslatePipe,
+  DdrTranslateService
+} from 'ddr-ng';
 
 @Component({
-    selector: 'app-translate-showcase',
-    templateUrl: './translate-showcase.component.html',
-    styleUrls: ['./translate-showcase.component.scss'],
-    imports: [
-        BaseShowcaseComponent,
-        DdrTranslatePipe
-    ]
+  selector: 'translate-showcase',
+  templateUrl: './translate-showcase.component.html',
+  imports: [
+    BaseShowcaseComponent,
+    DdrButtonComponent,
+    DdrTranslatePipe
+  ],
+  providers: [
+    DdrToastService
+  ]
 })
-export class TranslateShowcaseComponent implements OnInit {
+export class TranslateShowcaseComponent {
 
-  private readonly translate: DdrTranslateService = inject(DdrTranslateService);
+  private ddrToastService: DdrToastService = inject(DdrToastService);
+  private ddrTranslateService: DdrTranslateService = inject(DdrTranslateService);
 
-  ngOnInit() {
-    console.log(this.translate.getTranslate('example.1'));
-    console.log(this.translate.getTranslate('example.2'));
+  showToast() {
+    this.ddrToastService.addSuccessMessage(
+      this.ddrTranslateService.getTranslate('success'),
+      this.ddrTranslateService.getTranslate('translate.example.show')
+    )
   }
 
 }

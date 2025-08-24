@@ -7,7 +7,7 @@ import { DdrTableComponent } from '../components/ddr-table/ddr-table.component';
 import { CommonModule } from '@angular/common';
 import { DdrConstantsService } from '../services/ddr-constants.service';
 import { DdrDropdownComponent } from '../components/ddr-dropdown/ddr-dropdown.component';
-import { DdrSplitButtonComponent } from '../components/ddr-split-button/ddr-split-button.component';
+import { DdrButtonSplitComponent } from '../components/ddr-button-split/ddr-button-split.component';
 import { DdrAction } from '../common/ddr-action.model';
 import { DdrTranslatePipe } from '../pipes/ddr-translate.pipe';
 import { provideHttpClient } from '@angular/common/http';
@@ -29,7 +29,7 @@ describe('DdrTableComponent', () => {
                 DdrDropdownComponent,
                 DdrCheckboxBinaryComponent,
                 FormsModule,
-                DdrSplitButtonComponent,
+                DdrButtonSplitComponent,
                 DdrTranslatePipe,
                 DdrTableComponent,
                 DdrNestedPropertyPipe
@@ -120,8 +120,8 @@ describe('DdrTableComponent', () => {
         component.showActions = true;
         fixture.detectChanges();
         fixture.whenStable().then(() => {
-            let splitButton = fixture.debugElement.query(By.css('tbody .ddr-table__table--body-row:first-child .ddr-table__table--body-row--actions ddr-split-button'));
-            let splitButtonComponent: DdrSplitButtonComponent<string> = splitButton.componentInstance
+            let splitButton = fixture.debugElement.query(By.css('tbody .ddr-table__table--body-row:first-child .ddr-table__table--body-row--actions ddr-button-split'));
+            let splitButtonComponent: DdrButtonSplitComponent<string> = splitButton.componentInstance
             spyOn(component.selectAction, "emit");
             splitButtonComponent.sendAction({ label: '', value: 'SAVE' });
             fixture.detectChanges();
@@ -139,7 +139,7 @@ describe('DdrTableComponent', () => {
         component.showActions = false;
         fixture.detectChanges();
         fixture.whenStable().then(() => {
-            let splitButton = fixture.debugElement.query(By.css('tbody .ddr-table__table--body-row:first-child .ddr-table__table--body-row--actions ddr-split-button'));
+            let splitButton = fixture.debugElement.query(By.css('tbody .ddr-table__table--body-row:first-child .ddr-table__table--body-row--actions ddr-button-split'));
             expect(splitButton).toBeNull();
         });
     }));

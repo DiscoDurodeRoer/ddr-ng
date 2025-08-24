@@ -1,18 +1,15 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 
-@Injectable({ 
+@Injectable({
   providedIn: 'root',
 })
 export class DdrTranslateService {
 
   private http: HttpClient = inject(HttpClient);
 
-  private data: any = {} as any;;
+  private data: any = {} as any;
 
-  /**
-   * Obtengo las traducciones, depende del lenguaje del navegador
-   */
   public getData(path: string, language?: string) {
     return new Promise((resolve, reject) => {
 
@@ -22,6 +19,7 @@ export class DdrTranslateService {
 
       this.http.get(path + language + '.json').subscribe({
         next: (data: any) => {
+          this.removeAllTranslates();
           for (const key of Object.keys(data)) {
             this.addTranslate(key, data[key]);
           }
@@ -34,22 +32,15 @@ export class DdrTranslateService {
     });
   }
 
-  /**
-   * Obtengo una traduccion en concreto
-   */
   public getTranslate(key: string): string {
     return this.data[key] ? this.data[key] : key;
   }
 
-  public addTranslate(key: string, value: string) {
+  private addTranslate(key: string, value: string) {
     this.data[key] = value;
   }
 
-  public removeTranslate(key: string) {
-    delete this.data[key];
-  }
-
-  public removeAllTranslates() {
+  private removeAllTranslates() {
     this.data = {};
   }
 

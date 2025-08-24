@@ -1,51 +1,196 @@
-<div class="row">
+<div class="row mb-5">
   <div class="col-12">
+
+    <ddr-card [showHeader]="false">
+      <div card-content>
+        <div class="row user-select-none">
+          <div class="col-6 align-self-center text-start">
+            <span class="fs-2">{{component}}</span>
+          </div>
+          <div class="col-6 align-self-center text-end">
+            <ddr-badge-pill 
+              class="text-end"
+              [text]="type + '.showcase' | ddrTranslate" 
+              size="medium" 
+              type="info" 
+              [canClick]="false" />
+          </div>
+        </div>
+      </div>
+    </ddr-card>
+
     @if (showDescription) {
-      <ddr-accordion titleAccordion="Descripción" [open]="true">
-        <ng-content select="[description]" content-accordion></ng-content>
-      </ddr-accordion>
+    <ddr-accordion [titleAccordion]="'description.showcase' | ddrTranslate" [open]="true">
+      <ng-content select="[description]" content-accordion></ng-content>
+    </ddr-accordion>
     }
-    <ng-template #htmlTemplate>
-      <h1>Hola</h1>
-    </ng-template>
-    <button (click)="obtenerHtml()">HTML</button>
+
     @if (showExamples) {
-      <ddr-accordion titleAccordion="Ejemplos" [open]="true">
-        <ng-content select="[examples]" #htmlTemplate content-accordion></ng-content>
-      </ddr-accordion>
-      
+    <ddr-accordion [titleAccordion]="'examples.showcase' | ddrTranslate" [open]="true">
+      <ng-content select="[examples]" content-accordion></ng-content>
+    </ddr-accordion>
     }
     @if (showCode) {
-      <ddr-accordion titleAccordion="Codigo" [open]="true">
-        <ddr-tabs content-accordion>
-          <ddr-tab-item titleTab="HTML">
-            <pre class="language-markup"><code class="language-markup">{{codeHtml}}</code></pre>
+    <ddr-accordion [titleAccordion]="'code.showcase' | ddrTranslate" [open]="true">
+      <ddr-tabs content-accordion (changeTab)="highlight()">
+        @if(showCodeHTML){
+        <ddr-tab-item titleTab="HTML">
+          <ng-template #tabContent>
+            <pre class="language-markup"><code class="language-markup" >{{htmlCode}}</code></pre>
+          </ng-template>
+        </ddr-tab-item>
+        }
+        @if(showCodeCSS){
+        <ddr-tab-item titleTab="CSS">
+          <ng-template #tabContent>
+            <pre class="language-css"><code class="language-css">{{cssCode}}</code></pre>
+          </ng-template>
+        </ddr-tab-item>
+        }
+        @if(showCodeTS){
+        <ddr-tab-item titleTab="TS">
+          <ng-template #tabContent>
+            <pre class="language-typescript"><code class="language-typescript">{{tsCode}}</code></pre>
+          </ng-template>
+        </ddr-tab-item>
+        }
+        @if(showClasses){
+          <ddr-tab-item [titleTab]="'classes.showcase' | ddrTranslate">
+              <ng-template #tabContent>
+              @for(class of classes; track class){
+                <pre class="language-typescript"><code class="language-typescript">{{class.htmlCode}}</code></pre>
+              }
+              </ng-template>
           </ddr-tab-item>
-          <ddr-tab-item titleTab="CSS">
-            <pre><code class="language-css" ngNonBindable select="[codeCss]"></code></pre>
-          </ddr-tab-item>
-          <ddr-tab-item titleTab="TS">
-            <pre  class="language-typescript">
-              <code class="language-typescript" ngNonBindable select="[codeTs]"></code>
-            </pre>
-          </ddr-tab-item>
-        </ddr-tabs>
-      </ddr-accordion>
+        }
+      </ddr-tabs>
+    </ddr-accordion>
     }
     @if (showInputs) {
-      <ddr-accordion titleAccordion="Inputs" [open]="true">
-        <ng-content select="[inputs]" content-accordion></ng-content>
-      </ddr-accordion>
+    <ddr-accordion [titleAccordion]="'inputs.showcase' | ddrTranslate" [open]="true">
+      <ng-content select="[inputs]" content-accordion></ng-content>
+      <div content-accordion>
+        <ddr-table 
+          [cols]="colsInputs" 
+          [items]="itemsInputs" 
+          [showPagination]="false" 
+          [showFooter]="false"
+          [allowChangeRows]="false"
+          [canSelectItems]="false">
+
+          <ng-template #templateCell let-item="item" let-col="col">
+            {{ item | ddrNestedProperty: col.property | ddrTranslate }}
+          </ng-template>
+
+        </ddr-table>
+      </div>
+    </ddr-accordion>
     }
     @if (showOutputs) {
-      <ddr-accordion titleAccordion="Outputs" [open]="true">
-        <ng-content select="[outputs]" content-accordion></ng-content>
-      </ddr-accordion>
+    <ddr-accordion [titleAccordion]="'outputs.showcase' | ddrTranslate" [open]="true">
+      <div content-accordion>
+        <ddr-table 
+          [cols]="colsOutputs" 
+          [items]="itemsOutputs" 
+          [showPagination]="false" 
+          [showFooter]="false"
+          [allowChangeRows]="false"
+          [canSelectItems]="false">
+          <ng-template #templateCell let-item="item" let-col="col">
+            {{ item | ddrNestedProperty: col.property | ddrTranslate }}
+          </ng-template>
+        </ddr-table>
+      </div>
+    </ddr-accordion>
+    }
+    @if(showService){
+    <ddr-accordion [titleAccordion]="'service.showcase' | ddrTranslate" [open]="true">
+      <div content-accordion>
+        @if(documentationComponent.service){
+          <span class="h4">{{documentationComponent.service.name}}</span>
+        }
+        <ddr-table 
+          [cols]="colsService" 
+          [items]="itemsServiceMethods" 
+          [showPagination]="false" 
+          [showFooter]="false"
+          [allowChangeRows]="false"
+          [canSelectItems]="false">
+          <ng-template #templateCell let-item="item" let-col="col">
+            {{ item | ddrNestedProperty: col.property | ddrTranslate }}
+          </ng-template>
+        </ddr-table>
+      </div>
+    </ddr-accordion>
+    }
+    @if(showStyles){
+    <ddr-accordion [titleAccordion]="'styles.showcase' | ddrTranslate" [open]="true">
+      <div content-accordion>
+        <ddr-table 
+          [cols]="colsStyles" 
+          [items]="itemsStyles" 
+          [showPagination]="false" 
+          [showFooter]="false"
+          [allowChangeRows]="false"
+          [canSelectItems]="false">
+          <ng-template #templateCell let-item="item" let-col="col">
+            {{ item | ddrNestedProperty: col.property | ddrTranslate }}
+          </ng-template>
+        </ddr-table>
+      </div>
+    </ddr-accordion>
     }
     @if (showTranslations) {
-      <ddr-accordion titleAccordion="Translations" [open]="true">
-        <ng-content select="[translations]" content-accordion></ng-content>
-      </ddr-accordion>
+    <ddr-accordion [titleAccordion]="'translations.showcase' | ddrTranslate" [open]="true">
+      <div content-accordion>
+        <ddr-table 
+          [cols]="colsTranslations" 
+          [items]="itemsTranslations" 
+          [showPagination]="false" 
+          [showFooter]="false"
+          [allowChangeRows]="false"
+          [canSelectItems]="false">
+          <ng-template #templateCell let-item="item" let-col="col">
+            {{ item | ddrNestedProperty: col.property | ddrTranslate }}
+          </ng-template>
+        </ddr-table>
+      </div>
+    </ddr-accordion>
+    }
+    @if (showTemplates) {
+    <ddr-accordion [titleAccordion]="'templates.showcase' | ddrTranslate" [open]="true">
+      <div content-accordion>
+        <ddr-table 
+          [cols]="colsTemplates" 
+          [items]="itemsTemplates"  
+          [showPagination]="false" 
+          [showFooter]="false"
+          [allowChangeRows]="false"
+          [canSelectItems]="false">
+          <ng-template #templateCell let-item="item" let-col="col">
+            {{ item | ddrNestedProperty: col.property | ddrTranslate }}
+          </ng-template>
+        </ddr-table>
+        
+      </div>
+    </ddr-accordion>
+    }
+    @if (showSlots) {
+    <ddr-accordion [titleAccordion]="'slots.showcase' | ddrTranslate" [open]="true">
+      <div content-accordion>
+        <ddr-table 
+          [cols]="colsSlots" 
+          [items]="itemsSlots"  
+          [showPagination]="false" 
+          [showFooter]="false"
+          [allowChangeRows]="false"
+          [canSelectItems]="false">
+          <ng-template #templateCell let-item="item" let-col="col">
+            {{ item | ddrNestedProperty: col.property | ddrTranslate }}
+          </ng-template>
+        </ddr-table>
+      </div>
+    </ddr-accordion>
     }
   </div>
 </div>

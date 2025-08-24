@@ -1,0 +1,127 @@
+<base-showcase component="ddrSpinnerBlock" type="directive" [showOutputs]="false" [showPossibleValues]="false" [showStyles]="true">
+
+  <div description>
+    <p>{{'spinner.block.description' | ddrTranslate}}</p>
+  </div>
+
+  <div examples>
+
+<div class="row">
+  <div class="col-12">
+    <span class="h3">{{'spinner.block.example.1' | ddrTranslate}}</span>
+  </div>
+</div>
+
+<div class="row mt-3">
+  <div class="col-12">
+    <ddr-button 
+      text="spinner.block.data.load" 
+      (action)="onLoadDataEx1()" />
+  </div>
+</div>
+
+<div class="row mt-3">
+  <div class="col-12">
+    <ddr-card [showHeader]="false">
+      <div card-content ddrSpinnerBlock [spinnerShow]="!loadDataEx1">
+        @if(loadDataEx1){
+          <span>{{'spinner.block.data.loaded' | ddrTranslate}}</span>
+        }
+      </div>
+    </ddr-card>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-12">
+    <span class="h3">{{'spinner.block.example.2' | ddrTranslate}}</span>
+  </div>
+</div>
+
+<div class="row mt-3">
+  <div class="col-12">
+    <ddr-button 
+      text="spinner.block.data.load" 
+      (action)="onLoadDataEx2()" />
+  </div>
+</div>
+
+<div class="row mt-3">
+  <div class="col-12">
+    <ddr-card [showHeader]="false">
+      <div card-content ddrSpinnerBlock [spinnerShow]="!loadDataEx2" spinnerPathImg="./img/spinner/spinner.gif">
+        @if(loadDataEx2){
+          <span>{{'spinner.block.data.loaded' | ddrTranslate}}</span>
+        }
+      </div>
+    </ddr-card>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-12">
+    <span class="h3">{{'spinner.block.example.3' | ddrTranslate}}</span>
+  </div>
+</div>
+
+<div class="row mt-3">
+  <div class="col-12">
+    <ddr-button 
+      text="spinner.block.data.load" 
+      (action)="onLoadDataEx3B1()" />
+    <ddr-button 
+      text="spinner.block.data.load" 
+      (action)="onLoadDataEx3B2()" />
+  </div>
+</div>
+
+<div class="row mt-3">
+  <div class="col-md-6 col-12">
+    <ddr-card [showHeader]="false">
+      <div card-content ddrSpinnerBlock [spinnerShow]="!loadDataEx3B1">
+        @if(loadDataEx3B1){
+          <span>{{'spinner.block.data.loaded' | ddrTranslate}}</span>
+        }
+      </div>
+    </ddr-card>
+  </div>
+  <div class="col-md-6 col-12">
+    <ddr-card [showHeader]="false">
+      <div card-content ddrSpinnerBlock [spinnerShow]="!loadDataEx3B2">
+        @if(loadDataEx3B2){
+          <span>{{'spinner.block.data.loaded' | ddrTranslate}}</span>
+        }
+      </div>
+    </ddr-card>
+  </div>
+</div>
+
+<div class="row mt-3">
+  <div class="col-12">
+    <span class="h3">{{'spinner.block.example.4' | ddrTranslate}}</span>
+  </div>
+</div>
+
+<div class="row mt-3">
+  <div class="col-12">
+    <ddr-button 
+      text="spinner.block.data.load" 
+      (action)="onLoadDataEx4()" />
+  </div>
+</div>
+
+<div class="row mt-3">
+  <div class="col-12">
+    <ddr-card [showHeader]="false">
+      <div card-content ddrSpinnerBlock [spinnerShow]="!loadDataEx4" style="height: 500px;">
+        @if(loadDataEx4){
+          <span>{{'spinner.block.data.loaded' | ddrTranslate}}</span>
+        }
+      </div>
+    </ddr-card>
+  </div>
+</div>
+
+  </div>
+
+</base-showcase>

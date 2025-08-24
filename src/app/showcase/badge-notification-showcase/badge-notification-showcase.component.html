@@ -1,211 +1,122 @@
-<base-showcase [showOutputs]="false">
+<base-showcase component="ddrNotification" type="directive" [showOutputs]="false" [showPossibleValues]="false" [showStyles]="true">
 
   <div description>
-    <p>Directiva para mostrar numero de notificaciones.</p>
+    <p>{{'badge.notification.description' | ddrTranslate}}</p>
   </div>
 
   <div examples>
 
-    <div class="row">
-      <div class="col-12 ">
-        Ejemplo 1: Estandar
-      </div>
-    </div>
-
-    <div class="row mt-3">
-      <div class="col-12">
-        <ddr-button 
-          text="Mostrar notificaciones"
-          ddrNotification 
-          [numberNotifications]="5" 
-          [limitNotifications]="9">
-        </ddr-button>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="col-12 ">
-        Ejemplo 2: Superando el limite (1 cifra)
-      </div>
-    </div>
-
-    <div class="row mt-3">
-      <div class="col-12">
-        <ddr-button 
-          text="Mostrar notificaciones"
-          ddrNotification 
-          [numberNotifications]="15" 
-          [limitNotifications]="9">
-        </ddr-button>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="col-12 ">
-        Ejemplo 3: Superando el limite (2 cifras)
-      </div>
-    </div>
-
-    <div class="row mt-3">
-      <div class="col-12">
-        <ddr-button 
-          text="Mostrar notificaciones"
-          ddrNotification 
-          [numberNotifications]="100" 
-          [limitNotifications]="99">
-        </ddr-button>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="col-12 ">
-        Ejemplo 4: icono
-      </div>
-    </div>
-
-    <div class="row mt-3">
-      <div class="col-12">
-        <i class="fs-32 bi bi-house-door-fill"
-        ddrNotification 
-        [numberNotifications]="15" 
-        [limitNotifications]="9">
-      </i>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="col-12 ">
-        Ejemplo 5: ocultar notificaciones
-      </div>
-    </div>
-
-    <div class="row mt-3">
-      <div class="col-12">
-        <i class="fs-32 bi bi-house-door-fill"
-          ddrNotification 
-          [numberNotifications]="15" 
-          [limitNotifications]="9"
-          [showNotifications]="false">
-        </i>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="col-12 ">
-        Ejemplo 5: especificando elemento interno y posiciones
-      </div>
-    </div>
-
-    <div class="row mt-3">
-      <div class="col-12">
-        <ddr-button 
-          icon="bi bi-house-door-fill"
-          [floatButton]="true"
-          ddrNotification 
-          [elementToInsert]="'button'"
-          [positionTop]="'0%'"
-          [positionRight]="'calc(0% - 10px)'"
-          [numberNotifications]="100" 
-          [limitNotifications]="99">
-        </ddr-button>
-        
-      </div>
-    </div>
-
+<div class="row">
+  <div class="col-12 ">
+    <span class="h3">{{'badge.notification.example.1' | ddrTranslate}}</span>
   </div>
+</div>
 
-  <div code>
-    <!-- <ddr-tabs>
-      <ddr-tab-item titleTab="HTML">
-
-        <pre  class="language-html">
-          <code class="language-html" DdrHighlightCode ngNonBindable>
-&#xd;&#xa;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x72;&#x6f;&#x77;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x63;&#x6f;&#x6c;&#x2d;&#x31;&#x32;&#x20;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x45;&#x6a;&#x65;&#x6d;&#x70;&#x6c;&#x6f;&#x20;&#x31;&#x3a;&#x20;&#x45;&#x73;&#x74;&#x61;&#x6e;&#x64;&#x61;&#x72;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#xd;&#xa;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x72;&#x6f;&#x77;&#x20;&#x6d;&#x74;&#x2d;&#x33;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x63;&#x6f;&#x6c;&#x2d;&#x31;&#x32;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x3c;&#x65;&#x76;&#x6c;&#x2d;&#x62;&#x75;&#x74;&#x74;&#x6f;&#x6e;&#x20;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x74;&#x65;&#x78;&#x74;&#x3d;&#x22;&#x4d;&#x6f;&#x73;&#x74;&#x72;&#x61;&#x72;&#x20;&#x6e;&#x6f;&#x74;&#x69;&#x66;&#x69;&#x63;&#x61;&#x63;&#x69;&#x6f;&#x6e;&#x65;&#x73;&#x22;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x65;&#x76;&#x6c;&#x4e;&#x6f;&#x74;&#x69;&#x66;&#x69;&#x63;&#x61;&#x74;&#x69;&#x6f;&#x6e;&#x20;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x5b;&#x6e;&#x75;&#x6d;&#x62;&#x65;&#x72;&#x4e;&#x6f;&#x74;&#x69;&#x66;&#x69;&#x63;&#x61;&#x74;&#x69;&#x6f;&#x6e;&#x73;&#x5d;&#x3d;&#x22;&#x35;&#x22;&#x20;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x5b;&#x6c;&#x69;&#x6d;&#x69;&#x74;&#x4e;&#x6f;&#x74;&#x69;&#x66;&#x69;&#x63;&#x61;&#x74;&#x69;&#x6f;&#x6e;&#x73;&#x5d;&#x3d;&#x22;&#x39;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x3c;&#x2f;&#x65;&#x76;&#x6c;&#x2d;&#x62;&#x75;&#x74;&#x74;&#x6f;&#x6e;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#xd;&#xa;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x72;&#x6f;&#x77;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x63;&#x6f;&#x6c;&#x2d;&#x31;&#x32;&#x20;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x45;&#x6a;&#x65;&#x6d;&#x70;&#x6c;&#x6f;&#x20;&#x32;&#x3a;&#x20;&#x53;&#x75;&#x70;&#x65;&#x72;&#x61;&#x6e;&#x64;&#x6f;&#x20;&#x65;&#x6c;&#x20;&#x6c;&#x69;&#x6d;&#x69;&#x74;&#x65;&#x20;&#x28;&#x31;&#x20;&#x63;&#x69;&#x66;&#x72;&#x61;&#x29;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#xd;&#xa;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x72;&#x6f;&#x77;&#x20;&#x6d;&#x74;&#x2d;&#x33;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x63;&#x6f;&#x6c;&#x2d;&#x31;&#x32;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x3c;&#x65;&#x76;&#x6c;&#x2d;&#x62;&#x75;&#x74;&#x74;&#x6f;&#x6e;&#x20;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x74;&#x65;&#x78;&#x74;&#x3d;&#x22;&#x4d;&#x6f;&#x73;&#x74;&#x72;&#x61;&#x72;&#x20;&#x6e;&#x6f;&#x74;&#x69;&#x66;&#x69;&#x63;&#x61;&#x63;&#x69;&#x6f;&#x6e;&#x65;&#x73;&#x22;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x65;&#x76;&#x6c;&#x4e;&#x6f;&#x74;&#x69;&#x66;&#x69;&#x63;&#x61;&#x74;&#x69;&#x6f;&#x6e;&#x20;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x5b;&#x6e;&#x75;&#x6d;&#x62;&#x65;&#x72;&#x4e;&#x6f;&#x74;&#x69;&#x66;&#x69;&#x63;&#x61;&#x74;&#x69;&#x6f;&#x6e;&#x73;&#x5d;&#x3d;&#x22;&#x31;&#x35;&#x22;&#x20;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x5b;&#x6c;&#x69;&#x6d;&#x69;&#x74;&#x4e;&#x6f;&#x74;&#x69;&#x66;&#x69;&#x63;&#x61;&#x74;&#x69;&#x6f;&#x6e;&#x73;&#x5d;&#x3d;&#x22;&#x39;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x3c;&#x2f;&#x65;&#x76;&#x6c;&#x2d;&#x62;&#x75;&#x74;&#x74;&#x6f;&#x6e;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#xd;&#xa;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x72;&#x6f;&#x77;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x63;&#x6f;&#x6c;&#x2d;&#x31;&#x32;&#x20;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x45;&#x6a;&#x65;&#x6d;&#x70;&#x6c;&#x6f;&#x20;&#x33;&#x3a;&#x20;&#x53;&#x75;&#x70;&#x65;&#x72;&#x61;&#x6e;&#x64;&#x6f;&#x20;&#x65;&#x6c;&#x20;&#x6c;&#x69;&#x6d;&#x69;&#x74;&#x65;&#x20;&#x28;&#x32;&#x20;&#x63;&#x69;&#x66;&#x72;&#x61;&#x73;&#x29;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#xd;&#xa;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x72;&#x6f;&#x77;&#x20;&#x6d;&#x74;&#x2d;&#x33;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x63;&#x6f;&#x6c;&#x2d;&#x31;&#x32;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x3c;&#x65;&#x76;&#x6c;&#x2d;&#x62;&#x75;&#x74;&#x74;&#x6f;&#x6e;&#x20;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x74;&#x65;&#x78;&#x74;&#x3d;&#x22;&#x4d;&#x6f;&#x73;&#x74;&#x72;&#x61;&#x72;&#x20;&#x6e;&#x6f;&#x74;&#x69;&#x66;&#x69;&#x63;&#x61;&#x63;&#x69;&#x6f;&#x6e;&#x65;&#x73;&#x22;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x65;&#x76;&#x6c;&#x4e;&#x6f;&#x74;&#x69;&#x66;&#x69;&#x63;&#x61;&#x74;&#x69;&#x6f;&#x6e;&#x20;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x5b;&#x6e;&#x75;&#x6d;&#x62;&#x65;&#x72;&#x4e;&#x6f;&#x74;&#x69;&#x66;&#x69;&#x63;&#x61;&#x74;&#x69;&#x6f;&#x6e;&#x73;&#x5d;&#x3d;&#x22;&#x31;&#x30;&#x30;&#x22;&#x20;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x5b;&#x6c;&#x69;&#x6d;&#x69;&#x74;&#x4e;&#x6f;&#x74;&#x69;&#x66;&#x69;&#x63;&#x61;&#x74;&#x69;&#x6f;&#x6e;&#x73;&#x5d;&#x3d;&#x22;&#x39;&#x39;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x3c;&#x2f;&#x65;&#x76;&#x6c;&#x2d;&#x62;&#x75;&#x74;&#x74;&#x6f;&#x6e;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#xd;&#xa;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x72;&#x6f;&#x77;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x63;&#x6f;&#x6c;&#x2d;&#x31;&#x32;&#x20;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x45;&#x6a;&#x65;&#x6d;&#x70;&#x6c;&#x6f;&#x20;&#x34;&#x3a;&#x20;&#x69;&#x63;&#x6f;&#x6e;&#x6f;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#xd;&#xa;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x72;&#x6f;&#x77;&#x20;&#x6d;&#x74;&#x2d;&#x33;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x63;&#x6f;&#x6c;&#x2d;&#x31;&#x32;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x3c;&#x69;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x66;&#x73;&#x2d;&#x33;&#x32;&#x20;&#x62;&#x69;&#x20;&#x62;&#x69;&#x2d;&#x68;&#x6f;&#x75;&#x73;&#x65;&#x2d;&#x64;&#x6f;&#x6f;&#x72;&#x2d;&#x66;&#x69;&#x6c;&#x6c;&#x22;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x65;&#x76;&#x6c;&#x4e;&#x6f;&#x74;&#x69;&#x66;&#x69;&#x63;&#x61;&#x74;&#x69;&#x6f;&#x6e;&#x20;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x5b;&#x6e;&#x75;&#x6d;&#x62;&#x65;&#x72;&#x4e;&#x6f;&#x74;&#x69;&#x66;&#x69;&#x63;&#x61;&#x74;&#x69;&#x6f;&#x6e;&#x73;&#x5d;&#x3d;&#x22;&#x31;&#x35;&#x22;&#x20;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x5b;&#x6c;&#x69;&#x6d;&#x69;&#x74;&#x4e;&#x6f;&#x74;&#x69;&#x66;&#x69;&#x63;&#x61;&#x74;&#x69;&#x6f;&#x6e;&#x73;&#x5d;&#x3d;&#x22;&#x39;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x2f;&#x69;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#xd;&#xa;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x72;&#x6f;&#x77;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x63;&#x6f;&#x6c;&#x2d;&#x31;&#x32;&#x20;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x45;&#x6a;&#x65;&#x6d;&#x70;&#x6c;&#x6f;&#x20;&#x35;&#x3a;&#x20;&#x6f;&#x63;&#x75;&#x6c;&#x74;&#x61;&#x72;&#x20;&#x6e;&#x6f;&#x74;&#x69;&#x66;&#x69;&#x63;&#x61;&#x63;&#x69;&#x6f;&#x6e;&#x65;&#x73;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#xd;&#xa;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x72;&#x6f;&#x77;&#x20;&#x6d;&#x74;&#x2d;&#x33;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x63;&#x6f;&#x6c;&#x2d;&#x31;&#x32;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x3c;&#x69;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x66;&#x73;&#x2d;&#x33;&#x32;&#x20;&#x62;&#x69;&#x20;&#x62;&#x69;&#x2d;&#x68;&#x6f;&#x75;&#x73;&#x65;&#x2d;&#x64;&#x6f;&#x6f;&#x72;&#x2d;&#x66;&#x69;&#x6c;&#x6c;&#x22;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x65;&#x76;&#x6c;&#x4e;&#x6f;&#x74;&#x69;&#x66;&#x69;&#x63;&#x61;&#x74;&#x69;&#x6f;&#x6e;&#x20;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x5b;&#x6e;&#x75;&#x6d;&#x62;&#x65;&#x72;&#x4e;&#x6f;&#x74;&#x69;&#x66;&#x69;&#x63;&#x61;&#x74;&#x69;&#x6f;&#x6e;&#x73;&#x5d;&#x3d;&#x22;&#x31;&#x35;&#x22;&#x20;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x5b;&#x6c;&#x69;&#x6d;&#x69;&#x74;&#x4e;&#x6f;&#x74;&#x69;&#x66;&#x69;&#x63;&#x61;&#x74;&#x69;&#x6f;&#x6e;&#x73;&#x5d;&#x3d;&#x22;&#x39;&#x22;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x5b;&#x73;&#x68;&#x6f;&#x77;&#x4e;&#x6f;&#x74;&#x69;&#x66;&#x69;&#x63;&#x61;&#x74;&#x69;&#x6f;&#x6e;&#x73;&#x5d;&#x3d;&#x22;&#x66;&#x61;&#x6c;&#x73;&#x65;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x3c;&#x2f;&#x69;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#xd;&#xa;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x72;&#x6f;&#x77;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x63;&#x6f;&#x6c;&#x2d;&#x31;&#x32;&#x20;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x45;&#x6a;&#x65;&#x6d;&#x70;&#x6c;&#x6f;&#x20;&#x35;&#x3a;&#x20;&#x65;&#x73;&#x70;&#x65;&#x63;&#x69;&#x66;&#x69;&#x63;&#x61;&#x6e;&#x64;&#x6f;&#x20;&#x65;&#x6c;&#x65;&#x6d;&#x65;&#x6e;&#x74;&#x6f;&#x20;&#x69;&#x6e;&#x74;&#x65;&#x72;&#x6e;&#x6f;&#x20;&#x79;&#x20;&#x70;&#x6f;&#x73;&#x69;&#x63;&#x69;&#x6f;&#x6e;&#x65;&#x73;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#xd;&#xa;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x72;&#x6f;&#x77;&#x20;&#x6d;&#x74;&#x2d;&#x33;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x63;&#x6f;&#x6c;&#x2d;&#x31;&#x32;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x3c;&#x65;&#x76;&#x6c;&#x2d;&#x62;&#x75;&#x74;&#x74;&#x6f;&#x6e;&#x20;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x69;&#x63;&#x6f;&#x6e;&#x3d;&#x22;&#x62;&#x69;&#x20;&#x62;&#x69;&#x2d;&#x68;&#x6f;&#x75;&#x73;&#x65;&#x2d;&#x64;&#x6f;&#x6f;&#x72;&#x2d;&#x66;&#x69;&#x6c;&#x6c;&#x22;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x5b;&#x66;&#x6c;&#x6f;&#x61;&#x74;&#x42;&#x75;&#x74;&#x74;&#x6f;&#x6e;&#x5d;&#x3d;&#x22;&#x74;&#x72;&#x75;&#x65;&#x22;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x65;&#x76;&#x6c;&#x4e;&#x6f;&#x74;&#x69;&#x66;&#x69;&#x63;&#x61;&#x74;&#x69;&#x6f;&#x6e;&#x20;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x5b;&#x65;&#x6c;&#x65;&#x6d;&#x65;&#x6e;&#x74;&#x54;&#x6f;&#x49;&#x6e;&#x73;&#x65;&#x72;&#x74;&#x5d;&#x3d;&#x22;&#x27;&#x62;&#x75;&#x74;&#x74;&#x6f;&#x6e;&#x27;&#x22;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x5b;&#x70;&#x6f;&#x73;&#x69;&#x74;&#x69;&#x6f;&#x6e;&#x54;&#x6f;&#x70;&#x5d;&#x3d;&#x22;&#x27;&#x30;&#x25;&#x27;&#x22;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x5b;&#x70;&#x6f;&#x73;&#x69;&#x74;&#x69;&#x6f;&#x6e;&#x52;&#x69;&#x67;&#x68;&#x74;&#x5d;&#x3d;&#x22;&#x27;&#x63;&#x61;&#x6c;&#x63;&#x28;&#x30;&#x25;&#x20;&#x2d;&#x20;&#x31;&#x30;&#x70;&#x78;&#x29;&#x27;&#x22;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x5b;&#x6e;&#x75;&#x6d;&#x62;&#x65;&#x72;&#x4e;&#x6f;&#x74;&#x69;&#x66;&#x69;&#x63;&#x61;&#x74;&#x69;&#x6f;&#x6e;&#x73;&#x5d;&#x3d;&#x22;&#x31;&#x30;&#x30;&#x22;&#x20;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x5b;&#x6c;&#x69;&#x6d;&#x69;&#x74;&#x4e;&#x6f;&#x74;&#x69;&#x66;&#x69;&#x63;&#x61;&#x74;&#x69;&#x6f;&#x6e;&#x73;&#x5d;&#x3d;&#x22;&#x39;&#x39;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x3c;&#x2f;&#x65;&#x76;&#x6c;&#x2d;&#x62;&#x75;&#x74;&#x74;&#x6f;&#x6e;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;
-          </code>
-        </pre>
-      </ddr-tab-item>
-      <ddr-tab-item titleTab="CSS">
-        <pre  class="language-css">
-          <code class="language-css" ngNonBindable>
-&#x2e;&#x66;&#x73;&#x2d;&#x33;&#x32;&#x7b;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x66;&#x6f;&#x6e;&#x74;&#x2d;&#x73;&#x69;&#x7a;&#x65;&#x3a;&#x20;&#x33;&#x32;&#x70;&#x78;&#x3b;&#xd;&#xa;&#x7d;
-          </code>
-        </pre>
-      </ddr-tab-item>
-      <ddr-tab-item titleTab="TS">
-        <pre  class="language-typescript">
-          <code class="language-typescript" DdrHighlightCode  ngNonBindable>
-&#x69;&#x6d;&#x70;&#x6f;&#x72;&#x74;&#x20;&#x7b;&#x20;&#x43;&#x6f;&#x6d;&#x70;&#x6f;&#x6e;&#x65;&#x6e;&#x74;&#x20;&#x7d;&#x20;&#x66;&#x72;&#x6f;&#x6d;&#x20;&#x27;&#x40;&#x61;&#x6e;&#x67;&#x75;&#x6c;&#x61;&#x72;&#x2f;&#x63;&#x6f;&#x72;&#x65;&#x27;&#x3b;&#xd;&#xa;&#x69;&#x6d;&#x70;&#x6f;&#x72;&#x74;&#x20;&#x7b;&#x20;&#x45;&#x76;&#x6c;&#x53;&#x65;&#x73;&#x73;&#x69;&#x6f;&#x6e;&#x53;&#x65;&#x72;&#x76;&#x69;&#x63;&#x65;&#x20;&#x7d;&#x20;&#x66;&#x72;&#x6f;&#x6d;&#x20;&#x27;&#x70;&#x72;&#x6f;&#x6a;&#x65;&#x63;&#x74;&#x73;&#x2f;&#x65;&#x76;&#x6c;&#x2d;&#x6c;&#x69;&#x62;&#x2f;&#x73;&#x72;&#x63;&#x2f;&#x73;&#x65;&#x72;&#x76;&#x69;&#x63;&#x65;&#x73;&#x2f;&#x65;&#x76;&#x6c;&#x2d;&#x73;&#x65;&#x73;&#x73;&#x69;&#x6f;&#x6e;&#x2e;&#x73;&#x65;&#x72;&#x76;&#x69;&#x63;&#x65;&#x27;&#x3b;&#xd;&#xa;&#xd;&#xa;&#x40;&#x43;&#x6f;&#x6d;&#x70;&#x6f;&#x6e;&#x65;&#x6e;&#x74;&#x28;&#x7b;&#xd;&#xa;&#x20;&#x20;&#x73;&#x65;&#x6c;&#x65;&#x63;&#x74;&#x6f;&#x72;&#x3a;&#x20;&#x27;&#x61;&#x70;&#x70;&#x2d;&#x62;&#x61;&#x64;&#x67;&#x65;&#x2d;&#x6e;&#x6f;&#x74;&#x69;&#x66;&#x69;&#x63;&#x61;&#x74;&#x69;&#x6f;&#x6e;&#x2d;&#x73;&#x68;&#x6f;&#x77;&#x63;&#x61;&#x73;&#x65;&#x27;&#x2c;&#xd;&#xa;&#x20;&#x20;&#x74;&#x65;&#x6d;&#x70;&#x6c;&#x61;&#x74;&#x65;&#x55;&#x72;&#x6c;&#x3a;&#x20;&#x27;&#x2e;&#x2f;&#x62;&#x61;&#x64;&#x67;&#x65;&#x2d;&#x6e;&#x6f;&#x74;&#x69;&#x66;&#x69;&#x63;&#x61;&#x74;&#x69;&#x6f;&#x6e;&#x2d;&#x73;&#x68;&#x6f;&#x77;&#x63;&#x61;&#x73;&#x65;&#x2e;&#x63;&#x6f;&#x6d;&#x70;&#x6f;&#x6e;&#x65;&#x6e;&#x74;&#x2e;&#x68;&#x74;&#x6d;&#x6c;&#x27;&#x2c;&#xd;&#xa;&#x20;&#x20;&#x73;&#x74;&#x79;&#x6c;&#x65;&#x55;&#x72;&#x6c;&#x73;&#x3a;&#x20;&#x5b;&#x27;&#x2e;&#x2f;&#x62;&#x61;&#x64;&#x67;&#x65;&#x2d;&#x6e;&#x6f;&#x74;&#x69;&#x66;&#x69;&#x63;&#x61;&#x74;&#x69;&#x6f;&#x6e;&#x2d;&#x73;&#x68;&#x6f;&#x77;&#x63;&#x61;&#x73;&#x65;&#x2e;&#x63;&#x6f;&#x6d;&#x70;&#x6f;&#x6e;&#x65;&#x6e;&#x74;&#x2e;&#x73;&#x63;&#x73;&#x73;&#x27;&#x5d;&#xd;&#xa;&#x7d;&#x29;&#xd;&#xa;&#x65;&#x78;&#x70;&#x6f;&#x72;&#x74;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x20;&#x42;&#x61;&#x64;&#x67;&#x65;&#x4e;&#x6f;&#x74;&#x69;&#x66;&#x69;&#x63;&#x61;&#x74;&#x69;&#x6f;&#x6e;&#x53;&#x68;&#x6f;&#x77;&#x63;&#x61;&#x73;&#x65;&#x43;&#x6f;&#x6d;&#x70;&#x6f;&#x6e;&#x65;&#x6e;&#x74;&#x20;&#x7b;&#xd;&#xa;&#xd;&#xa;&#x20;&#x20;&#x63;&#x6f;&#x6e;&#x73;&#x74;&#x72;&#x75;&#x63;&#x74;&#x6f;&#x72;&#x28;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x70;&#x72;&#x69;&#x76;&#x61;&#x74;&#x65;&#x20;&#x65;&#x76;&#x6c;&#x53;&#x65;&#x73;&#x73;&#x69;&#x6f;&#x6e;&#x3a;&#x20;&#x45;&#x76;&#x6c;&#x53;&#x65;&#x73;&#x73;&#x69;&#x6f;&#x6e;&#x53;&#x65;&#x72;&#x76;&#x69;&#x63;&#x65;&#xd;&#xa;&#x20;&#x20;&#x29;&#x20;&#x7b;&#x20;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x74;&#x68;&#x69;&#x73;&#x2e;&#x65;&#x76;&#x6c;&#x53;&#x65;&#x73;&#x73;&#x69;&#x6f;&#x6e;&#x2e;&#x73;&#x65;&#x74;&#x45;&#x6c;&#x65;&#x6d;&#x65;&#x6e;&#x74;&#x28;&#x27;&#x74;&#x69;&#x74;&#x6c;&#x65;&#x27;&#x2c;&#x20;&#x27;&#x42;&#x61;&#x64;&#x67;&#x65;&#x20;&#x6e;&#x6f;&#x74;&#x69;&#x66;&#x69;&#x63;&#x61;&#x74;&#x69;&#x6f;&#x6e;&#x27;&#x29;&#x3b;&#xd;&#xa;&#x20;&#x20;&#x7d;&#xd;&#xa;&#x20;&#x20;&#xd;&#xa;&#x7d;&#xd;&#xa;
-          </code>
-        </pre>
-      </ddr-tab-item>
-    </ddr-tabs> -->
-
+<div class="row mt-3">
+  <div class="col-12">
+    <ddr-button 
+      text="badge.notification.text"
+      ddrNotification 
+      [numberNotifications]="5" 
+      [limitNotifications]="9" />
   </div>
+</div>
 
+<div class="row mt-3">
+  <div class="col-12 ">
+    <span class="h3">{{'badge.notification.example.2' | ddrTranslate}}</span>
+  </div>
+</div>
 
-  <div inputs>
-    <table class="table">
-      <thead class="thead-dark">
-        <tr>
-          <th>Nombre</th>
-          <th>Descripción</th>
-          <th>Tipo</th>
-          <th>Valor por defecto</th>
-          <th>Posibles valores (constants)</th>
-        </tr>
-      </thead>
-      <tbody>
+<div class="row mt-3">
+  <div class="col-12">
+    <ddr-button 
+      text="badge.notification.text"
+      ddrNotification 
+      [numberNotifications]="15" 
+      [limitNotifications]="9" />
+  </div>
+</div>
 
-        <tr>
-          <td>showNotifications</td>
-          <td>Indica si debe mostrar el numero de notificaciones</td>
-          <td>boolean</td>
-          <td>true</td>
-          <td></td>
-        </tr>
+<div class="row mt-3">
+  <div class="col-12 ">
+    <span class="h3">{{'badge.notification.example.3' | ddrTranslate}}</span>
+  </div>
+</div>
 
-        <tr>
-          <td>numberNotifications</td>
-          <td>Numero de notificaciones a mostrar</td>
-          <td>number</td>
-          <td>0</td>
-          <td></td>
-        </tr>
+<div class="row mt-3">
+  <div class="col-12">
+    <ddr-button 
+      text="badge.notification.text"
+      ddrNotification 
+      [numberNotifications]="100" 
+      [limitNotifications]="99" />
+  </div>
+</div>
 
-        <tr>
-          <td>limitNotifications</td>
-          <td>Limite del numero de notificaciones a mostrar, si lo supera muestra el caracter + y el limite</td>
-          <td>number</td>
-          <td>9</td>
-          <td></td>
-        </tr>
+<div class="row mt-3">
+  <div class="col-12 ">
+    <span class="h3">{{'badge.notification.example.4' | ddrTranslate}}</span>
+  </div>
+</div>
 
-        <tr>
-          <td>elementToInsert</td>
-          <td>Especifica a que elemento debe agregar la notificiacion, util para elementos internos o con posiciones fixed</td>
-          <td>string</td>
-          <td>undefined</td>
-          <td></td>
-        </tr>
+<div class="row mt-3">
+  <div class="col-12">
+    <i class="fs-2 bi bi-house-door-fill"
+    ddrNotification 
+    [numberNotifications]="15" 
+    [limitNotifications]="9">
+  </i>
+  </div>
+</div>
 
-        <tr>
-          <td>positionTop</td>
-          <td>Permite personalizar la posicion top de la notificación</td>
-          <td>string</td>
-          <td>undefined</td>
-          <td></td>
-        </tr>
+<div class="row mt-3">
+  <div class="col-12 ">
+    <span class="h3">{{'badge.notification.example.5' | ddrTranslate}}</span>
+  </div>
+</div>
 
-        <tr>
-          <td>positionRight</td>
-          <td>Permite personalizar la posicion right de la notificación</td>
-          <td>string</td>
-          <td>undefined</td>
-          <td></td>
-        </tr>
-      </tbody>
+<div class="row mt-3">
+  <div class="col-12">
+    <ddr-button 
+      [text]="showNotifications ? 
+        'badge.notification.hide.notifications' : 
+        'badge.notification.show.notifications'"
+      (action)="toggleNotifications()" />
+  </div>
+</div>
 
-    </table>
+<div class="row mt-3">
+  <div class="col-12">
+    <i class="fs-2 bi bi-house-door-fill"
+      ddrNotification 
+      [numberNotifications]="15" 
+      [limitNotifications]="9"
+      [showNotifications]="showNotifications">
+    </i>
+  </div>
+</div>
+
+<div class="row mt-3">
+  <div class="col-12 ">
+    <span class="h3">{{'badge.notification.example.6' | ddrTranslate}}</span>
+  </div>
+</div>
+
+<div class="row mt-3">
+  <div class="col-12">
+    <ddr-button 
+      icon="bi bi-house-door-fill"
+      [floatButton]="true"
+      ddrNotification 
+      [elementToInsert]="'button'"
+      [positionTop]="'0%'"
+      [positionRight]="'calc(0% - 10px)'"
+      [numberNotifications]="100" 
+      [limitNotifications]="99" />
+  </div>
+</div>
+
   </div>
 
 </base-showcase>

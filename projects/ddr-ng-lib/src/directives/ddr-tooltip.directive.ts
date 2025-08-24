@@ -1,6 +1,6 @@
 import { Directive, ElementRef, HostListener, inject, Input, OnInit, Renderer2, TemplateRef, ViewContainerRef } from '@angular/core';
 import { DdrConstantsService } from '../services/ddr-constants.service';
-import { DdrOrientation } from '../types/types';
+import { DdrOrientatioTooltip } from '../types/types';
 
 @Directive({
   selector: '[ddrTooltip]',
@@ -17,14 +17,16 @@ export class DdrTooltipDirective implements OnInit {
   @Input() tooltipWidth?: string;
   @Input() tooltipTemplate?: TemplateRef<any>;
   @Input() tooltipTemplateData: any;
-  @Input() underlineTooltip: boolean = false;
-  @Input() orientationTooltip: DdrOrientation = this.constants.ORIENTATION.TOP;
+  @Input() tooltipUnderline: boolean = false;
+  @Input() tooltipOrientation: DdrOrientatioTooltip = this.constants.ORIENTATION.TOP;
 
   private tooltipElement!: HTMLElement;
-  
+
   ngOnInit(): void {
-    if (this.underlineTooltip) {
-      this.renderer.setStyle(this.el.nativeElement, 'text-decoration', 'underline dotted 2px');
+    if (this.tooltipUnderline) {
+      this.renderer.setStyle(this.el.nativeElement, 'text-decoration-line', 'underline');
+      this.renderer.setStyle(this.el.nativeElement, 'text-decoration-style', 'dotted');
+      this.renderer.setStyle(this.el.nativeElement, 'text-decoration-thickness', '2px');
     }
   }
 
@@ -39,27 +41,21 @@ export class DdrTooltipDirective implements OnInit {
   showTooltip() {
 
     if (this.tooltipText || this.tooltipTemplate) {
-      if(this.tooltipTemplate){
+      if (this.tooltipTemplate) {
         const embeddedViewRef = this.containerRef.createEmbeddedView(this.tooltipTemplate, this.tooltipTemplateData);
         embeddedViewRef.detectChanges();
         this.tooltipElement = embeddedViewRef.rootNodes[0];
-      }else{
+      } else {
         this.tooltipElement = document.createElement('span');
-        this.tooltipElement.innerText = this.tooltipText || '';
+        this.tooltipElement.innerText = this.tooltipText || '';
       }
       this.tooltipElement.className = 'ddr-tooltip user-select-none';
-      if(this.tooltipWidth){
-        this.tooltipElement.style.width = this.tooltipWidth; 
+      if (this.tooltipWidth) {
+        this.tooltipElement.style.width = this.tooltipWidth;
       }
-      switch (this.orientationTooltip) {
+      switch (this.tooltipOrientation) {
         case this.constants.ORIENTATION.TOP:
           this.tooltipElement.className += ' ddr-tooltip--top';
-          break;
-        case this.constants.ORIENTATION.TOP_LEFT:
-          this.tooltipElement.className += ' ddr-tooltip--top ddr-tooltip--top-left';
-          break;
-        case this.constants.ORIENTATION.TOP_RIGHT:
-          this.tooltipElement.className += ' ddr-tooltip--top ddr-tooltip--top-right';
           break;
         case this.constants.ORIENTATION.BOTTOM:
           this.tooltipElement.className += ' ddr-tooltip--bottom';
@@ -80,7 +76,6 @@ export class DdrTooltipDirective implements OnInit {
   hideTooltip() {
     if (this.tooltipElement) {
       this.el.nativeElement.removeChild(this.tooltipElement);
-      // this.tooltipElement = null;
     }
   }
 

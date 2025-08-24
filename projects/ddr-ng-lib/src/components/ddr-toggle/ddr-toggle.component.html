@@ -1,20 +1,26 @@
-<div class="ddr-toggle" [ngClass]="{'ddr-toggle__inline': inline}">
+<div class="ddr-toggle" [ngClass]="{'ddr-toggle--inline': inline}">
   @if (label) {
-    <div class="ddr-toggle__label" [ngClass]="{'ddr-toggle__label--si-inline ': inline}">
-      <label>{{ label + (required ? "(*):" : ":") }}</label>
+    <div class="ddr-toggle__label" [ngClass]="{'ddr-toggle__label--inline': inline}">
+      <label>{{ label }}</label>
       @if (tooltipText) {
         <i
-          class="bi bi-info-circle"
+          class="ms-1 bi bi-info-circle"
           ddrTooltip
-          [underlineTooltip]="false"
-          [orientationTooltip]="constants.ORIENTATION.BOTTOM"
-          [tooltipText]="tooltipText ? tooltipText : ''">
+          [tooltipOrientation]="tooltipOrientation"
+          [tooltipText]="tooltipText">
         </i>
       }
     </div>
   }
-  <button type="button" class="ddr-toggle__btn"
-    [ngClass]="{'ddr-toggle__btn--on': value, 'ddr-toggle__btn--off': !value, 'ddr-toggle__btn--small': small}" [attr.aria-expanded]="value"
+  <button type="button" class="ddr-toggle__button"
+    [ngClass]="{
+      'ddr-toggle__button--on': value, 
+      'ddr-toggle__button--off': !value, 
+      'ddr-toggle__button--small': size == constants.SIZE.SMALL,
+      'ddr-toggle__button--medium': size == constants.SIZE.MEDIUM,
+      'ddr-toggle__button--large': size == constants.SIZE.LARGE
+    }" 
+      [attr.aria-expanded]="value"
     (click)="onClick()">
   </button>
 </div>

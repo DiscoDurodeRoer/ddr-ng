@@ -1,4 +1,4 @@
-import { Directive, Input, Output, EventEmitter, HostListener, ElementRef } from '@angular/core';
+import { Directive, Input, Output, EventEmitter, HostListener, ElementRef, inject } from '@angular/core';
 
 @Directive({
   selector: '[ddrClickOutside]',
@@ -11,7 +11,7 @@ export class DdrClickOutsideDirective {
 
   @Output() clickOutside = new EventEmitter<MouseEvent>();
 
-  constructor(private elementRef: ElementRef) { }
+  private elementRef: ElementRef = inject(ElementRef);
 
   @HostListener('document:click', ['$event'])
   public onDocumentClick(event: MouseEvent) {

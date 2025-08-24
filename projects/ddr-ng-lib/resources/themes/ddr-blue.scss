@@ -1,6 +1,5 @@
 /* Importaciones */
 
-@use '../reset.scss';
 @use '../fonts.scss';
 @use '../styles.scss';
 
@@ -84,6 +83,9 @@ $color-warning: #f0ad4e;
 
 .ddr-blue {
 
+  color-scheme: light;
+  background-color: #FFF;
+
   * {
     font-family: 'Cairo';
   }
@@ -159,41 +161,6 @@ $color-warning: #f0ad4e;
   .drag-and-drop-border {
     border: 3px dashed #000;
   }
-
-
-  /* Ddr app */
-  // &.start-app {
-
-  //   /* Mejorar selectores */
-  //   .start-app__menu-mobile-detail {
-  //     .ddr-detail {
-  //       background: $gradientVertical;
-  //     }
-  //   }
-
-  //   .start-app__header-web {
-  //     background: $gradientHorizontal;
-  //   }
-
-  //   .start-app__header-mobile {
-  //     background: $gradientHorizontalMobile;
-  //   }
-
-  //   .start-app__menu-web {
-  //     background: $gradientVertical;
-  //   }
-
-  //   .start-app__container-web,
-  //   .start-app__container-mobile {
-  //     background-color: $surface;
-  //   }
-
-  //   .start-app__container-web__footer,
-  //   .start-app__container-mobile__footer {
-  //     background: $gradientHorizontalFooter;
-  //   }
-
-  // }
 
   /* Components */
 
@@ -286,30 +253,43 @@ $color-warning: #f0ad4e;
     .ddr-input {
       &__input-container {
 
-        &--label {
+        &__label {
           color: $input-color;
+
+          &--transparent {
+            color: #FFF;
+          }
+
         }
 
-        &--input {
+        &__input {
 
           background-color: $input-background;
           color: $input-color;
+
+          &--transparent {
+            background: transparent;
+            color: #FFF;
+
+            &:focus-visible {
+              outline: none;
+            }
+          }
 
           &--border {
             border: 1px solid $input-border-color;
           }
 
-          &--no-border {
-            border-bottom: 1px solid $input-border-color;
+          &--border-transparent {
+            border: 1px solid #FFF;
           }
 
-
-          &:disabled {
-            background: $disabled;
-          }
-
-          &--no-border {
-            border-bottom: 1px solid $input-border-color;
+          &--disabled {
+            background: $disabled !important;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            opacity: 1;
           }
 
           &.is-valid {
@@ -356,6 +336,18 @@ $color-warning: #f0ad4e;
           i {
             color: $input-color;
           }
+
+          &--transparent {
+            background: transparent;
+            border-color: #FFF;
+            color: #FFF;
+
+            i {
+              color: #FFF;
+            }
+          }
+
+
         }
       }
     }
@@ -364,11 +356,9 @@ $color-warning: #f0ad4e;
 
   ddr-textarea {
     .ddr-textarea {
-      &__textarea-container {
-        &--textarea {
-          background-color: $input-background;
-          color: $input-color;
-        }
+      &__textarea {
+        background-color: $input-background;
+        color: $input-color;
       }
     }
   }
@@ -380,7 +370,7 @@ $color-warning: #f0ad4e;
       }
 
       &--mode-default {
-        border-color: $button-border-color;
+        border-color: $button-color;
         background: $button-background;
       }
 
@@ -429,7 +419,7 @@ $color-warning: #f0ad4e;
 
   ddr-toggle {
     .ddr-toggle {
-      &__btn {
+      &__button {
         &--on {
           background: $color-success;
         }
@@ -472,37 +462,6 @@ $color-warning: #f0ad4e;
         background-color: $primary;
       }
     }
-  }
-
-  ddr-widget {
-    ddr-card {
-
-      .ddr-card__title {
-        background-color: transparent;
-        color: $panel-color;
-      }
-
-    }
-
-    .ddr-widget {
-      &__actions {
-        ddr-split-button {
-          .ddr-split-button {
-            ddr-button {
-
-              .btn-ddr {
-
-                &--icon {
-                  color: $text-color-primary;
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-
-
   }
 
   ddr-dropdown {
@@ -550,8 +509,18 @@ $color-warning: #f0ad4e;
         .btn-ddr {
           background: #FFF;
 
-          &--icon {
+          i {
             color: #000;
+          }
+
+          &--transparent {
+            background: transparent;
+            border-color: #FFF;
+            color: #FFF;
+
+            i {
+              color: #FFF;
+            }
           }
         }
       }
@@ -559,33 +528,10 @@ $color-warning: #f0ad4e;
 
   }
 
-  ddr-chatbot {
-    .ddr-chatbot__dialog {
-      .ddr-card {
-        border: 1px solid #c7c7c7;
-      }
-
-      .ddr-card__footer {
-        border-top: 1px solid #c7c7c7;
-      }
-
-      &__message {
-        &--human {
-          background: #b9ffb9;
-        }
-
-        &--robot {
-          background: #e7e7e7;
-        }
-      }
-
-    }
-  }
-
   ddr-table {
     .ddr-table {
 
-      ddr-split-button {
+      ddr-button-split {
         ddr-button {
           .btn-ddr--icon {
             color: #FFF;
@@ -626,67 +572,6 @@ $color-warning: #f0ad4e;
     }
   }
 
-  ddr-calendar {
-    .ddr-calendar .p-calendar .p-inputtext {
-      border: 1px solid $input-border-color;
-    }
-  }
-
-  ddr-range {
-
-    .p-slider {
-      .p-slider-handle {
-        background: $primary;
-        border: 2px solid $primary;
-      }
-
-      .p-slider-range {
-        background: $primary;
-      }
-
-      &:not(.p-disabled) .p-slider-handle:hover {
-        background: $primary;
-        border-color: $primary;
-      }
-
-    }
-
-    .p-disabled,
-    .p-component:disabled {
-      opacity: 1;
-    }
-
-  }
-
-  ddr-small-indicator {
-    ddr-card {
-      .ddr-card {
-        background-color: $primary;
-        color: $text-color-primary;
-
-        &__body {
-          color: $text-color-secondary;
-        }
-      }
-
-
-    }
-  }
-
-  ddr-indicator {
-    ddr-card {
-      .ddr-card {
-        background-color: $primary;
-        color: $text-color-primary;
-
-        &__body {
-          color: $text-color-secondary;
-        }
-      }
-    }
-  }
-
-
   ddr-chip {
 
     .ddr-chip {
@@ -721,10 +606,7 @@ $color-warning: #f0ad4e;
     .ddr-steps {
       &__horizontal {
         &__info-step {
-          &--hover:hover {
-            background-color: #f8f8f8;
-          }
-
+          
           &__number-step {
 
             &--open {
@@ -752,10 +634,7 @@ $color-warning: #f0ad4e;
 
       &__vertical {
         &__info-step {
-          &--hover:hover {
-            background-color: #f8f8f8;
-          }
-
+         
           &__number-step {
 
             &--open {
@@ -792,12 +671,23 @@ $color-warning: #f0ad4e;
     .ddr-detail {
       background: $primary;
       color: $text-color-secondary;
+
+      ddr-dropdown {
+        .ddr-input {
+          &__input-container {
+            &--label {
+              color: $text-color-secondary;
+            }
+          }
+        }
+      }
+
     }
   }
 
-  ddr-split-button {
+  ddr-button-split {
 
-    .ddr-split-button {
+    .ddr-button-split {
 
       color: $text-color-primary;
 
@@ -831,7 +721,7 @@ $color-warning: #f0ad4e;
         }
       }
 
-      &--transparent.ddr-split-button--no-border {
+      &--transparent.ddr-button-split--without-border {
         ddr-button {
           button {
             color: $text-color-secondary;
@@ -842,7 +732,7 @@ $color-warning: #f0ad4e;
 
             &--text,
             &--icon {
-              color: $text-color-secondary;
+              color: $text-color-primary;
             }
           }
         }
@@ -887,33 +777,6 @@ $color-warning: #f0ad4e;
     }
   }
 
-
-  ddr-toast {
-    .ddr-toast-container {
-      &__ddr-toast {
-        &--success {
-          background-color: $color-success;
-          border-color: $color-success;
-        }
-
-        &--info {
-          background-color: $color-info;
-          border-color: $color-info;
-        }
-
-        &--danger {
-          background-color: $color-danger;
-          border-color: $color-danger;
-        }
-
-        &--warning {
-          background-color: $color-warning;
-          border-color: $color-warning;
-        }
-      }
-    }
-  }
-
   ddr-modal {
     .ddr-modal {
       .card {
@@ -922,35 +785,8 @@ $color-warning: #f0ad4e;
     }
   }
 
-
-  ddr-conversation {
-    .ddr-conversation {
-
-      &__message {
-        &--human {
-          background: $conversation-background-human;
-          color: $conversation-color-human;
-        }
-
-        &--robot {
-          background: $conversation-background-robot;
-          color: $conversation-color-robot;
-        }
-      }
-
-    }
-  }
-
-  ddr-word-cloud {
-    svg {
-      text {
-        fill: $primary;
-      }
-    }
-  }
-
-  ddr-multiple-button {
-    .ddr-multiple-button {
+  ddr-button-multiple {
+    .ddr-button-multiple {
       &__selected {
         button {
           background-color: $selected;
@@ -973,6 +809,20 @@ $color-warning: #f0ad4e;
     &__text {
       color: $text-color-primary;
     }
+  }
+
+  ddr-tree {
+    .ddr-tree {
+      background-color: #FFF;
+      color: $panel-color;
+
+      &.ddr-tree--transparent {
+        background-color: transparent;
+        color: #FFF;
+      }
+
+    }
+
   }
 
 }

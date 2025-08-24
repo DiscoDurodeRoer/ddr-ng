@@ -1,0 +1,158 @@
+<div class="row mb-5">
+    <div class="col-12">
+
+        <ddr-card [showHeader]="false">
+
+            <div card-content>
+
+                <div class="row mt-3">
+                    <div class="col-12">
+                        <span class="h3">{{'themes.p1' | ddrTranslate}}</span>
+                    </div>
+                </div>
+
+                <div class="row mt-3">
+                    <div class="col-12">
+                        <span>{{'themes.p2' | ddrTranslate}}</span>
+                    </div>
+                </div>
+
+                <div class="row mt-3">
+                    <div class="col-12">
+<pre class="language-typescript"><code class="language-typescript" ngNonBindable>import &#123; Component &#125; from '@angular/core';
+import &#123; DdrThemeService &#125; from 'ddr-ng';
+
+@Component(&#123;
+  selector: 'app-example',
+  templateUrl: './example.component.html',
+  styleUrls: ['./example.component.scss'],
+  providers: [ DdrThemeService ]
+&#125;)
+</code></pre>
+                    </div>
+                </div>
+
+                <div class="row mt-3">
+                    <div class="col-12">
+                        <span>{{'themes.p3' | ddrTranslate}}</span>
+                    </div>
+                </div>
+
+                <div class="row mt-3">
+                    <div class="col-12">
+<pre class="language-typescript"><code class="language-typescript" ngNonBindable>import &#123; Component, OnInit, inject &#125; from '@angular/core';
+import &#123; DdrThemeService &#125; from 'ddr-ng';
+
+@Component(&#123;
+  selector: 'app-example',
+  templateUrl: './example.component.html',
+  styleUrls: ['./example.component.scss'],
+  providers: [ DdrThemeService ]
+&#125;)
+export class ExampleComponent implements OnInit &#123;
+    
+    private themeService: DdrThemeService = inject(DdrThemeService);
+
+    ngOnInit() &#123;
+        this.themeService.setTheme('ddr-dark')
+    &#125;
+&#125;
+</code></pre>
+                    </div>
+                </div>
+
+                <div class="row mt-3">
+                    <div class="col-12">
+                        <span>{{'themes.p4' | ddrTranslate}}</span>
+                    </div>
+                </div>
+
+                <div class="row mt-3">
+                    <div class="col-12">
+                        <pre class="language-typescript"><code class="language-typescript" ngNonBindable>export type DdrTheme = 'ddr-blue' | 'ddr-dark' | 'ddr-purple';</code></pre>
+                    </div>
+                </div>
+
+                <div class="row mt-3">
+                    <div class="col-12">
+                        <span class="h3">{{'themes.p5' | ddrTranslate}}</span>
+                    </div>
+                </div>
+
+                <div class="row mt-3">
+                    <div class="col-12">
+                        <span>{{'themes.p6' | ddrTranslate}}</span>
+<pre class="language-typescript"><code class="language-typescript" ngNonBindable>import &#123; Component, OnInit, inject &#125; from '@angular/core';
+import &#123; DdrThemeService &#125; from 'ddr-ng';
+
+@Component(&#123;
+  selector: 'app-example',
+  templateUrl: './example.component.html',
+  styleUrls: ['./example.component.scss'],
+  providers: [ DdrThemeService ]
+&#125;)
+export class ExampleComponent implements OnInit &#123;
+    
+    private themeService: DdrThemeService = inject(DdrThemeService);
+
+    ngOnInit() &#123;
+        console.log(this.themeService.getTheme())
+    &#125;
+&#125;
+</code></pre>
+                        
+                    </div>
+                </div>
+
+                <div class="row mt-3">
+                    <div class="col-12">
+                        <span class="h3">{{'themes.p7' | ddrTranslate}}</span>
+                    </div>
+                </div>
+
+                <div class="row mt-3">
+                    <div class="col-12">
+                        <span>{{'themes.p8' | ddrTranslate}}</span>
+                    </div>
+                </div>
+
+                  <div class="row mt-3">
+                    <div class="col-12">
+<pre class="language-typescript"><code class="language-typescript" ngNonBindable>import &#123; Component, ViewEncapsulation &#125; from '@angular/core';
+
+@Component(&#123;
+  selector: 'app-example',
+  templateUrl: './example.component.html',
+  styleUrls: ['./example.component.scss'],
+  encapsulation: ViewEncapsulation.None
+&#125;)
+</code></pre>
+                    </div>
+                </div>
+
+                <div class="row mt-3">
+                    <div class="col-12">
+                        <span>{{'themes.p9' | ddrTranslate}}</span>
+                    </div>
+                </div>
+
+                <div class="row mt-3">
+                    <div class="col-12">
+                        <pre class="language-css"><code class="language-css" ngNonBindable>ddr-button-split &#123;
+    .ddr-button-split &#123;
+        ddr-button button img &#123;
+            width: 24px;
+            height: 24px;
+        &#125;
+    &#125;
+&#125;
+</code></pre>
+                    </div>
+                </div>
+                
+            </div>
+
+        </ddr-card>
+
+    </div>
+</div>

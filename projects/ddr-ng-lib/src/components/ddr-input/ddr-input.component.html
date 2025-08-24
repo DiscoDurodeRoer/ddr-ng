@@ -6,24 +6,24 @@
     }">
     @if (label) {
       <label [ngClass]="{
-        'ddr-input__input-container--label--inline': inline,
-        'ddr-input__input-container--label--no-inline': !inline,
+        'ddr-input__input-container__label--inline': inline,
+        'ddr-input__input-container__label--transparent': transparent,
         'fw-bold': labelBold
-        }" class="ddr-input__input-container--label user-select-none">
+        }" class="ddr-input__input-container__label user-select-none" [attr.for]="name">
         {{ label + (required ? "(*)" : "") }}
         @if (tooltipText) {
           <i
             class="bi bi-info-circle"
             ddrTooltip
-            [underlineTooltip]="false"
-            [orientationTooltip]="orientationTooltip"
+            [tooltipOrientation]="tooltipOrientation"
             [tooltipText]="tooltipText">
           </i>
         }
       </label>
     }
     <input #input="ngModel"
-      class="ddr-input__input-container--input"
+      class="ddr-input__input-container__input"
+      [attr.id]="name"
       [name]="name"
       [type]="type"
       [placeholder]="placeholder"
@@ -35,36 +35,41 @@
       [pattern]="pattern"
       [min]="min"
       [max]="max"
-      [autocomplete]="autocomplete ? 'on':'off'"
+      [attr.autocomplete]="autocomplete"
       [(ngModel)]="value"
       [ngClass]="{
       'is-valid': validate && input.dirty && !input.errors,
       'is-invalid': validate && input.dirty && input.errors,
       'w-100': !inline,
-      'ddr-input__input-container--input--border': border,
-      'ddr-input__input-container--input--no-border': !border,
-      'ddr-input__input-container--input--small':
+      'ddr-input__input-container__input--disabled': disabled,
+      'ddr-input__input-container__input--border': border,
+      'ddr-input__input-container__input--without-border': !border,
+      'ddr-input__input-container__input--small':
       size == constants.SIZE.SMALL,
-      'ddr-input__input-container--input--medium':
+      'ddr-input__input-container__input--medium':
       size == constants.SIZE.MEDIUM,
-      'ddr-input__input-container--input--large':
+      'ddr-input__input-container__input--large':
       size == constants.SIZE.LARGE,
-      'ddr-input__input-container--input--inline': inline
+      'ddr-input__input-container__input--inline': inline,
+      'ddr-input__input-container__input--transparent': transparent,
+      'ddr-input__input-container__input--border-transparent': transparent
       }"
+      ddrSetFocus
+      [focus]="focus"
+      (focusLost)="onFocusLost()"
       ngDefaultControl
       (keyup)="checkInput()"
-      (keydown)="onKeydown($event)"
       (click)="onclickInput($event)" />
     @if (validate && input.dirty && !input.errors) {
       <div [ngClass]="{
-        'w-auto d-inline-block ms-1 valid-feedback-inline': inline
+        'w-auto d-inline-block mt-5 valid-feedback-inline': inline
         }" class="valid-feedback">
         <ng-template #templateValid [ngTemplateOutlet]="templateValidOutside"/>
       </div>
     }
     @if (validate && input.dirty && input.errors) {
       <div [ngClass]="{
-        'w-auto d-inline-block ms-1 invalid-feedback-inline': inline
+        'w-auto d-inline-block mt-5 invalid-feedback-inline': inline
         }" class="invalid-feedback">
         <ng-template #templateErrors
           [ngTemplateOutlet]="templateErrorsOutside"

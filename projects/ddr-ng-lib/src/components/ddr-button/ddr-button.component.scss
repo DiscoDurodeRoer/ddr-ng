@@ -10,7 +10,7 @@
     border-style: solid;
   }
 
-  &--no-border {
+  &--without-border {
     border: none;
   }
 
@@ -19,7 +19,7 @@
     display: block;
   }
 
-  &--floatButton {
+  &--float-button {
     position: fixed;
     padding: 30px;
     border-radius: 50%;
@@ -71,12 +71,12 @@
     display: inline-block;
   }
 
-  &--icon-margin {
-    margin-right: 5px;
+  &--icon-right {
+    margin-left: 5px;
   }
 
-  &--icon-margin-left {
-    margin-left: 5px;
+  &--icon-left {
+    margin-right: 5px;
   }
 
   &--small {
@@ -92,5 +92,10 @@
   &--large {
     height: 48px;
     font-size: large;
+  }
+
+  &--img {
+    height: 75%;
+    max-width: 100%;
   }
 }

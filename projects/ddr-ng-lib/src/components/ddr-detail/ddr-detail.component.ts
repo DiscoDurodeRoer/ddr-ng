@@ -59,7 +59,7 @@ export class DdrDetailComponent implements OnInit {
     public readonly ddrDetailService: DdrDetailService = inject(DdrDetailService);
 
     @Input({ required: true }) id!: string;
-    @Input() orientation: DdrOrientatioDetail = this.constants.ORIENTATION.LEFT;
+    @Input() orientation: DdrOrientatioDetail = this.constants.ORIENTATION.RIGHT;
 
     @Output() close: EventEmitter<boolean> = new EventEmitter<boolean>();
 

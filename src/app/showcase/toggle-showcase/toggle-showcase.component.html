@@ -1,183 +1,132 @@
-<base-showcase>
+<base-showcase component="ddr-toggle" type="component" [showStyles]="true">
 
   <div description>
-    <p>Componente para mostrar un toggle, ideal para valores booleanos.</p>
+    <p>{{'toggle.description' | ddrTranslate}}</p>
   </div>
 
   <div examples>
 
 <div class="row">
   <div class="col-12">
-    <h3>Ejemplo 1: estandar</h3>
+    <span class="h3">{{'toggle.example.1' | ddrTranslate}}</span>
   </div>
 </div>
 
-<div class="row">
+<div class="row mt-3">
   <div class="col-12">
     <ddr-toggle 
       [(ngModel)]="value1" 
-      (toggled)="example1($event)">
-    </ddr-toggle>
+      (toggled)="toggleValue($event)" />
   </div>
 </div>
 
-<div class="row">
+<div class="row mt-3">
   <div class="col-12">
     <div class="col-12">
-      <p>{{'Valor :' + value1}}</p>
+      <span>{{'toggle.value' | ddrTranslate}}: {{value1}}</span>
     </div>  
   </div>
 </div>
 
 <div class="row mt-3">
   <div class="col-12">
-    <h3>Ejemplo 2: label</h3>
-  </div>
-</div>
-
-<div class="row">
-  <div class="col-12 mt-2">
-    <ddr-toggle 
-      label="Example toggle" 
-      [(ngModel)]="value2" 
-      (toggled)="example2($event)">
-    </ddr-toggle>
-  </div>
-</div>
-
-<div class="row">
-  <div class="col-12">
-    <p>{{'Valor :' + value2}}</p>
+    <span class="h3">{{'toggle.example.2' | ddrTranslate}}</span>
   </div>
 </div>
 
 <div class="row mt-3">
   <div class="col-12">
-    <h3>Ejemplo 3: Label inline</h3>
+    <ddr-toggle 
+      [label]="'toggle.label' | ddrTranslate" 
+      [(ngModel)]="value2" 
+      (toggled)="toggleValue($event)" />
   </div>
 </div>
 
-<div class="row">
+<div class="row mt-3">
+  <div class="col-12">
+    <span>{{'toggle.value' | ddrTranslate}}: {{value2}}</span>
+  </div>
+</div>
+
+<div class="row mt-3">
+  <div class="col-12">
+    <span class="h3">{{'toggle.example.3' | ddrTranslate}}</span>
+  </div>
+</div>
+
+<div class="row mt-3">
   <div class="col-12">
     <ddr-toggle 
-      label="Example inline toggle" 
+      [label]="'toggle.label' | ddrTranslate" 
       [inline]="true" 
       [(ngModel)]="value3" 
-      (toggled)="example3($event)">
-    </ddr-toggle>
-  </div>
-</div>
-
-<div class="row">
-  <div class="col-12">
-    <p>{{'Valor :' + value3}}</p>
+      (toggled)="toggleValue($event)" />
   </div>
 </div>
 
 <div class="row mt-3">
   <div class="col-12">
-    <h3>Ejemplo 4: Small</h3>
+    <span>{{'toggle.value' | ddrTranslate}}: {{value3}}</span>
   </div>
 </div>
 
-<div class="row">
+<div class="row mt-3">
+  <div class="col-12">
+    <span class="h3">{{'toggle.example.4' | ddrTranslate}}</span>
+  </div>
+</div>
+
+<div class="row mt-3">
   <div class="col-12">
     <ddr-toggle 
-      label="Example small" 
-      [inline]="true"
-      [small]="true"
-      [(ngModel)]="value4" 
-      (toggled)="example4($event)">
-    </ddr-toggle>
+      class="me-2"
+      size="small" />
+    <ddr-toggle 
+      class="me-2"
+      size="medium" />
+    <ddr-toggle 
+      class="me-2"
+      size="large" />
   </div>
 </div>
 
-<div class="row">
+<div class="row mt-3">
   <div class="col-12">
-    <p>{{'Valor :' + value4}}</p>
+    <span class="h3">{{'toggle.example.5' | ddrTranslate}}</span>
+  </div>
+</div>
+
+<div class="row mt-3">
+  <div class="col-12">
+    <ddr-toggle 
+      [label]="'toggle.label' | ddrTranslate"
+      [tooltipText]="'toggle.tooltip' | ddrTranslate"
+      (toggled)="toggleValue($event)" />
+  </div>
+</div>
+
+<div class="row mt-3">
+  <div class="col-12">
+    <span class="h3">{{'toggle.example.6' | ddrTranslate}}</span>
+  </div>
+</div>
+
+<div class="row mt-3">
+  <div class="col-12">
+    <ddr-toggle 
+      [label]="'toggle.label' | ddrTranslate" 
+      [(ngModel)]="value6" 
+      (toggled)="toggleValue($event)" />
+  </div>
+</div>
+
+<div class="row mt-3">
+  <div class="col-12">
+    <span>{{'toggle.value' | ddrTranslate}}: {{value6}}</span>
   </div>
 </div>
       
-  </div>
-  
-  <div code>
-    
-  </div>
-
-  <div inputs>
-    <table class="table">
-      <thead class="thead-dark">
-        <tr>
-          <th>Nombre</th>
-          <th>Descripción</th>
-          <th>Tipo</th>
-          <th>Valor por defecto</th>
-          <th>Posibles valores (constants)</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>label</td>
-          <td>Label del toggle</td>
-          <td>string</td>
-          <td>undefined</td>
-          <td></td>
-        </tr>
-
-        <tr>
-          <td>Inline</td>
-          <td>Coloca el label y el toggle en linea</td>
-          <td>boolean</td>
-          <td>false</td>
-          <td></td>
-        </tr>
-
-        <tr>
-          <td>required</td>
-          <td>Indica si el input es obligatorio</td>
-          <td>boolean</td>
-          <td>false</td>
-          <td></td>
-        </tr>
-
-        <tr>
-          <td>tooltipText</td>
-          <td>Texto del tooltip a mostrar</td>
-          <td>boolean</td>
-          <td>false</td>
-          <td></td>
-        </tr>
-
-        <tr>
-          <td>small</td>
-          <td>Hace el componente mas pequeño</td>
-          <td>boolean</td>
-          <td>false</td>
-          <td></td>
-        </tr>
-        
-
-      </tbody>
-    </table>
-  </div>
-
-  <div outputs>
-    <table class="table">
-      <thead class="thead-dark">
-        <tr>
-          <th>Nombre</th>
-          <th>Descripción</th>
-          <th>Valor devuelto</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>toggled</td>
-          <td>Evento al clickar el toggle</td>
-          <td>boolean</td>
-        </tr>
-      </tbody>
-    </table>
   </div>
 
 </base-showcase>

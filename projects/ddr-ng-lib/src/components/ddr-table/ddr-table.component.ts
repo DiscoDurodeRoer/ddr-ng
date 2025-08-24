@@ -18,7 +18,7 @@ import { DdrAction } from '../../common/ddr-action.model';
 import { DdrSelectItem } from '../../common/ddr-select-item.model';
 import { DdrDropdownComponent } from '../ddr-dropdown/ddr-dropdown.component';
 import { FormsModule } from '@angular/forms';
-import { DdrSplitButtonComponent } from '../ddr-split-button/ddr-split-button.component';
+import { DdrButtonSplitComponent } from '../ddr-button-split/ddr-button-split.component';
 import { DdrTooltipDirective } from '../../directives/ddr-tooltip.directive';
 import { DdrButtonComponent } from '../ddr-button/ddr-button.component';
 import { DdrInputComponent } from '../ddr-input/ddr-input.component';
@@ -27,7 +27,6 @@ import { DdrTranslatePipe } from '../../pipes/ddr-translate.pipe';
 import { NgClass, NgStyle, NgTemplateOutlet } from '@angular/common';
 import { DdrCheckboxBinaryComponent } from '../ddr-checkbox-binary/ddr-checkbox-binary.component';
 import { DdrNestedPropertyPipe } from '../../pipes/ddr-nested-property.pipe';
-import { DdrClickOutsideDirective } from '../../public-api';
 
 @Component({
   selector: 'ddr-table',
@@ -38,7 +37,7 @@ import { DdrClickOutsideDirective } from '../../public-api';
     NgxPaginationModule,
     DdrDropdownComponent,
     DdrCheckboxBinaryComponent,
-    DdrSplitButtonComponent,
+    DdrButtonSplitComponent,
     DdrTranslatePipe,
     DdrTooltipDirective,
     DdrButtonComponent,
@@ -60,21 +59,17 @@ export class DdrTableComponent<T extends { [key: string]: any }> implements OnIn
   @Input() startPageZero: boolean = false;
   @Input() page: number = 1;
   @Input() showTotal: boolean = true;
-  @Input() showHeader: boolean = true;
   @Input() allowChangeRows: boolean = true;
   @Input() multiple: boolean = false;
   @Input() showActions: boolean = false;
   @Input() canSelectItems: boolean = true;
   @Input() canSort: boolean = false;
-  @Input() addNewItem: boolean = false;
   @Input() showBorder: boolean = true;
   @Input() showFooter: boolean = true;
   @Input() optionsRowsPagination: number[] = [];
 
   // Translations
   @Input() labelNoResults?: string;
-  @Input() labelAddItem?: string;
-  @Input() labelCancelAddItem?: string;
   @Input() labelRegisters?: string;
   @Input() labelRegister?: string;
   @Input() labelToPagination?: string;
@@ -88,7 +83,6 @@ export class DdrTableComponent<T extends { [key: string]: any }> implements OnIn
   @Output() changePage: EventEmitter<number> = new EventEmitter<number>();;
   @Output() changeRow: EventEmitter<number> = new EventEmitter<number>();
   @Output() sort: EventEmitter<DdrTableCol> = new EventEmitter<DdrTableCol>();
-  @Output() createNewItem: EventEmitter<DdrTableItem<T>> = new EventEmitter<DdrTableItem<T>>();
 
   public optionsRows: DdrSelectItem<number>[] = [];
   public rows: number = 10
@@ -167,7 +161,7 @@ export class DdrTableComponent<T extends { [key: string]: any }> implements OnIn
 
   onSelectItem($event: MouseEvent, item: DdrTableItem<T>) {
     const target = $event?.target as HTMLElement;
-    if (this.canSelectItems && target && !target.closest('ddr-split-button')) {
+    if (this.canSelectItems && target && !target.closest('ddr-button-split')) {
       this.selectItem.emit(item);
     }
   }

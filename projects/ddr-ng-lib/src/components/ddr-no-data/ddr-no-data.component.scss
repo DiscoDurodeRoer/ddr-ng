@@ -1,34 +1,40 @@
 .ddr-no-data {
 
+    user-select: none;
     text-align: center;
+
+    i {
+        display: inline-block;
+        height: 100%;
+    }
 
     &--large {
         .ddr-no-data__icon {
-            font-size: 2000%;
+            font-size: 300px;
         }
 
         .ddr-no-data__text {
-            font-size: 300%;
+            font-size: 48px;
         }
     }
 
     &--medium {
         .ddr-no-data__icon {
-            font-size: 1000%;
+            font-size: 160px;
         }
 
         .ddr-no-data__text {
-            font-size: 200%;
+            font-size: 32px;
         }
     }
 
     &--small {
         .ddr-no-data__icon {
-            font-size: 500%;
+            font-size: 80px;
         }
 
         .ddr-no-data__text {
-            font-size: 150%;
+            font-size: 24px;
         }
     }
 

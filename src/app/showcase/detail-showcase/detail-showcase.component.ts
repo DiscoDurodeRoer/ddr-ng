@@ -1,15 +1,28 @@
 import { Component, inject } from '@angular/core';
-import { DdrToastService, DdrDetailComponent, DdrButtonComponent, DdrOrientation } from 'ddr-ng';
+import {
+  DdrToastService,
+  DdrDetailComponent,
+  DdrButtonComponent,
+  DdrOrientatioDetail,
+  DdrDetailService,
+  DdrTranslatePipe,
+  DdrTranslateService,
+  DdrButton,
+  DdrButtonMultipleComponent,
+} from 'ddr-ng';
 import { BaseShowcaseComponent } from '../base-showcase/base-showcase.component';
+import { FormsModule } from '@angular/forms';
 
 @Component({
-  selector: 'app-showcase-detail',
+  selector: 'detail-showcase',
   templateUrl: './detail-showcase.component.html',
-  styleUrls: ['./detail-showcase.component.scss'],
   imports: [
     BaseShowcaseComponent,
     DdrDetailComponent,
-    DdrButtonComponent
+    DdrButtonComponent,
+    DdrButtonMultipleComponent,
+    DdrTranslatePipe,
+    FormsModule
   ],
   providers: [
     DdrToastService
@@ -17,23 +30,45 @@ import { BaseShowcaseComponent } from '../base-showcase/base-showcase.component'
 })
 export class ShowcaseDdrDetailComponent {
 
-  public readonly toastService: DdrToastService = inject(DdrToastService);
+  public readonly ddrTranslateService: DdrTranslateService = inject(DdrTranslateService);
+  public readonly ddrToastService: DdrToastService = inject(DdrToastService);
+  public readonly ddrDetailService: DdrDetailService = inject(DdrDetailService);
 
-  public showDetail: boolean = false;
-  public orientation: DdrOrientation = 'left'
+  public orientation: DdrOrientatioDetail = 'right'
+  public buttonsOrientation: DdrButton[] = [
+    {
+      icon: 'bi bi-arrow-up',
+      value: 'top'
+    },
+    {
+      icon: 'bi bi-arrow-left',
+      value: 'right'
+    },
+    {
+      icon: 'bi bi-arrow-down',
+      value: 'bottom'
+    },
+    {
+      icon: 'bi bi-arrow-right',
+      value: 'left'
+    }
+  ];
+
+  public readonly ID_DETAIL: string = 'example-detail'
 
   openDetail() {
-    this.showDetail = true;
-    this.toastService.addInfoMessage("Exito", "Abriendo el detalle");
+    this.ddrDetailService.open(this.ID_DETAIL)
+    this.ddrToastService.addSuccessMessage(
+      this.ddrTranslateService.getTranslate("success"),
+      this.ddrTranslateService.getTranslate("detail.opening")
+    );
   }
 
   closeDetail() {
-    this.showDetail = false;
-    this.toastService.addInfoMessage("Exito", "Cerrando el detalle");
-  }
-
-  changeOrientation(orientation: DdrOrientation) {
-    this.orientation = orientation;
+    this.ddrToastService.addSuccessMessage(
+      this.ddrTranslateService.getTranslate("success"),
+      this.ddrTranslateService.getTranslate("detail.closing")
+    );
   }
 
 }

@@ -20,13 +20,14 @@ export class DdrBadgeNotificationDirective implements OnChanges {
 
   public textNotification: string = '';
 
-
   ngOnChanges(changes: SimpleChanges): void {
-    if (changes) {
-      if (changes['numberNotifications'] || changes['limitNotifications']) {
-        this.checkNumbersNotification();
-        this.putNotification();
-      }
+    if (
+      changes['numberNotifications'] ||
+      changes['limitNotifications'] ||
+      changes['showNotifications']
+    ) {
+      this.checkNumbersNotification();
+      this.putNotification();
     }
   }
 
@@ -42,37 +43,34 @@ export class DdrBadgeNotificationDirective implements OnChanges {
 
     this.vc.clear();
 
-    if (this.showNotifications) {
-      const compRef = this.vc.createComponent(DdrBadgeNotificationComponent)
-      compRef.instance.numberNotifications = this.numberNotifications;
-      compRef.instance.limitNotifications = this.limitNotifications;
-      compRef.instance.textNotification = this.textNotification;
+    const compRef = this.vc.createComponent(DdrBadgeNotificationComponent)
+    compRef.instance.numberNotifications = this.numberNotifications;
+    compRef.instance.limitNotifications = this.limitNotifications;
+    compRef.instance.textNotification = this.textNotification;
+    compRef.instance.showNotifications = this.showNotifications;
 
-      this.renderer.setStyle(compRef.location.nativeElement, 'position', 'absolute');
-      if (this.positionTop) {
-        this.renderer.setStyle(compRef.location.nativeElement, 'top', this.positionTop);
-      } else {
-        this.renderer.setStyle(compRef.location.nativeElement, 'top', 'calc(0% - 10px)');
-      }
-      if (this.positionRight) {
-        this.renderer.setStyle(compRef.location.nativeElement, 'right', this.positionRight);
-      } else {
-        this.renderer.setStyle(compRef.location.nativeElement, 'right', 'calc(0% - 10px)');
-      }
+    this.renderer.setStyle(compRef.location.nativeElement, 'position', 'absolute');
+    if (this.positionTop) {
+      this.renderer.setStyle(compRef.location.nativeElement, 'top', this.positionTop);
+    } else {
+      this.renderer.setStyle(compRef.location.nativeElement, 'top', 'calc(0% - 10px)');
+    }
+    if (this.positionRight) {
+      this.renderer.setStyle(compRef.location.nativeElement, 'right', this.positionRight);
+    } else {
+      this.renderer.setStyle(compRef.location.nativeElement, 'right', 'calc(0% - 10px)');
+    }
 
-      let el = null;
-      if (this.elementToInsert) {
-        el = this.elementRef.nativeElement.querySelector(this.elementToInsert)
-      } else {
-        el = this.elementRef.nativeElement;
-      }
+    let el = null;
+    if (this.elementToInsert) {
+      el = this.elementRef.nativeElement.querySelector(this.elementToInsert)
+    } else {
+      el = this.elementRef.nativeElement;
+    }
 
-
-      if (el) {
-        el.appendChild(compRef.location.nativeElement);
-        this.renderer.setStyle(this.elementRef.nativeElement, 'position', 'relative');
-      }
-
+    if (el) {
+      el.appendChild(compRef.location.nativeElement);
+      this.renderer.setStyle(this.elementRef.nativeElement, 'position', 'relative');
     }
 
   }

@@ -1,27 +1,31 @@
 import { Component, inject, ViewEncapsulation } from '@angular/core';
-import { DdrToastService, DdrBadgePillComponent } from 'ddr-ng';
+import { DdrToastService, DdrBadgePillComponent, DdrTranslatePipe, DdrTranslateService } from 'ddr-ng';
 import { BaseShowcaseComponent } from '../base-showcase/base-showcase.component';
 
 @Component({
-    selector: 'app-badge-showcase',
-    templateUrl: './badge-showcase.component.html',
-    styleUrls: ['./badge-showcase.component.scss'],
-    encapsulation: ViewEncapsulation.None,
-    imports: [
-        BaseShowcaseComponent,
-        DdrBadgePillComponent
-    ],
-    providers: [
-      DdrToastService
-    ]
+  selector: 'badge-showcase',
+  templateUrl: './badge-showcase.component.html',
+  styleUrls: ['./badge-showcase.component.scss'],
+  encapsulation: ViewEncapsulation.None,
+  imports: [
+    BaseShowcaseComponent,
+    DdrBadgePillComponent,
+    DdrTranslatePipe
+  ],
+  providers: [
+    DdrToastService
+  ]
 })
 export class BadgeShowcaseComponent {
 
+  private readonly ddrTranslateService: DdrTranslateService = inject(DdrTranslateService);
   private readonly ddrToastService: DdrToastService = inject(DdrToastService);
 
-  clickBadge($event: any){
-    this.ddrToastService.addSuccessMessage("Exito", "Click en el badge");
-    console.log($event);    
+  clickBadge($event: MouseEvent) {
+    this.ddrToastService.addSuccessMessage(
+      this.ddrTranslateService.getTranslate("success"),
+      "Click");
+    console.log($event);
   }
 
 }

@@ -20,7 +20,7 @@ export class DdrTabsComponent implements AfterViewInit {
   @ContentChildren(DdrTabItemComponent) tabsItems!: QueryList<DdrTabItemComponent>;
   public contentTemplate: TemplateRef<any> | null = null;
 
-  @Output() tabIndex: EventEmitter<number> = new EventEmitter<number>();
+  @Output() changeTab: EventEmitter<number> = new EventEmitter<number>();
 
   ngAfterViewInit(): void {
     if (this.tabsItems.toArray().length > 0) {
@@ -31,7 +31,7 @@ export class DdrTabsComponent implements AfterViewInit {
   open(tab: DdrTabItemComponent) {
     this.tabsItems.toArray().forEach(t => t.open = false);
     let index = this.tabsItems.toArray().findIndex(t => t == tab);
-    this.tabIndex.emit(index);
+    this.changeTab.emit(index);
     this.contentTemplate = tab.tabContentTemplate;
     tab.open = true;
     this.changeDetectorRef.detectChanges();

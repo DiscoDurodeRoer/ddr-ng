@@ -1,78 +1,303 @@
-import { Component } from '@angular/core';
-import { DdrCheckboxComponent, DdrSelectItem } from 'ddr-ng';
-import { Example } from '../dropdown-showcase/example';
+import { Component, inject } from '@angular/core';
+import { DdrCheckboxComponent, DdrSelectItem, DdrToastService, DdrTranslatePipe, DdrTranslateService } from 'ddr-ng';
 import { BaseShowcaseComponent } from '../base-showcase/base-showcase.component';
 import { JsonPipe } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { ProgrammingLanguage } from './bean/programming-language';
 
 @Component({
-    selector: 'app-checkbox-showcase',
-    templateUrl: './checkbox-showcase.component.html',
-    styleUrls: ['./checkbox-showcase.component.scss'],
-    imports: [
-        BaseShowcaseComponent,
-        DdrCheckboxComponent,
-        JsonPipe,
-        FormsModule
-    ]
+  selector: 'checkbox-showcase',
+  templateUrl: './checkbox-showcase.component.html',
+  imports: [
+    BaseShowcaseComponent,
+    DdrCheckboxComponent,
+    DdrTranslatePipe,
+    JsonPipe,
+    FormsModule
+  ],
+  providers: [
+    DdrToastService
+  ]
 })
 export class CheckboxShowcaseComponent {
 
-  options1: DdrSelectItem<string>[] = [
-    {label: 'Java', value: 'java'},
-    {label: 'Angular', value: 'angular'},
-    {label: 'NestJS', value: 'nestjs'},
-    {label: 'Javascript', value: 'javascript'},
-    {label: 'C', value: 'c'},
-    {label: 'C++', value: 'cpp'}
-  ];
-  options2: DdrSelectItem<string>[] = [
-    {label: 'Java', value: 'java'},
-    {label: 'Angular', value: 'angular'},
-    {label: 'NestJS', value: 'nestjs'},
-    {label: 'Javascript', value: 'javascript'},
-    {label: 'C', value: 'c'},
-    {label: 'C++', value: 'cpp'}
-  ];
-  options3: DdrSelectItem<Example>[] = [
-    {label: 'Java', value: {property1: 'p1', property2: 'p2'}},
-    {label: 'Angular', value: {property1: 'p3', property2: 'p4'}},
-    {label: 'NestJS', value: {property1: 'p5', property2: 'p6'}},
-    {label: 'Javascript', value: {property1: 'p7', property2: 'p8'}},
-    {label: 'C', value: {property1: 'p9', property2: 'p10'}},
-    {label: 'C++', value: {property1: 'p11', property2: 'p12'}}
-  ];
-  options4: DdrSelectItem<Example>[] = [
-    {label: 'Java', value: {property1: 'p1', property2: 'p2'}},
-    {label: 'Angular', value: {property1: 'p3', property2: 'p4'}},
-    {label: 'NestJS', value: {property1: 'p5', property2: 'p6'}},
-    {label: 'Javascript', value: {property1: 'p7', property2: 'p8'}},
-    {label: 'C', value: {property1: 'p9', property2: 'p10'}},
-    {label: 'C++', value: {property1: 'p11', property2: 'p12'}}
-  ];
-  options6: DdrSelectItem<Example>[] = [
-    {label: 'Java', value: {property1: 'p1', property2: 'p2'}},
-    {label: 'Angular', value: {property1: 'p3', property2: 'p4'}},
-    {label: 'NestJS', value: {property1: 'p5', property2: 'p6'}},
-    {label: 'Javascript', value: {property1: 'p7', property2: 'p8'}},
-    {label: 'C', value: {property1: 'p9', property2: 'p10'}},
-    {label: 'C++', value: {property1: 'p11', property2: 'p12'}}
-  ];
+  private ddrToastService: DdrToastService = inject(DdrToastService);
+  private ddrTranslateService: DdrTranslateService = inject(DdrTranslateService);
 
-  value1: string[] = [];
-  value2: string[] = ['java', 'c'];
-  value3: Example[] = [];
-  value4: Example[] = [
+  public options1: DdrSelectItem<string>[] = [
     {
-      property1: 'p1', 
-      property2: 'p2'
-    }, 
+      label: 'Java',
+      value: 'java'
+    },
     {
-      property1: 'p9', 
-      property2: 'p10'
+      label: 'Angular',
+      value: 'angular'
+    },
+    {
+      label: 'NestJS',
+      value: 'nestjs'
+    },
+    {
+      label: 'Javascript',
+      value: 'javascript'
+    },
+    {
+      label: 'C',
+      value: 'c'
+    },
+    {
+      label: 'C++',
+      value: 'cpp'
     }
   ];
-  value5: boolean = true;
-  value6: Example[] = [];
+  public options2: DdrSelectItem<string>[] = [
+    {
+      label: 'Java',
+      value: 'java'
+    },
+    {
+      label: 'Angular',
+      value: 'angular'
+    },
+    {
+      label: 'NestJS',
+      value: 'nestjs'
+    },
+    {
+      label: 'Javascript',
+      value: 'javascript'
+    },
+    {
+      label: 'C',
+      value: 'c'
+    },
+    {
+      label: 'C++',
+      value: 'cpp'
+    }
+  ];
+  public options3: DdrSelectItem<ProgrammingLanguage>[] = [
+    {
+      label: 'Java',
+      value: {
+        name: 'java'
+      }
+    },
+    {
+      label: 'Angular',
+      value: {
+        name: 'angular'
+      }
+    },
+    {
+      label: 'NestJS',
+      value: {
+        name: 'nestjs'
+      }
+    },
+    {
+      label: 'Javascript',
+      value: {
+        name: 'javascript'
+      }
+    },
+    {
+      label: 'C',
+      value: {
+        name: 'c'
+      }
+    },
+    {
+      label: 'C++',
+      value: {
+        name: 'cpp'
+      }
+    }
+  ];
+
+  public options4: DdrSelectItem<ProgrammingLanguage>[] = [
+    {
+      label: 'Java',
+      value: {
+        name: 'java'
+      }
+    },
+    {
+      label: 'Angular',
+      value: {
+        name: 'angular'
+      }
+    },
+    {
+      label: 'NestJS',
+      value: {
+        name: 'nestjs'
+      }
+    },
+    {
+      label: 'Javascript',
+      value: {
+        name: 'javascript'
+      }
+    },
+    {
+      label: 'C',
+      value: {
+        name: 'c'
+      }
+    },
+    {
+      label: 'C++',
+      value: {
+        name: 'cpp'
+      }
+    }
+  ];
+
+  public options5: DdrSelectItem<ProgrammingLanguage>[] = [
+    {
+      label: 'Java',
+      value: {
+        name: 'java'
+      }
+    },
+    {
+      label: 'Angular',
+      value: {
+        name: 'angular'
+      }
+    },
+    {
+      label: 'NestJS',
+      value: {
+        name: 'nestjs'
+      }
+    },
+    {
+      label: 'Javascript',
+      value: {
+        name: 'javascript'
+      }
+    },
+    {
+      label: 'C',
+      value: {
+        name: 'c'
+      }
+    },
+    {
+      label: 'C++',
+      value: {
+        name: 'cpp'
+      }
+    }
+  ];
+
+  public options6: DdrSelectItem<ProgrammingLanguage>[] = [
+    {
+      label: 'Java',
+      value: {
+        name: 'java'
+      }
+    },
+    {
+      label: 'Angular',
+      value: {
+        name: 'angular'
+      }
+    },
+    {
+      label: 'NestJS',
+      value: {
+        name: 'nestjs'
+      }
+    },
+    {
+      label: 'Javascript',
+      value: {
+        name: 'javascript'
+      }
+    },
+    {
+      label: 'C',
+      value: {
+        name: 'c'
+      }
+    },
+    {
+      label: 'C++',
+      value: {
+        name: 'cpp'
+      }
+    }
+  ];
+
+  public options7: DdrSelectItem<ProgrammingLanguage>[] = [
+    {
+      label: 'Java',
+      value: {
+        name: 'java'
+      }
+    },
+    {
+      label: 'Angular',
+      value: {
+        name: 'angular'
+      }
+    },
+    {
+      label: 'NestJS',
+      value: {
+        name: 'nestjs'
+      }
+    },
+    {
+      label: 'Javascript',
+      value: {
+        name: 'javascript'
+      }
+    },
+    {
+      label: 'C',
+      value: {
+        name: 'c'
+      }
+    },
+    {
+      label: 'C++',
+      value: {
+        name: 'cpp'
+      }
+    }
+  ];
+
+  public value1: string[] = [];
+  public value2: string[] = ['java', 'c'];
+  public value3: ProgrammingLanguage[] = [];
+  public value4: ProgrammingLanguage[] = [
+    {
+      name: 'java'
+    },
+    {
+      name: 'nestjs'
+    }
+  ];
+  public value5: ProgrammingLanguage[] = [];
+  public value6: ProgrammingLanguage[] = [
+    {
+      name: 'java'
+    },
+    {
+      name: 'angular'
+    }
+  ];
+
+  clickCheck(value: ProgrammingLanguage[]) {
+    this.ddrToastService.addSuccessMessage(
+      this.ddrTranslateService.getTranslate('success'),
+      JSON.stringify(value)
+    )
+  }
+
 
 }

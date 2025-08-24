@@ -1,520 +1,498 @@
-<base-showcase>
+<base-showcase component="ddr-dropdown" type="component" [showCodeCSS]="true" [showTemplates]="true" [showClasses]="true" [showTranslations]="true" [showStyles]="true">
 
   <div description>
-    <p>Componente para seleccionar diferentes opciones pudiendo filtrar.</p>
+    <p>{{'dropdown.description' | ddrTranslate}}</p>
   </div>
 
   <div examples>
 
-    <!-- <div class="row">
-      <div class="col-12">
-        <h3>Ejemplo 1: sin valor inicial</h3>
-      </div>
-    </div>
-    <div class="row mt-3">
-      <div class="col-12">
-        <ddr-dropdown 
-          [options]="optionsEx1" 
-          labelNoResults="No hay resultados que mostrar"
-          placeholder="Seleccione una opción" 
-          [(ngModel)]="value1" 
-          (selectItem)="selectItemEx1($event)">
-        </ddr-dropdown>
-      </div>
-    </div>
+<div class="row">
+  <div class="col-12">
+    <span class="h3">{{'dropdown.example.1' | ddrTranslate}}</span>
+  </div>
+</div>
 
-    <div class="row mt-3">
-      <div class="col-12">
-        <p>{{'Valor :' + value1}}</p>
-      </div>
-    </div> -->
+<div class="row mt-3">
+  <div class="col-12">
+    <ddr-dropdown 
+      [options]="optionsEx1"
+      [placeholder]="'dropdown.placeholder' | ddrTranslate" 
+      [labelNoResults]="'dropdown.no.items' | ddrTranslate"
+      [labelPlaceholderFilter]="'dropdown.filter.placeholder' | ddrTranslate"
+      name="dropdown-1"
+      [(ngModel)]="value1"
+      (selectItem)="selectItem($event)" />
+  </div>
+</div>
 
-    <!-- <div class="row mt-3">
-      <div class="col-12">
-        <h3>Ejemplo 2: con valor inicial</h3>
-      </div>
-    </div>
+<div class="row mt-3">
+  <div class="col-12">
+    <span>{{'dropdown.value' | ddrTranslate}}: {{value1}}</span>
+  </div>
+</div> 
 
-    <div class="row mt-3">
-      <div class="col-12">
-        <ddr-dropdown 
-          [options]="optionsEx2" 
-          labelNoResults="No hay resultados que mostrar" 
-          [(ngModel)]="value2"
-          (selectItem)="selectItemEx2($event)">
-        </ddr-dropdown>
-      </div>
-    </div>
+<div class="row mt-3">
+  <div class="col-12">
+    <span class="h3">{{'dropdown.example.2' | ddrTranslate}}</span>
+  </div>
+</div>
 
-    <div class="row mt-3">
-      <div class="col-12">
-        <p>{{'Valor :' + value2}}</p>
-      </div>
-    </div> -->
+<div class="row mt-3">
+  <div class="col-12">
+    <ddr-dropdown 
+      [options]="optionsEx2" 
+      [placeholder]="'dropdown.placeholder' | ddrTranslate" 
+      [labelNoResults]="'dropdown.no.items' | ddrTranslate"
+      [labelPlaceholderFilter]="'dropdown.filter.placeholder' | ddrTranslate"
+      name="dropdown-2"
+      [(ngModel)]="value2"
+      (selectItem)="selectItem($event)" />
+  </div>
+</div>
 
-    <div class="row mt-2">
-      <div class="col-12">
-        <p>Ejemplo 3: sin valor inicial y con objetos</p>
-      </div>
-    </div>
+<div class="row mt-3">
+  <div class="col-12">
+    <span>{{'dropdown.value' | ddrTranslate}}: {{value2}}</span>
+  </div>
+</div> 
 
-    <div class="row mt-3">
-      <div class="col-12">
-        <ddr-dropdown 
-          [options]="optionsEx3" 
-          labelNoResults="No hay resultados que mostrar" 
-          [(ngModel)]="value3"
-          [compareFn]="compareFn"
-          (selectItem)="selectItemEx3($event)">
-        </ddr-dropdown>
-      </div>
-    </div>
+<div class="row mt-3">
+  <div class="col-12">
+    <span class="h3">{{'dropdown.example.3' | ddrTranslate}}</span>
+  </div>
+</div>
 
-    <div class="row mt-3">
-      <div class="col-12">
-        <p>{{'Valor :' + (value3 | json)}}</p>
-      </div>
-    </div>
+<div class="row mt-3">
+  <div class="col-12">
+    <ddr-dropdown 
+      [options]="optionsEx3" 
+      [placeholder]="'dropdown.placeholder' | ddrTranslate" 
+      [labelNoResults]="'dropdown.no.items' | ddrTranslate"
+      [labelPlaceholderFilter]="'dropdown.filter.placeholder' | ddrTranslate"
+      [compareFn]="compareFn"
+      name="dropdown-3"
+      [(ngModel)]="value3"
+      (selectItem)="selectItemObject($event)" />
+  </div>
+</div>
 
-    <div class="row mt-3">
-      <div class="col-12">
-        <h3>Ejemplo 4: con valor inicial y con objetos</h3>
-      </div>
-    </div>
+<div class="row mt-3">
+  <div class="col-12">
+    <span>{{'dropdown.value' | ddrTranslate}}: {{value3 | json}}</span>
+  </div>
+</div>
 
-    <div class="row mt-3">
-      <div class="col-12">
-        <ddr-dropdown 
-          [options]="optionsEx4" 
-          labelNoResults="No hay resultados que mostrar" 
-          [(ngModel)]="value4"
-          [compareFn]="compareFn"
-          (selectItem)="selectItemEx4($event)">
-        </ddr-dropdown>
-      </div>
-    </div>
+<div class="row mt-3">
+  <div class="col-12">
+    <span class="h3">{{'dropdown.example.4' | ddrTranslate}}</span>
+  </div>
+</div>
 
-    <div class="row mt-3">
-      <div class="col-12">
-        <p>{{'Valor :' + (value4 | json)}}</p>
-      </div>
-    </div>
+<div class="row mt-3">
+  <div class="col-12">
+    <ddr-dropdown 
+      [options]="optionsEx4" 
+      [placeholder]="'dropdown.placeholder' | ddrTranslate" 
+      [labelNoResults]="'dropdown.no.items' | ddrTranslate"
+      [labelPlaceholderFilter]="'dropdown.filter.placeholder' | ddrTranslate" 
+      [compareFn]="compareFn"
+      name="dropdown-4"
+      [(ngModel)]="value4"
+      (selectItem)="selectItemObject($event)" />
+  </div>
+</div>
 
-    <div class="row mt-3">
-      <div class="col-12">
-        <h3>Ejemplo 5: con template</h3>
-      </div>
-    </div>
+<div class="row mt-3">
+  <div class="col-12">
+    <span>{{'dropdown.value' | ddrTranslate}}: {{value4 | json}}</span>
+  </div>
+</div>
 
-    <div class="row mt-3">
-      <div class="col-12">
-        <ddr-dropdown 
-          [options]="optionsEx5" 
-          labelNoResults="No hay resultados que mostrar" 
-          [(ngModel)]="value5"
-          [compareFn]="compareFn"
-          (selectItem)="selectItemEx5($event)">
+<div class="row mt-3">
+  <div class="col-12">
+    <span class="h3">{{'dropdown.example.5' | ddrTranslate}}</span>
+  </div>
+</div>
 
-          <ng-template #itemTemplate let-item="item">
-            <span>{{item.label + ' ' + (item.value | json)}}</span>
-          </ng-template>
+<div class="row mt-3">
+  <div class="col-12">
+    <ddr-dropdown 
+      [options]="optionsEx5" 
+      [placeholder]="'dropdown.placeholder' | ddrTranslate" 
+      [labelNoResults]="'dropdown.no.items' | ddrTranslate"
+      [labelPlaceholderFilter]="'dropdown.filter.placeholder' | ddrTranslate" 
+      [compareFn]="compareFn"
+      name="dropdown-5"
+      [(ngModel)]="value5"
+      (selectItem)="selectItemObject($event)">
 
-        </ddr-dropdown>
-      </div>
-    </div>
+      <ng-template #itemTemplate let-item="item">
+        <span>{{item.label + ' [' + item.value.name + ']'}}</span>
+      </ng-template>
 
-    <div class="row mt-3">
-      <div class="col-12">
-        <p>{{'Valor :' + (value5 | json)}}</p>
-      </div>
-    </div>
+    </ddr-dropdown>
+  </div>
+</div>
 
-    <div class="row mt-3">
-      <div class="col-12">
-        <h3>Ejemplo 6: Label</h3>
-      </div>
-    </div>
+<div class="row mt-3">
+  <div class="col-12">
+    <span>{{'dropdown.value' | ddrTranslate}}: {{value5 | json}}</span>
+  </div>
+</div>
 
-    <div class="row mt-3">
-      <div class="col-12">
-        <ddr-dropdown 
-          [options]="optionsEx6" 
-          label="label" 
-          labelNoResults="No hay resultados que mostrar"
-          [(ngModel)]="value6" 
-          [compareFn]="compareFn"
-          (selectItem)="selectItemEx6($event)">
+<div class="row mt-3">
+  <div class="col-12">
+    <span class="h3">{{'dropdown.example.6' | ddrTranslate}}</span>
+  </div>
+</div>
 
-          <ng-template #itemTemplate let-item="item">
-            <span>{{item.label + ' ' + (item.value | json)}}</span>
-          </ng-template>
+<div class="row mt-3">
+  <div class="col-12">
+    <ddr-dropdown 
+      [options]="optionsEx6" 
+      [label]="'dropdown.label' | ddrTranslate"
+      [placeholder]="'dropdown.placeholder' | ddrTranslate" 
+      [labelNoResults]="'dropdown.no.items' | ddrTranslate"
+      [labelPlaceholderFilter]="'dropdown.filter.placeholder' | ddrTranslate" 
+      [compareFn]="compareFn"
+      name="dropdown-6"
+      [(ngModel)]="value6" 
+      (selectItem)="selectItemObject($event)" />
+  </div>
+</div>
 
-        </ddr-dropdown>
-      </div>
-    </div>
+<div class="row mt-3">
+  <div class="col-12">
+    <span>{{'dropdown.value' | ddrTranslate}}: {{value6 | json}}</span>
+  </div>
+</div>
 
-    <div class="row mt-3">
-      <div class="col-12">
-        <p>{{'Valor :' + (value6 | json)}}</p>
-      </div>
-    </div>
+<div class="row mt-3">
+  <div class="col-12">
+    <span class="h3">{{'dropdown.example.7' | ddrTranslate}}</span>
+  </div>
+</div>
 
-    <div class="row mt-3">
-      <div class="col-12">
-        <h3>Ejemplo 7: Label inline</h3>
-      </div>
-    </div>
+<div class="row mt-3">
+  <div class="col-12">
+    <ddr-dropdown 
+      [options]="optionsEx7" 
+      [label]="'dropdown.label' | ddrTranslate"
+      [placeholder]="'dropdown.placeholder' | ddrTranslate" 
+      [labelNoResults]="'dropdown.no.items' | ddrTranslate"
+      [labelPlaceholderFilter]="'dropdown.filter.placeholder' | ddrTranslate" 
+      [inline]="true"
+      [compareFn]="compareFn"
+      name="dropdown-7"
+      [(ngModel)]="value7" 
+      (selectItem)="selectItemObject($event)" />
+  </div>
+</div>
 
-    <div class="row mt-3">
-      <div class="col-12">
-        <ddr-dropdown 
-          [options]="optionsEx7" 
-          label='label' 
-          [inline]="true"
-          labelNoResults="No hay resultados que mostrar" 
-          [(ngModel)]="value7" 
-          [compareFn]="compareFn"
-          (selectItem)="selectItemEx7($event)">
+<div class="row mt-3">
+  <div class="col-12">
+    <span>{{'dropdown.value' | ddrTranslate}}: {{value7 | json}}</span>
+  </div>
+</div>
 
-          <ng-template #itemTemplate let-item="item">
-            <span>{{item.label + ' ' + (item.value | json)}}</span>
-          </ng-template>
+<div class="row mt-3">
+  <div class="col-12">
+    <span class="h3">{{'dropdown.example.8' | ddrTranslate}}</span>
+  </div>
+</div>
 
-        </ddr-dropdown>
-      </div>
-    </div>
+<div class="row mt-3">
+  <div class="col-12">
+    <ddr-dropdown 
+      [options]="optionsEx8" 
+      [placeholder]="'dropdown.placeholder' | ddrTranslate" 
+      [labelNoResults]="'dropdown.no.items' | ddrTranslate"
+      [labelPlaceholderFilter]="'dropdown.filter.placeholder' | ddrTranslate" 
+      [compareFn]="compareFn"
+      [showFilter]="false"
+      name="dropdown-8"
+      [(ngModel)]="value8" 
+      (selectItem)="selectItemObject($event)" />
+  </div>
+</div>
 
-    <div class="row mt-3">
-      <div class="col-12">
-        <p>{{'Valor :' + (value7 | json)}}</p>
-      </div>
-    </div>
+<div class="row mt-3">
+  <div class="col-12">
+    <span>{{'dropdown.value' | ddrTranslate}}: {{value8 | json}}</span>
+  </div>
+</div>
 
-    <div class="row mt-3">
-      <div class="col-12">
-        <h3>Ejemplo 8: Sin filtro</h3>
-      </div>
-    </div>
+<div class="row mt-3">
+  <div class="col-12">
+    <span class="h3">{{'dropdown.example.9' | ddrTranslate}}</span>
+  </div>
+</div>
 
-    <div class="row mt-3">
-      <div class="col-12">
-        <ddr-dropdown 
-          [options]="optionsEx8" 
-          label="label" 
-          [showFilter]="false"
-          labelNoResults="No hay resultados que mostrar" 
-          [(ngModel)]="value8" 
-          [compareFn]="compareFn"
-          (selectItem)="selectItemEx8($event)">
+<div class="row mt-3">
+  <div class="col-12">
 
-          <ng-template #itemTemplate let-item="item">
-            <span>{{item.label + ' ' + (item.value | json)}}</span>
-          </ng-template>
+    <ddr-button-multiple class="mb-3"
+      [buttons]="buttonsOrientation"
+      [showSelectedButton]="true"
+      [(ngModel)]="orientationDropdown" />
 
-        </ddr-dropdown>
-      </div>
-    </div>
+    <ddr-dropdown 
+      [options]="optionsEx9" 
+      [placeholder]="'dropdown.placeholder' | ddrTranslate" 
+      [labelNoResults]="'dropdown.no.items' | ddrTranslate"
+      [labelPlaceholderFilter]="'dropdown.filter.placeholder' | ddrTranslate"
+      [orientation]="orientationDropdown" 
+      [compareFn]="compareFn"
+      name="dropdown-9"
+      [(ngModel)]="value9"
+      (selectItem)="selectItemObject($event)" />
+  </div>
+</div>
 
-    <div class="row mt-3">
-      <div class="col-12">
-        <p>{{'Valor :' + (value8 | json)}}</p>
-      </div>
-    </div>
+<div class="row mt-3">
+  <div class="col-12">
+    <span>{{'dropdown.value' | ddrTranslate}}: {{value9 | json}}</span>
+  </div>
+</div>
 
-    <div class="row mt-3">
-      <div class="col-12">
-        <h3>Ejemplo 9: Orientacion</h3>
-      </div>
-    </div>
+<div class="row mt-3">
+  <div class="col-12">
+    <span class="h3">{{'dropdown.example.10' | ddrTranslate}}</span>
+  </div>
+</div>
 
-    <div class="row mt-3">
-      <div class="col-12">
-        <ddr-dropdown 
-          [options]="optionsEx9" 
-          label="label" 
-          orientation="top"
-          labelNoResults="No hay resultados que mostrar" 
-          [(ngModel)]="value9" 
-          [compareFn]="compareFn"
-          (selectItem)="selectItemEx9($event)">
+<div class="row mt-3">
+  <div class="col-12">
+    <ddr-dropdown 
+      [options]="optionsEx10" 
+      [placeholder]="'dropdown.placeholder' | ddrTranslate" 
+      [labelNoResults]="'dropdown.no.items' | ddrTranslate"
+      [labelPlaceholderFilter]="'dropdown.filter.placeholder' | ddrTranslate"
+      [(ngModel)]="value10" 
+      [compareFn]="compareFn"
+      name="dropdown-10"
+      (selectItem)="selectItemObject($event)" />
 
-          <ng-template #itemTemplate let-item="item">
-            <span>{{item.label + ' ' + (item.value | json)}}</span>
-          </ng-template>
+    <ddr-button text="dropdown.reset.value" (action)="resetValueEx10()" />
+    <ddr-button text="dropdown.reset.options" (action)="resetOptionsEx10()" />
+  </div>
+</div>
 
-        </ddr-dropdown>
-      </div>
-    </div>
+<div class="row mt-3">
+  <div class="col-12">
+    <span>{{'dropdown.value' | ddrTranslate}}: {{value10 | json}}</span>
+  </div>
+</div>
 
-    <div class="row mt-3">
-      <div class="col-12">
-        <p>{{'Valor :' + (value9 | json)}}</p>
-      </div>
-    </div>
+<div class="row mt-3">
+  <div class="col-12">
+    <span class="h3">{{'dropdown.example.11' | ddrTranslate}}</span>
+  </div>
+</div>
 
-    <div class="row mt-3">
-      <div class="col-12">
-        <h3>Ejemplo 10: Reseteo</h3>
-      </div>
-    </div>
-
-    <div class="row mt-3">
-      <div class="col-12">
-        <ddr-dropdown 
-          [options]="optionsEx10" 
-          label="label" 
-          labelNoResults="No hay resultados que mostrar"
-          [(ngModel)]="value10" 
-          [compareFn]="compareFn"
-          (selectItem)="selectItemEx10($event)">
-
-          <ng-template #itemTemplate let-item="item">
-            <span>{{item.label + ' ' + (item.value | json)}}</span>
-          </ng-template>
-
-        </ddr-dropdown>
-        <ddr-button text="Resetear valor" (action)="resetValueEx10()">
-        </ddr-button>
-        <ddr-button text="Resetear opciones" (action)="resetOptionsEx10()">
-        </ddr-button>
-      </div>
-    </div>
-
-    <div class="row mt-3">
-      <div class="col-12">
-        <p>{{'Valor :' + (value10 | json)}}</p>
-      </div>
-    </div>
+<div class="row mt-3">
+  <div class="col-12">
+    <ddr-dropdown 
+      [options]="optionsEx11" 
+      [placeholder]="'dropdown.placeholder' | ddrTranslate" 
+      [labelNoResults]="'dropdown.no.items' | ddrTranslate"
+      [labelPlaceholderFilter]="'dropdown.filter.placeholder' | ddrTranslate"
+      [compareFn]="compareFn"
+      [disabled]="true"
+      name="dropdown-11"
+      [(ngModel)]="value11" 
+      (selectItem)="selectItemObject($event)" />
 
   </div>
+</div>
 
-  <div code>
-    <!-- <ddr-tabs>
-      <ddr-tab-item titleTab="HTML">
-        <pre  class="language-html">
-          <code class="language-html" DdrHighlightCode ngNonBindable>
-&#xd;&#xa;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x72;&#x6f;&#x77;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x63;&#x6f;&#x6c;&#x2d;&#x31;&#x32;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x3c;&#x68;&#x33;&#x3e;&#x45;&#x6a;&#x65;&#x6d;&#x70;&#x6c;&#x6f;&#x20;&#x31;&#x3a;&#x20;&#x73;&#x69;&#x6e;&#x20;&#x76;&#x61;&#x6c;&#x6f;&#x72;&#x20;&#x69;&#x6e;&#x69;&#x63;&#x69;&#x61;&#x6c;&#x3c;&#x2f;&#x68;&#x33;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x72;&#x6f;&#x77;&#x20;&#x6d;&#x74;&#x2d;&#x33;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x63;&#x6f;&#x6c;&#x2d;&#x31;&#x32;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x3c;&#x65;&#x76;&#x6c;&#x2d;&#x64;&#x72;&#x6f;&#x70;&#x64;&#x6f;&#x77;&#x6e;&#x20;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x5b;&#x6f;&#x70;&#x74;&#x69;&#x6f;&#x6e;&#x73;&#x5d;&#x3d;&#x22;&#x6f;&#x70;&#x74;&#x69;&#x6f;&#x6e;&#x73;&#x45;&#x78;&#x31;&#x22;&#x20;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x6c;&#x61;&#x62;&#x65;&#x6c;&#x4e;&#x6f;&#x52;&#x65;&#x73;&#x75;&#x6c;&#x74;&#x73;&#x3d;&#x22;&#x4e;&#x6f;&#x20;&#x68;&#x61;&#x79;&#x20;&#x72;&#x65;&#x73;&#x75;&#x6c;&#x74;&#x61;&#x64;&#x6f;&#x73;&#x20;&#x71;&#x75;&#x65;&#x20;&#x6d;&#x6f;&#x73;&#x74;&#x72;&#x61;&#x72;&#x22;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x70;&#x6c;&#x61;&#x63;&#x65;&#x68;&#x6f;&#x6c;&#x64;&#x65;&#x72;&#x3d;&#x22;&#x53;&#x65;&#x6c;&#x65;&#x63;&#x63;&#x69;&#x6f;&#x6e;&#x65;&#x20;&#x75;&#x6e;&#x61;&#x20;&#x6f;&#x70;&#x63;&#x69;&#xf3;&#x6e;&#x22;&#x20;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x5b;&#x28;&#x6e;&#x67;&#x4d;&#x6f;&#x64;&#x65;&#x6c;&#x29;&#x5d;&#x3d;&#x22;&#x76;&#x61;&#x6c;&#x75;&#x65;&#x31;&#x22;&#x20;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x28;&#x73;&#x65;&#x6c;&#x65;&#x63;&#x74;&#x49;&#x74;&#x65;&#x6d;&#x29;&#x3d;&#x22;&#x73;&#x65;&#x6c;&#x65;&#x63;&#x74;&#x49;&#x74;&#x65;&#x6d;&#x45;&#x78;&#x31;&#x28;&#x24;&#x65;&#x76;&#x65;&#x6e;&#x74;&#x29;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x3c;&#x2f;&#x65;&#x76;&#x6c;&#x2d;&#x64;&#x72;&#x6f;&#x70;&#x64;&#x6f;&#x77;&#x6e;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#xd;&#xa;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x72;&#x6f;&#x77;&#x20;&#x6d;&#x74;&#x2d;&#x33;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x63;&#x6f;&#x6c;&#x2d;&#x31;&#x32;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x3c;&#x70;&#x3e;&#x7b;&#x7b;&#x27;&#x56;&#x61;&#x6c;&#x6f;&#x72;&#x20;&#x3a;&#x27;&#x20;&#x2b;&#x20;&#x76;&#x61;&#x6c;&#x75;&#x65;&#x31;&#x7d;&#x7d;&#x3c;&#x2f;&#x70;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#x20;&#x20;&#xd;&#xa;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x72;&#x6f;&#x77;&#x20;&#x6d;&#x74;&#x2d;&#x33;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x63;&#x6f;&#x6c;&#x2d;&#x31;&#x32;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x3c;&#x68;&#x33;&#x3e;&#x45;&#x6a;&#x65;&#x6d;&#x70;&#x6c;&#x6f;&#x20;&#x32;&#x3a;&#x20;&#x63;&#x6f;&#x6e;&#x20;&#x76;&#x61;&#x6c;&#x6f;&#x72;&#x20;&#x69;&#x6e;&#x69;&#x63;&#x69;&#x61;&#x6c;&#x3c;&#x2f;&#x68;&#x33;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#xd;&#xa;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x72;&#x6f;&#x77;&#x20;&#x6d;&#x74;&#x2d;&#x33;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x63;&#x6f;&#x6c;&#x2d;&#x31;&#x32;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x3c;&#x65;&#x76;&#x6c;&#x2d;&#x64;&#x72;&#x6f;&#x70;&#x64;&#x6f;&#x77;&#x6e;&#x20;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x5b;&#x6f;&#x70;&#x74;&#x69;&#x6f;&#x6e;&#x73;&#x5d;&#x3d;&#x22;&#x6f;&#x70;&#x74;&#x69;&#x6f;&#x6e;&#x73;&#x45;&#x78;&#x32;&#x22;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x6c;&#x61;&#x62;&#x65;&#x6c;&#x4e;&#x6f;&#x52;&#x65;&#x73;&#x75;&#x6c;&#x74;&#x73;&#x3d;&#x22;&#x4e;&#x6f;&#x20;&#x68;&#x61;&#x79;&#x20;&#x72;&#x65;&#x73;&#x75;&#x6c;&#x74;&#x61;&#x64;&#x6f;&#x73;&#x20;&#x71;&#x75;&#x65;&#x20;&#x6d;&#x6f;&#x73;&#x74;&#x72;&#x61;&#x72;&#x22;&#x20;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x5b;&#x28;&#x6e;&#x67;&#x4d;&#x6f;&#x64;&#x65;&#x6c;&#x29;&#x5d;&#x3d;&#x22;&#x76;&#x61;&#x6c;&#x75;&#x65;&#x32;&#x22;&#x20;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x28;&#x73;&#x65;&#x6c;&#x65;&#x63;&#x74;&#x49;&#x74;&#x65;&#x6d;&#x29;&#x3d;&#x22;&#x73;&#x65;&#x6c;&#x65;&#x63;&#x74;&#x49;&#x74;&#x65;&#x6d;&#x45;&#x78;&#x32;&#x28;&#x24;&#x65;&#x76;&#x65;&#x6e;&#x74;&#x29;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x3c;&#x2f;&#x65;&#x76;&#x6c;&#x2d;&#x64;&#x72;&#x6f;&#x70;&#x64;&#x6f;&#x77;&#x6e;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#x20;&#x20;&#xd;&#xa;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x72;&#x6f;&#x77;&#x20;&#x6d;&#x74;&#x2d;&#x33;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x63;&#x6f;&#x6c;&#x2d;&#x31;&#x32;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x3c;&#x70;&#x3e;&#x7b;&#x7b;&#x27;&#x56;&#x61;&#x6c;&#x6f;&#x72;&#x20;&#x3a;&#x27;&#x20;&#x2b;&#x20;&#x76;&#x61;&#x6c;&#x75;&#x65;&#x32;&#x7d;&#x7d;&#x3c;&#x2f;&#x70;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#x20;&#x20;&#xd;&#xa;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x72;&#x6f;&#x77;&#x20;&#x6d;&#x74;&#x2d;&#x32;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x63;&#x6f;&#x6c;&#x2d;&#x31;&#x32;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x3c;&#x70;&#x3e;&#x45;&#x6a;&#x65;&#x6d;&#x70;&#x6c;&#x6f;&#x20;&#x33;&#x3a;&#x20;&#x73;&#x69;&#x6e;&#x20;&#x76;&#x61;&#x6c;&#x6f;&#x72;&#x20;&#x69;&#x6e;&#x69;&#x63;&#x69;&#x61;&#x6c;&#x20;&#x79;&#x20;&#x63;&#x6f;&#x6e;&#x20;&#x6f;&#x62;&#x6a;&#x65;&#x74;&#x6f;&#x73;&#x3c;&#x2f;&#x70;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#xd;&#xa;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x72;&#x6f;&#x77;&#x20;&#x6d;&#x74;&#x2d;&#x33;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x63;&#x6f;&#x6c;&#x2d;&#x31;&#x32;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x3c;&#x65;&#x76;&#x6c;&#x2d;&#x64;&#x72;&#x6f;&#x70;&#x64;&#x6f;&#x77;&#x6e;&#x20;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x5b;&#x6f;&#x70;&#x74;&#x69;&#x6f;&#x6e;&#x73;&#x5d;&#x3d;&#x22;&#x6f;&#x70;&#x74;&#x69;&#x6f;&#x6e;&#x73;&#x45;&#x78;&#x33;&#x22;&#x20;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x6c;&#x61;&#x62;&#x65;&#x6c;&#x4e;&#x6f;&#x52;&#x65;&#x73;&#x75;&#x6c;&#x74;&#x73;&#x3d;&#x22;&#x4e;&#x6f;&#x20;&#x68;&#x61;&#x79;&#x20;&#x72;&#x65;&#x73;&#x75;&#x6c;&#x74;&#x61;&#x64;&#x6f;&#x73;&#x20;&#x71;&#x75;&#x65;&#x20;&#x6d;&#x6f;&#x73;&#x74;&#x72;&#x61;&#x72;&#x22;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x5b;&#x28;&#x6e;&#x67;&#x4d;&#x6f;&#x64;&#x65;&#x6c;&#x29;&#x5d;&#x3d;&#x22;&#x76;&#x61;&#x6c;&#x75;&#x65;&#x33;&#x22;&#x20;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x28;&#x73;&#x65;&#x6c;&#x65;&#x63;&#x74;&#x49;&#x74;&#x65;&#x6d;&#x29;&#x3d;&#x22;&#x73;&#x65;&#x6c;&#x65;&#x63;&#x74;&#x49;&#x74;&#x65;&#x6d;&#x45;&#x78;&#x33;&#x28;&#x24;&#x65;&#x76;&#x65;&#x6e;&#x74;&#x29;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x3c;&#x2f;&#x65;&#x76;&#x6c;&#x2d;&#x64;&#x72;&#x6f;&#x70;&#x64;&#x6f;&#x77;&#x6e;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#xd;&#xa;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x72;&#x6f;&#x77;&#x20;&#x6d;&#x74;&#x2d;&#x33;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x63;&#x6f;&#x6c;&#x2d;&#x31;&#x32;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x3c;&#x70;&#x3e;&#x7b;&#x7b;&#x27;&#x56;&#x61;&#x6c;&#x6f;&#x72;&#x20;&#x3a;&#x27;&#x20;&#x2b;&#x20;&#x28;&#x76;&#x61;&#x6c;&#x75;&#x65;&#x33;&#x20;&#x7c;&#x20;&#x6a;&#x73;&#x6f;&#x6e;&#x29;&#x7d;&#x7d;&#x3c;&#x2f;&#x70;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#xd;&#xa;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x72;&#x6f;&#x77;&#x20;&#x6d;&#x74;&#x2d;&#x33;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x63;&#x6f;&#x6c;&#x2d;&#x31;&#x32;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x3c;&#x68;&#x33;&#x3e;&#x45;&#x6a;&#x65;&#x6d;&#x70;&#x6c;&#x6f;&#x20;&#x34;&#x3a;&#x20;&#x63;&#x6f;&#x6e;&#x20;&#x76;&#x61;&#x6c;&#x6f;&#x72;&#x20;&#x69;&#x6e;&#x69;&#x63;&#x69;&#x61;&#x6c;&#x20;&#x79;&#x20;&#x63;&#x6f;&#x6e;&#x20;&#x6f;&#x62;&#x6a;&#x65;&#x74;&#x6f;&#x73;&#x3c;&#x2f;&#x68;&#x33;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#xd;&#xa;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x72;&#x6f;&#x77;&#x20;&#x6d;&#x74;&#x2d;&#x33;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x63;&#x6f;&#x6c;&#x2d;&#x31;&#x32;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x3c;&#x65;&#x76;&#x6c;&#x2d;&#x64;&#x72;&#x6f;&#x70;&#x64;&#x6f;&#x77;&#x6e;&#x20;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x5b;&#x6f;&#x70;&#x74;&#x69;&#x6f;&#x6e;&#x73;&#x5d;&#x3d;&#x22;&#x6f;&#x70;&#x74;&#x69;&#x6f;&#x6e;&#x73;&#x45;&#x78;&#x34;&#x22;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x6c;&#x61;&#x62;&#x65;&#x6c;&#x4e;&#x6f;&#x52;&#x65;&#x73;&#x75;&#x6c;&#x74;&#x73;&#x3d;&#x22;&#x4e;&#x6f;&#x20;&#x68;&#x61;&#x79;&#x20;&#x72;&#x65;&#x73;&#x75;&#x6c;&#x74;&#x61;&#x64;&#x6f;&#x73;&#x20;&#x71;&#x75;&#x65;&#x20;&#x6d;&#x6f;&#x73;&#x74;&#x72;&#x61;&#x72;&#x22;&#x20;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x5b;&#x28;&#x6e;&#x67;&#x4d;&#x6f;&#x64;&#x65;&#x6c;&#x29;&#x5d;&#x3d;&#x22;&#x76;&#x61;&#x6c;&#x75;&#x65;&#x34;&#x22;&#x20;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x28;&#x73;&#x65;&#x6c;&#x65;&#x63;&#x74;&#x49;&#x74;&#x65;&#x6d;&#x29;&#x3d;&#x22;&#x73;&#x65;&#x6c;&#x65;&#x63;&#x74;&#x49;&#x74;&#x65;&#x6d;&#x45;&#x78;&#x34;&#x28;&#x24;&#x65;&#x76;&#x65;&#x6e;&#x74;&#x29;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x3c;&#x2f;&#x65;&#x76;&#x6c;&#x2d;&#x64;&#x72;&#x6f;&#x70;&#x64;&#x6f;&#x77;&#x6e;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#x20;&#x20;&#xd;&#xa;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x72;&#x6f;&#x77;&#x20;&#x6d;&#x74;&#x2d;&#x33;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x63;&#x6f;&#x6c;&#x2d;&#x31;&#x32;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x3c;&#x70;&#x3e;&#x7b;&#x7b;&#x27;&#x56;&#x61;&#x6c;&#x6f;&#x72;&#x20;&#x3a;&#x27;&#x20;&#x2b;&#x20;&#x28;&#x76;&#x61;&#x6c;&#x75;&#x65;&#x34;&#x20;&#x7c;&#x20;&#x6a;&#x73;&#x6f;&#x6e;&#x29;&#x7d;&#x7d;&#x3c;&#x2f;&#x70;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#xd;&#xa;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x72;&#x6f;&#x77;&#x20;&#x6d;&#x74;&#x2d;&#x33;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x63;&#x6f;&#x6c;&#x2d;&#x31;&#x32;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x3c;&#x68;&#x33;&#x3e;&#x45;&#x6a;&#x65;&#x6d;&#x70;&#x6c;&#x6f;&#x20;&#x35;&#x3a;&#x20;&#x63;&#x6f;&#x6e;&#x20;&#x74;&#x65;&#x6d;&#x70;&#x6c;&#x61;&#x74;&#x65;&#x3c;&#x2f;&#x68;&#x33;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#xd;&#xa;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x72;&#x6f;&#x77;&#x20;&#x6d;&#x74;&#x2d;&#x33;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x63;&#x6f;&#x6c;&#x2d;&#x31;&#x32;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x3c;&#x65;&#x76;&#x6c;&#x2d;&#x64;&#x72;&#x6f;&#x70;&#x64;&#x6f;&#x77;&#x6e;&#x20;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x5b;&#x6f;&#x70;&#x74;&#x69;&#x6f;&#x6e;&#x73;&#x5d;&#x3d;&#x22;&#x6f;&#x70;&#x74;&#x69;&#x6f;&#x6e;&#x73;&#x45;&#x78;&#x35;&#x22;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x6c;&#x61;&#x62;&#x65;&#x6c;&#x4e;&#x6f;&#x52;&#x65;&#x73;&#x75;&#x6c;&#x74;&#x73;&#x3d;&#x22;&#x4e;&#x6f;&#x20;&#x68;&#x61;&#x79;&#x20;&#x72;&#x65;&#x73;&#x75;&#x6c;&#x74;&#x61;&#x64;&#x6f;&#x73;&#x20;&#x71;&#x75;&#x65;&#x20;&#x6d;&#x6f;&#x73;&#x74;&#x72;&#x61;&#x72;&#x22;&#x20;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x5b;&#x28;&#x6e;&#x67;&#x4d;&#x6f;&#x64;&#x65;&#x6c;&#x29;&#x5d;&#x3d;&#x22;&#x76;&#x61;&#x6c;&#x75;&#x65;&#x35;&#x22;&#x20;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x28;&#x73;&#x65;&#x6c;&#x65;&#x63;&#x74;&#x49;&#x74;&#x65;&#x6d;&#x29;&#x3d;&#x22;&#x73;&#x65;&#x6c;&#x65;&#x63;&#x74;&#x49;&#x74;&#x65;&#x6d;&#x45;&#x78;&#x35;&#x28;&#x24;&#x65;&#x76;&#x65;&#x6e;&#x74;&#x29;&#x22;&#x3e;&#xd;&#xa;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x3c;&#x6e;&#x67;&#x2d;&#x74;&#x65;&#x6d;&#x70;&#x6c;&#x61;&#x74;&#x65;&#x20;&#x23;&#x69;&#x74;&#x65;&#x6d;&#x54;&#x65;&#x6d;&#x70;&#x6c;&#x61;&#x74;&#x65;&#x20;&#x6c;&#x65;&#x74;&#x2d;&#x69;&#x74;&#x65;&#x6d;&#x3d;&#x22;&#x69;&#x74;&#x65;&#x6d;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x3c;&#x73;&#x70;&#x61;&#x6e;&#x3e;&#x7b;&#x7b;&#x69;&#x74;&#x65;&#x6d;&#x2e;&#x6c;&#x61;&#x62;&#x65;&#x6c;&#x20;&#x2b;&#x20;&#x27;&#x20;&#x27;&#x20;&#x2b;&#x20;&#x28;&#x69;&#x74;&#x65;&#x6d;&#x2e;&#x76;&#x61;&#x6c;&#x75;&#x65;&#x20;&#x7c;&#x20;&#x6a;&#x73;&#x6f;&#x6e;&#x29;&#x7d;&#x7d;&#x3c;&#x2f;&#x73;&#x70;&#x61;&#x6e;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x3c;&#x2f;&#x6e;&#x67;&#x2d;&#x74;&#x65;&#x6d;&#x70;&#x6c;&#x61;&#x74;&#x65;&#x3e;&#xd;&#xa;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x3c;&#x2f;&#x65;&#x76;&#x6c;&#x2d;&#x64;&#x72;&#x6f;&#x70;&#x64;&#x6f;&#x77;&#x6e;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#x20;&#x20;&#xd;&#xa;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x72;&#x6f;&#x77;&#x20;&#x6d;&#x74;&#x2d;&#x33;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x63;&#x6f;&#x6c;&#x2d;&#x31;&#x32;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x3c;&#x70;&#x3e;&#x7b;&#x7b;&#x27;&#x56;&#x61;&#x6c;&#x6f;&#x72;&#x20;&#x3a;&#x27;&#x20;&#x2b;&#x20;&#x28;&#x76;&#x61;&#x6c;&#x75;&#x65;&#x35;&#x20;&#x7c;&#x20;&#x6a;&#x73;&#x6f;&#x6e;&#x29;&#x7d;&#x7d;&#x3c;&#x2f;&#x70;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#x20;&#x20;&#xd;&#xa;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x72;&#x6f;&#x77;&#x20;&#x6d;&#x74;&#x2d;&#x33;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x63;&#x6f;&#x6c;&#x2d;&#x31;&#x32;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x3c;&#x68;&#x33;&#x3e;&#x45;&#x6a;&#x65;&#x6d;&#x70;&#x6c;&#x6f;&#x20;&#x36;&#x3a;&#x20;&#x4c;&#x61;&#x62;&#x65;&#x6c;&#x3c;&#x2f;&#x68;&#x33;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#xd;&#xa;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x72;&#x6f;&#x77;&#x20;&#x6d;&#x74;&#x2d;&#x33;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x63;&#x6f;&#x6c;&#x2d;&#x31;&#x32;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x3c;&#x65;&#x76;&#x6c;&#x2d;&#x64;&#x72;&#x6f;&#x70;&#x64;&#x6f;&#x77;&#x6e;&#x20;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x5b;&#x6f;&#x70;&#x74;&#x69;&#x6f;&#x6e;&#x73;&#x5d;&#x3d;&#x22;&#x6f;&#x70;&#x74;&#x69;&#x6f;&#x6e;&#x73;&#x45;&#x78;&#x36;&#x22;&#x20;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x6c;&#x61;&#x62;&#x65;&#x6c;&#x3d;&#x22;&#x6c;&#x61;&#x62;&#x65;&#x6c;&#x22;&#x20;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x6c;&#x61;&#x62;&#x65;&#x6c;&#x4e;&#x6f;&#x52;&#x65;&#x73;&#x75;&#x6c;&#x74;&#x73;&#x3d;&#x22;&#x4e;&#x6f;&#x20;&#x68;&#x61;&#x79;&#x20;&#x72;&#x65;&#x73;&#x75;&#x6c;&#x74;&#x61;&#x64;&#x6f;&#x73;&#x20;&#x71;&#x75;&#x65;&#x20;&#x6d;&#x6f;&#x73;&#x74;&#x72;&#x61;&#x72;&#x22;&#x20;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x5b;&#x28;&#x6e;&#x67;&#x4d;&#x6f;&#x64;&#x65;&#x6c;&#x29;&#x5d;&#x3d;&#x22;&#x76;&#x61;&#x6c;&#x75;&#x65;&#x36;&#x22;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x28;&#x73;&#x65;&#x6c;&#x65;&#x63;&#x74;&#x49;&#x74;&#x65;&#x6d;&#x29;&#x3d;&#x22;&#x73;&#x65;&#x6c;&#x65;&#x63;&#x74;&#x49;&#x74;&#x65;&#x6d;&#x45;&#x78;&#x36;&#x28;&#x24;&#x65;&#x76;&#x65;&#x6e;&#x74;&#x29;&#x22;&#x3e;&#xd;&#xa;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x3c;&#x6e;&#x67;&#x2d;&#x74;&#x65;&#x6d;&#x70;&#x6c;&#x61;&#x74;&#x65;&#x20;&#x23;&#x69;&#x74;&#x65;&#x6d;&#x54;&#x65;&#x6d;&#x70;&#x6c;&#x61;&#x74;&#x65;&#x20;&#x6c;&#x65;&#x74;&#x2d;&#x69;&#x74;&#x65;&#x6d;&#x3d;&#x22;&#x69;&#x74;&#x65;&#x6d;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x3c;&#x73;&#x70;&#x61;&#x6e;&#x3e;&#x7b;&#x7b;&#x69;&#x74;&#x65;&#x6d;&#x2e;&#x6c;&#x61;&#x62;&#x65;&#x6c;&#x20;&#x2b;&#x20;&#x27;&#x20;&#x27;&#x20;&#x2b;&#x20;&#x28;&#x69;&#x74;&#x65;&#x6d;&#x2e;&#x76;&#x61;&#x6c;&#x75;&#x65;&#x20;&#x7c;&#x20;&#x6a;&#x73;&#x6f;&#x6e;&#x29;&#x7d;&#x7d;&#x3c;&#x2f;&#x73;&#x70;&#x61;&#x6e;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x3c;&#x2f;&#x6e;&#x67;&#x2d;&#x74;&#x65;&#x6d;&#x70;&#x6c;&#x61;&#x74;&#x65;&#x3e;&#xd;&#xa;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x3c;&#x2f;&#x65;&#x76;&#x6c;&#x2d;&#x64;&#x72;&#x6f;&#x70;&#x64;&#x6f;&#x77;&#x6e;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#xd;&#xa;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x72;&#x6f;&#x77;&#x20;&#x6d;&#x74;&#x2d;&#x33;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x63;&#x6f;&#x6c;&#x2d;&#x31;&#x32;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x3c;&#x70;&#x3e;&#x7b;&#x7b;&#x27;&#x56;&#x61;&#x6c;&#x6f;&#x72;&#x20;&#x3a;&#x27;&#x20;&#x2b;&#x20;&#x28;&#x76;&#x61;&#x6c;&#x75;&#x65;&#x36;&#x20;&#x7c;&#x20;&#x6a;&#x73;&#x6f;&#x6e;&#x29;&#x7d;&#x7d;&#x3c;&#x2f;&#x70;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#x20;&#x20;&#xd;&#xa;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x72;&#x6f;&#x77;&#x20;&#x6d;&#x74;&#x2d;&#x33;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x63;&#x6f;&#x6c;&#x2d;&#x31;&#x32;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x3c;&#x68;&#x33;&#x3e;&#x45;&#x6a;&#x65;&#x6d;&#x70;&#x6c;&#x6f;&#x20;&#x37;&#x3a;&#x20;&#x4c;&#x61;&#x62;&#x65;&#x6c;&#x20;&#x69;&#x6e;&#x6c;&#x69;&#x6e;&#x65;&#x3c;&#x2f;&#x68;&#x33;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#xd;&#xa;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x72;&#x6f;&#x77;&#x20;&#x6d;&#x74;&#x2d;&#x33;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x63;&#x6f;&#x6c;&#x2d;&#x31;&#x32;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x3c;&#x65;&#x76;&#x6c;&#x2d;&#x64;&#x72;&#x6f;&#x70;&#x64;&#x6f;&#x77;&#x6e;&#x20;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x5b;&#x6f;&#x70;&#x74;&#x69;&#x6f;&#x6e;&#x73;&#x5d;&#x3d;&#x22;&#x6f;&#x70;&#x74;&#x69;&#x6f;&#x6e;&#x73;&#x45;&#x78;&#x37;&#x22;&#x20;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x6c;&#x61;&#x62;&#x65;&#x6c;&#x3d;&#x27;&#x6c;&#x61;&#x62;&#x65;&#x6c;&#x27;&#x20;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x5b;&#x69;&#x6e;&#x6c;&#x69;&#x6e;&#x65;&#x5d;&#x3d;&#x22;&#x74;&#x72;&#x75;&#x65;&#x22;&#x20;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x6c;&#x61;&#x62;&#x65;&#x6c;&#x4e;&#x6f;&#x52;&#x65;&#x73;&#x75;&#x6c;&#x74;&#x73;&#x3d;&#x22;&#x4e;&#x6f;&#x20;&#x68;&#x61;&#x79;&#x20;&#x72;&#x65;&#x73;&#x75;&#x6c;&#x74;&#x61;&#x64;&#x6f;&#x73;&#x20;&#x71;&#x75;&#x65;&#x20;&#x6d;&#x6f;&#x73;&#x74;&#x72;&#x61;&#x72;&#x22;&#x20;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x5b;&#x28;&#x6e;&#x67;&#x4d;&#x6f;&#x64;&#x65;&#x6c;&#x29;&#x5d;&#x3d;&#x22;&#x76;&#x61;&#x6c;&#x75;&#x65;&#x37;&#x22;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x28;&#x73;&#x65;&#x6c;&#x65;&#x63;&#x74;&#x49;&#x74;&#x65;&#x6d;&#x29;&#x3d;&#x22;&#x73;&#x65;&#x6c;&#x65;&#x63;&#x74;&#x49;&#x74;&#x65;&#x6d;&#x45;&#x78;&#x37;&#x28;&#x24;&#x65;&#x76;&#x65;&#x6e;&#x74;&#x29;&#x22;&#x3e;&#xd;&#xa;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x3c;&#x6e;&#x67;&#x2d;&#x74;&#x65;&#x6d;&#x70;&#x6c;&#x61;&#x74;&#x65;&#x20;&#x23;&#x69;&#x74;&#x65;&#x6d;&#x54;&#x65;&#x6d;&#x70;&#x6c;&#x61;&#x74;&#x65;&#x20;&#x6c;&#x65;&#x74;&#x2d;&#x69;&#x74;&#x65;&#x6d;&#x3d;&#x22;&#x69;&#x74;&#x65;&#x6d;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x3c;&#x73;&#x70;&#x61;&#x6e;&#x3e;&#x7b;&#x7b;&#x69;&#x74;&#x65;&#x6d;&#x2e;&#x6c;&#x61;&#x62;&#x65;&#x6c;&#x20;&#x2b;&#x20;&#x27;&#x20;&#x27;&#x20;&#x2b;&#x20;&#x28;&#x69;&#x74;&#x65;&#x6d;&#x2e;&#x76;&#x61;&#x6c;&#x75;&#x65;&#x20;&#x7c;&#x20;&#x6a;&#x73;&#x6f;&#x6e;&#x29;&#x7d;&#x7d;&#x3c;&#x2f;&#x73;&#x70;&#x61;&#x6e;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x3c;&#x2f;&#x6e;&#x67;&#x2d;&#x74;&#x65;&#x6d;&#x70;&#x6c;&#x61;&#x74;&#x65;&#x3e;&#xd;&#xa;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x3c;&#x2f;&#x65;&#x76;&#x6c;&#x2d;&#x64;&#x72;&#x6f;&#x70;&#x64;&#x6f;&#x77;&#x6e;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#xd;&#xa;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x72;&#x6f;&#x77;&#x20;&#x6d;&#x74;&#x2d;&#x33;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x63;&#x6f;&#x6c;&#x2d;&#x31;&#x32;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x3c;&#x70;&#x3e;&#x7b;&#x7b;&#x27;&#x56;&#x61;&#x6c;&#x6f;&#x72;&#x20;&#x3a;&#x27;&#x20;&#x2b;&#x20;&#x28;&#x76;&#x61;&#x6c;&#x75;&#x65;&#x37;&#x20;&#x7c;&#x20;&#x6a;&#x73;&#x6f;&#x6e;&#x29;&#x7d;&#x7d;&#x3c;&#x2f;&#x70;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#x20;&#x20;&#xd;&#xa;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x72;&#x6f;&#x77;&#x20;&#x6d;&#x74;&#x2d;&#x33;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x63;&#x6f;&#x6c;&#x2d;&#x31;&#x32;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x3c;&#x68;&#x33;&#x3e;&#x45;&#x6a;&#x65;&#x6d;&#x70;&#x6c;&#x6f;&#x20;&#x38;&#x3a;&#x20;&#x53;&#x69;&#x6e;&#x20;&#x66;&#x69;&#x6c;&#x74;&#x72;&#x6f;&#x3c;&#x2f;&#x68;&#x33;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#xd;&#xa;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x72;&#x6f;&#x77;&#x20;&#x6d;&#x74;&#x2d;&#x33;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x63;&#x6f;&#x6c;&#x2d;&#x31;&#x32;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x3c;&#x65;&#x76;&#x6c;&#x2d;&#x64;&#x72;&#x6f;&#x70;&#x64;&#x6f;&#x77;&#x6e;&#x20;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x5b;&#x6f;&#x70;&#x74;&#x69;&#x6f;&#x6e;&#x73;&#x5d;&#x3d;&#x22;&#x6f;&#x70;&#x74;&#x69;&#x6f;&#x6e;&#x73;&#x45;&#x78;&#x38;&#x22;&#x20;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x6c;&#x61;&#x62;&#x65;&#x6c;&#x3d;&#x22;&#x6c;&#x61;&#x62;&#x65;&#x6c;&#x22;&#x20;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x5b;&#x73;&#x68;&#x6f;&#x77;&#x46;&#x69;&#x6c;&#x74;&#x65;&#x72;&#x5d;&#x3d;&#x22;&#x66;&#x61;&#x6c;&#x73;&#x65;&#x22;&#x20;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x6c;&#x61;&#x62;&#x65;&#x6c;&#x4e;&#x6f;&#x52;&#x65;&#x73;&#x75;&#x6c;&#x74;&#x73;&#x3d;&#x22;&#x4e;&#x6f;&#x20;&#x68;&#x61;&#x79;&#x20;&#x72;&#x65;&#x73;&#x75;&#x6c;&#x74;&#x61;&#x64;&#x6f;&#x73;&#x20;&#x71;&#x75;&#x65;&#x20;&#x6d;&#x6f;&#x73;&#x74;&#x72;&#x61;&#x72;&#x22;&#x20;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x5b;&#x28;&#x6e;&#x67;&#x4d;&#x6f;&#x64;&#x65;&#x6c;&#x29;&#x5d;&#x3d;&#x22;&#x76;&#x61;&#x6c;&#x75;&#x65;&#x38;&#x22;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x28;&#x73;&#x65;&#x6c;&#x65;&#x63;&#x74;&#x49;&#x74;&#x65;&#x6d;&#x29;&#x3d;&#x22;&#x73;&#x65;&#x6c;&#x65;&#x63;&#x74;&#x49;&#x74;&#x65;&#x6d;&#x45;&#x78;&#x38;&#x28;&#x24;&#x65;&#x76;&#x65;&#x6e;&#x74;&#x29;&#x22;&#x3e;&#xd;&#xa;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x3c;&#x6e;&#x67;&#x2d;&#x74;&#x65;&#x6d;&#x70;&#x6c;&#x61;&#x74;&#x65;&#x20;&#x23;&#x69;&#x74;&#x65;&#x6d;&#x54;&#x65;&#x6d;&#x70;&#x6c;&#x61;&#x74;&#x65;&#x20;&#x6c;&#x65;&#x74;&#x2d;&#x69;&#x74;&#x65;&#x6d;&#x3d;&#x22;&#x69;&#x74;&#x65;&#x6d;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x3c;&#x73;&#x70;&#x61;&#x6e;&#x3e;&#x7b;&#x7b;&#x69;&#x74;&#x65;&#x6d;&#x2e;&#x6c;&#x61;&#x62;&#x65;&#x6c;&#x20;&#x2b;&#x20;&#x27;&#x20;&#x27;&#x20;&#x2b;&#x20;&#x28;&#x69;&#x74;&#x65;&#x6d;&#x2e;&#x76;&#x61;&#x6c;&#x75;&#x65;&#x20;&#x7c;&#x20;&#x6a;&#x73;&#x6f;&#x6e;&#x29;&#x7d;&#x7d;&#x3c;&#x2f;&#x73;&#x70;&#x61;&#x6e;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x3c;&#x2f;&#x6e;&#x67;&#x2d;&#x74;&#x65;&#x6d;&#x70;&#x6c;&#x61;&#x74;&#x65;&#x3e;&#xd;&#xa;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x3c;&#x2f;&#x65;&#x76;&#x6c;&#x2d;&#x64;&#x72;&#x6f;&#x70;&#x64;&#x6f;&#x77;&#x6e;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#x20;&#x20;&#xd;&#xa;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x72;&#x6f;&#x77;&#x20;&#x6d;&#x74;&#x2d;&#x33;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x63;&#x6f;&#x6c;&#x2d;&#x31;&#x32;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x3c;&#x70;&#x3e;&#x7b;&#x7b;&#x27;&#x56;&#x61;&#x6c;&#x6f;&#x72;&#x20;&#x3a;&#x27;&#x20;&#x2b;&#x20;&#x28;&#x76;&#x61;&#x6c;&#x75;&#x65;&#x38;&#x20;&#x7c;&#x20;&#x6a;&#x73;&#x6f;&#x6e;&#x29;&#x7d;&#x7d;&#x3c;&#x2f;&#x70;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#x20;&#x20;&#xd;&#xa;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x72;&#x6f;&#x77;&#x20;&#x6d;&#x74;&#x2d;&#x33;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x63;&#x6f;&#x6c;&#x2d;&#x31;&#x32;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x3c;&#x68;&#x33;&#x3e;&#x45;&#x6a;&#x65;&#x6d;&#x70;&#x6c;&#x6f;&#x20;&#x39;&#x3a;&#x20;&#x4f;&#x72;&#x69;&#x65;&#x6e;&#x74;&#x61;&#x63;&#x69;&#x6f;&#x6e;&#x3c;&#x2f;&#x68;&#x33;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#xd;&#xa;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x72;&#x6f;&#x77;&#x20;&#x6d;&#x74;&#x2d;&#x33;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x63;&#x6f;&#x6c;&#x2d;&#x31;&#x32;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x3c;&#x65;&#x76;&#x6c;&#x2d;&#x64;&#x72;&#x6f;&#x70;&#x64;&#x6f;&#x77;&#x6e;&#x20;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x5b;&#x6f;&#x70;&#x74;&#x69;&#x6f;&#x6e;&#x73;&#x5d;&#x3d;&#x22;&#x6f;&#x70;&#x74;&#x69;&#x6f;&#x6e;&#x73;&#x45;&#x78;&#x39;&#x22;&#x20;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x6c;&#x61;&#x62;&#x65;&#x6c;&#x3d;&#x22;&#x6c;&#x61;&#x62;&#x65;&#x6c;&#x22;&#x20;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x5b;&#x6f;&#x72;&#x69;&#x65;&#x6e;&#x74;&#x61;&#x74;&#x69;&#x6f;&#x6e;&#x5d;&#x3d;&#x22;&#x63;&#x6f;&#x6e;&#x73;&#x74;&#x61;&#x6e;&#x74;&#x73;&#x2e;&#x4f;&#x72;&#x69;&#x65;&#x6e;&#x74;&#x61;&#x74;&#x69;&#x6f;&#x6e;&#x44;&#x72;&#x6f;&#x70;&#x64;&#x6f;&#x77;&#x6e;&#x43;&#x6f;&#x6e;&#x73;&#x74;&#x61;&#x6e;&#x74;&#x73;&#x2e;&#x54;&#x4f;&#x50;&#x22;&#x20;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x6c;&#x61;&#x62;&#x65;&#x6c;&#x4e;&#x6f;&#x52;&#x65;&#x73;&#x75;&#x6c;&#x74;&#x73;&#x3d;&#x22;&#x4e;&#x6f;&#x20;&#x68;&#x61;&#x79;&#x20;&#x72;&#x65;&#x73;&#x75;&#x6c;&#x74;&#x61;&#x64;&#x6f;&#x73;&#x20;&#x71;&#x75;&#x65;&#x20;&#x6d;&#x6f;&#x73;&#x74;&#x72;&#x61;&#x72;&#x22;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x5b;&#x28;&#x6e;&#x67;&#x4d;&#x6f;&#x64;&#x65;&#x6c;&#x29;&#x5d;&#x3d;&#x22;&#x76;&#x61;&#x6c;&#x75;&#x65;&#x39;&#x22;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x28;&#x73;&#x65;&#x6c;&#x65;&#x63;&#x74;&#x49;&#x74;&#x65;&#x6d;&#x29;&#x3d;&#x22;&#x73;&#x65;&#x6c;&#x65;&#x63;&#x74;&#x49;&#x74;&#x65;&#x6d;&#x45;&#x78;&#x39;&#x28;&#x24;&#x65;&#x76;&#x65;&#x6e;&#x74;&#x29;&#x22;&#x3e;&#xd;&#xa;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x3c;&#x6e;&#x67;&#x2d;&#x74;&#x65;&#x6d;&#x70;&#x6c;&#x61;&#x74;&#x65;&#x20;&#x23;&#x69;&#x74;&#x65;&#x6d;&#x54;&#x65;&#x6d;&#x70;&#x6c;&#x61;&#x74;&#x65;&#x20;&#x6c;&#x65;&#x74;&#x2d;&#x69;&#x74;&#x65;&#x6d;&#x3d;&#x22;&#x69;&#x74;&#x65;&#x6d;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x3c;&#x73;&#x70;&#x61;&#x6e;&#x3e;&#x7b;&#x7b;&#x69;&#x74;&#x65;&#x6d;&#x2e;&#x6c;&#x61;&#x62;&#x65;&#x6c;&#x20;&#x2b;&#x20;&#x27;&#x20;&#x27;&#x20;&#x2b;&#x20;&#x28;&#x69;&#x74;&#x65;&#x6d;&#x2e;&#x76;&#x61;&#x6c;&#x75;&#x65;&#x20;&#x7c;&#x20;&#x6a;&#x73;&#x6f;&#x6e;&#x29;&#x7d;&#x7d;&#x3c;&#x2f;&#x73;&#x70;&#x61;&#x6e;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x3c;&#x2f;&#x6e;&#x67;&#x2d;&#x74;&#x65;&#x6d;&#x70;&#x6c;&#x61;&#x74;&#x65;&#x3e;&#xd;&#xa;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x3c;&#x2f;&#x65;&#x76;&#x6c;&#x2d;&#x64;&#x72;&#x6f;&#x70;&#x64;&#x6f;&#x77;&#x6e;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#xd;&#xa;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x72;&#x6f;&#x77;&#x20;&#x6d;&#x74;&#x2d;&#x33;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x63;&#x6f;&#x6c;&#x2d;&#x31;&#x32;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x3c;&#x70;&#x3e;&#x7b;&#x7b;&#x27;&#x56;&#x61;&#x6c;&#x6f;&#x72;&#x20;&#x3a;&#x27;&#x20;&#x2b;&#x20;&#x28;&#x76;&#x61;&#x6c;&#x75;&#x65;&#x39;&#x20;&#x7c;&#x20;&#x6a;&#x73;&#x6f;&#x6e;&#x29;&#x7d;&#x7d;&#x3c;&#x2f;&#x70;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#xd;&#xa;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x72;&#x6f;&#x77;&#x20;&#x6d;&#x74;&#x2d;&#x33;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x63;&#x6f;&#x6c;&#x2d;&#x31;&#x32;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x3c;&#x68;&#x33;&#x3e;&#x45;&#x6a;&#x65;&#x6d;&#x70;&#x6c;&#x6f;&#x20;&#x31;&#x30;&#x3a;&#x20;&#x52;&#x65;&#x73;&#x65;&#x74;&#x65;&#x6f;&#x3c;&#x2f;&#x68;&#x33;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#xd;&#xa;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x72;&#x6f;&#x77;&#x20;&#x6d;&#x74;&#x2d;&#x33;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x63;&#x6f;&#x6c;&#x2d;&#x31;&#x32;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x3c;&#x65;&#x76;&#x6c;&#x2d;&#x64;&#x72;&#x6f;&#x70;&#x64;&#x6f;&#x77;&#x6e;&#x20;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x5b;&#x6f;&#x70;&#x74;&#x69;&#x6f;&#x6e;&#x73;&#x5d;&#x3d;&#x22;&#x6f;&#x70;&#x74;&#x69;&#x6f;&#x6e;&#x73;&#x45;&#x78;&#x31;&#x30;&#x22;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x6c;&#x61;&#x62;&#x65;&#x6c;&#x3d;&#x22;&#x6c;&#x61;&#x62;&#x65;&#x6c;&#x22;&#x20;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x6c;&#x61;&#x62;&#x65;&#x6c;&#x4e;&#x6f;&#x52;&#x65;&#x73;&#x75;&#x6c;&#x74;&#x73;&#x3d;&#x22;&#x4e;&#x6f;&#x20;&#x68;&#x61;&#x79;&#x20;&#x72;&#x65;&#x73;&#x75;&#x6c;&#x74;&#x61;&#x64;&#x6f;&#x73;&#x20;&#x71;&#x75;&#x65;&#x20;&#x6d;&#x6f;&#x73;&#x74;&#x72;&#x61;&#x72;&#x22;&#x20;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x5b;&#x28;&#x6e;&#x67;&#x4d;&#x6f;&#x64;&#x65;&#x6c;&#x29;&#x5d;&#x3d;&#x22;&#x76;&#x61;&#x6c;&#x75;&#x65;&#x31;&#x30;&#x22;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x28;&#x73;&#x65;&#x6c;&#x65;&#x63;&#x74;&#x49;&#x74;&#x65;&#x6d;&#x29;&#x3d;&#x22;&#x73;&#x65;&#x6c;&#x65;&#x63;&#x74;&#x49;&#x74;&#x65;&#x6d;&#x45;&#x78;&#x31;&#x30;&#x28;&#x24;&#x65;&#x76;&#x65;&#x6e;&#x74;&#x29;&#x22;&#x3e;&#xd;&#xa;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x3c;&#x6e;&#x67;&#x2d;&#x74;&#x65;&#x6d;&#x70;&#x6c;&#x61;&#x74;&#x65;&#x20;&#x23;&#x69;&#x74;&#x65;&#x6d;&#x54;&#x65;&#x6d;&#x70;&#x6c;&#x61;&#x74;&#x65;&#x20;&#x6c;&#x65;&#x74;&#x2d;&#x69;&#x74;&#x65;&#x6d;&#x3d;&#x22;&#x69;&#x74;&#x65;&#x6d;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x3c;&#x73;&#x70;&#x61;&#x6e;&#x3e;&#x7b;&#x7b;&#x69;&#x74;&#x65;&#x6d;&#x2e;&#x6c;&#x61;&#x62;&#x65;&#x6c;&#x20;&#x2b;&#x20;&#x27;&#x20;&#x27;&#x20;&#x2b;&#x20;&#x28;&#x69;&#x74;&#x65;&#x6d;&#x2e;&#x76;&#x61;&#x6c;&#x75;&#x65;&#x20;&#x7c;&#x20;&#x6a;&#x73;&#x6f;&#x6e;&#x29;&#x7d;&#x7d;&#x3c;&#x2f;&#x73;&#x70;&#x61;&#x6e;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x3c;&#x2f;&#x6e;&#x67;&#x2d;&#x74;&#x65;&#x6d;&#x70;&#x6c;&#x61;&#x74;&#x65;&#x3e;&#xd;&#xa;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x3c;&#x2f;&#x65;&#x76;&#x6c;&#x2d;&#x64;&#x72;&#x6f;&#x70;&#x64;&#x6f;&#x77;&#x6e;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x3c;&#x65;&#x76;&#x6c;&#x2d;&#x62;&#x75;&#x74;&#x74;&#x6f;&#x6e;&#x20;&#x74;&#x65;&#x78;&#x74;&#x3d;&#x22;&#x52;&#x65;&#x73;&#x65;&#x74;&#x65;&#x61;&#x72;&#x20;&#x76;&#x61;&#x6c;&#x6f;&#x72;&#x22;&#x20;&#x28;&#x61;&#x63;&#x74;&#x69;&#x6f;&#x6e;&#x29;&#x3d;&#x22;&#x72;&#x65;&#x73;&#x65;&#x74;&#x56;&#x61;&#x6c;&#x75;&#x65;&#x45;&#x78;&#x31;&#x30;&#x28;&#x29;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x3c;&#x2f;&#x65;&#x76;&#x6c;&#x2d;&#x62;&#x75;&#x74;&#x74;&#x6f;&#x6e;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x3c;&#x65;&#x76;&#x6c;&#x2d;&#x62;&#x75;&#x74;&#x74;&#x6f;&#x6e;&#x20;&#x74;&#x65;&#x78;&#x74;&#x3d;&#x22;&#x52;&#x65;&#x73;&#x65;&#x74;&#x65;&#x61;&#x72;&#x20;&#x6f;&#x70;&#x63;&#x69;&#x6f;&#x6e;&#x65;&#x73;&#x22;&#x20;&#x28;&#x61;&#x63;&#x74;&#x69;&#x6f;&#x6e;&#x29;&#x3d;&#x22;&#x72;&#x65;&#x73;&#x65;&#x74;&#x4f;&#x70;&#x74;&#x69;&#x6f;&#x6e;&#x73;&#x45;&#x78;&#x31;&#x30;&#x28;&#x29;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x3c;&#x2f;&#x65;&#x76;&#x6c;&#x2d;&#x62;&#x75;&#x74;&#x74;&#x6f;&#x6e;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#xd;&#xa;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x72;&#x6f;&#x77;&#x20;&#x6d;&#x74;&#x2d;&#x33;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x63;&#x6f;&#x6c;&#x2d;&#x31;&#x32;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x3c;&#x70;&#x3e;&#x7b;&#x7b;&#x27;&#x56;&#x61;&#x6c;&#x6f;&#x72;&#x20;&#x3a;&#x27;&#x20;&#x2b;&#x20;&#x28;&#x76;&#x61;&#x6c;&#x75;&#x65;&#x31;&#x30;&#x20;&#x7c;&#x20;&#x6a;&#x73;&#x6f;&#x6e;&#x29;&#x7d;&#x7d;&#x3c;&#x2f;&#x70;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#xd;&#xa;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x72;&#x6f;&#x77;&#x20;&#x6d;&#x74;&#x2d;&#x33;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x63;&#x6f;&#x6c;&#x2d;&#x31;&#x32;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x3c;&#x68;&#x33;&#x3e;&#x45;&#x6a;&#x65;&#x6d;&#x70;&#x6c;&#x6f;&#x20;&#x31;&#x31;&#x3a;&#x20;&#x4d;&#x75;&#x6c;&#x74;&#x69;&#x70;&#x6c;&#x65;&#x3c;&#x2f;&#x68;&#x33;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#xd;&#xa;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x72;&#x6f;&#x77;&#x20;&#x6d;&#x74;&#x2d;&#x33;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x63;&#x6f;&#x6c;&#x2d;&#x31;&#x32;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x3c;&#x65;&#x76;&#x6c;&#x2d;&#x64;&#x72;&#x6f;&#x70;&#x64;&#x6f;&#x77;&#x6e;&#x20;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x5b;&#x6f;&#x70;&#x74;&#x69;&#x6f;&#x6e;&#x73;&#x5d;&#x3d;&#x22;&#x6f;&#x70;&#x74;&#x69;&#x6f;&#x6e;&#x73;&#x45;&#x78;&#x31;&#x31;&#x22;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x6c;&#x61;&#x62;&#x65;&#x6c;&#x3d;&#x22;&#x6c;&#x61;&#x62;&#x65;&#x6c;&#x22;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x5b;&#x6d;&#x75;&#x6c;&#x74;&#x69;&#x70;&#x6c;&#x65;&#x5d;&#x3d;&#x22;&#x74;&#x72;&#x75;&#x65;&#x22;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x5b;&#x6c;&#x61;&#x62;&#x65;&#x6c;&#x43;&#x68;&#x65;&#x63;&#x6b;&#x41;&#x6c;&#x6c;&#x5d;&#x3d;&#x22;&#x27;&#x43;&#x6c;&#x69;&#x63;&#x6b;&#x20;&#x68;&#x65;&#x72;&#x65;&#x20;&#x74;&#x6f;&#x20;&#x73;&#x65;&#x6c;&#x65;&#x63;&#x74;&#x20;&#x61;&#x6c;&#x6c;&#x20;&#x69;&#x74;&#x65;&#x6d;&#x73;&#x27;&#x22;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x6c;&#x61;&#x62;&#x65;&#x6c;&#x4e;&#x6f;&#x52;&#x65;&#x73;&#x75;&#x6c;&#x74;&#x73;&#x3d;&#x22;&#x4e;&#x6f;&#x20;&#x68;&#x61;&#x79;&#x20;&#x72;&#x65;&#x73;&#x75;&#x6c;&#x74;&#x61;&#x64;&#x6f;&#x73;&#x20;&#x71;&#x75;&#x65;&#x20;&#x6d;&#x6f;&#x73;&#x74;&#x72;&#x61;&#x72;&#x22;&#x20;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x5b;&#x28;&#x6e;&#x67;&#x4d;&#x6f;&#x64;&#x65;&#x6c;&#x29;&#x5d;&#x3d;&#x22;&#x76;&#x61;&#x6c;&#x75;&#x65;&#x31;&#x31;&#x22;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x28;&#x73;&#x65;&#x6c;&#x65;&#x63;&#x74;&#x4d;&#x75;&#x6c;&#x74;&#x69;&#x70;&#x6c;&#x65;&#x49;&#x74;&#x65;&#x6d;&#x29;&#x3d;&#x22;&#x73;&#x65;&#x6c;&#x65;&#x63;&#x74;&#x49;&#x74;&#x65;&#x6d;&#x45;&#x78;&#x31;&#x31;&#x28;&#x24;&#x65;&#x76;&#x65;&#x6e;&#x74;&#x29;&#x22;&#x3e;&#xd;&#xa;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x3c;&#x6e;&#x67;&#x2d;&#x74;&#x65;&#x6d;&#x70;&#x6c;&#x61;&#x74;&#x65;&#x20;&#x23;&#x69;&#x74;&#x65;&#x6d;&#x54;&#x65;&#x6d;&#x70;&#x6c;&#x61;&#x74;&#x65;&#x20;&#x6c;&#x65;&#x74;&#x2d;&#x69;&#x74;&#x65;&#x6d;&#x3d;&#x22;&#x69;&#x74;&#x65;&#x6d;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x3c;&#x73;&#x70;&#x61;&#x6e;&#x3e;&#x7b;&#x7b;&#x69;&#x74;&#x65;&#x6d;&#x2e;&#x6c;&#x61;&#x62;&#x65;&#x6c;&#x20;&#x2b;&#x20;&#x27;&#x20;&#x27;&#x20;&#x2b;&#x20;&#x28;&#x69;&#x74;&#x65;&#x6d;&#x2e;&#x76;&#x61;&#x6c;&#x75;&#x65;&#x20;&#x7c;&#x20;&#x6a;&#x73;&#x6f;&#x6e;&#x29;&#x7d;&#x7d;&#x3c;&#x2f;&#x73;&#x70;&#x61;&#x6e;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x3c;&#x2f;&#x6e;&#x67;&#x2d;&#x74;&#x65;&#x6d;&#x70;&#x6c;&#x61;&#x74;&#x65;&#x3e;&#xd;&#xa;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x3c;&#x2f;&#x65;&#x76;&#x6c;&#x2d;&#x64;&#x72;&#x6f;&#x70;&#x64;&#x6f;&#x77;&#x6e;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#xd;&#xa;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x72;&#x6f;&#x77;&#x20;&#x6d;&#x74;&#x2d;&#x33;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x63;&#x6f;&#x6c;&#x2d;&#x31;&#x32;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x3c;&#x70;&#x3e;&#x7b;&#x7b;&#x27;&#x56;&#x61;&#x6c;&#x6f;&#x72;&#x20;&#x3a;&#x27;&#x20;&#x2b;&#x20;&#x28;&#x76;&#x61;&#x6c;&#x75;&#x65;&#x31;&#x31;&#x20;&#x7c;&#x20;&#x6a;&#x73;&#x6f;&#x6e;&#x29;&#x7d;&#x7d;&#x3c;&#x2f;&#x70;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#xd;&#xa;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x72;&#x6f;&#x77;&#x20;&#x6d;&#x74;&#x2d;&#x33;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x63;&#x6f;&#x6c;&#x2d;&#x31;&#x32;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x3c;&#x68;&#x33;&#x3e;&#x45;&#x6a;&#x65;&#x6d;&#x70;&#x6c;&#x6f;&#x20;&#x31;&#x32;&#x3a;&#x20;&#x4d;&#x75;&#x6c;&#x74;&#x69;&#x70;&#x6c;&#x65;&#x20;&#x63;&#x6f;&#x6e;&#x20;&#x76;&#x61;&#x6c;&#x6f;&#x72;&#x65;&#x73;&#x20;&#x69;&#x6e;&#x69;&#x63;&#x69;&#x61;&#x6c;&#x65;&#x73;&#x3c;&#x2f;&#x68;&#x33;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#xd;&#xa;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x72;&#x6f;&#x77;&#x20;&#x6d;&#x74;&#x2d;&#x33;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x63;&#x6f;&#x6c;&#x2d;&#x31;&#x32;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x3c;&#x65;&#x76;&#x6c;&#x2d;&#x64;&#x72;&#x6f;&#x70;&#x64;&#x6f;&#x77;&#x6e;&#x20;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x5b;&#x6f;&#x70;&#x74;&#x69;&#x6f;&#x6e;&#x73;&#x5d;&#x3d;&#x22;&#x6f;&#x70;&#x74;&#x69;&#x6f;&#x6e;&#x73;&#x45;&#x78;&#x31;&#x32;&#x22;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x6c;&#x61;&#x62;&#x65;&#x6c;&#x3d;&#x22;&#x6c;&#x61;&#x62;&#x65;&#x6c;&#x22;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x5b;&#x6d;&#x75;&#x6c;&#x74;&#x69;&#x70;&#x6c;&#x65;&#x5d;&#x3d;&#x22;&#x74;&#x72;&#x75;&#x65;&#x22;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x5b;&#x6c;&#x61;&#x62;&#x65;&#x6c;&#x43;&#x68;&#x65;&#x63;&#x6b;&#x41;&#x6c;&#x6c;&#x5d;&#x3d;&#x22;&#x27;&#x43;&#x6c;&#x69;&#x63;&#x6b;&#x20;&#x68;&#x65;&#x72;&#x65;&#x20;&#x74;&#x6f;&#x20;&#x73;&#x65;&#x6c;&#x65;&#x63;&#x74;&#x20;&#x61;&#x6c;&#x6c;&#x20;&#x69;&#x74;&#x65;&#x6d;&#x73;&#x27;&#x22;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x6c;&#x61;&#x62;&#x65;&#x6c;&#x4e;&#x6f;&#x52;&#x65;&#x73;&#x75;&#x6c;&#x74;&#x73;&#x3d;&#x22;&#x4e;&#x6f;&#x20;&#x68;&#x61;&#x79;&#x20;&#x72;&#x65;&#x73;&#x75;&#x6c;&#x74;&#x61;&#x64;&#x6f;&#x73;&#x20;&#x71;&#x75;&#x65;&#x20;&#x6d;&#x6f;&#x73;&#x74;&#x72;&#x61;&#x72;&#x22;&#x20;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x5b;&#x28;&#x6e;&#x67;&#x4d;&#x6f;&#x64;&#x65;&#x6c;&#x29;&#x5d;&#x3d;&#x22;&#x76;&#x61;&#x6c;&#x75;&#x65;&#x31;&#x32;&#x22;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x28;&#x73;&#x65;&#x6c;&#x65;&#x63;&#x74;&#x4d;&#x75;&#x6c;&#x74;&#x69;&#x70;&#x6c;&#x65;&#x49;&#x74;&#x65;&#x6d;&#x29;&#x3d;&#x22;&#x73;&#x65;&#x6c;&#x65;&#x63;&#x74;&#x49;&#x74;&#x65;&#x6d;&#x45;&#x78;&#x31;&#x32;&#x28;&#x24;&#x65;&#x76;&#x65;&#x6e;&#x74;&#x29;&#x22;&#x3e;&#xd;&#xa;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x3c;&#x6e;&#x67;&#x2d;&#x74;&#x65;&#x6d;&#x70;&#x6c;&#x61;&#x74;&#x65;&#x20;&#x23;&#x69;&#x74;&#x65;&#x6d;&#x54;&#x65;&#x6d;&#x70;&#x6c;&#x61;&#x74;&#x65;&#x20;&#x6c;&#x65;&#x74;&#x2d;&#x69;&#x74;&#x65;&#x6d;&#x3d;&#x22;&#x69;&#x74;&#x65;&#x6d;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x3c;&#x73;&#x70;&#x61;&#x6e;&#x3e;&#x7b;&#x7b;&#x69;&#x74;&#x65;&#x6d;&#x2e;&#x6c;&#x61;&#x62;&#x65;&#x6c;&#x20;&#x2b;&#x20;&#x27;&#x20;&#x27;&#x20;&#x2b;&#x20;&#x28;&#x69;&#x74;&#x65;&#x6d;&#x2e;&#x76;&#x61;&#x6c;&#x75;&#x65;&#x20;&#x7c;&#x20;&#x6a;&#x73;&#x6f;&#x6e;&#x29;&#x7d;&#x7d;&#x3c;&#x2f;&#x73;&#x70;&#x61;&#x6e;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x3c;&#x2f;&#x6e;&#x67;&#x2d;&#x74;&#x65;&#x6d;&#x70;&#x6c;&#x61;&#x74;&#x65;&#x3e;&#xd;&#xa;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x3c;&#x2f;&#x65;&#x76;&#x6c;&#x2d;&#x64;&#x72;&#x6f;&#x70;&#x64;&#x6f;&#x77;&#x6e;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#xd;&#xa;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x72;&#x6f;&#x77;&#x20;&#x6d;&#x74;&#x2d;&#x33;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x63;&#x6f;&#x6c;&#x2d;&#x31;&#x32;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x3c;&#x70;&#x3e;&#x7b;&#x7b;&#x27;&#x56;&#x61;&#x6c;&#x6f;&#x72;&#x20;&#x3a;&#x27;&#x20;&#x2b;&#x20;&#x28;&#x76;&#x61;&#x6c;&#x75;&#x65;&#x31;&#x32;&#x20;&#x7c;&#x20;&#x6a;&#x73;&#x6f;&#x6e;&#x29;&#x7d;&#x7d;&#x3c;&#x2f;&#x70;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#xd;&#xa;&#xd;&#xa;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x72;&#x6f;&#x77;&#x20;&#x6d;&#x74;&#x2d;&#x33;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x63;&#x6f;&#x6c;&#x2d;&#x31;&#x32;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x3c;&#x68;&#x33;&#x3e;&#x45;&#x6a;&#x65;&#x6d;&#x70;&#x6c;&#x6f;&#x20;&#x31;&#x33;&#x3a;&#x20;&#x4f;&#x70;&#x63;&#x69;&#x6f;&#x6e;&#x65;&#x73;&#x20;&#x61;&#x20;&#x6d;&#x6f;&#x73;&#x74;&#x72;&#x61;&#x72;&#x20;&#x6d;&#x61;&#x73;&#x20;&#x67;&#x72;&#x61;&#x6e;&#x64;&#x65;&#x3c;&#x2f;&#x68;&#x33;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#xd;&#xa;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x72;&#x6f;&#x77;&#x20;&#x6d;&#x74;&#x2d;&#x33;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x63;&#x6f;&#x6c;&#x2d;&#x31;&#x32;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x3c;&#x65;&#x76;&#x6c;&#x2d;&#x64;&#x72;&#x6f;&#x70;&#x64;&#x6f;&#x77;&#x6e;&#x20;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x5b;&#x6f;&#x70;&#x74;&#x69;&#x6f;&#x6e;&#x73;&#x5d;&#x3d;&#x22;&#x6f;&#x70;&#x74;&#x69;&#x6f;&#x6e;&#x73;&#x45;&#x78;&#x31;&#x33;&#x22;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x6c;&#x61;&#x62;&#x65;&#x6c;&#x3d;&#x22;&#x6c;&#x61;&#x62;&#x65;&#x6c;&#x22;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x5b;&#x6d;&#x75;&#x6c;&#x74;&#x69;&#x70;&#x6c;&#x65;&#x5d;&#x3d;&#x22;&#x74;&#x72;&#x75;&#x65;&#x22;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x5b;&#x74;&#x6f;&#x75;&#x63;&#x68;&#x55;&#x49;&#x5d;&#x3d;&#x22;&#x74;&#x72;&#x75;&#x65;&#x22;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x5b;&#x6c;&#x61;&#x62;&#x65;&#x6c;&#x43;&#x68;&#x65;&#x63;&#x6b;&#x41;&#x6c;&#x6c;&#x5d;&#x3d;&#x22;&#x27;&#x43;&#x6c;&#x69;&#x63;&#x6b;&#x20;&#x68;&#x65;&#x72;&#x65;&#x20;&#x74;&#x6f;&#x20;&#x73;&#x65;&#x6c;&#x65;&#x63;&#x74;&#x20;&#x61;&#x6c;&#x6c;&#x20;&#x69;&#x74;&#x65;&#x6d;&#x73;&#x27;&#x22;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x6c;&#x61;&#x62;&#x65;&#x6c;&#x4e;&#x6f;&#x52;&#x65;&#x73;&#x75;&#x6c;&#x74;&#x73;&#x3d;&#x22;&#x4e;&#x6f;&#x20;&#x68;&#x61;&#x79;&#x20;&#x72;&#x65;&#x73;&#x75;&#x6c;&#x74;&#x61;&#x64;&#x6f;&#x73;&#x20;&#x71;&#x75;&#x65;&#x20;&#x6d;&#x6f;&#x73;&#x74;&#x72;&#x61;&#x72;&#x22;&#x20;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x5b;&#x28;&#x6e;&#x67;&#x4d;&#x6f;&#x64;&#x65;&#x6c;&#x29;&#x5d;&#x3d;&#x22;&#x76;&#x61;&#x6c;&#x75;&#x65;&#x31;&#x33;&#x22;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x28;&#x73;&#x65;&#x6c;&#x65;&#x63;&#x74;&#x4d;&#x75;&#x6c;&#x74;&#x69;&#x70;&#x6c;&#x65;&#x49;&#x74;&#x65;&#x6d;&#x29;&#x3d;&#x22;&#x73;&#x65;&#x6c;&#x65;&#x63;&#x74;&#x49;&#x74;&#x65;&#x6d;&#x45;&#x78;&#x31;&#x33;&#x28;&#x24;&#x65;&#x76;&#x65;&#x6e;&#x74;&#x29;&#x22;&#x3e;&#xd;&#xa;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x3c;&#x6e;&#x67;&#x2d;&#x74;&#x65;&#x6d;&#x70;&#x6c;&#x61;&#x74;&#x65;&#x20;&#x23;&#x69;&#x74;&#x65;&#x6d;&#x54;&#x65;&#x6d;&#x70;&#x6c;&#x61;&#x74;&#x65;&#x20;&#x6c;&#x65;&#x74;&#x2d;&#x69;&#x74;&#x65;&#x6d;&#x3d;&#x22;&#x69;&#x74;&#x65;&#x6d;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x3c;&#x73;&#x70;&#x61;&#x6e;&#x3e;&#x7b;&#x7b;&#x69;&#x74;&#x65;&#x6d;&#x2e;&#x6c;&#x61;&#x62;&#x65;&#x6c;&#x20;&#x2b;&#x20;&#x27;&#x20;&#x27;&#x20;&#x2b;&#x20;&#x28;&#x69;&#x74;&#x65;&#x6d;&#x2e;&#x76;&#x61;&#x6c;&#x75;&#x65;&#x20;&#x7c;&#x20;&#x6a;&#x73;&#x6f;&#x6e;&#x29;&#x7d;&#x7d;&#x3c;&#x2f;&#x73;&#x70;&#x61;&#x6e;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x3c;&#x2f;&#x6e;&#x67;&#x2d;&#x74;&#x65;&#x6d;&#x70;&#x6c;&#x61;&#x74;&#x65;&#x3e;&#xd;&#xa;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x3c;&#x2f;&#x65;&#x76;&#x6c;&#x2d;&#x64;&#x72;&#x6f;&#x70;&#x64;&#x6f;&#x77;&#x6e;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#xd;&#xa;&#xd;&#xa;&#xd;&#xa;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x72;&#x6f;&#x77;&#x20;&#x6d;&#x74;&#x2d;&#x33;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x63;&#x6f;&#x6c;&#x2d;&#x31;&#x32;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x3c;&#x68;&#x33;&#x3e;&#x45;&#x6a;&#x65;&#x6d;&#x70;&#x6c;&#x6f;&#x20;&#x31;&#x34;&#x3a;&#x20;&#x52;&#x65;&#x73;&#x65;&#x74;&#x20;&#x6d;&#x75;&#x6c;&#x74;&#x69;&#x70;&#x6c;&#x65;&#x3c;&#x2f;&#x68;&#x33;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#xd;&#xa;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x72;&#x6f;&#x77;&#x20;&#x6d;&#x74;&#x2d;&#x33;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x63;&#x6f;&#x6c;&#x2d;&#x31;&#x32;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x3c;&#x65;&#x76;&#x6c;&#x2d;&#x64;&#x72;&#x6f;&#x70;&#x64;&#x6f;&#x77;&#x6e;&#x20;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x5b;&#x6f;&#x70;&#x74;&#x69;&#x6f;&#x6e;&#x73;&#x5d;&#x3d;&#x22;&#x6f;&#x70;&#x74;&#x69;&#x6f;&#x6e;&#x73;&#x45;&#x78;&#x31;&#x34;&#x22;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x6c;&#x61;&#x62;&#x65;&#x6c;&#x3d;&#x22;&#x6c;&#x61;&#x62;&#x65;&#x6c;&#x22;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x5b;&#x6d;&#x75;&#x6c;&#x74;&#x69;&#x70;&#x6c;&#x65;&#x5d;&#x3d;&#x22;&#x74;&#x72;&#x75;&#x65;&#x22;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x5b;&#x6c;&#x61;&#x62;&#x65;&#x6c;&#x43;&#x68;&#x65;&#x63;&#x6b;&#x41;&#x6c;&#x6c;&#x5d;&#x3d;&#x22;&#x27;&#x43;&#x6c;&#x69;&#x63;&#x6b;&#x20;&#x68;&#x65;&#x72;&#x65;&#x20;&#x74;&#x6f;&#x20;&#x73;&#x65;&#x6c;&#x65;&#x63;&#x74;&#x20;&#x61;&#x6c;&#x6c;&#x20;&#x69;&#x74;&#x65;&#x6d;&#x73;&#x27;&#x22;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x6c;&#x61;&#x62;&#x65;&#x6c;&#x4e;&#x6f;&#x52;&#x65;&#x73;&#x75;&#x6c;&#x74;&#x73;&#x3d;&#x22;&#x4e;&#x6f;&#x20;&#x68;&#x61;&#x79;&#x20;&#x72;&#x65;&#x73;&#x75;&#x6c;&#x74;&#x61;&#x64;&#x6f;&#x73;&#x20;&#x71;&#x75;&#x65;&#x20;&#x6d;&#x6f;&#x73;&#x74;&#x72;&#x61;&#x72;&#x22;&#x20;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x5b;&#x28;&#x6e;&#x67;&#x4d;&#x6f;&#x64;&#x65;&#x6c;&#x29;&#x5d;&#x3d;&#x22;&#x76;&#x61;&#x6c;&#x75;&#x65;&#x31;&#x34;&#x22;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x28;&#x73;&#x65;&#x6c;&#x65;&#x63;&#x74;&#x4d;&#x75;&#x6c;&#x74;&#x69;&#x70;&#x6c;&#x65;&#x49;&#x74;&#x65;&#x6d;&#x29;&#x3d;&#x22;&#x73;&#x65;&#x6c;&#x65;&#x63;&#x74;&#x49;&#x74;&#x65;&#x6d;&#x45;&#x78;&#x31;&#x34;&#x28;&#x24;&#x65;&#x76;&#x65;&#x6e;&#x74;&#x29;&#x22;&#x3e;&#xd;&#xa;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x3c;&#x6e;&#x67;&#x2d;&#x74;&#x65;&#x6d;&#x70;&#x6c;&#x61;&#x74;&#x65;&#x20;&#x23;&#x69;&#x74;&#x65;&#x6d;&#x54;&#x65;&#x6d;&#x70;&#x6c;&#x61;&#x74;&#x65;&#x20;&#x6c;&#x65;&#x74;&#x2d;&#x69;&#x74;&#x65;&#x6d;&#x3d;&#x22;&#x69;&#x74;&#x65;&#x6d;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x3c;&#x73;&#x70;&#x61;&#x6e;&#x3e;&#x7b;&#x7b;&#x69;&#x74;&#x65;&#x6d;&#x2e;&#x6c;&#x61;&#x62;&#x65;&#x6c;&#x20;&#x2b;&#x20;&#x27;&#x20;&#x27;&#x20;&#x2b;&#x20;&#x28;&#x69;&#x74;&#x65;&#x6d;&#x2e;&#x76;&#x61;&#x6c;&#x75;&#x65;&#x20;&#x7c;&#x20;&#x6a;&#x73;&#x6f;&#x6e;&#x29;&#x7d;&#x7d;&#x3c;&#x2f;&#x73;&#x70;&#x61;&#x6e;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x3c;&#x2f;&#x6e;&#x67;&#x2d;&#x74;&#x65;&#x6d;&#x70;&#x6c;&#x61;&#x74;&#x65;&#x3e;&#xd;&#xa;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x3c;&#x2f;&#x65;&#x76;&#x6c;&#x2d;&#x64;&#x72;&#x6f;&#x70;&#x64;&#x6f;&#x77;&#x6e;&#x3e;&#xd;&#xa;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x3c;&#x65;&#x76;&#x6c;&#x2d;&#x62;&#x75;&#x74;&#x74;&#x6f;&#x6e;&#x20;&#x74;&#x65;&#x78;&#x74;&#x3d;&#x22;&#x52;&#x65;&#x73;&#x65;&#x74;&#x65;&#x61;&#x72;&#x20;&#x76;&#x61;&#x6c;&#x6f;&#x72;&#x65;&#x73;&#x22;&#x20;&#x28;&#x61;&#x63;&#x74;&#x69;&#x6f;&#x6e;&#x29;&#x3d;&#x22;&#x72;&#x65;&#x73;&#x65;&#x74;&#x56;&#x61;&#x6c;&#x75;&#x65;&#x73;&#x45;&#x78;&#x31;&#x34;&#x28;&#x29;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x3c;&#x2f;&#x65;&#x76;&#x6c;&#x2d;&#x62;&#x75;&#x74;&#x74;&#x6f;&#x6e;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;
-          </code>
-        </pre>
-      </ddr-tab-item>
-      <ddr-tab-item titleTab="CSS">
-        <pre  class="language-css">
-          <code class="language-css" >
-          </code>
-        </pre>
-      </ddr-tab-item>
-      <ddr-tab-item titleTab="TS">
+<div class="row mt-3">
+  <div class="col-12">
+    <span>{{'dropdown.value' | ddrTranslate}}: {{value11 | json}}</span>
+  </div>
+</div>
 
-        -- IDdrSelectItem
-        <pre  class="language-typescript">
-          <code class="language-typescript" DdrHighlightCode  ngNonBindable>
-&#x65;&#x78;&#x70;&#x6f;&#x72;&#x74;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x20;&#x45;&#x76;&#x6c;&#x53;&#x65;&#x6c;&#x65;&#x63;&#x74;&#x49;&#x74;&#x65;&#x6d;&#x3c;&#x54;&#x3e;&#x20;&#x7b;&#xd;&#xa;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x70;&#x75;&#x62;&#x6c;&#x69;&#x63;&#x20;&#x6c;&#x61;&#x62;&#x65;&#x6c;&#x3a;&#x20;&#x73;&#x74;&#x72;&#x69;&#x6e;&#x67;&#x3b;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x70;&#x75;&#x62;&#x6c;&#x69;&#x63;&#x20;&#x76;&#x61;&#x6c;&#x75;&#x65;&#x3a;&#x20;&#x54;&#x3b;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x70;&#x75;&#x62;&#x6c;&#x69;&#x63;&#x20;&#x73;&#x65;&#x6c;&#x65;&#x63;&#x74;&#x65;&#x64;&#x3f;&#x3a;&#x20;&#x62;&#x6f;&#x6f;&#x6c;&#x65;&#x61;&#x6e;&#x3b;&#x20;&#x2f;&#x2f;&#x20;&#x6d;&#x75;&#x6c;&#x74;&#x69;&#x70;&#x6c;&#x65;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x63;&#x6f;&#x6e;&#x73;&#x74;&#x72;&#x75;&#x63;&#x74;&#x6f;&#x72;&#x28;&#x6c;&#x61;&#x62;&#x65;&#x6c;&#x3f;&#x3a;&#x20;&#x73;&#x74;&#x72;&#x69;&#x6e;&#x67;&#x2c;&#x20;&#x76;&#x61;&#x6c;&#x75;&#x65;&#x3f;&#x3a;&#x20;&#x54;&#x2c;&#x20;&#x73;&#x65;&#x6c;&#x65;&#x63;&#x74;&#x65;&#x64;&#x3f;&#x3a;&#x20;&#x62;&#x6f;&#x6f;&#x6c;&#x65;&#x61;&#x6e;&#x29;&#x7b;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x74;&#x68;&#x69;&#x73;&#x2e;&#x6c;&#x61;&#x62;&#x65;&#x6c;&#x20;&#x3d;&#x20;&#x6c;&#x61;&#x62;&#x65;&#x6c;&#x3b;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x74;&#x68;&#x69;&#x73;&#x2e;&#x76;&#x61;&#x6c;&#x75;&#x65;&#x20;&#x3d;&#x20;&#x76;&#x61;&#x6c;&#x75;&#x65;&#x3b;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x74;&#x68;&#x69;&#x73;&#x2e;&#x73;&#x65;&#x6c;&#x65;&#x63;&#x74;&#x65;&#x64;&#x20;&#x3d;&#x20;&#x73;&#x65;&#x6c;&#x65;&#x63;&#x74;&#x65;&#x64;&#x3b;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x7d;&#xd;&#xa;&#xd;&#xa;&#x7d;&#xd;&#xa;
-          </code>
-        </pre>
+<div class="row mt-3">
+  <div class="col-12">
+    <span class="h3">{{'dropdown.example.12' | ddrTranslate}}</span>
+  </div>
+</div>
 
-        -- Showcase
-        <pre  class="language-typescript">
-          <code class="language-typescript" DdrHighlightCode  ngNonBindable>
-&#x69;&#x6d;&#x70;&#x6f;&#x72;&#x74;&#x20;&#x7b;&#x20;&#x43;&#x6f;&#x6d;&#x70;&#x6f;&#x6e;&#x65;&#x6e;&#x74;&#x2c;&#x20;&#x4f;&#x6e;&#x49;&#x6e;&#x69;&#x74;&#x20;&#x7d;&#x20;&#x66;&#x72;&#x6f;&#x6d;&#x20;&#x27;&#x40;&#x61;&#x6e;&#x67;&#x75;&#x6c;&#x61;&#x72;&#x2f;&#x63;&#x6f;&#x72;&#x65;&#x27;&#x3b;&#xd;&#xa;&#x69;&#x6d;&#x70;&#x6f;&#x72;&#x74;&#x20;&#x7b;&#x20;&#x45;&#x76;&#x6c;&#x53;&#x65;&#x6c;&#x65;&#x63;&#x74;&#x49;&#x74;&#x65;&#x6d;&#x20;&#x7d;&#x20;&#x66;&#x72;&#x6f;&#x6d;&#x20;&#x27;&#x70;&#x72;&#x6f;&#x6a;&#x65;&#x63;&#x74;&#x73;&#x2f;&#x65;&#x76;&#x6c;&#x2d;&#x6c;&#x69;&#x62;&#x2f;&#x73;&#x72;&#x63;&#x2f;&#x63;&#x6f;&#x6d;&#x6d;&#x6f;&#x6e;&#x2f;&#x65;&#x76;&#x6c;&#x2d;&#x73;&#x65;&#x6c;&#x65;&#x63;&#x74;&#x2d;&#x69;&#x74;&#x65;&#x6d;&#x27;&#x3b;&#xd;&#xa;&#x69;&#x6d;&#x70;&#x6f;&#x72;&#x74;&#x20;&#x7b;&#x20;&#x45;&#x76;&#x6c;&#x43;&#x6f;&#x6e;&#x73;&#x74;&#x61;&#x6e;&#x74;&#x73;&#x53;&#x65;&#x72;&#x76;&#x69;&#x63;&#x65;&#x2c;&#x20;&#x45;&#x76;&#x6c;&#x54;&#x6f;&#x61;&#x73;&#x74;&#x53;&#x65;&#x72;&#x76;&#x69;&#x63;&#x65;&#x20;&#x7d;&#x20;&#x66;&#x72;&#x6f;&#x6d;&#x20;&#x27;&#x70;&#x72;&#x6f;&#x6a;&#x65;&#x63;&#x74;&#x73;&#x2f;&#x65;&#x76;&#x6c;&#x2d;&#x6c;&#x69;&#x62;&#x2f;&#x73;&#x72;&#x63;&#x2f;&#x70;&#x75;&#x62;&#x6c;&#x69;&#x63;&#x2d;&#x61;&#x70;&#x69;&#x27;&#x3b;&#xd;&#xa;&#x69;&#x6d;&#x70;&#x6f;&#x72;&#x74;&#x20;&#x7b;&#x20;&#x45;&#x76;&#x6c;&#x53;&#x65;&#x73;&#x73;&#x69;&#x6f;&#x6e;&#x53;&#x65;&#x72;&#x76;&#x69;&#x63;&#x65;&#x20;&#x7d;&#x20;&#x66;&#x72;&#x6f;&#x6d;&#x20;&#x27;&#x70;&#x72;&#x6f;&#x6a;&#x65;&#x63;&#x74;&#x73;&#x2f;&#x65;&#x76;&#x6c;&#x2d;&#x6c;&#x69;&#x62;&#x2f;&#x73;&#x72;&#x63;&#x2f;&#x73;&#x65;&#x72;&#x76;&#x69;&#x63;&#x65;&#x73;&#x2f;&#x65;&#x76;&#x6c;&#x2d;&#x73;&#x65;&#x73;&#x73;&#x69;&#x6f;&#x6e;&#x2e;&#x73;&#x65;&#x72;&#x76;&#x69;&#x63;&#x65;&#x27;&#x3b;&#xd;&#xa;&#x69;&#x6d;&#x70;&#x6f;&#x72;&#x74;&#x20;&#x7b;&#x20;&#x45;&#x78;&#x61;&#x6d;&#x70;&#x6c;&#x65;&#x20;&#x7d;&#x20;&#x66;&#x72;&#x6f;&#x6d;&#x20;&#x27;&#x2e;&#x2f;&#x65;&#x78;&#x61;&#x6d;&#x70;&#x6c;&#x65;&#x27;&#x3b;&#xd;&#xa;&#xd;&#xa;&#x40;&#x43;&#x6f;&#x6d;&#x70;&#x6f;&#x6e;&#x65;&#x6e;&#x74;&#x28;&#x7b;&#xd;&#xa;&#x20;&#x20;&#x73;&#x65;&#x6c;&#x65;&#x63;&#x74;&#x6f;&#x72;&#x3a;&#x20;&#x27;&#x61;&#x70;&#x70;&#x2d;&#x64;&#x72;&#x6f;&#x70;&#x64;&#x6f;&#x77;&#x6e;&#x2d;&#x73;&#x68;&#x6f;&#x77;&#x63;&#x61;&#x73;&#x65;&#x27;&#x2c;&#xd;&#xa;&#x20;&#x20;&#x74;&#x65;&#x6d;&#x70;&#x6c;&#x61;&#x74;&#x65;&#x55;&#x72;&#x6c;&#x3a;&#x20;&#x27;&#x2e;&#x2f;&#x64;&#x72;&#x6f;&#x70;&#x64;&#x6f;&#x77;&#x6e;&#x2d;&#x73;&#x68;&#x6f;&#x77;&#x63;&#x61;&#x73;&#x65;&#x2e;&#x63;&#x6f;&#x6d;&#x70;&#x6f;&#x6e;&#x65;&#x6e;&#x74;&#x2e;&#x68;&#x74;&#x6d;&#x6c;&#x27;&#x2c;&#xd;&#xa;&#x20;&#x20;&#x73;&#x74;&#x79;&#x6c;&#x65;&#x55;&#x72;&#x6c;&#x73;&#x3a;&#x20;&#x5b;&#x27;&#x2e;&#x2f;&#x64;&#x72;&#x6f;&#x70;&#x64;&#x6f;&#x77;&#x6e;&#x2d;&#x73;&#x68;&#x6f;&#x77;&#x63;&#x61;&#x73;&#x65;&#x2e;&#x63;&#x6f;&#x6d;&#x70;&#x6f;&#x6e;&#x65;&#x6e;&#x74;&#x2e;&#x73;&#x63;&#x73;&#x73;&#x27;&#x5d;&#xd;&#xa;&#x7d;&#x29;&#xd;&#xa;&#x65;&#x78;&#x70;&#x6f;&#x72;&#x74;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x20;&#x44;&#x72;&#x6f;&#x70;&#x64;&#x6f;&#x77;&#x6e;&#x53;&#x68;&#x6f;&#x77;&#x63;&#x61;&#x73;&#x65;&#x43;&#x6f;&#x6d;&#x70;&#x6f;&#x6e;&#x65;&#x6e;&#x74;&#x20;&#x69;&#x6d;&#x70;&#x6c;&#x65;&#x6d;&#x65;&#x6e;&#x74;&#x73;&#x20;&#x4f;&#x6e;&#x49;&#x6e;&#x69;&#x74;&#x20;&#x7b;&#xd;&#xa;&#xd;&#xa;&#x20;&#x20;&#x6f;&#x70;&#x74;&#x69;&#x6f;&#x6e;&#x73;&#x45;&#x78;&#x31;&#x3a;&#x20;&#x45;&#x76;&#x6c;&#x53;&#x65;&#x6c;&#x65;&#x63;&#x74;&#x49;&#x74;&#x65;&#x6d;&#x3c;&#x73;&#x74;&#x72;&#x69;&#x6e;&#x67;&#x3e;&#x5b;&#x5d;&#x3b;&#xd;&#xa;&#x20;&#x20;&#x6f;&#x70;&#x74;&#x69;&#x6f;&#x6e;&#x73;&#x45;&#x78;&#x32;&#x3a;&#x20;&#x45;&#x76;&#x6c;&#x53;&#x65;&#x6c;&#x65;&#x63;&#x74;&#x49;&#x74;&#x65;&#x6d;&#x3c;&#x73;&#x74;&#x72;&#x69;&#x6e;&#x67;&#x3e;&#x5b;&#x5d;&#x3b;&#xd;&#xa;&#x20;&#x20;&#x6f;&#x70;&#x74;&#x69;&#x6f;&#x6e;&#x73;&#x45;&#x78;&#x33;&#x3a;&#x20;&#x45;&#x76;&#x6c;&#x53;&#x65;&#x6c;&#x65;&#x63;&#x74;&#x49;&#x74;&#x65;&#x6d;&#x3c;&#x45;&#x78;&#x61;&#x6d;&#x70;&#x6c;&#x65;&#x3e;&#x5b;&#x5d;&#x3b;&#xd;&#xa;&#x20;&#x20;&#x6f;&#x70;&#x74;&#x69;&#x6f;&#x6e;&#x73;&#x45;&#x78;&#x34;&#x3a;&#x20;&#x45;&#x76;&#x6c;&#x53;&#x65;&#x6c;&#x65;&#x63;&#x74;&#x49;&#x74;&#x65;&#x6d;&#x3c;&#x45;&#x78;&#x61;&#x6d;&#x70;&#x6c;&#x65;&#x3e;&#x5b;&#x5d;&#x3b;&#xd;&#xa;&#x20;&#x20;&#x6f;&#x70;&#x74;&#x69;&#x6f;&#x6e;&#x73;&#x45;&#x78;&#x35;&#x3a;&#x20;&#x45;&#x76;&#x6c;&#x53;&#x65;&#x6c;&#x65;&#x63;&#x74;&#x49;&#x74;&#x65;&#x6d;&#x3c;&#x45;&#x78;&#x61;&#x6d;&#x70;&#x6c;&#x65;&#x3e;&#x5b;&#x5d;&#x3b;&#xd;&#xa;&#x20;&#x20;&#x6f;&#x70;&#x74;&#x69;&#x6f;&#x6e;&#x73;&#x45;&#x78;&#x36;&#x3a;&#x20;&#x45;&#x76;&#x6c;&#x53;&#x65;&#x6c;&#x65;&#x63;&#x74;&#x49;&#x74;&#x65;&#x6d;&#x3c;&#x45;&#x78;&#x61;&#x6d;&#x70;&#x6c;&#x65;&#x3e;&#x5b;&#x5d;&#x3b;&#xd;&#xa;&#x20;&#x20;&#x6f;&#x70;&#x74;&#x69;&#x6f;&#x6e;&#x73;&#x45;&#x78;&#x37;&#x3a;&#x20;&#x45;&#x76;&#x6c;&#x53;&#x65;&#x6c;&#x65;&#x63;&#x74;&#x49;&#x74;&#x65;&#x6d;&#x3c;&#x45;&#x78;&#x61;&#x6d;&#x70;&#x6c;&#x65;&#x3e;&#x5b;&#x5d;&#x3b;&#xd;&#xa;&#x20;&#x20;&#x6f;&#x70;&#x74;&#x69;&#x6f;&#x6e;&#x73;&#x45;&#x78;&#x38;&#x3a;&#x20;&#x45;&#x76;&#x6c;&#x53;&#x65;&#x6c;&#x65;&#x63;&#x74;&#x49;&#x74;&#x65;&#x6d;&#x3c;&#x45;&#x78;&#x61;&#x6d;&#x70;&#x6c;&#x65;&#x3e;&#x5b;&#x5d;&#x3b;&#xd;&#xa;&#x20;&#x20;&#x6f;&#x70;&#x74;&#x69;&#x6f;&#x6e;&#x73;&#x45;&#x78;&#x39;&#x3a;&#x20;&#x45;&#x76;&#x6c;&#x53;&#x65;&#x6c;&#x65;&#x63;&#x74;&#x49;&#x74;&#x65;&#x6d;&#x3c;&#x45;&#x78;&#x61;&#x6d;&#x70;&#x6c;&#x65;&#x3e;&#x5b;&#x5d;&#x3b;&#xd;&#xa;&#x20;&#x20;&#x6f;&#x70;&#x74;&#x69;&#x6f;&#x6e;&#x73;&#x45;&#x78;&#x31;&#x30;&#x3a;&#x20;&#x45;&#x76;&#x6c;&#x53;&#x65;&#x6c;&#x65;&#x63;&#x74;&#x49;&#x74;&#x65;&#x6d;&#x3c;&#x45;&#x78;&#x61;&#x6d;&#x70;&#x6c;&#x65;&#x3e;&#x5b;&#x5d;&#x3b;&#xd;&#xa;&#x20;&#x20;&#x6f;&#x70;&#x74;&#x69;&#x6f;&#x6e;&#x73;&#x45;&#x78;&#x31;&#x31;&#x3a;&#x20;&#x45;&#x76;&#x6c;&#x53;&#x65;&#x6c;&#x65;&#x63;&#x74;&#x49;&#x74;&#x65;&#x6d;&#x3c;&#x45;&#x78;&#x61;&#x6d;&#x70;&#x6c;&#x65;&#x3e;&#x5b;&#x5d;&#x3b;&#xd;&#xa;&#x20;&#x20;&#x6f;&#x70;&#x74;&#x69;&#x6f;&#x6e;&#x73;&#x45;&#x78;&#x31;&#x32;&#x3a;&#x20;&#x45;&#x76;&#x6c;&#x53;&#x65;&#x6c;&#x65;&#x63;&#x74;&#x49;&#x74;&#x65;&#x6d;&#x3c;&#x45;&#x78;&#x61;&#x6d;&#x70;&#x6c;&#x65;&#x3e;&#x5b;&#x5d;&#x3b;&#xd;&#xa;&#x20;&#x20;&#x6f;&#x70;&#x74;&#x69;&#x6f;&#x6e;&#x73;&#x45;&#x78;&#x31;&#x33;&#x3a;&#x20;&#x45;&#x76;&#x6c;&#x53;&#x65;&#x6c;&#x65;&#x63;&#x74;&#x49;&#x74;&#x65;&#x6d;&#x3c;&#x45;&#x78;&#x61;&#x6d;&#x70;&#x6c;&#x65;&#x3e;&#x5b;&#x5d;&#x3b;&#xd;&#xa;&#x20;&#x20;&#x6f;&#x70;&#x74;&#x69;&#x6f;&#x6e;&#x73;&#x45;&#x78;&#x31;&#x34;&#x3a;&#x20;&#x45;&#x76;&#x6c;&#x53;&#x65;&#x6c;&#x65;&#x63;&#x74;&#x49;&#x74;&#x65;&#x6d;&#x3c;&#x45;&#x78;&#x61;&#x6d;&#x70;&#x6c;&#x65;&#x3e;&#x5b;&#x5d;&#x3b;&#xd;&#xa;&#x20;&#x20;&#x76;&#x61;&#x6c;&#x75;&#x65;&#x31;&#x3a;&#x20;&#x73;&#x74;&#x72;&#x69;&#x6e;&#x67;&#x3b;&#xd;&#xa;&#x20;&#x20;&#x76;&#x61;&#x6c;&#x75;&#x65;&#x32;&#x3a;&#x20;&#x73;&#x74;&#x72;&#x69;&#x6e;&#x67;&#x3b;&#xd;&#xa;&#x20;&#x20;&#x76;&#x61;&#x6c;&#x75;&#x65;&#x33;&#x3a;&#x20;&#x45;&#x78;&#x61;&#x6d;&#x70;&#x6c;&#x65;&#x3b;&#xd;&#xa;&#x20;&#x20;&#x76;&#x61;&#x6c;&#x75;&#x65;&#x34;&#x3a;&#x20;&#x45;&#x78;&#x61;&#x6d;&#x70;&#x6c;&#x65;&#x3b;&#xd;&#xa;&#x20;&#x20;&#x76;&#x61;&#x6c;&#x75;&#x65;&#x35;&#x3a;&#x20;&#x45;&#x78;&#x61;&#x6d;&#x70;&#x6c;&#x65;&#x3b;&#xd;&#xa;&#x20;&#x20;&#x76;&#x61;&#x6c;&#x75;&#x65;&#x36;&#x3a;&#x20;&#x45;&#x78;&#x61;&#x6d;&#x70;&#x6c;&#x65;&#x3b;&#xd;&#xa;&#x20;&#x20;&#x76;&#x61;&#x6c;&#x75;&#x65;&#x37;&#x3a;&#x20;&#x45;&#x78;&#x61;&#x6d;&#x70;&#x6c;&#x65;&#x3b;&#xd;&#xa;&#x20;&#x20;&#x76;&#x61;&#x6c;&#x75;&#x65;&#x38;&#x3a;&#x20;&#x45;&#x78;&#x61;&#x6d;&#x70;&#x6c;&#x65;&#x3b;&#xd;&#xa;&#x20;&#x20;&#x76;&#x61;&#x6c;&#x75;&#x65;&#x39;&#x3a;&#x20;&#x45;&#x78;&#x61;&#x6d;&#x70;&#x6c;&#x65;&#x3b;&#xd;&#xa;&#x20;&#x20;&#x76;&#x61;&#x6c;&#x75;&#x65;&#x31;&#x30;&#x3a;&#x20;&#x45;&#x78;&#x61;&#x6d;&#x70;&#x6c;&#x65;&#x3b;&#xd;&#xa;&#x20;&#x20;&#x76;&#x61;&#x6c;&#x75;&#x65;&#x31;&#x31;&#x3a;&#x20;&#x45;&#x78;&#x61;&#x6d;&#x70;&#x6c;&#x65;&#x5b;&#x5d;&#x3b;&#xd;&#xa;&#x20;&#x20;&#x76;&#x61;&#x6c;&#x75;&#x65;&#x31;&#x32;&#x3a;&#x20;&#x45;&#x78;&#x61;&#x6d;&#x70;&#x6c;&#x65;&#x5b;&#x5d;&#x3b;&#xd;&#xa;&#x20;&#x20;&#x76;&#x61;&#x6c;&#x75;&#x65;&#x31;&#x33;&#x3a;&#x20;&#x45;&#x78;&#x61;&#x6d;&#x70;&#x6c;&#x65;&#x5b;&#x5d;&#x3b;&#xd;&#xa;&#x20;&#x20;&#x76;&#x61;&#x6c;&#x75;&#x65;&#x31;&#x34;&#x3a;&#x20;&#x45;&#x78;&#x61;&#x6d;&#x70;&#x6c;&#x65;&#x5b;&#x5d;&#x3b;&#xd;&#xa;&#xd;&#xa;&#xd;&#xa;&#x20;&#x20;&#x63;&#x6f;&#x6e;&#x73;&#x74;&#x72;&#x75;&#x63;&#x74;&#x6f;&#x72;&#x28;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x70;&#x75;&#x62;&#x6c;&#x69;&#x63;&#x20;&#x65;&#x76;&#x6c;&#x53;&#x65;&#x73;&#x73;&#x69;&#x6f;&#x6e;&#x3a;&#x20;&#x45;&#x76;&#x6c;&#x53;&#x65;&#x73;&#x73;&#x69;&#x6f;&#x6e;&#x53;&#x65;&#x72;&#x76;&#x69;&#x63;&#x65;&#x2c;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x70;&#x75;&#x62;&#x6c;&#x69;&#x63;&#x20;&#x65;&#x76;&#x6c;&#x54;&#x6f;&#x61;&#x73;&#x74;&#x3a;&#x20;&#x45;&#x76;&#x6c;&#x54;&#x6f;&#x61;&#x73;&#x74;&#x53;&#x65;&#x72;&#x76;&#x69;&#x63;&#x65;&#x2c;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x70;&#x75;&#x62;&#x6c;&#x69;&#x63;&#x20;&#x63;&#x6f;&#x6e;&#x73;&#x74;&#x61;&#x6e;&#x74;&#x73;&#x3a;&#x20;&#x45;&#x76;&#x6c;&#x43;&#x6f;&#x6e;&#x73;&#x74;&#x61;&#x6e;&#x74;&#x73;&#x53;&#x65;&#x72;&#x76;&#x69;&#x63;&#x65;&#xd;&#xa;&#x20;&#x20;&#x29;&#x20;&#x7b;&#x20;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x74;&#x68;&#x69;&#x73;&#x2e;&#x65;&#x76;&#x6c;&#x53;&#x65;&#x73;&#x73;&#x69;&#x6f;&#x6e;&#x2e;&#x73;&#x65;&#x74;&#x45;&#x6c;&#x65;&#x6d;&#x65;&#x6e;&#x74;&#x28;&#x27;&#x74;&#x69;&#x74;&#x6c;&#x65;&#x27;&#x2c;&#x20;&#x27;&#x44;&#x72;&#x6f;&#x70;&#x64;&#x6f;&#x77;&#x6e;&#x27;&#x29;&#x3b;&#xd;&#xa;&#x20;&#x20;&#x7d;&#xd;&#xa;&#x20;&#x20;&#xd;&#xa;&#x20;&#x20;&#x6e;&#x67;&#x4f;&#x6e;&#x49;&#x6e;&#x69;&#x74;&#x28;&#x29;&#x20;&#x7b;&#xd;&#xa;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x74;&#x68;&#x69;&#x73;&#x2e;&#x6f;&#x70;&#x74;&#x69;&#x6f;&#x6e;&#x73;&#x45;&#x78;&#x31;&#x20;&#x3d;&#x20;&#x5b;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x6e;&#x65;&#x77;&#x20;&#x45;&#x76;&#x6c;&#x53;&#x65;&#x6c;&#x65;&#x63;&#x74;&#x49;&#x74;&#x65;&#x6d;&#x28;&#x27;&#x4c;&#x61;&#x62;&#x65;&#x6c;&#x31;&#x27;&#x2c;&#x20;&#x27;&#x56;&#x61;&#x6c;&#x75;&#x65;&#x31;&#x27;&#x29;&#x2c;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x6e;&#x65;&#x77;&#x20;&#x45;&#x76;&#x6c;&#x53;&#x65;&#x6c;&#x65;&#x63;&#x74;&#x49;&#x74;&#x65;&#x6d;&#x28;&#x27;&#x4c;&#x61;&#x62;&#x65;&#x6c;&#x32;&#x27;&#x2c;&#x20;&#x27;&#x56;&#x61;&#x6c;&#x75;&#x65;&#x32;&#x27;&#x29;&#x2c;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x6e;&#x65;&#x77;&#x20;&#x45;&#x76;&#x6c;&#x53;&#x65;&#x6c;&#x65;&#x63;&#x74;&#x49;&#x74;&#x65;&#x6d;&#x28;&#x27;&#x4c;&#x61;&#x62;&#x65;&#x6c;&#x33;&#x27;&#x2c;&#x20;&#x27;&#x56;&#x61;&#x6c;&#x75;&#x65;&#x33;&#x27;&#x29;&#x2c;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x6e;&#x65;&#x77;&#x20;&#x45;&#x76;&#x6c;&#x53;&#x65;&#x6c;&#x65;&#x63;&#x74;&#x49;&#x74;&#x65;&#x6d;&#x28;&#x27;&#x4c;&#x61;&#x62;&#x65;&#x6c;&#x34;&#x27;&#x2c;&#x20;&#x27;&#x56;&#x61;&#x6c;&#x75;&#x65;&#x34;&#x27;&#x29;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x5d;&#x3b;&#xd;&#xa;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x74;&#x68;&#x69;&#x73;&#x2e;&#x6f;&#x70;&#x74;&#x69;&#x6f;&#x6e;&#x73;&#x45;&#x78;&#x32;&#x20;&#x3d;&#x20;&#x5b;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x6e;&#x65;&#x77;&#x20;&#x45;&#x76;&#x6c;&#x53;&#x65;&#x6c;&#x65;&#x63;&#x74;&#x49;&#x74;&#x65;&#x6d;&#x28;&#x27;&#x4c;&#x61;&#x62;&#x65;&#x6c;&#x31;&#x27;&#x2c;&#x20;&#x27;&#x56;&#x61;&#x6c;&#x75;&#x65;&#x31;&#x27;&#x29;&#x2c;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x6e;&#x65;&#x77;&#x20;&#x45;&#x76;&#x6c;&#x53;&#x65;&#x6c;&#x65;&#x63;&#x74;&#x49;&#x74;&#x65;&#x6d;&#x28;&#x27;&#x4c;&#x61;&#x62;&#x65;&#x6c;&#x32;&#x27;&#x2c;&#x20;&#x27;&#x56;&#x61;&#x6c;&#x75;&#x65;&#x32;&#x27;&#x29;&#x2c;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x6e;&#x65;&#x77;&#x20;&#x45;&#x76;&#x6c;&#x53;&#x65;&#x6c;&#x65;&#x63;&#x74;&#x49;&#x74;&#x65;&#x6d;&#x28;&#x27;&#x4c;&#x61;&#x62;&#x65;&#x6c;&#x33;&#x27;&#x2c;&#x20;&#x27;&#x56;&#x61;&#x6c;&#x75;&#x65;&#x33;&#x27;&#x29;&#x2c;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x6e;&#x65;&#x77;&#x20;&#x45;&#x76;&#x6c;&#x53;&#x65;&#x6c;&#x65;&#x63;&#x74;&#x49;&#x74;&#x65;&#x6d;&#x28;&#x27;&#x4c;&#x61;&#x62;&#x65;&#x6c;&#x34;&#x27;&#x2c;&#x20;&#x27;&#x56;&#x61;&#x6c;&#x75;&#x65;&#x34;&#x27;&#x29;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x5d;&#x3b;&#xd;&#xa;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x74;&#x68;&#x69;&#x73;&#x2e;&#x6f;&#x70;&#x74;&#x69;&#x6f;&#x6e;&#x73;&#x45;&#x78;&#x33;&#x20;&#x3d;&#x20;&#x5b;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x6e;&#x65;&#x77;&#x20;&#x45;&#x76;&#x6c;&#x53;&#x65;&#x6c;&#x65;&#x63;&#x74;&#x49;&#x74;&#x65;&#x6d;&#x28;&#x27;&#x4c;&#x61;&#x62;&#x65;&#x6c;&#x31;&#x27;&#x2c;&#x20;&#x6e;&#x65;&#x77;&#x20;&#x45;&#x78;&#x61;&#x6d;&#x70;&#x6c;&#x65;&#x28;&#x27;&#x48;&#x6f;&#x6c;&#x61;&#x20;&#x31;&#x27;&#x2c;&#x20;&#x27;&#x4d;&#x75;&#x6e;&#x64;&#x6f;&#x20;&#x31;&#x27;&#x29;&#x29;&#x2c;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x6e;&#x65;&#x77;&#x20;&#x45;&#x76;&#x6c;&#x53;&#x65;&#x6c;&#x65;&#x63;&#x74;&#x49;&#x74;&#x65;&#x6d;&#x28;&#x27;&#x4c;&#x61;&#x62;&#x65;&#x6c;&#x32;&#x27;&#x2c;&#x20;&#x6e;&#x65;&#x77;&#x20;&#x45;&#x78;&#x61;&#x6d;&#x70;&#x6c;&#x65;&#x28;&#x27;&#x48;&#x6f;&#x6c;&#x61;&#x20;&#x32;&#x27;&#x2c;&#x20;&#x27;&#x4d;&#x75;&#x6e;&#x64;&#x6f;&#x20;&#x32;&#x27;&#x29;&#x29;&#x2c;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x6e;&#x65;&#x77;&#x20;&#x45;&#x76;&#x6c;&#x53;&#x65;&#x6c;&#x65;&#x63;&#x74;&#x49;&#x74;&#x65;&#x6d;&#x28;&#x27;&#x4c;&#x61;&#x62;&#x65;&#x6c;&#x33;&#x27;&#x2c;&#x20;&#x6e;&#x65;&#x77;&#x20;&#x45;&#x78;&#x61;&#x6d;&#x70;&#x6c;&#x65;&#x28;&#x27;&#x48;&#x6f;&#x6c;&#x61;&#x20;&#x33;&#x27;&#x2c;&#x20;&#x27;&#x4d;&#x75;&#x6e;&#x64;&#x6f;&#x20;&#x33;&#x27;&#x29;&#x29;&#x2c;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x6e;&#x65;&#x77;&#x20;&#x45;&#x76;&#x6c;&#x53;&#x65;&#x6c;&#x65;&#x63;&#x74;&#x49;&#x74;&#x65;&#x6d;&#x28;&#x27;&#x4c;&#x61;&#x62;&#x65;&#x6c;&#x34;&#x27;&#x2c;&#x20;&#x6e;&#x65;&#x77;&#x20;&#x45;&#x78;&#x61;&#x6d;&#x70;&#x6c;&#x65;&#x28;&#x27;&#x48;&#x6f;&#x6c;&#x61;&#x20;&#x34;&#x27;&#x2c;&#x20;&#x27;&#x4d;&#x75;&#x6e;&#x64;&#x6f;&#x20;&#x34;&#x27;&#x29;&#x29;&#x2c;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x5d;&#x3b;&#xd;&#xa;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x74;&#x68;&#x69;&#x73;&#x2e;&#x6f;&#x70;&#x74;&#x69;&#x6f;&#x6e;&#x73;&#x45;&#x78;&#x34;&#x20;&#x3d;&#x20;&#x5b;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x6e;&#x65;&#x77;&#x20;&#x45;&#x76;&#x6c;&#x53;&#x65;&#x6c;&#x65;&#x63;&#x74;&#x49;&#x74;&#x65;&#x6d;&#x28;&#x27;&#x4c;&#x61;&#x62;&#x65;&#x6c;&#x31;&#x27;&#x2c;&#x20;&#x6e;&#x65;&#x77;&#x20;&#x45;&#x78;&#x61;&#x6d;&#x70;&#x6c;&#x65;&#x28;&#x27;&#x48;&#x6f;&#x6c;&#x61;&#x20;&#x31;&#x27;&#x2c;&#x20;&#x27;&#x4d;&#x75;&#x6e;&#x64;&#x6f;&#x20;&#x31;&#x27;&#x29;&#x29;&#x2c;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x6e;&#x65;&#x77;&#x20;&#x45;&#x76;&#x6c;&#x53;&#x65;&#x6c;&#x65;&#x63;&#x74;&#x49;&#x74;&#x65;&#x6d;&#x28;&#x27;&#x4c;&#x61;&#x62;&#x65;&#x6c;&#x32;&#x27;&#x2c;&#x20;&#x6e;&#x65;&#x77;&#x20;&#x45;&#x78;&#x61;&#x6d;&#x70;&#x6c;&#x65;&#x28;&#x27;&#x48;&#x6f;&#x6c;&#x61;&#x20;&#x32;&#x27;&#x2c;&#x20;&#x27;&#x4d;&#x75;&#x6e;&#x64;&#x6f;&#x20;&#x32;&#x27;&#x29;&#x29;&#x2c;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x6e;&#x65;&#x77;&#x20;&#x45;&#x76;&#x6c;&#x53;&#x65;&#x6c;&#x65;&#x63;&#x74;&#x49;&#x74;&#x65;&#x6d;&#x28;&#x27;&#x4c;&#x61;&#x62;&#x65;&#x6c;&#x33;&#x27;&#x2c;&#x20;&#x6e;&#x65;&#x77;&#x20;&#x45;&#x78;&#x61;&#x6d;&#x70;&#x6c;&#x65;&#x28;&#x27;&#x48;&#x6f;&#x6c;&#x61;&#x20;&#x33;&#x27;&#x2c;&#x20;&#x27;&#x4d;&#x75;&#x6e;&#x64;&#x6f;&#x20;&#x33;&#x27;&#x29;&#x29;&#x2c;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x6e;&#x65;&#x77;&#x20;&#x45;&#x76;&#x6c;&#x53;&#x65;&#x6c;&#x65;&#x63;&#x74;&#x49;&#x74;&#x65;&#x6d;&#x28;&#x27;&#x4c;&#x61;&#x62;&#x65;&#x6c;&#x34;&#x27;&#x2c;&#x20;&#x6e;&#x65;&#x77;&#x20;&#x45;&#x78;&#x61;&#x6d;&#x70;&#x6c;&#x65;&#x28;&#x27;&#x48;&#x6f;&#x6c;&#x61;&#x20;&#x34;&#x27;&#x2c;&#x20;&#x27;&#x4d;&#x75;&#x6e;&#x64;&#x6f;&#x20;&#x34;&#x27;&#x29;&#x29;&#x2c;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x5d;&#x3b;&#xd;&#xa;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x74;&#x68;&#x69;&#x73;&#x2e;&#x6f;&#x70;&#x74;&#x69;&#x6f;&#x6e;&#x73;&#x45;&#x78;&#x35;&#x20;&#x3d;&#x20;&#x5b;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x6e;&#x65;&#x77;&#x20;&#x45;&#x76;&#x6c;&#x53;&#x65;&#x6c;&#x65;&#x63;&#x74;&#x49;&#x74;&#x65;&#x6d;&#x28;&#x27;&#x4c;&#x61;&#x62;&#x65;&#x6c;&#x31;&#x27;&#x2c;&#x20;&#x6e;&#x65;&#x77;&#x20;&#x45;&#x78;&#x61;&#x6d;&#x70;&#x6c;&#x65;&#x28;&#x27;&#x48;&#x6f;&#x6c;&#x61;&#x20;&#x31;&#x27;&#x2c;&#x20;&#x27;&#x4d;&#x75;&#x6e;&#x64;&#x6f;&#x20;&#x31;&#x27;&#x29;&#x29;&#x2c;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x6e;&#x65;&#x77;&#x20;&#x45;&#x76;&#x6c;&#x53;&#x65;&#x6c;&#x65;&#x63;&#x74;&#x49;&#x74;&#x65;&#x6d;&#x28;&#x27;&#x4c;&#x61;&#x62;&#x65;&#x6c;&#x32;&#x27;&#x2c;&#x20;&#x6e;&#x65;&#x77;&#x20;&#x45;&#x78;&#x61;&#x6d;&#x70;&#x6c;&#x65;&#x28;&#x27;&#x48;&#x6f;&#x6c;&#x61;&#x20;&#x32;&#x27;&#x2c;&#x20;&#x27;&#x4d;&#x75;&#x6e;&#x64;&#x6f;&#x20;&#x32;&#x27;&#x29;&#x29;&#x2c;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x6e;&#x65;&#x77;&#x20;&#x45;&#x76;&#x6c;&#x53;&#x65;&#x6c;&#x65;&#x63;&#x74;&#x49;&#x74;&#x65;&#x6d;&#x28;&#x27;&#x4c;&#x61;&#x62;&#x65;&#x6c;&#x33;&#x27;&#x2c;&#x20;&#x6e;&#x65;&#x77;&#x20;&#x45;&#x78;&#x61;&#x6d;&#x70;&#x6c;&#x65;&#x28;&#x27;&#x48;&#x6f;&#x6c;&#x61;&#x20;&#x33;&#x27;&#x2c;&#x20;&#x27;&#x4d;&#x75;&#x6e;&#x64;&#x6f;&#x20;&#x33;&#x27;&#x29;&#x29;&#x2c;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x6e;&#x65;&#x77;&#x20;&#x45;&#x76;&#x6c;&#x53;&#x65;&#x6c;&#x65;&#x63;&#x74;&#x49;&#x74;&#x65;&#x6d;&#x28;&#x27;&#x4c;&#x61;&#x62;&#x65;&#x6c;&#x34;&#x27;&#x2c;&#x20;&#x6e;&#x65;&#x77;&#x20;&#x45;&#x78;&#x61;&#x6d;&#x70;&#x6c;&#x65;&#x28;&#x27;&#x48;&#x6f;&#x6c;&#x61;&#x20;&#x34;&#x27;&#x2c;&#x20;&#x27;&#x4d;&#x75;&#x6e;&#x64;&#x6f;&#x20;&#x34;&#x27;&#x29;&#x29;&#x2c;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x5d;&#x3b;&#xd;&#xa;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x74;&#x68;&#x69;&#x73;&#x2e;&#x6f;&#x70;&#x74;&#x69;&#x6f;&#x6e;&#x73;&#x45;&#x78;&#x36;&#x20;&#x3d;&#x20;&#x5b;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x6e;&#x65;&#x77;&#x20;&#x45;&#x76;&#x6c;&#x53;&#x65;&#x6c;&#x65;&#x63;&#x74;&#x49;&#x74;&#x65;&#x6d;&#x28;&#x27;&#x4c;&#x61;&#x62;&#x65;&#x6c;&#x31;&#x27;&#x2c;&#x20;&#x6e;&#x65;&#x77;&#x20;&#x45;&#x78;&#x61;&#x6d;&#x70;&#x6c;&#x65;&#x28;&#x27;&#x48;&#x6f;&#x6c;&#x61;&#x20;&#x31;&#x27;&#x2c;&#x20;&#x27;&#x4d;&#x75;&#x6e;&#x64;&#x6f;&#x20;&#x31;&#x27;&#x29;&#x29;&#x2c;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x6e;&#x65;&#x77;&#x20;&#x45;&#x76;&#x6c;&#x53;&#x65;&#x6c;&#x65;&#x63;&#x74;&#x49;&#x74;&#x65;&#x6d;&#x28;&#x27;&#x4c;&#x61;&#x62;&#x65;&#x6c;&#x32;&#x27;&#x2c;&#x20;&#x6e;&#x65;&#x77;&#x20;&#x45;&#x78;&#x61;&#x6d;&#x70;&#x6c;&#x65;&#x28;&#x27;&#x48;&#x6f;&#x6c;&#x61;&#x20;&#x32;&#x27;&#x2c;&#x20;&#x27;&#x4d;&#x75;&#x6e;&#x64;&#x6f;&#x20;&#x32;&#x27;&#x29;&#x29;&#x2c;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x6e;&#x65;&#x77;&#x20;&#x45;&#x76;&#x6c;&#x53;&#x65;&#x6c;&#x65;&#x63;&#x74;&#x49;&#x74;&#x65;&#x6d;&#x28;&#x27;&#x4c;&#x61;&#x62;&#x65;&#x6c;&#x33;&#x27;&#x2c;&#x20;&#x6e;&#x65;&#x77;&#x20;&#x45;&#x78;&#x61;&#x6d;&#x70;&#x6c;&#x65;&#x28;&#x27;&#x48;&#x6f;&#x6c;&#x61;&#x20;&#x33;&#x27;&#x2c;&#x20;&#x27;&#x4d;&#x75;&#x6e;&#x64;&#x6f;&#x20;&#x33;&#x27;&#x29;&#x29;&#x2c;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x6e;&#x65;&#x77;&#x20;&#x45;&#x76;&#x6c;&#x53;&#x65;&#x6c;&#x65;&#x63;&#x74;&#x49;&#x74;&#x65;&#x6d;&#x28;&#x27;&#x4c;&#x61;&#x62;&#x65;&#x6c;&#x34;&#x27;&#x2c;&#x20;&#x6e;&#x65;&#x77;&#x20;&#x45;&#x78;&#x61;&#x6d;&#x70;&#x6c;&#x65;&#x28;&#x27;&#x48;&#x6f;&#x6c;&#x61;&#x20;&#x34;&#x27;&#x2c;&#x20;&#x27;&#x4d;&#x75;&#x6e;&#x64;&#x6f;&#x20;&#x34;&#x27;&#x29;&#x29;&#x2c;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x5d;&#x3b;&#xd;&#xa;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x74;&#x68;&#x69;&#x73;&#x2e;&#x6f;&#x70;&#x74;&#x69;&#x6f;&#x6e;&#x73;&#x45;&#x78;&#x37;&#x20;&#x3d;&#x20;&#x5b;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x6e;&#x65;&#x77;&#x20;&#x45;&#x76;&#x6c;&#x53;&#x65;&#x6c;&#x65;&#x63;&#x74;&#x49;&#x74;&#x65;&#x6d;&#x28;&#x27;&#x4c;&#x61;&#x62;&#x65;&#x6c;&#x31;&#x27;&#x2c;&#x20;&#x6e;&#x65;&#x77;&#x20;&#x45;&#x78;&#x61;&#x6d;&#x70;&#x6c;&#x65;&#x28;&#x27;&#x48;&#x6f;&#x6c;&#x61;&#x20;&#x31;&#x27;&#x2c;&#x20;&#x27;&#x4d;&#x75;&#x6e;&#x64;&#x6f;&#x20;&#x31;&#x27;&#x29;&#x29;&#x2c;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x6e;&#x65;&#x77;&#x20;&#x45;&#x76;&#x6c;&#x53;&#x65;&#x6c;&#x65;&#x63;&#x74;&#x49;&#x74;&#x65;&#x6d;&#x28;&#x27;&#x4c;&#x61;&#x62;&#x65;&#x6c;&#x32;&#x27;&#x2c;&#x20;&#x6e;&#x65;&#x77;&#x20;&#x45;&#x78;&#x61;&#x6d;&#x70;&#x6c;&#x65;&#x28;&#x27;&#x48;&#x6f;&#x6c;&#x61;&#x20;&#x32;&#x27;&#x2c;&#x20;&#x27;&#x4d;&#x75;&#x6e;&#x64;&#x6f;&#x20;&#x32;&#x27;&#x29;&#x29;&#x2c;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x6e;&#x65;&#x77;&#x20;&#x45;&#x76;&#x6c;&#x53;&#x65;&#x6c;&#x65;&#x63;&#x74;&#x49;&#x74;&#x65;&#x6d;&#x28;&#x27;&#x4c;&#x61;&#x62;&#x65;&#x6c;&#x33;&#x27;&#x2c;&#x20;&#x6e;&#x65;&#x77;&#x20;&#x45;&#x78;&#x61;&#x6d;&#x70;&#x6c;&#x65;&#x28;&#x27;&#x48;&#x6f;&#x6c;&#x61;&#x20;&#x33;&#x27;&#x2c;&#x20;&#x27;&#x4d;&#x75;&#x6e;&#x64;&#x6f;&#x20;&#x33;&#x27;&#x29;&#x29;&#x2c;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x6e;&#x65;&#x77;&#x20;&#x45;&#x76;&#x6c;&#x53;&#x65;&#x6c;&#x65;&#x63;&#x74;&#x49;&#x74;&#x65;&#x6d;&#x28;&#x27;&#x4c;&#x61;&#x62;&#x65;&#x6c;&#x34;&#x27;&#x2c;&#x20;&#x6e;&#x65;&#x77;&#x20;&#x45;&#x78;&#x61;&#x6d;&#x70;&#x6c;&#x65;&#x28;&#x27;&#x48;&#x6f;&#x6c;&#x61;&#x20;&#x34;&#x27;&#x2c;&#x20;&#x27;&#x4d;&#x75;&#x6e;&#x64;&#x6f;&#x20;&#x34;&#x27;&#x29;&#x29;&#x2c;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x5d;&#x3b;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x74;&#x68;&#x69;&#x73;&#x2e;&#x6f;&#x70;&#x74;&#x69;&#x6f;&#x6e;&#x73;&#x45;&#x78;&#x38;&#x20;&#x3d;&#x20;&#x5b;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x6e;&#x65;&#x77;&#x20;&#x45;&#x76;&#x6c;&#x53;&#x65;&#x6c;&#x65;&#x63;&#x74;&#x49;&#x74;&#x65;&#x6d;&#x28;&#x27;&#x4c;&#x61;&#x62;&#x65;&#x6c;&#x31;&#x27;&#x2c;&#x20;&#x6e;&#x65;&#x77;&#x20;&#x45;&#x78;&#x61;&#x6d;&#x70;&#x6c;&#x65;&#x28;&#x27;&#x48;&#x6f;&#x6c;&#x61;&#x20;&#x31;&#x27;&#x2c;&#x20;&#x27;&#x4d;&#x75;&#x6e;&#x64;&#x6f;&#x20;&#x31;&#x27;&#x29;&#x29;&#x2c;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x6e;&#x65;&#x77;&#x20;&#x45;&#x76;&#x6c;&#x53;&#x65;&#x6c;&#x65;&#x63;&#x74;&#x49;&#x74;&#x65;&#x6d;&#x28;&#x27;&#x4c;&#x61;&#x62;&#x65;&#x6c;&#x32;&#x27;&#x2c;&#x20;&#x6e;&#x65;&#x77;&#x20;&#x45;&#x78;&#x61;&#x6d;&#x70;&#x6c;&#x65;&#x28;&#x27;&#x48;&#x6f;&#x6c;&#x61;&#x20;&#x32;&#x27;&#x2c;&#x20;&#x27;&#x4d;&#x75;&#x6e;&#x64;&#x6f;&#x20;&#x32;&#x27;&#x29;&#x29;&#x2c;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x6e;&#x65;&#x77;&#x20;&#x45;&#x76;&#x6c;&#x53;&#x65;&#x6c;&#x65;&#x63;&#x74;&#x49;&#x74;&#x65;&#x6d;&#x28;&#x27;&#x4c;&#x61;&#x62;&#x65;&#x6c;&#x33;&#x27;&#x2c;&#x20;&#x6e;&#x65;&#x77;&#x20;&#x45;&#x78;&#x61;&#x6d;&#x70;&#x6c;&#x65;&#x28;&#x27;&#x48;&#x6f;&#x6c;&#x61;&#x20;&#x33;&#x27;&#x2c;&#x20;&#x27;&#x4d;&#x75;&#x6e;&#x64;&#x6f;&#x20;&#x33;&#x27;&#x29;&#x29;&#x2c;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x6e;&#x65;&#x77;&#x20;&#x45;&#x76;&#x6c;&#x53;&#x65;&#x6c;&#x65;&#x63;&#x74;&#x49;&#x74;&#x65;&#x6d;&#x28;&#x27;&#x4c;&#x61;&#x62;&#x65;&#x6c;&#x34;&#x27;&#x2c;&#x20;&#x6e;&#x65;&#x77;&#x20;&#x45;&#x78;&#x61;&#x6d;&#x70;&#x6c;&#x65;&#x28;&#x27;&#x48;&#x6f;&#x6c;&#x61;&#x20;&#x34;&#x27;&#x2c;&#x20;&#x27;&#x4d;&#x75;&#x6e;&#x64;&#x6f;&#x20;&#x34;&#x27;&#x29;&#x29;&#x2c;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x5d;&#x3b;&#xd;&#xa;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x74;&#x68;&#x69;&#x73;&#x2e;&#x6f;&#x70;&#x74;&#x69;&#x6f;&#x6e;&#x73;&#x45;&#x78;&#x39;&#x20;&#x3d;&#x20;&#x5b;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x6e;&#x65;&#x77;&#x20;&#x45;&#x76;&#x6c;&#x53;&#x65;&#x6c;&#x65;&#x63;&#x74;&#x49;&#x74;&#x65;&#x6d;&#x28;&#x27;&#x4c;&#x61;&#x62;&#x65;&#x6c;&#x31;&#x27;&#x2c;&#x20;&#x6e;&#x65;&#x77;&#x20;&#x45;&#x78;&#x61;&#x6d;&#x70;&#x6c;&#x65;&#x28;&#x27;&#x48;&#x6f;&#x6c;&#x61;&#x20;&#x31;&#x27;&#x2c;&#x20;&#x27;&#x4d;&#x75;&#x6e;&#x64;&#x6f;&#x20;&#x31;&#x27;&#x29;&#x29;&#x2c;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x6e;&#x65;&#x77;&#x20;&#x45;&#x76;&#x6c;&#x53;&#x65;&#x6c;&#x65;&#x63;&#x74;&#x49;&#x74;&#x65;&#x6d;&#x28;&#x27;&#x4c;&#x61;&#x62;&#x65;&#x6c;&#x32;&#x27;&#x2c;&#x20;&#x6e;&#x65;&#x77;&#x20;&#x45;&#x78;&#x61;&#x6d;&#x70;&#x6c;&#x65;&#x28;&#x27;&#x48;&#x6f;&#x6c;&#x61;&#x20;&#x32;&#x27;&#x2c;&#x20;&#x27;&#x4d;&#x75;&#x6e;&#x64;&#x6f;&#x20;&#x32;&#x27;&#x29;&#x29;&#x2c;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x6e;&#x65;&#x77;&#x20;&#x45;&#x76;&#x6c;&#x53;&#x65;&#x6c;&#x65;&#x63;&#x74;&#x49;&#x74;&#x65;&#x6d;&#x28;&#x27;&#x4c;&#x61;&#x62;&#x65;&#x6c;&#x33;&#x27;&#x2c;&#x20;&#x6e;&#x65;&#x77;&#x20;&#x45;&#x78;&#x61;&#x6d;&#x70;&#x6c;&#x65;&#x28;&#x27;&#x48;&#x6f;&#x6c;&#x61;&#x20;&#x33;&#x27;&#x2c;&#x20;&#x27;&#x4d;&#x75;&#x6e;&#x64;&#x6f;&#x20;&#x33;&#x27;&#x29;&#x29;&#x2c;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x6e;&#x65;&#x77;&#x20;&#x45;&#x76;&#x6c;&#x53;&#x65;&#x6c;&#x65;&#x63;&#x74;&#x49;&#x74;&#x65;&#x6d;&#x28;&#x27;&#x4c;&#x61;&#x62;&#x65;&#x6c;&#x34;&#x27;&#x2c;&#x20;&#x6e;&#x65;&#x77;&#x20;&#x45;&#x78;&#x61;&#x6d;&#x70;&#x6c;&#x65;&#x28;&#x27;&#x48;&#x6f;&#x6c;&#x61;&#x20;&#x34;&#x27;&#x2c;&#x20;&#x27;&#x4d;&#x75;&#x6e;&#x64;&#x6f;&#x20;&#x34;&#x27;&#x29;&#x29;&#x2c;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x5d;&#x3b;&#xd;&#xa;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x74;&#x68;&#x69;&#x73;&#x2e;&#x6f;&#x70;&#x74;&#x69;&#x6f;&#x6e;&#x73;&#x45;&#x78;&#x31;&#x30;&#x20;&#x3d;&#x20;&#x5b;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x6e;&#x65;&#x77;&#x20;&#x45;&#x76;&#x6c;&#x53;&#x65;&#x6c;&#x65;&#x63;&#x74;&#x49;&#x74;&#x65;&#x6d;&#x28;&#x27;&#x4c;&#x61;&#x62;&#x65;&#x6c;&#x31;&#x27;&#x2c;&#x20;&#x6e;&#x65;&#x77;&#x20;&#x45;&#x78;&#x61;&#x6d;&#x70;&#x6c;&#x65;&#x28;&#x27;&#x48;&#x6f;&#x6c;&#x61;&#x20;&#x31;&#x27;&#x2c;&#x20;&#x27;&#x4d;&#x75;&#x6e;&#x64;&#x6f;&#x20;&#x31;&#x27;&#x29;&#x29;&#x2c;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x6e;&#x65;&#x77;&#x20;&#x45;&#x76;&#x6c;&#x53;&#x65;&#x6c;&#x65;&#x63;&#x74;&#x49;&#x74;&#x65;&#x6d;&#x28;&#x27;&#x4c;&#x61;&#x62;&#x65;&#x6c;&#x32;&#x27;&#x2c;&#x20;&#x6e;&#x65;&#x77;&#x20;&#x45;&#x78;&#x61;&#x6d;&#x70;&#x6c;&#x65;&#x28;&#x27;&#x48;&#x6f;&#x6c;&#x61;&#x20;&#x32;&#x27;&#x2c;&#x20;&#x27;&#x4d;&#x75;&#x6e;&#x64;&#x6f;&#x20;&#x32;&#x27;&#x29;&#x29;&#x2c;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x6e;&#x65;&#x77;&#x20;&#x45;&#x76;&#x6c;&#x53;&#x65;&#x6c;&#x65;&#x63;&#x74;&#x49;&#x74;&#x65;&#x6d;&#x28;&#x27;&#x4c;&#x61;&#x62;&#x65;&#x6c;&#x33;&#x27;&#x2c;&#x20;&#x6e;&#x65;&#x77;&#x20;&#x45;&#x78;&#x61;&#x6d;&#x70;&#x6c;&#x65;&#x28;&#x27;&#x48;&#x6f;&#x6c;&#x61;&#x20;&#x33;&#x27;&#x2c;&#x20;&#x27;&#x4d;&#x75;&#x6e;&#x64;&#x6f;&#x20;&#x33;&#x27;&#x29;&#x29;&#x2c;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x6e;&#x65;&#x77;&#x20;&#x45;&#x76;&#x6c;&#x53;&#x65;&#x6c;&#x65;&#x63;&#x74;&#x49;&#x74;&#x65;&#x6d;&#x28;&#x27;&#x4c;&#x61;&#x62;&#x65;&#x6c;&#x34;&#x27;&#x2c;&#x20;&#x6e;&#x65;&#x77;&#x20;&#x45;&#x78;&#x61;&#x6d;&#x70;&#x6c;&#x65;&#x28;&#x27;&#x48;&#x6f;&#x6c;&#x61;&#x20;&#x34;&#x27;&#x2c;&#x20;&#x27;&#x4d;&#x75;&#x6e;&#x64;&#x6f;&#x20;&#x34;&#x27;&#x29;&#x29;&#x2c;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x5d;&#x3b;&#xd;&#xa;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x74;&#x68;&#x69;&#x73;&#x2e;&#x6f;&#x70;&#x74;&#x69;&#x6f;&#x6e;&#x73;&#x45;&#x78;&#x31;&#x31;&#x20;&#x3d;&#x20;&#x5b;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x6e;&#x65;&#x77;&#x20;&#x45;&#x76;&#x6c;&#x53;&#x65;&#x6c;&#x65;&#x63;&#x74;&#x49;&#x74;&#x65;&#x6d;&#x28;&#x27;&#x4c;&#x61;&#x62;&#x65;&#x6c;&#x31;&#x27;&#x2c;&#x20;&#x6e;&#x65;&#x77;&#x20;&#x45;&#x78;&#x61;&#x6d;&#x70;&#x6c;&#x65;&#x28;&#x27;&#x48;&#x6f;&#x6c;&#x61;&#x20;&#x31;&#x27;&#x2c;&#x20;&#x27;&#x4d;&#x75;&#x6e;&#x64;&#x6f;&#x20;&#x31;&#x27;&#x29;&#x29;&#x2c;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x6e;&#x65;&#x77;&#x20;&#x45;&#x76;&#x6c;&#x53;&#x65;&#x6c;&#x65;&#x63;&#x74;&#x49;&#x74;&#x65;&#x6d;&#x28;&#x27;&#x4c;&#x61;&#x62;&#x65;&#x6c;&#x32;&#x27;&#x2c;&#x20;&#x6e;&#x65;&#x77;&#x20;&#x45;&#x78;&#x61;&#x6d;&#x70;&#x6c;&#x65;&#x28;&#x27;&#x48;&#x6f;&#x6c;&#x61;&#x20;&#x32;&#x27;&#x2c;&#x20;&#x27;&#x4d;&#x75;&#x6e;&#x64;&#x6f;&#x20;&#x32;&#x27;&#x29;&#x29;&#x2c;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x6e;&#x65;&#x77;&#x20;&#x45;&#x76;&#x6c;&#x53;&#x65;&#x6c;&#x65;&#x63;&#x74;&#x49;&#x74;&#x65;&#x6d;&#x28;&#x27;&#x4c;&#x61;&#x62;&#x65;&#x6c;&#x33;&#x27;&#x2c;&#x20;&#x6e;&#x65;&#x77;&#x20;&#x45;&#x78;&#x61;&#x6d;&#x70;&#x6c;&#x65;&#x28;&#x27;&#x48;&#x6f;&#x6c;&#x61;&#x20;&#x33;&#x27;&#x2c;&#x20;&#x27;&#x4d;&#x75;&#x6e;&#x64;&#x6f;&#x20;&#x33;&#x27;&#x29;&#x29;&#x2c;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x6e;&#x65;&#x77;&#x20;&#x45;&#x76;&#x6c;&#x53;&#x65;&#x6c;&#x65;&#x63;&#x74;&#x49;&#x74;&#x65;&#x6d;&#x28;&#x27;&#x4c;&#x61;&#x62;&#x65;&#x6c;&#x34;&#x27;&#x2c;&#x20;&#x6e;&#x65;&#x77;&#x20;&#x45;&#x78;&#x61;&#x6d;&#x70;&#x6c;&#x65;&#x28;&#x27;&#x48;&#x6f;&#x6c;&#x61;&#x20;&#x34;&#x27;&#x2c;&#x20;&#x27;&#x4d;&#x75;&#x6e;&#x64;&#x6f;&#x20;&#x34;&#x27;&#x29;&#x29;&#x2c;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x5d;&#x3b;&#xd;&#xa;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x74;&#x68;&#x69;&#x73;&#x2e;&#x6f;&#x70;&#x74;&#x69;&#x6f;&#x6e;&#x73;&#x45;&#x78;&#x31;&#x32;&#x20;&#x3d;&#x20;&#x5b;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x6e;&#x65;&#x77;&#x20;&#x45;&#x76;&#x6c;&#x53;&#x65;&#x6c;&#x65;&#x63;&#x74;&#x49;&#x74;&#x65;&#x6d;&#x28;&#x27;&#x4c;&#x61;&#x62;&#x65;&#x6c;&#x31;&#x27;&#x2c;&#x20;&#x6e;&#x65;&#x77;&#x20;&#x45;&#x78;&#x61;&#x6d;&#x70;&#x6c;&#x65;&#x28;&#x27;&#x48;&#x6f;&#x6c;&#x61;&#x20;&#x31;&#x27;&#x2c;&#x20;&#x27;&#x4d;&#x75;&#x6e;&#x64;&#x6f;&#x20;&#x31;&#x27;&#x29;&#x29;&#x2c;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x6e;&#x65;&#x77;&#x20;&#x45;&#x76;&#x6c;&#x53;&#x65;&#x6c;&#x65;&#x63;&#x74;&#x49;&#x74;&#x65;&#x6d;&#x28;&#x27;&#x4c;&#x61;&#x62;&#x65;&#x6c;&#x32;&#x27;&#x2c;&#x20;&#x6e;&#x65;&#x77;&#x20;&#x45;&#x78;&#x61;&#x6d;&#x70;&#x6c;&#x65;&#x28;&#x27;&#x48;&#x6f;&#x6c;&#x61;&#x20;&#x32;&#x27;&#x2c;&#x20;&#x27;&#x4d;&#x75;&#x6e;&#x64;&#x6f;&#x20;&#x32;&#x27;&#x29;&#x29;&#x2c;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x6e;&#x65;&#x77;&#x20;&#x45;&#x76;&#x6c;&#x53;&#x65;&#x6c;&#x65;&#x63;&#x74;&#x49;&#x74;&#x65;&#x6d;&#x28;&#x27;&#x4c;&#x61;&#x62;&#x65;&#x6c;&#x33;&#x27;&#x2c;&#x20;&#x6e;&#x65;&#x77;&#x20;&#x45;&#x78;&#x61;&#x6d;&#x70;&#x6c;&#x65;&#x28;&#x27;&#x48;&#x6f;&#x6c;&#x61;&#x20;&#x33;&#x27;&#x2c;&#x20;&#x27;&#x4d;&#x75;&#x6e;&#x64;&#x6f;&#x20;&#x33;&#x27;&#x29;&#x29;&#x2c;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x6e;&#x65;&#x77;&#x20;&#x45;&#x76;&#x6c;&#x53;&#x65;&#x6c;&#x65;&#x63;&#x74;&#x49;&#x74;&#x65;&#x6d;&#x28;&#x27;&#x4c;&#x61;&#x62;&#x65;&#x6c;&#x34;&#x27;&#x2c;&#x20;&#x6e;&#x65;&#x77;&#x20;&#x45;&#x78;&#x61;&#x6d;&#x70;&#x6c;&#x65;&#x28;&#x27;&#x48;&#x6f;&#x6c;&#x61;&#x20;&#x34;&#x27;&#x2c;&#x20;&#x27;&#x4d;&#x75;&#x6e;&#x64;&#x6f;&#x20;&#x34;&#x27;&#x29;&#x29;&#x2c;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x5d;&#x3b;&#xd;&#xa;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x74;&#x68;&#x69;&#x73;&#x2e;&#x6f;&#x70;&#x74;&#x69;&#x6f;&#x6e;&#x73;&#x45;&#x78;&#x31;&#x33;&#x20;&#x3d;&#x20;&#x5b;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x6e;&#x65;&#x77;&#x20;&#x45;&#x76;&#x6c;&#x53;&#x65;&#x6c;&#x65;&#x63;&#x74;&#x49;&#x74;&#x65;&#x6d;&#x28;&#x27;&#x4c;&#x61;&#x62;&#x65;&#x6c;&#x31;&#x27;&#x2c;&#x20;&#x6e;&#x65;&#x77;&#x20;&#x45;&#x78;&#x61;&#x6d;&#x70;&#x6c;&#x65;&#x28;&#x27;&#x48;&#x6f;&#x6c;&#x61;&#x20;&#x31;&#x27;&#x2c;&#x20;&#x27;&#x4d;&#x75;&#x6e;&#x64;&#x6f;&#x20;&#x31;&#x27;&#x29;&#x29;&#x2c;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x6e;&#x65;&#x77;&#x20;&#x45;&#x76;&#x6c;&#x53;&#x65;&#x6c;&#x65;&#x63;&#x74;&#x49;&#x74;&#x65;&#x6d;&#x28;&#x27;&#x4c;&#x61;&#x62;&#x65;&#x6c;&#x32;&#x27;&#x2c;&#x20;&#x6e;&#x65;&#x77;&#x20;&#x45;&#x78;&#x61;&#x6d;&#x70;&#x6c;&#x65;&#x28;&#x27;&#x48;&#x6f;&#x6c;&#x61;&#x20;&#x32;&#x27;&#x2c;&#x20;&#x27;&#x4d;&#x75;&#x6e;&#x64;&#x6f;&#x20;&#x32;&#x27;&#x29;&#x29;&#x2c;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x6e;&#x65;&#x77;&#x20;&#x45;&#x76;&#x6c;&#x53;&#x65;&#x6c;&#x65;&#x63;&#x74;&#x49;&#x74;&#x65;&#x6d;&#x28;&#x27;&#x4c;&#x61;&#x62;&#x65;&#x6c;&#x33;&#x27;&#x2c;&#x20;&#x6e;&#x65;&#x77;&#x20;&#x45;&#x78;&#x61;&#x6d;&#x70;&#x6c;&#x65;&#x28;&#x27;&#x48;&#x6f;&#x6c;&#x61;&#x20;&#x33;&#x27;&#x2c;&#x20;&#x27;&#x4d;&#x75;&#x6e;&#x64;&#x6f;&#x20;&#x33;&#x27;&#x29;&#x29;&#x2c;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x6e;&#x65;&#x77;&#x20;&#x45;&#x76;&#x6c;&#x53;&#x65;&#x6c;&#x65;&#x63;&#x74;&#x49;&#x74;&#x65;&#x6d;&#x28;&#x27;&#x4c;&#x61;&#x62;&#x65;&#x6c;&#x34;&#x27;&#x2c;&#x20;&#x6e;&#x65;&#x77;&#x20;&#x45;&#x78;&#x61;&#x6d;&#x70;&#x6c;&#x65;&#x28;&#x27;&#x48;&#x6f;&#x6c;&#x61;&#x20;&#x34;&#x27;&#x2c;&#x20;&#x27;&#x4d;&#x75;&#x6e;&#x64;&#x6f;&#x20;&#x34;&#x27;&#x29;&#x29;&#x2c;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x5d;&#x3b;&#xd;&#xa;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x74;&#x68;&#x69;&#x73;&#x2e;&#x6f;&#x70;&#x74;&#x69;&#x6f;&#x6e;&#x73;&#x45;&#x78;&#x31;&#x34;&#x20;&#x3d;&#x20;&#x5b;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x6e;&#x65;&#x77;&#x20;&#x45;&#x76;&#x6c;&#x53;&#x65;&#x6c;&#x65;&#x63;&#x74;&#x49;&#x74;&#x65;&#x6d;&#x28;&#x27;&#x4c;&#x61;&#x62;&#x65;&#x6c;&#x31;&#x27;&#x2c;&#x20;&#x6e;&#x65;&#x77;&#x20;&#x45;&#x78;&#x61;&#x6d;&#x70;&#x6c;&#x65;&#x28;&#x27;&#x48;&#x6f;&#x6c;&#x61;&#x20;&#x31;&#x27;&#x2c;&#x20;&#x27;&#x4d;&#x75;&#x6e;&#x64;&#x6f;&#x20;&#x31;&#x27;&#x29;&#x29;&#x2c;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x6e;&#x65;&#x77;&#x20;&#x45;&#x76;&#x6c;&#x53;&#x65;&#x6c;&#x65;&#x63;&#x74;&#x49;&#x74;&#x65;&#x6d;&#x28;&#x27;&#x4c;&#x61;&#x62;&#x65;&#x6c;&#x32;&#x27;&#x2c;&#x20;&#x6e;&#x65;&#x77;&#x20;&#x45;&#x78;&#x61;&#x6d;&#x70;&#x6c;&#x65;&#x28;&#x27;&#x48;&#x6f;&#x6c;&#x61;&#x20;&#x32;&#x27;&#x2c;&#x20;&#x27;&#x4d;&#x75;&#x6e;&#x64;&#x6f;&#x20;&#x32;&#x27;&#x29;&#x29;&#x2c;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x6e;&#x65;&#x77;&#x20;&#x45;&#x76;&#x6c;&#x53;&#x65;&#x6c;&#x65;&#x63;&#x74;&#x49;&#x74;&#x65;&#x6d;&#x28;&#x27;&#x4c;&#x61;&#x62;&#x65;&#x6c;&#x33;&#x27;&#x2c;&#x20;&#x6e;&#x65;&#x77;&#x20;&#x45;&#x78;&#x61;&#x6d;&#x70;&#x6c;&#x65;&#x28;&#x27;&#x48;&#x6f;&#x6c;&#x61;&#x20;&#x33;&#x27;&#x2c;&#x20;&#x27;&#x4d;&#x75;&#x6e;&#x64;&#x6f;&#x20;&#x33;&#x27;&#x29;&#x29;&#x2c;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x6e;&#x65;&#x77;&#x20;&#x45;&#x76;&#x6c;&#x53;&#x65;&#x6c;&#x65;&#x63;&#x74;&#x49;&#x74;&#x65;&#x6d;&#x28;&#x27;&#x4c;&#x61;&#x62;&#x65;&#x6c;&#x34;&#x27;&#x2c;&#x20;&#x6e;&#x65;&#x77;&#x20;&#x45;&#x78;&#x61;&#x6d;&#x70;&#x6c;&#x65;&#x28;&#x27;&#x48;&#x6f;&#x6c;&#x61;&#x20;&#x34;&#x27;&#x2c;&#x20;&#x27;&#x4d;&#x75;&#x6e;&#x64;&#x6f;&#x20;&#x34;&#x27;&#x29;&#x29;&#x2c;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x5d;&#x3b;&#xd;&#xa;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x74;&#x68;&#x69;&#x73;&#x2e;&#x76;&#x61;&#x6c;&#x75;&#x65;&#x32;&#x20;&#x3d;&#x20;&#x27;&#x56;&#x61;&#x6c;&#x75;&#x65;&#x33;&#x27;&#x3b;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x74;&#x68;&#x69;&#x73;&#x2e;&#x76;&#x61;&#x6c;&#x75;&#x65;&#x34;&#x20;&#x3d;&#x20;&#x6e;&#x65;&#x77;&#x20;&#x45;&#x78;&#x61;&#x6d;&#x70;&#x6c;&#x65;&#x28;&#x27;&#x48;&#x6f;&#x6c;&#x61;&#x20;&#x33;&#x27;&#x2c;&#x20;&#x27;&#x4d;&#x75;&#x6e;&#x64;&#x6f;&#x20;&#x33;&#x27;&#x29;&#x3b;&#xd;&#xa;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x74;&#x68;&#x69;&#x73;&#x2e;&#x76;&#x61;&#x6c;&#x75;&#x65;&#x31;&#x32;&#x20;&#x3d;&#x20;&#x5b;&#x6e;&#x65;&#x77;&#x20;&#x45;&#x78;&#x61;&#x6d;&#x70;&#x6c;&#x65;&#x28;&#x27;&#x48;&#x6f;&#x6c;&#x61;&#x20;&#x32;&#x27;&#x2c;&#x20;&#x27;&#x4d;&#x75;&#x6e;&#x64;&#x6f;&#x20;&#x32;&#x27;&#x29;&#x2c;&#x20;&#x6e;&#x65;&#x77;&#x20;&#x45;&#x78;&#x61;&#x6d;&#x70;&#x6c;&#x65;&#x28;&#x27;&#x48;&#x6f;&#x6c;&#x61;&#x20;&#x33;&#x27;&#x2c;&#x20;&#x27;&#x4d;&#x75;&#x6e;&#x64;&#x6f;&#x20;&#x33;&#x27;&#x29;&#x5d;&#x3b;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x74;&#x68;&#x69;&#x73;&#x2e;&#x76;&#x61;&#x6c;&#x75;&#x65;&#x31;&#x34;&#x20;&#x3d;&#x20;&#x5b;&#x6e;&#x65;&#x77;&#x20;&#x45;&#x78;&#x61;&#x6d;&#x70;&#x6c;&#x65;&#x28;&#x27;&#x48;&#x6f;&#x6c;&#x61;&#x20;&#x31;&#x27;&#x2c;&#x20;&#x27;&#x4d;&#x75;&#x6e;&#x64;&#x6f;&#x20;&#x31;&#x27;&#x29;&#x2c;&#x20;&#x6e;&#x65;&#x77;&#x20;&#x45;&#x78;&#x61;&#x6d;&#x70;&#x6c;&#x65;&#x28;&#x27;&#x48;&#x6f;&#x6c;&#x61;&#x20;&#x32;&#x27;&#x2c;&#x20;&#x27;&#x4d;&#x75;&#x6e;&#x64;&#x6f;&#x20;&#x32;&#x27;&#x29;&#x2c;&#x20;&#x6e;&#x65;&#x77;&#x20;&#x45;&#x78;&#x61;&#x6d;&#x70;&#x6c;&#x65;&#x28;&#x27;&#x48;&#x6f;&#x6c;&#x61;&#x20;&#x33;&#x27;&#x2c;&#x20;&#x27;&#x4d;&#x75;&#x6e;&#x64;&#x6f;&#x20;&#x33;&#x27;&#x29;&#x2c;&#x20;&#x6e;&#x65;&#x77;&#x20;&#x45;&#x78;&#x61;&#x6d;&#x70;&#x6c;&#x65;&#x28;&#x27;&#x48;&#x6f;&#x6c;&#x61;&#x20;&#x34;&#x27;&#x2c;&#x20;&#x27;&#x4d;&#x75;&#x6e;&#x64;&#x6f;&#x20;&#x34;&#x27;&#x29;&#x5d;&#x3b;&#xd;&#xa;&#xd;&#xa;&#x20;&#x20;&#x7d;&#xd;&#xa;&#xd;&#xa;&#x20;&#x20;&#x73;&#x65;&#x6c;&#x65;&#x63;&#x74;&#x49;&#x74;&#x65;&#x6d;&#x45;&#x78;&#x31;&#x28;&#x24;&#x65;&#x76;&#x65;&#x6e;&#x74;&#x3a;&#x20;&#x73;&#x74;&#x72;&#x69;&#x6e;&#x67;&#x29;&#x7b;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x63;&#x6f;&#x6e;&#x73;&#x6f;&#x6c;&#x65;&#x2e;&#x6c;&#x6f;&#x67;&#x28;&#x24;&#x65;&#x76;&#x65;&#x6e;&#x74;&#x29;&#x3b;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x74;&#x68;&#x69;&#x73;&#x2e;&#x65;&#x76;&#x6c;&#x54;&#x6f;&#x61;&#x73;&#x74;&#x2e;&#x61;&#x64;&#x64;&#x53;&#x75;&#x63;&#x63;&#x65;&#x73;&#x73;&#x4d;&#x65;&#x73;&#x73;&#x61;&#x67;&#x65;&#x28;&#x27;&#x49;&#x74;&#x65;&#x6d;&#x20;&#x73;&#x65;&#x6c;&#x65;&#x63;&#x63;&#x69;&#x6f;&#x6e;&#x61;&#x64;&#x6f;&#x20;&#x65;&#x6a;&#x65;&#x6d;&#x70;&#x6c;&#x6f;&#x20;&#x31;&#x27;&#x2c;&#x20;&#x4a;&#x53;&#x4f;&#x4e;&#x2e;&#x73;&#x74;&#x72;&#x69;&#x6e;&#x67;&#x69;&#x66;&#x79;&#x28;&#x24;&#x65;&#x76;&#x65;&#x6e;&#x74;&#x29;&#x29;&#xd;&#xa;&#x20;&#x20;&#x7d;&#xd;&#xa;&#xd;&#xa;&#x20;&#x20;&#x73;&#x65;&#x6c;&#x65;&#x63;&#x74;&#x49;&#x74;&#x65;&#x6d;&#x45;&#x78;&#x32;&#x28;&#x24;&#x65;&#x76;&#x65;&#x6e;&#x74;&#x3a;&#x20;&#x73;&#x74;&#x72;&#x69;&#x6e;&#x67;&#x29;&#x7b;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x63;&#x6f;&#x6e;&#x73;&#x6f;&#x6c;&#x65;&#x2e;&#x6c;&#x6f;&#x67;&#x28;&#x24;&#x65;&#x76;&#x65;&#x6e;&#x74;&#x29;&#x3b;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x74;&#x68;&#x69;&#x73;&#x2e;&#x65;&#x76;&#x6c;&#x54;&#x6f;&#x61;&#x73;&#x74;&#x2e;&#x61;&#x64;&#x64;&#x53;&#x75;&#x63;&#x63;&#x65;&#x73;&#x73;&#x4d;&#x65;&#x73;&#x73;&#x61;&#x67;&#x65;&#x28;&#x27;&#x49;&#x74;&#x65;&#x6d;&#x20;&#x73;&#x65;&#x6c;&#x65;&#x63;&#x63;&#x69;&#x6f;&#x6e;&#x61;&#x64;&#x6f;&#x20;&#x65;&#x6a;&#x65;&#x6d;&#x70;&#x6c;&#x6f;&#x20;&#x32;&#x27;&#x2c;&#x20;&#x4a;&#x53;&#x4f;&#x4e;&#x2e;&#x73;&#x74;&#x72;&#x69;&#x6e;&#x67;&#x69;&#x66;&#x79;&#x28;&#x24;&#x65;&#x76;&#x65;&#x6e;&#x74;&#x29;&#x29;&#xd;&#xa;&#x20;&#x20;&#x7d;&#xd;&#xa;&#xd;&#xa;&#x20;&#x20;&#x73;&#x65;&#x6c;&#x65;&#x63;&#x74;&#x49;&#x74;&#x65;&#x6d;&#x45;&#x78;&#x33;&#x28;&#x24;&#x65;&#x76;&#x65;&#x6e;&#x74;&#x3a;&#x20;&#x45;&#x78;&#x61;&#x6d;&#x70;&#x6c;&#x65;&#x29;&#x7b;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x63;&#x6f;&#x6e;&#x73;&#x6f;&#x6c;&#x65;&#x2e;&#x6c;&#x6f;&#x67;&#x28;&#x24;&#x65;&#x76;&#x65;&#x6e;&#x74;&#x29;&#x3b;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x74;&#x68;&#x69;&#x73;&#x2e;&#x65;&#x76;&#x6c;&#x54;&#x6f;&#x61;&#x73;&#x74;&#x2e;&#x61;&#x64;&#x64;&#x53;&#x75;&#x63;&#x63;&#x65;&#x73;&#x73;&#x4d;&#x65;&#x73;&#x73;&#x61;&#x67;&#x65;&#x28;&#x27;&#x49;&#x74;&#x65;&#x6d;&#x20;&#x73;&#x65;&#x6c;&#x65;&#x63;&#x63;&#x69;&#x6f;&#x6e;&#x61;&#x64;&#x6f;&#x20;&#x65;&#x6a;&#x65;&#x6d;&#x70;&#x6c;&#x6f;&#x20;&#x33;&#x27;&#x2c;&#x20;&#x4a;&#x53;&#x4f;&#x4e;&#x2e;&#x73;&#x74;&#x72;&#x69;&#x6e;&#x67;&#x69;&#x66;&#x79;&#x28;&#x24;&#x65;&#x76;&#x65;&#x6e;&#x74;&#x29;&#x29;&#xd;&#xa;&#x20;&#x20;&#x7d;&#xd;&#xa;&#xd;&#xa;&#x20;&#x20;&#x73;&#x65;&#x6c;&#x65;&#x63;&#x74;&#x49;&#x74;&#x65;&#x6d;&#x45;&#x78;&#x34;&#x28;&#x24;&#x65;&#x76;&#x65;&#x6e;&#x74;&#x3a;&#x20;&#x45;&#x78;&#x61;&#x6d;&#x70;&#x6c;&#x65;&#x29;&#x7b;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x63;&#x6f;&#x6e;&#x73;&#x6f;&#x6c;&#x65;&#x2e;&#x6c;&#x6f;&#x67;&#x28;&#x24;&#x65;&#x76;&#x65;&#x6e;&#x74;&#x29;&#x3b;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x74;&#x68;&#x69;&#x73;&#x2e;&#x65;&#x76;&#x6c;&#x54;&#x6f;&#x61;&#x73;&#x74;&#x2e;&#x61;&#x64;&#x64;&#x53;&#x75;&#x63;&#x63;&#x65;&#x73;&#x73;&#x4d;&#x65;&#x73;&#x73;&#x61;&#x67;&#x65;&#x28;&#x27;&#x49;&#x74;&#x65;&#x6d;&#x20;&#x73;&#x65;&#x6c;&#x65;&#x63;&#x63;&#x69;&#x6f;&#x6e;&#x61;&#x64;&#x6f;&#x20;&#x65;&#x6a;&#x65;&#x6d;&#x70;&#x6c;&#x6f;&#x20;&#x34;&#x27;&#x2c;&#x20;&#x4a;&#x53;&#x4f;&#x4e;&#x2e;&#x73;&#x74;&#x72;&#x69;&#x6e;&#x67;&#x69;&#x66;&#x79;&#x28;&#x24;&#x65;&#x76;&#x65;&#x6e;&#x74;&#x29;&#x29;&#xd;&#xa;&#x20;&#x20;&#x7d;&#xd;&#xa;&#xd;&#xa;&#x20;&#x20;&#x73;&#x65;&#x6c;&#x65;&#x63;&#x74;&#x49;&#x74;&#x65;&#x6d;&#x45;&#x78;&#x35;&#x28;&#x24;&#x65;&#x76;&#x65;&#x6e;&#x74;&#x3a;&#x20;&#x45;&#x78;&#x61;&#x6d;&#x70;&#x6c;&#x65;&#x29;&#x7b;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x63;&#x6f;&#x6e;&#x73;&#x6f;&#x6c;&#x65;&#x2e;&#x6c;&#x6f;&#x67;&#x28;&#x24;&#x65;&#x76;&#x65;&#x6e;&#x74;&#x29;&#x3b;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x74;&#x68;&#x69;&#x73;&#x2e;&#x65;&#x76;&#x6c;&#x54;&#x6f;&#x61;&#x73;&#x74;&#x2e;&#x61;&#x64;&#x64;&#x53;&#x75;&#x63;&#x63;&#x65;&#x73;&#x73;&#x4d;&#x65;&#x73;&#x73;&#x61;&#x67;&#x65;&#x28;&#x27;&#x49;&#x74;&#x65;&#x6d;&#x20;&#x73;&#x65;&#x6c;&#x65;&#x63;&#x63;&#x69;&#x6f;&#x6e;&#x61;&#x64;&#x6f;&#x20;&#x65;&#x6a;&#x65;&#x6d;&#x70;&#x6c;&#x6f;&#x20;&#x35;&#x27;&#x2c;&#x20;&#x4a;&#x53;&#x4f;&#x4e;&#x2e;&#x73;&#x74;&#x72;&#x69;&#x6e;&#x67;&#x69;&#x66;&#x79;&#x28;&#x24;&#x65;&#x76;&#x65;&#x6e;&#x74;&#x29;&#x29;&#xd;&#xa;&#x20;&#x20;&#x7d;&#xd;&#xa;&#xd;&#xa;&#x20;&#x20;&#x73;&#x65;&#x6c;&#x65;&#x63;&#x74;&#x49;&#x74;&#x65;&#x6d;&#x45;&#x78;&#x36;&#x28;&#x24;&#x65;&#x76;&#x65;&#x6e;&#x74;&#x3a;&#x20;&#x45;&#x78;&#x61;&#x6d;&#x70;&#x6c;&#x65;&#x29;&#x7b;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x63;&#x6f;&#x6e;&#x73;&#x6f;&#x6c;&#x65;&#x2e;&#x6c;&#x6f;&#x67;&#x28;&#x24;&#x65;&#x76;&#x65;&#x6e;&#x74;&#x29;&#x3b;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x74;&#x68;&#x69;&#x73;&#x2e;&#x65;&#x76;&#x6c;&#x54;&#x6f;&#x61;&#x73;&#x74;&#x2e;&#x61;&#x64;&#x64;&#x53;&#x75;&#x63;&#x63;&#x65;&#x73;&#x73;&#x4d;&#x65;&#x73;&#x73;&#x61;&#x67;&#x65;&#x28;&#x27;&#x49;&#x74;&#x65;&#x6d;&#x20;&#x73;&#x65;&#x6c;&#x65;&#x63;&#x63;&#x69;&#x6f;&#x6e;&#x61;&#x64;&#x6f;&#x20;&#x65;&#x6a;&#x65;&#x6d;&#x70;&#x6c;&#x6f;&#x20;&#x36;&#x27;&#x2c;&#x20;&#x4a;&#x53;&#x4f;&#x4e;&#x2e;&#x73;&#x74;&#x72;&#x69;&#x6e;&#x67;&#x69;&#x66;&#x79;&#x28;&#x24;&#x65;&#x76;&#x65;&#x6e;&#x74;&#x29;&#x29;&#xd;&#xa;&#x20;&#x20;&#x7d;&#xd;&#xa;&#xd;&#xa;&#x20;&#x20;&#x73;&#x65;&#x6c;&#x65;&#x63;&#x74;&#x49;&#x74;&#x65;&#x6d;&#x45;&#x78;&#x37;&#x28;&#x24;&#x65;&#x76;&#x65;&#x6e;&#x74;&#x3a;&#x20;&#x45;&#x78;&#x61;&#x6d;&#x70;&#x6c;&#x65;&#x29;&#x7b;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x63;&#x6f;&#x6e;&#x73;&#x6f;&#x6c;&#x65;&#x2e;&#x6c;&#x6f;&#x67;&#x28;&#x24;&#x65;&#x76;&#x65;&#x6e;&#x74;&#x29;&#x3b;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x74;&#x68;&#x69;&#x73;&#x2e;&#x65;&#x76;&#x6c;&#x54;&#x6f;&#x61;&#x73;&#x74;&#x2e;&#x61;&#x64;&#x64;&#x53;&#x75;&#x63;&#x63;&#x65;&#x73;&#x73;&#x4d;&#x65;&#x73;&#x73;&#x61;&#x67;&#x65;&#x28;&#x27;&#x49;&#x74;&#x65;&#x6d;&#x20;&#x73;&#x65;&#x6c;&#x65;&#x63;&#x63;&#x69;&#x6f;&#x6e;&#x61;&#x64;&#x6f;&#x20;&#x65;&#x6a;&#x65;&#x6d;&#x70;&#x6c;&#x6f;&#x20;&#x37;&#x27;&#x2c;&#x20;&#x4a;&#x53;&#x4f;&#x4e;&#x2e;&#x73;&#x74;&#x72;&#x69;&#x6e;&#x67;&#x69;&#x66;&#x79;&#x28;&#x24;&#x65;&#x76;&#x65;&#x6e;&#x74;&#x29;&#x29;&#xd;&#xa;&#x20;&#x20;&#x7d;&#xd;&#xa;&#xd;&#xa;&#x20;&#x20;&#x73;&#x65;&#x6c;&#x65;&#x63;&#x74;&#x49;&#x74;&#x65;&#x6d;&#x45;&#x78;&#x38;&#x28;&#x24;&#x65;&#x76;&#x65;&#x6e;&#x74;&#x3a;&#x20;&#x45;&#x78;&#x61;&#x6d;&#x70;&#x6c;&#x65;&#x29;&#x7b;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x63;&#x6f;&#x6e;&#x73;&#x6f;&#x6c;&#x65;&#x2e;&#x6c;&#x6f;&#x67;&#x28;&#x24;&#x65;&#x76;&#x65;&#x6e;&#x74;&#x29;&#x3b;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x74;&#x68;&#x69;&#x73;&#x2e;&#x65;&#x76;&#x6c;&#x54;&#x6f;&#x61;&#x73;&#x74;&#x2e;&#x61;&#x64;&#x64;&#x53;&#x75;&#x63;&#x63;&#x65;&#x73;&#x73;&#x4d;&#x65;&#x73;&#x73;&#x61;&#x67;&#x65;&#x28;&#x27;&#x49;&#x74;&#x65;&#x6d;&#x20;&#x73;&#x65;&#x6c;&#x65;&#x63;&#x63;&#x69;&#x6f;&#x6e;&#x61;&#x64;&#x6f;&#x20;&#x65;&#x6a;&#x65;&#x6d;&#x70;&#x6c;&#x6f;&#x20;&#x38;&#x27;&#x2c;&#x20;&#x4a;&#x53;&#x4f;&#x4e;&#x2e;&#x73;&#x74;&#x72;&#x69;&#x6e;&#x67;&#x69;&#x66;&#x79;&#x28;&#x24;&#x65;&#x76;&#x65;&#x6e;&#x74;&#x29;&#x29;&#xd;&#xa;&#x20;&#x20;&#x7d;&#xd;&#xa;&#xd;&#xa;&#x20;&#x20;&#x73;&#x65;&#x6c;&#x65;&#x63;&#x74;&#x49;&#x74;&#x65;&#x6d;&#x45;&#x78;&#x39;&#x28;&#x24;&#x65;&#x76;&#x65;&#x6e;&#x74;&#x3a;&#x20;&#x45;&#x78;&#x61;&#x6d;&#x70;&#x6c;&#x65;&#x29;&#x7b;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x63;&#x6f;&#x6e;&#x73;&#x6f;&#x6c;&#x65;&#x2e;&#x6c;&#x6f;&#x67;&#x28;&#x24;&#x65;&#x76;&#x65;&#x6e;&#x74;&#x29;&#x3b;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x74;&#x68;&#x69;&#x73;&#x2e;&#x65;&#x76;&#x6c;&#x54;&#x6f;&#x61;&#x73;&#x74;&#x2e;&#x61;&#x64;&#x64;&#x53;&#x75;&#x63;&#x63;&#x65;&#x73;&#x73;&#x4d;&#x65;&#x73;&#x73;&#x61;&#x67;&#x65;&#x28;&#x27;&#x49;&#x74;&#x65;&#x6d;&#x20;&#x73;&#x65;&#x6c;&#x65;&#x63;&#x63;&#x69;&#x6f;&#x6e;&#x61;&#x64;&#x6f;&#x20;&#x65;&#x6a;&#x65;&#x6d;&#x70;&#x6c;&#x6f;&#x20;&#x39;&#x27;&#x2c;&#x20;&#x4a;&#x53;&#x4f;&#x4e;&#x2e;&#x73;&#x74;&#x72;&#x69;&#x6e;&#x67;&#x69;&#x66;&#x79;&#x28;&#x24;&#x65;&#x76;&#x65;&#x6e;&#x74;&#x29;&#x29;&#xd;&#xa;&#x20;&#x20;&#x7d;&#xd;&#xa;&#xd;&#xa;&#x20;&#x20;&#x73;&#x65;&#x6c;&#x65;&#x63;&#x74;&#x49;&#x74;&#x65;&#x6d;&#x45;&#x78;&#x31;&#x30;&#x28;&#x24;&#x65;&#x76;&#x65;&#x6e;&#x74;&#x3a;&#x20;&#x45;&#x78;&#x61;&#x6d;&#x70;&#x6c;&#x65;&#x29;&#x7b;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x63;&#x6f;&#x6e;&#x73;&#x6f;&#x6c;&#x65;&#x2e;&#x6c;&#x6f;&#x67;&#x28;&#x24;&#x65;&#x76;&#x65;&#x6e;&#x74;&#x29;&#x3b;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x74;&#x68;&#x69;&#x73;&#x2e;&#x65;&#x76;&#x6c;&#x54;&#x6f;&#x61;&#x73;&#x74;&#x2e;&#x61;&#x64;&#x64;&#x53;&#x75;&#x63;&#x63;&#x65;&#x73;&#x73;&#x4d;&#x65;&#x73;&#x73;&#x61;&#x67;&#x65;&#x28;&#x27;&#x49;&#x74;&#x65;&#x6d;&#x20;&#x73;&#x65;&#x6c;&#x65;&#x63;&#x63;&#x69;&#x6f;&#x6e;&#x61;&#x64;&#x6f;&#x20;&#x65;&#x6a;&#x65;&#x6d;&#x70;&#x6c;&#x6f;&#x20;&#x31;&#x30;&#x27;&#x2c;&#x20;&#x4a;&#x53;&#x4f;&#x4e;&#x2e;&#x73;&#x74;&#x72;&#x69;&#x6e;&#x67;&#x69;&#x66;&#x79;&#x28;&#x24;&#x65;&#x76;&#x65;&#x6e;&#x74;&#x29;&#x29;&#xd;&#xa;&#x20;&#x20;&#x7d;&#xd;&#xa;&#xd;&#xa;&#x20;&#x20;&#x73;&#x65;&#x6c;&#x65;&#x63;&#x74;&#x49;&#x74;&#x65;&#x6d;&#x45;&#x78;&#x31;&#x31;&#x28;&#x24;&#x65;&#x76;&#x65;&#x6e;&#x74;&#x3a;&#x20;&#x45;&#x78;&#x61;&#x6d;&#x70;&#x6c;&#x65;&#x5b;&#x5d;&#x29;&#x7b;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x63;&#x6f;&#x6e;&#x73;&#x6f;&#x6c;&#x65;&#x2e;&#x6c;&#x6f;&#x67;&#x28;&#x24;&#x65;&#x76;&#x65;&#x6e;&#x74;&#x29;&#x3b;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x74;&#x68;&#x69;&#x73;&#x2e;&#x65;&#x76;&#x6c;&#x54;&#x6f;&#x61;&#x73;&#x74;&#x2e;&#x61;&#x64;&#x64;&#x53;&#x75;&#x63;&#x63;&#x65;&#x73;&#x73;&#x4d;&#x65;&#x73;&#x73;&#x61;&#x67;&#x65;&#x28;&#x27;&#x49;&#x74;&#x65;&#x6d;&#x20;&#x73;&#x65;&#x6c;&#x65;&#x63;&#x63;&#x69;&#x6f;&#x6e;&#x61;&#x64;&#x6f;&#x20;&#x65;&#x6a;&#x65;&#x6d;&#x70;&#x6c;&#x6f;&#x20;&#x31;&#x31;&#x27;&#x2c;&#x20;&#x4a;&#x53;&#x4f;&#x4e;&#x2e;&#x73;&#x74;&#x72;&#x69;&#x6e;&#x67;&#x69;&#x66;&#x79;&#x28;&#x24;&#x65;&#x76;&#x65;&#x6e;&#x74;&#x29;&#x29;&#xd;&#xa;&#x20;&#x20;&#x7d;&#xd;&#xa;&#xd;&#xa;&#x20;&#x20;&#x73;&#x65;&#x6c;&#x65;&#x63;&#x74;&#x49;&#x74;&#x65;&#x6d;&#x45;&#x78;&#x31;&#x32;&#x28;&#x24;&#x65;&#x76;&#x65;&#x6e;&#x74;&#x3a;&#x20;&#x45;&#x78;&#x61;&#x6d;&#x70;&#x6c;&#x65;&#x5b;&#x5d;&#x29;&#x7b;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x63;&#x6f;&#x6e;&#x73;&#x6f;&#x6c;&#x65;&#x2e;&#x6c;&#x6f;&#x67;&#x28;&#x24;&#x65;&#x76;&#x65;&#x6e;&#x74;&#x29;&#x3b;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x74;&#x68;&#x69;&#x73;&#x2e;&#x65;&#x76;&#x6c;&#x54;&#x6f;&#x61;&#x73;&#x74;&#x2e;&#x61;&#x64;&#x64;&#x53;&#x75;&#x63;&#x63;&#x65;&#x73;&#x73;&#x4d;&#x65;&#x73;&#x73;&#x61;&#x67;&#x65;&#x28;&#x27;&#x49;&#x74;&#x65;&#x6d;&#x20;&#x73;&#x65;&#x6c;&#x65;&#x63;&#x63;&#x69;&#x6f;&#x6e;&#x61;&#x64;&#x6f;&#x20;&#x65;&#x6a;&#x65;&#x6d;&#x70;&#x6c;&#x6f;&#x20;&#x31;&#x32;&#x27;&#x2c;&#x20;&#x4a;&#x53;&#x4f;&#x4e;&#x2e;&#x73;&#x74;&#x72;&#x69;&#x6e;&#x67;&#x69;&#x66;&#x79;&#x28;&#x24;&#x65;&#x76;&#x65;&#x6e;&#x74;&#x29;&#x29;&#xd;&#xa;&#x20;&#x20;&#x7d;&#xd;&#xa;&#xd;&#xa;&#x20;&#x20;&#x73;&#x65;&#x6c;&#x65;&#x63;&#x74;&#x49;&#x74;&#x65;&#x6d;&#x45;&#x78;&#x31;&#x33;&#x28;&#x24;&#x65;&#x76;&#x65;&#x6e;&#x74;&#x3a;&#x20;&#x45;&#x78;&#x61;&#x6d;&#x70;&#x6c;&#x65;&#x5b;&#x5d;&#x29;&#x7b;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x63;&#x6f;&#x6e;&#x73;&#x6f;&#x6c;&#x65;&#x2e;&#x6c;&#x6f;&#x67;&#x28;&#x24;&#x65;&#x76;&#x65;&#x6e;&#x74;&#x29;&#x3b;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x74;&#x68;&#x69;&#x73;&#x2e;&#x65;&#x76;&#x6c;&#x54;&#x6f;&#x61;&#x73;&#x74;&#x2e;&#x61;&#x64;&#x64;&#x53;&#x75;&#x63;&#x63;&#x65;&#x73;&#x73;&#x4d;&#x65;&#x73;&#x73;&#x61;&#x67;&#x65;&#x28;&#x27;&#x49;&#x74;&#x65;&#x6d;&#x20;&#x73;&#x65;&#x6c;&#x65;&#x63;&#x63;&#x69;&#x6f;&#x6e;&#x61;&#x64;&#x6f;&#x20;&#x65;&#x6a;&#x65;&#x6d;&#x70;&#x6c;&#x6f;&#x20;&#x31;&#x33;&#x27;&#x2c;&#x20;&#x4a;&#x53;&#x4f;&#x4e;&#x2e;&#x73;&#x74;&#x72;&#x69;&#x6e;&#x67;&#x69;&#x66;&#x79;&#x28;&#x24;&#x65;&#x76;&#x65;&#x6e;&#x74;&#x29;&#x29;&#xd;&#xa;&#x20;&#x20;&#x7d;&#xd;&#xa;&#xd;&#xa;&#x20;&#x20;&#x73;&#x65;&#x6c;&#x65;&#x63;&#x74;&#x49;&#x74;&#x65;&#x6d;&#x45;&#x78;&#x31;&#x34;&#x28;&#x24;&#x65;&#x76;&#x65;&#x6e;&#x74;&#x3a;&#x20;&#x45;&#x78;&#x61;&#x6d;&#x70;&#x6c;&#x65;&#x5b;&#x5d;&#x29;&#x7b;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x63;&#x6f;&#x6e;&#x73;&#x6f;&#x6c;&#x65;&#x2e;&#x6c;&#x6f;&#x67;&#x28;&#x24;&#x65;&#x76;&#x65;&#x6e;&#x74;&#x29;&#x3b;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x74;&#x68;&#x69;&#x73;&#x2e;&#x65;&#x76;&#x6c;&#x54;&#x6f;&#x61;&#x73;&#x74;&#x2e;&#x61;&#x64;&#x64;&#x53;&#x75;&#x63;&#x63;&#x65;&#x73;&#x73;&#x4d;&#x65;&#x73;&#x73;&#x61;&#x67;&#x65;&#x28;&#x27;&#x49;&#x74;&#x65;&#x6d;&#x20;&#x73;&#x65;&#x6c;&#x65;&#x63;&#x63;&#x69;&#x6f;&#x6e;&#x61;&#x64;&#x6f;&#x20;&#x65;&#x6a;&#x65;&#x6d;&#x70;&#x6c;&#x6f;&#x20;&#x31;&#x33;&#x27;&#x2c;&#x20;&#x4a;&#x53;&#x4f;&#x4e;&#x2e;&#x73;&#x74;&#x72;&#x69;&#x6e;&#x67;&#x69;&#x66;&#x79;&#x28;&#x24;&#x65;&#x76;&#x65;&#x6e;&#x74;&#x29;&#x29;&#xd;&#xa;&#x20;&#x20;&#x7d;&#xd;&#xa;&#xd;&#xa;&#x20;&#x20;&#x72;&#x65;&#x73;&#x65;&#x74;&#x4f;&#x70;&#x74;&#x69;&#x6f;&#x6e;&#x73;&#x45;&#x78;&#x31;&#x30;&#x28;&#x29;&#x20;&#x7b;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x74;&#x68;&#x69;&#x73;&#x2e;&#x6f;&#x70;&#x74;&#x69;&#x6f;&#x6e;&#x73;&#x45;&#x78;&#x31;&#x30;&#x20;&#x3d;&#x20;&#x5b;&#x5d;&#x3b;&#xd;&#xa;&#x20;&#x20;&#x7d;&#xd;&#xa;&#xd;&#xa;&#x20;&#x20;&#x72;&#x65;&#x73;&#x65;&#x74;&#x56;&#x61;&#x6c;&#x75;&#x65;&#x45;&#x78;&#x31;&#x30;&#x28;&#x29;&#x7b;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x74;&#x68;&#x69;&#x73;&#x2e;&#x76;&#x61;&#x6c;&#x75;&#x65;&#x31;&#x30;&#x20;&#x3d;&#x20;&#x6e;&#x75;&#x6c;&#x6c;&#x3b;&#xd;&#xa;&#x20;&#x20;&#x7d;&#xd;&#xa;&#xd;&#xa;&#x20;&#x20;&#x72;&#x65;&#x73;&#x65;&#x74;&#x56;&#x61;&#x6c;&#x75;&#x65;&#x73;&#x45;&#x78;&#x31;&#x34;&#x28;&#x29;&#x7b;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x74;&#x68;&#x69;&#x73;&#x2e;&#x76;&#x61;&#x6c;&#x75;&#x65;&#x31;&#x34;&#x20;&#x3d;&#x20;&#x5b;&#x5d;&#x3b;&#xd;&#xa;&#x20;&#x20;&#x7d;&#xd;&#xa;&#xd;&#xa;&#x7d;&#xd;&#xa;
-          </code></pre>
-
-      </ddr-tab-item>
-    </ddr-tabs> -->
+<div class="row mt-3">
+  <div class="col-12">
+    <ddr-dropdown 
+      [options]="optionsEx12" 
+      [placeholder]="'dropdown.placeholder' | ddrTranslate" 
+      [labelNoResults]="'dropdown.no.items' | ddrTranslate"
+      [labelPlaceholderFilter]="'dropdown.filter.placeholder' | ddrTranslate"
+      [compareFn]="compareFn"
+      [allowDeselect]="true"
+      name="dropdown-12"
+      [(ngModel)]="value12" 
+      (selectItem)="selectItemObject($event)" />
 
   </div>
+</div>
 
-  <div inputs>
-    <table class="table">
-      <thead class="thead-dark">
-        <tr>
-          <th>Nombre</th>
-          <th>Descripción</th>
-          <th>Tipo</th>
-          <th>Valor por defecto</th>
-          <th>Posibles valores (constants)</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>options</td>
-          <td>Optiones disponibles a elegir</td>
-          <td>IDdrSelectItem</td>
-          <td>[]</td>
-          <td></td>
-        </tr>
-        <tr>
-          <td>labelNoResults</td>
-          <td>Texto cuando no hay resultados</td>
-          <td>string</td>
-          <td>No results</td>
-          <td></td>
-        </tr>
-        <tr>
-          <td>label</td>
-          <td>Label del dropdown</td>
-          <td>string</td>
-          <td>undefined</td>
-          <td></td>
-        </tr>
-        <tr>
-          <td>showFilter</td>
-          <td>Muestra el filtro del dropdown</td>
-          <td>boolean</td>
-          <td>true</td>
-          <td></td>
-        </tr>
-        <tr>
-          <td>disabled</td>
-          <td>Deshabilita el dropdown</td>
-          <td>boolean</td>
-          <td>false</td>
-          <td></td>
-        </tr>
-        <tr>
-          <td>placeholder</td>
-          <td>Texto que se muestra mientras no hay una opción seleccionada</td>
-          <td>string</td>
-          <td>undefined</td>
-          <td></td>
-        </tr>
-        <tr>
-          <td>inline</td>
-          <td>Muestra el elemento en una linea</td>
-          <td>boolean</td>
-          <td>false</td>
-          <td></td>
-        </tr>
-        <tr>
-          <td>orientation</td>
-          <td>Orientacion en el que aparece las opciones</td>
-          <td>string</td>
-          <td>constants.ORIENTATION_DROPDOWN.BOTTOM</td>
-          <td>
-            <ul>
-              <li>ORIENTATION_DROPDOWN.BOTTOM</li>
-              <li>ORIENTATION_DROPDOWN.TOP</li>
-            </ul>
-          </td>
-        </tr>
-        <tr>
-          <td>multiple</td>
-          <td>Indica si hay una selección multiple</td>
-          <td>boolean</td>
-          <td>false</td>
-          <td></td>
-        </tr>
-        <tr>
-          <td>labelPlaceholderFilter</td>
-          <td>Texto del placeholder del input de filtro</td>
-          <td>string</td>
-          <td>'Filter...'</td>
-          <td></td>
-        </tr>
-        <tr>
-          <td>translate</td>
-          <td>Indica si queremos traducir las opciones</td>
-          <td>boolean</td>
-          <td>true</td>
-          <td></td>
-        </tr>
-
-        <tr>
-          <td>touchUI</td>
-          <td>Muestra las opciones del dropdown con un modal</td>
-          <td>boolean</td>
-          <td>true</td>
-          <td></td>
-        </tr>
-
-        <tr>
-          <td>orientationTooltip</td>
-          <td>Orientacion del tooltip</td>
-          <td>string</td>
-          <td>ORIENTATION.BOTTOM</td>
-          <td>
-            <ul>
-              <li>ORIENTATION.TOP</li>
-              <li>ORIENTATION.TOP_RIGHT</li>
-              <li>ORIENTATION.TOP_LEFT</li>
-              <li>ORIENTATION.BOTTOM</li>
-              <li>ORIENTATION.BOTTOM_RIGHT</li>
-              <li>ORIENTATION.BOTTOM_LEFT</li>
-              <li>ORIENTATION.RIGHT</li>
-              <li>ORIENTATION.LEFT</li>
-            </ul>
-          </td>
-        </tr>
-
-        <tr>
-          <td>tooltipText</td>
-          <td>Texto del tooltip</td>
-          <td>string</td>
-          <td>''</td>
-          <td></td>
-        </tr>
-
-        <tr>
-          <td>required</td>
-          <td>Indica si es requerido o no</td>
-          <td>boolean</td>
-          <td>false</td>
-          <td></td>
-        </tr>
-
-      </tbody>
-
-    </table>
+<div class="row mt-3">
+  <div class="col-12">
+    <span>{{'dropdown.value' | ddrTranslate}}: {{value12 | json}}</span>
   </div>
+</div>
 
-  <div outputs>
-    <table class="table">
-      <thead class="thead-dark">
-        <tr>
-          <th>Nombre</th>
-          <th>Descripción</th>
-          <th>Valor devuelto</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>selectItem</td>
-          <td>Evento al seleccionar un item cuando el tipo de selección simple</td>
-          <td>T</td>
-        </tr>
-        <tr>
-          <td>selectMultipleItem</td>
-          <td>Evento al seleccionar varios items cuando el tipo de selección múltiple</td>
-          <td>T[]</td>
-        </tr>
-
-      </tbody>
-
-    </table>
+<div class="row mt-3">
+  <div class="col-12">
+    <span class="h3">{{'dropdown.example.13' | ddrTranslate}}</span>
   </div>
+</div>
 
-  <div translations>
-    <table class="table">
-      <thead class="thead-dark">
-        <tr>
-          <th>Label</th>
-          <th>Descripción</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>dropdown.placeholder.filter</td>
-          <td>Placeholder filtro dropdown</td>
-        </tr>
-        <tr>
-          <td>dropdown.no.results</td>
-          <td>Texto cuando no hay resultados</td>
-        </tr>
-        <tr>
-          <td>dropdown.check.all</td>
-          <td>Texto checkbox para marcar todos</td>
-        </tr>
-      </tbody>
-    </table>
+<div class="row mt-3">
+  <div class="col-12">
+    <ddr-dropdown 
+      [options]="optionsEx13" 
+      [placeholder]="'dropdown.placeholder' | ddrTranslate" 
+      [labelNoResults]="'dropdown.no.items' | ddrTranslate"
+      [labelPlaceholderFilter]="'dropdown.filter.placeholder' | ddrTranslate"
+      [compareFn]="compareFn"
+      [modalOptions]="true"
+      name="dropdown-13"
+      [(ngModel)]="value13" 
+      (selectItem)="selectItemObject($event)" />
+
+  </div>
+</div>
+
+<div class="row mt-3">
+  <div class="col-12">
+    <span>{{'dropdown.value' | ddrTranslate}}: {{value13 | json}}</span>
+  </div>
+</div>
+
+<div class="row mt-3">
+  <div class="col-12">
+    <span class="h3">{{'dropdown.example.14' | ddrTranslate}}</span>
+  </div>
+</div>
+
+<div class="row mt-3">
+  <div class="col-12">
+    <ddr-dropdown 
+      [options]="optionsEx14" 
+      [placeholder]="'dropdown.placeholder' | ddrTranslate" 
+      [labelNoResults]="'dropdown.no.items' | ddrTranslate"
+      [labelPlaceholderFilter]="'dropdown.filter.placeholder' | ddrTranslate"
+      [compareFn]="compareFn"
+      [closeOnSelect]="false"
+      name="dropdown-14"
+      [(ngModel)]="value14" 
+      (selectItem)="selectItemObject($event)" />
+  </div>
+</div>
+
+<div class="row mt-3">
+  <div class="col-12">
+    <span>{{'dropdown.value' | ddrTranslate}}: {{value14 | json}}</span>
+  </div>
+</div>
+
+<div class="row mt-3">
+  <div class="col-12">
+    <span class="h3">{{'dropdown.example.15' | ddrTranslate}}</span>
+  </div>
+</div>
+
+<div class="row mt-3">
+  <div class="col-12">
+    <ddr-dropdown 
+      [options]="optionsEx15" 
+      [label]="'dropdown.label' | ddrTranslate"
+      [placeholder]="'dropdown.placeholder' | ddrTranslate" 
+      [labelNoResults]="'dropdown.no.items' | ddrTranslate"
+      [labelPlaceholderFilter]="'dropdown.filter.placeholder' | ddrTranslate"
+      [compareFn]="compareFn"
+      [tooltipText]="'dropdown.tooltip' | ddrTranslate"
+      name="dropdown-15"
+      [(ngModel)]="value15" 
+      (selectItem)="selectItemObject($event)" />
+  </div>
+</div>
+
+<div class="row mt-3">
+  <div class="col-12">
+    <span>{{'dropdown.value' | ddrTranslate}}: {{value15 | json}}</span>
+  </div>
+</div>
+
+<div class="row mt-3">
+  <div class="col-12">
+    <span class="h3">{{'dropdown.example.16' | ddrTranslate}}</span>
+  </div>
+</div>
+
+<div class="row mt-3">
+  <div class="col-12">
+    <ddr-dropdown 
+      [options]="optionsEx16" 
+      [label]="'dropdown.label' | ddrTranslate"
+      [placeholder]="'dropdown.placeholder' | ddrTranslate" 
+      [labelNoResults]="'dropdown.no.items' | ddrTranslate"
+      [labelPlaceholderFilter]="'dropdown.filter.placeholder' | ddrTranslate"
+      [compareFn]="compareFn"
+      [allowDeselect]="true"
+      [validate]="true"
+      [required]="true"
+      name="dropdown-16"
+      [(ngModel)]="value16" 
+      (selectItem)="selectItemObject($event)">
+
+      <ng-template #templateValid>
+        <span>{{'dropdown.ok' | ddrTranslate}}</span>
+      </ng-template>
+
+      <ng-template #templateErrors let-errors="errors">
+        @if(errors?.required){
+          <span>{{'dropdown.value.required' | ddrTranslate}}</span>
+        }
+      </ng-template>
+
+    </ddr-dropdown>
+  </div>
+</div>
+
+<div class="row mt-3">
+  <div class="col-12">
+    <span>{{'dropdown.value' | ddrTranslate}}: {{value16 | json}}</span>
+  </div>
+</div>
+
+<div class="row mt-3">
+  <div class="col-12">
+    <span class="h3">{{'dropdown.example.17' | ddrTranslate}}</span>
+  </div>
+</div>
+
+<div class="row mt-3">
+  <div class="col-12 background-test-transparent">
+    <ddr-dropdown 
+      [options]="optionsEx17" 
+      [label]="'dropdown.label' | ddrTranslate"
+      [placeholder]="'dropdown.placeholder' | ddrTranslate" 
+      [labelNoResults]="'dropdown.no.items' | ddrTranslate"
+      [labelPlaceholderFilter]="'dropdown.filter.placeholder' | ddrTranslate"
+      [compareFn]="compareFn"
+      [transparent]="true"
+      name="dropdown-17"
+      [(ngModel)]="value17" 
+      (selectItem)="selectItemObject($event)" />
+  </div>
+</div>
+
+<div class="row mt-3">
+  <div class="col-12">
+    <span>{{'dropdown.value' | ddrTranslate}}: {{value17 | json}}</span>
+  </div>
+</div>
+
   </div>
 
 </base-showcase>

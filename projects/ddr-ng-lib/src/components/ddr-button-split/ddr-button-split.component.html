@@ -1,0 +1,82 @@
+@if (actions && actions.length > 0) {
+  <div class="ddr-button-split" [ngClass]="{'ddr-button-split--transparent': transparent, 'ddr-button-split--without-border': !border}">
+    @if (showFirst && !showFirstOnlyIcon) {
+      <ddr-button
+        class="ddr-button-split__action-principal"
+        [ngClass]="{'ddr-button-split__action-principal--more-actions': actions && actions.length > 1}"
+        [text]="actions[0]?.label | ddrTranslate"
+        [icon]="actions[0]?.icon"
+        [img]="actions[0]?.img"
+        [size]="size"
+        [disabled]="disabled"
+        (action)="sendAction(actions[0])">
+      </ddr-button>
+    }
+    @if (showFirst && showFirstOnlyIcon) {
+      <ddr-button
+        class="ddr-button-split__action-principal"
+        [ngClass]="{'ddr-button-split__action-principal--more-actions': actions.length > 1}"
+        [icon]="actions[0]?.icon"
+        [img]="actions[0]?.img"
+        [size]="size"
+        [disabled]="disabled"
+        (action)="sendAction(actions[0])">
+      </ddr-button>
+    }
+    @if (actions && actions.length > 1 || !showFirst) {
+      <ddr-button
+        class="ddr-button-split__action-secondaries"
+        [ngClass]="{
+        'ddr-button-split__action-secondaries-no-border-left': showFirst,
+        'ddr-button-split__action-secondaries': !showFirst
+        }"
+        [icon]="iconShowOptions"
+        [size]="size"
+        [disabled]="disabled"
+        (action)="togglePanelOptions()">
+      </ddr-button>
+    }
+    @if (showOptions) {
+      <div
+        [class]="'ddr-button-split__options ddr-button-split__options--position-' + position"
+        [ngClass]="{'ddr-button-split__options--with-text': !showOnlyIcon }"
+        [@overlayAnimation]="{ value: 'visible' }"
+        ddrClickOutside
+        (clickOutside)="hideOptions()">
+        <ul>
+          @for (action of actions; track action; let first = $first) {
+            @if ((first && showFirstInOptions) || !first) {
+              <li (click)="sendAction(action)">
+                <div class="row">
+                  @if (!showOnlyIcon) {
+                    <div class="col-3 text-end">
+                      @if (action.icon) {
+                        <i [class]="action.icon"></i>
+                      }
+                      @if (action.img) {
+                        <img [src]="action.img" />
+                      }
+                    </div>
+                    <div class="col-9 text-start">
+                      {{action.label | ddrTranslate}}
+                    </div>
+                  }
+                  @if (showOnlyIcon) {
+                    <div class="col-12 text-center">
+                      @if (action.icon) {
+                        <i [class]="action.icon"></i>
+                      }
+                      @if (action.img) {
+                        <img [src]="action.img" />
+                      }
+                    </div>
+                  }
+                </div>
+              </li>
+            }
+          }
+        </ul>
+      </div>
+    }
+  </div>
+}

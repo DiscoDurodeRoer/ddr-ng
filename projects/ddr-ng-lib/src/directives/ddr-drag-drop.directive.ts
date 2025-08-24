@@ -5,30 +5,28 @@ import {
   EventEmitter,
   Input,
   Renderer2,
-  ElementRef
+  ElementRef,
+  inject
 } from "@angular/core";
 import { DomSanitizer } from '@angular/platform-browser';
 import { DdrFileHandle } from "../common/ddr-file-handler.model";
 
 @Directive({
-  selector: "[DdrDragDrop]",
-  standalone: true
+  selector: "[ddrDragDrop]"
 })
 export class DdrDragDropDirective {
 
-  @Input() dragAndDropEnabled: boolean = true;
-  @Output() files: EventEmitter<DdrFileHandle[]> = new EventEmitter();
+  @Input() dragDropEnabled: boolean = true;
+  @Output() dragDropFiles: EventEmitter<DdrFileHandle[]> = new EventEmitter();
 
-  constructor(
-    private renderer: Renderer2,
-    private element: ElementRef,
-    private sanitizer: DomSanitizer
-  ) { }
+  private renderer: Renderer2 = inject(Renderer2);
+  private element: ElementRef = inject(ElementRef);
+  private sanitizer: DomSanitizer = inject(DomSanitizer);
 
   @HostListener("dragover", ["$event"]) public onDragOver(evt: DragEvent) {
     evt.preventDefault();
     evt.stopPropagation();
-    if (this.dragAndDropEnabled) {
+    if (this.dragDropEnabled) {
       this.renderer.addClass(this.element.nativeElement, 'drag-and-drop-border');
     }
   }
@@ -44,7 +42,7 @@ export class DdrDragDropDirective {
     evt.stopPropagation();
     this.renderer.removeClass(this.element.nativeElement, 'drag-and-drop-border')
     
-    if (this.dragAndDropEnabled) {
+    if (this.dragDropEnabled) {
       let files: DdrFileHandle[] = [];
       if(evt.dataTransfer){
 
@@ -54,7 +52,7 @@ export class DdrDragDropDirective {
           files.push({ file, url });
         }
         if (files.length > 0) {
-          this.files.emit(files);
+          this.dragDropFiles.emit(files);
         }
       }
     }

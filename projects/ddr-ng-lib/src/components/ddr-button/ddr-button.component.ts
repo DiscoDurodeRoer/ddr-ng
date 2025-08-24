@@ -1,5 +1,5 @@
+
 import {
-  booleanAttribute,
   Component,
   EventEmitter,
   inject,
@@ -11,17 +11,19 @@ import {
 import { DdrConstantsService } from '../../services/ddr-constants.service';
 import { DdrTooltipDirective } from '../../directives/ddr-tooltip.directive';
 import { NgClass } from '@angular/common';
-import { DdrModeButton, DdrSize, DdrTypeButton } from '../../types/types';
+import { DdrIconPositionButton, DdrModeButton, DdrOrientatioTooltip, DdrSize, DdrTypeButton } from '../../types/types';
+import { DdrTranslatePipe } from '../../pipes/ddr-translate.pipe';
 
 @Component({
-    selector: 'ddr-button',
-    templateUrl: './ddr-button.component.html',
-    styleUrls: ['./ddr-button.component.scss'],
-    encapsulation: ViewEncapsulation.None,
-    imports: [
-        DdrTooltipDirective,
-        NgClass
-    ]
+  selector: 'ddr-button',
+  templateUrl: './ddr-button.component.html',
+  styleUrls: ['./ddr-button.component.scss'],
+  encapsulation: ViewEncapsulation.None,
+  imports: [
+    DdrTooltipDirective,
+    DdrTranslatePipe,
+    NgClass
+  ]
 })
 export class DdrButtonComponent implements OnInit {
 
@@ -30,17 +32,18 @@ export class DdrButtonComponent implements OnInit {
   @Input() icon?: string;
   @Input() img?: string;
   @Input() text?: string;
-  @Input({ transform: booleanAttribute }) block: boolean = false;
-  @Input({ transform: booleanAttribute }) disabled: boolean = false;
+  @Input() block: boolean = false;
+  @Input() disabled: boolean = false;
   @Input() type: DdrTypeButton = this.constants.TYPE_BUTTON.BUTTON;
   @Input() mode: DdrModeButton = this.constants.MODES_BUTTON.DEFAULT;
   @Input() size: DdrSize = this.constants.SIZE.SMALL;
   @Input() position?: string;
-  @Input({ transform: booleanAttribute }) border: boolean = true;
-  @Input({ transform: booleanAttribute }) floatButton: boolean = false;
-  @Input({ transform: booleanAttribute }) iconLeft: boolean = true;
+  @Input() border: boolean = true;
+  @Input() floatButton: boolean = false;
+  @Input() iconPosition: DdrIconPositionButton = 'left';
   @Input() tooltipText?: string;
-  @Input({ transform: booleanAttribute }) transparent: boolean = false;
+  @Input() tooltipOrientation: DdrOrientatioTooltip = this.constants.ORIENTATION.TOP;
+  @Input() transparent: boolean = false;
 
   @Output() action: EventEmitter<MouseEvent> = new EventEmitter<MouseEvent>();
 

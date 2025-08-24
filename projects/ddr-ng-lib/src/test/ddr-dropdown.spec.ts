@@ -1,5 +1,5 @@
 import { DebugElement } from '@angular/core';
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, fakeAsync, TestBed, tick, waitForAsync } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -87,11 +87,12 @@ describe('DdrDropdown', () => {
             });
     }));
 
-    it('element should be selected (numbers)', waitForAsync(() => {
+    it('element should be selected (numbers)', fakeAsync(() => {
         fixtureDropdownNumber.detectChanges();
         fixtureDropdownNumber.whenStable().then(() => {
 
             inputGroupDropdownNumber.triggerEventHandler('action');
+            tick(100);
             fixtureDropdownNumber.detectChanges();
             expect(componentDropdownNumber.showItems).toBeTrue();
 
@@ -117,11 +118,12 @@ describe('DdrDropdown', () => {
         });
     }));
 
-    it('element should be selected (objects)', waitForAsync(() => {
+    it('element should be selected (objects)', fakeAsync(() => {
         fixtureDropdownObject.detectChanges();
         fixtureDropdownObject.whenStable().then(() => {
 
-            inputGroupDropdownObject.triggerEventHandler('action');
+            inputGroupDropdownObject.triggerEventHandler('action');            
+            tick(100);
             fixtureDropdownObject.detectChanges();
             expect(componentDropdownObject.showItems).toBeTrue();
 
@@ -147,11 +149,12 @@ describe('DdrDropdown', () => {
         });
     }));
 
-    it('should filter by text', waitForAsync(() => {
+    it('should filter by text', fakeAsync(() => {
         fixtureDropdownObject.detectChanges();
         fixtureDropdownObject.whenStable().then(() => {
 
             inputGroupDropdownObject.triggerEventHandler('action');
+            tick(100);
             fixtureDropdownObject.detectChanges();
             expect(componentDropdownObject.showItems).toBeTrue();
 
@@ -171,11 +174,12 @@ describe('DdrDropdown', () => {
         });
     }));
 
-    it('should not appear options when we filter', waitForAsync(() => {
+    it('should not appear options when we filter', fakeAsync(() => {
         fixtureDropdownObject.detectChanges();
         fixtureDropdownObject.whenStable().then(() => {
 
             inputGroupDropdownObject.triggerEventHandler('action');
+            tick(100);
             fixtureDropdownObject.detectChanges();
             expect(componentDropdownObject.showItems).toBeTrue();
 
@@ -195,18 +199,19 @@ describe('DdrDropdown', () => {
         });
     }));
 
-    it('options panel should not appear', waitForAsync(() => {
+    it('options panel should not appear', fakeAsync(() => {
         fixtureDropdownObject.detectChanges();
         fixtureDropdownObject.whenStable().then(() => {
 
             componentDropdownObject.disabled = true;
             inputGroupDropdownObject.triggerEventHandler('action');
+            tick(100);
             fixtureDropdownObject.detectChanges();
             expect(componentDropdownObject.showItems).toBeFalse();
         });
     }));
 
-    it('empty options', waitForAsync(() => {
+    it('empty options', fakeAsync(() => {
         fixtureDropdownObject.detectChanges();
         fixtureDropdownObject.whenStable().then(() => {
 
@@ -215,6 +220,7 @@ describe('DdrDropdown', () => {
             fixtureDropdownObject.detectChanges();
 
             inputGroupDropdownObject.triggerEventHandler('action');
+            tick(100);
             fixtureDropdownObject.detectChanges();
             expect(componentDropdownObject.showItems).toBeTrue();
 
@@ -289,7 +295,7 @@ describe('DdrDropdown', () => {
 
     }));
 
-    it('allowDeselect', waitForAsync(() => {
+    it('allowDeselect', fakeAsync(() => {
 
         componentDropdownObject.allowDeselect = true;
 
@@ -299,6 +305,7 @@ describe('DdrDropdown', () => {
             spyOn(componentDropdownObject.selectItem, "emit");
 
             inputGroupDropdownObject.triggerEventHandler('action');
+            tick(100);
             fixtureDropdownObject.detectChanges();
             expect(componentDropdownObject.showItems).toBeTrue();
 

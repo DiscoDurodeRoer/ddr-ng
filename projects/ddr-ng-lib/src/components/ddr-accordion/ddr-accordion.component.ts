@@ -1,28 +1,30 @@
 import { animate, group, state, style, transition, trigger } from '@angular/animations';
-import { AfterViewInit, Component, ElementRef, EventEmitter, Input, Output, ViewChild, ViewEncapsulation } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, EventEmitter, inject, Input, Output, ViewChild, ViewEncapsulation } from '@angular/core';
 import { DdrButtonComponent } from '../ddr-button/ddr-button.component';
 import { NgClass } from '@angular/common';
 
 @Component({
-    selector: 'ddr-accordion',
-    templateUrl: './ddr-accordion.component.html',
-    styleUrls: ['./ddr-accordion.component.scss'],
-    encapsulation: ViewEncapsulation.None,
-    imports: [
-        DdrButtonComponent,
-        NgClass
-    ],
-    animations: [
-        trigger('slideInOut', [
-            state('open', style({ height: '*' })),
-            state('close', style({ height: 0 })),
-            transition('open <=> close', group([
-                animate('400ms')
-            ]))
-        ])
-    ]
+  selector: 'ddr-accordion',
+  templateUrl: './ddr-accordion.component.html',
+  styleUrls: ['./ddr-accordion.component.scss'],
+  encapsulation: ViewEncapsulation.None,
+  imports: [
+    DdrButtonComponent,
+    NgClass
+  ],
+  animations: [
+    trigger('slideInOut', [
+      state('open', style({ height: '*' })),
+      state('close', style({ height: 0 })),
+      transition('open <=> close', group([
+        animate('400ms')
+      ]))
+    ])
+  ]
 })
 export class DdrAccordionComponent implements AfterViewInit {
+
+  private changeDetectorRef: ChangeDetectorRef = inject(ChangeDetectorRef);
 
   @Input({ required: true }) titleAccordion!: string;
   @Input() open: boolean = false;
@@ -30,21 +32,26 @@ export class DdrAccordionComponent implements AfterViewInit {
   @Input() border: boolean = true;
   @Input() slim: boolean = false;
 
-  @Output() clickOpen: EventEmitter<boolean> = new EventEmitter<boolean>();;
+  @Output() clickOpen: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   @ViewChild("contentAccordion") contentAccordion!: ElementRef;
 
   public state: string = 'close';
+  public animate = false;
 
   ngAfterViewInit() {
 
     if (this.open) {
-      this.contentAccordion.nativeElement.style.overflow = 'hidden';
-      setTimeout(() => {
-        this.state = 'open';
-        this.contentAccordion.nativeElement.style.overflow = 'inherit';
-      }, 400);
+      this.state = 'open';
+      this.contentAccordion.nativeElement.style.overflow = 'inherit';
     }
+
+    setTimeout(() => {
+      this.animate = true;
+    });
+
+    this.changeDetectorRef.detectChanges();
+
   }
 
   openClose() {

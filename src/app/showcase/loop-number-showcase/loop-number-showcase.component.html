@@ -1,186 +1,110 @@
-<base-showcase [showOutputs]="false">
-<div description>
-  <p>Pipe para recorrer con un ngFor de 0 a n sin necesidad de arrays u objetos.</p>
-</div>
+<base-showcase component="ddr-loop-number" type="pipe"  [showInputs]="false" [showOutputs]="false" [showClasses]="true">
+
+  <div description>
+    <p>{{'loop.number.description' | ddrTranslate}}</p>
+  </div>
+
 <div examples>
-  <div class="row">
-    <div class="col-12">
-      <h3>Ejemplo 1: Estandar</h3>
-    </div>
-  </div>
-  <div class="row mt-3">
-    <div class="col-12">
-      @for (i of 10 | loopNumber; track i) {
-        <div>
-          {{i}}
-        </div>
-      }
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-12">
-      <h3>Ejemplo 2: negativos</h3>
-    </div>
-  </div>
-  <div class="row mt-3">
-    <div class="col-12">
-      @for (i of 5 | loopNumber: {start: -5} ; track i) {
-        <div>
-          {{i}}
-        </div>
-      }
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-12">
-      <h3>Ejemplo 3: anidado</h3>
-    </div>
-  </div>
-  <div class="row mt-3">
-    <div class="col-12">
-      <table class="table table-bordered">
-        @for (i of 10 | loopNumber; track i) {
-          <tr>
-            @for (j of 10 | loopNumber; track j) {
-              <td> {{i}} {{j}}</td>
-            }
-          </tr>
-        }
-      </table>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-12">
-      <h3>Ejemplo 4: reverse</h3>
-    </div>
-  </div>
-  <div class="row mt-3">
-    <div class="col-12">
-      @for (i of 10 | loopNumber:{reverse: true} ; track i) {
-        <div>
-          {{i}}
-        </div>
-      }
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-12">
-      <h3>Ejemplo 5: step</h3>
-    </div>
-  </div>
-  <div class="row mt-3">
-    <div class="col-12">
-      @for (i of 10 | loopNumber:{step: 2} ; track i) {
-        <div>
-          {{i}}
-        </div>
-      }
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-12">
-      <h3>Ejemplo 6: includeLast</h3>
-    </div>
-  </div>
-  <div class="row mt-3">
-    <div class="col-12">
-      @for (i of 10 | loopNumber:{includeLast: true} ; track i) {
-        <div>
-          {{i}}
-        </div>
-      }
-    </div>
+
+<div class="row">
+  <div class="col-12">
+    <span class="h3">{{'loop.number.example.1' | ddrTranslate}}</span>
   </div>
 </div>
-<div code>
-  <!-- <ddr-tabs>
-    <ddr-tab-item titleTab="HTML">
-      <pre  class="language-html">
-        <code class="language-html" DdrHighlightCode ngNonBindable>
-          &#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x72;&#x6f;&#x77;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x63;&#x6f;&#x6c;&#x2d;&#x31;&#x32;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x3c;&#x68;&#x33;&#x3e;&#x45;&#x6a;&#x65;&#x6d;&#x70;&#x6c;&#x6f;&#x20;&#x31;&#x3a;&#x20;&#x45;&#x73;&#x74;&#x61;&#x6e;&#x64;&#x61;&#x72;&#x3c;&#x2f;&#x68;&#x33;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#xd;&#xa;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x72;&#x6f;&#x77;&#x20;&#x6d;&#x74;&#x2d;&#x33;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x63;&#x6f;&#x6c;&#x2d;&#x31;&#x32;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x2a;&#x6e;&#x67;&#x46;&#x6f;&#x72;&#x3d;&#x22;&#x6c;&#x65;&#x74;&#x20;&#x69;&#x20;&#x6f;&#x66;&#x20;&#x31;&#x30;&#x20;&#x7c;&#x20;&#x6c;&#x6f;&#x6f;&#x70;&#x4e;&#x75;&#x6d;&#x62;&#x65;&#x72;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x7b;&#x7b;&#x69;&#x7d;&#x7d;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#xd;&#xa;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x72;&#x6f;&#x77;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x63;&#x6f;&#x6c;&#x2d;&#x31;&#x32;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x3c;&#x68;&#x33;&#x3e;&#x45;&#x6a;&#x65;&#x6d;&#x70;&#x6c;&#x6f;&#x20;&#x32;&#x3a;&#x20;&#x6e;&#x65;&#x67;&#x61;&#x74;&#x69;&#x76;&#x6f;&#x73;&#x3c;&#x2f;&#x68;&#x33;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#xd;&#xa;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x72;&#x6f;&#x77;&#x20;&#x6d;&#x74;&#x2d;&#x33;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x63;&#x6f;&#x6c;&#x2d;&#x31;&#x32;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x2a;&#x6e;&#x67;&#x46;&#x6f;&#x72;&#x3d;&#x22;&#x6c;&#x65;&#x74;&#x20;&#x69;&#x20;&#x6f;&#x66;&#x20;&#x35;&#x20;&#x7c;&#x20;&#x6c;&#x6f;&#x6f;&#x70;&#x4e;&#x75;&#x6d;&#x62;&#x65;&#x72;&#x3a;&#x20;&#x7b;&#x73;&#x74;&#x61;&#x72;&#x74;&#x3a;&#x20;&#x2d;&#x35;&#x7d;&#x20;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x7b;&#x7b;&#x69;&#x7d;&#x7d;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#xd;&#xa;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x72;&#x6f;&#x77;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x63;&#x6f;&#x6c;&#x2d;&#x31;&#x32;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x3c;&#x68;&#x33;&#x3e;&#x45;&#x6a;&#x65;&#x6d;&#x70;&#x6c;&#x6f;&#x20;&#x33;&#x3a;&#x20;&#x61;&#x6e;&#x69;&#x64;&#x61;&#x64;&#x6f;&#x3c;&#x2f;&#x68;&#x33;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#xd;&#xa;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x72;&#x6f;&#x77;&#x20;&#x6d;&#x74;&#x2d;&#x33;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x63;&#x6f;&#x6c;&#x2d;&#x31;&#x32;&#x22;&#x3e;&#xd;&#xa;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x3c;&#x74;&#x61;&#x62;&#x6c;&#x65;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x74;&#x61;&#x62;&#x6c;&#x65;&#x20;&#x74;&#x61;&#x62;&#x6c;&#x65;&#x2d;&#x62;&#x6f;&#x72;&#x64;&#x65;&#x72;&#x65;&#x64;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x3c;&#x74;&#x72;&#x20;&#x2a;&#x6e;&#x67;&#x46;&#x6f;&#x72;&#x3d;&#x22;&#x6c;&#x65;&#x74;&#x20;&#x69;&#x20;&#x6f;&#x66;&#x20;&#x31;&#x30;&#x20;&#x7c;&#x20;&#x6c;&#x6f;&#x6f;&#x70;&#x4e;&#x75;&#x6d;&#x62;&#x65;&#x72;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x3c;&#x74;&#x64;&#x20;&#x2a;&#x6e;&#x67;&#x46;&#x6f;&#x72;&#x3d;&#x22;&#x6c;&#x65;&#x74;&#x20;&#x6a;&#x20;&#x6f;&#x66;&#x20;&#x31;&#x30;&#x20;&#x7c;&#x20;&#x6c;&#x6f;&#x6f;&#x70;&#x4e;&#x75;&#x6d;&#x62;&#x65;&#x72;&#x22;&#x3e;&#x20;&#x7b;&#x7b;&#x69;&#x7d;&#x7d;&#x20;&#x7b;&#x7b;&#x6a;&#x7d;&#x7d;&#x3c;&#x2f;&#x74;&#x64;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x3c;&#x2f;&#x74;&#x72;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x3c;&#x2f;&#x74;&#x61;&#x62;&#x6c;&#x65;&#x3e;&#xd;&#xa;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#xd;&#xa;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x72;&#x6f;&#x77;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x63;&#x6f;&#x6c;&#x2d;&#x31;&#x32;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x3c;&#x68;&#x33;&#x3e;&#x45;&#x6a;&#x65;&#x6d;&#x70;&#x6c;&#x6f;&#x20;&#x34;&#x3a;&#x20;&#x72;&#x65;&#x76;&#x65;&#x72;&#x73;&#x65;&#x3c;&#x2f;&#x68;&#x33;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#xd;&#xa;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x72;&#x6f;&#x77;&#x20;&#x6d;&#x74;&#x2d;&#x33;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x63;&#x6f;&#x6c;&#x2d;&#x31;&#x32;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x2a;&#x6e;&#x67;&#x46;&#x6f;&#x72;&#x3d;&#x22;&#x6c;&#x65;&#x74;&#x20;&#x69;&#x20;&#x6f;&#x66;&#x20;&#x31;&#x30;&#x20;&#x7c;&#x20;&#x6c;&#x6f;&#x6f;&#x70;&#x4e;&#x75;&#x6d;&#x62;&#x65;&#x72;&#x3a;&#x7b;&#x72;&#x65;&#x76;&#x65;&#x72;&#x73;&#x65;&#x3a;&#x20;&#x74;&#x72;&#x75;&#x65;&#x7d;&#x20;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x7b;&#x7b;&#x69;&#x7d;&#x7d;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#xd;&#xa;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x72;&#x6f;&#x77;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x63;&#x6f;&#x6c;&#x2d;&#x31;&#x32;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x3c;&#x68;&#x33;&#x3e;&#x45;&#x6a;&#x65;&#x6d;&#x70;&#x6c;&#x6f;&#x20;&#x35;&#x3a;&#x20;&#x73;&#x74;&#x65;&#x70;&#x3c;&#x2f;&#x68;&#x33;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#xd;&#xa;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x72;&#x6f;&#x77;&#x20;&#x6d;&#x74;&#x2d;&#x33;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x63;&#x6f;&#x6c;&#x2d;&#x31;&#x32;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x2a;&#x6e;&#x67;&#x46;&#x6f;&#x72;&#x3d;&#x22;&#x6c;&#x65;&#x74;&#x20;&#x69;&#x20;&#x6f;&#x66;&#x20;&#x31;&#x30;&#x20;&#x7c;&#x20;&#x6c;&#x6f;&#x6f;&#x70;&#x4e;&#x75;&#x6d;&#x62;&#x65;&#x72;&#x3a;&#x7b;&#x73;&#x74;&#x65;&#x70;&#x3a;&#x20;&#x32;&#x7d;&#x20;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x7b;&#x7b;&#x69;&#x7d;&#x7d;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#xd;&#xa;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x72;&#x6f;&#x77;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x63;&#x6f;&#x6c;&#x2d;&#x31;&#x32;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x3c;&#x68;&#x33;&#x3e;&#x45;&#x6a;&#x65;&#x6d;&#x70;&#x6c;&#x6f;&#x20;&#x36;&#x3a;&#x20;&#x69;&#x6e;&#x63;&#x6c;&#x75;&#x64;&#x65;&#x4c;&#x61;&#x73;&#x74;&#x3c;&#x2f;&#x68;&#x33;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#xd;&#xa;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x72;&#x6f;&#x77;&#x20;&#x6d;&#x74;&#x2d;&#x33;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x63;&#x6f;&#x6c;&#x2d;&#x31;&#x32;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x2a;&#x6e;&#x67;&#x46;&#x6f;&#x72;&#x3d;&#x22;&#x6c;&#x65;&#x74;&#x20;&#x69;&#x20;&#x6f;&#x66;&#x20;&#x31;&#x30;&#x20;&#x7c;&#x20;&#x6c;&#x6f;&#x6f;&#x70;&#x4e;&#x75;&#x6d;&#x62;&#x65;&#x72;&#x3a;&#x7b;&#x69;&#x6e;&#x63;&#x6c;&#x75;&#x64;&#x65;&#x4c;&#x61;&#x73;&#x74;&#x3a;&#x20;&#x74;&#x72;&#x75;&#x65;&#x7d;&#x20;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x7b;&#x7b;&#x69;&#x7d;&#x7d;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;
-        </code>
-      </pre>
-    </ddr-tab-item>
-    <ddr-tab-item titleTab="CSS">
-    </ddr-tab-item>
-    <ddr-tab-item titleTab="TS">
-      -- DdrParamsLoop
-      <pre  class="language-typescript">
-        <code class="language-typescript" DdrHighlightCode  ngNonBindable>
-          &#x65;&#x78;&#x70;&#x6f;&#x72;&#x74;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x20;&#x45;&#x76;&#x6c;&#x50;&#x61;&#x72;&#x61;&#x6d;&#x73;&#x4c;&#x6f;&#x6f;&#x70;&#x20;&#x7b;&#xd;&#xa;&#x20;&#x20;&#x73;&#x74;&#x61;&#x72;&#x74;&#x3f;&#x3a;&#x20;&#x6e;&#x75;&#x6d;&#x62;&#x65;&#x72;&#x3b;&#xd;&#xa;&#x20;&#x20;&#x69;&#x6e;&#x63;&#x6c;&#x75;&#x64;&#x65;&#x4c;&#x61;&#x73;&#x74;&#x3f;&#x3a;&#x20;&#x62;&#x6f;&#x6f;&#x6c;&#x65;&#x61;&#x6e;&#x3b;&#xd;&#xa;&#x20;&#x20;&#x73;&#x74;&#x65;&#x70;&#x3f;&#x3a;&#x20;&#x6e;&#x75;&#x6d;&#x62;&#x65;&#x72;&#x3b;&#xd;&#xa;&#x20;&#x20;&#x72;&#x65;&#x76;&#x65;&#x72;&#x73;&#x65;&#x3f;&#x3a;&#x20;&#x62;&#x6f;&#x6f;&#x6c;&#x65;&#x61;&#x6e;&#x3b;&#xd;&#xa;&#x7d;
-        </code>
-      </pre>
-      -- Showcase
-      <pre  class="language-typescript">
-        <code class="language-typescript" DdrHighlightCode  ngNonBindable>
-          &#x69;&#x6d;&#x70;&#x6f;&#x72;&#x74;&#x20;&#x7b;&#x20;&#x43;&#x6f;&#x6d;&#x70;&#x6f;&#x6e;&#x65;&#x6e;&#x74;&#x2c;&#x20;&#x4f;&#x6e;&#x49;&#x6e;&#x69;&#x74;&#x20;&#x7d;&#x20;&#x66;&#x72;&#x6f;&#x6d;&#x20;&#x27;&#x40;&#x61;&#x6e;&#x67;&#x75;&#x6c;&#x61;&#x72;&#x2f;&#x63;&#x6f;&#x72;&#x65;&#x27;&#x3b;&#xd;&#xa;&#x69;&#x6d;&#x70;&#x6f;&#x72;&#x74;&#x20;&#x7b;&#x20;&#x45;&#x76;&#x6c;&#x53;&#x65;&#x73;&#x73;&#x69;&#x6f;&#x6e;&#x53;&#x65;&#x72;&#x76;&#x69;&#x63;&#x65;&#x20;&#x7d;&#x20;&#x66;&#x72;&#x6f;&#x6d;&#x20;&#x27;&#x70;&#x72;&#x6f;&#x6a;&#x65;&#x63;&#x74;&#x73;&#x2f;&#x65;&#x76;&#x6c;&#x2d;&#x6c;&#x69;&#x62;&#x2f;&#x73;&#x72;&#x63;&#x2f;&#x70;&#x75;&#x62;&#x6c;&#x69;&#x63;&#x2d;&#x61;&#x70;&#x69;&#x27;&#x3b;&#xd;&#xa;&#xd;&#xa;&#x40;&#x43;&#x6f;&#x6d;&#x70;&#x6f;&#x6e;&#x65;&#x6e;&#x74;&#x28;&#x7b;&#xd;&#xa;&#x20;&#x20;&#x73;&#x65;&#x6c;&#x65;&#x63;&#x74;&#x6f;&#x72;&#x3a;&#x20;&#x27;&#x61;&#x70;&#x70;&#x2d;&#x6c;&#x6f;&#x6f;&#x70;&#x2d;&#x6e;&#x75;&#x6d;&#x62;&#x65;&#x72;&#x2d;&#x73;&#x68;&#x6f;&#x77;&#x63;&#x61;&#x73;&#x65;&#x27;&#x2c;&#xd;&#xa;&#x20;&#x20;&#x74;&#x65;&#x6d;&#x70;&#x6c;&#x61;&#x74;&#x65;&#x55;&#x72;&#x6c;&#x3a;&#x20;&#x27;&#x2e;&#x2f;&#x6c;&#x6f;&#x6f;&#x70;&#x2d;&#x6e;&#x75;&#x6d;&#x62;&#x65;&#x72;&#x2d;&#x73;&#x68;&#x6f;&#x77;&#x63;&#x61;&#x73;&#x65;&#x2e;&#x63;&#x6f;&#x6d;&#x70;&#x6f;&#x6e;&#x65;&#x6e;&#x74;&#x2e;&#x68;&#x74;&#x6d;&#x6c;&#x27;&#x2c;&#xd;&#xa;&#x20;&#x20;&#x73;&#x74;&#x79;&#x6c;&#x65;&#x55;&#x72;&#x6c;&#x73;&#x3a;&#x20;&#x5b;&#x27;&#x2e;&#x2f;&#x6c;&#x6f;&#x6f;&#x70;&#x2d;&#x6e;&#x75;&#x6d;&#x62;&#x65;&#x72;&#x2d;&#x73;&#x68;&#x6f;&#x77;&#x63;&#x61;&#x73;&#x65;&#x2e;&#x63;&#x6f;&#x6d;&#x70;&#x6f;&#x6e;&#x65;&#x6e;&#x74;&#x2e;&#x73;&#x63;&#x73;&#x73;&#x27;&#x5d;&#xd;&#xa;&#x7d;&#x29;&#xd;&#xa;&#x65;&#x78;&#x70;&#x6f;&#x72;&#x74;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x20;&#x4c;&#x6f;&#x6f;&#x70;&#x4e;&#x75;&#x6d;&#x62;&#x65;&#x72;&#x53;&#x68;&#x6f;&#x77;&#x63;&#x61;&#x73;&#x65;&#x43;&#x6f;&#x6d;&#x70;&#x6f;&#x6e;&#x65;&#x6e;&#x74;&#x20;&#x7b;&#xd;&#xa;&#xd;&#xa;&#x20;&#x20;&#x63;&#x6f;&#x6e;&#x73;&#x74;&#x72;&#x75;&#x63;&#x74;&#x6f;&#x72;&#x28;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x70;&#x75;&#x62;&#x6c;&#x69;&#x63;&#x20;&#x65;&#x76;&#x6c;&#x53;&#x65;&#x73;&#x73;&#x69;&#x6f;&#x6e;&#x3a;&#x20;&#x45;&#x76;&#x6c;&#x53;&#x65;&#x73;&#x73;&#x69;&#x6f;&#x6e;&#x53;&#x65;&#x72;&#x76;&#x69;&#x63;&#x65;&#xd;&#xa;&#x20;&#x20;&#x29;&#x20;&#x7b;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x74;&#x68;&#x69;&#x73;&#x2e;&#x65;&#x76;&#x6c;&#x53;&#x65;&#x73;&#x73;&#x69;&#x6f;&#x6e;&#x2e;&#x73;&#x65;&#x74;&#x45;&#x6c;&#x65;&#x6d;&#x65;&#x6e;&#x74;&#x28;&#x27;&#x74;&#x69;&#x74;&#x6c;&#x65;&#x27;&#x2c;&#x20;&#x27;&#x4c;&#x6f;&#x6f;&#x70;&#x20;&#x6e;&#x75;&#x6d;&#x62;&#x65;&#x72;&#x27;&#x29;&#x3b;&#xd;&#xa;&#x20;&#x20;&#x7d;&#xd;&#xa;&#xd;&#xa;&#x7d;&#xd;&#xa;
-        </code>
-      </pre>
-    </ddr-tab-item>
-  </ddr-tabs> -->
+
+<div class="row mt-3">
+  <div class="col-12">
+    @for (i of 10 | ddrLoopNumber; track i) {
+      <div>
+        <span>{{i}}</span>
+      </div>
+    }
+  </div>
 </div>
-<div inputs>
-  <table class="table">
-    <thead class="thead-dark">
-      <tr>
-        <th>Nombre</th>
-        <th>Descripción</th>
-        <th>Tipo</th>
-        <th>Valor por defecto</th>
-        <th>Posibles valores (constants)</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>number</td>
-        <td>Numero limite, si es negativo se setea a 0</td>
-        <td>number</td>
-        <td>undefined</td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  -- DdrParamsLoop
-  <table class="table">
-    <thead class="thead-dark">
-      <tr>
-        <th>Nombre</th>
-        <th>Descripción</th>
-        <th>Tipo</th>
-        <th>Valor por defecto</th>
-        <th>Posibles valores (constants)</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>start</td>
-        <td>Numero donde inicia.</td>
-        <td>number</td>
-        <td>0</td>
-        <td></td>
-      </tr>
-      <tr>
-        <td>includeLast</td>
-        <td>Indica si incluye o no el ultimo elemento.</td>
-        <td>number</td>
-        <td>0</td>
-        <td></td>
-      </tr>
-      <tr>
-        <td>step</td>
-        <td>Paso en el que avanza.</td>
-        <td>number</td>
-        <td>1</td>
-        <td></td>
-      </tr>
-      <tr>
-        <td>reverse</td>
-        <td>Indica si queremos mostrarlo al reves.</td>
-        <td>boolean</td>
-        <td>false</td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
+
+<div class="row mt-3">
+  <div class="col-12">
+    <span class="h3">{{'loop.number.example.2' | ddrTranslate}}</span>
+  </div>
 </div>
+
+<div class="row mt-3">
+  <div class="col-12">
+    @for (i of 5 | ddrLoopNumber: {start: -5} ; track i) {
+      <div>
+        <span>{{i}}</span>
+      </div>
+    }
+  </div>
+</div>
+
+<div class="row mt-3">
+  <div class="col-12">
+    <span class="h3">{{'loop.number.example.3' | ddrTranslate}}</span>
+  </div>
+</div>
+
+<div class="row mt-3">
+  <div class="col-12">
+    <table class="table table-bordered">
+      @for (i of 10 | ddrLoopNumber; track i) {
+        <tr>
+          @for (j of 10 | ddrLoopNumber; track j) {
+            <td> {{i}} {{j}}</td>
+          }
+        </tr>
+      }
+    </table>
+  </div>
+</div>
+
+<div class="row mt-3">
+  <div class="col-12">
+    <span class="h3">{{'loop.number.example.4' | ddrTranslate}}</span>
+  </div>
+</div>
+
+<div class="row mt-3">
+  <div class="col-12">
+    @for (i of 10 | ddrLoopNumber:{reverse: true} ; track i) {
+      <div>
+        <span>{{i}}</span>
+      </div>
+    }
+  </div>
+</div>
+
+<div class="row mt-3">
+  <div class="col-12">
+    <span class="h3">{{'loop.number.example.5' | ddrTranslate}}</span>
+  </div>
+</div>
+
+<div class="row mt-3">
+  <div class="col-12">
+    @for (i of 10 | ddrLoopNumber:{step: 2} ; track i) {
+      <div>
+        <span>{{i}}</span>
+      </div>
+    }
+  </div>
+</div>
+
+<div class="row mt-3">
+  <div class="col-12">
+    <span class="h3">{{'loop.number.example.6' | ddrTranslate}}</span>
+  </div>
+</div>
+
+<div class="row mt-3">
+  <div class="col-12">
+    @for (i of 10 | ddrLoopNumber:{includeLast: true} ; track i) {
+      <div>
+        <span>{{i}}</span>
+      </div>
+    }
+  </div>
+</div>
+</div>
+
 </base-showcase>

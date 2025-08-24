@@ -18,8 +18,7 @@ import { DdrControlValueAccessor } from '../ddr-ngmodel-base/ddr-control-value-a
 import { DdrButtonComponent } from '../ddr-button/ddr-button.component';
 import { DdrTooltipDirective } from '../../directives/ddr-tooltip.directive';
 import { NgClass, NgTemplateOutlet } from '@angular/common';
-import { DdrInputError, DdrOrientation, DdrTypeInput } from '../../types/types';
-
+import { AutocompleteType, DdrInputError, DdrOrientatioTooltip, DdrSize, DdrTypeInput } from '../../types/types';
 
 @Component({
   selector: 'ddr-input-group',
@@ -60,19 +59,21 @@ export class DdrInputGroupComponent extends DdrControlValueAccessor {
   @Input() inline: boolean = false;
   @Input() disabled: boolean = false;
   @Input() disabledButton: boolean = false;
-  @Input() autocomplete: boolean = false;
-  @Input() showTooltip: boolean = false;
-  @Input() orientationTooltip: DdrOrientation = this.constants.ORIENTATION.BOTTOM;
+  @Input() tooltipOrientation: DdrOrientatioTooltip = this.constants.ORIENTATION.BOTTOM;
   @Input() tooltipText?: string;
   @Input() labelBold: boolean = false;
-  @Input({ transform: numberAttribute }) min?: number;
-  @Input({ transform: numberAttribute }) max?: number;
+  @Input() min: number | null = null;
+  @Input() max: number | null = null;
+  @Input() size: DdrSize = this.constants.SIZE.MEDIUM;
+  @Input() transparent: boolean = false;
+  @Input() focus: boolean = false;
+  @Input() autocomplete: AutocompleteType = 'off';
 
   @Output() hasErrors: EventEmitter<DdrInputError> = new EventEmitter<DdrInputError>();
   @Output() action: EventEmitter<MouseEvent> = new EventEmitter<MouseEvent>();
   @Output() clickInput: EventEmitter<MouseEvent> = new EventEmitter<MouseEvent>();
-  @Output() keyPressed: EventEmitter<KeyboardEvent> = new EventEmitter<KeyboardEvent>();
-  @Output() keydown: EventEmitter<KeyboardEvent> = new EventEmitter<KeyboardEvent>();
+  @Output() keyPressed: EventEmitter<string> = new EventEmitter<string>();
+  @Output() focusLost: EventEmitter<void> = new EventEmitter<void>();
 
   @ViewChild(DdrInputComponent, { static: false, read: DdrInputComponent }) input?: DdrInputComponent;
   @ContentChild('templateValid', { static: false }) templateValidOutside: TemplateRef<any> | null = null;
@@ -95,16 +96,16 @@ export class DdrInputGroupComponent extends DdrControlValueAccessor {
     this.hasErrors.emit($event);
   }
 
-  onclickInput($event: any) {
+  onclickInput($event: MouseEvent) {
     this.clickInput.emit($event);
   }
 
-  onKeyup($event: any) {
+  onKeyup($event: string) {
     this.keyPressed.emit($event);
   }
 
-  onKeydown($event: any) {
-    this.keydown.emit($event);
+  onFocusLost() {
+    this.focusLost.emit();
   }
 
 }

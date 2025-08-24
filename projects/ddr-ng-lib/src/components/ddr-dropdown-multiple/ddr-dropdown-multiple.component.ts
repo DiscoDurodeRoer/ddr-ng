@@ -1,14 +1,14 @@
-import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, EventEmitter, forwardRef, inject, Input, OnChanges, OnInit, Output, SimpleChanges, ViewChild } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, EventEmitter, forwardRef, inject, Input, OnChanges, OnDestroy, Output, SimpleChanges, ViewChild } from '@angular/core';
 import { DdrCheckboxBinaryComponent } from '../ddr-checkbox-binary/ddr-checkbox-binary.component';
-import { DdrCheckboxComponent } from '../ddr-checkbox/ddr-checkbox.component';
 import { DdrDropdownComponent } from '../ddr-dropdown/ddr-dropdown.component';
 import { DdrConstantsService } from '../../services/ddr-constants.service';
 import { DdrTranslateService } from '../../services/ddr-translate.service';
 import { DdrSelectItem } from '../../common/ddr-select-item.model';
 import { FormsModule, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { DdrControlValueAccessor } from '../ddr-ngmodel-base/ddr-control-value-accessor-base.component';
-import { DdrOrientation, DdrOrientationDropdown } from '../../types/types';
+import { DdrOrientationDropdown, DdrOrientatioTooltip } from '../../types/types';
 import { DdrTranslatePipe } from '../../pipes/ddr-translate.pipe';
+import { Subscription } from 'rxjs/internal/Subscription';
 
 @Component({
   selector: 'ddr-dropdown-multiple',
@@ -28,7 +28,7 @@ import { DdrTranslatePipe } from '../../pipes/ddr-translate.pipe';
     },
   ]
 })
-export class DdrDropdownMultipleComponent<T> extends DdrControlValueAccessor implements OnChanges, AfterViewInit {
+export class DdrDropdownMultipleComponent<T> extends DdrControlValueAccessor implements OnChanges, AfterViewInit, OnDestroy {
 
   public readonly constants: DdrConstantsService = inject(DdrConstantsService);
   private ddrTranslate: DdrTranslateService = inject(DdrTranslateService);
@@ -37,6 +37,7 @@ export class DdrDropdownMultipleComponent<T> extends DdrControlValueAccessor imp
   @Input({ required: true }) options: DdrSelectItem<T>[] = [];
   @Input() showFilter: boolean = true;
   @Input() label?: string;
+  @Input() name: string = '';
   @Input() inline: boolean = false;
   @Input() orientation: DdrOrientationDropdown = this.constants.ORIENTATION_DROPDOWN.BOTTOM;
   @Input() labelPlaceholderFilter: string = '';
@@ -44,24 +45,27 @@ export class DdrDropdownMultipleComponent<T> extends DdrControlValueAccessor imp
   @Input() disabled: boolean = false;
   @Input() placeholder: string = '';
   @Input() required: boolean = false;
+  @Input() validate: boolean = false;
   @Input() translate: boolean = true;
-  @Input() touchUI: boolean = false;
-  @Input() orientationTooltip: DdrOrientation = this.constants.ORIENTATION.BOTTOM;
+  @Input() modalOptions: boolean = false;
+  @Input() tooltipOrientation: DdrOrientatioTooltip = this.constants.ORIENTATION.BOTTOM;
   @Input() tooltipText?: string;
   @Input() compareFn: Function = (a: T, b: T) => a === b;
+  @Input() transparent: boolean = false;
 
   @Output() selectItems: EventEmitter<DdrSelectItem<T>[]> = new EventEmitter<DdrSelectItem<T>[]>();
 
   @ViewChild(DdrDropdownComponent, { static: false }) dropdown: DdrDropdownComponent<T> | null = null;
 
   public optionsSelected: DdrSelectItem<T>[] = [];
+  private subscription: Subscription = new Subscription();
 
   constructor() {
     super();
   }
-  
+
   ngAfterViewInit(): void {
-    this.changeValue.subscribe(v => {
+    this.subscription = this.changeValue.subscribe(v => {
       this.selectValues(v);
     })
   }
@@ -105,6 +109,10 @@ export class DdrDropdownMultipleComponent<T> extends DdrControlValueAccessor imp
 
     this.value = this.optionsSelected.map(v => v.value);
     this.selectItems.emit(this.optionsSelected);
+  }
+
+  ngOnDestroy(): void {
+    this.subscription?.unsubscribe();
   }
 
 }

@@ -1,20 +1,17 @@
 .ddr-card {
   width: 100%;
-  // border: 1px solid rgba(0, 0, 0, 0.411);
   margin-bottom: 10px;
 
   &__title {
-    padding: 5px;
-    justify-content: center;
-    font-weight: 900;
     font-size: 24px;
     border-top-right-radius: 0.25rem;
     border-top-left-radius: 0.25rem;
   }
 
+  &__title,
   &__body,
   &__footer {
-    padding: 1rem;
+    padding: 0.5rem 1rem;
   }
 
 
@@ -23,8 +20,8 @@
   }
 
   &--shadow {
-    -webkit-box-shadow: 5px 5px 5px 1px rgba(0, 0, 0, 0.75);
-    -moz-box-shadow: 5px 5px 5px 1px rgba(0, 0, 0, 0.75);
-    box-shadow: 5px 5px 5px 1px rgba(0, 0, 0, 0.75);
+    -webkit-box-shadow: 2px 2px 2px 1px rgba(192, 192, 192, 0.75);
+    -moz-box-shadow: 2px 2px 2px 1px rgba(192, 192, 192, 0.75);
+    box-shadow: 2px 2px 2px 1px rgba(192, 192, 192, 0.75);
   }
 }

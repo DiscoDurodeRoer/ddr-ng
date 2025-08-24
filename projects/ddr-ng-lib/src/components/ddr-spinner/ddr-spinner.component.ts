@@ -1,5 +1,4 @@
-import { Component, inject, Input, ViewEncapsulation } from '@angular/core';
-import { DdrSpinnerService } from './ddr-spinner.service';
+import { Component, Input, ViewEncapsulation } from '@angular/core';
 import { NgClass } from '@angular/common';
 
 @Component({
@@ -13,9 +12,9 @@ import { NgClass } from '@angular/common';
 })
 export class DdrSpinnerComponent {
 
-  public readonly ddrSpinner: DdrSpinnerService = inject(DdrSpinnerService)
+  @Input() pathImg: string = '';
 
-  @Input() embedded: boolean = false;
-  @Input() pathImgSpinner: string = '';
+  public show: boolean = false;
+  public embedded: boolean = false;
 
 }

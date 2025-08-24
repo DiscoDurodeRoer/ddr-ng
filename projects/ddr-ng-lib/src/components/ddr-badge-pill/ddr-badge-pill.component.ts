@@ -25,11 +25,11 @@ export class DdrBadgePillComponent {
   @Input() type: DdrStatusBadge = this.constants.BADGE.INFO;
   @Input() canClick: boolean = true;
   @Input() size: DdrSize = this.constants.SIZE.MEDIUM;
-  @ContentChild("template", { static: false }) template?: TemplateRef<any>;
+  @ContentChild("templateContent", { static: false }) templateContentOutside?: TemplateRef<any>;
   
   @Output() clickBadge: EventEmitter<MouseEvent> = new EventEmitter<MouseEvent>();
 
-  onclickBadge($event: any){
+  onclickBadge($event: MouseEvent){
     if (this.canClick) {
       this.clickBadge.emit($event); 
     }

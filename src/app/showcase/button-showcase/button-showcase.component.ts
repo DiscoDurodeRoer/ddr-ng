@@ -1,28 +1,36 @@
 import { Component, inject } from '@angular/core';
-import { DdrToastService, DdrButtonComponent } from 'ddr-ng';
+import { DdrToastService, DdrButtonComponent, DdrTranslatePipe, DdrTranslateService } from 'ddr-ng';
 import { BaseShowcaseComponent } from '../base-showcase/base-showcase.component';
 
 @Component({
-    selector: 'app-button-showcase',
-    templateUrl: './button-showcase.component.html',
-    styleUrls: ['./button-showcase.component.scss'],
-    imports: [
-        DdrButtonComponent,
-        BaseShowcaseComponent
-    ],
-    providers: [
-      DdrToastService
-    ]
+  selector: 'button-showcase',
+  templateUrl: './button-showcase.component.html',
+  imports: [
+    BaseShowcaseComponent,
+    DdrButtonComponent,
+    DdrTranslatePipe
+  ],
+  providers: [
+    DdrToastService
+  ]
 })
 export class ButtonShowcaseComponent {
-  
-  public readonly ddrToastService: DdrToastService = inject(DdrToastService);
 
-  click($event: any) {
-    this.ddrToastService.addSuccessMessage('Exito', 'click en el boton');
+  public readonly ddrToastService: DdrToastService = inject(DdrToastService);
+  public readonly ddrTranslateService: DdrTranslateService = inject(DdrTranslateService);
+
+  clickButton($event: MouseEvent) {
+    console.log($event);
+    this.ddrToastService.addSuccessMessage(
+      this.ddrTranslateService.getTranslate('success'),
+      this.ddrTranslateService.getTranslate('button.click')
+    );
   }
 
   submitForm() {
-    this.ddrToastService.addSuccessMessage('Exito', 'accion submit en el form');
+    this.ddrToastService.addSuccessMessage(
+      this.ddrTranslateService.getTranslate('success'),
+      this.ddrTranslateService.getTranslate('button.form.submit')
+    );
   }
 }

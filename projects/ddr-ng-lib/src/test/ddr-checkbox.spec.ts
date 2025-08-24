@@ -4,7 +4,7 @@ import { By } from '@angular/platform-browser';
 import { DdrCheckboxComponent } from '../components/ddr-checkbox/ddr-checkbox.component';
 import { DdrControlValueAccessor } from '../components/ddr-ngmodel-base/ddr-control-value-accessor-base.component';
 import { DdrTranslatePipe } from '../pipes/ddr-translate.pipe'
-import { HttpClientModule, provideHttpClient } from '@angular/common/http';
+import { provideHttpClient } from '@angular/common/http';
 
 describe('DdrCheckboxComponent', () => {
     let fixture: ComponentFixture<DdrCheckboxComponent<string>>;

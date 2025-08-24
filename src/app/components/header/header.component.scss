@@ -1,0 +1,33 @@
+.header {
+
+    height: 80px;
+
+    .modal-content-search {
+        height: 380px;
+    }
+
+    @media (max-width: 420px) {
+        .ddr-modal__content--medium {
+            width: 90%;
+        }
+    }
+
+    ddr-button-split {
+        .ddr-button-split {
+            ul {
+                padding: 0;
+                margin: 0;
+            }
+
+            ddr-button button img,
+            img {
+                width: 24px;
+                height: 24px;
+            }
+        }
+    }
+
+    ddr-dropdown.dropdown-versions ddr-input input {
+        width: 80px;
+    }
+}

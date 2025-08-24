@@ -24,17 +24,9 @@
     left: 0;
     width: 100%;
     height: 100%;
+    min-height: 100px;
     cursor: default;
     background-color: hsla(0, 0%, 100%, .6);
-}
-
-.ddr-title {
-    font-size: 32px;
-    font-family: "Cairo";
-    font-weight: 900;
-    display: block;
-    padding-top: 10px;
-    padding-bottom: 10px;
 }
 
 .ddr-tooltip {
@@ -55,7 +47,7 @@
     &--top {
         left: 50%;
         bottom: 100%;
-        transform: translate(-50%, -5px);
+        transform: translate(-50%, 0px);
 
         &::before {
             top: 100%;
@@ -64,34 +56,19 @@
             margin-bottom: -12px;
         }
 
-        &-left::before {
-            left: 8px;
-        }
-
-        &-right::before {
-            right: 8px;
-        }
-
     }
 
     &--bottom {
         left: 50%;
         top: 100%;
-        transform: translate(-50%, -5px);
+        transform: translate(-50%, 0px);
 
         &::before {
             bottom: 100%;
             left: 50%;
             margin-top: -12px;
             margin-bottom: 0;
-        }
-
-        &-left::before {
-            left: 8px;
-        }
-
-        &-right::before {
-            right: 8px;
+            margin-left: -5px;
         }
 
     }

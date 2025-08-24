@@ -7,14 +7,13 @@
     'ddr-badge--danger': type === constants.BADGE.DANGER,
     'ddr-badge--warning': type === constants.BADGE.WARNING,
     'ddr-badge--success': type === constants.BADGE.SUCCESS,
-    'ddr-badge--xs-small': size === constants.SIZE.EXTRA_SMALL,
     'ddr-badge--small': size === constants.SIZE.SMALL,
     'ddr-badge--medium': size === constants.SIZE.MEDIUM,
     'ddr-badge--large': size === constants.SIZE.LARGE
   }"
   (click)="onclickBadge($event)">
  
-  <ng-template [ngTemplateOutlet]="template ? template : templateDefault"></ng-template>
+  <ng-template [ngTemplateOutlet]="templateContentOutside ? templateContentOutside : templateDefault"></ng-template>
   <ng-template #templateDefault>
     <span>{{text}}</span>
   </ng-template>

@@ -1,19 +1,31 @@
 import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { DdrButtonComponent, DdrDropdownMultipleComponent, DdrSelectItem, DdrToastService } from 'ddr-ng';
-import { Example } from './example';
+import {
+  DdrButton,
+  DdrButtonComponent,
+  DdrDropdownMultipleComponent,
+  DdrButtonMultipleComponent,
+  DdrOrientationDropdown,
+  DdrSelectItem,
+  DdrToastService,
+  DdrTranslatePipe,
+  DdrTranslateService
+} from 'ddr-ng';
 import { JsonPipe } from '@angular/common';
 import { BaseShowcaseComponent } from '../base-showcase/base-showcase.component';
+import { ProgrammingLanguage } from './bean/programming-language';
 
 @Component({
-  selector: 'app-dropdown-multiple-showcase',
+  selector: 'dropdown-multiple-showcase',
   templateUrl: './dropdown-multiple-showcase.component.html',
   styleUrl: './dropdown-multiple-showcase.component.scss',
   imports: [
     BaseShowcaseComponent,
     DdrDropdownMultipleComponent,
-    FormsModule,
     DdrButtonComponent,
+    DdrButtonMultipleComponent,
+    DdrTranslatePipe,
+    FormsModule,
     JsonPipe
   ],
   providers: [
@@ -23,284 +35,675 @@ import { BaseShowcaseComponent } from '../base-showcase/base-showcase.component'
 export class DropdownMultipleShowcaseComponent {
 
   private readonly ddrToastService: DdrToastService = inject(DdrToastService);
+  private readonly ddrTranslateService: DdrTranslateService = inject(DdrTranslateService);
 
-  compareFn = (a: Example, b: Example) => a.property1 == b.property1
+  compareFn = (a: ProgrammingLanguage, b: ProgrammingLanguage) => a.name == b.name
 
-  optionsEx1: DdrSelectItem<Example>[] = [
+  public optionsEx1: DdrSelectItem<string>[] = [
     {
-      label: 'Label1',
+      label: 'Java',
+      value: 'java'
+    },
+    {
+      label: 'Angular',
+      value: 'angular'
+    },
+    {
+      label: 'NestJS',
+      value: 'nestjs'
+    },
+    {
+      label: 'Javascript',
+      value: 'javascript'
+    },
+    {
+      label: 'C',
+      value: 'c'
+    },
+    {
+      label: 'C++',
+      value: 'cpp'
+    }
+  ];
+  public optionsEx2: DdrSelectItem<string>[] = [
+    {
+      label: 'Java',
+      value: 'java'
+    },
+    {
+      label: 'Angular',
+      value: 'angular'
+    },
+    {
+      label: 'NestJS',
+      value: 'nestjs'
+    },
+    {
+      label: 'Javascript',
+      value: 'javascript'
+    },
+    {
+      label: 'C',
+      value: 'c'
+    },
+    {
+      label: 'C++',
+      value: 'cpp'
+    }
+  ];
+  public optionsEx3: DdrSelectItem<ProgrammingLanguage>[] = [
+    {
+      label: 'Java',
       value: {
-        property1: 'Hola 1',
-        property2: 'Mundo 1'
+        name: 'java'
       }
     },
     {
-      label: 'Label2',
+      label: 'Angular',
       value: {
-        property1: 'Hola 2',
-        property2: 'Mundo 2'
+        name: 'angular'
       }
     },
     {
-      label: 'Label3',
+      label: 'NestJS',
       value: {
-        property1: 'Hola 3',
-        property2: 'Mundo 3'
+        name: 'nestjs'
       }
     },
     {
-      label: 'Label4',
+      label: 'Javascript',
       value: {
-        property1: 'Hola 4',
-        property2: 'Mundo 4'
+        name: 'javascript'
+      }
+    },
+    {
+      label: 'C',
+      value: {
+        name: 'c'
+      }
+    },
+    {
+      label: 'C++',
+      value: {
+        name: 'cpp'
       }
     }
   ];
-  optionsEx2: DdrSelectItem<Example>[] = [
+  public optionsEx4: DdrSelectItem<ProgrammingLanguage>[] = [
     {
-      label: 'Label1',
+      label: 'Java',
       value: {
-        property1: 'Hola 1',
-        property2: 'Mundo 1'
+        name: 'java'
       }
     },
     {
-      label: 'Label2',
+      label: 'Angular',
       value: {
-        property1: 'Hola 2',
-        property2: 'Mundo 2'
+        name: 'angular'
       }
     },
     {
-      label: 'Label3',
+      label: 'NestJS',
       value: {
-        property1: 'Hola 3',
-        property2: 'Mundo 3'
+        name: 'nestjs'
       }
     },
     {
-      label: 'Label4',
+      label: 'Javascript',
       value: {
-        property1: 'Hola 4',
-        property2: 'Mundo 4'
-      }
-    }
-  ];
-  optionsEx3: DdrSelectItem<Example>[] = [
-    {
-      label: 'Label1',
-      value: {
-        property1: 'Hola 1',
-        property2: 'Mundo 1'
+        name: 'javascript'
       }
     },
     {
-      label: 'Label2',
+      label: 'C',
       value: {
-        property1: 'Hola 2',
-        property2: 'Mundo 2'
+        name: 'c'
       }
     },
     {
-      label: 'Label3',
+      label: 'C++',
       value: {
-        property1: 'Hola 3',
-        property2: 'Mundo 3'
-      }
-    },
-    {
-      label: 'Label4',
-      value: {
-        property1: 'Hola 4',
-        property2: 'Mundo 4'
-      }
-    }
-  ];
-  optionsEx4: DdrSelectItem<Example>[] = [
-    {
-      label: 'Label1',
-      value: {
-        property1: 'Hola 1',
-        property2: 'Mundo 1'
-      }
-    },
-    {
-      label: 'Label2',
-      value: {
-        property1: 'Hola 2',
-        property2: 'Mundo 2'
-      }
-    },
-    {
-      label: 'Label3',
-      value: {
-        property1: 'Hola 3',
-        property2: 'Mundo 3'
-      }
-    },
-    {
-      label: 'Label4',
-      value: {
-        property1: 'Hola 4',
-        property2: 'Mundo 4'
-      }
-    }
-  ];
-  optionsEx5: DdrSelectItem<Example>[] = [
-    {
-      label: 'Label1',
-      value: {
-        property1: 'Hola 1',
-        property2: 'Mundo 1'
-      }
-    },
-    {
-      label: 'Label2',
-      value: {
-        property1: 'Hola 2',
-        property2: 'Mundo 2'
-      }
-    },
-    {
-      label: 'Label3',
-      value: {
-        property1: 'Hola 3',
-        property2: 'Mundo 3'
-      }
-    },
-    {
-      label: 'Label4',
-      value: {
-        property1: 'Hola 4',
-        property2: 'Mundo 4'
+        name: 'cpp'
       }
     }
   ];
 
-  value1: Example[] = [];
-  value2: Example[] = [
+  public optionsEx5: DdrSelectItem<ProgrammingLanguage>[] = [
     {
-      property1: 'Hola 2',
-      property2: 'Mundo 2'
+      label: 'Java',
+      value: {
+        name: 'java'
+      }
     },
     {
-      property1: 'Hola 4',
-      property2: 'Mundo 4'
-    }
-  ];
-  value3: Example[] = [];
-  value4: Example[] = [
-    {
-      property1: 'Hola 2',
-      property2: 'Mundo 2'
+      label: 'Angular',
+      value: {
+        name: 'angular'
+      }
     },
     {
-      property1: 'Hola 3',
-      property2: 'Mundo 3'
+      label: 'NestJS',
+      value: {
+        name: 'nestjs'
+      }
     },
     {
-      property1: 'Hola 4',
-      property2: 'Mundo 4'
+      label: 'Javascript',
+      value: {
+        name: 'javascript'
+      }
+    },
+    {
+      label: 'C',
+      value: {
+        name: 'c'
+      }
+    },
+    {
+      label: 'C++',
+      value: {
+        name: 'cpp'
+      }
     }
   ];
 
-  value5: Example[] = [];
+  public optionsEx6: DdrSelectItem<ProgrammingLanguage>[] = [
+    {
+      label: 'Java',
+      value: {
+        name: 'java'
+      }
+    },
+    {
+      label: 'Angular',
+      value: {
+        name: 'angular'
+      }
+    },
+    {
+      label: 'NestJS',
+      value: {
+        name: 'nestjs'
+      }
+    },
+    {
+      label: 'Javascript',
+      value: {
+        name: 'javascript'
+      }
+    },
+    {
+      label: 'C',
+      value: {
+        name: 'c'
+      }
+    },
+    {
+      label: 'C++',
+      value: {
+        name: 'cpp'
+      }
+    }
+  ];
 
-  selectItemEx1($event: DdrSelectItem<Example>[]) {
-    console.log($event);
-    this.ddrToastService.addSuccessMessage('Item seleccionado ejemplo 1', JSON.stringify($event))
+  public optionsEx7: DdrSelectItem<ProgrammingLanguage>[] = [
+    {
+      label: 'Java',
+      value: {
+        name: 'java'
+      }
+    },
+    {
+      label: 'Angular',
+      value: {
+        name: 'angular'
+      }
+    },
+    {
+      label: 'NestJS',
+      value: {
+        name: 'nestjs'
+      }
+    },
+    {
+      label: 'Javascript',
+      value: {
+        name: 'javascript'
+      }
+    },
+    {
+      label: 'C',
+      value: {
+        name: 'c'
+      }
+    },
+    {
+      label: 'C++',
+      value: {
+        name: 'cpp'
+      }
+    }
+  ];
+
+  public optionsEx8: DdrSelectItem<ProgrammingLanguage>[] = [
+    {
+      label: 'Java',
+      value: {
+        name: 'java'
+      }
+    },
+    {
+      label: 'Angular',
+      value: {
+        name: 'angular'
+      }
+    },
+    {
+      label: 'NestJS',
+      value: {
+        name: 'nestjs'
+      }
+    },
+    {
+      label: 'Javascript',
+      value: {
+        name: 'javascript'
+      }
+    },
+    {
+      label: 'C',
+      value: {
+        name: 'c'
+      }
+    },
+    {
+      label: 'C++',
+      value: {
+        name: 'cpp'
+      }
+    }
+  ];
+
+  public optionsEx9: DdrSelectItem<ProgrammingLanguage>[] = [
+    {
+      label: 'Java',
+      value: {
+        name: 'java'
+      }
+    },
+    {
+      label: 'Angular',
+      value: {
+        name: 'angular'
+      }
+    },
+    {
+      label: 'NestJS',
+      value: {
+        name: 'nestjs'
+      }
+    },
+    {
+      label: 'Javascript',
+      value: {
+        name: 'javascript'
+      }
+    },
+    {
+      label: 'C',
+      value: {
+        name: 'c'
+      }
+    },
+    {
+      label: 'C++',
+      value: {
+        name: 'cpp'
+      }
+    }
+  ];
+
+  public optionsEx10: DdrSelectItem<ProgrammingLanguage>[] = [
+    {
+      label: 'Java',
+      value: {
+        name: 'java'
+      }
+    },
+    {
+      label: 'Angular',
+      value: {
+        name: 'angular'
+      }
+    },
+    {
+      label: 'NestJS',
+      value: {
+        name: 'nestjs'
+      }
+    },
+    {
+      label: 'Javascript',
+      value: {
+        name: 'javascript'
+      }
+    },
+    {
+      label: 'C',
+      value: {
+        name: 'c'
+      }
+    },
+    {
+      label: 'C++',
+      value: {
+        name: 'cpp'
+      }
+    }
+  ];
+
+  public optionsEx11: DdrSelectItem<ProgrammingLanguage>[] = [
+    {
+      label: 'Java',
+      value: {
+        name: 'java'
+      }
+    },
+    {
+      label: 'Angular',
+      value: {
+        name: 'angular'
+      }
+    },
+    {
+      label: 'NestJS',
+      value: {
+        name: 'nestjs'
+      }
+    },
+    {
+      label: 'Javascript',
+      value: {
+        name: 'javascript'
+      }
+    },
+    {
+      label: 'C',
+      value: {
+        name: 'c'
+      }
+    },
+    {
+      label: 'C++',
+      value: {
+        name: 'cpp'
+      }
+    }
+  ];
+
+  public optionsEx12: DdrSelectItem<ProgrammingLanguage>[] = [
+    {
+      label: 'Java',
+      value: {
+        name: 'java'
+      }
+    },
+    {
+      label: 'Angular',
+      value: {
+        name: 'angular'
+      }
+    },
+    {
+      label: 'NestJS',
+      value: {
+        name: 'nestjs'
+      }
+    },
+    {
+      label: 'Javascript',
+      value: {
+        name: 'javascript'
+      }
+    },
+    {
+      label: 'C',
+      value: {
+        name: 'c'
+      }
+    },
+    {
+      label: 'C++',
+      value: {
+        name: 'cpp'
+      }
+    }
+  ];
+
+  public optionsEx13: DdrSelectItem<ProgrammingLanguage>[] = [
+    {
+      label: 'Java',
+      value: {
+        name: 'java'
+      }
+    },
+    {
+      label: 'Angular',
+      value: {
+        name: 'angular'
+      }
+    },
+    {
+      label: 'NestJS',
+      value: {
+        name: 'nestjs'
+      }
+    }
+  ];
+
+  public optionsEx14: DdrSelectItem<ProgrammingLanguage>[] = [
+    {
+      label: 'Java',
+      value: {
+        name: 'java'
+      }
+    },
+    {
+      label: 'Angular',
+      value: {
+        name: 'angular'
+      }
+    },
+    {
+      label: 'NestJS',
+      value: {
+        name: 'nestjs'
+      }
+    },
+    {
+      label: 'Javascript',
+      value: {
+        name: 'javascript'
+      }
+    },
+    {
+      label: 'C',
+      value: {
+        name: 'c'
+      }
+    },
+    {
+      label: 'C++',
+      value: {
+        name: 'cpp'
+      }
+    }
+  ];
+
+  public optionsEx15: DdrSelectItem<ProgrammingLanguage>[] = [
+    {
+      label: 'Java',
+      value: {
+        name: 'java'
+      }
+    },
+    {
+      label: 'Angular',
+      value: {
+        name: 'angular'
+      }
+    },
+    {
+      label: 'NestJS',
+      value: {
+        name: 'nestjs'
+      }
+    },
+    {
+      label: 'Javascript',
+      value: {
+        name: 'javascript'
+      }
+    },
+    {
+      label: 'C',
+      value: {
+        name: 'c'
+      }
+    },
+    {
+      label: 'C++',
+      value: {
+        name: 'cpp'
+      }
+    }
+  ];
+
+  public value1: string[] = [];
+  public value2: string[] = ['java', 'angular'];
+  public value3: ProgrammingLanguage[] = [];
+  public value4: ProgrammingLanguage[] = [
+    {
+      name: 'java'
+    },
+    {
+      name: 'angular'
+    },
+    {
+      name: 'cpp'
+    }
+  ];
+
+  public value5: ProgrammingLanguage[] = [
+    {
+      name: 'java'
+    },
+    {
+      name: 'angular'
+    },
+    {
+      name: 'cpp'
+    }
+  ];
+
+  public value6: ProgrammingLanguage[] = [];
+  public value7: ProgrammingLanguage[] = [];
+  public value8: ProgrammingLanguage[] = [];
+  public value9: ProgrammingLanguage[] = [];
+  public value10: ProgrammingLanguage[] = [];
+  public value11: ProgrammingLanguage[] = [];
+  public value12: ProgrammingLanguage[] = [];
+  public value13: ProgrammingLanguage[] = [];
+  public value14: ProgrammingLanguage[] = [
+    {
+      name: 'java'
+    }
+  ];
+  public value15: ProgrammingLanguage[] = [];
+
+  public buttonsOrientation: DdrButton[] = [
+    {
+      text: 'bottom',
+      value: 'bottom'
+    },
+    {
+      text: 'top',
+      value: 'top'
+    }
+  ];
+
+  public orientationDropdown: DdrOrientationDropdown = 'bottom'
+
+  selectItems(items: DdrSelectItem<string>[]) {
+    this.ddrToastService.addSuccessMessage(
+      this.ddrTranslateService.getTranslate('success'),
+      JSON.stringify(items)
+    )
   }
 
-  selectItemEx2($event: DdrSelectItem<Example>[]) {
-    console.log($event);
-    this.ddrToastService.addSuccessMessage('Item seleccionado ejemplo 2', JSON.stringify($event))
+  selectItemsObject(items: DdrSelectItem<ProgrammingLanguage>[]) {
+    this.ddrToastService.addSuccessMessage(
+      this.ddrTranslateService.getTranslate('success'),
+      JSON.stringify(items)
+    )
   }
 
-  selectItemEx3($event: DdrSelectItem<Example>[]) {
-    console.log($event);
-    this.ddrToastService.addSuccessMessage('Item seleccionado ejemplo 3', JSON.stringify($event))
+  resetValuesEx5() {
+    this.value5 = [];
+    this.ddrToastService.addSuccessMessage(
+      this.ddrTranslateService.getTranslate('success'),
+      this.ddrTranslateService.getTranslate('dropdown.multiple.reset.confirm')
+    )
   }
 
-  selectItemEx4($event: DdrSelectItem<Example>[]) {
-    console.log($event);
-    this.ddrToastService.addSuccessMessage('Item seleccionado ejemplo 4', JSON.stringify($event))
-  }
-
-
-  selectItemEx5($event: DdrSelectItem<Example>[]) {
-    console.log($event);
-    this.ddrToastService.addSuccessMessage('Item seleccionado ejemplo 5', JSON.stringify($event))
-  }
-
-  resetValuesEx4() {
-    this.value4 = [];
-    this.ddrToastService.addSuccessMessage('Valores reseteados', JSON.stringify(this.value4))
-  }
-
-  changeOptionsEx5() {
-    if (this.optionsEx5[0].label == 'Label1') {
-      this.optionsEx5 = [
+  changeOptionsEx13() {
+    if (this.optionsEx13[0].label == 'Javascript') {
+      this.optionsEx13 = [
         {
-          label: 'Label5',
+          label: 'Java',
           value: {
-            property1: 'Hola 5',
-            property2: 'Mundo 5'
+            name: 'java'
           }
         },
         {
-          label: 'Label6',
+          label: 'Angular',
           value: {
-            property1: 'Hola 6',
-            property2: 'Mundo 6'
+            name: 'angular'
           }
         },
         {
-          label: 'Label7',
+          label: 'NestJS',
           value: {
-            property1: 'Hola 7',
-            property2: 'Mundo 7'
-          }
-        },
-        {
-          label: 'Label8',
-          value: {
-            property1: 'Hola 8',
-            property2: 'Mundo 8'
+            name: 'nestjs'
           }
         }
       ]
     } else {
-      this.optionsEx5 = [
+      this.optionsEx13 = [
         {
-          label: 'Label1',
+          label: 'Javascript',
           value: {
-            property1: 'Hola 1',
-            property2: 'Mundo 1'
+            name: 'javascript'
           }
         },
         {
-          label: 'Label2',
+          label: 'C',
           value: {
-            property1: 'Hola 2',
-            property2: 'Mundo 2'
+            name: 'c'
           }
         },
         {
-          label: 'Label3',
+          label: 'C++',
           value: {
-            property1: 'Hola 3',
-            property2: 'Mundo 3'
-          }
-        },
-        {
-          label: 'Label4',
-          value: {
-            property1: 'Hola 4',
-            property2: 'Mundo 4'
+            name: 'cpp'
           }
         }
       ]
     }
+    this.ddrToastService.addSuccessMessage(
+      this.ddrTranslateService.getTranslate('dropdown.multiple.change.options.confirm'),
+      JSON.stringify(this.optionsEx13)
+    )
 
   }
 

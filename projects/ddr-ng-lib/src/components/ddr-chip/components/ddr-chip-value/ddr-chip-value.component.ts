@@ -1,3 +1,4 @@
+import { NgClass } from '@angular/common';
 import { Component, EventEmitter, Input, ViewEncapsulation, Output } from '@angular/core';
 
 @Component({
@@ -5,11 +6,14 @@ import { Component, EventEmitter, Input, ViewEncapsulation, Output } from '@angu
   templateUrl: './ddr-chip-value.component.html',
   styleUrls: ['./ddr-chip-value.component.scss'],
   encapsulation: ViewEncapsulation.None,
-  standalone: true
+  imports: [
+    NgClass
+  ]
 })
 export class DdrChipValueComponent {
 
   @Input({ required: true }) value!: string;
+  @Input() canDelete: boolean = true;
 
   @Output() delete: EventEmitter<string> = new EventEmitter<string>();
   @Output() clickValue: EventEmitter<string> = new EventEmitter<string>();
@@ -20,7 +24,9 @@ export class DdrChipValueComponent {
   }
 
   onDelete() {
-    this.delete.emit(this.value);
+    if (this.canDelete) {
+      this.delete.emit(this.value);
+    }
   }
 
 }

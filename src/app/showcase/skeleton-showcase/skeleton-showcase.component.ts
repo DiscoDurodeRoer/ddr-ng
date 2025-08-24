@@ -1,83 +1,71 @@
-import { Component, inject } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { DdrButtonComponent, DdrCardComponent, DdrInputComponent, DdrLoopNumberPipe, DdrRadioComponent, DdrSelectItem, DdrSkeletonComponent, DdrSkeletonDirective, DdrSkeletonMode, DdrToastService } from 'ddr-ng';
+import { 
+  DdrButtonComponent, 
+  DdrCardComponent, 
+  DdrInputComponent, 
+  DdrLoopNumberPipe, 
+  DdrRadioComponent, 
+  DdrSelectItem, 
+  DdrSkeletonDirective, 
+  DdrTranslatePipe
+} from 'ddr-ng';
 import { BaseShowcaseComponent } from '../base-showcase/base-showcase.component';
 
 @Component({
-  selector: 'app-skeleton-showcase',
+  selector: 'skeleton-showcase',
   templateUrl: './skeleton-showcase.component.html',
-  styleUrls: ['./skeleton-showcase.component.scss'],
   imports: [
     BaseShowcaseComponent,
-    DdrSkeletonComponent,
     DdrCardComponent,
-    FormsModule,
     DdrButtonComponent,
     DdrInputComponent,
     DdrLoopNumberPipe,
     DdrSkeletonDirective,
-    DdrRadioComponent
-  ],
-  providers: [
-    DdrToastService
+    DdrRadioComponent,
+    DdrTranslatePipe,
+    FormsModule
   ]
 })
 export class SkeletonShowcaseComponent {
 
-  private ddrToastService: DdrToastService = inject(DdrToastService);
+  public mode: string = 'circle';
+  public load: boolean = true;
+  public timeout: number = 5000;
+  public nElements: number = 1;
 
-  public modeEx1: string = 'circle';
-  public loadEx1: boolean = true;
-  public timeoutEx1: number = 5000;
-  public nElementsEx1: number = 1;
-
-  public modeEx2: DdrSkeletonMode = 'card';
-  public loadEx2: boolean = true;
-  public timeoutEx2: number = 5000;
-  public nElementsEx2: number = 1;
-
-  public optionsEx1: DdrSelectItem<string>[] = [
+  public options: DdrSelectItem<string>[] = [
     {
-      label: 'Circulo',
+      label: 'skeleton.cirle',
       value: 'circle'
     },
     {
-      label: 'Rectangulo',
-      value: 'rectangule'
+      label: 'skeleton.rectangle',
+      value: 'rectangle'
     },
     {
-      label: 'Cuadrado',
+      label: 'skeleton.square',
       value: 'square'
-    }
-  ];
-
-  public optionsEx2: DdrSelectItem<DdrSkeletonMode>[] = [
+    },
     {
-      label: 'Card',
+      label: 'skeleton.card',
       value: 'card'
     },
     {
-      label: 'Lista',
+      label: 'skeleton.list',
       value: 'list'
     },
     {
-      label: 'Graphic',
+      label: 'skeleton.graphic',
       value: 'graphic'
     }
   ];
 
-  loadDataEx1() {
-    this.loadEx1 = false;
+  loadData() {
+    this.load = false;
     setTimeout(() => {
-      this.loadEx1 = true;
-    }, this.timeoutEx1);
-  }
-
-  loadDataEx2() {
-    this.loadEx2 = false;
-    setTimeout(() => {
-      this.loadEx2 = true;
-    }, this.timeoutEx2);
+      this.load = true;
+    }, this.timeout);
   }
 
 }

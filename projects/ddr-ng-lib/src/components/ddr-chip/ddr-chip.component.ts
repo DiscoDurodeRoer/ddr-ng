@@ -4,30 +4,34 @@ import { DdrControlValueAccessor } from '../ddr-ngmodel-base/ddr-control-value-a
 import { DdrChipValueComponent } from './components/ddr-chip-value/ddr-chip-value.component';
 
 @Component({
-    selector: 'ddr-chip',
-    templateUrl: './ddr-chip.component.html',
-    styleUrls: ['./ddr-chip.component.scss'],
-    encapsulation: ViewEncapsulation.None,
-    imports: [
-        DdrChipValueComponent,
-        FormsModule,
-        DdrControlValueAccessor
-    ],
-    providers: [
-        {
-            provide: NG_VALUE_ACCESSOR,
-            useExisting: forwardRef(() => DdrChipComponent),
-            multi: true,
-        },
-    ]
+  selector: 'ddr-chip',
+  templateUrl: './ddr-chip.component.html',
+  styleUrls: ['./ddr-chip.component.scss'],
+  encapsulation: ViewEncapsulation.None,
+  imports: [
+    DdrChipValueComponent,
+    FormsModule,
+    DdrControlValueAccessor
+  ],
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => DdrChipComponent),
+      multi: true,
+    },
+  ]
 })
 export class DdrChipComponent extends DdrControlValueAccessor implements OnInit {
 
   @Input() separator!: string;
   @Input() maxValues: number = 0;
+  @Input() readonly: boolean = false;
   @Input() label?: string;
+  @Input() name?: string;
+  @Input() canDelete: boolean = true;
 
   @Output() insertValue: EventEmitter<string> = new EventEmitter<string>();
+  @Output() removeValue: EventEmitter<string> = new EventEmitter<string>();
   @Output() clickValue: EventEmitter<string> = new EventEmitter<string>();
   @Output() getValues: EventEmitter<string[]> = new EventEmitter<string[]>();
 
@@ -38,9 +42,9 @@ export class DdrChipComponent extends DdrControlValueAccessor implements OnInit 
   }
 
   ngOnInit() {
-    if(!this.value){
+    if (!this.value) {
       this.value = [];
-    }else if(this.maxValues >= 0){
+    } else if (this.maxValues >= 0) {
       this.value = this.value.splice(0, this.maxValues)
     }
   }
@@ -61,18 +65,21 @@ export class DdrChipComponent extends DdrControlValueAccessor implements OnInit 
     }
   }
 
-  removeLastElement(){
-    if(!this.valueInput && this.value.length > 0){
-      this.value.pop();
+  removeLastElement() {
+    if (!this.valueInput && this.value.length > 0) {
+      const value = this.value.pop();
+      this.removeValue.emit(value);
+      this.getValues.emit(this.value);
     }
   }
 
-  onClickValue($event: string) {
-    this.clickValue.emit($event);
+  onClickValue(value: string) {
+    this.clickValue.emit(value);
   }
 
-  onDelete($event: string) {
-    this.value = this.value.filter((v: any) => v != $event);
+  onDelete(value: string) {
+    this.removeValue.emit(value);
+    this.value = this.value.filter((v: any) => v != value);
     this.getValues.emit(this.value);
   }
 

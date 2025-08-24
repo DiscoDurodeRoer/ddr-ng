@@ -1,0 +1,12 @@
+[
+    {
+        "label": "english",
+        "value": "en",
+        "img": "/flags/gb.svg"
+    },
+    {
+        "label": "spanish",
+        "value": "es",
+        "img": "/flags/es.svg"
+    }
+]

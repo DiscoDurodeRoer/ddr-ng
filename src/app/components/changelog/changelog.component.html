@@ -1,23 +1,40 @@
 <div class="row">
   <div class="col-12">
 
-    <ddr-card [showHeader]="false" [border]="false" [shadow]="false">
-        <div card-content>
-                    
-          <div class="row">
-            <div class="col-12 text-center">
-              <h1>Changelog ddr-ng-library</h1>
-            </div>
+    <ddr-card [showHeader]="false">
+
+      <div card-content>
+
+        <div class="row">
+          <div class="col-12">
+            <span class="h3">{{'header.changelog' | ddrTranslate}}</span>
           </div>
-
-          <div class="row">
-            <div class="col-12">
-              <!-- <div markdown [src]="'./assets/changelog.md'"></div> -->
-            </div>
-          </div>          
-          
-
         </div>
+
+        <div class="row">
+          <div class="col-3 col-md-2 col-lg-1">
+            <ddr-dropdown 
+              [label]="'changelog.version' | ddrTranslate"
+              [labelPlaceholderFilter]="'versions.filter' | ddrTranslate"
+              [allowDeselect]="true"
+              [options]="versions"
+              [(ngModel)]="version"
+              (selectItem)="filterVersion($event)" />
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-12">
+            @if(nodesChangelog.length > 0){
+              <ddr-tree 
+                [border]="true"
+                [open]="true" 
+                [nodes]="nodesChangelog" />
+            }
+          </div>
+        </div>
+      </div>
+
     </ddr-card>
 
   </div>

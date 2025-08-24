@@ -1,4 +1,4 @@
-import { AfterViewInit, ChangeDetectorRef, Component, ContentChildren, EventEmitter, forwardRef, inject, Input, OnInit, Output, QueryList, ViewEncapsulation } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, ContentChildren, EventEmitter, forwardRef, inject, Input, OnDestroy, OnInit, Output, QueryList, ViewEncapsulation } from '@angular/core';
 import { DdrStepComponent } from './ddr-step/ddr-step.component';
 import { DdrButtonComponent } from '../ddr-button/ddr-button.component';
 import { DdrToastComponent } from '../ddr-toast/ddr-toast.component';
@@ -6,6 +6,7 @@ import { DdrTranslatePipe } from '../../pipes/ddr-translate.pipe';
 import { NgClass, NgTemplateOutlet } from '@angular/common';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { DdrControlValueAccessor } from '../ddr-ngmodel-base/ddr-control-value-accessor-base.component';
+import { Subscription } from 'rxjs/internal/Subscription';
 
 @Component({
   selector: 'ddr-steps',
@@ -28,7 +29,7 @@ import { DdrControlValueAccessor } from '../ddr-ngmodel-base/ddr-control-value-a
     },
   ]
 })
-export class DdrStepsComponent extends DdrControlValueAccessor implements OnInit, AfterViewInit {
+export class DdrStepsComponent extends DdrControlValueAccessor implements OnInit, AfterViewInit, OnDestroy {
 
   private changeDetectorRef: ChangeDetectorRef = inject(ChangeDetectorRef);
 
@@ -45,15 +46,16 @@ export class DdrStepsComponent extends DdrControlValueAccessor implements OnInit
   @Output() lastStep: EventEmitter<void> = new EventEmitter<void>();
 
   @ContentChildren(DdrStepComponent) steps!: QueryList<DdrStepComponent>;
+  private subscription: Subscription = new Subscription();
 
   ngOnInit(): void {
     if (!this.showButtons) {
       this.canJumpStep = true;
     }
 
-    this.changeValue.subscribe(v => {
+    this.subscription = this.changeValue.subscribe(v => {
 
-      if (this.steps) {
+      if (this.steps && !this.openAll && !this.leaveValidateVerticalOpened) {
         const steps = this.steps.toArray();
         for (let index = 0; index < steps.length; index++) {
           const step = steps[index];
@@ -119,6 +121,10 @@ export class DdrStepsComponent extends DdrControlValueAccessor implements OnInit
     if (this.steps.length == this.value) {
       this.lastStep.emit();
     }
+  }
+
+  ngOnDestroy(): void {
+    this.subscription?.unsubscribe();
   }
 
 }

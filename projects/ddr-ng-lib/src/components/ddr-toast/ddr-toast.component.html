@@ -1,4 +1,3 @@
-<!-- @if(toast){ -->
 <div class="ddr-toast-container user-select-none" [ngClass]="{
   'ddr-toast-container--top-right': orientation == constants.ORIENTATION.TOP_RIGHT,
   'ddr-toast-container--top-left': orientation == constants.ORIENTATION.TOP_LEFT,
@@ -8,14 +7,13 @@
   @for(toast of toasts; track toast; let index = $index){
   <div [@overlayAnimation]="toast.rendered ? 'visible' : 'void'"
     [class]="'ddr-toast-container__ddr-toast ddr-toast-container__ddr-toast--' + toast.status">
-    <div class="ddr-toast-container__ddr-toast--ddr-toast-title text-light">
-      <span class="ddr-toast-container__ddr-toast--ddr-toast-title--title-message">{{toast.title}}</span>
-      <i class="bi bi-x ddr-toast-container__ddr-toast-title---title-icon" (click)="closeToast(index)"></i>
+    <div class="ddr-toast-container__ddr-toast__title text-light">
+      <span class="ddr-toast-container__ddr-toast__title__message">{{toast.title}}</span>
+      <i class="bi bi-x ddr-toast-container__ddr-toast-title__icon" (click)="closeToast(index)"></i>
     </div>
-    <div class="ddr-toast-container__ddr-toast--ddr-toast-content text-light">
+    <div class="ddr-toast-container__ddr-toast__content text-light">
       <span>{{toast.message}}</span>
     </div>
   </div>
   }
 </div>
-<!-- } -->

@@ -1,0 +1,115 @@
+.ddr-button-split {
+
+    display: inline-flex;
+    align-items: center;
+    position: relative;
+
+    ul {
+        padding: 0;
+        margin: 0;
+        list-style: none;
+    }
+
+    &--transparent {
+        ddr-button button {
+            background: transparent !important;
+        }
+    }
+
+    &--without-border {
+        ddr-button button {
+            border-color: transparent !important;
+        }
+    }
+
+    ddr-button button {
+        img {
+            width: 32px;
+            height: 32px;
+        }
+    }
+
+    &__action-principal {
+
+        &--more-actions {
+            button {
+                border-bottom-right-radius: 0;
+                border-top-right-radius: 0;
+                border-right: 0 !important;
+            }
+        }
+
+    }
+
+    &__action-secondaries-no-border-left {
+        button {
+            border-bottom-left-radius: 0;
+            border-top-left-radius: 0;
+            width: 40px;
+            padding: 0;
+        }
+    }
+
+    &__action-secondaries {
+        button {
+            width: 40px;
+            padding: 0;
+        }
+
+        button i {
+            font-size: 8px;
+        }
+    }
+
+    &__options {
+
+        &--with-text {
+            min-width: 200px;
+        }
+
+        position: absolute;
+        width: 100%;
+        z-index: 999;
+        margin-top: 5px;
+        border-radius: 4px;
+
+        &--position-bottom-right {
+            top: 40px;
+            left: 0;
+        }
+
+        &--position-bottom-left {
+            top: 40px;
+            right: 0;
+        }
+
+
+        &--position-top-right {
+            bottom: 40px;
+            left: 0;
+        }
+
+        &--position-top-left {
+            bottom: 40px;
+            right: 0;
+        }
+
+        ul {
+            border-radius: 4px;
+            max-height: 200px;
+            overflow-x: hidden;
+            overflow-y: auto;
+
+            li {
+                cursor: pointer;
+                padding: 5px;
+                line-height: 1.2;
+                margin: 0;
+            }
+
+        }
+
+
+    }
+
+}

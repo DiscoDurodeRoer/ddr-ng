@@ -1,5 +1,5 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
-import { AfterViewInit, ChangeDetectorRef, Component, ContentChild, EventEmitter, forwardRef, inject, Input, OnChanges, OnInit, Output, SimpleChanges, TemplateRef, ViewEncapsulation } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, ContentChild, EventEmitter, forwardRef, inject, Input, OnChanges, OnDestroy, OnInit, Output, SimpleChanges, TemplateRef, ViewChild, ViewEncapsulation } from '@angular/core';
 import { FormsModule, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { DdrSelectItem } from '../../common/ddr-select-item.model';
 import { DdrConstantsService } from '../../services/ddr-constants.service';
@@ -11,9 +11,10 @@ import { DdrCheckboxBinaryComponent } from '../ddr-checkbox-binary/ddr-checkbox-
 import { DdrClickOutsideDirective } from '../../directives/ddr-click-outside.directive';
 import { DdrTooltipDirective } from '../../directives/ddr-tooltip.directive'
 import { DdrTranslatePipe } from '../../pipes/ddr-translate.pipe';
-import { NgClass, NgStyle, NgTemplateOutlet } from '@angular/common';
-import { DdrOrientation, DdrOrientationDropdown } from '../../types/types';
+import { NgClass, NgTemplateOutlet } from '@angular/common';
+import { DdrOrientationDropdown, DdrOrientatioTooltip, DdrSize } from '../../types/types';
 import { DdrCheckboxComponent } from '../ddr-checkbox/ddr-checkbox.component';
+import { Subscription } from 'rxjs/internal/Subscription';
 
 @Component({
   selector: 'ddr-dropdown',
@@ -30,7 +31,6 @@ import { DdrCheckboxComponent } from '../ddr-checkbox/ddr-checkbox.component';
     DdrClickOutsideDirective,
     DdrTooltipDirective,
     NgClass,
-    NgStyle,
     NgTemplateOutlet
   ],
   animations: [
@@ -67,7 +67,7 @@ import { DdrCheckboxComponent } from '../ddr-checkbox/ddr-checkbox.component';
     },
   ]
 })
-export class DdrDropdownComponent<T> extends DdrControlValueAccessor implements AfterViewInit, OnInit, OnChanges {
+export class DdrDropdownComponent<T> extends DdrControlValueAccessor implements AfterViewInit, OnInit, OnChanges, OnDestroy {
 
   public readonly constants: DdrConstantsService = inject(DdrConstantsService);
   private ddrTranslate: DdrTranslateService = inject(DdrTranslateService);
@@ -76,6 +76,7 @@ export class DdrDropdownComponent<T> extends DdrControlValueAccessor implements 
   @Input({ required: true }) options: DdrSelectItem<T>[] = [];
   @Input() showFilter: boolean = true;
   @Input() label?: string;
+  @Input() name: string = '';
   @Input() inline: boolean = false;
   @Input() validate: boolean = false;
   @Input() orientation: DdrOrientationDropdown = this.constants.ORIENTATION_DROPDOWN.BOTTOM;
@@ -85,19 +86,22 @@ export class DdrDropdownComponent<T> extends DdrControlValueAccessor implements 
   @Input() placeholder: string = '';
   @Input() required: boolean = false;
   @Input() translate: boolean = true;
-  @Input() touchUI: boolean = false;
-  @Input() orientationTooltip: DdrOrientation = this.constants.ORIENTATION.BOTTOM;
+  @Input() modalOptions: boolean = false;
+  @Input() tooltipOrientation: DdrOrientatioTooltip = this.constants.ORIENTATION.BOTTOM;
   @Input({ required: false }) tooltipText?: string;
   @Input({ required: false }) closeOnSelect?: boolean = true;
   @Input() allowDeselect: boolean = false;
   @Input() compareFn: Function = (a: T, b: T) => a === b;
+  @Input() size: DdrSize = this.constants.SIZE.MEDIUM;
+  @Input() transparent: boolean = false
 
   @Output() selectItem: EventEmitter<DdrSelectItem<T>> = new EventEmitter<DdrSelectItem<T>>();
 
-  @ContentChild('itemTemplate', { static: false }) itemTemplateOutside!: TemplateRef<any> | null;  
+  @ContentChild('itemTemplate', { static: false }) itemTemplateOutside!: TemplateRef<any> | null;
   @ContentChild('templateValid', { static: false }) templateValidOutside: TemplateRef<any> | null = null;
   @ContentChild('templateErrors', { static: false }) templateErrorsOutside: TemplateRef<any> | null = null;
 
+  @ViewChild(DdrInputGroupComponent) inputGroup!: DdrInputGroupComponent;
 
   public showItems: boolean = false;
   public optionsShow: DdrSelectItem<T>[] = [];
@@ -105,13 +109,16 @@ export class DdrDropdownComponent<T> extends DdrControlValueAccessor implements 
 
   public isSearching: boolean = false;
   public filterInput: string = '';
+  private subscription: Subscription = new Subscription();
 
   constructor() {
     super();
   }
-  
+
+
+
   ngAfterViewInit(): void {
-    this.changeValue.subscribe(v => {
+    this.subscription = this.changeValue.subscribe(v => {
       this.selectValue(v);
     })
   }
@@ -143,11 +150,28 @@ export class DdrDropdownComponent<T> extends DdrControlValueAccessor implements 
     if (!value) {
       this.valueShow = '';
       this.optionsShow.forEach(op => op.selected = false);
+      if (this.inputGroup) {
+        this.inputGroup!.input!.input.control.markAsDirty();
+        if (this.validate) {
+          this.inputGroup.checkInput(this.constants.INPUT_ERRORS.VALID);
+        }
+      }
+
     } else {
       const optionFound: DdrSelectItem<T> | undefined = this.options.find(option => this.compareFn(option.value, value));
       if (optionFound) {
         this.valueShow = this.translate ? this.ddrTranslate.getTranslate(optionFound.label) : optionFound.label;
         this.options.forEach(option => option.selected = this.compareFn(option.value, optionFound.value));
+        if (this.inputGroup) {
+          this.inputGroup!.input!.input.control.markAsDirty();
+          if (this.validate) {
+            if (this.value == null) {
+              this.inputGroup.checkInput(this.constants.INPUT_ERRORS.ERROR);
+            } else {
+              this.inputGroup.checkInput(this.constants.INPUT_ERRORS.VALID);
+            }
+          }
+        }
       } else {
         this.value = null;
       }
@@ -156,7 +180,9 @@ export class DdrDropdownComponent<T> extends DdrControlValueAccessor implements 
 
   togglePanelOptions() {
     if (!this.disabled) {
-      this.showItems = !this.showItems;
+      setTimeout(() => {
+        this.showItems = !this.showItems;
+      }, 100);
     }
   }
 
@@ -188,9 +214,14 @@ export class DdrDropdownComponent<T> extends DdrControlValueAccessor implements 
 
   }
 
-
   hidePanelItems() {
-    this.showItems = false;
+    setTimeout(() => {
+      this.showItems = false;
+    }, 100);
+  }
+
+  ngOnDestroy(): void {
+    this.subscription?.unsubscribe();
   }
 
 }

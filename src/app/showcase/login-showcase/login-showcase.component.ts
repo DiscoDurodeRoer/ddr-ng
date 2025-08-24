@@ -1,15 +1,21 @@
 
 import { Component, inject } from '@angular/core';
-import { DdrAuth, DdrToastService, DdrLoginComponent } from 'ddr-ng';
+import {
+  DdrAuth,
+  DdrToastService,
+  DdrLoginComponent,
+  DdrTranslatePipe,
+  DdrTranslateService
+} from 'ddr-ng';
 import { BaseShowcaseComponent } from '../base-showcase/base-showcase.component';
 
 @Component({
-  selector: 'app-login-showcase',
+  selector: 'login-showcase',
   templateUrl: './login-showcase.component.html',
-  styleUrls: ['./login-showcase.component.scss'],
   imports: [
     BaseShowcaseComponent,
-    DdrLoginComponent
+    DdrLoginComponent,
+    DdrTranslatePipe
   ],
   providers: [
     DdrToastService
@@ -17,18 +23,27 @@ import { BaseShowcaseComponent } from '../base-showcase/base-showcase.component'
 })
 export class LoginShowcaseComponent {
 
-  public ddrToastService: DdrToastService = inject(DdrToastService)
+  public ddrToastService: DdrToastService = inject(DdrToastService);
+  public ddrTranslateService: DdrTranslateService = inject(DdrTranslateService);
 
-  login($event: DdrAuth) {
-    this.ddrToastService.addSuccessMessage('Click en login', JSON.stringify($event));
-    console.log($event);
+  login(auth: DdrAuth) {
+    this.ddrToastService.addSuccessMessage(
+      this.ddrTranslateService.getTranslate('success'),
+      JSON.stringify(auth)
+    );
   }
 
   forgotenPassword() {
-    this.ddrToastService.addSuccessMessage('Exito', 'Click en olvidar contraseña')
+    this.ddrToastService.addSuccessMessage(
+      this.ddrTranslateService.getTranslate('success'),
+      this.ddrTranslateService.getTranslate('login.click.forgoten.password')
+    )
   }
 
   registerUser() {
-    this.ddrToastService.addSuccessMessage('Exito', 'Click en registro de usuarios')
+    this.ddrToastService.addSuccessMessage(
+      this.ddrTranslateService.getTranslate('success'),
+      this.ddrTranslateService.getTranslate('login.click.register.user')
+    )
   }
 }

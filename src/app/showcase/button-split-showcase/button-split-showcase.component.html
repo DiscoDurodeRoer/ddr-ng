@@ -1,0 +1,215 @@
+<base-showcase component="ddr-button-split" type="component" [showClasses]="true" [showStyles]="true">
+
+  <div description>
+    <p>{{'button.split.description' | ddrTranslate}}</p>
+  </div>
+
+  <div examples>
+
+<div class="row">
+  <div class="col-12">
+    <span class="h3">{{'button.split.example.1' | ddrTranslate}}</span>
+  </div>
+</div>
+
+<div class="row mt-3">
+  <div class="col-12">
+    <ddr-button-split
+      [actions]="actions"
+      (selectAction)="selectAction($event)" />
+  </div>
+</div>
+
+<div class="row mt-3">
+  <div class="col-12">
+      <span class="h3">{{'button.split.example.2' | ddrTranslate}}</span>
+  </div>
+</div>
+
+<div class="row mt-3">
+  <div class="col-12">
+    <ddr-button-split
+      [actions]="actions"
+      [showFirstOnlyIcon]="true"
+      (selectAction)="selectAction($event)" />
+  </div>
+</div>
+
+<div class="row mt-3">
+  <div class="col-12">
+      <span class="h3">{{'button.split.example.3' | ddrTranslate}}</span>
+  </div>
+</div>
+
+<div class="row mt-3">
+  <div class="col-12">
+    <ddr-button-split
+      [actions]="actions"
+      [transparent]="true"
+      (selectAction)="selectAction($event)" />
+  </div>
+</div>
+
+<div class="row mt-3">
+  <div class="col-12">
+      <span class="h3">{{'button.split.example.4' | ddrTranslate}}</span>
+  </div>
+</div>
+
+<div class="row mt-3">
+  <div class="col-12">
+    <ddr-button-split
+      [actions]="actions"
+      [transparent]="true"
+      [border]="false"
+      (selectAction)="selectAction($event)" />
+  </div>
+</div>
+
+<div class="row mt-3">
+  <div class="col-12">
+    <span class="h3">{{'button.split.example.5' | ddrTranslate}}</span>
+  </div>
+</div>
+
+<div class="row mt-3">
+  <div class="col-12">
+    <ddr-button-split
+      [actions]="actions"
+      [showFirstInOptions]="false"
+      (selectAction)="selectAction($event)" />
+  </div>
+</div>
+
+<div class="row mt-3">
+  <div class="col-12">
+    <span class="h3">{{'button.split.example.6' | ddrTranslate}}</span>
+  </div>
+</div>
+
+<div class="row mt-3">
+  <div class="col-12">
+
+    <ddr-button-split
+      class="me-2"
+      [actions]="actions"
+      size="small"
+      (selectAction)="selectAction($event)" />
+
+    <ddr-button-split
+      class="me-2"
+      [actions]="actions"
+      size="medium"
+      (selectAction)="selectAction($event)" />
+
+    <ddr-button-split
+      [actions]="actions"
+      size="large"
+      (selectAction)="selectAction($event)" />
+  </div>
+</div>
+
+<div class="row mt-3">
+  <div class="col-12">
+      <span class="h3">{{'button.split.example.7' | ddrTranslate}}</span>
+  </div>
+</div>
+
+<div class="row mt-3">
+  <div class="col-12">
+    <ddr-button-multiple
+      [buttons]="buttons"
+      [(ngModel)]="position"
+      [showSelectedButton]="true" />
+  </div>
+</div>
+
+<div class="row mt-3">
+  <div class="col-12">
+    <ddr-button-split
+      [actions]="actions"
+      [position]="position"
+      (selectAction)="selectAction($event)" />
+  </div>
+</div>
+
+<div class="row mt-3">
+  <div class="col-12">
+      <span class="h3">{{'button.split.example.8' | ddrTranslate}}</span>
+  </div>
+</div>
+
+<div class="row mt-3">
+  <div class="col-12">
+    <ddr-button-split
+      [actions]="actions"
+      [disabled]="true"
+      (selectAction)="selectAction($event)" />
+  </div>
+</div>
+
+
+<div class="row mt-3">
+  <div class="col-12">
+      <span class="h3">{{'button.split.example.9' | ddrTranslate}}</span>
+  </div>
+</div>
+
+<div class="row mt-3">
+  <div class="col-12">
+    <ddr-button-split
+      [actions]="actions"
+      iconShowOptions="bi bi-arrow-down-short"
+      (selectAction)="selectAction($event)" />
+  </div>
+</div>
+
+
+<div class="row mt-3">
+  <div class="col-12">
+      <span class="h3">{{'button.split.example.10' | ddrTranslate}}</span>
+  </div>
+</div>
+
+<div class="row mt-3">
+  <div class="col-12">
+    <ddr-button-split
+      [actions]="actions"
+      [showFirst]="false"
+      (selectAction)="selectAction($event)" />
+  </div>
+</div>
+
+<div class="row mt-3">
+  <div class="col-12">
+      <span class="h3">{{'button.split.example.11' | ddrTranslate}}</span>
+  </div>
+</div>
+
+<div class="row mt-3">
+  <div class="col-12">
+    <ddr-button-split
+      [actions]="actions"
+      [showOnlyIcon]="true"
+      (selectAction)="selectAction($event)" />
+  </div>
+</div>
+
+
+<div class="row mt-3">
+  <div class="col-12">
+      <span class="h3">{{'button.split.example.12' | ddrTranslate}}</span>
+  </div>
+</div>
+
+<div class="row mt-3">
+  <div class="col-12">
+    <ddr-button-split
+      [actions]="actions"
+      (openActions)="openActions($event)" />
+  </div>
+</div>
+
+  </div>
+
+</base-showcase>

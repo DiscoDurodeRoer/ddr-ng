@@ -1,0 +1,129 @@
+<div class="row mb-5">
+    <div class="col-12">
+
+        <ddr-card [showHeader]="false">
+            <div card-content>
+                        
+                <div class="row mt-3">
+                    <div class="col-12">
+                        <span class="h2">{{'get.started.p1' | ddrTranslate}}</span>
+                    </div>
+                </div>
+
+                <div class="row mt-3">
+                    <div class="col-12">
+                        <span>{{'get.started.p2' | ddrTranslate}}</span>
+                    </div>
+                </div>
+                
+                <div class="row mt-3">
+                    <div class="col-12">
+                        <span class="h2">{{'get.started.p3' | ddrTranslate}}</span>
+                    </div>
+                </div>
+
+                <div class="row mt-3">
+                    <div class="col-12">
+                        <span>{{'get.started.p4' | ddrTranslate}}</span>
+                        <pre class="language-bash"><code class="language-bash">npm install ddr-ng</code></pre>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-12 text-end">
+                        <ddr-button 
+                            text="get.started.copy" 
+                            icon="bi bi-copy" 
+                            size="medium"
+                            ddrClipboard 
+                            clipboard="npm install ddr-ng"
+                            (action)="copyText()" />
+                    </div>
+                </div>
+
+                <div class="row mt-3">
+                    <div class="col-12">
+                        <span class="h2">{{'get.started.p5' | ddrTranslate}}</span>
+                    </div>
+                </div>
+
+                <div class="row mt-3">
+                    <div class="col-12">
+                        <span>{{'get.started.p6' | ddrTranslate}}</span>
+
+                            <pre class="language-typescript"><code class="language-typescript">"styles": [
+  "node_modules/ddr-ng/resources/themes/ddr-blue.scss",
+  "node_modules/bootstrap/dist/css/bootstrap.min.css",
+  "node_modules/bootstrap-icons/font/bootstrap-icons.css"
+]</code></pre>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-12 text-end">
+                        <ddr-button 
+                            text="get.started.copy" 
+                            icon="bi bi-copy" 
+                            size="medium"
+                            ddrClipboard 
+                            [clipboard]="stylesEx1"
+                            (action)="copyText()" />
+                    </div>
+                </div>
+
+                <div class="row mt-3">
+                    <div class="col-12">
+                        <span>{{'get.started.p7' | ddrTranslate}}</span>
+                                <pre class="language-typescript"><code class="language-typescript">"styles": [
+  "node_modules/ddr-ng/resources/themes/ddr-blue.scss",
+  "node_modules/ddr-ng/resources/themes/ddr-dark.scss",
+  "node_modules/ddr-ng/resources/themes/ddr-purple.scss",
+  "node_modules/bootstrap/dist/css/bootstrap.min.css",
+  "node_modules/bootstrap-icons/font/bootstrap-icons.css"
+]</code></pre>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-12 text-end">
+                        <ddr-button 
+                            text="get.started.copy" 
+                            icon="bi bi-copy" 
+                            size="medium"
+                            ddrClipboard 
+                            [clipboard]="stylesEx2"
+                            (action)="copyText()" />
+                    </div>
+                </div>
+
+                <div class="row mt-3">
+                    <div class="col-12">
+                        <span>{{'get.started.p8' | ddrTranslate}}</span>
+                        <pre class="language-html"><code class="language-html"><p>&lt;body class="ddr-blue"&gt;&lt;/body&gt;</p></code></pre>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-12 text-end">
+                        <ddr-button 
+                            text="get.started.copy" 
+                            icon="bi bi-copy" 
+                            size="medium"
+                            ddrClipboard 
+                            [clipboard]="stylesEx3"
+                            (action)="copyText()" />
+                    </div>
+                </div>
+
+                <div class="row mt-3">
+                    <div class="col-12">
+                        <span>{{'get.started.p9' | ddrTranslate}}</span>
+                    </div>
+                </div>
+
+            </div>
+        </ddr-card>
+
+
+    </div>
+</div>

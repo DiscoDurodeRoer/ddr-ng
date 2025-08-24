@@ -13,7 +13,7 @@
           @for (col of cols; track col.property) {
             <th class="ddr-table__table--header-cell" [ngStyle]="{'width.%': widthCells }">
               @if (col.tooltip) {
-                <i ddrTooltip [tooltipText]="col.tooltip | ddrTranslate" [orientationTooltip]="constants.ORIENTATION.BOTTOM" class="bi bi-info-circle ddr-table__table--header-cell--tooltip"></i>
+                <i ddrTooltip [tooltipText]="col.tooltip | ddrTranslate" [tooltipOrientation]="constants.ORIENTATION.BOTTOM" class="bi bi-info-circle ddr-table__table--header-cell--tooltip"></i>
               }
               {{ col.label | ddrTranslate }}
               @if (canSort && col.canSort) {
@@ -56,7 +56,12 @@
               
               @for (col of cols; track col.property) {
                 <td class="ddr-table__table--body-cell">
-                  <span class="ddr-table__table--body-cell--title-mobile">{{ col.label | ddrTranslate }}</span>
+                  <span class="ddr-table__table--body-cell--title-mobile">
+                    {{ col.label | ddrTranslate }}
+                    @if (col.tooltip) {
+                      <i ddrTooltip [tooltipText]="col.tooltip | ddrTranslate" [tooltipOrientation]="constants.ORIENTATION.BOTTOM" class="bi bi-info-circle ddr-table__table--body-cell--title-mobile__tooltip"></i>
+                    } 
+                  </span>
                   <span class="ddr-table__table--body-cell--text-mobile">
                     @if (templateCell) {
                       <ng-template 
@@ -71,8 +76,9 @@
               
               @if (showActions && it.actions && it.actions.length > 0) {
                 <td class="ddr-table__table--body-row--actions">
-                  <ddr-split-button
+                  <ddr-button-split
                     [actions]="it.actions"
+                    position="bottom-left"
                     [showFirstOnlyIcon]="true"
                     (selectAction)="onSelectAction($event, it.item, index)"/>
                 </td>

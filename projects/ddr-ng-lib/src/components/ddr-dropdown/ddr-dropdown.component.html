@@ -4,9 +4,8 @@
 }">
   <!-- Option orientations TOP -->
   @if (showItems && orientation == constants.ORIENTATION_DROPDOWN.TOP) {
-    <div class="ddr-dropdown__panel-items"
-      [ngClass]="{'ddr-dropdown__panel-items--touchUI': touchUI}"
-      [ngStyle]="{'top.px': showFilter ? ((optionsShow.length * -15) <= -180 ? -120 : (optionsShow.length * -15) - 40) : ((optionsShow.length * -15) <= -180 ? -180 : (optionsShow.length * -15) - 40 )}"
+    <div class="ddr-dropdown__panel-items ddr-dropdown__panel-items--top"
+      [ngClass]="{'ddr-dropdown__panel-items--modal': modalOptions}"
       [@overlayAnimationTop]="{ value: 'visible' }">
       <ng-container [ngTemplateOutlet]="commonTemplate"></ng-container>
     </div>
@@ -14,15 +13,18 @@
   <ddr-input-group
     [label]="label"
     [inline]="inline"
-    icon="bi bi-caret-down-fill"
+    [icon]="orientation === 'bottom' ? 'bi bi-caret-down-fill' : 'bi bi-caret-up-fill'"
     [placeholder]="placeholder"
     [readonly]="true"
     [required]="required"
     [disabled]="disabled"
     [(ngModel)]="valueShow"
     [validate]="validate" 
-    [orientationTooltip]="orientationTooltip"
+    [tooltipOrientation]="tooltipOrientation"
     [tooltipText]="tooltipText"
+    [size]="size"
+    [transparent]="transparent"
+    [name]="name"
     (action)="togglePanelOptions()"
     (clickInput)="togglePanelOptions()" >
 
@@ -41,7 +43,7 @@
   @if (showItems && orientation == constants.ORIENTATION_DROPDOWN.BOTTOM) {
     <div
       class="ddr-dropdown__panel-items" 
-      [ngClass]="{'ddr-dropdown__panel-items--touchUI': touchUI}" 
+      [ngClass]="{'ddr-dropdown__panel-items--modal': modalOptions}" 
       [@overlayAnimationBottom]="{ value: 'visible' }">
       <ng-container [ngTemplateOutlet]="commonTemplate" />
     </div>
@@ -60,7 +62,7 @@
           <span>{{ labelNoResults || ('dropdown.no.results' | ddrTranslate) }}</span>
         </div>
       } @else {
-        <ul [ngClass]="{'with-filter': showFilter}">
+        <ul [ngClass]="{'ddr-dropdown__panel-items__with-filter': showFilter}">
 
           @for (item of optionsShow; track item; let index = $index) {
             <li class="d-flex align-items-center cursor-pointer  ddr-dropdown__panel-items__item" [ngClass]="{'ddr-dropdown__panel-items__item--active': item.selected}" (click)="onSelectItem(item)">
@@ -85,6 +87,6 @@
     </div>
   </ng-template>
 </div>
-@if (touchUI && showItems) {
+@if (modalOptions && showItems) {
   <div class="ddr-overlay" (click)="hidePanelItems()"></div>
 }

@@ -8,7 +8,6 @@ import {
   ViewChild,
   ViewEncapsulation
 } from '@angular/core';
-
 import { DdrAuth } from '../../common/ddr-auth.model';
 import { DdrConstantsService } from '../../services/ddr-constants.service';
 import { DdrButtonComponent } from '../ddr-button/ddr-button.component';
@@ -17,7 +16,7 @@ import { DdrInputGroupComponent } from '../ddr-input-group/ddr-input-group.compo
 import { DdrInputPasswordComponent } from '../ddr-input-password/ddr-input-password.component';
 import { FormsModule } from '@angular/forms';
 import { DdrTranslatePipe } from '../../pipes/ddr-translate.pipe';
-import { NgClass } from '@angular/common';
+import { NgClass, NgTemplateOutlet } from '@angular/common';
 import { DdrCardComponent } from '../ddr-card/ddr-card.component';
 
 @Component({
@@ -32,28 +31,27 @@ import { DdrCardComponent } from '../ddr-card/ddr-card.component';
     DdrInputGroupComponent,
     DdrTranslatePipe,
     DdrInputPasswordComponent,
-    NgClass,
-    DdrCardComponent
+    DdrCardComponent,
+    NgTemplateOutlet,
+    NgClass
   ]
 })
 export class DdrLoginComponent {
 
   public readonly constants: DdrConstantsService = inject(DdrConstantsService);
 
-  @Input() validate: boolean = false;
-  @Input() showForgotPassword: boolean = true;
-  @Input() showCreateUser: boolean = true;
+  @Input() showForgotPassword: boolean = false;
+  @Input() showCreateUser: boolean = false;
   @Input() showHeader: boolean = false;
+  @Input() showFooter: boolean = false;
   @Input() showLabelUser: boolean = true;
   @Input() showLabelPassword: boolean = true;
+  @Input() userRequired: boolean = true;
+  @Input() userPassword: boolean = true;
 
   @Input() labelSubmit?: string;
-  @Input() labelForgotenPwd?: string;
+  @Input() labelForgotenPassword?: string;
   @Input() labelCreateUser?: string;
-  @Input() labelValidUsername?: string;
-  @Input() labelInvalidUsername?: string;
-  @Input() labelValidPassword?: string;
-  @Input() labelInvalidPassword?: string;
   @Input() labelUsername?: string;
   @Input() labelPlaceholderUsername?: string;
   @Input() labelPassword?: string;
@@ -70,23 +68,14 @@ export class DdrLoginComponent {
 
   @ViewChild('pwd') inputPwd?: ElementRef;
 
-  /**
-   * Iniciar sesión
-   */
   login() {
     this.doLogin.emit(this.user);
   }
 
-  /**
-   * Recuperar contraseña
-   */
   recoverPassword() {
     this.forgotenPassword.emit();
   }
 
-  /**
-   * Registro de usuarios
-   */
   createUser() {
     this.registerUser.emit();
   }

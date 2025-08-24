@@ -1,233 +1,574 @@
-import { Component, inject, OnInit } from '@angular/core';
-import { DdrTableCol, DdrAction, DdrSelectItem, DdrTableItem, DdrTableComponent, DdrDropdownComponent, DdrToastService, DdrInputComponent } from 'ddr-ng';
-import { Person } from './person';
+import { Component, inject } from '@angular/core';
+import {
+  DdrTableCol,
+  DdrAction,
+  DdrTableItem,
+  DdrTableComponent,
+  DdrToastService,
+  DdrTranslatePipe,
+  DdrTranslateService,
+  DdrNestedPropertyPipe
+} from 'ddr-ng';
+import { Person } from './bean/person';
 import { BaseShowcaseComponent } from '../base-showcase/base-showcase.component';
 import { FormsModule } from '@angular/forms';
 
 @Component({
-    selector: 'app-table-showcase',
-    templateUrl: './table-showcase.component.html',
-    styleUrls: ['./table-showcase.component.scss'],
-    imports: [
-        BaseShowcaseComponent,
-        DdrTableComponent,
-        DdrDropdownComponent,
-        FormsModule,
-        DdrInputComponent
-    ],
-    providers: [
-      DdrToastService
-    ]
+  selector: 'table-showcase',
+  templateUrl: './table-showcase.component.html',
+  imports: [
+    BaseShowcaseComponent,
+    DdrTableComponent,
+    DdrTranslatePipe,
+    DdrNestedPropertyPipe,
+    FormsModule
+  ],
+  providers: [
+    DdrToastService
+  ]
 })
-export class TableShowcaseComponent implements OnInit {
+export class TableShowcaseComponent {
 
-  public toastService: DdrToastService = inject(DdrToastService);
+  private readonly ddrToastService: DdrToastService = inject(DdrToastService);
+  private readonly ddrTranslateService: DdrTranslateService = inject(DdrTranslateService);
 
-  cols: DdrTableCol[] = [
-    { 
-      label: 'Nombre', 
-      property: 'name', 
-      tooltip: 'Nombre de la persona' 
+  public cols: DdrTableCol[] = [
+    {
+      label: 'table.name',
+      property: 'name',
+      tooltip: 'table.name.tooltip'
     },
-    { 
-      label: 'Apellidos', 
-      property: 'surname', 
-      tooltip: 'Apellidos de la persona' 
+    {
+      label: 'table.surname',
+      property: 'surname',
+      tooltip: 'table.surname.tooltip'
     },
-    { 
-      label: 'Edad', 
-      property: 'age', 
-      tooltip: 'Edad de la persona' 
+    {
+      label: 'table.age',
+      property: 'age',
+      tooltip: 'table.age.tooltip'
     },
-    { 
-      label: 'Peso', 
-      property: 'weight', 
-      tooltip: 'Peso de la persona' 
-    }
-  ];
-  colsEx9: DdrTableCol[] = [
-    { 
-      label: 'Nombre', 
-      property: 'name', 
-      tooltip: 'Nombre de la persona', 
-      canSort: true 
-    },
-    { 
-      label: 'Apellidos', 
-      property: 'surname', 
-      tooltip: 'Apellidos de la persona', 
-      canSort: true 
-    },
-    { 
-      label: 'Edad', 
-      property: 'age', 
-      tooltip: 'Edad de la persona', 
-      canSort: true 
-    },
-    { 
-      label: 'Peso', 
-      property: 'weight', 
-      tooltip: 'Peso de la persona', 
-      canSort: true 
-    }
-  ];
-  itemsEx1: DdrTableItem<Person>[] = [];
-  itemsEx2: DdrTableItem<Person>[] = [];
-  itemsEx3: DdrTableItem<Person>[] = [];
-  itemsEx4: DdrTableItem<Person>[] = [];
-  itemsEx5: DdrTableItem<Person>[] = [];
-  itemsEx8: DdrTableItem<Person>[] = [];
-  itemsEx9: DdrTableItem<Person>[] = [];
-  itemsEx10: DdrTableItem<Person>[] = [];
-  itemsEx11: DdrTableItem<Person>[] = [];
-
-  actions: DdrAction<Person>[] = [
-    { 
-      label: 'Save', 
-      value: 'SAVE', 
-      icon: 'bi bi-floppy' 
-    },
-    { 
-      label: 'Update', 
-      value: 'UPDATE', 
-      icon: 'bi bi-arrow-clockwise' 
-    },
-    { 
-      label: 'Delete', 
-      value: 'DELETE', 
-      icon: 'bi bi-trash' 
+    {
+      label: 'table.weight',
+      property: 'weight',
+      tooltip: 'table.weight.tooltip'
     }
   ];
 
-  ageValues: DdrSelectItem<number>[] = [];
-
-  ngOnInit() {
-
-    this.ageValues = [];
-    for (let index = 18; index < 50; index++) {
-      this.ageValues.push({
-        label: index + '',
-        value: index
-      })
+  public colsNested: DdrTableCol[] = [
+    {
+      label: 'table.name',
+      property: 'name',
+      tooltip: 'table.name.tooltip'
+    },
+    {
+      label: 'table.surname',
+      property: 'surname',
+      tooltip: 'table.surname.tooltip'
+    },
+    {
+      label: 'table.age',
+      property: 'age',
+      tooltip: 'table.age.tooltip'
+    },
+    {
+      label: 'table.weight',
+      property: 'weight',
+      tooltip: 'table.weight.tooltip'
+    },
+    {
+      label: 'table.documentation',
+      property: 'documentation.nif',
+      tooltip: 'table.documentation.nif'
     }
+  ];
 
-    const items = [
-      { name: 'Fernando', surname: 'Ureña', age: 33, weight: 79 },
-      { name: 'Manuel', surname: 'Gomez', age: 30, weight: 70 },
-      { name: 'Fernando', surname: 'Ureña', age: 33, weight: 79 },
-      { name: 'Manuel', surname: 'Gomez', age: 30, weight: 70 },
-      { name: 'Fernando', surname: 'Ureña', age: 33, weight: 79 },
-      { name: 'Manuel', surname: 'Gomez', age: 30, weight: 70 },
-      { name: 'Fernando', surname: 'Ureña', age: 33, weight: 79 },
-      { name: 'Manuel', surname: 'Gomez', age: 30, weight: 70 },
-      { name: 'Fernando', surname: 'Ureña', age: 33, weight: 79 },
-      { name: 'Manuel', surname: 'Gomez', age: 30, weight: 70 },
-      { name: 'Fernando', surname: 'Ureña', age: 33, weight: 79 },
-      { name: 'Manuel', surname: 'Gomez', age: 30, weight: 70 },
-      { name: 'Fernando', surname: 'Ureña', age: 33, weight: 79 },
-      { name: 'Manuel', surname: 'Gomez', age: 30, weight: 70 },
-      { name: 'Fernando', surname: 'Ureña', age: 33, weight: 79 },
-      { name: 'Manuel', surname: 'Gomez', age: 30, weight: 70 },
-      { name: 'Fernando', surname: 'Ureña', age: 33, weight: 79 },
-      { name: 'Manuel', surname: 'Gomez', age: 30, weight: 70 },
-      { name: 'Fernando', surname: 'Ureña', age: 33, weight: 79 },
-      { name: 'Manuel', surname: 'Gomez', age: 30, weight: 70 },
-    ];
-
-    this.itemsEx1 = [];
-    items.forEach(item => {
-      this.itemsEx1.push({
-        actions: this.actions,
-        item
-      });
-    });
-
-    this.itemsEx2 = [...this.itemsEx1];
-    this.itemsEx3 = [...this.itemsEx1];
-    this.itemsEx4 = [...this.itemsEx1];
-    this.itemsEx5 = [...this.itemsEx1];
-    this.itemsEx8 = [...this.itemsEx1];
-    this.itemsEx9 = [...this.itemsEx1];
-    this.itemsEx10 = [...this.itemsEx1];
-    this.itemsEx11 = [...this.itemsEx1];
-  }
-
-  selectItemEx1($event: DdrTableItem<Person>) {
-    this.toastService.addSuccessMessage("Item seleccionado ejemplo 1", JSON.stringify($event))
-  }
-
-  selectItemEx2($event: DdrTableItem<Person>) {
-    this.toastService.addSuccessMessage("Item seleccionado ejemplo 2", JSON.stringify($event))
-  }
-
-  selectItemEx3($event: DdrTableItem<Person>) {
-    this.toastService.addSuccessMessage("Item seleccionado ejemplo 3", JSON.stringify($event))
-  }
-
-  selectMultipleItemEx3($event: Person[]) {
-    this.toastService.addSuccessMessage("Multiples items seleccionados ejemplo 3", JSON.stringify($event))
-  }
-
-  selectItemEx4($event: DdrTableItem<Person>) {
-    this.toastService.addSuccessMessage("Item seleccionado ejemplo 4", JSON.stringify($event))
-  }
-
-  selectMultipleItemEx4($event: Person[]) {
-    this.toastService.addSuccessMessage("Multiples items seleccionados ejemplo 4", JSON.stringify($event))
-  }
-
-  selectItemEx5($event: DdrTableItem<Person>) {
-    this.toastService.addSuccessMessage("Item seleccionado ejemplo 5", JSON.stringify($event))
-  }
-
-  selectMultipleItemEx5($event: Person[]) {
-    this.toastService.addSuccessMessage("Multiples items seleccionados ejemplo 5", JSON.stringify($event))
-  }
-
-  selectItemEx8($event: DdrTableItem<Person>) {
-    this.toastService.addSuccessMessage("Item seleccionado ejemplo 8", JSON.stringify($event))
-  }
-
-  selectItemEx9($event: DdrTableItem<Person>) {
-    this.toastService.addSuccessMessage("Item seleccionado ejemplo 9", JSON.stringify($event))
-  }
-
-  sortItemsEx9($event: DdrTableCol) {
-    this.toastService.addSuccessMessage("Items ordenados", JSON.stringify($event));
-
-  }
-
-  selectItemEx10($event: DdrTableItem<Person>) {
-    this.toastService.addSuccessMessage("Item seleccionado ejemplo 10", JSON.stringify($event))
-  }
-
-  selectItemEx11($event: DdrTableItem<Person>) {
-    this.toastService.addSuccessMessage("Item seleccionado ejemplo 11", JSON.stringify($event))
-  }
-
-  selectAction($event: DdrAction<Person>) {
-    this.toastService.addSuccessMessage("Acción seleccionada", JSON.stringify($event))
-  }
-
-  createNewItem11($event: DdrTableItem<Person>){
-    $event.actions = this.actions;
-    this.itemsEx11.push($event);
-    this.toastService.addSuccessMessage("Item añadido en el ejemplo 11", JSON.stringify($event))
-  }
-
-  onChangePage($event: number) {
-    if (!$event) {
-      return;
+  public colsSort: DdrTableCol[] = [
+    {
+      label: 'table.name',
+      property: 'name',
+      tooltip: 'table.name.tooltip',
+      canSort: true
+    },
+    {
+      label: 'table.surname',
+      property: 'surname',
+      tooltip: 'table.surname.tooltip',
+      canSort: true
+    },
+    {
+      label: 'table.age',
+      property: 'age',
+      tooltip: 'table.age.tooltip',
+      canSort: true
+    },
+    {
+      label: 'table.weight',
+      property: 'weight',
+      tooltip: 'table.weight.tooltip',
+      canSort: true
     }
+  ];
 
-    this.toastService.addSuccessMessage("Página cambiada", $event.toString());
+  public actions: DdrAction<Person>[] = [
+    {
+      label: 'table.action.save',
+      value: 'SAVE',
+      icon: 'bi bi-floppy'
+    },
+    {
+      label: 'table.action.update',
+      value: 'UPDATE',
+      icon: 'bi bi-arrow-clockwise'
+    },
+    {
+      label: 'table.action.delete',
+      value: 'DELETE',
+      icon: 'bi bi-trash'
+    }
+  ];
+
+  public items: DdrTableItem<Person>[] = [
+    {
+      item: {
+        name: 'Fernando',
+        surname: 'Ureña',
+        age: 35,
+        weight: 78
+      }
+    },
+    {
+      item: {
+        name: 'Manuel',
+        surname: 'Gómez',
+        age: 30,
+        weight: 72
+      }
+    },
+    {
+      item: {
+        name: 'Fernando',
+        surname: 'Ureña',
+        age: 35,
+        weight: 78
+      }
+    },
+    {
+      item: {
+        name: 'Manuel',
+        surname: 'Gómez',
+        age: 30,
+        weight: 72
+      }
+    },
+    {
+      item: {
+        name: 'Fernando',
+        surname: 'Ureña',
+        age: 35,
+        weight: 78
+      }
+    },
+    {
+      item: {
+        name: 'Manuel',
+        surname: 'Gómez',
+        age: 30,
+        weight: 72
+      }
+    },
+    {
+      item: {
+        name: 'Fernando',
+        surname: 'Ureña',
+        age: 35,
+        weight: 78
+      }
+    },
+    {
+      item: {
+        name: 'Fernando',
+        surname: 'Ureña',
+        age: 35,
+        weight: 78
+      }
+    },
+    {
+      item: {
+        name: 'Manuel',
+        surname: 'Gómez',
+        age: 30,
+        weight: 72
+      }
+    },
+    {
+      item: {
+        name: 'Fernando',
+        surname: 'Ureña',
+        age: 35,
+        weight: 78
+      }
+    },
+    {
+      item: {
+        name: 'Manuel',
+        surname: 'Gómez',
+        age: 30,
+        weight: 72
+      }
+    },
+    {
+      item: {
+        name: 'Fernando',
+        surname: 'Ureña',
+        age: 35,
+        weight: 78
+      }
+    },
+    {
+      item: {
+        name: 'Fernando',
+        surname: 'Ureña',
+        age: 35,
+        weight: 78
+      }
+    },
+    {
+      item: {
+        name: 'Manuel',
+        surname: 'Gómez',
+        age: 30,
+        weight: 72
+      }
+    }
+  ];
+
+  public itemsNested: DdrTableItem<Person>[] = [
+    {
+      item: {
+        name: 'Fernando',
+        surname: 'Ureña',
+        age: 35,
+        weight: 78,
+        documentation: {
+          nif: '123456789A'
+        }
+      }
+    },
+    {
+      item: {
+        name: 'Manuel',
+        surname: 'Gómez',
+        age: 30,
+        weight: 72,
+        documentation: {
+          nif: '987654321B'
+        }
+      }
+    },
+    {
+      item: {
+        name: 'Fernando',
+        surname: 'Ureña',
+        age: 35,
+        weight: 78,
+        documentation: {
+          nif: '123456789A'
+        }
+      }
+    },
+    {
+      item: {
+        name: 'Fernando',
+        surname: 'Ureña',
+        age: 35,
+        weight: 78,
+        documentation: {
+          nif: '123456789A'
+        }
+      }
+    },
+    {
+      item: {
+        name: 'Manuel',
+        surname: 'Gómez',
+        age: 30,
+        weight: 72,
+        documentation: {
+          nif: '987654321B'
+        }
+      }
+    },
+    {
+      item: {
+        name: 'Fernando',
+        surname: 'Ureña',
+        age: 35,
+        weight: 78,
+        documentation: {
+          nif: '123456789A'
+        }
+      }
+    },
+    {
+      item: {
+        name: 'Manuel',
+        surname: 'Gómez',
+        age: 30,
+        weight: 72,
+        documentation: {
+          nif: '987654321B'
+        }
+      }
+    },
+    {
+      item: {
+        name: 'Fernando',
+        surname: 'Ureña',
+        age: 35,
+        weight: 78,
+        documentation: {
+          nif: '123456789A'
+        }
+      }
+    },
+    {
+      item: {
+        name: 'Fernando',
+        surname: 'Ureña',
+        age: 35,
+        weight: 78,
+        documentation: {
+          nif: '123456789A'
+        }
+      }
+    },
+    {
+      item: {
+        name: 'Manuel',
+        surname: 'Gómez',
+        age: 30,
+        weight: 72,
+        documentation: {
+          nif: '987654321B'
+        }
+      },
+      actions: this.actions
+    },
+    {
+      item: {
+        name: 'Fernando',
+        surname: 'Ureña',
+        age: 35,
+        weight: 78,
+        documentation: {
+          nif: '123456789A'
+        }
+      }
+    },
+    {
+      item: {
+        name: 'Fernando',
+        surname: 'Ureña',
+        age: 35,
+        weight: 78,
+        documentation: {
+          nif: '123456789A'
+        }
+      }
+    },
+    {
+      item: {
+        name: 'Fernando',
+        surname: 'Ureña',
+        age: 35,
+        weight: 78,
+        documentation: {
+          nif: '123456789A'
+        }
+      }
+    },
+    {
+      item: {
+        name: 'Manuel',
+        surname: 'Gómez',
+        age: 30,
+        weight: 72,
+        documentation: {
+          nif: '987654321B'
+        }
+      }
+    }
+  ];
+
+  public itemsWithActions: DdrTableItem<Person>[] = [
+    {
+      item: {
+        name: 'Fernando',
+        surname: 'Ureña',
+        age: 35,
+        weight: 78
+      },
+      actions: this.actions
+    },
+    {
+      item: {
+        name: 'Manuel',
+        surname: 'Gómez',
+        age: 30,
+        weight: 72
+      },
+      actions: this.actions
+    },
+    {
+      item: {
+        name: 'Fernando',
+        surname: 'Ureña',
+        age: 35,
+        weight: 78
+      },
+      actions: this.actions
+    },
+    {
+      item: {
+        name: 'Fernando',
+        surname: 'Ureña',
+        age: 35,
+        weight: 78
+      },
+      actions: this.actions
+    },
+    {
+      item: {
+        name: 'Manuel',
+        surname: 'Gómez',
+        age: 30,
+        weight: 72
+      },
+      actions: this.actions
+    },
+    {
+      item: {
+        name: 'Fernando',
+        surname: 'Ureña',
+        age: 35,
+        weight: 78
+      },
+      actions: this.actions
+    },
+    {
+      item: {
+        name: 'Manuel',
+        surname: 'Gómez',
+        age: 30,
+        weight: 72
+      },
+      actions: this.actions
+    },
+    {
+      item: {
+        name: 'Fernando',
+        surname: 'Ureña',
+        age: 35,
+        weight: 78
+      },
+      actions: this.actions
+    },
+    {
+      item: {
+        name: 'Fernando',
+        surname: 'Ureña',
+        age: 35,
+        weight: 78
+      },
+      actions: this.actions
+    },
+    {
+      item: {
+        name: 'Manuel',
+        surname: 'Gómez',
+        age: 30,
+        weight: 72
+      },
+      actions: this.actions
+    },
+    {
+      item: {
+        name: 'Fernando',
+        surname: 'Ureña',
+        age: 35,
+        weight: 78
+      },
+      actions: this.actions
+    },
+    {
+      item: {
+        name: 'Fernando',
+        surname: 'Ureña',
+        age: 35,
+        weight: 78
+      },
+      actions: this.actions
+    },
+    {
+      item: {
+        name: 'Fernando',
+        surname: 'Ureña',
+        age: 35,
+        weight: 78
+      },
+      actions: this.actions
+    },
+    {
+      item: {
+        name: 'Manuel',
+        surname: 'Gómez',
+        age: 30,
+        weight: 72
+      },
+      actions: this.actions
+    }
+  ];
+
+  selectMultipleItem(items: Person[]) {
+    this.ddrToastService.addSuccessMessage(
+      this.ddrTranslateService.getTranslate('table.multiple.select.item'),
+      JSON.stringify(items)
+    );
   }
 
-  onChangeTotalItemsPerPage($event: number) {
-    if (!$event) {
-      return;
-    }
+  selectItem(item: DdrTableItem<Person>) {
+    this.ddrToastService.addSuccessMessage(
+      this.ddrTranslateService.getTranslate('table.select.item'),
+      JSON.stringify(item)
+    );
+  }
 
-    this.toastService.addSuccessMessage("Total de elemntos por página cambiado", $event.toString());
+  sortItems(col: DdrTableCol) {
+    this.ddrToastService.addSuccessMessage(
+      this.ddrTranslateService.getTranslate('table.sort'),
+      JSON.stringify(col)
+    );
+  }
+
+  selectAction(action: DdrAction<Person>) {
+    this.ddrToastService.addSuccessMessage(
+      this.ddrTranslateService.getTranslate('table.select.action'),
+      JSON.stringify(action)
+    );
+  }
+
+  onChangePage(page: number) {
+    this.ddrToastService.addSuccessMessage(
+      this.ddrTranslateService.getTranslate('success'),
+      this.ddrTranslateService.getTranslate('table.change.page') + " :" + page.toString()
+    );
+  }
+
+  onChangeTotalItemsPerPage(rows: number) {
+    this.ddrToastService.addSuccessMessage(
+      this.ddrTranslateService.getTranslate('success'),
+      this.ddrTranslateService.getTranslate('table.change.rows') + " :" + rows.toString()
+    );
   }
 }

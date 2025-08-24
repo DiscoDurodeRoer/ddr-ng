@@ -9,12 +9,12 @@
   }
 
   &__title {
-    padding: 5px;
     border-radius: 4px;
     user-select: none;
+    padding: 20px;
 
-    &--no-slim {
-      padding: 20px;
+    &--slim {
+      padding: 5px 10px;
     }
 
     &--text {
@@ -40,8 +40,9 @@
 
   &__content {
 
+    padding: 20px;
+
     &--is-opened {
-      padding: 5px;
       border-top: none !important;
       border-radius: 4px;
       border-top-left-radius: 0px;
@@ -49,8 +50,8 @@
       overflow: inherit;
     }
 
-    &--no-slim {
-      padding: 20px;
+    &--slim {
+      padding: 5px 10px;
     }
 
     &--is-closed {

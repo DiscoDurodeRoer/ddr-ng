@@ -1,25 +1,29 @@
-<div class="row position-fixed h-100 overflow-y-auto">
+<div class="row h-100">
     <div class="col-12 ">
-
-        <div class="row">
-            <div class="col-12">
-                <span>LOGO</span>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-12">
-
-                @for(menuItem of menuItems; track menuItem){      
-                    <ddr-tree
-                        [open]="true"    
+        
+        @if(transparent){
+            @for(menuItem of menuItems; track menuItem){      
+                <ddr-tree
+                    [open]="true"
+                    [transparent]="transparent"
                     [nodes]="[menuItem]"
                     (clickNode)="goTo($event)"/>
+            }
+        }@else{
+            
+        <ddr-card [showHeader]="false">
+
+            <div card-content>
+                @for(menuItem of menuItems; track menuItem){      
+                    <ddr-tree
+                        [open]="true"
+                        [nodes]="[menuItem]"
+                        (clickNode)="goTo($event)"/>
                 }
-
             </div>
-        </div>
 
-     
+        </ddr-card>
+        }
+
     </div>
 </div>

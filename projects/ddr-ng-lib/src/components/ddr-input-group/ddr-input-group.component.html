@@ -2,7 +2,7 @@
   <ddr-input class="ddr-input-group__input" 
     [border]="true" 
     [label]="label"
-    [size]="constants.SIZE.MEDIUM" 
+    [size]="size" 
     [type]="type" 
     [validate]="validate" 
     [maxlength]="maxlength"
@@ -17,14 +17,16 @@
     [inline]="inline" 
     [pattern]="pattern"
     [name]="name" 
-    [autocomplete]="autocomplete"
-    [orientationTooltip]="orientationTooltip"
+    [tooltipOrientation]="tooltipOrientation"
     [tooltipText]="tooltipText"
+    [transparent]="transparent"
+    [focus]="focus"
+    [autocomplete]="autocomplete"
     [(ngModel)]="value" 
     (hasErrors)="checkInput($event)"
     (keyPressed)="onKeyup($event)"
-    (keydown)="onKeydown($event)"
-    (clickInput)="onclickInput($event)">
+    (clickInput)="onclickInput($event)"
+    (focusLost)="onFocusLost()">
 
     <ng-template #templateValid>
       <ng-container [ngTemplateOutlet]="templateValidOutside"></ng-container>
@@ -39,16 +41,15 @@
   </ddr-input>
   <ddr-button class="ddr-input-group__button" 
     [ngClass]="{
-      'ddr-input-group__button--label': label && !inline, 
-      'ddr-input-group__button--no-label': !label || inline, 
       'ddr-input-group__button--is-valid': validate && errorsInput == constants.INPUT_ERRORS.VALID, 
       'ddr-input-group__button--is-invalid': (validate && errorsInput == constants.INPUT_ERRORS.ERROR) || (required && !value && errorsInput != constants.INPUT_ERRORS.NEUTRAL)
     }" 
     [block]="true" 
     [type]="constants.TYPE_BUTTON.BUTTON" 
     [icon]="icon"
+    [transparent]="transparent"
     [disabled]="disabled || disabledButton"
-    [size]="constants.SIZE.MEDIUM" 
+    [size]="size"
     (action)="clickButton($event)">
   </ddr-button>
 </div>

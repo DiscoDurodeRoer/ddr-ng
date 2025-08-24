@@ -1,16 +1,38 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { BaseShowcaseComponent } from '../base-showcase/base-showcase.component';
-import { DdrInputFileComponent } from 'ddr-ng';
+import { DdrFileHandle, DdrInputFileComponent, DdrToastService, DdrTranslatePipe, DdrTranslateService } from 'ddr-ng';
 
 @Component({
-  selector: 'app-input-file-showcase',
+  selector: 'input-file-showcase',
   templateUrl: './input-file-showcase.component.html',
-  styleUrl: './input-file-showcase.component.scss',
   imports: [
     BaseShowcaseComponent,
-    DdrInputFileComponent
+    DdrInputFileComponent,
+    DdrTranslatePipe
+  ],
+  providers: [
+    DdrToastService
   ]
 })
 export class InputFileShowcaseComponent {
+
+  private readonly ddrToastService: DdrToastService = inject(DdrToastService);
+  private readonly ddrTranslateService: DdrTranslateService = inject(DdrTranslateService);
+
+  fileSelected(file: DdrFileHandle) {
+    console.log(file);
+    this.ddrToastService.addSuccessMessage(
+      this.ddrTranslateService.getTranslate('success'),
+      this.ddrTranslateService.getTranslate('input.file.upload.file'),
+    )
+  }
+
+  filesSelected(files: DdrFileHandle[]) {
+    console.log(files);
+    this.ddrToastService.addSuccessMessage(
+      this.ddrTranslateService.getTranslate('success'),
+      this.ddrTranslateService.getTranslate('input.file.upload.files'),
+    )
+  }
 
 }

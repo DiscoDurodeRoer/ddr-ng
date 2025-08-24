@@ -1,13 +1,12 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { DdrParamsLoop } from './bean/ddr-params-loop';
+import { DdrLoopNumberParams } from './bean/ddr-loop-number-params';
 
 @Pipe({
-  name: 'loopNumber',
-  standalone: true
+  name: 'ddrLoopNumber'
 })
 export class DdrLoopNumberPipe implements PipeTransform {
 
-  transform(end: number, params?: DdrParamsLoop): number[] {
+  transform(end: number, params?: DdrLoopNumberParams): number[] {
 
     let result = [];
 
@@ -32,7 +31,6 @@ export class DdrLoopNumberPipe implements PipeTransform {
         result.push(i);
       }
     }
-
 
     if (params.reverse) {
       result = result.reverse();

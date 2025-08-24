@@ -1,8 +1,9 @@
-import { AfterViewInit, Component, EventEmitter, forwardRef, Input, OnInit, Output, ViewEncapsulation } from '@angular/core';
+import { AfterViewInit, Component, EventEmitter, forwardRef, Input, OnChanges, OnDestroy, OnInit, Output, SimpleChanges, ViewEncapsulation } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { DdrControlValueAccessor } from '../ddr-ngmodel-base/ddr-control-value-accessor-base.component';
 import { DdrSelectItem } from '../../common/ddr-select-item.model';
 import { DdrCheckboxComponent } from '../ddr-checkbox/ddr-checkbox.component';
+import { Subscription } from 'rxjs/internal/Subscription';
 
 @Component({
   selector: 'ddr-checkbox-binary',
@@ -20,27 +21,34 @@ import { DdrCheckboxComponent } from '../ddr-checkbox/ddr-checkbox.component';
     },
   ]
 })
-export class DdrCheckboxBinaryComponent extends DdrControlValueAccessor implements OnInit, AfterViewInit {
+export class DdrCheckboxBinaryComponent extends DdrControlValueAccessor implements OnChanges, AfterViewInit, OnDestroy {
 
   @Input() disabled: boolean = false;
   @Input({ required: false }) label?: string;
 
   @Output() clickCheck: EventEmitter<boolean> = new EventEmitter<boolean>();
 
-  public options: DdrSelectItem<boolean>[] = [];
+  public options: DdrSelectItem<boolean>[] = [
+    {
+      label: this.label || '',
+      value: this.value || false
+    }
+  ];
+  private subscription: Subscription = new Subscription();
 
-  ngOnInit(): void {
-
-    this.options = [
-      {
-        label: this.label || '',
-        value: this.value || false
-      }
-    ]
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['label']) {
+      this.options = [
+        {
+          label: this.label || '',
+          value: this.value || false
+        }
+      ]
+    }
   }
 
   ngAfterViewInit(): void {
-    this.changeValue.subscribe((value: boolean) => {
+    this.subscription = this.changeValue.subscribe((value: boolean) => {
       if (typeof value == 'boolean') {
         this.value = value;
         this.options[0].selected = value;
@@ -51,5 +59,9 @@ export class DdrCheckboxBinaryComponent extends DdrControlValueAccessor implemen
   onClick(selected: any[]) {
     this.value = selected.length != 0;
     this.clickCheck.emit(this.value);
+  }
+
+  ngOnDestroy(): void {
+    this.subscription?.unsubscribe();
   }
 }

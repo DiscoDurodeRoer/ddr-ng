@@ -4,7 +4,7 @@
     'ddr-accordion__title--is-opened': open, 
     'ddr-accordion__title--is-closed': !open, 
     'border': border, 
-    'ddr-accordion__title--no-slim':!slim
+    'ddr-accordion__title--slim': slim
     }" (click)="openClose()">
     <div class="row">
       <div class="col-md-11 col-10 text-start">
@@ -20,14 +20,15 @@
     </div>
   </div>
   <div class="ddr-accordion__content" #contentAccordion
-    [@slideInOut]="state"
+    [@slideInOut]="animate ? state : null"
     [ngClass]="{
       'ddr-accordion__content--is-opened': open, 
       'ddr-accordion__content--is-closed': !open, 
       'border': border,
-      'ddr-accordion__content--no-slim':!slim
-    }"
-    style="height: 0px">
-    <ng-content select="[content-accordion]"></ng-content>
+      'ddr-accordion__content--slim': slim
+    }">
+    @if(open){
+      <ng-content select="[content-accordion]"></ng-content>
+    }
   </div>
 </div>

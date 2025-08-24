@@ -9,11 +9,11 @@ export class DdrSkeletonDirective implements OnInit {
   private element: ElementRef = inject(ElementRef);
   private renderer: Renderer2 = inject(Renderer2);
 
-  @Input() skeletonWidth = '100%';
-  @Input() skeletonHeight = '1rem';
-  @Input() skeletonBorderRadius = '0.5rem';
+  @Input() skeletonWidth: string = '100%';
+  @Input() skeletonHeight: string = '1rem';
+  @Input() skeletonBorderRadius: string = '0.5rem';
 
-  cssClass = 'skeleton';
+  private cssClass = 'skeleton';
 
   ngOnInit(): void {
     const el = this.element.nativeElement;

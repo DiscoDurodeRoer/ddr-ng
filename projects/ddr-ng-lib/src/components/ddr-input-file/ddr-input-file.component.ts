@@ -1,5 +1,5 @@
 import { Component, EventEmitter, forwardRef, inject, Input, Output, ViewEncapsulation } from '@angular/core';
-import { DdrOrientation } from '../../types/types';
+import { DdrOrientation, DdrOrientatioTooltip } from '../../types/types';
 import { DdrConstantsService } from '../../services/ddr-constants.service';
 import { DdrInputGroupComponent } from '../ddr-input-group/ddr-input-group.component';
 import { FormsModule, NG_VALUE_ACCESSOR } from '@angular/forms';
@@ -35,12 +35,11 @@ export class DdrInputFileComponent extends DdrControlValueAccessor {
   @Input() disabled: boolean = false;
   @Input() tooltipText?: string;
   @Input() labelBold: boolean = false;
-  @Input() orientationTooltip: DdrOrientation = this.constants.ORIENTATION.BOTTOM;
+  @Input() tooltipOrientation: DdrOrientatioTooltip = this.constants.ORIENTATION.BOTTOM;
   @Input() required: boolean = false;
 
   @Input() multiple: boolean = false;
   @Input() accept: string = '*';
-  @Input() dragFiles: boolean = false;
 
   @Output() fileSelected = new EventEmitter<DdrFileHandle>();
   @Output() filesSelected = new EventEmitter<DdrFileHandle[]>();

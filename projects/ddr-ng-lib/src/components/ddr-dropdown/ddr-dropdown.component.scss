@@ -17,7 +17,11 @@
     margin-top: 5px;
     border-radius: 8px;
 
-    &--touchUI {
+    &--top {
+      bottom: 100%;
+    }
+
+    &--modal {
       position: fixed;
       width: 80%;
       z-index: 9999;
@@ -34,17 +38,19 @@
       }
     }
 
+    &__with-filter {
+      border-top: 0;
+      border-top-left-radius: 0;
+      border-top-right-radius: 0;
+    }
+
     ul {
+      padding: 0;
+      margin: 0;
       max-height: 200px;
       overflow-y: auto;
       overflow-x: hidden;
       line-height: normal;
-
-      &.with-filter {
-        border-top: 0;
-        border-top-left-radius: 0;
-        border-top-right-radius: 0;
-      }
 
       li {
         cursor: pointer;
@@ -81,4 +87,5 @@
       }
     }
   }
+
 }

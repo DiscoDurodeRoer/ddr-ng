@@ -29,7 +29,7 @@ describe('DdrRadioComponent', () => {
 
             spyOn(component.toggled, "emit");
 
-            let button = fixture.debugElement.query(By.css('.ddr-toggle__btn'));
+            let button = fixture.debugElement.query(By.css('.ddr-toggle__button'));
             button.triggerEventHandler('click');
             fixture.detectChanges();
 

@@ -1,27 +1,160 @@
-<div class="row">
-    <div class="col-9 p-2">
-        <ddr-dropdown
-          label="Theme"
-          [inline]="true"
-          [(ngModel)]="themeActual"
-          [options]="themesOptions"
-          (selectItem)="changeTheme($event)" />
-    </div>
-    <div class="col-3 text-end p-2">
-        <span class="d-inline-block text-light">{{'v' + version}}</span>
-          <ddr-button class="get-started"
-            icon="bi bi-rocket-takeoff"
-            [border]="false"
-            size="large"
-            [transparent]="true"
-            routerLink="get-started"/>
-          <ddr-button class="get-started"
-            icon="bi bi-filetype-md"
-            [border]="false"
-            size="large"
-            [transparent]="true"
-            routerLink="changelog"/>
-    </div>
+<div class="row g-0 header">
+
+  <div class="col-2 d-sm-none d-block text-center align-self-center">
+    <i class="bi bi-list fs-1 user-select-none cursor-pointer text-light" (click)="openMenuMobile()"></i>
+  </div>
+  
+  <div class="col-sm-1 align-self-center user-select-none d-sm-inline-block d-none">  
+    <img class="ps-sm-3" src="./img/logo.png" alt="logo">
+  </div>
+  
+  <div class="col-sm-11 col-10 text-end pe-sm-5 pe-4 align-self-center">
+
+    <ddr-button-split 
+      class="me-3 d-md-inline-block d-none" 
+      [actions]="themes" 
+      [border]="true"
+      [showFirstInOptions]="false"
+      size="large"
+      (selectAction)="changeTheme($event)" />
+    
+    @if(versions.length > 0){
+      <ddr-dropdown 
+        class="me-3 dropdown-versions d-md-inline-block d-none" 
+        [labelPlaceholderFilter]="'versions.filter' | ddrTranslate"
+        [inline]="true"
+        [options]="versions"
+        size="large"
+        [transparent]="true"
+        name="version"
+        [(ngModel)]="version"
+        (selectItem)="changeVersion($event)" />
+    }
+    
+    <ddr-button-split 
+      class="me-3 d-md-inline-block d-none" 
+      [border]="true" 
+      [actions]="languages"
+      [showFirstOnlyIcon]="true"
+      [showFirstInOptions]="false"
+      size="large"
+      (selectAction)="changeLanguage($event)" />
+
+    <ddr-button 
+      class="me-1" 
+      icon="bi bi-search"
+      size="large"
+      (action)="openModalSearch()" />
+    
+    <ddr-badge-pill 
+      [text]="'v' + version" 
+      type="info" 
+      size="large" 
+      [canClick]="false" />
+
+    <ddr-button-split 
+      [border]="true" 
+      [showFirstOnlyIcon]="true" 
+      [actions]="buttons"
+      position="bottom-left"
+      size="large" 
+      (selectAction)="selectAction($event)" />
+
+  </div>
 </div>
 
+<ddr-detail [id]="MENU_DETAIL">
 
+  <div detail-title class="ps-3 user-select-none">
+    <img class="mw-100" src="./img/logo.png" alt="logo">
+  </div>
+  
+  <div detail-content>
+
+    <div class="row">
+      <div class="col-4 align-self-center text-center">
+        <ddr-button-split 
+          [actions]="themes" 
+          [border]="true"
+          [showFirstInOptions]="false"
+          size="large"
+          (selectAction)="changeTheme($event)" />
+      </div>
+
+      <div class="col-4 align-self-center text-center">
+        @if(versions.length > 0){
+          <ddr-dropdown 
+            class="dropdown-versions" 
+            [labelPlaceholderFilter]="'versions.filter' | ddrTranslate"
+            [allowDeselect]="true"
+            [inline]="true"
+            [options]="versions"
+            size="large"
+            [transparent]="true"
+            [(ngModel)]="version"
+            (selectItem)="changeVersion($event)" />
+        }
+      </div>
+     
+      <div class="col-4 align-self-center text-center">
+        <ddr-button-split 
+          [border]="true" 
+          [actions]="languages"
+          [showFirstOnlyIcon]="true"
+          [showFirstInOptions]="false"
+          size="large"
+          position="bottom-left"
+          (selectAction)="changeLanguage($event)" />
+      </div>
+    </div>
+
+    <app-menu [transparent]="true" (clickItem)="closeMenuMobile()" />
+  </div>
+</ddr-detail>
+
+<ddr-modal [id]="MODAL_SEARCH" size="medium" (close)="closeModalSearch()">
+
+  <div class="modal-content-search" modal-content>
+    <div class="row">
+      <div class="col-12">
+        <ddr-input 
+          [focus]="searchFocus" 
+          [(ngModel)]="search" 
+          (keyup)="searchComponents()" />
+      </div>
+    </div>
+    @for(component of components; track component.value){
+    <div class="row">
+      <div class="col-12">
+        <ddr-card class="cursor-pointer" [showHeader]="false" (click)="goToComponent(component)">
+          <div card-content>
+            <div class="row">
+              <div class="col-6 text-start">
+                <span class="h3">{{component.label}}</span>
+              </div>
+              <div class="col-6 text-end">
+                <ddr-badge-pill 
+                  [text]="component.value.type + '.showcase' | ddrTranslate" 
+                  size="medium" 
+                  type="info" 
+                  [canClick]="false" />
+              </div>
+            </div>
+          </div>
+        </ddr-card>
+      </div>
+    </div>
+    } @empty {
+      <div class="row">
+        <div class="col-12 mt-5">
+          @if(search){
+            <ddr-no-data size="small" icon="bi bi-search" text="No encontramos ningún componente con ese nombre" />
+          }@else{
+            <ddr-no-data size="small" icon="bi bi-search" text="Escribe el nombre de un componente para comenzar la búsqueda" />
+          }
+        </div>
+      </div>
+    }
+  </div>
+
+</ddr-modal>

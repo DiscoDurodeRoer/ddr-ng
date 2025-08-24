@@ -1,0 +1,63 @@
+<base-showcase component="ddr-safe" type="pipe" [showOutputs]="false" [showInputs]="false">
+
+  <div description>
+    <p>{{'safe.description' | ddrTranslate}}</p>
+  </div>
+
+  <div examples>
+
+<div class="row">
+  <div class="col-12">
+    <span class="h3">{{'safe.example.1' | ddrTranslate}}</span>
+  </div>
+</div>
+
+<div class="row mt-3">
+  <div class="col-12">
+    <div [innerHTML]="html | ddrSafe"></div>
+  </div>
+</div>
+
+
+<div class="row mt-3">
+  <div class="col-12">
+    <span class="h3">{{'safe.example.2' | ddrTranslate}}</span>
+  </div>
+</div>
+
+<div class="row mt-3">
+  <div class="col-12">
+    <div [style]="css | ddrSafe:'style'">
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem laborum repudiandae velit error ab magni nobis ut tempora quibusdam ad enim quisquam vitae nulla quam, inventore consequuntur sapiente, eaque mollitia!
+    </div>
+  </div>
+</div>
+
+
+<div class="row mt-3">
+  <div class="col-12">
+    <span class="h3">{{'safe.example.3' | ddrTranslate}}</span>
+  </div>
+</div>
+
+<div class="row mt-3">
+  <div class="col-12">
+    <img [src]="url | ddrSafe:'url'">
+  </div>
+</div>
+
+<div class="row mt-3">
+  <div class="col-12">
+    <span class="h3">{{'safe.example.4' | ddrTranslate}}</span>
+  </div>
+</div>
+
+<div class="row mt-3">
+  <div class="col-12">
+    <iframe width="560" height="315" [src]="resourceUrl | ddrSafe:'resourceUrl'" frameborder="0" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+  </div>
+</div>
+
+  </div>
+
+</base-showcase>

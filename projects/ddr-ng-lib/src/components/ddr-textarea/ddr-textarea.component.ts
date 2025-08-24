@@ -1,30 +1,30 @@
-import { Component, ContentChild, ElementRef, forwardRef, Input, Output, TemplateRef, ViewChild, EventEmitter, ViewEncapsulation, inject } from '@angular/core';
+import { Component, ContentChild, forwardRef, Input, Output, TemplateRef, EventEmitter, ViewEncapsulation, inject } from '@angular/core';
 import { FormsModule, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { DdrControlValueAccessor } from '../ddr-ngmodel-base/ddr-control-value-accessor-base.component';
 import { DdrConstantsService } from '../../services/ddr-constants.service';
 import { DdrTooltipDirective } from '../../directives/ddr-tooltip.directive';
 import { NgClass, NgTemplateOutlet } from '@angular/common';
-import { DdrOrientation } from '../../types/types';
+import { DdrOrientatioTooltip } from '../../types/types';
 
 @Component({
-    selector: 'ddr-textarea',
-    templateUrl: './ddr-textarea.component.html',
-    styleUrls: ['./ddr-textarea.component.scss'],
-    encapsulation: ViewEncapsulation.None,
-    imports: [
-        FormsModule,
-        DdrControlValueAccessor,
-        DdrTooltipDirective,
-        NgClass,
-        NgTemplateOutlet
-    ],
-    providers: [
-        {
-            provide: NG_VALUE_ACCESSOR,
-            useExisting: forwardRef(() => DdrTextareaComponent),
-            multi: true
-        }
-    ]
+  selector: 'ddr-textarea',
+  templateUrl: './ddr-textarea.component.html',
+  styleUrls: ['./ddr-textarea.component.scss'],
+  encapsulation: ViewEncapsulation.None,
+  imports: [
+    FormsModule,
+    DdrControlValueAccessor,
+    DdrTooltipDirective,
+    NgClass,
+    NgTemplateOutlet
+  ],
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => DdrTextareaComponent),
+      multi: true
+    }
+  ]
 })
 export class DdrTextareaComponent extends DdrControlValueAccessor {
 
@@ -42,9 +42,9 @@ export class DdrTextareaComponent extends DdrControlValueAccessor {
   @Input() inline: boolean = false;
   @Input() rows: number = 1;
   @Input() cols: number = 10;
-  @Input() orientationTooltip: DdrOrientation = this.constants.ORIENTATION.BOTTOM;
+  @Input() tooltipOrientation: DdrOrientatioTooltip = this.constants.ORIENTATION.BOTTOM;
   @Input() tooltipText?: string;
-  @Input() labelBold:boolean=false;
+  @Input() labelBold: boolean = false;
 
   @ContentChild('templateValid', { static: false }) templateValid!: TemplateRef<any> | null;
   @ContentChild('templateErrors', { static: false }) templateErrors!: TemplateRef<any> | null;

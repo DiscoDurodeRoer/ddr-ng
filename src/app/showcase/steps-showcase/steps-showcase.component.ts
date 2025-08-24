@@ -1,41 +1,57 @@
 import { Component, inject } from '@angular/core';
-import { DdrInputComponent, DdrStepComponent, DdrStepsComponent, DdrToastService } from 'ddr-ng';
-import { Animal } from './animal';
+import {
+  DdrInputComponent,
+  DdrStepComponent,
+  DdrStepsComponent,
+  DdrToastService,
+  DdrTranslatePipe,
+  DdrTranslateService
+} from 'ddr-ng';
 import { FormsModule } from '@angular/forms';
 import { BaseShowcaseComponent } from '../base-showcase/base-showcase.component';
+import { Person } from './bean/person';
 
 @Component({
-    selector: 'app-steps-showcase',
-    templateUrl: './steps-showcase.component.html',
-    styleUrls: ['./steps-showcase.component.scss'],
-    imports: [
-        BaseShowcaseComponent,
-        FormsModule,
-        DdrStepsComponent,
-        DdrStepComponent,
-        DdrInputComponent
-    ],
-    providers: [
-      DdrToastService
-    ]
+  selector: 'steps-showcase',
+  templateUrl: './steps-showcase.component.html',
+  imports: [
+    BaseShowcaseComponent,
+    DdrStepsComponent,
+    DdrStepComponent,
+    DdrInputComponent,
+    DdrTranslatePipe,
+    FormsModule
+  ],
+  providers: [
+    DdrToastService
+  ]
 })
 export class StepsShowcaseComponent {
 
-  public ddrToastService: DdrToastService = inject(DdrToastService);
+  private readonly ddrToastService: DdrToastService = inject(DdrToastService);
+  private readonly ddrTranslateService: DdrTranslateService = inject(DdrTranslateService);
 
-  public animalEx2: Animal = {
+  public personExample2: Person = {
     name: '',
-    paws: 0,
-    type: ''
+    age: 0
   };
-  public animalEx8: Animal = {
+  public personExample8: Person = {
     name: '',
-    paws: 0,
-    type: ''
+    age: 0
   };
 
-  changeStep($event: any){
-    this.ddrToastService.addSuccessMessage('Exito', 'Cambio al paso: ' + $event);
+  changeStep(step: number) {
+    this.ddrToastService.addSuccessMessage(
+      this.ddrTranslateService.getTranslate('success'),
+      this.ddrTranslateService.getTranslate('step.' + step)
+    );
+  }
+
+  lastStep() {
+    this.ddrToastService.addSuccessMessage(
+      this.ddrTranslateService.getTranslate('success'),
+      this.ddrTranslateService.getTranslate('step.last')
+    );
   }
 
 }

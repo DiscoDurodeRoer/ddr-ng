@@ -15,19 +15,6 @@
     border-bottom-right-radius: 0;
     border-top-right-radius: 0;
   }
-
-  &__input .valid-feedback,
-  &__input .invalid-feedback {
-    width: 100% !important;
-    position: absolute;
-  }
-
-  &__input .valid-feedback-inline,
-  &__input .invalid-feedback-inline {
-    position: absolute;
-    top: 25px;
-    left: 100%;
-  }
    
   &__button {
     flex-grow: 0;

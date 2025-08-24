@@ -1,6 +1,5 @@
 /* Importaciones */
 
-@use '../reset.scss';
 @use '../fonts.scss';
 @use '../styles.scss';
 
@@ -25,19 +24,16 @@ $tooltip-background: #a9a9a9;
 
 /* Panels */
 
-$panel-background: #000;
 $panel-color: #FFF;
 $panel-border-color: #FFF;
 
 /* Inputs */
 
-$input-background: #000;
 $input-color: #FFF;
 $input-border-color: #d7d7d7;
 
 /* Buttons */
 
-$button-background: #000;
 $button-color: #FFF;
 $button-border-color: #FFF;
 
@@ -77,6 +73,9 @@ $color-warning: #b4894b;
 /* Fin variables */
 
 .ddr-dark {
+
+  color-scheme: dark;
+  background-color: $primary;
 
   * {
     font-family: 'Cairo';
@@ -205,7 +204,7 @@ $color-warning: #b4894b;
 
   ddr-accordion {
     .ddr-accordion {
-      background-color: $panel-background;
+      background-color: $primary;
       color: $panel-color;
     }
   }
@@ -285,25 +284,38 @@ $color-warning: #b4894b;
     .ddr-input {
       &__input-container {
 
-        &--label {
+        &__label {
           color: $input-color;
         }
 
-        &--input {
+        &__input {
 
-          background-color: $input-background;
+          background-color: $primary;
           color: $input-color;
+
+          &--transparent {
+            background: transparent;
+            color: #FFF;
+
+            &:focus-visible {
+              outline: none;
+            }
+          }
 
           &--border {
             border: 1px solid $input-border-color;
           }
 
-          &:disabled {
-            background: $disabled;
+          &--border-transparent {
+            border: 1px solid #FFF;
           }
 
-          &--no-border {
-            border-bottom: 1px solid $input-border-color;
+          &--disabled {
+            background: $disabled !important;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            opacity: 1;
           }
 
           &.is-valid {
@@ -336,7 +348,7 @@ $color-warning: #b4894b;
 
       ddr-button {
         .btn-ddr {
-          background-color: $input-background;
+          background-color: $primary;
 
           &--disabled {
             background-color: $disabled !important;
@@ -349,6 +361,17 @@ $color-warning: #b4894b;
           i {
             color: $button-color;
           }
+
+
+          &--transparent {
+            background: transparent;
+            border-color: #FFF;
+            color: #FFF;
+
+            i {
+              color: #FFF;
+            }
+          }
         }
       }
     }
@@ -357,11 +380,9 @@ $color-warning: #b4894b;
 
   ddr-textarea {
     .ddr-textarea {
-      &__textarea-container {
-        &--textarea {
-          background-color: $input-background;
-          color: $input-color;
-        }
+      &__textarea {
+        background-color: $primary;
+        color: $input-color;
       }
     }
   }
@@ -369,12 +390,12 @@ $color-warning: #b4894b;
   ddr-button {
     .btn-ddr {
       &--border {
-        border-color: $button-background;
+        border-color: $primary;
       }
 
       &--mode-default {
         border-color: $button-border-color;
-        background: $button-background;
+        background: $primary;
       }
 
       &--mode-save {
@@ -415,8 +436,8 @@ $color-warning: #b4894b;
 
   ddr-card {
     .ddr-card {
-      background-color: $panel-background;
-      color: $panel-color;
+      background-color: $primary;
+      color: $text-color-primary;
 
       &__body {
         border-color: #FFF;
@@ -427,7 +448,7 @@ $color-warning: #b4894b;
 
   ddr-toggle {
     .ddr-toggle {
-      &__btn {
+      &__button {
         &--on {
           background: $color-success;
         }
@@ -443,6 +464,7 @@ $color-warning: #b4894b;
     .ddr-badge {
       &--info {
         background: $primary;
+        border: 1px solid $secondary;
         color: $text-color-primary;
       }
 
@@ -472,48 +494,19 @@ $color-warning: #b4894b;
     }
   }
 
-  ddr-widget {
-    ddr-card {
-
-      .ddr-card__title {
-        background-color: transparent;
-        color: $panel-color;
-      }
-
-    }
-
-    .ddr-widget {
-      &__actions {
-        ddr-split-button {
-          .ddr-split-button {
-            ddr-button {
-
-              .btn-ddr {
-
-                &--icon {
-                  color: $text-color-primary;
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-
   ddr-dropdown {
 
     .ddr-dropdown {
 
       &__panel-items {
-        background-color: $panel-background;
+        background-color: $primary;
         border: 1px solid $input-border-color;
 
         &--search {
           &--input {
             border: 0;
             border-bottom: 1px solid $input-border-color;
-            background-color: $input-background;
+            background-color: $primary;
             color: $input-color;
           }
         }
@@ -552,38 +545,11 @@ $color-warning: #b4894b;
 
   }
 
-  ddr-chatbot {
-    .ddr-chatbot__dialog {
-      .ddr-card {
-        &__body {
-          border: 1px solid #c7c7c7;
-          border: 0;
-        }
-
-        &__footer {
-          border-top: 1px solid #c7c7c7;
-        }
-      }
-
-
-      &__message {
-        &--human {
-          background: #b9ffb9;
-        }
-
-        &--robot {
-          background: #b9b9b9;
-        }
-      }
-
-    }
-  }
-
   ddr-table {
 
     .ddr-table {
 
-      ddr-split-button {
+      ddr-button-split {
         ddr-button {
           .btn-ddr--icon {
             color: #FFF;
@@ -623,101 +589,6 @@ $color-warning: #b4894b;
     }
   }
 
-  ddr-calendar {
-    .ddr-calendar {
-      .p-calendar .p-inputtext {
-
-        &:enabled:focus {
-          box-shadow: none;
-        }
-
-        color: $input-color;
-        background: $input-background;
-        border: 1px solid $input-border-color;
-      }
-
-      .p-datepicker {
-        color: $input-color;
-        background: $input-background;
-      }
-
-      .p-datepicker .p-datepicker-header {
-        color: $input-color;
-        background: $input-background;
-      }
-
-      .p-datepicker:not(.p-datepicker-inline) {
-        color: $input-color;
-        background: $input-background;
-        border: 1px solid $input-border-color;
-      }
-
-      .p-datepicker:not(.p-disabled) table td span:not(.p-highlight):not(.p-disabled):hover {
-        color: $text-color-secondary;
-      }
-
-      .p-datepicker .p-datepicker-header .p-datepicker-title .p-datepicker-year,
-      .p-datepicker .p-datepicker-header .p-datepicker-title .p-datepicker-month {
-        color: $text-color-primary;
-      }
-
-    }
-  }
-
-  ddr-range {
-
-    .p-slider {
-      .p-slider-handle {
-        background: $primary;
-        border: 2px solid $primary;
-      }
-
-      .p-slider-range {
-        background: $primary;
-      }
-
-      &:not(.p-disabled) .p-slider-handle:hover {
-        background: $primary;
-        border-color: $primary;
-      }
-
-    }
-
-    .p-disabled,
-    .p-component:disabled {
-      opacity: 1;
-    }
-
-  }
-
-  ddr-small-indicator {
-    ddr-card {
-      .ddr-card {
-        background-color: $panel-background;
-        color: $text-color-primary;
-
-        &__body {
-          color: $text-color-primary;
-        }
-      }
-
-
-    }
-  }
-
-  ddr-indicator {
-    ddr-card {
-      .ddr-card {
-        background-color: $panel-background;
-        color: $text-color-primary;
-
-        &__body {
-          color: $text-color-primary;
-        }
-      }
-    }
-  }
-
   ddr-chip {
 
     .ddr-chip {
@@ -725,7 +596,7 @@ $color-warning: #b4894b;
         border: 1px solid $input-border-color;
 
         &__input input {
-          background: $input-background;
+          background: $primary;
           color: $text-color-primary;
         }
       }
@@ -751,10 +622,6 @@ $color-warning: #b4894b;
     .ddr-steps {
       &__horizontal {
         &__info-step {
-
-          &--hover:hover {
-            background-color: #a1a1a1;
-          }
 
           &__number-step {
 
@@ -783,10 +650,6 @@ $color-warning: #b4894b;
 
       &__vertical {
         &__info-step {
-
-          &--hover:hover {
-            background-color: #a1a1a1;
-          }
 
           &__number-step {
 
@@ -823,18 +686,25 @@ $color-warning: #b4894b;
     .ddr-detail {
       background: $primary;
       color: $text-color-secondary;
+
+      &__content {
+        &--close {
+          color: $text-color-primary;
+        }
+      }
+
     }
   }
 
-  ddr-split-button {
+  ddr-button-split {
 
-    .ddr-split-button {
+    .ddr-button-split {
 
       color: $text-color-primary;
 
       &__options {
 
-        background: $panel-background;
+        background: $primary;
         color: $panel-color;
 
         ul {
@@ -863,7 +733,7 @@ $color-warning: #b4894b;
         }
       }
 
-      &--transparent.ddr-split-button--no-border {
+      &--transparent.ddr-button-split--without-border {
         ddr-button {
           button {
             color: $text-color-primary;
@@ -886,7 +756,7 @@ $color-warning: #b4894b;
     .ddr-login {
 
       .card-body {
-        background-color: $panel-background;
+        background-color: $primary;
         border-color: $panel-border-color;
       }
 
@@ -923,41 +793,15 @@ $color-warning: #b4894b;
   ddr-modal {
     .ddr-modal {
       .card {
-        background-color: $panel-background;
+        background-color: $primary;
+        color: $text-color-primary;
         border-color: $panel-border-color;
       }
     }
   }
 
-
-  ddr-conversation {
-    .ddr-conversation {
-
-      &__message {
-        &--human {
-          color: #000;
-          background: #b9ffb9;
-        }
-
-        &--robot {
-          color: #000;
-          background: #e7e7e7;
-        }
-      }
-
-    }
-  }
-
-  ddr-word-cloud {
-    svg {
-      text {
-        fill: #FFF;
-      }
-    }
-  }
-
-  ddr-multiple-button {
-    .ddr-multiple-button {
+  ddr-button-multiple {
+    .ddr-button-multiple {
       &__selected {
         button {
           background-color: $selected;
@@ -973,12 +817,26 @@ $color-warning: #b4894b;
   }
 
   ddr-no-data {
-    &__icon {
-      color: $text-color-primary;
-    }
+    .ddr-no-data {
 
-    &__text {
-      color: $text-color-primary;
+      &__icon {
+        color: $text-color-primary;
+      }
+
+      &__text {
+        color: $text-color-primary;
+      }
+    }
+  }
+
+  ddr-tree {
+    .ddr-tree {
+      background-color: $primary;
+      color: $panel-color;
+
+      &.ddr-tree--transparent {
+        background-color: transparent;
+      }
     }
   }
 

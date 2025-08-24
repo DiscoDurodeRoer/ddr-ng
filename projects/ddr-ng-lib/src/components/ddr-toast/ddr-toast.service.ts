@@ -16,8 +16,16 @@ export class DdrToastService {
   private _maxToasts: number = this.constants.TOAST.MAX_TOAST;
   private _orientation: DdrOrientationToast = this.constants.ORIENTATION.TOP_RIGHT;
 
+  public get maxToasts() {
+    return this._maxToasts;
+  }
+
   public set maxToasts(value: number) {
     this._maxToasts = value;
+  }
+
+  public get timeOut() {
+    return this._timeOut;
   }
 
   public set timeOut(value: number) {

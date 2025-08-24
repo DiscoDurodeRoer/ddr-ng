@@ -1,20 +1,20 @@
-import { Component, ContentChild, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges, TemplateRef } from '@angular/core';
+import { Component, ContentChild, EventEmitter, Input, OnChanges, Output, SimpleChanges, TemplateRef } from '@angular/core';
 import { DdrTreeNode } from './bean/ddr-tree-node';
 import { DdrAction } from '../../common/ddr-action.model';
-import { DdrSplitButtonComponent } from '../ddr-split-button/ddr-split-button.component';
+import { DdrButtonSplitComponent } from '../ddr-button-split/ddr-button-split.component';
 import { DdrTranslatePipe } from '../../pipes/ddr-translate.pipe';
 import { NgClass, NgTemplateOutlet } from '@angular/common';
 
 @Component({
-    selector: 'ddr-tree',
-    templateUrl: './ddr-tree.component.html',
-    styleUrls: ['./ddr-tree.component.scss'],
-    imports: [
-        DdrSplitButtonComponent,
-        DdrTranslatePipe,
-        NgClass,
-        NgTemplateOutlet
-    ]
+  selector: 'ddr-tree',
+  templateUrl: './ddr-tree.component.html',
+  styleUrls: ['./ddr-tree.component.scss'],
+  imports: [
+    DdrButtonSplitComponent,
+    DdrTranslatePipe,
+    NgClass,
+    NgTemplateOutlet
+  ]
 })
 export class DdrTreeComponent<T> implements OnChanges {
 
@@ -23,41 +23,61 @@ export class DdrTreeComponent<T> implements OnChanges {
   @Input() canClick: boolean = true;
   @Input() actionsOnlyLeafs: boolean = false;
   @Input() nodes: DdrTreeNode<T>[] = [];
-  @Input() templateNodeInput!: TemplateRef<any> | null;
+  @Input() transparent: boolean = false;
 
-  @ContentChild("templateNode", { static: false }) templateNode!: TemplateRef<any> | null;
+  @ContentChild("templateNode", { static: false }) templateNodeOutside!: TemplateRef<any> | null;
 
   // Translations
   @Input() labelNoData?: string;
 
   @Output() selectAction: EventEmitter<DdrAction<T>> = new EventEmitter<DdrAction<T>>();
-  
   @Output() clickNode: EventEmitter<T> = new EventEmitter<T>();
 
   ngOnChanges(changes: SimpleChanges): void {
-    if(changes){
-      if(changes['nodes']){
+    if (changes) {
+      if (changes['nodes']) {
         this.nodes = [...this.nodes]
       }
-      if(changes['open']){
-        for (const node of this.nodes) {
-          node.open = this.open
-        }
+      if (changes['open']) {
+        this.setOpenRecursive(this.nodes, this.open)
       }
     }
   }
 
-  openNode(node: DdrTreeNode<T>) {
+  private setOpenRecursive(nodes: DdrTreeNode<T>[], open: boolean): void {
+    for (const node of nodes) {
+      node.open = open;
+
+      if (node.children && node.children.length > 0) {
+        this.setOpenRecursive(node.children, open);
+      }
+    }
+  }
+
+  openNode(node: DdrTreeNode<T>, event?: MouseEvent) {
+    event?.stopPropagation();
     node.open = !node.open;
   }
 
-  onSelectAction(action: DdrAction<T>, node: DdrTreeNode<T>) {
-    action.item = node.data;
+  onSelectAction(action: DdrAction<T>, node?: DdrTreeNode<T>) {
+    if (node) {
+      action.item = node.data;
+    }
     this.selectAction.emit(action);
   }
 
-  onClickNode(node: DdrTreeNode<T>){
-    this.clickNode.emit(node.data);
+  onClickNode(event: MouseEvent, node: DdrTreeNode<T>) {
+    if (this.canClick) {
+      event?.stopPropagation();
+      this.clickNode.emit(node.data);
+      if (node.children && node.children.length > 0) {
+        this.openNode(node);
+      }
+    }
+  }
+
+  onSendData(nodeData: T) {
+    this.clickNode.emit(nodeData);
   }
 
 }

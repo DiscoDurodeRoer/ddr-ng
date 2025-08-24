@@ -1,113 +1,115 @@
-<base-showcase>
+<base-showcase component="ddr-input" type="component" [showTemplates]="true" [showCodeCSS]="true" [showStyles]="true">
   
   <div description>
-    <p>Componente para que el usuario pueda escribir datos.</p>
+    <p>{{'input.description' | ddrTranslate}}</p>
   </div>
 
   <div examples>
 
 <div class="row">
   <div class="col-12">
-    <p>Ejemplo 1: estandar</p>
-  </div>
-</div>
-<div class="row mt-3">
-  <div class="col-12">
-    <ddr-input label="label" placeholder="ejemplo 1" type="text" name="example" [(ngModel)]="value1">
-    </ddr-input>
-  </div>
-</div>
-<div class="row mt-3">
-  <div class="col-12">
-    <p>{{ "Valor :" + value1 }}</p>
+    <span class="h3">{{'input.example.1' | ddrTranslate}}</span>
   </div>
 </div>
 
 <div class="row mt-3">
   <div class="col-12">
-    <p>Ejemplo 2: inline</p>
+    <ddr-input 
+      [label]="'input.label' | ddrTranslate" 
+      [placeholder]="'input.placeholder' | ddrTranslate" 
+      type="text"
+      name="example-1" 
+      [(ngModel)]="valueEx1" />
   </div>
 </div>
 
 <div class="row mt-3">
   <div class="col-12">
-    <ddr-input label="label" placeholder="ejemplo 2" type="text" name="example" [inline]="true"
-      [(ngModel)]="value2">
-    </ddr-input>
+    <span>{{'input.value' | ddrTranslate}}: {{valueEx1}}</span>
   </div>
 </div>
 
 <div class="row mt-3">
   <div class="col-12">
-    <p>{{ "Valor :" + value2 }}</p>
+    <span class="h3">{{'input.example.2' | ddrTranslate}}</span>
+  </div>
+</div>
+
+<div class="row mt-3">
+  <div class="col-12">
+    <ddr-input 
+      [label]="'input.label' | ddrTranslate" 
+      [placeholder]="'input.placeholder' | ddrTranslate" 
+      type="text" 
+      name="example-2" 
+      [inline]="true" />
   </div>
 </div>
 
 <div class="row mt-2">
   <div class="col-12">
-    <p>Ejemplo 3: requerido</p>
+    <span class="h3">{{'input.example.3' | ddrTranslate}}</span>
   </div>
 </div>
 
 <div class="row mt-3">
   <div class="col-12">
-    <ddr-input label="label" placeholder="ejemplo 3" type="text" name="example" [required]="true"
-      [(ngModel)]="value3">
+    <ddr-input 
+      [label]="'input.label' | ddrTranslate" 
+      [placeholder]="'input.placeholder' | ddrTranslate" 
+      type="text" 
+      name="example-3" 
+      [required]="true" />
+  </div>
+</div>
+
+<div class="row mt-3">
+  <div class="col-12">
+    <span class="h3">{{'input.example.4' | ddrTranslate}}</span>
+  </div>
+</div>
+
+<div class="row mt-3">
+  <div class="col-12">
+    <ddr-input 
+      [label]="'input.label' | ddrTranslate" 
+      [placeholder]="'input.placeholder' | ddrTranslate" 
+      type="text" 
+      name="example-4" 
+      [border]="false">
     </ddr-input>
   </div>
 </div>
 
 <div class="row mt-3">
   <div class="col-12">
-    <p>{{ "Valor :" + value3 }}</p>
+    <span class="h3">{{'input.example.5' | ddrTranslate}}</span>
   </div>
 </div>
 
 <div class="row mt-3">
   <div class="col-12">
-    <p>Ejemplo 4: borde</p>
-  </div>
-</div>
+    <ddr-input 
+      [label]="'input.label' | ddrTranslate" 
+      [placeholder]="'input.placeholder' | ddrTranslate" 
+      type="email" 
+      name="example-5" 
+      [required]="true" 
+      [validate]="true"
+      [minlength]="5" >
 
-<div class="row mt-3">
-  <div class="col-12">
-    <ddr-input label="label" placeholder="ejemplo 4" type="text" name="example" [border]="true"
-      [(ngModel)]="value4">
-    </ddr-input>
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <p>{{ "Valor :" + value4 }}</p>
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <p>Ejemplo 5: validacion</p>
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <ddr-input label="label" placeholder="ejemplo 5" type="email" name="example" [required]="true" [validate]="true"
-      [minlength]="5" [(ngModel)]="value5">
       <ng-template #templateValid>
-        <span>Válido</span>
+        <span>{{'input.ok' | ddrTranslate}}</span>
       </ng-template>
 
       <ng-template #templateErrors let-errors="errors">
         @if(errors?.required){
-          <span>Valor requerido</span>
+          <span>{{'input.value.required' | ddrTranslate}}</span>
         }
         @if(errors?.minlength){
-          <span>Se necesitan minimo
-            {{ errors?.minlength.requiredLength }} caracteres y llevas
-            {{ errors?.minlength?.actualLength }} caracteres</span>
+          <span class="me-2">{{'input.minlength.required' | ddrTranslate}} {{ errors?.minlength.requiredLength }}</span>
+          <span>{{'input.minlength.actual' | ddrTranslate}} {{ errors?.minlength?.actualLength }}</span>
         }
-        
-        
       </ng-template>
     </ddr-input>
   </div>
@@ -115,32 +117,33 @@
 
 <div class="row mt-3">
   <div class="col-12">
-    <p>{{ "Valor :" + value5 }}</p>
+    <span class="h3">{{'input.example.6' | ddrTranslate}}</span>
   </div>
 </div>
 
 <div class="row mt-3">
   <div class="col-12">
-    <p>Ejemplo 6: validacion inline</p>
-  </div>
-</div>
+    <ddr-input 
+      [label]="'input.label' | ddrTranslate" 
+      [placeholder]="'input.placeholder' | ddrTranslate" 
+      type="text" 
+      name="example-6" 
+      [required]="true" 
+      [inline]="true"
+      [validate]="true" 
+      [minlength]="5" >
 
-<div class="row mt-3">
-  <div class="col-12">
-    <ddr-input label="label" placeholder="ejemplo 6" type="text" name="example" [required]="true" [inline]="true"
-      [validate]="true" [minlength]="5" [(ngModel)]="value6">
       <ng-template #templateValid>
-        <span>Válido</span>
+        <span>{{'input.ok' | ddrTranslate}}</span>
       </ng-template>
 
       <ng-template #templateErrors let-errors="errors">
         @if(errors?.required){
-          <span>Valor requerido</span>
+          <span>{{'input.value.required' | ddrTranslate}}</span>
         }
         @if(errors?.minlength){
-          <span>Se necesitan minimo
-            {{ errors?.minlength.requiredLength }} caracteres y llevas
-            {{ errors?.minlength?.actualLength }} caracteres</span>
+          <span class="me-2">{{'input.minlength.required' | ddrTranslate}} {{ errors?.minlength.requiredLength }}</span>
+          <span>{{'input.minlength.actual' | ddrTranslate}} {{ errors?.minlength?.actualLength }}</span>
         }
       </ng-template>
     </ddr-input>
@@ -149,311 +152,178 @@
 
 <div class="row mt-3">
   <div class="col-12">
-    <p>{{ "Valor :" + value6 }}</p>
+    <span class="h3">{{'input.example.7' | ddrTranslate}}</span>
   </div>
 </div>
 
 <div class="row mt-3">
   <div class="col-12">
-    <p>Ejemplo 7: disabled</p>
+    <ddr-input 
+      [label]="'input.label' | ddrTranslate" 
+      [placeholder]="'input.placeholder' | ddrTranslate" 
+      type="text" 
+      name="example-7" 
+      [disabled]="true"
+      [(ngModel)]="valueEx7" />
   </div>
 </div>
 
 <div class="row mt-3">
   <div class="col-12">
-    <ddr-input label="label" placeholder="ejemplo 7" type="text" name="example" [disabled]="true"
-      [(ngModel)]="value7">
-    </ddr-input>
+    <span class="h3">{{'input.example.8' | ddrTranslate}}</span>
   </div>
 </div>
 
 <div class="row mt-3">
   <div class="col-12">
-    <p>{{ "Valor :" + value7 }}</p>
+    <ddr-input 
+      [label]="'input.label' | ddrTranslate" 
+      [placeholder]="'input.placeholder' | ddrTranslate" 
+      type="text" 
+      name="example-8" 
+      [readonly]="true"
+      [(ngModel)]="valueEx8" />
   </div>
 </div>
 
 <div class="row mt-3">
   <div class="col-12">
-    <p>Ejemplo 8: readonly</p>
+    <ddr-input 
+      [label]="'input.label' | ddrTranslate" 
+      [placeholder]="'input.placeholder.number' | ddrTranslate" 
+      type="number" 
+      name="example-9"
+      [min]="0" 
+      [max]="10"
+      [(ngModel)]="valueEx9" />
   </div>
 </div>
 
 <div class="row mt-3">
   <div class="col-12">
-    <ddr-input label="label" placeholder="ejemplo 8" type="text" name="example" [readonly]="true"
-      [(ngModel)]="value8">
-    </ddr-input>
-  </div>
-</div>
-  
-<div class="row mt-3">
-  <div class="col-12">
-    <p>{{ "Valor :" + value7 }}</p>
-  </div>
-</div>
-  
-<div class="row mt-3">
-  <div class="col-12">
-    <p>Ejemplo 9: min max</p>
+    <p>{{'input.value' | ddrTranslate }}: {{valueEx9}}</p>
   </div>
 </div>
 
 <div class="row mt-3">
   <div class="col-12">
-    <ddr-input label="label" placeholder="number" type="number" name="example" [readonly]="false"
-      [(ngModel)]="value9" [min]="0" [max]="10">
-    </ddr-input>
+    <ddr-input 
+      [label]="'input.label' | ddrTranslate" 
+      [placeholder]="'input.placeholder' | ddrTranslate" 
+      [labelBold]="true" 
+      type="text" 
+      name="example-10" />
   </div>
 </div>
 
 <div class="row mt-3">
   <div class="col-12">
-    <p>{{ "Valor :" + value9 }}</p>
-  </div>
-</div>
-
-
-<div class="row mt-3">
-  <div class="col-12">
-    <p>Ejemplo 10: label negrita</p>
+    <span class="h3">{{'input.example.11' | ddrTranslate}}</span>
   </div>
 </div>
 
 <div class="row mt-3">
   <div class="col-12">
-    <ddr-input label="label" placeholder="number" [labelBold]="true" type="number" name="example" [readonly]="false">
-    </ddr-input>
+    <ddr-input 
+      [label]="'input.label' | ddrTranslate" 
+      [placeholder]="'input.placeholder' | ddrTranslate" 
+      [tooltipText]="'input.tooltip' | ddrTranslate" 
+      type="text" 
+      name="example-11" />
+  </div>
+</div>
+
+<div class="row mt-3">
+  <div class="col-12">
+    <span class="h3">{{'input.example.12' | ddrTranslate}}</span>
+  </div>
+</div>
+
+<div class="row mt-3">
+  <div class="col-12">
+    <ddr-input 
+      [label]="'input.label' | ddrTranslate" 
+      [placeholder]="'input.placeholder' | ddrTranslate"
+      type="text" 
+      name="example-12"
+      (clickInput)="clickInput($event)"
+      (keyPressed)="keyPressed($event)" />
+  </div>
+</div>
+
+<div class="row mt-3">
+  <div class="col-12">
+    <span class="h3">{{'input.example.13' | ddrTranslate}}</span>
+  </div>
+</div>
+
+<div class="row mt-3">
+  <div class="col-12">
+    <ddr-input 
+      [label]="'small' | ddrTranslate" 
+      [placeholder]="'input.placeholder' | ddrTranslate" 
+      size="small"
+      type="text" 
+      name="example-13-small" />
+    <ddr-input 
+      [label]="'medium' | ddrTranslate" 
+      [placeholder]="'input.placeholder' | ddrTranslate" 
+      size="medium"
+      type="text" 
+      name="example-13-medium" />
+    <ddr-input 
+      [label]="'large' | ddrTranslate" 
+      [placeholder]="'input.placeholder' | ddrTranslate" 
+      size="large"
+      type="text" 
+      name="example-13-large" />
+  </div>
+</div>
+
+<div class="row mt-3">
+  <div class="col-12">
+    <span class="h3">{{'input.example.14' | ddrTranslate}}</span>
+  </div>
+</div>
+
+<div class="row mt-3">
+  <div class="col-12">
+    <ddr-button 
+      text="input.focus"
+      (action)="focusInput()" />
+  </div>
+</div>
+
+<div class="row mt-3">
+  <div class="col-12">
+    <ddr-input 
+      [label]="'input.label' | ddrTranslate" 
+      [placeholder]="'input.placeholder' | ddrTranslate"
+      [focus]="focusEx14"
+      type="text" 
+      name="example-14"
+      (focusLost)="onFocusLost()" />
+  </div>
+</div>
+
+<div class="row mt-3">
+  <div class="col-12">
+    <span class="h3">{{'input.example.15' | ddrTranslate}}</span>
+  </div>
+</div>
+
+<div class="row mt-3">
+  <div class="col-12 background-test-transparent">
+    <ddr-input 
+      [label]="'input.label' | ddrTranslate" 
+      [placeholder]="'input.placeholder' | ddrTranslate"
+      [transparent]="true"
+      [border]="true"
+      type="text" 
+      name="example-15" />
   </div>
 </div>
 
   </div>
 
-  <div code>
-    <!-- <ddr-tabs>
-      <ddr-tab-item titleTab="HTML">
-        <pre  class="language-html">
-          <code class="language-html" DdrHighlightCode ngNonBindable>&#xd;&#xa;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x72;&#x6f;&#x77;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x63;&#x6f;&#x6c;&#x2d;&#x31;&#x32;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x3c;&#x70;&#x3e;&#x45;&#x6a;&#x65;&#x6d;&#x70;&#x6c;&#x6f;&#x20;&#x31;&#x3a;&#x20;&#x65;&#x73;&#x74;&#x61;&#x6e;&#x64;&#x61;&#x72;&#x3c;&#x2f;&#x70;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x72;&#x6f;&#x77;&#x20;&#x6d;&#x74;&#x2d;&#x33;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x63;&#x6f;&#x6c;&#x2d;&#x31;&#x32;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x3c;&#x65;&#x76;&#x6c;&#x2d;&#x69;&#x6e;&#x70;&#x75;&#x74;&#x20;&#x6c;&#x61;&#x62;&#x65;&#x6c;&#x3d;&#x22;&#x6c;&#x61;&#x62;&#x65;&#x6c;&#x22;&#x20;&#x70;&#x6c;&#x61;&#x63;&#x65;&#x68;&#x6f;&#x6c;&#x64;&#x65;&#x72;&#x3d;&#x22;&#x65;&#x6a;&#x65;&#x6d;&#x70;&#x6c;&#x6f;&#x20;&#x31;&#x22;&#x20;&#x74;&#x79;&#x70;&#x65;&#x3d;&#x22;&#x74;&#x65;&#x78;&#x74;&#x22;&#x20;&#x6e;&#x61;&#x6d;&#x65;&#x3d;&#x22;&#x65;&#x78;&#x61;&#x6d;&#x70;&#x6c;&#x65;&#x22;&#x20;&#x5b;&#x28;&#x6e;&#x67;&#x4d;&#x6f;&#x64;&#x65;&#x6c;&#x29;&#x5d;&#x3d;&#x22;&#x76;&#x61;&#x6c;&#x75;&#x65;&#x31;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x3c;&#x2f;&#x65;&#x76;&#x6c;&#x2d;&#x69;&#x6e;&#x70;&#x75;&#x74;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x72;&#x6f;&#x77;&#x20;&#x6d;&#x74;&#x2d;&#x33;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x63;&#x6f;&#x6c;&#x2d;&#x31;&#x32;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x3c;&#x70;&#x3e;&#x7b;&#x7b;&#x20;&#x22;&#x56;&#x61;&#x6c;&#x6f;&#x72;&#x20;&#x3a;&#x22;&#x20;&#x2b;&#x20;&#x76;&#x61;&#x6c;&#x75;&#x65;&#x31;&#x20;&#x7d;&#x7d;&#x3c;&#x2f;&#x70;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#xd;&#xa;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x72;&#x6f;&#x77;&#x20;&#x6d;&#x74;&#x2d;&#x33;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x63;&#x6f;&#x6c;&#x2d;&#x31;&#x32;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x3c;&#x70;&#x3e;&#x45;&#x6a;&#x65;&#x6d;&#x70;&#x6c;&#x6f;&#x20;&#x32;&#x3a;&#x20;&#x69;&#x6e;&#x6c;&#x69;&#x6e;&#x65;&#x3c;&#x2f;&#x70;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#xd;&#xa;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x72;&#x6f;&#x77;&#x20;&#x6d;&#x74;&#x2d;&#x33;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x63;&#x6f;&#x6c;&#x2d;&#x31;&#x32;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x3c;&#x65;&#x76;&#x6c;&#x2d;&#x69;&#x6e;&#x70;&#x75;&#x74;&#x20;&#x6c;&#x61;&#x62;&#x65;&#x6c;&#x3d;&#x22;&#x6c;&#x61;&#x62;&#x65;&#x6c;&#x22;&#x20;&#x70;&#x6c;&#x61;&#x63;&#x65;&#x68;&#x6f;&#x6c;&#x64;&#x65;&#x72;&#x3d;&#x22;&#x65;&#x6a;&#x65;&#x6d;&#x70;&#x6c;&#x6f;&#x20;&#x32;&#x22;&#x20;&#x74;&#x79;&#x70;&#x65;&#x3d;&#x22;&#x74;&#x65;&#x78;&#x74;&#x22;&#x20;&#x6e;&#x61;&#x6d;&#x65;&#x3d;&#x22;&#x65;&#x78;&#x61;&#x6d;&#x70;&#x6c;&#x65;&#x22;&#x20;&#x5b;&#x69;&#x6e;&#x6c;&#x69;&#x6e;&#x65;&#x5d;&#x3d;&#x22;&#x74;&#x72;&#x75;&#x65;&#x22;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x5b;&#x28;&#x6e;&#x67;&#x4d;&#x6f;&#x64;&#x65;&#x6c;&#x29;&#x5d;&#x3d;&#x22;&#x76;&#x61;&#x6c;&#x75;&#x65;&#x32;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x3c;&#x2f;&#x65;&#x76;&#x6c;&#x2d;&#x69;&#x6e;&#x70;&#x75;&#x74;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#xd;&#xa;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x72;&#x6f;&#x77;&#x20;&#x6d;&#x74;&#x2d;&#x33;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x63;&#x6f;&#x6c;&#x2d;&#x31;&#x32;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x3c;&#x70;&#x3e;&#x7b;&#x7b;&#x20;&#x22;&#x56;&#x61;&#x6c;&#x6f;&#x72;&#x20;&#x3a;&#x22;&#x20;&#x2b;&#x20;&#x76;&#x61;&#x6c;&#x75;&#x65;&#x32;&#x20;&#x7d;&#x7d;&#x3c;&#x2f;&#x70;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#xd;&#xa;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x72;&#x6f;&#x77;&#x20;&#x6d;&#x74;&#x2d;&#x32;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x63;&#x6f;&#x6c;&#x2d;&#x31;&#x32;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x3c;&#x70;&#x3e;&#x45;&#x6a;&#x65;&#x6d;&#x70;&#x6c;&#x6f;&#x20;&#x33;&#x3a;&#x20;&#x72;&#x65;&#x71;&#x75;&#x65;&#x72;&#x69;&#x64;&#x6f;&#x3c;&#x2f;&#x70;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#xd;&#xa;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x72;&#x6f;&#x77;&#x20;&#x6d;&#x74;&#x2d;&#x33;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x63;&#x6f;&#x6c;&#x2d;&#x31;&#x32;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x3c;&#x65;&#x76;&#x6c;&#x2d;&#x69;&#x6e;&#x70;&#x75;&#x74;&#x20;&#x6c;&#x61;&#x62;&#x65;&#x6c;&#x3d;&#x22;&#x6c;&#x61;&#x62;&#x65;&#x6c;&#x22;&#x20;&#x70;&#x6c;&#x61;&#x63;&#x65;&#x68;&#x6f;&#x6c;&#x64;&#x65;&#x72;&#x3d;&#x22;&#x65;&#x6a;&#x65;&#x6d;&#x70;&#x6c;&#x6f;&#x20;&#x33;&#x22;&#x20;&#x74;&#x79;&#x70;&#x65;&#x3d;&#x22;&#x74;&#x65;&#x78;&#x74;&#x22;&#x20;&#x6e;&#x61;&#x6d;&#x65;&#x3d;&#x22;&#x65;&#x78;&#x61;&#x6d;&#x70;&#x6c;&#x65;&#x22;&#x20;&#x5b;&#x72;&#x65;&#x71;&#x75;&#x69;&#x72;&#x65;&#x64;&#x5d;&#x3d;&#x22;&#x74;&#x72;&#x75;&#x65;&#x22;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x5b;&#x28;&#x6e;&#x67;&#x4d;&#x6f;&#x64;&#x65;&#x6c;&#x29;&#x5d;&#x3d;&#x22;&#x76;&#x61;&#x6c;&#x75;&#x65;&#x33;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x3c;&#x2f;&#x65;&#x76;&#x6c;&#x2d;&#x69;&#x6e;&#x70;&#x75;&#x74;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#xd;&#xa;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x72;&#x6f;&#x77;&#x20;&#x6d;&#x74;&#x2d;&#x33;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x63;&#x6f;&#x6c;&#x2d;&#x31;&#x32;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x3c;&#x70;&#x3e;&#x7b;&#x7b;&#x20;&#x22;&#x56;&#x61;&#x6c;&#x6f;&#x72;&#x20;&#x3a;&#x22;&#x20;&#x2b;&#x20;&#x76;&#x61;&#x6c;&#x75;&#x65;&#x33;&#x20;&#x7d;&#x7d;&#x3c;&#x2f;&#x70;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#xd;&#xa;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x72;&#x6f;&#x77;&#x20;&#x6d;&#x74;&#x2d;&#x33;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x63;&#x6f;&#x6c;&#x2d;&#x31;&#x32;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x3c;&#x70;&#x3e;&#x45;&#x6a;&#x65;&#x6d;&#x70;&#x6c;&#x6f;&#x20;&#x34;&#x3a;&#x20;&#x62;&#x6f;&#x72;&#x64;&#x65;&#x3c;&#x2f;&#x70;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#xd;&#xa;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x72;&#x6f;&#x77;&#x20;&#x6d;&#x74;&#x2d;&#x33;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x63;&#x6f;&#x6c;&#x2d;&#x31;&#x32;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x3c;&#x65;&#x76;&#x6c;&#x2d;&#x69;&#x6e;&#x70;&#x75;&#x74;&#x20;&#x6c;&#x61;&#x62;&#x65;&#x6c;&#x3d;&#x22;&#x6c;&#x61;&#x62;&#x65;&#x6c;&#x22;&#x20;&#x70;&#x6c;&#x61;&#x63;&#x65;&#x68;&#x6f;&#x6c;&#x64;&#x65;&#x72;&#x3d;&#x22;&#x65;&#x6a;&#x65;&#x6d;&#x70;&#x6c;&#x6f;&#x20;&#x34;&#x22;&#x20;&#x74;&#x79;&#x70;&#x65;&#x3d;&#x22;&#x74;&#x65;&#x78;&#x74;&#x22;&#x20;&#x6e;&#x61;&#x6d;&#x65;&#x3d;&#x22;&#x65;&#x78;&#x61;&#x6d;&#x70;&#x6c;&#x65;&#x22;&#x20;&#x5b;&#x62;&#x6f;&#x72;&#x64;&#x65;&#x72;&#x5d;&#x3d;&#x22;&#x74;&#x72;&#x75;&#x65;&#x22;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x5b;&#x28;&#x6e;&#x67;&#x4d;&#x6f;&#x64;&#x65;&#x6c;&#x29;&#x5d;&#x3d;&#x22;&#x76;&#x61;&#x6c;&#x75;&#x65;&#x34;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x3c;&#x2f;&#x65;&#x76;&#x6c;&#x2d;&#x69;&#x6e;&#x70;&#x75;&#x74;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#xd;&#xa;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x72;&#x6f;&#x77;&#x20;&#x6d;&#x74;&#x2d;&#x33;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x63;&#x6f;&#x6c;&#x2d;&#x31;&#x32;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x3c;&#x70;&#x3e;&#x7b;&#x7b;&#x20;&#x22;&#x56;&#x61;&#x6c;&#x6f;&#x72;&#x20;&#x3a;&#x22;&#x20;&#x2b;&#x20;&#x76;&#x61;&#x6c;&#x75;&#x65;&#x34;&#x20;&#x7d;&#x7d;&#x3c;&#x2f;&#x70;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#xd;&#xa;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x72;&#x6f;&#x77;&#x20;&#x6d;&#x74;&#x2d;&#x33;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x63;&#x6f;&#x6c;&#x2d;&#x31;&#x32;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x3c;&#x70;&#x3e;&#x45;&#x6a;&#x65;&#x6d;&#x70;&#x6c;&#x6f;&#x20;&#x35;&#x3a;&#x20;&#x76;&#x61;&#x6c;&#x69;&#x64;&#x61;&#x63;&#x69;&#x6f;&#x6e;&#x3c;&#x2f;&#x70;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#xd;&#xa;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x72;&#x6f;&#x77;&#x20;&#x6d;&#x74;&#x2d;&#x33;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x63;&#x6f;&#x6c;&#x2d;&#x31;&#x32;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x3c;&#x65;&#x76;&#x6c;&#x2d;&#x69;&#x6e;&#x70;&#x75;&#x74;&#x20;&#x6c;&#x61;&#x62;&#x65;&#x6c;&#x3d;&#x22;&#x6c;&#x61;&#x62;&#x65;&#x6c;&#x22;&#x20;&#x70;&#x6c;&#x61;&#x63;&#x65;&#x68;&#x6f;&#x6c;&#x64;&#x65;&#x72;&#x3d;&#x22;&#x65;&#x6a;&#x65;&#x6d;&#x70;&#x6c;&#x6f;&#x20;&#x35;&#x22;&#x20;&#x74;&#x79;&#x70;&#x65;&#x3d;&#x22;&#x65;&#x6d;&#x61;&#x69;&#x6c;&#x22;&#x20;&#x6e;&#x61;&#x6d;&#x65;&#x3d;&#x22;&#x65;&#x78;&#x61;&#x6d;&#x70;&#x6c;&#x65;&#x22;&#x20;&#x5b;&#x72;&#x65;&#x71;&#x75;&#x69;&#x72;&#x65;&#x64;&#x5d;&#x3d;&#x22;&#x74;&#x72;&#x75;&#x65;&#x22;&#x20;&#x5b;&#x76;&#x61;&#x6c;&#x69;&#x64;&#x61;&#x74;&#x65;&#x5d;&#x3d;&#x22;&#x74;&#x72;&#x75;&#x65;&#x22;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x5b;&#x6d;&#x69;&#x6e;&#x6c;&#x65;&#x6e;&#x67;&#x74;&#x68;&#x5d;&#x3d;&#x22;&#x35;&#x22;&#x20;&#x5b;&#x28;&#x6e;&#x67;&#x4d;&#x6f;&#x64;&#x65;&#x6c;&#x29;&#x5d;&#x3d;&#x22;&#x76;&#x61;&#x6c;&#x75;&#x65;&#x35;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x3c;&#x6e;&#x67;&#x2d;&#x74;&#x65;&#x6d;&#x70;&#x6c;&#x61;&#x74;&#x65;&#x20;&#x23;&#x74;&#x65;&#x6d;&#x70;&#x6c;&#x61;&#x74;&#x65;&#x56;&#x61;&#x6c;&#x69;&#x64;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x3c;&#x73;&#x70;&#x61;&#x6e;&#x3e;&#x7b;&#x7b;&#x20;&#x22;&#x76;&#x61;&#x6c;&#x69;&#x64;&#x22;&#x20;&#x7c;&#x20;&#x65;&#x76;&#x6c;&#x54;&#x72;&#x61;&#x6e;&#x73;&#x6c;&#x61;&#x74;&#x65;&#x20;&#x7d;&#x7d;&#x3c;&#x2f;&#x73;&#x70;&#x61;&#x6e;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x3c;&#x2f;&#x6e;&#x67;&#x2d;&#x74;&#x65;&#x6d;&#x70;&#x6c;&#x61;&#x74;&#x65;&#x3e;&#xd;&#xa;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x3c;&#x6e;&#x67;&#x2d;&#x74;&#x65;&#x6d;&#x70;&#x6c;&#x61;&#x74;&#x65;&#x20;&#x23;&#x74;&#x65;&#x6d;&#x70;&#x6c;&#x61;&#x74;&#x65;&#x45;&#x72;&#x72;&#x6f;&#x72;&#x73;&#x20;&#x6c;&#x65;&#x74;&#x2d;&#x65;&#x72;&#x72;&#x6f;&#x72;&#x73;&#x3d;&#x22;&#x65;&#x72;&#x72;&#x6f;&#x72;&#x73;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x40;&#x69;&#x66;&#x28;&#x65;&#x72;&#x72;&#x6f;&#x72;&#x73;&#x3f;&#x2e;&#x72;&#x65;&#x71;&#x75;&#x69;&#x72;&#x65;&#x64;&#x29;&#x7b;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x3c;&#x73;&#x70;&#x61;&#x6e;&#x3e;&#x56;&#x61;&#x6c;&#x6f;&#x72;&#x20;&#x72;&#x65;&#x71;&#x75;&#x65;&#x72;&#x69;&#x64;&#x6f;&#x3c;&#x2f;&#x73;&#x70;&#x61;&#x6e;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x7d;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x40;&#x69;&#x66;&#x28;&#x65;&#x72;&#x72;&#x6f;&#x72;&#x73;&#x3f;&#x2e;&#x6d;&#x69;&#x6e;&#x6c;&#x65;&#x6e;&#x67;&#x74;&#x68;&#x29;&#x7b;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x3c;&#x73;&#x70;&#x61;&#x6e;&#x3e;&#x53;&#x65;&#x20;&#x6e;&#x65;&#x63;&#x65;&#x73;&#x69;&#x74;&#x61;&#x6e;&#x20;&#x6d;&#x69;&#x6e;&#x69;&#x6d;&#x6f;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x7b;&#x7b;&#x20;&#x65;&#x72;&#x72;&#x6f;&#x72;&#x73;&#x3f;&#x2e;&#x6d;&#x69;&#x6e;&#x6c;&#x65;&#x6e;&#x67;&#x74;&#x68;&#x2e;&#x72;&#x65;&#x71;&#x75;&#x69;&#x72;&#x65;&#x64;&#x4c;&#x65;&#x6e;&#x67;&#x74;&#x68;&#x20;&#x7d;&#x7d;&#x20;&#x63;&#x61;&#x72;&#x61;&#x63;&#x74;&#x65;&#x72;&#x65;&#x73;&#x20;&#x79;&#x20;&#x6c;&#x6c;&#x65;&#x76;&#x61;&#x73;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x7b;&#x7b;&#x20;&#x65;&#x72;&#x72;&#x6f;&#x72;&#x73;&#x3f;&#x2e;&#x6d;&#x69;&#x6e;&#x6c;&#x65;&#x6e;&#x67;&#x74;&#x68;&#x3f;&#x2e;&#x61;&#x63;&#x74;&#x75;&#x61;&#x6c;&#x4c;&#x65;&#x6e;&#x67;&#x74;&#x68;&#x20;&#x7d;&#x7d;&#x20;&#x63;&#x61;&#x72;&#x61;&#x63;&#x74;&#x65;&#x72;&#x65;&#x73;&#x3c;&#x2f;&#x73;&#x70;&#x61;&#x6e;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x7d;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x3c;&#x2f;&#x6e;&#x67;&#x2d;&#x74;&#x65;&#x6d;&#x70;&#x6c;&#x61;&#x74;&#x65;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x3c;&#x2f;&#x65;&#x76;&#x6c;&#x2d;&#x69;&#x6e;&#x70;&#x75;&#x74;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#xd;&#xa;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x72;&#x6f;&#x77;&#x20;&#x6d;&#x74;&#x2d;&#x33;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x63;&#x6f;&#x6c;&#x2d;&#x31;&#x32;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x3c;&#x70;&#x3e;&#x7b;&#x7b;&#x20;&#x22;&#x56;&#x61;&#x6c;&#x6f;&#x72;&#x20;&#x3a;&#x22;&#x20;&#x2b;&#x20;&#x76;&#x61;&#x6c;&#x75;&#x65;&#x35;&#x20;&#x7d;&#x7d;&#x3c;&#x2f;&#x70;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#xd;&#xa;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x72;&#x6f;&#x77;&#x20;&#x6d;&#x74;&#x2d;&#x33;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x63;&#x6f;&#x6c;&#x2d;&#x31;&#x32;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x3c;&#x70;&#x3e;&#x45;&#x6a;&#x65;&#x6d;&#x70;&#x6c;&#x6f;&#x20;&#x36;&#x3a;&#x20;&#x76;&#x61;&#x6c;&#x69;&#x64;&#x61;&#x63;&#x69;&#x6f;&#x6e;&#x20;&#x69;&#x6e;&#x6c;&#x69;&#x6e;&#x65;&#x3c;&#x2f;&#x70;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#xd;&#xa;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x72;&#x6f;&#x77;&#x20;&#x6d;&#x74;&#x2d;&#x33;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x63;&#x6f;&#x6c;&#x2d;&#x31;&#x32;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x3c;&#x65;&#x76;&#x6c;&#x2d;&#x69;&#x6e;&#x70;&#x75;&#x74;&#x20;&#x6c;&#x61;&#x62;&#x65;&#x6c;&#x3d;&#x22;&#x6c;&#x61;&#x62;&#x65;&#x6c;&#x22;&#x20;&#x70;&#x6c;&#x61;&#x63;&#x65;&#x68;&#x6f;&#x6c;&#x64;&#x65;&#x72;&#x3d;&#x22;&#x65;&#x6a;&#x65;&#x6d;&#x70;&#x6c;&#x6f;&#x20;&#x36;&#x22;&#x20;&#x74;&#x79;&#x70;&#x65;&#x3d;&#x22;&#x74;&#x65;&#x78;&#x74;&#x22;&#x20;&#x6e;&#x61;&#x6d;&#x65;&#x3d;&#x22;&#x65;&#x78;&#x61;&#x6d;&#x70;&#x6c;&#x65;&#x22;&#x20;&#x5b;&#x72;&#x65;&#x71;&#x75;&#x69;&#x72;&#x65;&#x64;&#x5d;&#x3d;&#x22;&#x74;&#x72;&#x75;&#x65;&#x22;&#x20;&#x5b;&#x69;&#x6e;&#x6c;&#x69;&#x6e;&#x65;&#x5d;&#x3d;&#x22;&#x74;&#x72;&#x75;&#x65;&#x22;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x5b;&#x76;&#x61;&#x6c;&#x69;&#x64;&#x61;&#x74;&#x65;&#x5d;&#x3d;&#x22;&#x74;&#x72;&#x75;&#x65;&#x22;&#x20;&#x5b;&#x6d;&#x69;&#x6e;&#x6c;&#x65;&#x6e;&#x67;&#x74;&#x68;&#x5d;&#x3d;&#x22;&#x35;&#x22;&#x20;&#x5b;&#x28;&#x6e;&#x67;&#x4d;&#x6f;&#x64;&#x65;&#x6c;&#x29;&#x5d;&#x3d;&#x22;&#x76;&#x61;&#x6c;&#x75;&#x65;&#x36;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x3c;&#x6e;&#x67;&#x2d;&#x74;&#x65;&#x6d;&#x70;&#x6c;&#x61;&#x74;&#x65;&#x20;&#x23;&#x74;&#x65;&#x6d;&#x70;&#x6c;&#x61;&#x74;&#x65;&#x56;&#x61;&#x6c;&#x69;&#x64;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x3c;&#x73;&#x70;&#x61;&#x6e;&#x3e;&#x7b;&#x7b;&#x20;&#x22;&#x76;&#x61;&#x6c;&#x69;&#x64;&#x22;&#x20;&#x7c;&#x20;&#x65;&#x76;&#x6c;&#x54;&#x72;&#x61;&#x6e;&#x73;&#x6c;&#x61;&#x74;&#x65;&#x20;&#x7d;&#x7d;&#x3c;&#x2f;&#x73;&#x70;&#x61;&#x6e;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x3c;&#x2f;&#x6e;&#x67;&#x2d;&#x74;&#x65;&#x6d;&#x70;&#x6c;&#x61;&#x74;&#x65;&#x3e;&#xd;&#xa;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x3c;&#x6e;&#x67;&#x2d;&#x74;&#x65;&#x6d;&#x70;&#x6c;&#x61;&#x74;&#x65;&#x20;&#x23;&#x74;&#x65;&#x6d;&#x70;&#x6c;&#x61;&#x74;&#x65;&#x45;&#x72;&#x72;&#x6f;&#x72;&#x73;&#x20;&#x6c;&#x65;&#x74;&#x2d;&#x65;&#x72;&#x72;&#x6f;&#x72;&#x73;&#x3d;&#x22;&#x65;&#x72;&#x72;&#x6f;&#x72;&#x73;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x40;&#x69;&#x66;&#x28;&#x65;&#x72;&#x72;&#x6f;&#x72;&#x73;&#x3f;&#x2e;&#x72;&#x65;&#x71;&#x75;&#x69;&#x72;&#x65;&#x64;&#x29;&#x7b;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x3c;&#x73;&#x70;&#x61;&#x6e;&#x3e;&#x56;&#x61;&#x6c;&#x6f;&#x72;&#x20;&#x72;&#x65;&#x71;&#x75;&#x65;&#x72;&#x69;&#x64;&#x6f;&#x3c;&#x2f;&#x73;&#x70;&#x61;&#x6e;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x7d;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x40;&#x69;&#x66;&#x28;&#x65;&#x72;&#x72;&#x6f;&#x72;&#x73;&#x3f;&#x2e;&#x6d;&#x69;&#x6e;&#x6c;&#x65;&#x6e;&#x67;&#x74;&#x68;&#x29;&#x7b;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x3c;&#x73;&#x70;&#x61;&#x6e;&#x3e;&#x53;&#x65;&#x20;&#x6e;&#x65;&#x63;&#x65;&#x73;&#x69;&#x74;&#x61;&#x6e;&#x20;&#x6d;&#x69;&#x6e;&#x69;&#x6d;&#x6f;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x7b;&#x7b;&#x20;&#x65;&#x72;&#x72;&#x6f;&#x72;&#x73;&#x3f;&#x2e;&#x6d;&#x69;&#x6e;&#x6c;&#x65;&#x6e;&#x67;&#x74;&#x68;&#x2e;&#x72;&#x65;&#x71;&#x75;&#x69;&#x72;&#x65;&#x64;&#x4c;&#x65;&#x6e;&#x67;&#x74;&#x68;&#x20;&#x7d;&#x7d;&#x20;&#x63;&#x61;&#x72;&#x61;&#x63;&#x74;&#x65;&#x72;&#x65;&#x73;&#x20;&#x79;&#x20;&#x6c;&#x6c;&#x65;&#x76;&#x61;&#x73;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x7b;&#x7b;&#x20;&#x65;&#x72;&#x72;&#x6f;&#x72;&#x73;&#x3f;&#x2e;&#x6d;&#x69;&#x6e;&#x6c;&#x65;&#x6e;&#x67;&#x74;&#x68;&#x3f;&#x2e;&#x61;&#x63;&#x74;&#x75;&#x61;&#x6c;&#x4c;&#x65;&#x6e;&#x67;&#x74;&#x68;&#x20;&#x7d;&#x7d;&#x20;&#x63;&#x61;&#x72;&#x61;&#x63;&#x74;&#x65;&#x72;&#x65;&#x73;&#x3c;&#x2f;&#x73;&#x70;&#x61;&#x6e;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x7d;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x3c;&#x2f;&#x6e;&#x67;&#x2d;&#x74;&#x65;&#x6d;&#x70;&#x6c;&#x61;&#x74;&#x65;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x3c;&#x2f;&#x65;&#x76;&#x6c;&#x2d;&#x69;&#x6e;&#x70;&#x75;&#x74;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#xd;&#xa;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x72;&#x6f;&#x77;&#x20;&#x6d;&#x74;&#x2d;&#x33;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x63;&#x6f;&#x6c;&#x2d;&#x31;&#x32;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x3c;&#x70;&#x3e;&#x7b;&#x7b;&#x20;&#x22;&#x56;&#x61;&#x6c;&#x6f;&#x72;&#x20;&#x3a;&#x22;&#x20;&#x2b;&#x20;&#x76;&#x61;&#x6c;&#x75;&#x65;&#x36;&#x20;&#x7d;&#x7d;&#x3c;&#x2f;&#x70;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#xd;&#xa;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x72;&#x6f;&#x77;&#x20;&#x6d;&#x74;&#x2d;&#x33;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x63;&#x6f;&#x6c;&#x2d;&#x31;&#x32;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x3c;&#x70;&#x3e;&#x45;&#x6a;&#x65;&#x6d;&#x70;&#x6c;&#x6f;&#x20;&#x37;&#x3a;&#x20;&#x64;&#x69;&#x73;&#x61;&#x62;&#x6c;&#x65;&#x64;&#x3c;&#x2f;&#x70;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#xd;&#xa;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x72;&#x6f;&#x77;&#x20;&#x6d;&#x74;&#x2d;&#x33;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x63;&#x6f;&#x6c;&#x2d;&#x31;&#x32;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x3c;&#x65;&#x76;&#x6c;&#x2d;&#x69;&#x6e;&#x70;&#x75;&#x74;&#x20;&#x6c;&#x61;&#x62;&#x65;&#x6c;&#x3d;&#x22;&#x6c;&#x61;&#x62;&#x65;&#x6c;&#x22;&#x20;&#x70;&#x6c;&#x61;&#x63;&#x65;&#x68;&#x6f;&#x6c;&#x64;&#x65;&#x72;&#x3d;&#x22;&#x65;&#x6a;&#x65;&#x6d;&#x70;&#x6c;&#x6f;&#x20;&#x37;&#x22;&#x20;&#x74;&#x79;&#x70;&#x65;&#x3d;&#x22;&#x74;&#x65;&#x78;&#x74;&#x22;&#x20;&#x6e;&#x61;&#x6d;&#x65;&#x3d;&#x22;&#x65;&#x78;&#x61;&#x6d;&#x70;&#x6c;&#x65;&#x22;&#x20;&#x5b;&#x64;&#x69;&#x73;&#x61;&#x62;&#x6c;&#x65;&#x64;&#x5d;&#x3d;&#x22;&#x74;&#x72;&#x75;&#x65;&#x22;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x5b;&#x28;&#x6e;&#x67;&#x4d;&#x6f;&#x64;&#x65;&#x6c;&#x29;&#x5d;&#x3d;&#x22;&#x76;&#x61;&#x6c;&#x75;&#x65;&#x37;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x3c;&#x2f;&#x65;&#x76;&#x6c;&#x2d;&#x69;&#x6e;&#x70;&#x75;&#x74;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#xd;&#xa;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x72;&#x6f;&#x77;&#x20;&#x6d;&#x74;&#x2d;&#x33;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x63;&#x6f;&#x6c;&#x2d;&#x31;&#x32;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x3c;&#x70;&#x3e;&#x7b;&#x7b;&#x20;&#x22;&#x56;&#x61;&#x6c;&#x6f;&#x72;&#x20;&#x3a;&#x22;&#x20;&#x2b;&#x20;&#x76;&#x61;&#x6c;&#x75;&#x65;&#x37;&#x20;&#x7d;&#x7d;&#x3c;&#x2f;&#x70;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#xd;&#xa;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x72;&#x6f;&#x77;&#x20;&#x6d;&#x74;&#x2d;&#x33;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x63;&#x6f;&#x6c;&#x2d;&#x31;&#x32;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x3c;&#x70;&#x3e;&#x45;&#x6a;&#x65;&#x6d;&#x70;&#x6c;&#x6f;&#x20;&#x38;&#x3a;&#x20;&#x72;&#x65;&#x61;&#x64;&#x6f;&#x6e;&#x6c;&#x79;&#x3c;&#x2f;&#x70;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#xd;&#xa;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x72;&#x6f;&#x77;&#x20;&#x6d;&#x74;&#x2d;&#x33;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x63;&#x6f;&#x6c;&#x2d;&#x31;&#x32;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x3c;&#x65;&#x76;&#x6c;&#x2d;&#x69;&#x6e;&#x70;&#x75;&#x74;&#x20;&#x6c;&#x61;&#x62;&#x65;&#x6c;&#x3d;&#x22;&#x6c;&#x61;&#x62;&#x65;&#x6c;&#x22;&#x20;&#x70;&#x6c;&#x61;&#x63;&#x65;&#x68;&#x6f;&#x6c;&#x64;&#x65;&#x72;&#x3d;&#x22;&#x65;&#x6a;&#x65;&#x6d;&#x70;&#x6c;&#x6f;&#x20;&#x38;&#x22;&#x20;&#x74;&#x79;&#x70;&#x65;&#x3d;&#x22;&#x74;&#x65;&#x78;&#x74;&#x22;&#x20;&#x6e;&#x61;&#x6d;&#x65;&#x3d;&#x22;&#x65;&#x78;&#x61;&#x6d;&#x70;&#x6c;&#x65;&#x22;&#x20;&#x5b;&#x72;&#x65;&#x61;&#x64;&#x6f;&#x6e;&#x6c;&#x79;&#x5d;&#x3d;&#x22;&#x74;&#x72;&#x75;&#x65;&#x22;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x5b;&#x28;&#x6e;&#x67;&#x4d;&#x6f;&#x64;&#x65;&#x6c;&#x29;&#x5d;&#x3d;&#x22;&#x76;&#x61;&#x6c;&#x75;&#x65;&#x38;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x3c;&#x2f;&#x65;&#x76;&#x6c;&#x2d;&#x69;&#x6e;&#x70;&#x75;&#x74;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#x20;&#x20;&#xd;&#xa;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x72;&#x6f;&#x77;&#x20;&#x6d;&#x74;&#x2d;&#x33;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x63;&#x6f;&#x6c;&#x2d;&#x31;&#x32;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x3c;&#x70;&#x3e;&#x7b;&#x7b;&#x20;&#x22;&#x56;&#x61;&#x6c;&#x6f;&#x72;&#x20;&#x3a;&#x22;&#x20;&#x2b;&#x20;&#x76;&#x61;&#x6c;&#x75;&#x65;&#x37;&#x20;&#x7d;&#x7d;&#x3c;&#x2f;&#x70;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#x20;&#x20;&#xd;&#xa;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x72;&#x6f;&#x77;&#x20;&#x6d;&#x74;&#x2d;&#x33;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x63;&#x6f;&#x6c;&#x2d;&#x31;&#x32;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x3c;&#x70;&#x3e;&#x45;&#x6a;&#x65;&#x6d;&#x70;&#x6c;&#x6f;&#x20;&#x39;&#x3a;&#x20;&#x6d;&#x69;&#x6e;&#x20;&#x6d;&#x61;&#x78;&#x3c;&#x2f;&#x70;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#xd;&#xa;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x72;&#x6f;&#x77;&#x20;&#x6d;&#x74;&#x2d;&#x33;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x63;&#x6f;&#x6c;&#x2d;&#x31;&#x32;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x3c;&#x65;&#x76;&#x6c;&#x2d;&#x69;&#x6e;&#x70;&#x75;&#x74;&#x20;&#x6c;&#x61;&#x62;&#x65;&#x6c;&#x3d;&#x22;&#x6c;&#x61;&#x62;&#x65;&#x6c;&#x22;&#x20;&#x70;&#x6c;&#x61;&#x63;&#x65;&#x68;&#x6f;&#x6c;&#x64;&#x65;&#x72;&#x3d;&#x22;&#x6e;&#x75;&#x6d;&#x62;&#x65;&#x72;&#x22;&#x20;&#x74;&#x79;&#x70;&#x65;&#x3d;&#x22;&#x6e;&#x75;&#x6d;&#x62;&#x65;&#x72;&#x22;&#x20;&#x6e;&#x61;&#x6d;&#x65;&#x3d;&#x22;&#x65;&#x78;&#x61;&#x6d;&#x70;&#x6c;&#x65;&#x22;&#x20;&#x5b;&#x72;&#x65;&#x61;&#x64;&#x6f;&#x6e;&#x6c;&#x79;&#x5d;&#x3d;&#x22;&#x66;&#x61;&#x6c;&#x73;&#x65;&#x22;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x5b;&#x28;&#x6e;&#x67;&#x4d;&#x6f;&#x64;&#x65;&#x6c;&#x29;&#x5d;&#x3d;&#x22;&#x76;&#x61;&#x6c;&#x75;&#x65;&#x39;&#x22;&#x20;&#x5b;&#x6d;&#x69;&#x6e;&#x5d;&#x3d;&#x22;&#x30;&#x22;&#x20;&#x5b;&#x6d;&#x61;&#x78;&#x5d;&#x3d;&#x22;&#x31;&#x30;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x3c;&#x2f;&#x65;&#x76;&#x6c;&#x2d;&#x69;&#x6e;&#x70;&#x75;&#x74;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#xd;&#xa;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x72;&#x6f;&#x77;&#x20;&#x6d;&#x74;&#x2d;&#x33;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x63;&#x6f;&#x6c;&#x2d;&#x31;&#x32;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x3c;&#x70;&#x3e;&#x7b;&#x7b;&#x20;&#x22;&#x56;&#x61;&#x6c;&#x6f;&#x72;&#x20;&#x3a;&#x22;&#x20;&#x2b;&#x20;&#x76;&#x61;&#x6c;&#x75;&#x65;&#x39;&#x20;&#x7d;&#x7d;&#x3c;&#x2f;&#x70;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#xd;&#xa;&#xd;&#xa;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x72;&#x6f;&#x77;&#x20;&#x6d;&#x74;&#x2d;&#x33;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x63;&#x6f;&#x6c;&#x2d;&#x31;&#x32;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x3c;&#x70;&#x3e;&#x45;&#x6a;&#x65;&#x6d;&#x70;&#x6c;&#x6f;&#x20;&#x31;&#x30;&#x3a;&#x20;&#x6c;&#x61;&#x62;&#x65;&#x6c;&#x20;&#x6e;&#x65;&#x67;&#x72;&#x69;&#x74;&#x61;&#x3c;&#x2f;&#x70;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#xd;&#xa;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x72;&#x6f;&#x77;&#x20;&#x6d;&#x74;&#x2d;&#x33;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x64;&#x69;&#x76;&#x20;&#x63;&#x6c;&#x61;&#x73;&#x73;&#x3d;&#x22;&#x63;&#x6f;&#x6c;&#x2d;&#x31;&#x32;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x3c;&#x65;&#x76;&#x6c;&#x2d;&#x69;&#x6e;&#x70;&#x75;&#x74;&#x20;&#x6c;&#x61;&#x62;&#x65;&#x6c;&#x3d;&#x22;&#x6c;&#x61;&#x62;&#x65;&#x6c;&#x22;&#x20;&#x70;&#x6c;&#x61;&#x63;&#x65;&#x68;&#x6f;&#x6c;&#x64;&#x65;&#x72;&#x3d;&#x22;&#x6e;&#x75;&#x6d;&#x62;&#x65;&#x72;&#x22;&#x20;&#x5b;&#x6c;&#x61;&#x62;&#x65;&#x6c;&#x42;&#x6f;&#x6c;&#x64;&#x5d;&#x3d;&#x22;&#x74;&#x72;&#x75;&#x65;&#x22;&#x20;&#x74;&#x79;&#x70;&#x65;&#x3d;&#x22;&#x6e;&#x75;&#x6d;&#x62;&#x65;&#x72;&#x22;&#x20;&#x6e;&#x61;&#x6d;&#x65;&#x3d;&#x22;&#x65;&#x78;&#x61;&#x6d;&#x70;&#x6c;&#x65;&#x22;&#x20;&#x5b;&#x72;&#x65;&#x61;&#x64;&#x6f;&#x6e;&#x6c;&#x79;&#x5d;&#x3d;&#x22;&#x66;&#x61;&#x6c;&#x73;&#x65;&#x22;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x20;&#x20;&#x3c;&#x2f;&#x65;&#x76;&#x6c;&#x2d;&#x69;&#x6e;&#x70;&#x75;&#x74;&#x3e;&#xd;&#xa;&#x20;&#x20;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;&#xd;&#xa;&#x3c;&#x2f;&#x64;&#x69;&#x76;&#x3e;
-            </code>
-        </pre>
-      </ddr-tab-item>
-    </ddr-tabs> -->
-  </div>
-
-  <div inputs>
-    <table class="table">
-      <thead class="thead-dark">
-        <tr>
-          <th>Nombre</th>
-          <th>Descripción</th>
-          <th>Tipo</th>
-          <th>Valor por defecto</th>
-          <th>Posibles valores (constants)</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>placeholder</td>
-          <td>Texto cuando el input esta vacio</td>
-          <td>string</td>
-          <td>''</td>
-          <td></td>
-        </tr>
-
-        <tr>
-          <td>label</td>
-          <td>Label asociado al input</td>
-          <td>string</td>
-          <td>undefined</td>
-          <td></td>
-        </tr>
-
-        <tr>
-          <td>type</td>
-          <td>Label asociado al input</td>
-          <td>string</td>
-          <td>TypeInputConstants.INPUT_TYPE_TEXT</td>
-          <td>
-            <ul>
-              <li>TypeInputConstants.INPUT_TYPE_TEXT</li>
-              <li>TypeInputConstants.INPUT_TYPE_EMAIL</li>
-              <li>TypeInputConstants.INPUT_TYPE_PHONE</li>
-              <li>TypeInputConstants.INPUT_TYPE_NUMBER</li>
-              <li>TypeInputConstants.INPUT_TYPE_URL</li>
-              <li>TypeInputConstants.INPUT_TYPE_PASSWORD</li>
-            </ul>
-          </td>
-        </tr>
-
-        <tr>
-          <td>checkDataCreateUpdate</td>
-          <td>Indica si en la funcion de añadir/modificar hay que realizar una validacion previa</td>
-          <td>booelan</td>
-          <td>false</td>
-          <td>Al indicar este campo a true hay que tener en cuenta que hay que definir el valor de la variable validDataCreateUpdate </td>
-        </tr>
-        <tr>
-          <td>validDataCreateUpdate</td>
-          <td>Indica si los datos son validos al realizar añadir/</td>
-          <td>booelan</td>
-          <td>true</td>
-          <td> </td>
-        </tr>
-
-        <tr>
-          <td>disabled</td>
-          <td>Deshabilita el input</td>
-          <td>boolean</td>
-          <td>false</td>
-          <td></td>
-        </tr>
-
-        <tr>
-          <td>readonly</td>
-          <td>Indica si esta en modo consulta</td>
-          <td>boolean</td>
-          <td>false</td>
-          <td></td>
-        </tr>
-
-        <tr>
-          <td>maxlength</td>
-          <td>Máxima longitud del input</td>
-          <td>number</td>
-          <td>undefined</td>
-          <td></td>
-        </tr>
-
-        <tr>
-          <td>minlength</td>
-          <td>Mínima longitud del input</td>
-          <td>number</td>
-          <td>undefined</td>
-          <td></td>
-        </tr>
-
-        <tr>
-          <td>required</td>
-          <td>Indica si es obligatorio o no</td>
-          <td>boolean</td>
-          <td>false</td>
-          <td></td>
-        </tr>
-
-        <tr>
-          <td>validate</td>
-          <td>Permite la validación del input</td>
-          <td>boolean</td>
-          <td>false</td>
-          <td></td>
-        </tr>
-
-        <tr>
-          <td>inline</td>
-          <td>Coloca los elementos del input en linea</td>
-          <td>boolean</td>
-          <td>false</td>
-          <td></td>
-        </tr>
-
-        <tr>
-          <td>border</td>
-          <td>Coloca un borde al input</td>
-          <td>boolean</td>
-          <td>false</td>
-          <td></td>
-        </tr>
-
-        <tr>
-          <td>pattern</td>
-          <td>Indica que pattern debe validarse (solo modo validate)</td>
-          <td>string</td>
-          <td>undefined</td>
-          <td></td>
-        </tr>
-
-        <tr>
-          <td>autocomplete</td>
-          <td>Indica si el input debe autocompletar el texto</td>
-          <td>boolean</td>
-          <td>false</td>
-          <td></td>
-        </tr>
-
-        <tr>
-          <td>labelBold</td>
-          <td>Indica si la etiqueta el input esta en negrita</td>
-          <td>boolean</td>
-          <td>false</td>
-          <td></td>
-        </tr>
-
-        <tr>
-          <td>tooltipText</td>
-          <td>Texto del tooltip a mostrar</td>
-          <td>boolean</td>
-          <td>false</td>
-          <td></td>
-        </tr>
-        
-        <tr>
-          <td>orientationTooltip</td>
-          <td>Texto del tooltip a mostrar</td>
-          <td>boolean</td>
-          <td>'bottom'</td>
-          <td>
-            <ul>
-              <li>constants.ORIENTATION.TOP</li>
-              <li>constants.ORIENTATION.TOP_RIGHT</li>
-              <li>constants.ORIENTATION.TOP_LEFT</li>
-              <li>constants.ORIENTATION.BOTTOM</li>
-              <li>constants.ORIENTATION.BOTTOM_RIGHT</li>
-              <li>constants.ORIENTATION.BOTTOM_LEFT</li>
-              <li>constants.ORIENTATION.RIGHT</li>
-              <li>constants.ORIENTATION.LEFT</li>
-            </ul>
-          </td>
-        </tr>
-
-      </tbody>
-    </table>
-  </div>
-
-  <div outputs>
-    <table class="table">
-      <thead class="thead-dark">
-        <tr>
-          <th>Nombre</th>
-          <th>Descripción</th>
-          <th>Valor devuelto</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>clickInput</td>
-          <td>Evento al clicar el input</td>
-          <td>MouseEvent</td>
-        </tr>
-        <tr>
-          <td>keyPressed</td>
-          <td>Evento al escribir en el input</td>
-          <td>boolean</td>
-        </tr>
-        <tr>
-          <td>min</td>
-          <td>Establece el numero minimo al input</td>
-          <td>number</td>
-          <td>undefined</td>
-          <td></td>
-        </tr>
-        <tr>
-          <td>max</td>
-          <td>Establece el numero maximo al input</td>
-          <td>number</td>
-          <td>undefined</td>
-          <td></td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
 </base-showcase>

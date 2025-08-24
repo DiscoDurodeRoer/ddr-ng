@@ -1,16 +1,16 @@
 import { Component, inject } from '@angular/core';
-import { DdrChipComponent, DdrToastService } from 'ddr-ng';
+import { DdrChipComponent, DdrToastService, DdrTranslatePipe, DdrTranslateService } from 'ddr-ng';
 import { BaseShowcaseComponent } from '../base-showcase/base-showcase.component';
 import { JsonPipe } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 @Component({
-  selector: 'app-chip-showcase',
+  selector: 'chip-showcase',
   templateUrl: './chip-showcase.component.html',
-  styleUrls: ['./chip-showcase.component.scss'],
   imports: [
     BaseShowcaseComponent,
     DdrChipComponent,
+    DdrTranslatePipe,
     JsonPipe,
     FormsModule
   ],
@@ -20,16 +20,37 @@ import { FormsModule } from '@angular/forms';
 })
 export class ChipShowcaseComponent {
 
-  private ddrToastService: DdrToastService = inject(DdrToastService);
+  private readonly ddrToastService: DdrToastService = inject(DdrToastService);
+  private readonly ddrTranslateService: DdrTranslateService = inject(DdrTranslateService);
 
-  public values = ["ejemplo1", "ejemplo2"]
+  public values: string[] = ["item 1", "item 2"]
 
-  getValues($event: string[]) {
-    this.ddrToastService.addSuccessMessage('Elementos', JSON.stringify($event));
+  getValues(items: string[]) {
+    this.ddrToastService.addSuccessMessage(
+      this.ddrTranslateService.getTranslate('chip.elements'),
+      JSON.stringify(items)
+    );
   }
 
-  clickValue($event: any) {
-    this.ddrToastService.addSuccessMessage('Elemento seleccionado', $event);
+  clickValue(item: string) {
+    this.ddrToastService.addSuccessMessage(
+      this.ddrTranslateService.getTranslate('chip.selected.element'),
+      item
+    );
+  }
+
+  insertValue(item: string) {
+    this.ddrToastService.addSuccessMessage(
+      this.ddrTranslateService.getTranslate('chip.insert.element'),
+      item
+    );
+  }
+
+  removeValue(item: string) {
+    this.ddrToastService.addSuccessMessage(
+      this.ddrTranslateService.getTranslate('chip.remove.element'),
+      item
+    );
   }
 
 }

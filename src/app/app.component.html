@@ -1,9 +1,17 @@
-<div class="row mh-100">
-  <!-- <div class="col-md-2 col-12">
-    <app-menu/>
-  </div> -->
-  <div class="col-md-10 col-12">
-    <app-header/>
-    <router-outlet />
+<div class="row g-0 h-100">
+  <div class="col-12 h-100">
+    <div class="row g-0 header">
+      <div class="col-12">
+        <app-header />
+      </div>
+    </div>
+    <div class="row g-0 content">
+      <div class="col-xl-2 col-md-3 col-12 h-100 overflow-y-auto d-md-block d-none pt-3 pe-3 ps-3">
+        <app-menu />
+      </div>
+      <div class="col-xl-10 col-md-9 col-12 mh-100 h-100 overflow-y-auto pt-3 pe-3 ps-3 border-start" id="content">
+        <router-outlet />
+      </div>
+    </div>
   </div>
 </div>

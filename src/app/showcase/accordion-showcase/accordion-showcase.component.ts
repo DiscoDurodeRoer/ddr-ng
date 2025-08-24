@@ -1,16 +1,25 @@
-import { Component } from '@angular/core';
-import { DdrAccordionComponent } from 'ddr-ng';
+import { Component, inject } from '@angular/core';
+import { DdrAccordionComponent, DdrToastService, DdrTranslatePipe, DdrTranslateService } from 'ddr-ng';
 import { BaseShowcaseComponent } from '../base-showcase/base-showcase.component';
 
 @Component({
-    selector: 'app-accordion-showcase',
+    selector: 'accordion-showcase',
     templateUrl: './accordion-showcase.component.html',
-    styleUrls: ['./accordion-showcase.component.scss'],
     imports: [
         BaseShowcaseComponent,
-        DdrAccordionComponent
+        DdrAccordionComponent,
+        DdrTranslatePipe
+    ],
+    providers: [
+        DdrToastService
     ]
 })
 export class AccordionShowcaseComponent {
 
+    private readonly ddrToastService: DdrToastService = inject(DdrToastService);
+    private readonly ddrTranslateService: DdrTranslateService = inject(DdrTranslateService);
+
+    onClickOpen(state: boolean) {
+        this.ddrToastService.addSuccessMessage(this.ddrTranslateService.getTranslate('success'), "clickOpen: " + state)
+    }
 }

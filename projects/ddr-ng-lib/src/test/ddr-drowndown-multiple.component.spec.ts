@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, fakeAsync, TestBed, tick, waitForAsync } from '@angular/core/testing';
 
 import { DdrDropdownMultipleComponent } from '../components/ddr-dropdown-multiple/ddr-dropdown-multiple.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -96,12 +96,13 @@ describe('DdrDropdownMultipleComponent', () => {
     });
   }));
 
-  it('elements should be selected', waitForAsync(() => {
+  it('elements should be selected', fakeAsync(() => {
     fixture.detectChanges();
     fixture.whenStable().then(() => {
 
       const inputGroup = fixture.debugElement.query(By.directive(DdrInputGroupComponent));
       inputGroup.triggerEventHandler('action');
+      tick(100);
       fixture.detectChanges();
 
       let panelItems = fixture.debugElement.query(By.css('.ddr-dropdown__panel-items'));
@@ -167,12 +168,13 @@ describe('DdrDropdownMultipleComponent', () => {
     });
   }));
 
-  it('elements should be selected using checkbox', waitForAsync(() => {
+  it('elements should be selected using checkbox', fakeAsync(() => {
     fixture.detectChanges();
     fixture.whenStable().then(() => {
 
       const inputGroup = fixture.debugElement.query(By.directive(DdrInputGroupComponent));
       inputGroup.triggerEventHandler('action');
+      tick(100);
       fixture.detectChanges();
 
       const panelItems = fixture.debugElement.query(By.css('.ddr-dropdown__panel-items'));

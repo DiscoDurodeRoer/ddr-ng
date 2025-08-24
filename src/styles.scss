@@ -1,5 +1,28 @@
 /* You can add global styles to this file, and also import other style files */
 
-ul {
-    padding: 0 !important;
+html,
+body {
+    height: 100%;
+}
+
+body {
+    overflow: hidden;
+}
+
+.ddr-blue {
+    .header {
+        background-color: #4682b4;
+    }
+}
+
+.ddr-dark {
+    .header {
+        border-bottom: 1px solid #FFF;
+    }
+}
+
+.ddr-purple {
+    .header {
+        background-color: #522888;
+    }
 }

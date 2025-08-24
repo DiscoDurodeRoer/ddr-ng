@@ -1,0 +1,165 @@
+<div class="row mb-5">
+    <div class="col-12">
+
+        <ddr-card [showHeader]="false">
+
+            <div card-content>
+
+                <div class="row mt-3">
+                    <div class="col-12">
+                        <span class="h3">{{'translate.page.p1' | ddrTranslate}}</span>
+                    </div>
+                </div>
+
+                <div class="row mt-3">
+                    <div class="col-12">
+                        <span>{{'translate.page.p2' | ddrTranslate}}</span>
+                    </div>
+                </div>
+
+                <div class="row mt-3">
+                    <div class="col-12">
+                        <span>{{'translate.page.p3' | ddrTranslate}}</span>
+                    </div>
+                </div>
+
+                <div class="row mt-3">
+                    <div class="col-12">
+                        <img class="mw-100" src="./img/translate/example-translate-1.png">
+                    </div>
+                </div>
+
+                <div class="row mt-3">
+                    <div class="col-12">
+                        <span>{{'translate.page.p4' | ddrTranslate}}</span>
+                    </div>
+                </div>
+
+                <div class="row mt-3">
+                    <div class="col-12">
+                        <span class="d-block mb-2">en.json</span>
+                        <img class="mw-100" src="./img/translate/example-translate-2.png">
+                    </div>
+                </div>
+
+                <div class="row mt-3">
+                    <div class="col-12">
+                        <span class="d-block mb-2">es.json</span>
+                        <img class="mw-100" src="./img/translate/example-translate-3.png">
+                    </div>
+                </div>
+
+                <div class="row mt-3">
+                    <div class="col-12">
+                        <span>{{'translate.page.p5' | ddrTranslate}}</span>
+                    </div>
+                </div>
+
+                <div class="row mt-3">
+                    <div class="col-12">
+                        <span>{{'translate.page.p6' | ddrTranslate}}</span>
+                    </div>
+                </div>
+
+                <div class="row mt-3">
+                    <div class="col-12">
+                        <span></span>
+<pre class="language-typescript"><code class="language-typescript" ngNonBindable>import &#123; provideHttpClient &#125; from "@angular/common/http";
+import &#123; ApplicationConfig, provideAppInitializer, inject &#125; from "@angular/core";
+import &#123; provideRouter &#125; from "@angular/router";
+import &#123; DdrTranslateService &#125; from "ddr-ng";
+import &#123; routes &#125; from "./app.routes";
+
+export const appConfig: ApplicationConfig = &#123;
+  providers: [
+    provideRouter(routes),
+    provideHttpClient(),
+    provideAppInitializer(() => &#123;
+      const translateService = inject(DdrTranslateService);
+      return translateService.getData(`/i18n/`, 'en');
+    &#125;),
+  ]
+&#125;;
+</code></pre>
+                    </div>
+                </div>
+
+                <div class="row mt-3">
+                    <div class="col-12">
+                        <span>{{'translate.page.p7' | ddrTranslate}}</span>
+                    </div>
+                </div>
+
+                <div class="row mt-3">
+                    <div class="col-12">
+<pre class="language-typescript"><code class="language-typescript" ngNonBindable>import &#123; Component, OnInit, inject &#125; from '@angular/core';
+import &#123; DdrTranslatePipe, DdrTranslateService &#125; from 'ddr-ng';
+    
+@Component(&#123;
+  selector: 'app-example',
+  template: '&lt;div&gt;{{'example' | ddrTranslate}}&lt;/div&gt;',
+  styleUrls: ['./example.component.scss'],
+  imports: [ DdrTranslatePipe ]
+&#125;)
+export class ExampleComponent implements OnInit &#123;
+    
+    private ddrTranslateService: DdrTranslateService = inject(DdrTranslateService);
+
+    ngOnInit() &#123;
+        console.log(this.ddrTranslateService.getTranslate('example'))
+    &#125;
+&#125;
+</code></pre>
+                    </div>
+                </div>
+
+                <div class="row mt-3">
+                    <div class="col-12">
+                        <span class="h3">{{'translate.page.p8' | ddrTranslate}}</span>
+                    </div>
+                </div>
+
+                <div class="row mt-3">
+                    <div class="col-12">
+                        <span>{{'translate.page.p9' | ddrTranslate}}</span>
+                    </div>
+                </div>
+
+                <div class="row mt-3">
+                    <div class="col-12">
+<pre class="language-typescript"><code class="language-typescript" ngNonBindable>import &#123; Component, inject &#125; from '@angular/core';
+import &#123; DdrButtonComponent, DdrTranslateService &#125; from 'ddr-ng';
+    
+@Component(&#123;
+  selector: 'app-example',
+  template: `
+    &lt;div&gt;
+        &lt;ddr-button text="Change to Spanish" (action)="changeToSpanish()" /&gt;
+        &lt;ddr-button text="Change to English" (action)="changeToEnglish()" /&gt;
+    &lt;/div&gt;
+    `,
+  styleUrls: ['./example.component.scss'],
+  imports: [ DdrButtonComponent ]
+&#125;)
+export class ExampleComponent &#123;
+    
+    private ddrTranslateService: DdrTranslateService = inject(DdrTranslateService);
+
+    changeToSpanish() &#123;
+        this.ddrTranslateService.getData('/i18n/', 'es')
+    &#125;
+
+    changeToEnglish() &#123;
+        this.ddrTranslateService.getData('/i18n/', 'en')
+    &#125;
+&#125;
+</code></pre>
+                    </div>
+                </div>
+
+            </div>
+
+        </ddr-card>
+
+    </div>
+</div>

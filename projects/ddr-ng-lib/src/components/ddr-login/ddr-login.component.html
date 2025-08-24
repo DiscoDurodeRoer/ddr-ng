@@ -1,9 +1,9 @@
 <div class="ddr-login d-flex h-100 m-auto">
 
-  <ddr-card class="m-auto" [showHeader]="showHeader">
+  <ddr-card class="m-auto" [showHeader]="showHeader" [showFooter]="showFooter">
 
     <div card-title>
-      <ng-content select="[login-header]"></ng-content>
+      <ng-content select="[login-header]" />
     </div>
 
     <div card-content>
@@ -15,23 +15,11 @@
               [label]="showLabelUser ? labelUsername || ('login.username' | ddrTranslate) : ''"
               [placeholder]="labelPlaceholderUsername || ('login.placeholder.username' | ddrTranslate)" 
               [border]="true"
-              [(ngModel)]="user.username" 
-              [validate]="validate" 
-              [required]="true"
+              [required]="userRequired"
               [size]="constants.SIZE.MEDIUM" 
-              name="username">
-
-              <ng-template #templateValid>
-                <span>{{ labelValidUsername || ('login.valid.username' | ddrTranslate) }}</span>
-              </ng-template>
-
-              <ng-template #templateErrors let-errors="errors">
-                @if(errors?.required){
-                <span>{{ labelInvalidUsername || ('login.invalid.username' | ddrTranslate) }}</span>
-                }
-              </ng-template>
-
-            </ddr-input>
+              name="username"
+              autocomplete="username"
+              [(ngModel)]="user.username"  />
           </div>
 
         </div>
@@ -40,34 +28,28 @@
             <ddr-input-password class="ddr-login__input-password"
               [label]="showLabelPassword ? labelPassword || ('login.password' | ddrTranslate) : ''"
               [placeholder]="labelPlaceholderPassword || ('login.placeholder.password' | ddrTranslate)"
-              [(ngModel)]="user.password" 
-              [validate]="validate" 
-              [required]="true" 
-              name="password" 
-              [autocomplete]="true"
-              [labelValid]="labelValidPassword" 
-              [labelInvalid]="labelInvalidPassword" />
+              [required]="userPassword"
+              name="password"
+              [(ngModel)]="user.password" />
           </div>
         </div>
 
-        <div class="row g-0">
+        <div class="row g-0 mt-3">
           <div class="col-12">
             <ddr-button class="ddr-login__submit-button"
               [block]="true"
               [type]="constants.TYPE_BUTTON.SUBMIT" 
               [text]="labelSubmit || ('login.submit' | ddrTranslate)"
               [size]="constants.SIZE.MEDIUM" />
-            <ng-content select="[extra-buttons]"></ng-content>
           </div>
-
         </div>
 
         @if(showForgotPassword || showCreateUser){
         <div class="row g-0">
           @if(showForgotPassword){
           <div class="text-start mt-3 user-select-none" [ngClass]="{'col-6': showCreateUser, 'col-12': !showCreateUser}">
-            <a class="text-secondary text-underline cursor-pointer" (click)="recoverPassword()">
-              {{ labelForgotenPwd || ('login.forgot.password' | ddrTranslate ) }}
+            <a class="text-secondary text-decoration-none cursor-pointer" (click)="recoverPassword()">
+              {{ labelForgotenPassword || ('login.forgot.password' | ddrTranslate ) }}
             </a>
           </div>
           }
@@ -75,7 +57,7 @@
           @if(showCreateUser){
           <div class="text-end mt-3 user-select-none"
             [ngClass]="{'col-6': showForgotPassword, 'col-12': !showForgotPassword}">
-            <a class="text-secondary text-underline cursor-pointer" (click)="createUser()">
+            <a class="text-secondary text-decoration-none cursor-pointer" (click)="createUser()">
               {{ labelCreateUser || ('login.create.user' | ddrTranslate ) }}
             </a>
           </div>
@@ -85,6 +67,10 @@
         }
 
       </form>
+    </div>
+
+    <div card-footer>
+      <ng-content select="[login-footer]" />
     </div>
 
   </ddr-card>

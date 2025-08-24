@@ -15,7 +15,8 @@ import { DdrConstantsService } from '../../services/ddr-constants.service';
 import { DdrControlValueAccessor } from '../ddr-ngmodel-base/ddr-control-value-accessor-base.component';
 import { DdrTooltipDirective } from '../../directives/ddr-tooltip.directive';
 import { NgClass, NgTemplateOutlet } from '@angular/common';
-import { DdrInputError, DdrOrientation, DdrSize, DdrTypeInput } from '../../types/types';
+import { AutocompleteType, DdrInputError, DdrOrientatioTooltip, DdrSize, DdrTypeInput } from '../../types/types';
+import { DdrSetFocusDirective } from '../../directives/ddr-set-focus.directive';
 
 @Component({
   selector: 'ddr-input',
@@ -26,6 +27,7 @@ import { DdrInputError, DdrOrientation, DdrSize, DdrTypeInput } from '../../type
     FormsModule,
     DdrControlValueAccessor,
     DdrTooltipDirective,
+    DdrSetFocusDirective,
     NgClass,
     NgTemplateOutlet
   ],
@@ -55,17 +57,19 @@ export class DdrInputComponent extends DdrControlValueAccessor {
   @Input() border: boolean = true;
   @Input() pattern: string = '';
   @Input() size: DdrSize = this.constants.SIZE.MEDIUM;
-  @Input({ transform: numberAttribute }) min?: number;
-  @Input({ transform: numberAttribute }) max?: number;
-  @Input() autocomplete: boolean = false;
-  @Input() orientationTooltip: DdrOrientation = this.constants.ORIENTATION.BOTTOM;
+  @Input() min: number | null = null;
+  @Input() max: number | null = null;
+  @Input() tooltipOrientation: DdrOrientatioTooltip = this.constants.ORIENTATION.BOTTOM;
   @Input() tooltipText?: string;
   @Input() labelBold: boolean = false;
+  @Input() focus: boolean = false;
+  @Input() transparent: boolean = false;
+  @Input() autocomplete: AutocompleteType = 'off';
 
   @Output() hasErrors: EventEmitter<DdrInputError> = new EventEmitter<DdrInputError>();
   @Output() clickInput: EventEmitter<MouseEvent> = new EventEmitter<MouseEvent>();
-  @Output() keyPressed: EventEmitter<KeyboardEvent> = new EventEmitter<KeyboardEvent>();
-  @Output() keydown: EventEmitter<KeyboardEvent> = new EventEmitter<KeyboardEvent>();
+  @Output() keyPressed: EventEmitter<string> = new EventEmitter<string>();
+  @Output() focusLost: EventEmitter<void> = new EventEmitter<void>();
 
   @ViewChild('input') input!: NgModel;
 
@@ -80,6 +84,13 @@ export class DdrInputComponent extends DdrControlValueAccessor {
 
     if (this.constants.TYPE_INPUT.NUMBER == this.type) {
       this.value = +this.value;
+
+      if (this.min && this.min !== undefined && this.value < this.min) {
+        this.value = this.min;
+      }
+      if (this.max && this.max !== undefined && this.value > this.max) {
+        this.value = this.max;
+      }
     }
 
     if (this.validate && this.input) {
@@ -94,11 +105,12 @@ export class DdrInputComponent extends DdrControlValueAccessor {
     this.keyPressed.emit(this.value);
   }
 
-  onclickInput($event: any) {
+  onclickInput($event: MouseEvent) {
     this.clickInput.emit($event);
   }
 
-  onKeydown($event: any) {
-    this.keydown.emit($event);
+  onFocusLost(){
+    this.focusLost.emit();
   }
+
 }
