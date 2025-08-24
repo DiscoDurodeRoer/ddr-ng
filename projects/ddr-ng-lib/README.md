@@ -2,7 +2,7 @@
 
 [![npm version](https://badge.fury.io/js/ddr-ng.svg)](https://badge.fury.io/js/ddr-ng)
 
-[![Discord](https://img.shields.io/badge/discord-alfred-5865F2?logo=discord&logoColor=white)](https://discord.gg/Drgv4JRqxu)
+[![Discord](https://img.shields.io/badge/discord-ddr--ng-5865F2?logo=discord&logoColor=white)](https://discord.gg/Drgv4JRqxu)
 
 [![DDR-NG Logo](https://ddr-ng.com/img/logo.png)](https://ddr-ng.com)
 
@@ -13,6 +13,7 @@
 |ddr-ng | Compatibility   |
 |-------|-----------------|
 |20.x.x | ✅ Full support |
+|19.x.x | ✅ Full support |
 
 # 🚀 Getting Started with ddr-ng
 
