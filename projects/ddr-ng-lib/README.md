@@ -35,7 +35,8 @@ We will add the following in **styles**:
 "styles": [
   "node_modules/ddr-ng/resources/themes/ddr-blue.scss",
   "node_modules/bootstrap/dist/css/bootstrap.min.css",
-  "node_modules/bootstrap-icons/font/bootstrap-icons.css"
+  "node_modules/bootstrap-icons/font/bootstrap-icons.css",
+  "src/styles.scss"
 ]
 ```
 
@@ -47,7 +48,8 @@ If you want to have all available themes, you can add them all in styles
   "node_modules/ddr-ng/resources/themes/ddr-dark.scss",
   "node_modules/ddr-ng/resources/themes/ddr-purple.scss",
   "node_modules/bootstrap/dist/css/bootstrap.min.css",
-  "node_modules/bootstrap-icons/font/bootstrap-icons.css"
+  "node_modules/bootstrap-icons/font/bootstrap-icons.css",
+  "src/styles.scss"
 ]
 ```
 
