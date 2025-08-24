@@ -1223,6 +1223,7 @@
     "header.discord": "Discord",
     "header.translate": "Traducción",
     "header.changelog": "Changelog",
+    "18.0.0.change.1": "- Soporte Angular 18",
     "19.0.2.change.1": "- Soporte Angular 19",
     "20.0.2.change.1": "- Soporte Angular 20"
 }
