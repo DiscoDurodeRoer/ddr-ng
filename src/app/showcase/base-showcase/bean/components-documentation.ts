@@ -14718,7 +14718,7 @@ export class SpinnerShowcaseComponent {
   }
 
   showSpinnerImg() {
-    this.ddrSpinnerService.spinnerPathImg = './img/spinner/spinner.gif';
+    this.ddrSpinnerService.spinnerPathImg = '/img/spinner/spinner.gif';
     this.ddrSpinnerService.showSpinner();
 
     setTimeout(() => {
@@ -14800,7 +14800,7 @@ export class SpinnerShowcaseComponent {
 <div class="row mt-3">
   <div class="col-12">
     <ddr-card [showHeader]="false">
-      <div card-content ddrSpinnerBlock [spinnerShow]="!loadDataEx2" spinnerPathImg="./img/spinner/spinner.gif">
+      <div card-content ddrSpinnerBlock [spinnerShow]="!loadDataEx2" spinnerPathImg="/img/spinner/spinner.gif">
         @if(loadDataEx2){
           <span>{{'spinner.block.data.loaded' | ddrTranslate}}</span>
         }
