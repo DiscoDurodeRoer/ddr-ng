@@ -1220,5 +1220,6 @@
     "header.discord": "Discord",
     "header.translate": "Translate",
     "header.changelog": "Changelog",
+    "19.0.2.change.1": "- Angular 19 support",
     "20.0.2.change.1": "- Angular 20 support"
 }
