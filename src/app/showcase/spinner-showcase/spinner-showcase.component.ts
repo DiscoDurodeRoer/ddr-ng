@@ -32,7 +32,7 @@ export class SpinnerShowcaseComponent {
   }
 
   showSpinnerImg() {
-    this.ddrSpinnerService.spinnerPathImg = './img/spinner/spinner.gif';
+    this.ddrSpinnerService.spinnerPathImg = '/img/spinner/spinner.gif';
     this.ddrSpinnerService.showSpinner();
 
     setTimeout(() => {
