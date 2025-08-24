@@ -1176,7 +1176,7 @@
     "get.started.p6": "Añadiremos lo siguiente en styles:",
     "get.started.p7": "Si quieres tener todos los themes disponibles, puedes añadir todos en styles",
     "get.started.p8": "En el contenedor principal, debes añadir la clase del theme usado",
-    "get.started.p9": "En app.config, se recomienda añadir provideHttpClient()en providers",
+    "get.started.p9": "En app.config, se recomienda añadir provideHttpClient() y provideAnimations() en providers",
     "get.started.p10": "Ahora puedes usar todo lo exportado en la biblioteca, revisa los showcases para ver ejemplos.",
     "get.started.copy": "Copiar",
     "get.started.copy.text": "Código copiado",
