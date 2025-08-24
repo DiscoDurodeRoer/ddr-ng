@@ -6,25 +6,25 @@
                         
                 <div class="row mt-3">
                     <div class="col-12">
-                        <span class="h2">{{'get.started.p1' | ddrTranslate}}</span>
+                        <span class="h2">&#123;&#123;'get.started.p1' | ddrTranslate&#125;&#125;</span>
                     </div>
                 </div>
 
                 <div class="row mt-3">
                     <div class="col-12">
-                        <span>{{'get.started.p2' | ddrTranslate}}</span>
+                        <span>&#123;&#123;'get.started.p2' | ddrTranslate&#125;&#125;</span>
                     </div>
                 </div>
                 
                 <div class="row mt-3">
                     <div class="col-12">
-                        <span class="h2">{{'get.started.p3' | ddrTranslate}}</span>
+                        <span class="h2">&#123;&#123;'get.started.p3' | ddrTranslate&#125;&#125;</span>
                     </div>
                 </div>
 
                 <div class="row mt-3">
                     <div class="col-12">
-                        <span>{{'get.started.p4' | ddrTranslate}}</span>
+                        <span>&#123;&#123;'get.started.p4' | ddrTranslate&#125;&#125;</span>
                         <pre class="language-bash"><code class="language-bash">npm install ddr-ng</code></pre>
                     </div>
                 </div>
@@ -43,18 +43,19 @@
 
                 <div class="row mt-3">
                     <div class="col-12">
-                        <span class="h2">{{'get.started.p5' | ddrTranslate}}</span>
+                        <span class="h2">&#123;&#123;'get.started.p5' | ddrTranslate&#125;&#125;</span>
                     </div>
                 </div>
 
                 <div class="row mt-3">
                     <div class="col-12">
-                        <span>{{'get.started.p6' | ddrTranslate}}</span>
+                        <span>&#123;&#123;'get.started.p6' | ddrTranslate&#125;&#125;</span>
 
                             <pre class="language-typescript"><code class="language-typescript">"styles": [
   "node_modules/ddr-ng/resources/themes/ddr-blue.scss",
   "node_modules/bootstrap/dist/css/bootstrap.min.css",
-  "node_modules/bootstrap-icons/font/bootstrap-icons.css"
+  "node_modules/bootstrap-icons/font/bootstrap-icons.css",
+  "src/styles.scss"
 ]</code></pre>
                     </div>
                 </div>
@@ -73,13 +74,14 @@
 
                 <div class="row mt-3">
                     <div class="col-12">
-                        <span>{{'get.started.p7' | ddrTranslate}}</span>
+                        <span>&#123;&#123;'get.started.p7' | ddrTranslate&#125;&#125;</span>
                                 <pre class="language-typescript"><code class="language-typescript">"styles": [
   "node_modules/ddr-ng/resources/themes/ddr-blue.scss",
   "node_modules/ddr-ng/resources/themes/ddr-dark.scss",
   "node_modules/ddr-ng/resources/themes/ddr-purple.scss",
   "node_modules/bootstrap/dist/css/bootstrap.min.css",
-  "node_modules/bootstrap-icons/font/bootstrap-icons.css"
+  "node_modules/bootstrap-icons/font/bootstrap-icons.css",
+  "src/styles.scss"
 ]</code></pre>
                     </div>
                 </div>
@@ -98,7 +100,7 @@
 
                 <div class="row mt-3">
                     <div class="col-12">
-                        <span>{{'get.started.p8' | ddrTranslate}}</span>
+                        <span>&#123;&#123;'get.started.p8' | ddrTranslate&#125;&#125;</span>
                         <pre class="language-html"><code class="language-html"><p>&lt;body class="ddr-blue"&gt;&lt;/body&gt;</p></code></pre>
                     </div>
                 </div>
@@ -115,9 +117,34 @@
                     </div>
                 </div>
 
+                <div class="row">
+                    <div class="col-12">
+                        <span>&#123;&#123;'get.started.p9' | ddrTranslate&#125;&#125;</span>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-12">
+                        <pre class="language-typescript"><code class="language-typescript">import &#123; ApplicationConfig, provideBrowserGlobalErrorListeners, provideZoneChangeDetection &#125; from '@angular/core';
+import &#123; provideRouter &#125; from '@angular/router';
+
+import &#123; routes &#125; from './app.routes';
+import &#123; provideHttpClient &#125; from '@angular/common/http';
+
+export const appConfig: ApplicationConfig = &#123;
+  providers: [
+    provideBrowserGlobalErrorListeners(),
+    provideHttpClient(), // add this
+    provideZoneChangeDetection(&#123; eventCoalescing: true &#125;),
+    provideRouter(routes)
+  ]
+&#125;;</code></pre>
+                    </div>
+                </div>
+
                 <div class="row mt-3">
                     <div class="col-12">
-                        <span>{{'get.started.p9' | ddrTranslate}}</span>
+                        <span>&#123;&#123;'get.started.p10' | ddrTranslate&#125;&#125;</span>
                     </div>
                 </div>
 
