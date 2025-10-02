@@ -496,6 +496,44 @@ export class TreeShowcaseComponent {
     }
   ];
 
+  public nodesEx11: DdrTreeNode<TreeData>[] = [
+    {
+      name: 'E1',
+      data: {
+        value: 'E1'
+      },
+      children: [
+        {
+          name: 'E1.1',
+          data: {
+            value: 'E1.1'
+          },
+          children: [
+            {
+              name: 'E1.1.1',
+              data: {
+                value: 'E1.1.1'
+              }
+            }
+          ]
+        },
+        {
+          name: 'E1.2',
+          data: {
+            value: 'E1.2'
+          }
+        }
+      ]
+    },
+    {
+      name: 'E2',
+      data: {
+        value: 'E2'
+      },
+      children: []
+    }
+  ];
+
   selectAction(action: DdrAction<TreeData>) {
     this.ddrToastService.addSuccessMessage(
       this.ddrTranslateService.getTranslate('success'),
