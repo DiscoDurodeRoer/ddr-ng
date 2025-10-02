@@ -1,6 +1,6 @@
 {
   "name": "ddr-ng-documentation",
-  "version": "19.0.2",
+  "version": "19.0.3",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -26,7 +26,7 @@
     "@angular/platform-browser": "^19.0.0",
     "@angular/platform-browser-dynamic": "^19.0.0",
     "@angular/router": "^19.0.0",
-    "ddr-ng": "19.0.2",
+    "ddr-ng": "19.0.3",
     "rxjs": "~7.8.1",
     "zone.js": "~0.15.0"
   },

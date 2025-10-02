@@ -39,8 +39,7 @@
     ngDefaultControl
     (click)="onclick($event)"
     (keyup)="onKeyup()"
-    (blur)="onblur()">
-  </textarea>
+    (blur)="onblur()"></textarea>
   <!--Validation-->
   @if (validate && textarea.dirty && !textarea.errors) {
     <div
