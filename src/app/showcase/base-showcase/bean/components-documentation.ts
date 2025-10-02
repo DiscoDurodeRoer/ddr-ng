@@ -3947,7 +3947,7 @@ export class TableShowcaseComponent {
     <ddr-tree 
       [nodes]="nodesEx6" >
       <ng-template #templateNode let-item="item">
-        <span class="ms-2">{{'tree.value' | ddrTranslate}}: {{ item.value }}</span>
+        <div class="mt-2">{{'tree.value' | ddrTranslate}}: {{ item.value }}</div>
       </ng-template>
     </ddr-tree>
   </div>
@@ -3996,7 +3996,6 @@ export class TableShowcaseComponent {
   </div>
 </div>
 
-
 <div class="row mt-3">
   <div class="col-12">
     <span class="h3">{{'tree.example.10' | ddrTranslate}}</span>
@@ -4008,6 +4007,20 @@ export class TableShowcaseComponent {
      <ddr-tree 
       [nodes]="nodesEx10"
       [transparent]="true" />
+  </div>
+</div>
+
+<div class="row mt-3">
+  <div class="col-12">
+    <span class="h3">{{'tree.example.11' | ddrTranslate}}</span>
+  </div>
+</div>
+
+<div class="row mt-3">
+  <div class="col-12">
+     <ddr-tree 
+      [nodes]="nodesEx11"
+      [showIconArrow]="false" />
   </div>
 </div>`,
     cssCode: `.background-test-transparent {
@@ -4511,6 +4524,44 @@ export class TreeShowcaseComponent {
     }
   ];
 
+  public nodesEx11: DdrTreeNode<TreeData>[] = [
+    {
+      name: 'E1',
+      data: {
+        value: 'E1'
+      },
+      children: [
+        {
+          name: 'E1.1',
+          data: {
+            value: 'E1.1'
+          },
+          children: [
+            {
+              name: 'E1.1.1',
+              data: {
+                value: 'E1.1.1'
+              }
+            }
+          ]
+        },
+        {
+          name: 'E1.2',
+          data: {
+            value: 'E1.2'
+          }
+        }
+      ]
+    },
+    {
+      name: 'E2',
+      data: {
+        value: 'E2'
+      },
+      children: []
+    }
+  ];
+
   selectAction(action: DdrAction<TreeData>) {
     this.ddrToastService.addSuccessMessage(
       this.ddrTranslateService.getTranslate('success'),
@@ -4584,6 +4635,15 @@ export class TreeShowcaseComponent {
           type: 'boolean'
         }
       },
+      {
+        item: {
+          name: 'showIconArrow',
+          description: 'tree.input.showiconarrow',
+          required: false,
+          default: 'true',
+          type: 'boolean'
+        }
+      }
     ],
     outputs: [
       {

@@ -21,6 +21,7 @@ export class DdrTreeComponent<T> implements OnChanges {
   @Input() border: boolean = false;
   @Input() open: boolean = false;
   @Input() canClick: boolean = true;
+  @Input() showIconArrow: boolean = true;
   @Input() actionsOnlyLeafs: boolean = false;
   @Input() nodes: DdrTreeNode<T>[] = [];
   @Input() transparent: boolean = false;
@@ -37,6 +38,9 @@ export class DdrTreeComponent<T> implements OnChanges {
     if (changes) {
       if (changes['nodes']) {
         this.nodes = [...this.nodes]
+        if (this.open) {
+          this.setOpenRecursive(this.nodes, this.open)
+        }
       }
       if (changes['open']) {
         this.setOpenRecursive(this.nodes, this.open)

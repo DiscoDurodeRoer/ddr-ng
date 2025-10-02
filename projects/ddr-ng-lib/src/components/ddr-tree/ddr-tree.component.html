@@ -9,7 +9,7 @@
       <div class="row ddr-tree__container" [ngClass]="{'cursor-pointer': canClick}" (click)="onClickNode($event, node)">
         <div class="col-12 ddr-tree__container__node" [ngClass]="{'border': border}">
           <div class="ddr-tree__container__node__content" [ngClass]="{'ddr-tree__container__node__content--full-width': !node.children || node.children?.length == 0}">
-            @if (node.children && node.children.length > 0) {
+            @if (node.children && node.children.length > 0 && showIconArrow) {
               <span class="ddr-tree__container__node__content__icon" (click)="openNode(node, $event)">
                 @if (node.children) {
                   <i class="bi" [ngClass]="{
@@ -25,13 +25,11 @@
               </span>
             }
             <span class="ddr-tree__container__node__content__text">{{ node.name | ddrTranslate }}</span>
-            @if (!node.children) {
-              <span class="ddr-tree__container__node__content__custom">
-                <ng-container 
-                  [ngTemplateOutlet]="templateNodeOutside"
-                  [ngTemplateOutletContext]="{item: node.data}" />
-              </span>
-            }
+            <span class="ddr-tree__container__node__content__custom">
+              <ng-container 
+                [ngTemplateOutlet]="templateNodeOutside"
+                [ngTemplateOutletContext]="{item: node.data}" />
+            </span>
           </div>
           @if ((!actionsOnlyLeafs || (actionsOnlyLeafs && !node.children)) && (node.actions && node.actions.length > 0)) {
             <div class="ddr-tree__container__node__actions">
@@ -43,13 +41,14 @@
             </div>
           }
         </div>
-        @if (node.open && node.children) {
+        @if (node.open && node.children && node.children.length > 0) {
           <ddr-tree class="pe-0"
             [border]="border"
             [canClick]="canClick"
             [nodes]="node.children"
             [actionsOnlyLeafs]="actionsOnlyLeafs"
             [transparent]="transparent"
+            [showIconArrow]="showIconArrow"
             (selectAction)="onSelectAction($event)"
             (clickNode)="onSendData($event)">
             @if(templateNodeOutside){
