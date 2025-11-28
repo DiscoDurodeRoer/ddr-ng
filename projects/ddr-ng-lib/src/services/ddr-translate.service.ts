@@ -1,47 +1,37 @@
 import { HttpClient } from '@angular/common/http';
-import { inject, Injectable } from '@angular/core';
+import { inject, Injectable, signal } from '@angular/core';
 
 @Injectable({
   providedIn: 'root',
 })
 export class DdrTranslateService {
 
-  private http: HttpClient = inject(HttpClient);
+  private http = inject(HttpClient);
 
-  private data: any = {} as any;
+  private data = signal<{ [key: string]: string }>({});
 
-  public getData(path: string, language?: string) {
-    return new Promise((resolve, reject) => {
-
+  public async getData(path: string, language?: string): Promise<boolean> {
+    try {
       if (!language) {
         language = navigator.language.toLowerCase();
       }
 
-      this.http.get(path + language + '.json').subscribe({
-        next: (data: any) => {
-          this.removeAllTranslates();
-          for (const key of Object.keys(data)) {
-            this.addTranslate(key, data[key]);
-          }
-          resolve(true);
-        }, error: (error) => {
-          console.error('Error to get translations: ' + error);
-          resolve(false);
-        }
-      });
-    });
+      const response = await this.http.get(path + language + '.json').toPromise();
+      if (!response) return false;
+
+      this.data.set(response as any);
+
+      return true;
+
+    } catch (error) {
+      console.error('Error to get translations: ' + error);
+      return false;
+    }
   }
 
   public getTranslate(key: string): string {
-    return this.data[key] ? this.data[key] : key;
-  }
-
-  private addTranslate(key: string, value: string) {
-    this.data[key] = value;
-  }
-
-  private removeAllTranslates() {
-    this.data = {};
+    const obj = this.data();
+    return obj[key] ?? key;
   }
 
 }

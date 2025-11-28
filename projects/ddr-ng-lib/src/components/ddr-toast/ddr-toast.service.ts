@@ -1,4 +1,4 @@
-import { ComponentRef, inject, Injectable, ViewContainerRef } from '@angular/core';
+import { ChangeDetectorRef, ComponentRef, inject, Injectable, ViewContainerRef } from '@angular/core';
 import { DdrConstantsService } from '../../services/ddr-constants.service';
 import { DdrToast } from './bean/ddr-toast';
 import { DdrToastComponent } from './ddr-toast.component';
@@ -22,6 +22,7 @@ export class DdrToastService {
 
   public set maxToasts(value: number) {
     this._maxToasts = value;
+    this.ddrToastComponent.instance.changeDetectorRef.detectChanges();
   }
 
   public get timeOut() {
@@ -30,11 +31,13 @@ export class DdrToastService {
 
   public set timeOut(value: number) {
     this._timeOut = value;
+    this.ddrToastComponent.instance.changeDetectorRef.detectChanges();
   }
 
   public set orientation(value: DdrOrientationToast) {
     this._orientation = value;
     this.ddrToastComponent.instance.orientation = this._orientation;
+    this.ddrToastComponent.instance.changeDetectorRef.detectChanges();
   }
 
   private ddrToastComponent!: ComponentRef<DdrToastComponent>;
@@ -70,11 +73,12 @@ export class DdrToastService {
 
     let toasts: DdrToast[] = this.ddrToastComponent.instance.toasts;
 
-    if (toasts.length == this._maxToasts) {
+    if (toasts.length >= this._maxToasts) {
       this.ddrToastComponent.instance.closeToast(0);
     }
 
     this.ddrToastComponent.instance.toasts = [...this.ddrToastComponent.instance.toasts, toast];
+    this.ddrToastComponent.instance.changeDetectorRef.detectChanges();
 
     setTimeout(() => {
       if (toast.rendered) {

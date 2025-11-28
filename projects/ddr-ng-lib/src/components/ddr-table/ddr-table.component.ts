@@ -1,4 +1,6 @@
 import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component,
   ContentChild,
   EventEmitter,
@@ -33,6 +35,7 @@ import { DdrNestedPropertyPipe } from '../../pipes/ddr-nested-property.pipe';
   templateUrl: './ddr-table.component.html',
   styleUrls: ['./ddr-table.component.scss'],
   encapsulation: ViewEncapsulation.None,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     NgxPaginationModule,
     DdrDropdownComponent,
@@ -52,6 +55,7 @@ import { DdrNestedPropertyPipe } from '../../pipes/ddr-nested-property.pipe';
 export class DdrTableComponent<T extends { [key: string]: any }> implements OnInit, OnChanges {
 
   public readonly constants: DdrConstantsService = inject(DdrConstantsService);
+  private changeDetectorRef: ChangeDetectorRef = inject(ChangeDetectorRef);
 
   @Input({ required: true }) cols: DdrTableCol[] = [];
   @Input() items: DdrTableItem<T>[] = [];
@@ -132,6 +136,8 @@ export class DdrTableComponent<T extends { [key: string]: any }> implements OnIn
     this.calculateCols();
     this.resetSort();
 
+    this.changeDetectorRef.detectChanges();
+
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -156,6 +162,7 @@ export class DdrTableComponent<T extends { [key: string]: any }> implements OnIn
       if (changes['canSort']) {
         this.resetSort();
       }
+      this.changeDetectorRef.detectChanges();
     }
   }
 
@@ -169,6 +176,7 @@ export class DdrTableComponent<T extends { [key: string]: any }> implements OnIn
   changeRows(event: DdrSelectItem<number>) {
     this.rows = event.value;
     this.changeRow.emit(this.rows);
+    this.changeDetectorRef.detectChanges();
   }
 
   selectAll() {

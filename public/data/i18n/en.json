@@ -776,6 +776,7 @@
     "checkbox.example.4": "Example 4: Preloaded object",
     "checkbox.example.5": "Example 5: Inline",
     "checkbox.example.6": "Example 6: Disabled",
+    "checkbox.example.7": "Example 7: Event",
     "checkbox.value": "Value",
     "checkbox.input.options": "Options to display",
     "checkbox.input.disabled": "Disables the checkboxes",
@@ -1177,7 +1178,7 @@
     "get.started.p6": "We will add the following in styles:",
     "get.started.p7": "If you want to have all available themes, you can add them all in styles",
     "get.started.p8": "In the main container, you must add the class of the theme being used",
-    "get.started.p9": "In app.config, it is recommended to add provideHttpClient() and provideAnimations() in providers",
+    "get.started.p9": "In app.config, it is recommended to add provideAnimations() in providers",
     "get.started.p10": "Now you can use everything exported from the library, check the showcases for examples.",
     "get.started.copy": "Copy",
     "get.started.copy.text": "Code copied",
@@ -1194,7 +1195,7 @@
     "translate.page.p2": "The DdrTranslateService and DdrTranslatePipe allow us to translate texts, but first we need to configure our application.",
     "translate.page.p3": "Inside the public folder, create an i18n folder with a JSON file for each language you want to translate.",
     "translate.page.p4": "Content of these files:",
-    "translate.page.p5": "In the app.config.ts file we must add provideHttpClient() and provideAppInitializer().",
+    "translate.page.p5": "In the app.config.ts file we must add provideAppInitializer().",
     "translate.page.p6": "Inside provideAppInitializer() we will call the getData method, passing the folder path and the chosen language. If we don’t pass a language, it will use the browser’s language.",
     "translate.page.p7": "Now we can translate in our components. Depending on the active language, it will use one file or another.",
     "translate.page.p8": "How to change the language dynamically",
@@ -1239,5 +1240,7 @@
     "20.0.3.change.2": "Adapted to SSR",
     "20.0.3.change.3": "Added showIconArrow input",
     "20.0.3.change.4": "Improvements in the child nodes template",
-    "20.0.3.change.5": "Fixed issue when children is empty"
+    "20.0.3.change.5": "Fixed issue when children is empty",
+    "21.0.0.change.1": "Angular 21 support",
+    "21.0.0.change.2": "Zoneless"
 }

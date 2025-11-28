@@ -1,5 +1,5 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
-import { AfterViewInit, ChangeDetectorRef, Component, ContentChild, EventEmitter, forwardRef, inject, Input, OnChanges, OnDestroy, OnInit, Output, SimpleChanges, TemplateRef, ViewChild, ViewEncapsulation } from '@angular/core';
+import { AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, ContentChild, EventEmitter, forwardRef, inject, Input, OnChanges, OnDestroy, OnInit, Output, SimpleChanges, TemplateRef, ViewChild, ViewEncapsulation } from '@angular/core';
 import { FormsModule, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { DdrSelectItem } from '../../common/ddr-select-item.model';
 import { DdrConstantsService } from '../../services/ddr-constants.service';
@@ -21,6 +21,7 @@ import { Subscription } from 'rxjs/internal/Subscription';
   templateUrl: './ddr-dropdown.component.html',
   styleUrls: ['./ddr-dropdown.component.scss'],
   encapsulation: ViewEncapsulation.None,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     FormsModule,
     DdrButtonComponent,
@@ -115,8 +116,6 @@ export class DdrDropdownComponent<T> extends DdrControlValueAccessor implements 
     super();
   }
 
-
-
   ngAfterViewInit(): void {
     this.subscription = this.changeValue.subscribe(v => {
       this.selectValue(v);
@@ -182,6 +181,7 @@ export class DdrDropdownComponent<T> extends DdrControlValueAccessor implements 
     if (!this.disabled) {
       setTimeout(() => {
         this.showItems = !this.showItems;
+        this.changeDetectorRef.detectChanges();
       }, 100);
     }
   }

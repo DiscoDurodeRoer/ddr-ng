@@ -1,57 +1,55 @@
-import { ComponentFixture, fakeAsync, TestBed, tick, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { DdrToggleComponent } from '../components/ddr-toggle/ddr-toggle.component';
 import { DdrTranslatePipe } from '../pipes/ddr-translate.pipe';
 import { DdrControlValueAccessor } from '../components/ddr-ngmodel-base/ddr-control-value-accessor-base.component';
 
-describe('DdrRadioComponent', () => {
+describe('DdrToggleComponent', () => {
     let fixture: ComponentFixture<DdrToggleComponent>;
     let component: DdrToggleComponent;
 
-    beforeEach(waitForAsync(() => {
-        TestBed.configureTestingModule({
+    beforeEach(async () => {
+        await TestBed.configureTestingModule({
             imports: [
                 FormsModule,
                 DdrControlValueAccessor,
                 DdrTranslatePipe,
                 DdrToggleComponent
             ]
-        }).compileComponents()
-            .then(() => {
-                fixture = TestBed.createComponent(DdrToggleComponent);
-                component = fixture.componentInstance;
-            });
-    }));
-    it('should change value', fakeAsync(() => {
+        }).compileComponents();
+
+        fixture = TestBed.createComponent(DdrToggleComponent);
+        component = fixture.componentInstance;
+    });
+
+    it('should change value', async () => {
         fixture.detectChanges();
-        fixture.whenStable().then(() => {
+        await fixture.whenStable();
 
-            spyOn(component.toggled, "emit");
+        spyOn(component.toggled, "emit");
 
-            let button = fixture.debugElement.query(By.css('.ddr-toggle__button'));
-            button.triggerEventHandler('click');
-            fixture.detectChanges();
-
-            expect(component.toggled.emit).withContext('El evento toggled debe lanzarse').toHaveBeenCalledWith(true);
-            expect(component.value).toBeTrue();
-            button.triggerEventHandler('click');
-
-            expect(component.toggled.emit).withContext('El evento toggled debe lanzarse').toHaveBeenCalledWith(false);
-            expect(component.value).toBeFalse();
-
-        });
-    }));
-
-    it('should be active', fakeAsync(() => {
+        let button = fixture.debugElement.query(By.css('.ddr-toggle__button'));
+        button.triggerEventHandler('click');
         fixture.detectChanges();
-        fixture.whenStable().then(() => {
 
-            component.writeValue(true);
-            fixture.detectChanges();
-            expect(component.value).toBeTrue();
+        expect(component.toggled.emit).withContext('El evento toggled debe lanzarse').toHaveBeenCalledWith(true);
+        expect(component.value).toBeTrue();
+        button.triggerEventHandler('click');
 
-        });
-    }));
+        expect(component.toggled.emit).withContext('El evento toggled debe lanzarse').toHaveBeenCalledWith(false);
+        expect(component.value).toBeFalse();
+
+    });
+
+    it('should be active', async () => {
+        fixture.detectChanges();
+        await fixture.whenStable();
+
+        component.writeValue(true);
+        fixture.detectChanges();
+        expect(component.value).toBeTrue();
+
+    });
 
 });

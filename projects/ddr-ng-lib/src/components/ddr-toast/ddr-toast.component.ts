@@ -1,5 +1,5 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
-import { Component, EventEmitter, inject, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, inject, OnChanges, OnInit, SimpleChanges, ViewEncapsulation } from '@angular/core';
 import { DdrConstantsService } from '../../services/ddr-constants.service';
 import { NgClass, NgStyle } from '@angular/common';
 import { DdrToast } from './bean/ddr-toast';
@@ -10,6 +10,7 @@ import { DdrOrientationToast } from '../../types/types';
   templateUrl: './ddr-toast.component.html',
   styleUrls: ['./ddr-toast.component.scss'],
   encapsulation: ViewEncapsulation.None,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     NgClass,
     NgStyle
@@ -32,6 +33,7 @@ import { DdrOrientationToast } from '../../types/types';
 export class DdrToastComponent {
 
   public readonly constants: DdrConstantsService = inject(DdrConstantsService);
+  public readonly changeDetectorRef: ChangeDetectorRef = inject(ChangeDetectorRef);
 
   public toasts: DdrToast[] = [];
   public orientation!: DdrOrientationToast;
@@ -41,6 +43,7 @@ export class DdrToastComponent {
     toast.rendered = false;
     setTimeout(() => {
       this.toasts.splice(index, 1);
+      this.changeDetectorRef.detectChanges();
     }, 195);
   }
 

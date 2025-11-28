@@ -58,7 +58,7 @@ export class HeaderComponent implements OnInit {
   ];
   public themeActual: DdrTheme = 'ddr-blue';
 
-  public version: string = '20.0.3';
+  public version: string = '21.0.0';
   public versions: DdrSelectItem<string>[] = [];
   public components: DdrSelectItem<ItemSearch>[] = []
   public search: string = '';

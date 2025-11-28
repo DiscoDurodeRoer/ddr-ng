@@ -1,4 +1,4 @@
-import { Component, forwardRef, Input, OnInit, Output, ViewEncapsulation, EventEmitter, booleanAttribute, OnDestroy } from '@angular/core';
+import { Component, forwardRef, Input, OnInit, Output, ViewEncapsulation, EventEmitter, OnDestroy, ChangeDetectionStrategy, ChangeDetectorRef, inject } from '@angular/core';
 import { FormsModule, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { DdrSelectItem } from '../../common/ddr-select-item.model';
 import { DdrControlValueAccessor } from '../ddr-ngmodel-base/ddr-control-value-accessor-base.component';
@@ -11,6 +11,7 @@ import { Subscription } from 'rxjs/internal/Subscription';
   templateUrl: './ddr-radio.component.html',
   styleUrls: ['./ddr-radio.component.scss'],
   encapsulation: ViewEncapsulation.None,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     FormsModule,
     DdrControlValueAccessor,
@@ -33,6 +34,7 @@ export class DdrRadioComponent<T> extends DdrControlValueAccessor implements OnI
   @Output() clickRadio: EventEmitter<T> = new EventEmitter<T>();
 
   private subscription: Subscription = new Subscription();
+  private changeDetectorRef: ChangeDetectorRef = inject(ChangeDetectorRef);
 
   constructor() {
     super();
@@ -45,6 +47,7 @@ export class DdrRadioComponent<T> extends DdrControlValueAccessor implements OnI
       if (optionFound) {
         optionFound.selected = true;
         this.value = value;
+        this.changeDetectorRef.detectChanges();
       }
     });
   }
@@ -55,6 +58,7 @@ export class DdrRadioComponent<T> extends DdrControlValueAccessor implements OnI
       $event.selected = true;
       this.value = $event.value;
       this.clickRadio.emit(this.value);
+      this.changeDetectorRef.detectChanges();
     }
   }
 

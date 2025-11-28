@@ -1,5 +1,5 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
-import { Component, Input, Output, ViewEncapsulation, EventEmitter, inject } from '@angular/core';
+import { Component, Input, Output, ViewEncapsulation, EventEmitter, inject, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 import { DdrConstantsService } from '../../services/ddr-constants.service';
 import { DdrAction } from '../../common/ddr-action.model';
 import { DdrButtonComponent } from '../ddr-button/ddr-button.component';
@@ -13,6 +13,7 @@ import { DdrOrientationButtonSplit, DdrSize } from '../../types/types';
   templateUrl: './ddr-button-split.component.html',
   styleUrls: ['./ddr-button-split.component.scss'],
   encapsulation: ViewEncapsulation.None,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     DdrButtonComponent,
     DdrTranslatePipe,
@@ -37,6 +38,7 @@ import { DdrOrientationButtonSplit, DdrSize } from '../../types/types';
 export class DdrButtonSplitComponent<T> {
 
   public readonly constants: DdrConstantsService = inject(DdrConstantsService);
+  public readonly changeDetectorRef: ChangeDetectorRef = inject(ChangeDetectorRef);
 
   @Input() actions?: DdrAction<T>[] = [];
   @Input() showFirst: boolean = true;
@@ -59,6 +61,7 @@ export class DdrButtonSplitComponent<T> {
     setTimeout(() => {
       this.showOptions = !this.showOptions
       this.openActions.emit(this.showOptions);
+      this.changeDetectorRef.detectChanges();
     }, 100);
   }
 
@@ -66,6 +69,7 @@ export class DdrButtonSplitComponent<T> {
     this.selectAction.emit(action);
     this.showOptions = false;
     this.openActions.emit(this.showOptions);
+    this.changeDetectorRef.detectChanges();
   }
 
   hideOptions() {
@@ -74,6 +78,7 @@ export class DdrButtonSplitComponent<T> {
         this.openActions.emit(false);
       }
       this.showOptions = false;
+      this.changeDetectorRef.detectChanges();
     }, 100)
   }
 

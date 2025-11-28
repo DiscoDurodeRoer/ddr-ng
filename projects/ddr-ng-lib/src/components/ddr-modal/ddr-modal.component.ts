@@ -1,5 +1,5 @@
 import {
-  AfterViewInit,
+  ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
   ElementRef,
@@ -24,6 +24,7 @@ import { DdrSize } from '../../types/types';
   templateUrl: './ddr-modal.component.html',
   styleUrls: ['./ddr-modal.component.scss'],
   encapsulation: ViewEncapsulation.None,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     FormsModule,
     DdrButtonComponent,
@@ -36,7 +37,7 @@ export class DdrModalComponent implements OnInit, OnDestroy {
   public readonly constants: DdrConstantsService = inject(DdrConstantsService);
   public readonly ddrModalService: DdrModalService = inject(DdrModalService);
   public readonly element: ElementRef = inject(ElementRef)
-  private readonly changeDetectorRef: ChangeDetectorRef = inject(ChangeDetectorRef);
+  public readonly changeDetectorRef: ChangeDetectorRef = inject(ChangeDetectorRef);
 
   @Input({ required: true }) id!: string;
   @Input() type?: string;
@@ -59,12 +60,14 @@ export class DdrModalComponent implements OnInit, OnDestroy {
   openModal() {
     setTimeout(() => {
       this.show = true;
+      this.changeDetectorRef.detectChanges();
     });
   }
 
   closeModal() {
     setTimeout(() => {
       this.show = false;
+      this.changeDetectorRef.detectChanges();
     });
   }
 

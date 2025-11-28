@@ -1,4 +1,4 @@
-import { ComponentFixture, fakeAsync, TestBed, tick, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DdrButtonComponent } from '../components/ddr-button/ddr-button.component';
 
@@ -6,42 +6,40 @@ describe('DdrButtonComponent', () => {
     let fixture: ComponentFixture<DdrButtonComponent>;
     let component: DdrButtonComponent;
 
-    beforeEach(waitForAsync(() => {
+    beforeEach(async () => {
         TestBed.configureTestingModule({
             imports: [
                 DdrButtonComponent
             ]
-        }).compileComponents()
-            .then(() => {
-                fixture = TestBed.createComponent(DdrButtonComponent);
-                component = fixture.componentInstance;
-            });
-    }));
-    it('should click button', fakeAsync(() => {
+        }).compileComponents();
+
+        fixture = TestBed.createComponent(DdrButtonComponent);
+        component = fixture.componentInstance;
+    });
+    
+    it('should click button', async () => {
         fixture.detectChanges();
-        fixture.whenStable().then(() => {
+        await fixture.whenStable();
 
-            let button = fixture.debugElement.query(By.css('button')).nativeElement;
-            spyOn(component.action, "emit");
-            button.dispatchEvent(new Event('click'));
-            tick();
-            fixture.detectChanges();
-            expect(component.action.emit).withContext('El evento action debe lanzarse').toHaveBeenCalled();
-        });
-    }));
-    it('should not click button', fakeAsync(() => {
+        let button = fixture.debugElement.query(By.css('button')).nativeElement;
+        spyOn(component.action, "emit");
+        button.dispatchEvent(new Event('click'));
+        await fixture.whenStable();
         fixture.detectChanges();
-        fixture.whenStable().then(() => {
+        expect(component.action.emit).withContext('El evento action debe lanzarse').toHaveBeenCalled();
 
-            component.disabled = true;
-            
-            let button = fixture.debugElement.query(By.css('button')).nativeElement;
-            spyOn(component.action, "emit");
-            button.dispatchEvent(new Event('click'));
-            tick();
-            fixture.detectChanges();
-            expect(component.action.emit).withContext('El evento action no debe lanzarse').not.toHaveBeenCalled();
+    });
+    it('should not click button', async () => {
+        fixture.detectChanges();
+        await fixture.whenStable();
+        component.disabled = true;
 
-        });
-    }));
+        let button = fixture.debugElement.query(By.css('button')).nativeElement;
+        spyOn(component.action, "emit");
+        button.dispatchEvent(new Event('click'));
+        await fixture.whenStable();
+        fixture.detectChanges();
+        expect(component.action.emit).withContext('El evento action no debe lanzarse').not.toHaveBeenCalled();
+
+    });
 });

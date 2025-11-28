@@ -1,5 +1,5 @@
 import { animate, group, state, style, transition, trigger } from '@angular/animations';
-import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, EventEmitter, inject, Input, Output, ViewChild, ViewEncapsulation } from '@angular/core';
+import { AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, EventEmitter, inject, Input, Output, ViewChild, ViewEncapsulation } from '@angular/core';
 import { DdrButtonComponent } from '../ddr-button/ddr-button.component';
 import { NgClass } from '@angular/common';
 
@@ -8,6 +8,7 @@ import { NgClass } from '@angular/common';
   templateUrl: './ddr-accordion.component.html',
   styleUrls: ['./ddr-accordion.component.scss'],
   encapsulation: ViewEncapsulation.None,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     DdrButtonComponent,
     NgClass
@@ -48,9 +49,8 @@ export class DdrAccordionComponent implements AfterViewInit {
 
     setTimeout(() => {
       this.animate = true;
+      this.changeDetectorRef.detectChanges();
     });
-
-    this.changeDetectorRef.detectChanges();
 
   }
 
@@ -63,12 +63,14 @@ export class DdrAccordionComponent implements AfterViewInit {
       setTimeout(() => {
         this.open = !this.open;
         this.clickOpen.emit(this.open);
+        this.changeDetectorRef.detectChanges();
       }, 400);
     } else {
       this.open = !this.open;
       this.clickOpen.emit(this.open);
       setTimeout(() => {
         this.contentAccordion.nativeElement.style.overflow = 'inherit';
+        this.changeDetectorRef.detectChanges();
       }, 400);
     }
 

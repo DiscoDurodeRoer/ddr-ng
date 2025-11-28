@@ -15,14 +15,12 @@
       "prefix": "app",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser-esbuild",
+          "builder": "@angular/build:application",
           "options": {
-            "outputPath": "dist/ddr-ng-documentation",
+            "outputPath": {
+              "base": "dist/ddr-ng-documentation"
+            },
             "index": "src/index.html",
-            "main": "src/main.ts",
-            "polyfills": [
-              "zone.js"
-            ],
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "assets": [
@@ -44,7 +42,8 @@
               "node_modules/prismjs/prism.js",
               "node_modules/prismjs/components/prism-typescript.min.js",
               "node_modules/prismjs/components/prism-bash.min.js"
-            ]
+            ],
+            "browser": "src/main.ts"
           },
           "configurations": {
             "production": {
@@ -86,10 +85,6 @@
         "test": {
           "builder": "@angular/build:karma",
           "options": {
-            "polyfills": [
-              "zone.js",
-              "zone.js/testing"
-            ],
             "tsConfig": "tsconfig.spec.json",
             "inlineStyleLanguage": "scss",
             "assets": [
@@ -131,11 +126,7 @@
           "builder": "@angular/build:karma",
           "options": {
             "tsConfig": "projects/ddr-ng-lib/tsconfig.spec.json",
-            "karmaConfig": "projects/ddr-ng-lib/karma.conf.js",
-            "polyfills": [
-              "zone.js",
-              "zone.js/testing"
-            ]
+            "karmaConfig": "projects/ddr-ng-lib/karma.conf.js"
           }
         }
       }

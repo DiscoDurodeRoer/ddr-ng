@@ -1,5 +1,5 @@
 import { DebugElement } from '@angular/core';
-import { ComponentFixture, fakeAsync, TestBed, tick, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -21,8 +21,8 @@ describe('DdrDropdown', () => {
     let componentDropdownObject: DdrDropdownComponent<{ value: string }>;
     let inputGroupDropdownObject: DebugElement;
 
-    beforeEach(waitForAsync(() => {
-        TestBed.configureTestingModule({
+    beforeEach(async () => {
+        await TestBed.configureTestingModule({
             imports: [
                 BrowserAnimationsModule,
                 FormsModule,
@@ -36,254 +36,256 @@ describe('DdrDropdown', () => {
             providers: [
                 provideHttpClient()
             ]
-        }).compileComponents()
-            .then(() => {
+        }).compileComponents();
 
-                fixtureDropdownNumber = TestBed.createComponent(DdrDropdownComponent<number>);
 
-                componentDropdownNumber = fixtureDropdownNumber.componentInstance;
-                componentDropdownNumber.options = [
-                    {
-                        label: 'Label1',
-                        value: 1
-                    },
-                    {
-                        label: 'Label2',
-                        value: 2
-                    },
-                    {
-                        label: 'Label3',
-                        value: 3
-                    },
-                    {
-                        label: 'Label4',
-                        value: 4
-                    }
-                ];
-                inputGroupDropdownNumber = fixtureDropdownNumber.debugElement.query(By.directive(DdrInputGroupComponent));
+        fixtureDropdownNumber = TestBed.createComponent(DdrDropdownComponent<number>);
 
-                fixtureDropdownObject = TestBed.createComponent(DdrDropdownComponent<{ value: string }>);
-                componentDropdownObject = fixtureDropdownObject.componentInstance;
-                componentDropdownObject.options = [
-                    {
-                        label: 'Label1',
-                        value: { value: 'Value1' }
-                    },
-                    {
-                        label: 'Label2',
-                        value: { value: 'Value2' }
-                    },
-                    {
-                        label: 'Label3',
-                        value: { value: 'Value3' }
-                    },
-                    {
-                        label: 'Label4',
-                        value: { value: 'Value4' }
-                    },
-                ];
-                componentDropdownObject.compareFn = (a: { value: string }, b: { value: string }) => a.value == b.value;
-                inputGroupDropdownObject = fixtureDropdownObject.debugElement.query(By.directive(DdrInputGroupComponent));
-            });
-    }));
+        componentDropdownNumber = fixtureDropdownNumber.componentInstance;
+        componentDropdownNumber.options = [
+            {
+                label: 'Label1',
+                value: 1
+            },
+            {
+                label: 'Label2',
+                value: 2
+            },
+            {
+                label: 'Label3',
+                value: 3
+            },
+            {
+                label: 'Label4',
+                value: 4
+            }
+        ];
 
-    it('element should be selected (numbers)', fakeAsync(() => {
+        fixtureDropdownNumber.detectChanges()
+
+        inputGroupDropdownNumber = fixtureDropdownNumber.debugElement.query(By.directive(DdrInputGroupComponent));
+
+        fixtureDropdownObject = TestBed.createComponent(DdrDropdownComponent<{ value: string }>);
+        componentDropdownObject = fixtureDropdownObject.componentInstance;
+        componentDropdownObject.options = [
+            {
+                label: 'Label1',
+                value: { value: 'Value1' }
+            },
+            {
+                label: 'Label2',
+                value: { value: 'Value2' }
+            },
+            {
+                label: 'Label3',
+                value: { value: 'Value3' }
+            },
+            {
+                label: 'Label4',
+                value: { value: 'Value4' }
+            },
+        ];
+        componentDropdownObject.compareFn = (a: { value: string }, b: { value: string }) => a.value == b.value;
+        fixtureDropdownObject.detectChanges();
+        inputGroupDropdownObject = fixtureDropdownObject.debugElement.query(By.directive(DdrInputGroupComponent));
+    });
+
+    it('element should be selected (numbers)', async () => {
         fixtureDropdownNumber.detectChanges();
-        fixtureDropdownNumber.whenStable().then(() => {
+        await fixtureDropdownNumber.whenStable()
 
-            inputGroupDropdownNumber.triggerEventHandler('action');
-            tick(100);
-            fixtureDropdownNumber.detectChanges();
-            expect(componentDropdownNumber.showItems).toBeTrue();
+        inputGroupDropdownNumber.triggerEventHandler('action');
 
-            let panelItems = fixtureDropdownNumber.debugElement.query(By.css('.ddr-dropdown__panel-items'));
-            expect(panelItems).not.toBeNull();
+        await new Promise(r => setTimeout(r, 150));
 
-            spyOn(componentDropdownNumber.selectItem, "emit");
+        expect(componentDropdownNumber.showItems).toBeTrue();
 
-            fixtureDropdownNumber.detectChanges();
-            const firstElement = fixtureDropdownNumber.debugElement.query(By.css('.ddr-dropdown__panel-items ul li:first-child'));
-            firstElement.triggerEventHandler('click');
+        let panelItems = fixtureDropdownNumber.debugElement.query(By.css('.ddr-dropdown__panel-items'));
+        expect(panelItems).not.toBeNull();
 
-            expect(componentDropdownNumber.value).toEqual(1);
-            expect(componentDropdownNumber.valueShow).toBe('Label1');
-            expect(componentDropdownNumber.showItems).toBeFalse();
+        spyOn(componentDropdownNumber.selectItem, "emit");
 
-            expect(componentDropdownNumber.selectItem.emit).withContext('El evento selectItem debe lanzarse').toHaveBeenCalledWith({
-                label: 'Label1',
-                value: 1,
-                selected: true
-            });
+        fixtureDropdownNumber.detectChanges();
+        const firstElement = fixtureDropdownNumber.debugElement.query(By.css('.ddr-dropdown__panel-items ul li:first-child'));
+        firstElement.triggerEventHandler('click');
 
+        expect(componentDropdownNumber.value).toEqual(1);
+        expect(componentDropdownNumber.valueShow).toBe('Label1');
+        expect(componentDropdownNumber.showItems).toBeFalse();
+
+        expect(componentDropdownNumber.selectItem.emit).withContext('El evento selectItem debe lanzarse').toHaveBeenCalledWith({
+            label: 'Label1',
+            value: 1,
+            selected: true
         });
-    }));
 
-    it('element should be selected (objects)', fakeAsync(() => {
+    });
+
+    it('element should be selected (objects)', async () => {
         fixtureDropdownObject.detectChanges();
-        fixtureDropdownObject.whenStable().then(() => {
+        await fixtureDropdownObject.whenStable();
 
-            inputGroupDropdownObject.triggerEventHandler('action');            
-            tick(100);
-            fixtureDropdownObject.detectChanges();
-            expect(componentDropdownObject.showItems).toBeTrue();
+        inputGroupDropdownObject.triggerEventHandler('action');
 
-            let panelItems = fixtureDropdownObject.debugElement.query(By.css('.ddr-dropdown__panel-items'));
-            expect(panelItems).not.toBeNull();
+        await new Promise(r => setTimeout(r, 150));
 
-            spyOn(componentDropdownObject.selectItem, "emit");
+        expect(componentDropdownObject.showItems).toBeTrue();
 
-            fixtureDropdownObject.detectChanges();
-            const firstElement = fixtureDropdownObject.debugElement.query(By.css('.ddr-dropdown__panel-items ul li:first-child'));
-            firstElement.triggerEventHandler('click');
+        let panelItems = fixtureDropdownObject.debugElement.query(By.css('.ddr-dropdown__panel-items'));
+        expect(panelItems).not.toBeNull();
 
-            expect(componentDropdownObject.value).toEqual({ value: 'Value1' });
-            expect(componentDropdownObject.valueShow).toBe('Label1');
-            expect(componentDropdownObject.showItems).toBeFalse();
-
-            expect(componentDropdownObject.selectItem.emit).withContext('El evento selectItem debe lanzarse').toHaveBeenCalledWith({
-                label: 'Label1',
-                value: { value: 'Value1' },
-                selected: true
-            });
-
-        });
-    }));
-
-    it('should filter by text', fakeAsync(() => {
-        fixtureDropdownObject.detectChanges();
-        fixtureDropdownObject.whenStable().then(() => {
-
-            inputGroupDropdownObject.triggerEventHandler('action');
-            tick(100);
-            fixtureDropdownObject.detectChanges();
-            expect(componentDropdownObject.showItems).toBeTrue();
-
-            let panelItems = fixtureDropdownObject.debugElement.query(By.css('.ddr-dropdown__panel-items'));
-            expect(panelItems).not.toBeNull();
-
-            let inputFilter = fixtureDropdownObject.debugElement.query(By.css('.ddr-dropdown__panel-items--search--input'));
-            inputFilter.nativeElement.value = 'Label2';
-            inputFilter.triggerEventHandler('keyup');
-            fixtureDropdownObject.detectChanges();
-
-            let firstElement = fixtureDropdownObject.debugElement.query(By.css('.ddr-dropdown__panel-items ul li:first-child'));
-
-            expect(firstElement).not.toBeNull();
-            expect(componentDropdownObject.optionsShow[0].label).toBe('Label2');
-
-        });
-    }));
-
-    it('should not appear options when we filter', fakeAsync(() => {
-        fixtureDropdownObject.detectChanges();
-        fixtureDropdownObject.whenStable().then(() => {
-
-            inputGroupDropdownObject.triggerEventHandler('action');
-            tick(100);
-            fixtureDropdownObject.detectChanges();
-            expect(componentDropdownObject.showItems).toBeTrue();
-
-            let panelItems = fixtureDropdownObject.debugElement.query(By.css('.ddr-dropdown__panel-items'));
-            expect(panelItems).not.toBeNull();
-
-            let inputFilter = fixtureDropdownObject.debugElement.query(By.css('.ddr-dropdown__panel-items--search--input'));
-            inputFilter.nativeElement.value = 'Label11';
-            inputFilter.triggerEventHandler('keyup');
-            fixtureDropdownObject.detectChanges();
-
-            let firstElement = fixtureDropdownObject.debugElement.query(By.css('.ddr-dropdown__panel-items ul li:first-child'));
-
-            expect(firstElement).toBeNull();
-            expect(componentDropdownObject.optionsShow.length).toBe(0);
-
-        });
-    }));
-
-    it('options panel should not appear', fakeAsync(() => {
-        fixtureDropdownObject.detectChanges();
-        fixtureDropdownObject.whenStable().then(() => {
-
-            componentDropdownObject.disabled = true;
-            inputGroupDropdownObject.triggerEventHandler('action');
-            tick(100);
-            fixtureDropdownObject.detectChanges();
-            expect(componentDropdownObject.showItems).toBeFalse();
-        });
-    }));
-
-    it('empty options', fakeAsync(() => {
-        fixtureDropdownObject.detectChanges();
-        fixtureDropdownObject.whenStable().then(() => {
-
-            componentDropdownObject.options = [];
-            componentDropdownObject.optionsShow = [];
-            fixtureDropdownObject.detectChanges();
-
-            inputGroupDropdownObject.triggerEventHandler('action');
-            tick(100);
-            fixtureDropdownObject.detectChanges();
-            expect(componentDropdownObject.showItems).toBeTrue();
-
-            let panelItems = fixtureDropdownObject.debugElement.query(By.css('.ddr-dropdown__panel-items'));
-            expect(panelItems).not.toBeNull();
-
-            let firstElement = fixtureDropdownObject.debugElement.query(By.css('.ddr-dropdown__panel-items ul li:first-child'));
-
-            expect(firstElement).toBeNull();
-
-        });
-    }));
-
-    it('preload element', waitForAsync(() => {
-        fixtureDropdownObject.detectChanges();
-        fixtureDropdownObject.whenStable().then(() => {
-
-            spyOn(componentDropdownObject.selectItem, "emit");
-
-            componentDropdownObject.value = { value: 'Value2' };
-
-            fixtureDropdownObject.detectChanges();
-
-            expect(componentDropdownObject.value).toEqual({ value: 'Value2' });
-            expect(componentDropdownObject.valueShow).toBe('Label2');
-            expect(componentDropdownObject.showItems).toBeFalse();
-
-            expect(componentDropdownObject.selectItem.emit).withContext('El evento selectItem no debe lanzarse').not.toHaveBeenCalledWith(
-                {
-                    label: 'Label2',
-                    value: { value: 'Value2' }
-                },
-            );
-
-        });
-    }));
-
-    it('clean value', waitForAsync(() => {
+        spyOn(componentDropdownObject.selectItem, "emit");
 
         fixtureDropdownObject.detectChanges();
-        fixtureDropdownObject.whenStable().then(() => {
+        const firstElement = fixtureDropdownObject.debugElement.query(By.css('.ddr-dropdown__panel-items ul li:first-child'));
+        firstElement.triggerEventHandler('click');
+        fixtureDropdownObject.detectChanges();
+        await fixtureDropdownObject.whenStable();
+        fixtureDropdownObject.detectChanges();
 
-            spyOn(componentDropdownObject.selectItem, "emit");
+        expect(componentDropdownObject.value).toEqual({ value: 'Value1' });
+        expect(componentDropdownObject.valueShow).toBe('Label1');
+        expect(componentDropdownObject.showItems).toBeFalse();
 
-            componentDropdownObject.value = { value: 'Value2' };
-            fixtureDropdownObject.detectChanges();
-
-            expect(componentDropdownObject.value).toEqual({ value: 'Value2' });
-            expect(componentDropdownObject.valueShow).toBe('Label2');
-            expect(componentDropdownObject.showItems).toBeFalse();
-            fixtureDropdownObject.detectChanges();
-
-            componentDropdownObject.value = null;
-            fixtureDropdownObject.detectChanges();
-
-            expect(componentDropdownObject.value).toEqual(null);
-            expect(componentDropdownObject.valueShow).toBe('');
-            fixtureDropdownObject.detectChanges();
-
+        expect(componentDropdownObject.selectItem.emit).withContext('El evento selectItem debe lanzarse').toHaveBeenCalledWith({
+            label: 'Label1',
+            value: { value: 'Value1' },
+            selected: true
         });
-    }));
 
-    it('Modify value', waitForAsync(() => {
+    });
+
+    it('should filter by text', async () => {
+        fixtureDropdownObject.detectChanges();
+        await fixtureDropdownObject.whenStable();
+
+        inputGroupDropdownObject.triggerEventHandler('action');
+        await new Promise(r => setTimeout(r, 150));
+        expect(componentDropdownObject.showItems).toBeTrue();
+
+        let panelItems = fixtureDropdownObject.debugElement.query(By.css('.ddr-dropdown__panel-items'));
+        fixtureDropdownObject.detectChanges();
+        await fixtureDropdownObject.whenStable();
+        fixtureDropdownObject.detectChanges();
+        expect(panelItems).not.toBeNull();
+
+        let inputFilter = fixtureDropdownObject.debugElement.query(By.css('.ddr-dropdown__panel-items--search--input'));
+        inputFilter.nativeElement.value = 'Label2';
+        inputFilter.triggerEventHandler('keyup');
+        fixtureDropdownObject.detectChanges();
+
+        let firstElement = fixtureDropdownObject.debugElement.query(By.css('.ddr-dropdown__panel-items ul li:first-child'));
+
+        expect(firstElement).not.toBeNull();
+        expect(componentDropdownObject.optionsShow[0].label).toBe('Label2');
+
+    });
+
+    it('should not appear options when we filter', async () => {
+        fixtureDropdownObject.detectChanges();
+        await fixtureDropdownObject.whenStable();
+
+        inputGroupDropdownObject.triggerEventHandler('action');
+        await new Promise(r => setTimeout(r, 150));
+        expect(componentDropdownObject.showItems).toBeTrue();
+
+        let panelItems = fixtureDropdownObject.debugElement.query(By.css('.ddr-dropdown__panel-items'));
+        expect(panelItems).not.toBeNull();
+
+        let inputFilter = fixtureDropdownObject.debugElement.query(By.css('.ddr-dropdown__panel-items--search--input'));
+        inputFilter.nativeElement.value = 'Label11';
+        inputFilter.triggerEventHandler('keyup');
+        fixtureDropdownObject.detectChanges();
+
+        let firstElement = fixtureDropdownObject.debugElement.query(By.css('.ddr-dropdown__panel-items ul li:first-child'));
+
+        expect(firstElement).toBeNull();
+        expect(componentDropdownObject.optionsShow.length).toBe(0);
+
+    });
+
+    it('options panel should not appear', async () => {
+        fixtureDropdownObject.detectChanges();
+        await fixtureDropdownObject.whenStable();
+
+        componentDropdownObject.disabled = true;
+        inputGroupDropdownObject.triggerEventHandler('action');
+        await new Promise(r => setTimeout(r, 150));
+        expect(componentDropdownObject.showItems).toBeFalse();
+
+    });
+
+    it('empty options', async () => {
+        fixtureDropdownObject.detectChanges();
+        await fixtureDropdownObject.whenStable();
+
+        componentDropdownObject.options = [];
+        componentDropdownObject.optionsShow = [];
+        fixtureDropdownObject.detectChanges();
+
+        inputGroupDropdownObject.triggerEventHandler('action');
+
+        await new Promise(r => setTimeout(r, 150));
+
+        expect(componentDropdownObject.showItems).toBeTrue();
+
+        let panelItems = fixtureDropdownObject.debugElement.query(By.css('.ddr-dropdown__panel-items'));
+        expect(panelItems).not.toBeNull();
+
+        let firstElement = fixtureDropdownObject.debugElement.query(By.css('.ddr-dropdown__panel-items ul li:first-child'));
+
+        expect(firstElement).toBeNull();
+
+    });
+
+    it('preload element', async () => {
+        fixtureDropdownObject.detectChanges();
+        await fixtureDropdownObject.whenStable();
+
+        spyOn(componentDropdownObject.selectItem, "emit");
+
+        componentDropdownObject.value = { value: 'Value2' };
+
+        fixtureDropdownObject.detectChanges();
+
+        expect(componentDropdownObject.value).toEqual({ value: 'Value2' });
+        expect(componentDropdownObject.valueShow).toBe('Label2');
+        expect(componentDropdownObject.showItems).toBeFalse();
+
+        expect(componentDropdownObject.selectItem.emit).withContext('El evento selectItem no debe lanzarse').not.toHaveBeenCalledWith(
+            {
+                label: 'Label2',
+                value: { value: 'Value2' }
+            },
+        );
+
+    });
+
+    it('clean value', async () => {
+
+        fixtureDropdownObject.detectChanges();
+        await fixtureDropdownObject.whenStable();
+
+        spyOn(componentDropdownObject.selectItem, "emit");
+
+        componentDropdownObject.value = { value: 'Value2' };
+        fixtureDropdownObject.detectChanges();
+
+        expect(componentDropdownObject.value).toEqual({ value: 'Value2' });
+        expect(componentDropdownObject.valueShow).toBe('Label2');
+        expect(componentDropdownObject.showItems).toBeFalse();
+        fixtureDropdownObject.detectChanges();
+
+        componentDropdownObject.value = null;
+        fixtureDropdownObject.detectChanges();
+
+        expect(componentDropdownObject.value).toEqual(null);
+        expect(componentDropdownObject.valueShow).toBe('');
+        fixtureDropdownObject.detectChanges();
+
+    });
+
+    it('Modify value', async () => {
 
         spyOn(componentDropdownObject.changeValue, "next");
 
@@ -293,50 +295,48 @@ describe('DdrDropdown', () => {
 
         expect(componentDropdownObject.changeValue.next).withContext('changeValue debe llamarse').toHaveBeenCalledWith({ value: 'Value2' });
 
-    }));
+    });
 
-    it('allowDeselect', fakeAsync(() => {
+    it('allowDeselect', async () => {
 
         componentDropdownObject.allowDeselect = true;
 
         fixtureDropdownObject.detectChanges();
-        fixtureDropdownObject.whenStable().then(() => {
+        await fixtureDropdownObject.whenStable();
 
-            spyOn(componentDropdownObject.selectItem, "emit");
+        spyOn(componentDropdownObject.selectItem, "emit");
 
-            inputGroupDropdownObject.triggerEventHandler('action');
-            tick(100);
-            fixtureDropdownObject.detectChanges();
-            expect(componentDropdownObject.showItems).toBeTrue();
+        inputGroupDropdownObject.triggerEventHandler('action');
+        await new Promise(r => setTimeout(r, 150));
+        expect(componentDropdownObject.showItems).toBeTrue();
 
-            let panelItems = fixtureDropdownObject.debugElement.query(By.css('.ddr-dropdown__panel-items'));
-            expect(panelItems).not.toBeNull();
+        let panelItems = fixtureDropdownObject.debugElement.query(By.css('.ddr-dropdown__panel-items'));
+        expect(panelItems).not.toBeNull();
 
-            fixtureDropdownObject.detectChanges();
-            const firstElement = fixtureDropdownObject.debugElement.query(By.css('.ddr-dropdown__panel-items ul li:first-child'));
-            firstElement.triggerEventHandler('click');
+        fixtureDropdownObject.detectChanges();
+        const firstElement = fixtureDropdownObject.debugElement.query(By.css('.ddr-dropdown__panel-items ul li:first-child'));
+        firstElement.triggerEventHandler('click');
 
-            expect(componentDropdownObject.value).toEqual({ value: 'Value1' });
-            expect(componentDropdownObject.valueShow).toBe('Label1');
-            expect(componentDropdownObject.showItems).toBeFalse();
+        expect(componentDropdownObject.value).toEqual({ value: 'Value1' });
+        expect(componentDropdownObject.valueShow).toBe('Label1');
+        expect(componentDropdownObject.showItems).toBeFalse();
 
-            expect(componentDropdownObject.selectItem.emit).withContext('El evento selectItem debe lanzarse').toHaveBeenCalledWith({
-                label: 'Label1',
-                value: { value: 'Value1' },
-                selected: true
-            });
-
-            firstElement.triggerEventHandler('click');
-
-            expect(componentDropdownObject.value).toBeNull();
-
-            expect(componentDropdownObject.selectItem.emit).withContext('El evento selectItem debe lanzarse').toHaveBeenCalledWith({
-                label: 'Label1',
-                value: { value: 'Value1' },
-                selected: false
-            });
-
+        expect(componentDropdownObject.selectItem.emit).withContext('El evento selectItem debe lanzarse').toHaveBeenCalledWith({
+            label: 'Label1',
+            value: { value: 'Value1' },
+            selected: true
         });
-    }));
+
+        firstElement.triggerEventHandler('click');
+
+        expect(componentDropdownObject.value).toBeNull();
+
+        expect(componentDropdownObject.selectItem.emit).withContext('El evento selectItem debe lanzarse').toHaveBeenCalledWith({
+            label: 'Label1',
+            value: { value: 'Value1' },
+            selected: false
+        });
+
+    });
 
 });

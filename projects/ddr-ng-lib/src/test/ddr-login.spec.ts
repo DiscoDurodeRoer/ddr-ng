@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { DdrAuth } from '../common/ddr-auth.model';
@@ -15,10 +15,10 @@ describe('DdrLoginComponent', () => {
     let fixture: ComponentFixture<DdrLoginComponent>;
     let component: DdrLoginComponent;
     let ddrConstantsService: DdrConstantsService;
-    
 
-    beforeEach(waitForAsync(() => {
-        TestBed.configureTestingModule({
+
+    beforeEach(async () => {
+        await TestBed.configureTestingModule({
             imports: [
                 FormsModule,
                 DdrButtonComponent,
@@ -31,37 +31,35 @@ describe('DdrLoginComponent', () => {
             providers: [
                 provideHttpClient()
             ]
-        }).compileComponents()
-            .then(() => {
-                fixture = TestBed.createComponent(DdrLoginComponent);
-                ddrConstantsService = TestBed.inject(DdrConstantsService)
-                component = fixture.componentInstance;
-            });
-    }));
-    it('should emit user', waitForAsync(() => {
+        }).compileComponents();
+
+        fixture = TestBed.createComponent(DdrLoginComponent);
+        ddrConstantsService = TestBed.inject(DdrConstantsService)
+        component = fixture.componentInstance;
+    });
+    it('should emit user', async () => {
         fixture.detectChanges();
-        fixture.whenStable().then(() => {
-            const inputUsername: DdrInputComponent = fixture.debugElement.query(By.css('.ddr-login__user-input')).componentInstance;
-            const inputPassword: DdrInputPasswordComponent = fixture.debugElement.query(By.css('.ddr-login__input-password')).componentInstance;;
-            const button: DdrButtonComponent = fixture.debugElement.query(By.css('.ddr-login__submit-button')).componentInstance;
-            const form = fixture.debugElement.query(By.css('form')).nativeElement;
-            
-            inputUsername.value = 'Test';
-            inputPassword.value = 'Test';
+        await fixture.whenStable();
+        const inputUsername: DdrInputComponent = fixture.debugElement.query(By.css('.ddr-login__user-input')).componentInstance;
+        const inputPassword: DdrInputPasswordComponent = fixture.debugElement.query(By.css('.ddr-login__input-password')).componentInstance;;
+        const button: DdrButtonComponent = fixture.debugElement.query(By.css('.ddr-login__submit-button')).componentInstance;
+        const form = fixture.debugElement.query(By.css('form')).nativeElement;
 
-            const expected: DdrAuth = {
-                username: 'Test',
-                password: 'Test'
-            }
+        inputUsername.value = 'Test';
+        inputPassword.value = 'Test';
 
-            expect(button.type).withContext('El boton debe ser de tipo submit').toBe(ddrConstantsService.TYPE_BUTTON.SUBMIT);
+        const expected: DdrAuth = {
+            username: 'Test',
+            password: 'Test'
+        }
 
-            spyOn(component, 'login');
-            form.dispatchEvent(new Event('submit'));
-            expect(component.login).toHaveBeenCalled();
+        expect(button.type).withContext('El boton debe ser de tipo submit').toBe(ddrConstantsService.TYPE_BUTTON.SUBMIT);
 
-            expect(component.user).toEqual(expected);
-        });
-    }));
-  
+        spyOn(component, 'login');
+        form.dispatchEvent(new Event('submit'));
+        expect(component.login).toHaveBeenCalled();
+
+        expect(component.user).toEqual(expected);
+    });
+
 });

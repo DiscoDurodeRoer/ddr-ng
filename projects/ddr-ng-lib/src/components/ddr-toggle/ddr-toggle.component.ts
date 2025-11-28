@@ -1,4 +1,4 @@
-import { Component, EventEmitter, forwardRef, inject, Input, OnInit, Output, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, forwardRef, inject, Input, OnInit, Output, ViewEncapsulation } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { DdrControlValueAccessor } from '../ddr-ngmodel-base/ddr-control-value-accessor-base.component';
 import { DdrConstantsService } from '../../services/ddr-constants.service';
@@ -11,6 +11,7 @@ import { DdrOrientatioTooltip, DdrSize } from '../../types/types';
   templateUrl: './ddr-toggle.component.html',
   styleUrls: ['./ddr-toggle.component.scss'],
   encapsulation: ViewEncapsulation.None,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     DdrControlValueAccessor,
     DdrTooltipDirective,
@@ -24,9 +25,10 @@ import { DdrOrientatioTooltip, DdrSize } from '../../types/types';
     },
   ]
 })
-export class DdrToggleComponent extends DdrControlValueAccessor {
+export class DdrToggleComponent extends DdrControlValueAccessor implements OnInit {
 
   public readonly constants: DdrConstantsService = inject(DdrConstantsService);
+  private changeDetectorRef: ChangeDetectorRef = inject(ChangeDetectorRef);
 
   @Input() label?: string;
   @Input() inline: boolean = false;
@@ -40,9 +42,15 @@ export class DdrToggleComponent extends DdrControlValueAccessor {
     super();
   }
 
+  ngOnInit(): void {
+    this.value = false;
+    this.changeDetectorRef.detectChanges();
+  }
+
   onClick() {
     this.value = !this.value;
     this.toggled.emit(this.value);
+    this.changeDetectorRef.detectChanges();
   }
 
 }
