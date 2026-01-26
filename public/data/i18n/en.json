@@ -1242,5 +1242,9 @@
     "20.0.3.change.4": "Improvements in the child nodes template",
     "20.0.3.change.5": "Fixed issue when children is empty",
     "21.0.0.change.1": "Angular 21 support",
-    "21.0.0.change.2": "Zoneless"
+    "21.0.0.change.2": "Zoneless",
+    "21.0.1.change.1": "Fixed initial value in reactive forms",
+    "21.0.1.change.2": "Change the position of the floating actions menu",
+    "21.0.1.change.3": "Improved the style of actions when a custom template is present",
+    "21.0.1.change.4": "Fixed initial value in reactive forms"
 }
