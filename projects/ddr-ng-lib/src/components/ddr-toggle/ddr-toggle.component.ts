@@ -1,10 +1,11 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, forwardRef, inject, Input, OnInit, Output, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, forwardRef, inject, Input, OnDestroy, OnInit, Output, ViewEncapsulation } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { DdrControlValueAccessor } from '../ddr-ngmodel-base/ddr-control-value-accessor-base.component';
 import { DdrConstantsService } from '../../services/ddr-constants.service';
 import { DdrTooltipDirective } from '../../directives/ddr-tooltip.directive';
 import { NgClass } from '@angular/common';
 import { DdrOrientatioTooltip, DdrSize } from '../../types/types';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'ddr-toggle',
@@ -20,12 +21,12 @@ import { DdrOrientatioTooltip, DdrSize } from '../../types/types';
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => DdrToggleComponent),
+      useExisting: DdrToggleComponent,
       multi: true,
     },
   ]
 })
-export class DdrToggleComponent extends DdrControlValueAccessor implements OnInit {
+export class DdrToggleComponent extends DdrControlValueAccessor implements OnInit, OnDestroy {
 
   public readonly constants: DdrConstantsService = inject(DdrConstantsService);
   private changeDetectorRef: ChangeDetectorRef = inject(ChangeDetectorRef);
@@ -38,11 +39,19 @@ export class DdrToggleComponent extends DdrControlValueAccessor implements OnIni
 
   @Output() toggled: EventEmitter<boolean> = new EventEmitter<boolean>();
 
+  private subscription: Subscription = new Subscription();
+
   constructor() {
     super();
   }
 
   ngOnInit(): void {
+    this.subscription = this.changeValue.subscribe({
+      next: (value: boolean) => {
+        this.value = value;
+        this.changeDetectorRef.detectChanges();
+      }
+    })
     this.value = false;
     this.changeDetectorRef.detectChanges();
   }
@@ -51,6 +60,10 @@ export class DdrToggleComponent extends DdrControlValueAccessor implements OnIni
     this.value = !this.value;
     this.toggled.emit(this.value);
     this.changeDetectorRef.detectChanges();
+  }
+
+  ngOnDestroy(): void {
+    this.subscription?.unsubscribe();
   }
 
 }

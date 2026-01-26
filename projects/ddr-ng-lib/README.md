@@ -1,6 +1,6 @@
 # DDR-NG
 
-![npm version](https://img.shields.io/badge/npm-21.0.0-blue)
+![npm version](https://img.shields.io/badge/npm-21.0.1-blue)
 
 [![Discord](https://img.shields.io/badge/discord-ddr--ng-5865F2?logo=discord&logoColor=white)](https://discord.gg/Drgv4JRqxu)
 

@@ -20,7 +20,7 @@ import { NgTemplateOutlet } from '@angular/common';
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => DdrInputPasswordComponent),
+      useExisting: DdrInputPasswordComponent,
       multi: true,
     },
   ]

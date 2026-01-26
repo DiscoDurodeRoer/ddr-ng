@@ -2304,7 +2304,7 @@ export class StepsShowcaseComponent {
           name: 'lastStep',
           component: 'ddr-steps',
           description: 'steps.output.laststep',
-          type: 'number'
+          type: 'void'
         }
       }
     ],
@@ -3567,8 +3567,8 @@ export class TableShowcaseComponent {
           name: 'showActions',
           description: 'table.input.showactions',
           required: false,
-          default: '[]',
-          type: 'DdrAction<T>[]'
+          default: 'false',
+          type: 'boolean'
         }
       },
       {

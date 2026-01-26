@@ -34,7 +34,7 @@ import { DdrSetFocusDirective } from '../../directives/ddr-set-focus.directive';
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => DdrInputComponent),
+      useExisting: DdrInputComponent,
       multi: true,
     },
   ]

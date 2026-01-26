@@ -21,7 +21,7 @@ import { Subscription } from 'rxjs/internal/Subscription';
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => DdrRadioComponent),
+      useExisting: DdrRadioComponent,
       multi: true,
     },
   ]
@@ -42,12 +42,14 @@ export class DdrRadioComponent<T> extends DdrControlValueAccessor implements OnI
 
   ngOnInit(): void {
     this.options.forEach(op => op.selected = false);
-    this.subscription = this.changeValue.subscribe((value: T) => {
-      const optionFound = this.options.find(s => JSON.stringify(value) == JSON.stringify(s.value));
-      if (optionFound) {
-        optionFound.selected = true;
-        this.value = value;
-        this.changeDetectorRef.detectChanges();
+    this.subscription = this.changeValue.subscribe({
+      next: (value: T) => {
+        const optionFound = this.options.find(s => JSON.stringify(value) == JSON.stringify(s.value));
+        if (optionFound) {
+          optionFound.selected = true;
+          this.value = value;
+          this.changeDetectorRef.detectChanges();
+        }
       }
     });
   }

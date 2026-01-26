@@ -19,7 +19,7 @@ import { DomSanitizer } from '@angular/platform-browser';
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => DdrInputFileComponent),
+      useExisting: DdrInputFileComponent,
       multi: true,
     },
   ]

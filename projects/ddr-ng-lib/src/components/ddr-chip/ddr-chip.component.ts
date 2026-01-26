@@ -16,7 +16,7 @@ import { DdrChipValueComponent } from './components/ddr-chip-value/ddr-chip-valu
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => DdrChipComponent),
+      useExisting: DdrChipComponent,
       multi: true,
     },
   ]

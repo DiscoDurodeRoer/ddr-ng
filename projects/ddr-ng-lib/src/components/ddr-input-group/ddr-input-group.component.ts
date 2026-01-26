@@ -36,7 +36,7 @@ import { AutocompleteType, DdrInputError, DdrOrientatioTooltip, DdrSize, DdrType
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => DdrInputGroupComponent),
+      useExisting: DdrInputGroupComponent,
       multi: true,
     },
   ]

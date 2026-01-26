@@ -21,7 +21,7 @@ import { DdrOrientatioTooltip } from '../../types/types';
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => DdrTextareaComponent),
+      useExisting: DdrTextareaComponent,
       multi: true
     }
   ]

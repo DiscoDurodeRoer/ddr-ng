@@ -1,4 +1,4 @@
-import { Component, inject, OnDestroy } from '@angular/core';
+import { ChangeDetectorRef, Component, inject, OnDestroy } from '@angular/core';
 import { DdrSelectItem, DdrTreeComponent, DdrTreeNode, DdrTranslatePipe, DdrDropdownComponent, DdrCardComponent } from 'ddr-ng';
 import { DataService } from '../../services/data.service';
 import { ActivatedRoute } from '@angular/router';
@@ -21,6 +21,7 @@ export class ChangelogComponent implements OnDestroy {
 
     private dataService: DataService = inject(DataService);
     private route: ActivatedRoute = inject(ActivatedRoute);
+    private changeDetectorRef: ChangeDetectorRef = inject(ChangeDetectorRef);
 
     public nodesChangelogOri: DdrTreeNode<string>[] = [];
     public nodesChangelog: DdrTreeNode<string>[] = [];
@@ -42,6 +43,7 @@ export class ChangelogComponent implements OnDestroy {
             }
         });
 
+        this.changeDetectorRef.markForCheck()
     }
 
     filterVersion(item: DdrSelectItem<string>) {

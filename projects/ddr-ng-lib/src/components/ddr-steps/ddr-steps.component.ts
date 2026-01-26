@@ -24,7 +24,7 @@ import { Subscription } from 'rxjs/internal/Subscription';
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => DdrStepsComponent),
+      useExisting: DdrStepsComponent,
       multi: true,
     },
   ]
@@ -53,15 +53,17 @@ export class DdrStepsComponent extends DdrControlValueAccessor implements OnInit
       this.canJumpStep = true;
     }
 
-    this.subscription = this.changeValue.subscribe(v => {
+    this.subscription = this.changeValue.subscribe({
+      next: (indexTab: number) => {
 
-      if (this.steps && !this.openAll && !this.leaveValidateVerticalOpened) {
-        const steps = this.steps.toArray();
-        for (let index = 0; index < steps.length; index++) {
-          const step = steps[index];
-          step.open = false;
+        if (this.steps && !this.openAll && !this.leaveValidateVerticalOpened) {
+          const steps = this.steps.toArray();
+          for (let index = 0; index < steps.length; index++) {
+            const step = steps[index];
+            step.open = false;
+          }
+          this.steps.toArray()[indexTab - 1].open = true;
         }
-        this.steps.toArray()[v - 1].open = true;
       }
     })
   }

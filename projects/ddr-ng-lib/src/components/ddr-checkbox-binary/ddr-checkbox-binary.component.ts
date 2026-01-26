@@ -16,7 +16,7 @@ import { Subscription } from 'rxjs/internal/Subscription';
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => DdrCheckboxBinaryComponent),
+      useExisting: DdrCheckboxBinaryComponent,
       multi: true,
     },
   ]
@@ -48,10 +48,12 @@ export class DdrCheckboxBinaryComponent extends DdrControlValueAccessor implemen
   }
 
   ngAfterViewInit(): void {
-    this.subscription = this.changeValue.subscribe((value: boolean) => {
-      if (typeof value == 'boolean') {
-        this.value = value;
-        this.options[0].selected = value;
+    this.subscription = this.changeValue.subscribe({
+      next: (value: boolean) => {
+        if (typeof value == 'boolean') {
+          this.value = value;
+          this.options[0].selected = value;
+        }
       }
     })
   }

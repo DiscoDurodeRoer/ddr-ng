@@ -32,7 +32,7 @@ import { DdrSize } from '../../types/types';
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => DdrButtonMultipleComponent),
+      useExisting: DdrButtonMultipleComponent,
       multi: true,
     },
   ]

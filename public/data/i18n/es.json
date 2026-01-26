@@ -1244,5 +1244,9 @@
     "20.0.3.change.4": "Mejoras en el template en nodos hijos",
     "20.0.3.change.5": "Arreglo cuando children esta vacio",
     "21.0.0.change.1": "Soporte Angular 21",
-    "21.0.0.change.2": "Zoneless"
+    "21.0.0.change.2": "Zoneless",
+    "21.0.1.change.1": "Arreglo valor inicial en formularios reactivos",
+    "21.0.1.change.2": "Cambiada la posición del menu flotante de las acciones",
+    "21.0.1.change.3": "Mejorado estilo de las acciones cuando hay un custom template",
+    "21.0.1.change.4": "Arreglo valor inicial en formularios reactivos"
 }

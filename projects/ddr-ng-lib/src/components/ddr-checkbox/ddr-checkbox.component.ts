@@ -20,7 +20,7 @@ import { Subscription } from 'rxjs';
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => DdrCheckboxComponent),
+      useExisting: DdrCheckboxComponent,
       multi: true,
     },
   ]
@@ -41,10 +41,12 @@ export class DdrCheckboxComponent<T> extends DdrControlValueAccessor implements 
   }
 
   ngOnInit(): void {
-    this.subscription = this.changeValue.subscribe((value: T[]) => {
-      if (value instanceof Array) {
-        const options = this.options.filter(s => value.find(v => JSON.stringify(v) == JSON.stringify(s.value)));
-        options.forEach(op => op.selected = true);
+    this.subscription = this.changeValue.subscribe({
+      next: (value: T[]) => {
+        if (value instanceof Array) {
+          const options = this.options.filter(s => value.find(v => JSON.stringify(v) == JSON.stringify(s.value)));
+          options.forEach(op => op.selected = true);
+        }
       }
     })
   }

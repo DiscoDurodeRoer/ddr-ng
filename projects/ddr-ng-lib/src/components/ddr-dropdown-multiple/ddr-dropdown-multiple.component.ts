@@ -23,7 +23,7 @@ import { Subscription } from 'rxjs/internal/Subscription';
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => DdrDropdownMultipleComponent),
+      useExisting: DdrDropdownMultipleComponent,
       multi: true,
     },
   ]
@@ -65,8 +65,10 @@ export class DdrDropdownMultipleComponent<T> extends DdrControlValueAccessor imp
   }
 
   ngAfterViewInit(): void {
-    this.subscription = this.changeValue.subscribe(v => {
-      this.selectValues(v);
+    this.subscription = this.changeValue.subscribe({
+      next: (v: T[]) => {
+        this.selectValues(v);
+      }
     })
   }
 

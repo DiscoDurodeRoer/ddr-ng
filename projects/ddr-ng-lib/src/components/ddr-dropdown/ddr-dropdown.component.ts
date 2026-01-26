@@ -63,12 +63,12 @@ import { Subscription } from 'rxjs/internal/Subscription';
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => DdrDropdownComponent),
+      useExisting: DdrDropdownComponent,
       multi: true,
     },
   ]
 })
-export class DdrDropdownComponent<T> extends DdrControlValueAccessor implements AfterViewInit, OnInit, OnChanges, OnDestroy {
+export class DdrDropdownComponent<T> extends DdrControlValueAccessor implements OnInit, OnChanges, OnDestroy {
 
   public readonly constants: DdrConstantsService = inject(DdrConstantsService);
   private ddrTranslate: DdrTranslateService = inject(DdrTranslateService);
@@ -116,12 +116,6 @@ export class DdrDropdownComponent<T> extends DdrControlValueAccessor implements 
     super();
   }
 
-  ngAfterViewInit(): void {
-    this.subscription = this.changeValue.subscribe(v => {
-      this.selectValue(v);
-    })
-  }
-
   ngOnChanges(changes: SimpleChanges): void {
     if (changes) {
       if (changes['options'] && !changes['options'].firstChange) {
@@ -140,6 +134,11 @@ export class DdrDropdownComponent<T> extends DdrControlValueAccessor implements 
   }
 
   ngOnInit() {
+    this.subscription = this.changeValue.subscribe({
+      next: (v: T) => {
+        this.selectValue(v);
+      }
+    })
     if (this.options && this.options.length > 0) {
       this.optionsShow = this.options.slice(0);
     }
