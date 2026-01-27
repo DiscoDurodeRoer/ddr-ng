@@ -1248,5 +1248,6 @@
     "21.0.1.change.1": "Arreglo valor inicial en formularios reactivos",
     "21.0.1.change.2": "Cambiada la posición del menu flotante de las acciones",
     "21.0.1.change.3": "Mejorado estilo de las acciones cuando hay un custom template",
-    "21.0.1.change.4": "Arreglo valor inicial en formularios reactivos"
+    "21.0.1.change.4": "Arreglo valor inicial en formularios reactivos",
+    "21.0.2.change.1": "Arreglo de la actualización del template HTML"
 }

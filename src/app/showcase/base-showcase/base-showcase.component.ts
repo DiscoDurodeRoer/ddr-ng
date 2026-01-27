@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, inject, Input, OnInit } from '@angular/core';
 import { DdrAccordionComponent, DdrCardComponent, DdrTabItemComponent, DdrTableCol, DdrTableComponent, DdrTableItem, DdrTabsComponent, DdrTranslatePipe, DdrNestedPropertyPipe, DdrBadgePillComponent } from 'ddr-ng';
 import { COMPONENTS_DOCUMENTATION } from './bean/components-documentation';
 import { Documentation, DocumentationInput, DocumentationOutput, DocumentationTranslation, DocumentationTemplate, DocumentationSlot, DocumentationClass, DocumentationServiceMethod, DocumentationStyle } from './bean/documentation';
@@ -17,9 +17,12 @@ declare var Prism: any;
     DdrTranslatePipe,
     DdrNestedPropertyPipe,
     DdrBadgePillComponent
-  ]
+  ],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class BaseShowcaseComponent implements OnInit {
+
+  private changeDetectorRef: ChangeDetectorRef = inject(ChangeDetectorRef)
 
   @Input({ required: true }) component!: string
   @Input({ required: true }) type!: string
@@ -184,6 +187,11 @@ export class BaseShowcaseComponent implements OnInit {
       this.itemsServiceMethods = this.documentationComponent.service?.methods || []
       this.itemsStyles = this.documentationComponent.styles || []
     }
+
+    setTimeout(() => {
+      this.changeDetectorRef.detectChanges();
+    }, 100);
+    
   }
 
   highlight() {

@@ -136,7 +136,7 @@ export class DdrTableComponent<T extends { [key: string]: any }> implements OnIn
     this.calculateCols();
     this.resetSort();
 
-    this.changeDetectorRef.detectChanges();
+    this.changeDetectorRef.markForCheck();
 
   }
 
@@ -162,7 +162,7 @@ export class DdrTableComponent<T extends { [key: string]: any }> implements OnIn
       if (changes['canSort']) {
         this.resetSort();
       }
-      this.changeDetectorRef.detectChanges();
+      this.changeDetectorRef.markForCheck();
     }
   }
 
@@ -176,7 +176,7 @@ export class DdrTableComponent<T extends { [key: string]: any }> implements OnIn
   changeRows(event: DdrSelectItem<number>) {
     this.rows = event.value;
     this.changeRow.emit(this.rows);
-    this.changeDetectorRef.detectChanges();
+    this.changeDetectorRef.markForCheck();
   }
 
   selectAll() {

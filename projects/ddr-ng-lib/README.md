@@ -1,6 +1,6 @@
 # DDR-NG
 
-![npm version](https://img.shields.io/badge/npm-21.0.1-blue)
+![npm version](https://img.shields.io/badge/npm-21.0.2-blue)
 
 [![Discord](https://img.shields.io/badge/discord-ddr--ng-5865F2?logo=discord&logoColor=white)](https://discord.gg/Drgv4JRqxu)
 
@@ -26,7 +26,7 @@ It is a set of reusable components, services, pipes and directives for our proje
 To install the ddr library, run the following command:
 
 ```bash
-npm install ddr-ng@21.0.1
+npm install ddr-ng@21.0.2
 ```
 
 ## 🛠️ What should we include in the angular.json file?

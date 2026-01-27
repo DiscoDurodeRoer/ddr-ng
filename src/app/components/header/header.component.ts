@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectorRef, Component, inject, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 import { DdrAction, DdrBadgePillComponent, DdrButtonComponent, DdrCardComponent, DdrDetailComponent, DdrDetailService, DdrDropdownComponent, DdrInputComponent, DdrModalComponent, DdrModalService, DdrNoDataComponent, DdrSelectItem, DdrButtonSplitComponent, DdrTheme, DdrThemeService, DdrTranslatePipe, DdrTranslateService } from 'ddr-ng';
 import { FormsModule } from '@angular/forms';
@@ -41,6 +41,7 @@ export class HeaderComponent implements OnInit {
   private ddrModalService: DdrModalService = inject(DdrModalService);
   private ddrTranslateService: DdrTranslateService = inject(DdrTranslateService);
   private dataService: DataService = inject(DataService);
+  private changeDetectorRef: ChangeDetectorRef = inject(ChangeDetectorRef);
 
   public themes: DdrAction<DdrTheme>[] = [
     {
@@ -58,7 +59,7 @@ export class HeaderComponent implements OnInit {
   ];
   public themeActual: DdrTheme = 'ddr-blue';
 
-  public version: string = '21.0.1';
+  public version: string = '21.0.2';
   public versions: DdrSelectItem<string>[] = [];
   public components: DdrSelectItem<ItemSearch>[] = []
   public search: string = '';
@@ -105,6 +106,8 @@ export class HeaderComponent implements OnInit {
   async ngOnInit() {
     this.versions = await this.dataService.getVersions() as DdrSelectItem<string>[];
     this.languages = await this.dataService.getLanguages() as DdrAction<string>[];
+
+    this.changeDetectorRef.markForCheck();
   }
 
   changeTheme(theme: DdrAction<DdrTheme>) {

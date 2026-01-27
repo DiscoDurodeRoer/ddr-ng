@@ -1246,5 +1246,6 @@
     "21.0.1.change.1": "Fixed initial value in reactive forms",
     "21.0.1.change.2": "Change the position of the floating actions menu",
     "21.0.1.change.3": "Improved the style of actions when a custom template is present",
-    "21.0.1.change.4": "Fixed initial value in reactive forms"
+    "21.0.1.change.4": "Fixed initial value in reactive forms",
+    "21.0.2.change.1": "Fixed HTML template update"
 }
