@@ -1,19 +1,19 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
-import { AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, ContentChild, EventEmitter, forwardRef, inject, Input, OnChanges, OnDestroy, OnInit, Output, SimpleChanges, TemplateRef, ViewChild, ViewEncapsulation } from '@angular/core';
+import { AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, forwardRef, inject, OnChanges, OnDestroy, OnInit, SimpleChanges, TemplateRef, ViewEncapsulation, input, output, contentChild, viewChild } from '@angular/core';
 import { FormsModule, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { DdrSelectItem } from '../../common/ddr-select-item.model';
 import { DdrConstantsService } from '../../services/ddr-constants.service';
 import { DdrControlValueAccessor } from '../ddr-ngmodel-base/ddr-control-value-accessor-base.component';
 import { DdrTranslateService } from '../../services/ddr-translate.service';
-import { DdrButtonComponent } from '../ddr-button/ddr-button.component';
+
 import { DdrInputGroupComponent } from '../ddr-input-group/ddr-input-group.component';
-import { DdrCheckboxBinaryComponent } from '../ddr-checkbox-binary/ddr-checkbox-binary.component';
+
 import { DdrClickOutsideDirective } from '../../directives/ddr-click-outside.directive';
-import { DdrTooltipDirective } from '../../directives/ddr-tooltip.directive'
+
 import { DdrTranslatePipe } from '../../pipes/ddr-translate.pipe';
-import { NgClass, NgTemplateOutlet } from '@angular/common';
+import { NgTemplateOutlet } from '@angular/common';
 import { DdrOrientationDropdown, DdrOrientatioTooltip, DdrSize } from '../../types/types';
-import { DdrCheckboxComponent } from '../ddr-checkbox/ddr-checkbox.component';
+
 import { Subscription } from 'rxjs/internal/Subscription';
 
 @Component({
@@ -24,16 +24,11 @@ import { Subscription } from 'rxjs/internal/Subscription';
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     FormsModule,
-    DdrButtonComponent,
     DdrInputGroupComponent,
-    DdrCheckboxBinaryComponent,
-    DdrCheckboxComponent,
     DdrTranslatePipe,
     DdrClickOutsideDirective,
-    DdrTooltipDirective,
-    NgClass,
     NgTemplateOutlet
-  ],
+],
   animations: [
     trigger('overlayAnimationBottom', [
       state('void', style({
@@ -74,35 +69,35 @@ export class DdrDropdownComponent<T> extends DdrControlValueAccessor implements 
   private ddrTranslate: DdrTranslateService = inject(DdrTranslateService);
   private changeDetectorRef: ChangeDetectorRef = inject(ChangeDetectorRef);
 
-  @Input({ required: true }) options: DdrSelectItem<T>[] = [];
-  @Input() showFilter: boolean = true;
-  @Input() label?: string;
-  @Input() name: string = '';
-  @Input() inline: boolean = false;
-  @Input() validate: boolean = false;
-  @Input() orientation: DdrOrientationDropdown = this.constants.ORIENTATION_DROPDOWN.BOTTOM;
-  @Input() labelPlaceholderFilter: string = '';
-  @Input() labelNoResults?: string;
-  @Input() disabled: boolean = false;
-  @Input() placeholder: string = '';
-  @Input() required: boolean = false;
-  @Input() translate: boolean = true;
-  @Input() modalOptions: boolean = false;
-  @Input() tooltipOrientation: DdrOrientatioTooltip = this.constants.ORIENTATION.BOTTOM;
-  @Input({ required: false }) tooltipText?: string;
-  @Input({ required: false }) closeOnSelect?: boolean = true;
-  @Input() allowDeselect: boolean = false;
-  @Input() compareFn: Function = (a: T, b: T) => a === b;
-  @Input() size: DdrSize = this.constants.SIZE.MEDIUM;
-  @Input() transparent: boolean = false
+  readonly options = input.required<DdrSelectItem<T>[]>();
+  readonly showFilter = input<boolean>(true);
+  readonly label = input<string>();
+  readonly name = input<string>('');
+  readonly inline = input<boolean>(false);
+  readonly validate = input<boolean>(false);
+  readonly orientation = input<DdrOrientationDropdown>(this.constants.ORIENTATION_DROPDOWN.BOTTOM);
+  readonly labelPlaceholderFilter = input<string>('');
+  readonly labelNoResults = input<string>();
+  readonly disabled = input<boolean>(false);
+  readonly placeholder = input<string>('');
+  readonly required = input<boolean>(false);
+  readonly translate = input<boolean>(true);
+  readonly modalOptions = input<boolean>(false);
+  readonly tooltipOrientation = input<DdrOrientatioTooltip>(this.constants.ORIENTATION.BOTTOM);
+  readonly tooltipText = input<string>();
+  readonly closeOnSelect = input<boolean | undefined>(true);
+  readonly allowDeselect = input<boolean>(false);
+  readonly compareFn = input<Function>((a: T, b: T) => a === b);
+  readonly size = input<DdrSize>(this.constants.SIZE.MEDIUM);
+  readonly transparent = input<boolean>(false);
 
-  @Output() selectItem: EventEmitter<DdrSelectItem<T>> = new EventEmitter<DdrSelectItem<T>>();
+  readonly selectItem = output<DdrSelectItem<T>>();
 
-  @ContentChild('itemTemplate', { static: false }) itemTemplateOutside!: TemplateRef<any> | null;
-  @ContentChild('templateValid', { static: false }) templateValidOutside: TemplateRef<any> | null = null;
-  @ContentChild('templateErrors', { static: false }) templateErrorsOutside: TemplateRef<any> | null = null;
+  readonly itemTemplateOutside = contentChild.required<TemplateRef<any> | null>('itemTemplate');
+  readonly templateValidOutside = contentChild<TemplateRef<any> | null>('templateValid');
+  readonly templateErrorsOutside = contentChild<TemplateRef<any> | null>('templateErrors');
 
-  @ViewChild(DdrInputGroupComponent) inputGroup!: DdrInputGroupComponent;
+  readonly inputGroup = viewChild.required(DdrInputGroupComponent);
 
   public showItems: boolean = false;
   public optionsShow: DdrSelectItem<T>[] = [];
@@ -119,11 +114,12 @@ export class DdrDropdownComponent<T> extends DdrControlValueAccessor implements 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes) {
       if (changes['options'] && !changes['options'].firstChange) {
-        if (!this.options || (this.options && this.options.length == 0)) {
+        const options = this.options();
+        if (!options || (options && options.length == 0)) {
           this.optionsShow = [];
           this.value = null;
         } else {
-          this.optionsShow = this.options.slice(0);
+          this.optionsShow = options.slice(0);
           if (this.value) {
             this.selectValue(this.value);
           }
@@ -139,8 +135,9 @@ export class DdrDropdownComponent<T> extends DdrControlValueAccessor implements 
         this.selectValue(v);
       }
     })
-    if (this.options && this.options.length > 0) {
-      this.optionsShow = this.options.slice(0);
+    const options = this.options();
+    if (options && options.length > 0) {
+      this.optionsShow = options.slice(0);
     }
   }
 
@@ -148,25 +145,27 @@ export class DdrDropdownComponent<T> extends DdrControlValueAccessor implements 
     if (!value) {
       this.valueShow = '';
       this.optionsShow.forEach(op => op.selected = false);
-      if (this.inputGroup) {
-        this.inputGroup!.input!.input.control.markAsDirty();
-        if (this.validate) {
-          this.inputGroup.checkInput(this.constants.INPUT_ERRORS.VALID);
+      const inputGroup = this.inputGroup();
+      if (inputGroup) {
+        inputGroup!.input()!.input().control.markAsDirty();
+        if (this.validate()) {
+          inputGroup.checkInput(this.constants.INPUT_ERRORS.VALID);
         }
       }
 
     } else {
-      const optionFound: DdrSelectItem<T> | undefined = this.options.find(option => this.compareFn(option.value, value));
+      const optionFound: DdrSelectItem<T> | undefined = this.options().find(option => this.compareFn()(option.value, value));
       if (optionFound) {
-        this.valueShow = this.translate ? this.ddrTranslate.getTranslate(optionFound.label) : optionFound.label;
-        this.options.forEach(option => option.selected = this.compareFn(option.value, optionFound.value));
-        if (this.inputGroup) {
-          this.inputGroup!.input!.input.control.markAsDirty();
-          if (this.validate) {
+        this.valueShow = this.translate() ? this.ddrTranslate.getTranslate(optionFound.label) : optionFound.label;
+        this.options().forEach(option => option.selected = this.compareFn()(option.value, optionFound.value));
+        const inputGroup = this.inputGroup();
+        if (inputGroup) {
+          inputGroup!.input()!.input().control.markAsDirty();
+          if (this.validate()) {
             if (this.value == null) {
-              this.inputGroup.checkInput(this.constants.INPUT_ERRORS.ERROR);
+              inputGroup.checkInput(this.constants.INPUT_ERRORS.ERROR);
             } else {
-              this.inputGroup.checkInput(this.constants.INPUT_ERRORS.VALID);
+              inputGroup.checkInput(this.constants.INPUT_ERRORS.VALID);
             }
           }
         }
@@ -177,7 +176,7 @@ export class DdrDropdownComponent<T> extends DdrControlValueAccessor implements 
   }
 
   togglePanelOptions() {
-    if (!this.disabled) {
+    if (!this.disabled()) {
       setTimeout(() => {
         this.showItems = !this.showItems;
         this.changeDetectorRef.detectChanges();
@@ -186,21 +185,21 @@ export class DdrDropdownComponent<T> extends DdrControlValueAccessor implements 
   }
 
   filter(searchWord: string) {
-    this.optionsShow = this.options.filter(option => option.label.toLowerCase().includes(searchWord.toLowerCase()))
+    this.optionsShow = this.options().filter(option => option.label.toLowerCase().includes(searchWord.toLowerCase()))
     this.isSearching = searchWord.length > 0;
   }
 
   onSelectItem(item: DdrSelectItem<T>) {
 
-    if (this.allowDeselect || !item.selected) {
+    if (this.allowDeselect() || !item.selected) {
 
       item.selected = !item.selected
 
-      if (this.closeOnSelect) {
+      if (this.closeOnSelect()) {
         this.showItems = false;
       }
       if (item.selected) {
-        this.valueShow = this.translate ? this.ddrTranslate.getTranslate(item.label) : item.label;
+        this.valueShow = this.translate() ? this.ddrTranslate.getTranslate(item.label) : item.label;
         this.value = item.value;
       } else {
         this.valueShow = ''

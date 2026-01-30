@@ -1,4 +1,4 @@
-import { Component, ContentChild, EventEmitter, Input, Output, TemplateRef, ViewEncapsulation, forwardRef, inject } from '@angular/core';
+import { Component, TemplateRef, ViewEncapsulation, forwardRef, inject, input, output, contentChild } from '@angular/core';
 import { FormsModule, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { DdrConstantsService } from '../../services/ddr-constants.service';
 import { DdrControlValueAccessor } from '../ddr-ngmodel-base/ddr-control-value-accessor-base.component';
@@ -13,7 +13,6 @@ import { NgTemplateOutlet } from '@angular/common';
   encapsulation: ViewEncapsulation.None,
   imports: [
     DdrInputGroupComponent,
-    DdrControlValueAccessor,
     FormsModule,
     NgTemplateOutlet
   ],
@@ -29,33 +28,33 @@ export class DdrInputPasswordComponent extends DdrControlValueAccessor {
 
   public readonly constants: DdrConstantsService = inject(DdrConstantsService)
 
-  @Input() label: string = '';
-  @Input() placeholder: string = '';
-  @Input() required: boolean = false;
-  @Input() validate: boolean = false;
-  @Input() inline: boolean = false;
-  @Input() pattern: string = '';
-  @Input() name: string = '';
-  @Input() readonly: boolean = false;
-  @Input() disabled: boolean = false;
-  @Input() tooltipOrientation: DdrOrientatioTooltip = this.constants.ORIENTATION.BOTTOM;
-  @Input() tooltipText?: string;
-  @Input() labelBold: boolean = false;
-  @Input() showPassword: boolean = false;
+  readonly label = input<string>('');
+  readonly placeholder = input<string>('');
+  readonly required = input<boolean>(false);
+  readonly validate = input<boolean>(false);
+  readonly inline = input<boolean>(false);
+  readonly pattern = input<string>('');
+  readonly name = input<string>('');
+  readonly readonly = input<boolean>(false);
+  readonly disabled = input<boolean>(false);
+  readonly tooltipOrientation = input<DdrOrientatioTooltip>(this.constants.ORIENTATION.BOTTOM);
+  readonly tooltipText = input<string>();
+  readonly labelBold = input<boolean>(false);
+  readonly showPassword = input<boolean>(false);
 
-  @Output() hasErrors: EventEmitter<DdrInputError> = new EventEmitter<DdrInputError>();
-  @Output() clickInput: EventEmitter<MouseEvent> = new EventEmitter<MouseEvent>();
-  @Output() keyPressed: EventEmitter<string> = new EventEmitter<string>();
+  readonly hasErrors = output<DdrInputError>();
+  readonly clickInput = output<MouseEvent>();
+  readonly keyPressed = output<string>();
 
-  @ContentChild('templateValid', { static: false }) templateValidOutside: TemplateRef<any> | null = null;
-  @ContentChild('templateErrors', { static: false }) templateErrorsOutside: TemplateRef<any> | null = null;
+  readonly templateValidOutside = contentChild<TemplateRef<any> | null>('templateValid');
+  readonly templateErrorsOutside = contentChild<TemplateRef<any> | null>('templateErrors');
 
   constructor() {
     super();
   }
 
   togglePassword() {
-    this.showPassword = !this.showPassword;
+    this.showPassword = !this.showPassword();
   }
 
   onHasErrors($event: DdrInputError) {

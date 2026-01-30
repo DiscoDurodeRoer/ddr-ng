@@ -1,7 +1,7 @@
 
 import { Component, inject, ViewEncapsulation } from '@angular/core';
 import { DdrConstantsService } from '../../services/ddr-constants.service';
-import { DdrBadgeNotificationDirective } from './ddr-badge-notification.directive';
+
 import { DdrBadgePillComponent } from '../ddr-badge-pill/ddr-badge-pill.component';
 
 @Component({
@@ -10,9 +10,8 @@ import { DdrBadgePillComponent } from '../ddr-badge-pill/ddr-badge-pill.componen
   styleUrls: ['./ddr-badge-notification.component.scss'],
   encapsulation: ViewEncapsulation.None,
   imports: [
-    DdrBadgePillComponent,
-    DdrBadgeNotificationDirective
-  ]
+    DdrBadgePillComponent
+    ]
 })
 export class DdrBadgeNotificationComponent {
 

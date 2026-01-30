@@ -1,4 +1,4 @@
-import { Directive, ElementRef, inject, Input, OnChanges, Renderer2, SimpleChanges, ViewContainerRef } from '@angular/core';
+import { Directive, ElementRef, inject, OnChanges, Renderer2, SimpleChanges, ViewContainerRef, input } from '@angular/core';
 import { DdrBadgeNotificationComponent } from './ddr-badge-notification.component';
 
 @Directive({
@@ -11,12 +11,12 @@ export class DdrBadgeNotificationDirective implements OnChanges {
   private readonly elementRef = inject(ElementRef)
   private readonly renderer: Renderer2 = inject(Renderer2)
 
-  @Input() showNotifications: boolean = true;
-  @Input() numberNotifications: number = 0;
-  @Input() limitNotifications: number = 9;
-  @Input() elementToInsert: string = '';
-  @Input() positionTop: string = '';
-  @Input() positionRight: string = '';
+  readonly showNotifications = input<boolean>(true);
+  readonly numberNotifications = input<number>(0);
+  readonly limitNotifications = input<number>(9);
+  readonly elementToInsert = input<string>('');
+  readonly positionTop = input<string>('');
+  readonly positionRight = input<string>('');
 
   public textNotification: string = '';
 
@@ -32,10 +32,10 @@ export class DdrBadgeNotificationDirective implements OnChanges {
   }
 
   checkNumbersNotification() {
-    if (this.numberNotifications > this.limitNotifications) {
-      this.textNotification = '+' + this.limitNotifications;
+    if (this.numberNotifications() > this.limitNotifications()) {
+      this.textNotification = '+' + this.limitNotifications();
     } else {
-      this.textNotification = this.numberNotifications.toString();
+      this.textNotification = this.numberNotifications().toString();
     }
   }
 
@@ -44,26 +44,29 @@ export class DdrBadgeNotificationDirective implements OnChanges {
     this.vc.clear();
 
     const compRef = this.vc.createComponent(DdrBadgeNotificationComponent)
-    compRef.instance.numberNotifications = this.numberNotifications;
-    compRef.instance.limitNotifications = this.limitNotifications;
+    compRef.instance.numberNotifications = this.numberNotifications();
+    compRef.instance.limitNotifications = this.limitNotifications();
     compRef.instance.textNotification = this.textNotification;
-    compRef.instance.showNotifications = this.showNotifications;
+    compRef.instance.showNotifications = this.showNotifications();
 
     this.renderer.setStyle(compRef.location.nativeElement, 'position', 'absolute');
-    if (this.positionTop) {
-      this.renderer.setStyle(compRef.location.nativeElement, 'top', this.positionTop);
+    const positionTop = this.positionTop();
+    if (positionTop) {
+      this.renderer.setStyle(compRef.location.nativeElement, 'top', positionTop);
     } else {
       this.renderer.setStyle(compRef.location.nativeElement, 'top', 'calc(0% - 10px)');
     }
-    if (this.positionRight) {
-      this.renderer.setStyle(compRef.location.nativeElement, 'right', this.positionRight);
+    const positionRight = this.positionRight();
+    if (positionRight) {
+      this.renderer.setStyle(compRef.location.nativeElement, 'right', positionRight);
     } else {
       this.renderer.setStyle(compRef.location.nativeElement, 'right', 'calc(0% - 10px)');
     }
 
     let el = null;
-    if (this.elementToInsert) {
-      el = this.elementRef.nativeElement.querySelector(this.elementToInsert)
+    const elementToInsert = this.elementToInsert();
+    if (elementToInsert) {
+      el = this.elementRef.nativeElement.querySelector(elementToInsert)
     } else {
       el = this.elementRef.nativeElement;
     }

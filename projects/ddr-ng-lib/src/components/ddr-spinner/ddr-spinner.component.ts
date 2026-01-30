@@ -1,18 +1,16 @@
-import { Component, Input, ViewEncapsulation } from '@angular/core';
-import { NgClass } from '@angular/common';
+import { Component, ViewEncapsulation, input } from '@angular/core';
+
 
 @Component({
   selector: 'ddr-spinner',
   templateUrl: './ddr-spinner.component.html',
   styleUrls: ['./ddr-spinner.component.scss'],
   encapsulation: ViewEncapsulation.None,
-  imports: [
-    NgClass
-  ]
+  
 })
 export class DdrSpinnerComponent {
 
-  @Input() pathImg: string = '';
+  readonly pathImg = input<string>('');
 
   public show: boolean = false;
   public embedded: boolean = false;

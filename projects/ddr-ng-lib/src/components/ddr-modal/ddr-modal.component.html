@@ -1,46 +1,42 @@
 @if (show) {
   <div class="row ddr-modal">
     <div class="ddr-overlay">
-      <div class="col-12 ddr-modal__content" [ngClass]="{
-        'ddr-modal__content--large': size == constants.SIZE.LARGE,
-        'ddr-modal__content--medium': size == constants.SIZE.MEDIUM,
-        'ddr-modal__content--small': size == constants.SIZE.SMALL
+      <div class="col-12 ddr-modal__content" [class]="{
+        'ddr-modal__content--large': size() == constants.SIZE.LARGE,
+        'ddr-modal__content--medium': size() == constants.SIZE.MEDIUM,
+        'ddr-modal__content--small': size() == constants.SIZE.SMALL
         }">
-        <div class="card" ddrClickOutside [clickOutsideEnabled]="clickOutsideEnabled" (clickOutside)="onClickOutside($event)">
+        <div class="card" ddrClickOutside [clickOutsideEnabled]="clickOutsideEnabled()" (clickOutside)="onClickOutside($event)">
           <div class="card-title">
             <div class="ddr-modal__content--title">
-              <ng-content select="[modal-title]"></ng-content>
+              <ng-content select="[modal-title]" />
             </div>
             <div class="ddr-modal__content--close">
               <i class="bi bi-x " (click)="onClose($event)"></i>
             </div>
           </div>
           <div class="card-body">
-            <ng-content select="[modal-content]"></ng-content>
+            <ng-content select="[modal-content]" />
           </div>
-          @if (type !== constants.MODAL.NO_BUTTONS) {
+          @if (type() !== constants.MODAL.NO_BUTTONS) {
             <div class="ddr-modal__content--card-buttons">
-              @if (type === constants.MODAL.INFO || type === constants.MODAL.CONFIRM) {
-                <ddr-button
-                  class="ddr-modal__content--card-buttons__button"
+              @if (type() === constants.MODAL.INFO || type() === constants.MODAL.CONFIRM) {
+                <ddr-button class="ddr-modal__content--card-buttons__button"
                   icon="bi bi-check"
-                  [text]="labelConfirm"
+                  [text]="labelConfirm()"
                   [mode]="constants.MODES_BUTTON.DANGER"
-                  [size]="sizeButton"
+                  [size]="sizeButton()"
                   (click)="onConfirm($event)"
-                  >
-                </ddr-button>
+                   />
               }
-              @if (type === constants.MODAL.CONFIRM) {
-                <ddr-button
-                  class="ddr-modal__content--card-buttons__button"
+              @if (type() === constants.MODAL.CONFIRM) {
+                <ddr-button class="ddr-modal__content--card-buttons__button"
                   icon="bi bi-x"
-                  [text]="labelClose"
+                  [text]="labelClose()"
                   [mode]="constants.MODES_BUTTON.DEFAULT"
-                  [size]="sizeButton"
+                  [size]="sizeButton()"
                   (click)="onClose($event)"
-                  >
-                </ddr-button>
+                   />
               }
             </div>
           }

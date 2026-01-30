@@ -9,15 +9,16 @@ export class DdrModalService {
   private modals: DdrModalComponent[] = [];
 
   add(modal: DdrModalComponent) {
-    if (!this.getModal(modal.id)) {
+    const id = modal.id();
+    if (!this.getModal(id)) {
       this.modals.push(modal);
     } else {
-      console.warn(`Modal with ID ${modal.id} is already registered`);
+      console.warn(`Modal with ID ${id} is already registered`);
     }
   }
 
   remove(id: string) {
-    this.modals = this.modals.filter(modal => modal.id !== id);
+    this.modals = this.modals.filter(modal => modal.id() !== id);
   }
 
   open(id: string) {
@@ -35,7 +36,7 @@ export class DdrModalService {
   }
 
   private getModal(id: string) {
-    return this.modals.find(modal => modal.id === id);
+    return this.modals.find(modal => modal.id() === id);
   }
 
 }

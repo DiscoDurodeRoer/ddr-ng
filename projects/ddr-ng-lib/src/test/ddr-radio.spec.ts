@@ -29,7 +29,7 @@ describe('DdrRadioComponent', () => {
             { label: 'C', value: 'c', selected: false },
             { label: 'C++', value: 'cpp', selected: false }
         ]
-        expect(component.options.length).toBe(6);
+        expect(component.options().length).toBe(6);
     });
 
     it('should click radio', async () => {

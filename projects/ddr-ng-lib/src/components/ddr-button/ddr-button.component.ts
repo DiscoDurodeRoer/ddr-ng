@@ -1,17 +1,18 @@
 
 import {
   Component,
-  EventEmitter,
   inject,
-  Input,
   OnInit,
-  Output,
   ViewEncapsulation,
+  input,
+  output,
+  signal,
+  WritableSignal
 } from '@angular/core';
 import { DdrConstantsService } from '../../services/ddr-constants.service';
 import { DdrTooltipDirective } from '../../directives/ddr-tooltip.directive';
-import { NgClass } from '@angular/common';
-import { DdrIconPositionButton, DdrModeButton, DdrOrientatioTooltip, DdrSize, DdrTypeButton } from '../../types/types';
+
+import { DdrIconPositionButton, DdrModeButton, DdrOrientation, DdrOrientatioTooltip, DdrSize, DdrTypeButton } from '../../types/types';
 import { DdrTranslatePipe } from '../../pipes/ddr-translate.pipe';
 
 @Component({
@@ -21,40 +22,41 @@ import { DdrTranslatePipe } from '../../pipes/ddr-translate.pipe';
   encapsulation: ViewEncapsulation.None,
   imports: [
     DdrTooltipDirective,
-    DdrTranslatePipe,
-    NgClass
-  ]
+    DdrTranslatePipe
+]
 })
 export class DdrButtonComponent implements OnInit {
 
   public readonly constants: DdrConstantsService = inject(DdrConstantsService)
 
-  @Input() icon?: string;
-  @Input() img?: string;
-  @Input() text?: string;
-  @Input() block: boolean = false;
-  @Input() disabled: boolean = false;
-  @Input() type: DdrTypeButton = this.constants.TYPE_BUTTON.BUTTON;
-  @Input() mode: DdrModeButton = this.constants.MODES_BUTTON.DEFAULT;
-  @Input() size: DdrSize = this.constants.SIZE.SMALL;
-  @Input() position?: string;
-  @Input() border: boolean = true;
-  @Input() floatButton: boolean = false;
-  @Input() iconPosition: DdrIconPositionButton = 'left';
-  @Input() tooltipText?: string;
-  @Input() tooltipOrientation: DdrOrientatioTooltip = this.constants.ORIENTATION.TOP;
-  @Input() transparent: boolean = false;
+  readonly icon = input<string>();
+  readonly img = input<string>();
+  readonly text = input<string>();
+  readonly block = input<boolean>(false);
+  readonly disabled = input<boolean>(false);
+  readonly type = input<DdrTypeButton>(this.constants.TYPE_BUTTON.BUTTON);
+  readonly mode = input<DdrModeButton>(this.constants.MODES_BUTTON.DEFAULT);
+  readonly size = input<DdrSize>(this.constants.SIZE.SMALL);
+  readonly position = input<string>();
+  readonly border = input<boolean>(true);
+  readonly floatButton = input<boolean>(false);
+  readonly iconPosition = input<DdrIconPositionButton>('left');
+  readonly tooltipText = input<string>();
+  readonly tooltipOrientation = input<DdrOrientatioTooltip>(this.constants.ORIENTATION.TOP);
+  readonly transparent = input<boolean>(false);
 
-  @Output() action: EventEmitter<MouseEvent> = new EventEmitter<MouseEvent>();
+  readonly action = output<MouseEvent>();
+
+  public positionButton: WritableSignal<DdrOrientation> = signal('');
 
   ngOnInit() {
-    if (this.floatButton && !this.position) {
+    if (this.floatButton() && !this.position()) {
       this.position = this.constants.ORIENTATION.BOTTOM_RIGHT;
     }
   }
 
   clickButton($event: any) {
-    if (!this.disabled) {
+    if (!this.disabled()) {
       this.action.emit($event);
     }
   }

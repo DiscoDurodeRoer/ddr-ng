@@ -9,15 +9,16 @@ export class DdrDetailService {
   private details: DdrDetailComponent[] = [];
 
   add(detail: DdrDetailComponent) {
-    if (!this.getDetail(detail.id)) {
+    const id = detail.id();
+    if (!this.getDetail(id)) {
       this.details.push(detail);
     } else {
-      console.warn(`Detail with ID ${detail.id} is already registered`);
+      console.warn(`Detail with ID ${id} is already registered`);
     }
   }
 
   remove(id: string) {
-    this.details = this.details.filter(detail => detail.id !== id);
+    this.details = this.details.filter(detail => detail.id() !== id);
   }
 
   open(id: string) {
@@ -35,7 +36,7 @@ export class DdrDetailService {
   }
 
   private getDetail(id: string) {
-    return this.details.find(detail => detail.id === id);
+    return this.details.find(detail => detail.id() === id);
   }
 
 }

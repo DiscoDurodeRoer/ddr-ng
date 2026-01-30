@@ -5,12 +5,12 @@
       <div card-content>
         <div class="row user-select-none">
           <div class="col-6 align-self-center text-start">
-            <span class="fs-2">{{component}}</span>
+            <span class="fs-2">{{component()}}</span>
           </div>
           <div class="col-6 align-self-center text-end">
             <ddr-badge-pill 
               class="text-end"
-              [text]="type + '.showcase' | ddrTranslate" 
+              [text]="type() + '.showcase' | ddrTranslate" 
               size="medium" 
               type="info" 
               [canClick]="false" />
@@ -19,42 +19,42 @@
       </div>
     </ddr-card>
 
-    @if (showDescription) {
+    @if (showDescription()) {
     <ddr-accordion [titleAccordion]="'description.showcase' | ddrTranslate" [open]="true">
-      <ng-content select="[description]" content-accordion></ng-content>
+      <ng-content select="[description]" content-accordion />
     </ddr-accordion>
     }
 
-    @if (showExamples) {
+    @if (showExamples()) {
     <ddr-accordion [titleAccordion]="'examples.showcase' | ddrTranslate" [open]="true">
-      <ng-content select="[examples]" content-accordion></ng-content>
+      <ng-content select="[examples]" content-accordion />
     </ddr-accordion>
     }
-    @if (showCode) {
+    @if (showCode()) {
     <ddr-accordion [titleAccordion]="'code.showcase' | ddrTranslate" [open]="true">
       <ddr-tabs content-accordion (changeTab)="highlight()">
-        @if(showCodeHTML){
+        @if(showCodeHTML()){
         <ddr-tab-item titleTab="HTML">
           <ng-template #tabContent>
             <pre class="language-markup"><code class="language-markup" >{{htmlCode}}</code></pre>
           </ng-template>
         </ddr-tab-item>
         }
-        @if(showCodeCSS){
+        @if(showCodeCSS()){
         <ddr-tab-item titleTab="CSS">
           <ng-template #tabContent>
             <pre class="language-css"><code class="language-css">{{cssCode}}</code></pre>
           </ng-template>
         </ddr-tab-item>
         }
-        @if(showCodeTS){
+        @if(showCodeTS()){
         <ddr-tab-item titleTab="TS">
           <ng-template #tabContent>
             <pre class="language-typescript"><code class="language-typescript">{{tsCode}}</code></pre>
           </ng-template>
         </ddr-tab-item>
         }
-        @if(showClasses){
+        @if(showClasses()){
           <ddr-tab-item [titleTab]="'classes.showcase' | ddrTranslate">
               <ng-template #tabContent>
               @for(class of classes; track class){
@@ -66,9 +66,9 @@
       </ddr-tabs>
     </ddr-accordion>
     }
-    @if (showInputs) {
+    @if (showInputs()) {
     <ddr-accordion [titleAccordion]="'inputs.showcase' | ddrTranslate" [open]="true">
-      <ng-content select="[inputs]" content-accordion></ng-content>
+      <ng-content select="[inputs]" content-accordion />
       <div content-accordion>
         <ddr-table 
           [cols]="colsInputs" 
@@ -86,7 +86,7 @@
       </div>
     </ddr-accordion>
     }
-    @if (showOutputs) {
+    @if (showOutputs()) {
     <ddr-accordion [titleAccordion]="'outputs.showcase' | ddrTranslate" [open]="true">
       <div content-accordion>
         <ddr-table 
@@ -103,7 +103,7 @@
       </div>
     </ddr-accordion>
     }
-    @if(showService){
+    @if(showService()){
     <ddr-accordion [titleAccordion]="'service.showcase' | ddrTranslate" [open]="true">
       <div content-accordion>
         @if(documentationComponent.service){
@@ -123,7 +123,7 @@
       </div>
     </ddr-accordion>
     }
-    @if(showStyles){
+    @if(showStyles()){
     <ddr-accordion [titleAccordion]="'styles.showcase' | ddrTranslate" [open]="true">
       <div content-accordion>
         <ddr-table 
@@ -140,7 +140,7 @@
       </div>
     </ddr-accordion>
     }
-    @if (showTranslations) {
+    @if (showTranslations()) {
     <ddr-accordion [titleAccordion]="'translations.showcase' | ddrTranslate" [open]="true">
       <div content-accordion>
         <ddr-table 
@@ -157,7 +157,7 @@
       </div>
     </ddr-accordion>
     }
-    @if (showTemplates) {
+    @if (showTemplates()) {
     <ddr-accordion [titleAccordion]="'templates.showcase' | ddrTranslate" [open]="true">
       <div content-accordion>
         <ddr-table 
@@ -175,7 +175,7 @@
       </div>
     </ddr-accordion>
     }
-    @if (showSlots) {
+    @if (showSlots()) {
     <ddr-accordion [titleAccordion]="'slots.showcase' | ddrTranslate" [open]="true">
       <div content-accordion>
         <ddr-table 

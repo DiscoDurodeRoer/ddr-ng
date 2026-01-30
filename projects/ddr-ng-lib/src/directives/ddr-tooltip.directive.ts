@@ -1,4 +1,4 @@
-import { Directive, ElementRef, HostListener, inject, Input, OnInit, Renderer2, TemplateRef, ViewContainerRef } from '@angular/core';
+import { Directive, ElementRef, HostListener, inject, OnInit, Renderer2, TemplateRef, ViewContainerRef, input } from '@angular/core';
 import { DdrConstantsService } from '../services/ddr-constants.service';
 import { DdrOrientatioTooltip } from '../types/types';
 
@@ -13,17 +13,17 @@ export class DdrTooltipDirective implements OnInit {
   private containerRef: ViewContainerRef = inject(ViewContainerRef)
   private constants: DdrConstantsService = inject(DdrConstantsService);
 
-  @Input() tooltipText?: string;
-  @Input() tooltipWidth?: string;
-  @Input() tooltipTemplate?: TemplateRef<any>;
-  @Input() tooltipTemplateData: any;
-  @Input() tooltipUnderline: boolean = false;
-  @Input() tooltipOrientation: DdrOrientatioTooltip = this.constants.ORIENTATION.TOP;
+  readonly tooltipText = input<string>();
+  readonly tooltipWidth = input<string>();
+  readonly tooltipTemplate = input<TemplateRef<any>>();
+  readonly tooltipTemplateData = input<any>();
+  readonly tooltipUnderline = input<boolean>(false);
+  readonly tooltipOrientation = input<DdrOrientatioTooltip>(this.constants.ORIENTATION.TOP);
 
   private tooltipElement!: HTMLElement;
 
   ngOnInit(): void {
-    if (this.tooltipUnderline) {
+    if (this.tooltipUnderline()) {
       this.renderer.setStyle(this.el.nativeElement, 'text-decoration-line', 'underline');
       this.renderer.setStyle(this.el.nativeElement, 'text-decoration-style', 'dotted');
       this.renderer.setStyle(this.el.nativeElement, 'text-decoration-thickness', '2px');
@@ -40,20 +40,23 @@ export class DdrTooltipDirective implements OnInit {
 
   showTooltip() {
 
-    if (this.tooltipText || this.tooltipTemplate) {
-      if (this.tooltipTemplate) {
-        const embeddedViewRef = this.containerRef.createEmbeddedView(this.tooltipTemplate, this.tooltipTemplateData);
+    const tooltipText = this.tooltipText();
+    const tooltipTemplate = this.tooltipTemplate();
+    if (tooltipText || tooltipTemplate) {
+      if (tooltipTemplate) {
+        const embeddedViewRef = this.containerRef.createEmbeddedView(tooltipTemplate, this.tooltipTemplateData());
         embeddedViewRef.detectChanges();
         this.tooltipElement = embeddedViewRef.rootNodes[0];
       } else {
         this.tooltipElement = document.createElement('span');
-        this.tooltipElement.innerText = this.tooltipText || '';
+        this.tooltipElement.innerText = tooltipText || '';
       }
       this.tooltipElement.className = 'ddr-tooltip user-select-none';
-      if (this.tooltipWidth) {
-        this.tooltipElement.style.width = this.tooltipWidth;
+      const tooltipWidth = this.tooltipWidth();
+      if (tooltipWidth) {
+        this.tooltipElement.style.width = tooltipWidth;
       }
-      switch (this.tooltipOrientation) {
+      switch (this.tooltipOrientation()) {
         case this.constants.ORIENTATION.TOP:
           this.tooltipElement.className += ' ddr-tooltip--top';
           break;

@@ -1,18 +1,18 @@
-<div class="ddr-tree" [ngClass]="{'ddr-tree--transparent': transparent}">
-  @if (nodes.length == 0) {
+<div class="ddr-tree" [class.ddr-tree--transparent]="transparent()">
+  @if (nodes().length == 0) {
     <div class="ddr-tree__no-data">
-      {{ labelNoData || ('tree.no.data' | ddrTranslate)}}
+      {{ labelNoData() || ('tree.no.data' | ddrTranslate)}}
     </div>
   }
-  @if (nodes.length > 0) {
-    @for (node of nodes; track node) {
-      <div class="row ddr-tree__container" [ngClass]="{'cursor-pointer': canClick}" (click)="onClickNode($event, node)">
-        <div class="col-12 ddr-tree__container__node" [ngClass]="{'border': border}">
-          <div class="ddr-tree__container__node__content" [ngClass]="{'ddr-tree__container__node__content--full-width': !node.children || node.children?.length == 0}">
-            @if (node.children && node.children.length > 0 && showIconArrow) {
+  @if (nodes().length > 0) {
+    @for (node of nodes(); track node) {
+      <div class="row ddr-tree__container" [class.cursor-pointer]="canClick()" (click)="onClickNode($event, node)">
+        <div class="col-12 ddr-tree__container__node" [class.border]="border()">
+          <div class="ddr-tree__container__node__content" [class.ddr-tree__container__node__content--full-width]="!node.children || node.children?.length == 0">
+            @if (node.children && node.children.length > 0 && showIconArrow()) {
               <span class="ddr-tree__container__node__content__icon" (click)="openNode(node, $event)">
                 @if (node.children) {
-                  <i class="bi" [ngClass]="{
+                  <i class="bi" [class]="{
                     'bi-chevron-down cursor-pointer': node.open,
                     'bi-chevron-right cursor-pointer': !node.open
                   }"></i>
@@ -27,35 +27,34 @@
             <span class="ddr-tree__container__node__content__text">{{ node.name | ddrTranslate }}</span>
             <span class="ddr-tree__container__node__content__custom">
               <ng-container 
-                [ngTemplateOutlet]="templateNodeOutside"
+                [ngTemplateOutlet]="templateNodeOutside()"
                 [ngTemplateOutletContext]="{item: node.data}" />
             </span>
           </div>
-          @if ((!actionsOnlyLeafs || (actionsOnlyLeafs && !node.children)) && (node.actions && node.actions.length > 0)) {
+          @if ((!actionsOnlyLeafs() || (actionsOnlyLeafs() && !node.children)) && (node.actions && node.actions.length > 0)) {
             <div class="ddr-tree__container__node__actions">
               <ddr-button-split class="text-end"
                 [actions]="node.actions"
                 [showFirstOnlyIcon]="true"
                 position="bottom-left"
-                (selectAction)="onSelectAction($event, node)">
-              </ddr-button-split>
+                (selectAction)="onSelectAction($event, node)" />
             </div>
           }
         </div>
         @if (node.open && node.children && node.children.length > 0) {
           <ddr-tree class="pe-0"
-            [border]="border"
-            [canClick]="canClick"
+            [border]="border()"
+            [canClick]="canClick()"
             [nodes]="node.children"
-            [actionsOnlyLeafs]="actionsOnlyLeafs"
-            [transparent]="transparent"
-            [showIconArrow]="showIconArrow"
+            [actionsOnlyLeafs]="actionsOnlyLeafs()"
+            [transparent]="transparent()"
+            [showIconArrow]="showIconArrow()"
             (selectAction)="onSelectAction($event)"
             (clickNode)="onSendData($event)">
-            @if(templateNodeOutside){
+            @if(templateNodeOutside()){
                <ng-template #templateNode let-item="item">
                 <ng-container 
-                  [ngTemplateOutlet]="templateNodeOutside"
+                  [ngTemplateOutlet]="templateNodeOutside()"
                   [ngTemplateOutletContext]="{ item }" />
               </ng-template>
             }

@@ -1,4 +1,4 @@
-import { Component, EventEmitter, forwardRef, inject, Input, Output, ViewEncapsulation } from '@angular/core';
+import { Component, forwardRef, inject, ViewEncapsulation, input, output } from '@angular/core';
 import { DdrOrientation, DdrOrientatioTooltip } from '../../types/types';
 import { DdrConstantsService } from '../../services/ddr-constants.service';
 import { DdrInputGroupComponent } from '../ddr-input-group/ddr-input-group.component';
@@ -29,20 +29,20 @@ export class DdrInputFileComponent extends DdrControlValueAccessor {
   public readonly constants: DdrConstantsService = inject(DdrConstantsService);
   private sanitizer: DomSanitizer = inject(DomSanitizer);
 
-  @Input() label?: string;
-  @Input() name: string = '';
-  @Input() inline: boolean = false;
-  @Input() disabled: boolean = false;
-  @Input() tooltipText?: string;
-  @Input() labelBold: boolean = false;
-  @Input() tooltipOrientation: DdrOrientatioTooltip = this.constants.ORIENTATION.BOTTOM;
-  @Input() required: boolean = false;
+  readonly label = input<string>();
+  readonly name = input<string>('');
+  readonly inline = input<boolean>(false);
+  readonly disabled = input<boolean>(false);
+  readonly tooltipText = input<string>();
+  readonly labelBold = input<boolean>(false);
+  readonly tooltipOrientation = input<DdrOrientatioTooltip>(this.constants.ORIENTATION.BOTTOM);
+  readonly required = input<boolean>(false);
 
-  @Input() multiple: boolean = false;
-  @Input() accept: string = '*';
+  readonly multiple = input<boolean>(false);
+  readonly accept = input<string>('*');
 
-  @Output() fileSelected = new EventEmitter<DdrFileHandle>();
-  @Output() filesSelected = new EventEmitter<DdrFileHandle[]>();
+  readonly fileSelected = output<DdrFileHandle>();
+  readonly filesSelected = output<DdrFileHandle[]>();
 
   public fileNames: string = ''
 
@@ -60,7 +60,7 @@ export class DdrInputFileComponent extends DdrControlValueAccessor {
         url: this.sanitizer.bypassSecurityTrustUrl(window.URL.createObjectURL(file))
       }))
 
-      if (this.multiple) {
+      if (this.multiple()) {
         this.value = Array.from(files).map((file: File) => file);
         this.fileNames = Array.from(files).map(f => f.name).join(', ');
         this.filesSelected.emit(ddrFiles);

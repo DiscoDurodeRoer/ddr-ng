@@ -1,9 +1,9 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, forwardRef, inject, Input, OnDestroy, OnInit, Output, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, forwardRef, inject, OnDestroy, OnInit, ViewEncapsulation, input, output } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { DdrControlValueAccessor } from '../ddr-ngmodel-base/ddr-control-value-accessor-base.component';
 import { DdrConstantsService } from '../../services/ddr-constants.service';
 import { DdrTooltipDirective } from '../../directives/ddr-tooltip.directive';
-import { NgClass } from '@angular/common';
+
 import { DdrOrientatioTooltip, DdrSize } from '../../types/types';
 import { Subscription } from 'rxjs';
 
@@ -14,10 +14,8 @@ import { Subscription } from 'rxjs';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
-    DdrControlValueAccessor,
-    DdrTooltipDirective,
-    NgClass
-  ],
+    DdrTooltipDirective
+],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
@@ -31,13 +29,13 @@ export class DdrToggleComponent extends DdrControlValueAccessor implements OnIni
   public readonly constants: DdrConstantsService = inject(DdrConstantsService);
   private changeDetectorRef: ChangeDetectorRef = inject(ChangeDetectorRef);
 
-  @Input() label?: string;
-  @Input() inline: boolean = false;
-  @Input() tooltipText?: string;
-  @Input() tooltipOrientation: DdrOrientatioTooltip = this.constants.ORIENTATION.BOTTOM;
-  @Input() size: DdrSize = this.constants.SIZE.MEDIUM;
+  readonly label = input<string>();
+  readonly inline = input<boolean>(false);
+  readonly tooltipText = input<string>();
+  readonly tooltipOrientation = input<DdrOrientatioTooltip>(this.constants.ORIENTATION.BOTTOM);
+  readonly size = input<DdrSize>(this.constants.SIZE.MEDIUM);
 
-  @Output() toggled: EventEmitter<boolean> = new EventEmitter<boolean>();
+  readonly toggled = output<boolean>();
 
   private subscription: Subscription = new Subscription();
 

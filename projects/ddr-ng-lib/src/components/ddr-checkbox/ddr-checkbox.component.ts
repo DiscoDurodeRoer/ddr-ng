@@ -1,9 +1,9 @@
-import { Component, forwardRef, Input, OnInit, Output, ViewEncapsulation, EventEmitter, OnDestroy } from '@angular/core';
+import { Component, forwardRef, OnInit, ViewEncapsulation, OnDestroy, input, output } from '@angular/core';
 import { FormsModule, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { DdrSelectItem } from '../../common/ddr-select-item.model';
 import { DdrControlValueAccessor } from '../ddr-ngmodel-base/ddr-control-value-accessor-base.component';
 import { DdrTranslatePipe } from '../../pipes/ddr-translate.pipe';
-import { NgClass } from '@angular/common';
+
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -13,10 +13,8 @@ import { Subscription } from 'rxjs';
   encapsulation: ViewEncapsulation.None,
   imports: [
     FormsModule,
-    DdrControlValueAccessor,
-    DdrTranslatePipe,
-    NgClass
-  ],
+    DdrTranslatePipe
+],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
@@ -27,12 +25,12 @@ import { Subscription } from 'rxjs';
 })
 export class DdrCheckboxComponent<T> extends DdrControlValueAccessor implements OnInit, OnDestroy {
 
-  @Input({ required: true }) options: DdrSelectItem<T>[] = [];
+  readonly options = input.required<DdrSelectItem<T>[]>();
 
-  @Input() disabled: boolean = false;
-  @Input() inline: boolean = false;
+  readonly disabled = input<boolean>(false);
+  readonly inline = input<boolean>(false);
 
-  @Output() clickCheck: EventEmitter<T[]> = new EventEmitter<T[]>();
+  readonly clickCheck = output<T[]>();
 
   private subscription: Subscription = new Subscription();
 
@@ -44,7 +42,7 @@ export class DdrCheckboxComponent<T> extends DdrControlValueAccessor implements 
     this.subscription = this.changeValue.subscribe({
       next: (value: T[]) => {
         if (value instanceof Array) {
-          const options = this.options.filter(s => value.find(v => JSON.stringify(v) == JSON.stringify(s.value)));
+          const options = this.options().filter(s => value.find(v => JSON.stringify(v) == JSON.stringify(s.value)));
           options.forEach(op => op.selected = true);
         }
       }
@@ -53,11 +51,11 @@ export class DdrCheckboxComponent<T> extends DdrControlValueAccessor implements 
 
   onClickCheck($event: MouseEvent, option: DdrSelectItem<T>) {
     $event?.stopPropagation();
-    if (!this.disabled) {
-      const optionFound = this.options.find(op => JSON.stringify(op.value) == JSON.stringify(option.value));
+    if (!this.disabled()) {
+      const optionFound = this.options().find(op => JSON.stringify(op.value) == JSON.stringify(option.value));
       if (optionFound) {
         optionFound.selected = !option.selected
-        this.value = this.options.filter(s => s.selected).map(s => s.value);
+        this.value = this.options().filter(s => s.selected).map(s => s.value);
         this.clickCheck.emit(this.value);
       }
     }

@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, inject, Input, OnInit } from '@angular/core';
+import { Component, OnInit, input } from '@angular/core';
 import { DdrAccordionComponent, DdrCardComponent, DdrTabItemComponent, DdrTableCol, DdrTableComponent, DdrTableItem, DdrTabsComponent, DdrTranslatePipe, DdrNestedPropertyPipe, DdrBadgePillComponent } from 'ddr-ng';
 import { COMPONENTS_DOCUMENTATION } from './bean/components-documentation';
 import { Documentation, DocumentationInput, DocumentationOutput, DocumentationTranslation, DocumentationTemplate, DocumentationSlot, DocumentationClass, DocumentationServiceMethod, DocumentationStyle } from './bean/documentation';
@@ -17,31 +17,28 @@ declare var Prism: any;
     DdrTranslatePipe,
     DdrNestedPropertyPipe,
     DdrBadgePillComponent
-  ],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  ]
 })
 export class BaseShowcaseComponent implements OnInit {
 
-  private changeDetectorRef: ChangeDetectorRef = inject(ChangeDetectorRef)
-
-  @Input({ required: true }) component!: string
-  @Input({ required: true }) type!: string
-  @Input() showDescription: boolean = true;
-  @Input() showExamples: boolean = true;
-  @Input() showCode: boolean = true;
-  @Input() showCodeHTML: boolean = true;
-  @Input() showCodeCSS: boolean = false;
-  @Input() showCodeTS: boolean = true;
-  @Input() showInputs: boolean = true;
-  @Input() showOutputs: boolean = true;
-  @Input() showTranslations: boolean = false;
-  @Input() showTemplates: boolean = false;
-  @Input() showSlots: boolean = false;
-  @Input() hasComponentChild: boolean = false;
-  @Input() showPossibleValues: boolean = true;
-  @Input() showClasses: boolean = false;
-  @Input() showService: boolean = false;
-  @Input() showStyles: boolean = false;
+  readonly component = input.required<string>();
+  readonly type = input.required<string>();
+  readonly showDescription = input<boolean>(true);
+  readonly showExamples = input<boolean>(true);
+  readonly showCode = input<boolean>(true);
+  readonly showCodeHTML = input<boolean>(true);
+  readonly showCodeCSS = input<boolean>(false);
+  readonly showCodeTS = input<boolean>(true);
+  readonly showInputs = input<boolean>(true);
+  readonly showOutputs = input<boolean>(true);
+  readonly showTranslations = input<boolean>(false);
+  readonly showTemplates = input<boolean>(false);
+  readonly showSlots = input<boolean>(false);
+  readonly hasComponentChild = input<boolean>(false);
+  readonly showPossibleValues = input<boolean>(true);
+  readonly showClasses = input<boolean>(false);
+  readonly showService = input<boolean>(false);
+  readonly showStyles = input<boolean>(false);
 
   public documentationComponent!: Documentation
 
@@ -155,7 +152,7 @@ export class BaseShowcaseComponent implements OnInit {
   public itemsStyles: DdrTableItem<DocumentationStyle>[] = [];
 
   ngOnInit(): void {
-    if (this.hasComponentChild) {
+    if (this.hasComponentChild()) {
       this.colsInputs.splice(1, 0, {
         label: 'inputs.component.showcase',
         property: 'component'
@@ -169,12 +166,13 @@ export class BaseShowcaseComponent implements OnInit {
         property: 'component'
       })
     }
-    if (!this.showPossibleValues) {
+    if (!this.showPossibleValues()) {
       this.colsInputs.splice(this.colsInputs.length - 1, 1)
     }
 
-    if (this.component) {
-      this.documentationComponent = COMPONENTS_DOCUMENTATION[this.component];
+    const component = this.component();
+    if (component) {
+      this.documentationComponent = COMPONENTS_DOCUMENTATION[component];
       this.itemsInputs = this.documentationComponent.inputs || [];
       this.itemsOutputs = this.documentationComponent.outputs || [];
       this.itemsTranslations = this.documentationComponent.translations || [];
@@ -187,10 +185,6 @@ export class BaseShowcaseComponent implements OnInit {
       this.itemsServiceMethods = this.documentationComponent.service?.methods || []
       this.itemsStyles = this.documentationComponent.styles || []
     }
-
-    setTimeout(() => {
-      this.changeDetectorRef.detectChanges();
-    }, 100);
     
   }
 

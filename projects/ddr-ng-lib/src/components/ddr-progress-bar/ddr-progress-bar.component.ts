@@ -1,23 +1,20 @@
-import { NgClass, NgStyle } from '@angular/common';
-import { Component, Input, ViewEncapsulation } from '@angular/core';
+
+import { Component, ViewEncapsulation, input } from '@angular/core';
 
 @Component({
   selector: 'ddr-progress-bar',
   templateUrl: './ddr-progress-bar.component.html',
   styleUrls: ['./ddr-progress-bar.component.scss'],
   encapsulation: ViewEncapsulation.None,
-  imports: [
-    NgClass,
-    NgStyle
-  ]
+  
 })
 export class DdrProgressBarComponent {
 
-  @Input({ required: true }) value: number = 0;
-  @Input() label?: string;
-  @Input() height: number = 16;
-  @Input() striped: boolean = false;
-  @Input() animated: boolean = false;
-  @Input() floatText: boolean = false;
+  readonly value = input.required<number>();
+  readonly label = input<string>();
+  readonly height = input<number>(16);
+  readonly striped = input<boolean>(false);
+  readonly animated = input<boolean>(false);
+  readonly floatText = input<boolean>(false);
 
 }

@@ -1,9 +1,9 @@
-import { AfterViewInit, ChangeDetectorRef, Component, ContentChildren, EventEmitter, forwardRef, inject, Input, OnDestroy, OnInit, Output, QueryList, ViewEncapsulation } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, forwardRef, inject, OnDestroy, OnInit, ViewEncapsulation, input, output, contentChildren } from '@angular/core';
 import { DdrStepComponent } from './ddr-step/ddr-step.component';
 import { DdrButtonComponent } from '../ddr-button/ddr-button.component';
-import { DdrToastComponent } from '../ddr-toast/ddr-toast.component';
+
 import { DdrTranslatePipe } from '../../pipes/ddr-translate.pipe';
-import { NgClass, NgTemplateOutlet } from '@angular/common';
+import { NgTemplateOutlet } from '@angular/common';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { DdrControlValueAccessor } from '../ddr-ngmodel-base/ddr-control-value-accessor-base.component';
 import { Subscription } from 'rxjs/internal/Subscription';
@@ -16,11 +16,8 @@ import { Subscription } from 'rxjs/internal/Subscription';
   imports: [
     DdrButtonComponent,
     DdrTranslatePipe,
-    DdrToastComponent,
-    NgClass,
     NgTemplateOutlet,
-    DdrControlValueAccessor
-  ],
+    ],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
@@ -33,47 +30,48 @@ export class DdrStepsComponent extends DdrControlValueAccessor implements OnInit
 
   private changeDetectorRef: ChangeDetectorRef = inject(ChangeDetectorRef);
 
-  @Input() openAll: boolean = false;
-  @Input() vertical: boolean = false;
-  @Input() canJumpStep: boolean = false;
-  @Input() showButtons: boolean = true;
-  @Input() leaveValidateVerticalOpened: boolean = false;
-  @Input() validateIcon: boolean = false;
-  @Input() labelNext?: string;
-  @Input() labelPrevious?: string;
+  readonly openAll = input<boolean>(false);
+  readonly vertical = input<boolean>(false);
+  readonly canJumpStep = input<boolean>(false);
+  readonly showButtons = input<boolean>(true);
+  readonly leaveValidateVerticalOpened = input<boolean>(false);
+  readonly validateIcon = input<boolean>(false);
+  readonly labelNext = input<string>();
+  readonly labelPrevious = input<string>();
 
-  @Output() changeStep: EventEmitter<number> = new EventEmitter<number>();
-  @Output() lastStep: EventEmitter<void> = new EventEmitter<void>();
+  readonly changeStep = output<number>();
+  readonly lastStep = output<void>();
 
-  @ContentChildren(DdrStepComponent) steps!: QueryList<DdrStepComponent>;
+  readonly steps = contentChildren(DdrStepComponent);
   private subscription: Subscription = new Subscription();
 
   ngOnInit(): void {
-    if (!this.showButtons) {
+    if (!this.showButtons()) {
       this.canJumpStep = true;
     }
 
     this.subscription = this.changeValue.subscribe({
       next: (indexTab: number) => {
 
-        if (this.steps && !this.openAll && !this.leaveValidateVerticalOpened) {
-          const steps = this.steps.toArray();
+        const stepsValue = this.steps();
+        if (stepsValue && !this.openAll() && !this.leaveValidateVerticalOpened()) {
+          const steps = stepsValue;
           for (let index = 0; index < steps.length; index++) {
             const step = steps[index];
             step.open = false;
           }
-          this.steps.toArray()[indexTab - 1].open = true;
+          stepsValue[indexTab - 1].open = true;
         }
       }
     })
   }
 
   ngAfterViewInit() {
-    const steps = this.steps.toArray();
+    const steps = this.steps;
     if (steps.length > 0) {
       for (let index = 0; index < steps.length; index++) {
         const step = steps[index];
-        if (((this.openAll && this.vertical) || (this.validateIcon && step.canGoNext)) || index == 0) {
+        if (((this.openAll() && this.vertical()) || (this.validateIcon() && step.canGoNext())) || index == 0) {
           step.open = true;
         }
         step.step = index + 1;
@@ -82,7 +80,7 @@ export class DdrStepsComponent extends DdrControlValueAccessor implements OnInit
       }
       this.value = 1;
     }
-    if (this.openAll && this.vertical) {
+    if (this.openAll() && this.vertical()) {
       this.canJumpStep = false;
     }
 
@@ -90,14 +88,16 @@ export class DdrStepsComponent extends DdrControlValueAccessor implements OnInit
   }
 
   goToStep(step: DdrStepComponent) {
-    if (this.canJumpStep && this.value != step.step) {
-      if (!this.vertical || ((this.vertical && !this.leaveValidateVerticalOpened) || !this.steps.toArray()[this.value - 1].canGoNext)) {
-        this.steps.toArray()[this.value - 1].open = false;
+    if (this.canJumpStep() && this.value != step.step) {
+      const vertical = this.vertical();
+      if (!vertical || ((vertical && !this.leaveValidateVerticalOpened()) || !this.steps[this.value - 1].canGoNext())) {
+        this.steps[this.value - 1].open = false;
       }
-      this.steps.toArray()[step.step - 1].open = true;
+      this.steps[step.step - 1].open = true;
       this.value = step.step;
       this.changeStep.emit(this.value);
-      if (this.steps.length == this.value) {
+      if (this.steps().length == this.value) {
+        // TODO: The 'emit' function requires a mandatory void argument
         this.lastStep.emit();
       }
     }
@@ -106,10 +106,11 @@ export class DdrStepsComponent extends DdrControlValueAccessor implements OnInit
   previous(step: DdrStepComponent) {
     const index = step.step - 2;
     step.open = false;
-    this.steps.toArray()[index].open = true;
+    this.steps[index].open = true;
     this.value = step.step - 1;
     this.changeStep.emit(this.value);
-    if (this.steps.length == this.value) {
+    if (this.steps().length == this.value) {
+      // TODO: The 'emit' function requires a mandatory void argument
       this.lastStep.emit();
     }
   }
@@ -117,10 +118,11 @@ export class DdrStepsComponent extends DdrControlValueAccessor implements OnInit
   next(step: DdrStepComponent) {
     const index = step.step;
     step.open = false;
-    this.steps.toArray()[index].open = true;
+    this.steps[index].open = true;
     this.value = step.step + 1;
     this.changeStep.emit(this.value);
-    if (this.steps.length == this.value) {
+    if (this.steps().length == this.value) {
+      // TODO: The 'emit' function requires a mandatory void argument
       this.lastStep.emit();
     }
   }

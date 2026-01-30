@@ -78,7 +78,7 @@ describe('DdrDropdownMultipleComponent', () => {
       { value: 'Value3' }
     ]);
 
-    expect(component.dropdown!.valueShow).toBe('Label2, Label3');
+    expect(component.dropdown()!.valueShow).toBe('Label2, Label3');
 
     expect(component.selectItems.emit).withContext('El evento selectItem no debe lanzarse').not.toHaveBeenCalledWith([
       {
@@ -112,7 +112,7 @@ describe('DdrDropdownMultipleComponent', () => {
     expect(component.value).toEqual([
       { value: 'Value1' }
     ]);
-    expect(component.dropdown!.valueShow).toBe('Label1');
+    expect(component.dropdown()!.valueShow).toBe('Label1');
     expect(component.selectItems.emit).withContext('El evento selectItems debe lanzarse').toHaveBeenCalledWith([
       {
         label: 'Label1',
@@ -128,7 +128,7 @@ describe('DdrDropdownMultipleComponent', () => {
       { value: 'Value1' },
       { value: 'Value2' }
     ]);
-    expect(component.dropdown!.valueShow).toBe('Label1, Label2');
+    expect(component.dropdown()!.valueShow).toBe('Label1, Label2');
     expect(component.selectItems.emit).withContext('El evento selectItems debe lanzarse').toHaveBeenCalledWith([
       {
         label: 'Label1',
@@ -147,7 +147,7 @@ describe('DdrDropdownMultipleComponent', () => {
     expect(component.value).toEqual([
       { value: 'Value1' }
     ]);
-    expect(component.dropdown!.valueShow).toBe('Label1');
+    expect(component.dropdown()!.valueShow).toBe('Label1');
     expect(component.selectItems.emit).withContext('El evento selectItems debe lanzarse').toHaveBeenCalledWith([
       {
         label: 'Label1',
@@ -158,7 +158,7 @@ describe('DdrDropdownMultipleComponent', () => {
     firstElement.triggerEventHandler('click');
 
     expect(component.value).toEqual([]);
-    expect(component.dropdown!.valueShow).toBe('');
+    expect(component.dropdown()!.valueShow).toBe('');
     expect(component.selectItems.emit).withContext('El evento selectItems debe lanzarse').toHaveBeenCalledWith([]);
 
   });
@@ -186,7 +186,7 @@ describe('DdrDropdownMultipleComponent', () => {
     expect(component.value).toEqual([
       { value: 'Value1' }
     ]);
-    expect(component.dropdown!.valueShow).toBe('Label1');
+    expect(component.dropdown()!.valueShow).toBe('Label1');
     expect(component.selectItems.emit).withContext('El evento selectItems debe lanzarse').toHaveBeenCalledWith([
       {
         label: 'Label1',
@@ -202,7 +202,7 @@ describe('DdrDropdownMultipleComponent', () => {
       { value: 'Value1' },
       { value: 'Value2' }
     ]);
-    expect(component.dropdown!.valueShow).toBe('Label1, Label2');
+    expect(component.dropdown()!.valueShow).toBe('Label1, Label2');
     expect(component.selectItems.emit).withContext('El evento selectItems debe lanzarse').toHaveBeenCalledWith([
       {
         label: 'Label1',
@@ -221,7 +221,7 @@ describe('DdrDropdownMultipleComponent', () => {
     expect(component.value).toEqual([
       { value: 'Value1' }
     ]);
-    expect(component.dropdown!.valueShow).toBe('Label1');
+    expect(component.dropdown()!.valueShow).toBe('Label1');
     expect(component.selectItems.emit).withContext('El evento selectItems debe lanzarse').toHaveBeenCalledWith([
       {
         label: 'Label1',
@@ -232,7 +232,7 @@ describe('DdrDropdownMultipleComponent', () => {
     firstElement.triggerEventHandler('click');
 
     expect(component.value).toEqual([]);
-    expect(component.dropdown!.valueShow).toBe('');
+    expect(component.dropdown()!.valueShow).toBe('');
     expect(component.selectItems.emit).withContext('El evento selectItems debe lanzarse').toHaveBeenCalledWith([]);
 
   });
@@ -255,14 +255,14 @@ describe('DdrDropdownMultipleComponent', () => {
       { value: 'Value1' },
       { value: 'Value2' }
     ]);
-    expect(component.dropdown!.valueShow).toBe('Label1, Label2');
+    expect(component.dropdown()!.valueShow).toBe('Label1, Label2');
     fixture.detectChanges();
 
     component.writeValue(null);
     fixture.detectChanges();
 
     expect(component.value).toEqual(null);
-    expect(component.dropdown!.valueShow).toBe('');
+    expect(component.dropdown()!.valueShow).toBe('');
     fixture.detectChanges();
 
   });

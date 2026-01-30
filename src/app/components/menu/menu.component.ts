@@ -1,4 +1,4 @@
-import { Component, EventEmitter, inject, Input, OnInit, Output } from '@angular/core';
+import { Component, inject, OnInit, input, output } from '@angular/core';
 import { MENU_ITEMS } from './bean/menu-items';
 import { Router } from '@angular/router';
 import { DdrCardComponent, DdrTreeComponent } from 'ddr-ng';
@@ -16,9 +16,9 @@ export class MenuComponent implements OnInit {
 
   private router: Router = inject(Router);
 
-  @Input() transparent: boolean = false;
+  readonly transparent = input<boolean>(false);
 
-  @Output() clickItem: EventEmitter<void> = new EventEmitter<void>()
+  readonly clickItem = output<void>();
 
   public menuItems = MENU_ITEMS
 
@@ -39,6 +39,7 @@ export class MenuComponent implements OnInit {
   goTo(data: any) {
     if (data) {
       this.router.navigate([data.route])
+      // TODO: The 'emit' function requires a mandatory void argument
       this.clickItem.emit();
     }
   }

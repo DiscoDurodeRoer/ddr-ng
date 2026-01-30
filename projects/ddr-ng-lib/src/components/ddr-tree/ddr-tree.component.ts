@@ -1,9 +1,9 @@
-import { Component, ContentChild, EventEmitter, Input, OnChanges, Output, SimpleChanges, TemplateRef } from '@angular/core';
+import { Component, OnChanges, SimpleChanges, TemplateRef, input, output, contentChild } from '@angular/core';
 import { DdrTreeNode } from './bean/ddr-tree-node';
 import { DdrAction } from '../../common/ddr-action.model';
 import { DdrButtonSplitComponent } from '../ddr-button-split/ddr-button-split.component';
 import { DdrTranslatePipe } from '../../pipes/ddr-translate.pipe';
-import { NgClass, NgTemplateOutlet } from '@angular/common';
+import { NgTemplateOutlet } from '@angular/common';
 
 @Component({
   selector: 'ddr-tree',
@@ -12,38 +12,39 @@ import { NgClass, NgTemplateOutlet } from '@angular/common';
   imports: [
     DdrButtonSplitComponent,
     DdrTranslatePipe,
-    NgClass,
     NgTemplateOutlet
-  ]
+]
 })
 export class DdrTreeComponent<T> implements OnChanges {
 
-  @Input() border: boolean = false;
-  @Input() open: boolean = false;
-  @Input() canClick: boolean = true;
-  @Input() showIconArrow: boolean = true;
-  @Input() actionsOnlyLeafs: boolean = false;
-  @Input() nodes: DdrTreeNode<T>[] = [];
-  @Input() transparent: boolean = false;
+  readonly border = input<boolean>(false);
+  readonly open = input<boolean>(false);
+  readonly canClick = input<boolean>(true);
+  readonly showIconArrow = input<boolean>(true);
+  readonly actionsOnlyLeafs = input<boolean>(false);
+  readonly nodes = input<DdrTreeNode<T>[]>([]);
+  readonly transparent = input<boolean>(false);
 
-  @ContentChild("templateNode", { static: false }) templateNodeOutside!: TemplateRef<any> | null;
+  readonly templateNodeOutside = contentChild.required<TemplateRef<any> | null>("templateNode");
 
   // Translations
-  @Input() labelNoData?: string;
+  readonly labelNoData = input<string>();
 
-  @Output() selectAction: EventEmitter<DdrAction<T>> = new EventEmitter<DdrAction<T>>();
-  @Output() clickNode: EventEmitter<T> = new EventEmitter<T>();
+  readonly selectAction = output<DdrAction<T>>();
+  readonly clickNode = output<T>();
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes) {
+      const nodes = this.nodes();
+      const open = this.open();
       if (changes['nodes']) {
-        this.nodes = [...this.nodes]
-        if (this.open) {
-          this.setOpenRecursive(this.nodes, this.open)
+        this.nodes = [...this.nodes()]
+        if (open) {
+          this.setOpenRecursive(nodes, open)
         }
       }
       if (changes['open']) {
-        this.setOpenRecursive(this.nodes, this.open)
+        this.setOpenRecursive(nodes, open)
       }
     }
   }
@@ -71,7 +72,7 @@ export class DdrTreeComponent<T> implements OnChanges {
   }
 
   onClickNode(event: MouseEvent, node: DdrTreeNode<T>) {
-    if (this.canClick) {
+    if (this.canClick()) {
       event?.stopPropagation();
       this.clickNode.emit(node.data);
       if (node.children && node.children.length > 0) {

@@ -1,11 +1,11 @@
-import { Directive, EventEmitter, Output, HostListener, ElementRef, inject } from '@angular/core';
+import { Directive, HostListener, ElementRef, inject, output } from '@angular/core';
 
 @Directive({
   selector: '[ddrLoadIframe]'
 })
 export class DdrLoadIframeDirective {
 
-  @Output() loadIframe: EventEmitter<void> = new EventEmitter<void>();
+  readonly loadIframe = output<void>();
 
   private el: ElementRef = inject(ElementRef);
 
@@ -18,6 +18,7 @@ export class DdrLoadIframeDirective {
       const doc = (iframe as HTMLIFrameElement).contentDocument;
 
       if (!doc || doc.body.children.length > 0) {
+        // TODO: The 'emit' function requires a mandatory void argument
         this.loadIframe.emit();
       }
     }

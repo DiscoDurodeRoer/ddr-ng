@@ -1,4 +1,4 @@
-import { Directive, Input, Output, EventEmitter, HostListener, ElementRef, inject } from '@angular/core';
+import { Directive, HostListener, ElementRef, inject, input, output } from '@angular/core';
 
 @Directive({
   selector: '[ddrClickOutside]',
@@ -6,26 +6,27 @@ import { Directive, Input, Output, EventEmitter, HostListener, ElementRef, injec
 })
 export class DdrClickOutsideDirective {
 
-  @Input() clickOutsideEnabled: boolean = true;
-  @Input() clickOutsideDelay?: number;
+  readonly clickOutsideEnabled = input<boolean>(true);
+  readonly clickOutsideDelay = input<number>();
 
-  @Output() clickOutside = new EventEmitter<MouseEvent>();
+  readonly clickOutside = output<MouseEvent>();
 
   private elementRef: ElementRef = inject(ElementRef);
 
   @HostListener('document:click', ['$event'])
   public onDocumentClick(event: MouseEvent) {
 
-    if (this.clickOutsideEnabled) {
+    if (this.clickOutsideEnabled()) {
 
       const target = event.target as HTMLElement;
 
       if (target && !this.elementRef.nativeElement.contains(target)) {
 
-        if (this.clickOutsideDelay) {
+        const clickOutsideDelay = this.clickOutsideDelay();
+        if (clickOutsideDelay) {
           setTimeout(() => {
             this.clickOutside.emit(event);
-          }, this.clickOutsideDelay);
+          }, clickOutsideDelay);
         } else {
           this.clickOutside.emit(event);
         }

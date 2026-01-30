@@ -1,19 +1,19 @@
-@if (show && orientation == constants.ORIENTATION.LEFT) {
+@if (show && orientation() == constants.ORIENTATION.LEFT) {
 <div class="ddr-detail" [@slide-left]>
   <ng-container [ngTemplateOutlet]="contentDetail" />
 </div>
 }
-@if (show && orientation == constants.ORIENTATION.RIGHT) {
+@if (show && orientation() == constants.ORIENTATION.RIGHT) {
 <div class="ddr-detail" [@slide-right]>
   <ng-container [ngTemplateOutlet]="contentDetail" />
 </div>
 }
-@if (show && orientation == constants.ORIENTATION.TOP) {
+@if (show && orientation() == constants.ORIENTATION.TOP) {
 <div class="ddr-detail" [@slide-top]>
   <ng-container [ngTemplateOutlet]="contentDetail" />
 </div>
 }
-@if (show && orientation == constants.ORIENTATION.BOTTOM) {
+@if (show && orientation() == constants.ORIENTATION.BOTTOM) {
 <div class="ddr-detail" [@slide-bottom]>
   <ng-container [ngTemplateOutlet]="contentDetail" />
 </div>
@@ -21,7 +21,7 @@
 <ng-template #contentDetail>
   <div class="row ddr-detail__content">
     <div class="col-lg-10 col-md-9 col-10 ddr-detail__content--title">
-      <ng-content select="[detail-title]"></ng-content>
+      <ng-content select="[detail-title]" />
     </div>
     <div class="col-lg-2 col-md-3 col-2 text-end ddr-detail__content--close">
       <i class="bi bi-x" (click)="closeDetail()"></i>
@@ -29,7 +29,7 @@
   </div>
   <div class="row">
     <div class="col-12">
-      <ng-content select="[detail-content]"></ng-content>
+      <ng-content select="[detail-content]" />
     </div>
   </div>
 </ng-template>

@@ -1,7 +1,7 @@
 import { animate, group, state, style, transition, trigger } from '@angular/animations';
-import { AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, EventEmitter, inject, Input, Output, ViewChild, ViewEncapsulation } from '@angular/core';
-import { DdrButtonComponent } from '../ddr-button/ddr-button.component';
-import { NgClass } from '@angular/common';
+import { AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, inject, ViewEncapsulation, input, output, viewChild } from '@angular/core';
+
+
 
 @Component({
   selector: 'ddr-accordion',
@@ -9,10 +9,7 @@ import { NgClass } from '@angular/common';
   styleUrls: ['./ddr-accordion.component.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [
-    DdrButtonComponent,
-    NgClass
-  ],
+  imports: [],
   animations: [
     trigger('slideInOut', [
       state('open', style({ height: '*' })),
@@ -27,24 +24,24 @@ export class DdrAccordionComponent implements AfterViewInit {
 
   private changeDetectorRef: ChangeDetectorRef = inject(ChangeDetectorRef);
 
-  @Input({ required: true }) titleAccordion!: string;
-  @Input() open: boolean = false;
-  @Input() shadow: boolean = true;
-  @Input() border: boolean = true;
-  @Input() slim: boolean = false;
+  readonly titleAccordion = input.required<string>();
+  readonly open = input<boolean>(false);
+  readonly shadow = input<boolean>(true);
+  readonly border = input<boolean>(true);
+  readonly slim = input<boolean>(false);
 
-  @Output() clickOpen: EventEmitter<boolean> = new EventEmitter<boolean>();
+  readonly clickOpen = output<boolean>();
 
-  @ViewChild("contentAccordion") contentAccordion!: ElementRef;
+  readonly contentAccordion = viewChild.required<ElementRef>("contentAccordion");
 
   public state: string = 'close';
   public animate = false;
 
   ngAfterViewInit() {
 
-    if (this.open) {
+    if (this.open()) {
       this.state = 'open';
-      this.contentAccordion.nativeElement.style.overflow = 'inherit';
+      this.contentAccordion().nativeElement.style.overflow = 'inherit';
     }
 
     setTimeout(() => {
@@ -58,18 +55,18 @@ export class DdrAccordionComponent implements AfterViewInit {
 
     this.state = this.state == 'open' ? 'close' : 'open';
 
-    this.contentAccordion.nativeElement.style.overflow = 'hidden';
+    this.contentAccordion().nativeElement.style.overflow = 'hidden';
     if (this.state == 'close') {
       setTimeout(() => {
-        this.open = !this.open;
-        this.clickOpen.emit(this.open);
+        this.open = !this.open();
+        this.clickOpen.emit(this.open());
         this.changeDetectorRef.detectChanges();
       }, 400);
     } else {
-      this.open = !this.open;
-      this.clickOpen.emit(this.open);
+      this.open = !this.open();
+      this.clickOpen.emit(this.open());
       setTimeout(() => {
-        this.contentAccordion.nativeElement.style.overflow = 'inherit';
+        this.contentAccordion().nativeElement.style.overflow = 'inherit';
         this.changeDetectorRef.detectChanges();
       }, 400);
     }

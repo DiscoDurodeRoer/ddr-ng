@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, EventEmitter, forwardRef, Input, OnChanges, OnDestroy, OnInit, Output, SimpleChanges, ViewEncapsulation } from '@angular/core';
+import { AfterViewInit, Component, forwardRef, OnChanges, OnDestroy, OnInit, SimpleChanges, ViewEncapsulation, input, output } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { DdrControlValueAccessor } from '../ddr-ngmodel-base/ddr-control-value-accessor-base.component';
 import { DdrSelectItem } from '../../common/ddr-select-item.model';
@@ -23,14 +23,14 @@ import { Subscription } from 'rxjs/internal/Subscription';
 })
 export class DdrCheckboxBinaryComponent extends DdrControlValueAccessor implements OnChanges, AfterViewInit, OnDestroy {
 
-  @Input() disabled: boolean = false;
-  @Input({ required: false }) label?: string;
+  readonly disabled = input<boolean>(false);
+  readonly label = input<string>();
 
-  @Output() clickCheck: EventEmitter<boolean> = new EventEmitter<boolean>();
+  readonly clickCheck = output<boolean>();
 
   public options: DdrSelectItem<boolean>[] = [
     {
-      label: this.label || '',
+      label: this.label() || '',
       value: this.value || false
     }
   ];
@@ -40,7 +40,7 @@ export class DdrCheckboxBinaryComponent extends DdrControlValueAccessor implemen
     if (changes['label']) {
       this.options = [
         {
-          label: this.label || '',
+          label: this.label() || '',
           value: this.value || false
         }
       ]

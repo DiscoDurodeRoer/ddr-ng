@@ -1,9 +1,9 @@
-<div class="ddr-radio" [ngClass]="{'flex-row flex-wrap': inline,'flex-column': !inline}">
-  @for (option of options; track option) {
-    <div class="ddr-radio__container user-select-none" [ngClass]="{'me-4': inline}">
+<div class="ddr-radio" [class]="{'flex-row flex-wrap': inline(),'flex-column': !inline()}">
+  @for (option of options(); track option) {
+    <div class="ddr-radio__container user-select-none" [class.me-4]="inline()">
       <div
         class="ddr-radio__container--input"
-        [ngClass]="{
+        [class]="{
           'ddr-radio__container--input--active': option.selected, 'ddr-radio__container--input--desactive': !option.selected
         }"
         (click)="onclickRadio(option)">

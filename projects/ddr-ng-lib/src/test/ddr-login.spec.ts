@@ -53,7 +53,7 @@ describe('DdrLoginComponent', () => {
             password: 'Test'
         }
 
-        expect(button.type).withContext('El boton debe ser de tipo submit').toBe(ddrConstantsService.TYPE_BUTTON.SUBMIT);
+        expect(button.type()).withContext('El boton debe ser de tipo submit').toBe(ddrConstantsService.TYPE_BUTTON.SUBMIT);
 
         spyOn(component, 'login');
         form.dispatchEvent(new Event('submit'));

@@ -1,25 +1,25 @@
 <div class="row ddr-steps">
   <div class="col-12">
     <!-- Horizontal -->
-    @if (!vertical) {
+    @if (!vertical()) {
       <div class="ddr-steps__horizontal">
-        @for (step of steps; track step) {
-          <div class="ddr-steps__horizontal__info-step" [ngClass]="{'ddr-steps__horizontal__info-step--hover': canJumpStep, 'cursor-default': !canJumpStep}" (click)="goToStep(step)">
-            <div class="ddr-steps__horizontal__info-step__number-step" [ngClass]="{
+        @for (step of steps(); track step) {
+          <div class="ddr-steps__horizontal__info-step" [class]="{'ddr-steps__horizontal__info-step--hover': canJumpStep(), 'cursor-default': !canJumpStep()}" (click)="goToStep(step)">
+            <div class="ddr-steps__horizontal__info-step__number-step" [class]="{
               'ddr-steps__horizontal__info-step__number-step--open': step.open,
               'ddr-steps__horizontal__info-step__number-step--closed': !step.open
               }">
-              @if (!validateIcon || (validateIcon && step.canGoNext == false)) {
+              @if (!validateIcon() || (validateIcon() && step.canGoNext() == false)) {
                 <span>{{step.step}}</span>
               }
-              @if (validateIcon && step.canGoNext) {
+              @if (validateIcon() && step.canGoNext()) {
                 <span>
                   <i class="bi bi-check"></i>
                 </span>
               }
             </div>
             <div class="ddr-steps__horizontal__info-step__title-step">
-              <span>{{step.titleStep}}</span>
+              <span>{{step.titleStep()}}</span>
             </div>
           </div>
           @if (!step.lastStep) {
@@ -28,24 +28,20 @@
         }
       </div>
       <div class="ddr-steps__template">
-        @for (step of steps; track step) {
+        @for (step of steps(); track step) {
           @if (step.open) {
             <div class="ddr-steps__template__content">
-              <ng-container [ngTemplateOutlet]="step.stepContentTemplate"/>
-              @if (showButtons && !openAll && !step.firstStep) {
-                <ddr-button
-                  class="me-1"
-                  [text]="labelPrevious || ('previous' | ddrTranslate)"
-                  (action)="previous(step)">
-                </ddr-button>
+              <ng-container [ngTemplateOutlet]="step.stepContentTemplate()"/>
+              @if (showButtons() && !openAll() && !step.firstStep) {
+                <ddr-button class="me-1"
+                  [text]="labelPrevious() || ('previous' | ddrTranslate)"
+                  (action)="previous(step)" />
               }
-              @if (showButtons && !openAll && !step.lastStep) {
-                <ddr-button
-                  class="me-1"
-                  [disabled]="!step.canGoNext"
-                  [text]="labelNext || ('next' | ddrTranslate)"
-                  (action)="next(step)">
-                </ddr-button>
+              @if (showButtons() && !openAll() && !step.lastStep) {
+                <ddr-button class="me-1"
+                  [disabled]="!step.canGoNext()"
+                  [text]="labelNext() || ('next' | ddrTranslate)"
+                  (action)="next(step)" />
               }
             </div>
           }
@@ -53,45 +49,45 @@
       </div>
     }
     <!-- Vertical -->
-    @if (vertical) {
-      @for (step of steps; track step) {
-        <div class="row ddr-steps__vertical__info-step" [ngClass]="{'ddr-steps__vertical__info-step--hover': canJumpStep, 'cursor-default': !canJumpStep}" (click)="goToStep(step)">
+    @if (vertical()) {
+      @for (step of steps(); track step) {
+        <div class="row ddr-steps__vertical__info-step" [class]="{'ddr-steps__vertical__info-step--hover': canJumpStep(), 'cursor-default': !canJumpStep()}" (click)="goToStep(step)">
           <div class="col-12">
-            <div class="ddr-steps__vertical__info-step__number-step" [ngClass]="{
+            <div class="ddr-steps__vertical__info-step__number-step" [class]="{
               'ddr-steps__vertical__info-step__number-step--open': step.open,
               'ddr-steps__vertical__info-step__number-step--closed': !step.open
               }">
-              @if (!validateIcon || (validateIcon && !step.canGoNext)) {
+              @if (!validateIcon() || (validateIcon() && !step.canGoNext())) {
                 <span>{{step.step}}</span>
               }
-              @if (validateIcon && step.canGoNext) {
+              @if (validateIcon() && step.canGoNext()) {
                 <span>
                   <i class="bi bi-check"></i>
                 </span>
               }
             </div>
             <div class="ddr-steps__vertical__info-step__title-step">
-              <span>{{step.titleStep}}</span>
+              <span>{{step.titleStep()}}</span>
             </div>
           </div>
         </div>
-        <div class="ddr-steps__template" [ngClass]="{'ddr-steps__template--line': !step.lastStep}">
+        <div class="ddr-steps__template" [class.ddr-steps__template--line]="!step.lastStep">
           @if (step.open) {
             <div class="ddr-steps__template__content">
-              @if(step.stepContentTemplate){
-                <ng-container [ngTemplateOutlet]="step.stepContentTemplate"/>
+              @if(step.stepContentTemplate()){
+                <ng-container [ngTemplateOutlet]="step.stepContentTemplate()"/>
               }
-              @if (showButtons && !openAll && !step.firstStep) {
+              @if (showButtons() && !openAll() && !step.firstStep) {
                 <ddr-button
                   class="me-1 mt-1 mb-1"
-                  [text]="labelPrevious || ('previous' | ddrTranslate)"
+                  [text]="labelPrevious() || ('previous' | ddrTranslate)"
                   (action)="previous(step)" />
               }
-              @if (showButtons && !openAll && !step.lastStep) {
+              @if (showButtons() && !openAll() && !step.lastStep) {
                 <ddr-button
                   class="me-1 mt-1 mb-1"
-                  [disabled]="!step.canGoNext"
-                  [text]="labelNext || ('next' | ddrTranslate)"
+                  [disabled]="!step.canGoNext()"
+                  [text]="labelNext() || ('next' | ddrTranslate)"
                   (action)="next(step)" />
               }
             </div>

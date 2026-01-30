@@ -1,6 +1,6 @@
 <div class="ddr-login d-flex h-100 m-auto">
 
-  <ddr-card class="m-auto" [showHeader]="showHeader" [showFooter]="showFooter">
+  <ddr-card class="m-auto" [showHeader]="showHeader()" [showFooter]="showFooter()">
 
     <div card-title>
       <ng-content select="[login-header]" />
@@ -12,10 +12,10 @@
           <div class="col-12">
             <ddr-input 
               class="ddr-login__user-input"
-              [label]="showLabelUser ? labelUsername || ('login.username' | ddrTranslate) : ''"
-              [placeholder]="labelPlaceholderUsername || ('login.placeholder.username' | ddrTranslate)" 
+              [label]="showLabelUser() ? labelUsername() || ('login.username' | ddrTranslate) : ''"
+              [placeholder]="labelPlaceholderUsername() || ('login.placeholder.username' | ddrTranslate)" 
               [border]="true"
-              [required]="userRequired"
+              [required]="userRequired()"
               [size]="constants.SIZE.MEDIUM" 
               name="username"
               autocomplete="username"
@@ -26,9 +26,9 @@
         <div class="row g-0">
           <div class="col-12">
             <ddr-input-password class="ddr-login__input-password"
-              [label]="showLabelPassword ? labelPassword || ('login.password' | ddrTranslate) : ''"
-              [placeholder]="labelPlaceholderPassword || ('login.placeholder.password' | ddrTranslate)"
-              [required]="userPassword"
+              [label]="showLabelPassword() ? labelPassword() || ('login.password' | ddrTranslate) : ''"
+              [placeholder]="labelPlaceholderPassword() || ('login.placeholder.password' | ddrTranslate)"
+              [required]="userPassword()"
               name="password"
               [(ngModel)]="user.password" />
           </div>
@@ -39,26 +39,26 @@
             <ddr-button class="ddr-login__submit-button"
               [block]="true"
               [type]="constants.TYPE_BUTTON.SUBMIT" 
-              [text]="labelSubmit || ('login.submit' | ddrTranslate)"
+              [text]="labelSubmit() || ('login.submit' | ddrTranslate)"
               [size]="constants.SIZE.MEDIUM" />
           </div>
         </div>
 
-        @if(showForgotPassword || showCreateUser){
+        @if(showForgotPassword() || showCreateUser()){
         <div class="row g-0">
-          @if(showForgotPassword){
-          <div class="text-start mt-3 user-select-none" [ngClass]="{'col-6': showCreateUser, 'col-12': !showCreateUser}">
+          @if(showForgotPassword()){
+          <div class="text-start mt-3 user-select-none" [class]="{'col-6': showCreateUser(), 'col-12': !showCreateUser()}">
             <a class="text-secondary text-decoration-none cursor-pointer" (click)="recoverPassword()">
-              {{ labelForgotenPassword || ('login.forgot.password' | ddrTranslate ) }}
+              {{ labelForgotenPassword() || ('login.forgot.password' | ddrTranslate ) }}
             </a>
           </div>
           }
 
-          @if(showCreateUser){
+          @if(showCreateUser()){
           <div class="text-end mt-3 user-select-none"
-            [ngClass]="{'col-6': showForgotPassword, 'col-12': !showForgotPassword}">
+            [class]="{'col-6': showForgotPassword(), 'col-12': !showForgotPassword()}">
             <a class="text-secondary text-decoration-none cursor-pointer" (click)="createUser()">
-              {{ labelCreateUser || ('login.create.user' | ddrTranslate ) }}
+              {{ labelCreateUser() || ('login.create.user' | ddrTranslate ) }}
             </a>
           </div>
           }

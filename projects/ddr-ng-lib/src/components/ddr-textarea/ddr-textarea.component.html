@@ -1,61 +1,61 @@
-<div class="ddr-textarea" [ngClass]="{'ddr-textarea--inline': inline}">
-  @if (label) {
+<div class="ddr-textarea" [class.ddr-textarea--inline]="inline()">
+  @if (label()) {
     <label class="ddr-textarea__label"
-      [attr.for]="name"
-      [ngClass]="{
-      'ddr-textarea__label--inline': inline,
-      'fw-bold': labelBold
+      [attr.for]="name()"
+      [class]="{
+      'ddr-textarea__label--inline': inline(),
+      'fw-bold': labelBold()
       }"
-    >{{ label + (required ? "(*):" : "") }}</label>
-    @if (tooltipText) {
+    >{{ label() + (required() ? "(*):" : "") }}</label>
+    @if (tooltipText()) {
       <i
         class="bi bi-info-circle"
         ddrTooltip
-        [tooltipOrientation]="tooltipOrientation"
-        [tooltipText]="tooltipText">
+        [tooltipOrientation]="tooltipOrientation()"
+        [tooltipText]="tooltipText()">
       </i>
     }
   }
   <textarea
     #textarea="ngModel"
     class="ddr-textarea__textarea"
-    [attr.id]="name"
-    [name]="name"
-    [placeholder]="placeholder"
-    [disabled]="disabled"
-    [readonly]="readonly"
-    [maxlength]="maxlength"
-    [minlength]="minlength"
-    [required]="required"
-    [cols]="cols"
-    [rows]="rows"
+    [attr.id]="name()"
+    [name]="name()"
+    [placeholder]="placeholder()"
+    [disabled]="disabled()"
+    [readonly]="readonly()"
+    [maxlength]="maxlength()"
+    [minlength]="minlength()"
+    [required]="required()"
+    [cols]="cols()"
+    [rows]="rows()"
     [(ngModel)]="value"
-    [ngClass]="{
-    'is-valid': validate && textarea.dirty && !textarea.errors,
-    'is-invalid': validate && textarea.dirty && textarea.errors,
-    'w-100': !inline,
-    'ddr-textarea__textarea--inline': inline
+    [class]="{
+    'is-valid': validate() && textarea.dirty && !textarea.errors,
+    'is-invalid': validate() && textarea.dirty && textarea.errors,
+    'w-100': !inline(),
+    'ddr-textarea__textarea--inline': inline()
     }"
     ngDefaultControl
     (click)="onclick($event)"
     (keyup)="onKeyup()"
     (blur)="onblur()"></textarea>
   <!--Validation-->
-  @if (validate && textarea.dirty && !textarea.errors) {
+  @if (validate() && textarea.dirty && !textarea.errors) {
     <div
-      [ngClass]="{ 'w-auto d-inline-block ms-1': inline }"
+      [class.w-auto]="inline()" [class.d-inline-block]="inline()" [class.ms-1]="inline()"
       class="valid-feedback"
       >
-      <ng-template [ngTemplateOutlet]="templateValid" />
+      <ng-template [ngTemplateOutlet]="templateValid()" />
     </div>
   }
-  @if (validate && textarea.dirty && textarea.errors) {
+  @if (validate() && textarea.dirty && textarea.errors) {
     <div
-      [ngClass]="{ 'w-auto d-inline-block ms-1': inline }"
+      [class.w-auto]="inline()" [class.d-inline-block]="inline()" [class.ms-1]="inline()"
       class="invalid-feedback"
       >
       <ng-template
-        [ngTemplateOutlet]="templateErrors"
+        [ngTemplateOutlet]="templateErrors()"
         [ngTemplateOutletContext]="{ errors: textarea.errors }" />
     </div>
   }

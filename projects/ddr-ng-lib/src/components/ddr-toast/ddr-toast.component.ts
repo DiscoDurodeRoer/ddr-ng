@@ -1,7 +1,7 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, inject, OnChanges, OnInit, SimpleChanges, ViewEncapsulation } from '@angular/core';
 import { DdrConstantsService } from '../../services/ddr-constants.service';
-import { NgClass, NgStyle } from '@angular/common';
+
 import { DdrToast } from './bean/ddr-toast';
 import { DdrOrientationToast } from '../../types/types';
 
@@ -11,10 +11,7 @@ import { DdrOrientationToast } from '../../types/types';
   styleUrls: ['./ddr-toast.component.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [
-    NgClass,
-    NgStyle
-  ],
+  imports: [],
   animations: [
     trigger('overlayAnimation', [
       state('void', style({

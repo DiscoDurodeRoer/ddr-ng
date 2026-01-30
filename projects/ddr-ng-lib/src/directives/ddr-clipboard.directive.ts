@@ -1,12 +1,12 @@
-import { Directive, ElementRef, inject, Input, OnDestroy, OnInit, Renderer2 } from '@angular/core';
+import { Directive, ElementRef, inject, OnDestroy, OnInit, Renderer2, input } from '@angular/core';
 
 @Directive({
   selector: '[ddrClipboard]'
 })
 export class DdrClipboardDirective implements OnInit, OnDestroy  {
 
-  @Input({ alias: 'clipboard', required: true }) textToCopy!: string;
-  @Input() clipboardTrigger?: string;
+  readonly textToCopy = input.required<string>({ alias: "clipboard" });
+  readonly clipboardTrigger = input<string>();
 
   private el: ElementRef = inject(ElementRef);
   private renderer: Renderer2 = inject(Renderer2);
@@ -14,13 +14,14 @@ export class DdrClipboardDirective implements OnInit, OnDestroy  {
   private removeClickListener?: () => void;
 
   ngOnInit() {
-    const target = this.clipboardTrigger
-      ? this.el.nativeElement.querySelector(this.clipboardTrigger)
+    const clipboardTrigger = this.clipboardTrigger();
+    const target = clipboardTrigger
+      ? this.el.nativeElement.querySelector(clipboardTrigger)
       : this.el.nativeElement;
 
     if (target) {
       this.removeClickListener = this.renderer.listen(target, 'click', () => {
-        navigator.clipboard.writeText(this.textToCopy);
+        navigator.clipboard.writeText(this.textToCopy());
       });
     }
   }

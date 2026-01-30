@@ -1,21 +1,19 @@
-import { NgTemplateOutlet } from '@angular/common';
-import { Component, ContentChild, Input, TemplateRef, ViewEncapsulation } from '@angular/core';
+
+import { Component, TemplateRef, ViewEncapsulation, input, contentChild } from '@angular/core';
 
 @Component({
   selector: 'ddr-tab-item',
   template: '',
   encapsulation: ViewEncapsulation.None,
   standalone: true,
-  imports: [
-    NgTemplateOutlet
-  ]
+  imports: []
 })
 export class DdrTabItemComponent {
 
-  @Input({ required: true }) titleTab!: string;
-  @Input() icon?: string;
+  readonly titleTab = input.required<string>();
+  readonly icon = input<string>();
   public open: boolean = false;
 
-  @ContentChild('tabContent', {static: false}) tabContentTemplate: TemplateRef<any> | null = null;
+  readonly tabContentTemplate = contentChild<TemplateRef<any> | null>('tabContent');
   
 }

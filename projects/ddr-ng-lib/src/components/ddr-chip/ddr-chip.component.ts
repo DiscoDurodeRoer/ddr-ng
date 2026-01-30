@@ -1,4 +1,4 @@
-import { Component, EventEmitter, forwardRef, Input, OnInit, Output, ViewEncapsulation } from '@angular/core';
+import { Component, forwardRef, OnInit, ViewEncapsulation, input, output } from '@angular/core';
 import { FormsModule, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { DdrControlValueAccessor } from '../ddr-ngmodel-base/ddr-control-value-accessor-base.component';
 import { DdrChipValueComponent } from './components/ddr-chip-value/ddr-chip-value.component';
@@ -10,9 +10,8 @@ import { DdrChipValueComponent } from './components/ddr-chip-value/ddr-chip-valu
   encapsulation: ViewEncapsulation.None,
   imports: [
     DdrChipValueComponent,
-    FormsModule,
-    DdrControlValueAccessor
-  ],
+    FormsModule
+    ],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
@@ -23,17 +22,17 @@ import { DdrChipValueComponent } from './components/ddr-chip-value/ddr-chip-valu
 })
 export class DdrChipComponent extends DdrControlValueAccessor implements OnInit {
 
-  @Input() separator!: string;
-  @Input() maxValues: number = 0;
-  @Input() readonly: boolean = false;
-  @Input() label?: string;
-  @Input() name?: string;
-  @Input() canDelete: boolean = true;
+  readonly separator = input.required<string>();
+  readonly maxValues = input<number>(0);
+  readonly readonly = input<boolean>(false);
+  readonly label = input<string>();
+  readonly name = input<string>();
+  readonly canDelete = input<boolean>(true);
 
-  @Output() insertValue: EventEmitter<string> = new EventEmitter<string>();
-  @Output() removeValue: EventEmitter<string> = new EventEmitter<string>();
-  @Output() clickValue: EventEmitter<string> = new EventEmitter<string>();
-  @Output() getValues: EventEmitter<string[]> = new EventEmitter<string[]>();
+  readonly insertValue = output<string>();
+  readonly removeValue = output<string>();
+  readonly clickValue = output<string>();
+  readonly getValues = output<string[]>();
 
   public valueInput: string = '';
 
@@ -44,13 +43,14 @@ export class DdrChipComponent extends DdrControlValueAccessor implements OnInit 
   ngOnInit() {
     if (!this.value) {
       this.value = [];
-    } else if (this.maxValues >= 0) {
-      this.value = this.value.splice(0, this.maxValues)
+    } else if (this.maxValues() >= 0) {
+      this.value = this.value.splice(0, this.maxValues())
     }
   }
 
   onInsertElement() {
-    if (this.valueInput && !this.value.find((v: any) => v == this.valueInput) && (!this.maxValues || this.value.length < this.maxValues)) {
+    const maxValues = this.maxValues();
+    if (this.valueInput && !this.value.find((v: any) => v == this.valueInput) && (!maxValues || this.value.length < maxValues)) {
       this.value.push(this.valueInput);
       this.insertValue.emit(this.value);
     }
@@ -59,8 +59,9 @@ export class DdrChipComponent extends DdrControlValueAccessor implements OnInit 
   }
 
   checkValue() {
-    if (this.valueInput && this.valueInput.includes(this.separator)) {
-      this.valueInput = this.valueInput.split(this.separator)[0];
+    const separator = this.separator();
+    if (this.valueInput && this.valueInput.includes(separator)) {
+      this.valueInput = this.valueInput.split(separator)[0];
       this.onInsertElement();
     }
   }

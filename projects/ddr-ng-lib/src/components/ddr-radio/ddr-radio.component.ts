@@ -1,9 +1,9 @@
-import { Component, forwardRef, Input, OnInit, Output, ViewEncapsulation, EventEmitter, OnDestroy, ChangeDetectionStrategy, ChangeDetectorRef, inject } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, OnDestroy, ChangeDetectionStrategy, ChangeDetectorRef, inject, input, output } from '@angular/core';
 import { FormsModule, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { DdrSelectItem } from '../../common/ddr-select-item.model';
 import { DdrControlValueAccessor } from '../ddr-ngmodel-base/ddr-control-value-accessor-base.component';
 import { DdrTranslatePipe } from '../../pipes/ddr-translate.pipe';
-import { NgClass } from '@angular/common';
+
 import { Subscription } from 'rxjs/internal/Subscription';
 
 @Component({
@@ -14,10 +14,8 @@ import { Subscription } from 'rxjs/internal/Subscription';
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     FormsModule,
-    DdrControlValueAccessor,
-    DdrTranslatePipe,
-    NgClass
-  ],
+    DdrTranslatePipe
+],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
@@ -28,10 +26,10 @@ import { Subscription } from 'rxjs/internal/Subscription';
 })
 export class DdrRadioComponent<T> extends DdrControlValueAccessor implements OnInit, OnDestroy {
 
-  @Input({ required: true }) options: DdrSelectItem<T>[] = [];
-  @Input() inline: boolean = false;
+  readonly options = input.required<DdrSelectItem<T>[]>();
+  readonly inline = input<boolean>(false);
 
-  @Output() clickRadio: EventEmitter<T> = new EventEmitter<T>();
+  readonly clickRadio = output<T>();
 
   private subscription: Subscription = new Subscription();
   private changeDetectorRef: ChangeDetectorRef = inject(ChangeDetectorRef);
@@ -41,10 +39,10 @@ export class DdrRadioComponent<T> extends DdrControlValueAccessor implements OnI
   }
 
   ngOnInit(): void {
-    this.options.forEach(op => op.selected = false);
+    this.options().forEach(op => op.selected = false);
     this.subscription = this.changeValue.subscribe({
       next: (value: T) => {
-        const optionFound = this.options.find(s => JSON.stringify(value) == JSON.stringify(s.value));
+        const optionFound = this.options().find(s => JSON.stringify(value) == JSON.stringify(s.value));
         if (optionFound) {
           optionFound.selected = true;
           this.value = value;
@@ -56,7 +54,7 @@ export class DdrRadioComponent<T> extends DdrControlValueAccessor implements OnI
 
   onclickRadio($event?: DdrSelectItem<T>) {
     if ($event && this.value != $event.value) {
-      this.options.map(option => option.selected = false)
+      this.options().map(option => option.selected = false)
       $event.selected = true;
       this.value = $event.value;
       this.clickRadio.emit(this.value);

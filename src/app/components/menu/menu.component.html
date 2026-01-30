@@ -1,11 +1,11 @@
 <div class="row h-100">
     <div class="col-12 ">
         
-        @if(transparent){
+        @if(transparent()){
             @for(menuItem of menuItems; track menuItem){      
                 <ddr-tree
                     [open]="true"
-                    [transparent]="transparent"
+                    [transparent]="transparent()"
                     [nodes]="[menuItem]"
                     (clickNode)="goTo($event)"/>
             }

@@ -1,24 +1,22 @@
-import { NgTemplateOutlet } from '@angular/common';
-import { Component, ContentChild, Input, TemplateRef } from '@angular/core';
+
+import { Component, TemplateRef, input, contentChild } from '@angular/core';
 
 @Component({
   selector: 'ddr-step',
   template: '',
   standalone: true,
-  imports: [
-    NgTemplateOutlet
-  ]
+  imports: []
 })
 export class DdrStepComponent {
 
-  @Input({ required: true }) titleStep!: string;
-  @Input() canGoNext: boolean = false;
+  readonly titleStep = input.required<string>();
+  readonly canGoNext = input<boolean>(false);
 
   public step: number = 1;
   public open: boolean = false;
   public firstStep: boolean = false;
   public lastStep: boolean = false;
 
-  @ContentChild('stepContent', {static: false}) stepContentTemplate!: TemplateRef<any> | null;
+  readonly stepContentTemplate = contentChild.required<TemplateRef<any> | null>('stepContent');
 
 }

@@ -1,4 +1,4 @@
-import { AfterViewInit, ChangeDetectorRef, Component, EventEmitter, forwardRef, inject, Input, OnChanges, OnDestroy, Output, SimpleChanges, ViewChild } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, forwardRef, inject, OnChanges, OnDestroy, SimpleChanges, input, output, viewChild } from '@angular/core';
 import { DdrCheckboxBinaryComponent } from '../ddr-checkbox-binary/ddr-checkbox-binary.component';
 import { DdrDropdownComponent } from '../ddr-dropdown/ddr-dropdown.component';
 import { DdrConstantsService } from '../../services/ddr-constants.service';
@@ -7,7 +7,7 @@ import { DdrSelectItem } from '../../common/ddr-select-item.model';
 import { FormsModule, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { DdrControlValueAccessor } from '../ddr-ngmodel-base/ddr-control-value-accessor-base.component';
 import { DdrOrientationDropdown, DdrOrientatioTooltip } from '../../types/types';
-import { DdrTranslatePipe } from '../../pipes/ddr-translate.pipe';
+
 import { Subscription } from 'rxjs/internal/Subscription';
 
 @Component({
@@ -17,9 +17,8 @@ import { Subscription } from 'rxjs/internal/Subscription';
   imports: [
     DdrDropdownComponent,
     DdrCheckboxBinaryComponent,
-    FormsModule,
-    DdrTranslatePipe
-  ],
+    FormsModule
+    ],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
@@ -34,28 +33,28 @@ export class DdrDropdownMultipleComponent<T> extends DdrControlValueAccessor imp
   private ddrTranslate: DdrTranslateService = inject(DdrTranslateService);
   private changeDetectorRef: ChangeDetectorRef = inject(ChangeDetectorRef);
 
-  @Input({ required: true }) options: DdrSelectItem<T>[] = [];
-  @Input() showFilter: boolean = true;
-  @Input() label?: string;
-  @Input() name: string = '';
-  @Input() inline: boolean = false;
-  @Input() orientation: DdrOrientationDropdown = this.constants.ORIENTATION_DROPDOWN.BOTTOM;
-  @Input() labelPlaceholderFilter: string = '';
-  @Input() labelNoResults?: string;
-  @Input() disabled: boolean = false;
-  @Input() placeholder: string = '';
-  @Input() required: boolean = false;
-  @Input() validate: boolean = false;
-  @Input() translate: boolean = true;
-  @Input() modalOptions: boolean = false;
-  @Input() tooltipOrientation: DdrOrientatioTooltip = this.constants.ORIENTATION.BOTTOM;
-  @Input() tooltipText?: string;
-  @Input() compareFn: Function = (a: T, b: T) => a === b;
-  @Input() transparent: boolean = false;
+  readonly options = input.required<DdrSelectItem<T>[]>();
+  readonly showFilter = input<boolean>(true);
+  readonly label = input<string>();
+  readonly name = input<string>('');
+  readonly inline = input<boolean>(false);
+  readonly orientation = input<DdrOrientationDropdown>(this.constants.ORIENTATION_DROPDOWN.BOTTOM);
+  readonly labelPlaceholderFilter = input<string>('');
+  readonly labelNoResults = input<string>();
+  readonly disabled = input<boolean>(false);
+  readonly placeholder = input<string>('');
+  readonly required = input<boolean>(false);
+  readonly validate = input<boolean>(false);
+  readonly translate = input<boolean>(true);
+  readonly modalOptions = input<boolean>(false);
+  readonly tooltipOrientation = input<DdrOrientatioTooltip>(this.constants.ORIENTATION.BOTTOM);
+  readonly tooltipText = input<string>();
+  readonly compareFn = input<Function>((a: T, b: T) => a === b);
+  readonly transparent = input<boolean>(false);
 
-  @Output() selectItems: EventEmitter<DdrSelectItem<T>[]> = new EventEmitter<DdrSelectItem<T>[]>();
+  readonly selectItems = output<DdrSelectItem<T>[]>();
 
-  @ViewChild(DdrDropdownComponent, { static: false }) dropdown: DdrDropdownComponent<T> | null = null;
+  readonly dropdown = viewChild(DdrDropdownComponent);
 
   public optionsSelected: DdrSelectItem<T>[] = [];
   private subscription: Subscription = new Subscription();
@@ -85,18 +84,18 @@ export class DdrDropdownMultipleComponent<T> extends DdrControlValueAccessor imp
 
     if (!value || value.length == 0) {
       this.optionsSelected = [];
-      this.options.forEach(op => op.selected = false);
-      this.dropdown!.valueShow = '';
+      this.options().forEach(op => op.selected = false);
+      this.dropdown()!.valueShow = '';
     } else if (value.length > 0) {
 
-      for (const option of this.options) {
-        const optionFound = value.find(v => this.compareFn(v, option.value));
+      for (const option of this.options()) {
+        const optionFound = value.find(v => this.compareFn()(v, option.value));
         option.selected = !!optionFound
       }
 
-      this.optionsSelected = this.options.filter(option => option.selected);
+      this.optionsSelected = this.options().filter(option => option.selected);
 
-      this.dropdown!.valueShow = this.optionsSelected.map(option => this.translate ? this.ddrTranslate.getTranslate(option.label) : option.label).join(', ');
+      this.dropdown()!.valueShow = this.optionsSelected.map(option => this.translate() ? this.ddrTranslate.getTranslate(option.label) : option.label).join(', ');
 
     }
   }
@@ -106,7 +105,7 @@ export class DdrDropdownMultipleComponent<T> extends DdrControlValueAccessor imp
     if (item.selected) {
       this.optionsSelected.push(item);
     } else {
-      this.optionsSelected = this.optionsSelected.filter(option => !this.compareFn(option.value, item.value));
+      this.optionsSelected = this.optionsSelected.filter(option => !this.compareFn()(option.value, item.value));
     }
 
     this.value = this.optionsSelected.map(v => v.value);

@@ -2,16 +2,15 @@ import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
-  ContentChild,
-  EventEmitter,
   inject,
-  Input,
   OnChanges,
   OnInit,
-  Output,
   SimpleChanges,
   TemplateRef,
-  ViewEncapsulation
+  ViewEncapsulation,
+  input,
+  output,
+  contentChild
 } from '@angular/core';
 import { DdrConstantsService } from '../../services/ddr-constants.service';
 import { DdrTableCol } from './bean/ddr-table-col';
@@ -22,11 +21,11 @@ import { DdrDropdownComponent } from '../ddr-dropdown/ddr-dropdown.component';
 import { FormsModule } from '@angular/forms';
 import { DdrButtonSplitComponent } from '../ddr-button-split/ddr-button-split.component';
 import { DdrTooltipDirective } from '../../directives/ddr-tooltip.directive';
-import { DdrButtonComponent } from '../ddr-button/ddr-button.component';
-import { DdrInputComponent } from '../ddr-input/ddr-input.component';
+
+
 import { NgxPaginationModule } from 'ngx-pagination';
 import { DdrTranslatePipe } from '../../pipes/ddr-translate.pipe';
-import { NgClass, NgStyle, NgTemplateOutlet } from '@angular/common';
+import { NgTemplateOutlet } from '@angular/common';
 import { DdrCheckboxBinaryComponent } from '../ddr-checkbox-binary/ddr-checkbox-binary.component';
 import { DdrNestedPropertyPipe } from '../../pipes/ddr-nested-property.pipe';
 
@@ -43,50 +42,46 @@ import { DdrNestedPropertyPipe } from '../../pipes/ddr-nested-property.pipe';
     DdrButtonSplitComponent,
     DdrTranslatePipe,
     DdrTooltipDirective,
-    DdrButtonComponent,
-    DdrInputComponent,
     DdrNestedPropertyPipe,
     FormsModule,
-    NgClass,
-    NgStyle,
     NgTemplateOutlet
-  ]
+]
 })
 export class DdrTableComponent<T extends { [key: string]: any }> implements OnInit, OnChanges {
 
   public readonly constants: DdrConstantsService = inject(DdrConstantsService);
   private changeDetectorRef: ChangeDetectorRef = inject(ChangeDetectorRef);
 
-  @Input({ required: true }) cols: DdrTableCol[] = [];
-  @Input() items: DdrTableItem<T>[] = [];
-  @Input() showPagination: boolean = true;
-  @Input() startPageZero: boolean = false;
-  @Input() page: number = 1;
-  @Input() showTotal: boolean = true;
-  @Input() allowChangeRows: boolean = true;
-  @Input() multiple: boolean = false;
-  @Input() showActions: boolean = false;
-  @Input() canSelectItems: boolean = true;
-  @Input() canSort: boolean = false;
-  @Input() showBorder: boolean = true;
-  @Input() showFooter: boolean = true;
-  @Input() optionsRowsPagination: number[] = [];
+  readonly cols = input.required<DdrTableCol[]>();
+  readonly items = input<DdrTableItem<T>[]>([]);
+  readonly showPagination = input<boolean>(true);
+  readonly startPageZero = input<boolean>(false);
+  readonly page = input<number>(1);
+  readonly showTotal = input<boolean>(true);
+  readonly allowChangeRows = input<boolean>(true);
+  readonly multiple = input<boolean>(false);
+  readonly showActions = input<boolean>(false);
+  readonly canSelectItems = input<boolean>(true);
+  readonly canSort = input<boolean>(false);
+  readonly showBorder = input<boolean>(true);
+  readonly showFooter = input<boolean>(true);
+  readonly optionsRowsPagination = input<number[]>([]);
 
   // Translations
-  @Input() labelNoResults?: string;
-  @Input() labelRegisters?: string;
-  @Input() labelRegister?: string;
-  @Input() labelToPagination?: string;
-  @Input() labelOfPagination?: string;
+  readonly labelNoResults = input<string>();
+  readonly labelRegisters = input<string>();
+  readonly labelRegister = input<string>();
+  readonly labelToPagination = input<string>();
+  readonly labelOfPagination = input<string>();
 
-  @Input() totalItems: number = 0;
+  readonly totalItems = input<number>(0);
 
-  @Output() selectItem: EventEmitter<DdrTableItem<T>> = new EventEmitter<DdrTableItem<T>>();
-  @Output() selectMultipleItem: EventEmitter<T[]> = new EventEmitter<T[]>();
-  @Output() selectAction: EventEmitter<DdrAction<T>> = new EventEmitter<DdrAction<T>>();
-  @Output() changePage: EventEmitter<number> = new EventEmitter<number>();;
-  @Output() changeRow: EventEmitter<number> = new EventEmitter<number>();
-  @Output() sort: EventEmitter<DdrTableCol> = new EventEmitter<DdrTableCol>();
+  readonly selectItem = output<DdrTableItem<T>>();
+  readonly selectMultipleItem = output<T[]>();
+  readonly selectAction = output<DdrAction<T>>();
+  readonly changePage = output<number>();;
+  readonly changeRow = output<number>();
+  readonly sort = output<DdrTableCol>();
 
   public optionsRows: DdrSelectItem<number>[] = [];
   public rows: number = 10
@@ -99,12 +94,13 @@ export class DdrTableComponent<T extends { [key: string]: any }> implements OnIn
   public colspan: number = 1;
   public widthCells?: number;
 
-  @ContentChild('templateCell', { static: false }) templateCell?: TemplateRef<any>;
+  readonly templateCell = contentChild<TemplateRef<any>>('templateCell');
 
   ngOnInit() {
 
-    if (this.optionsRowsPagination && this.optionsRowsPagination.length > 0) {
-      for (const row of this.optionsRowsPagination) {
+    const optionsRowsPagination = this.optionsRowsPagination();
+    if (optionsRowsPagination && optionsRowsPagination.length > 0) {
+      for (const row of optionsRowsPagination) {
         this.optionsRows.push({
           label: row.toString(),
           value: row
@@ -121,16 +117,16 @@ export class DdrTableComponent<T extends { [key: string]: any }> implements OnIn
       this.rows = 10;
     }
 
-    if (!this.showPagination) {
+    if (!this.showPagination()) {
       this.rows = Number.MAX_VALUE;
     }
 
-    if (this.multiple && this.items.length > 0) {
+    if (this.multiple() && this.items().length > 0) {
       this.initItemsSelected()
     }
 
-    if (!this.totalItems) {
-      this.totalItems = this.items.length;
+    if (!this.totalItems()) {
+      this.totalItems = this.items().length;
     }
 
     this.calculateCols();
@@ -145,17 +141,17 @@ export class DdrTableComponent<T extends { [key: string]: any }> implements OnIn
       if (changes['multiple']) {
         this.initItemsSelected()
       }
-      if (changes['page'] && this.startPageZero) {
-        this.page = this.page + 1;
+      if (changes['page'] && this.startPageZero()) {
+        this.page = this.page() + 1;
       }
       if (changes['items'] || changes['multiple'] || changes['showActions']) {
         this.calculateCols();
         if (changes['items']) {
-          this.totalItems = this.items.length;
+          this.totalItems = this.items().length;
         }
       }
       if (changes['totalItems']) {
-        if (this.totalItems <= this.rows) {
+        if (this.totalItems() <= this.rows) {
           this.page = 1;
         }
       }
@@ -168,7 +164,7 @@ export class DdrTableComponent<T extends { [key: string]: any }> implements OnIn
 
   onSelectItem($event: MouseEvent, item: DdrTableItem<T>) {
     const target = $event?.target as HTMLElement;
-    if (this.canSelectItems && target && !target.closest('ddr-button-split')) {
+    if (this.canSelectItems() && target && !target.closest('ddr-button-split')) {
       this.selectItem.emit(item);
     }
   }
@@ -181,18 +177,18 @@ export class DdrTableComponent<T extends { [key: string]: any }> implements OnIn
 
   selectAll() {
     if (this.checkAll) {
-      this.items.forEach((option) => option.selected = true);
-      const itemsReturn: T[] = this.items.map((it) => it.item);
+      this.items().forEach((option) => option.selected = true);
+      const itemsReturn: T[] = this.items().map((it) => it.item);
       this.selectMultipleItem.emit(itemsReturn);
     } else {
-      this.items.forEach((option) => option.selected = false);
+      this.items().forEach((option) => option.selected = false);
       this.selectMultipleItem.emit([]);
     }
   }
 
   sendMultipleItems() {
-    const valuesSelected: T[] = this.items.filter(it => it.selected).map(it => it.item);
-    this.checkAll = this.items.every(op => op.selected);
+    const valuesSelected: T[] = this.items().filter(it => it.selected).map(it => it.item);
+    this.checkAll = this.items().every(op => op.selected);
     this.selectMultipleItem.emit(valuesSelected);
   }
 
@@ -204,15 +200,15 @@ export class DdrTableComponent<T extends { [key: string]: any }> implements OnIn
 
   onPageChange($event: number) {
     this.page = $event;
-    if (this.startPageZero) {
-      this.changePage.emit(this.page - 1);
+    if (this.startPageZero()) {
+      this.changePage.emit(this.page() - 1);
     } else {
-      this.changePage.emit(this.page);
+      this.changePage.emit(this.page());
     }
   }
 
   resetSort() {
-    for (const col of this.cols) {
+    for (const col of this.cols()) {
       if (!col.modeSort) {
         col.modeSort = this.constants.MODE_SORT.NO_SORT;
       }
@@ -238,29 +234,29 @@ export class DdrTableComponent<T extends { [key: string]: any }> implements OnIn
   }
 
   calculateCols() {
-    this.colspan = this.cols.length;
+    this.colspan = this.cols().length;
     let maxWidth = 80;
 
-    if (this.multiple) {
+    if (this.multiple()) {
       this.colspan++;
       maxWidth += 10;
     }
 
-    if (this.showActions && this.items.length > 0) {
+    if (this.showActions() && this.items().length > 0) {
       this.colspan++;
       maxWidth += 10;
     }
 
-    this.widthCells = maxWidth / this.cols.length;
+    this.widthCells = maxWidth / this.cols().length;
   }
 
   private initItemsSelected() {
-    this.items.forEach((it) => {
+    this.items().forEach((it) => {
       if (!it.selected) {
         it.selected = false;
       }
     });
-    this.checkAll = this.items.length > 0 && this.items.every(op => op.selected);
+    this.checkAll = this.items().length > 0 && this.items().every(op => op.selected);
   }
 
 }

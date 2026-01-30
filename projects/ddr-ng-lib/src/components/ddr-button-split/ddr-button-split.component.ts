@@ -1,11 +1,11 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
-import { Component, Input, Output, ViewEncapsulation, EventEmitter, inject, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
+import { Component, ViewEncapsulation, inject, ChangeDetectionStrategy, ChangeDetectorRef, input, output } from '@angular/core';
 import { DdrConstantsService } from '../../services/ddr-constants.service';
 import { DdrAction } from '../../common/ddr-action.model';
 import { DdrButtonComponent } from '../ddr-button/ddr-button.component';
 import { DdrClickOutsideDirective } from '../../directives/ddr-click-outside.directive';
 import { DdrTranslatePipe } from '../../pipes/ddr-translate.pipe';
-import { NgClass } from '@angular/common';
+
 import { DdrOrientationButtonSplit, DdrSize } from '../../types/types';
 
 @Component({
@@ -17,9 +17,8 @@ import { DdrOrientationButtonSplit, DdrSize } from '../../types/types';
   imports: [
     DdrButtonComponent,
     DdrTranslatePipe,
-    DdrClickOutsideDirective,
-    NgClass
-  ],
+    DdrClickOutsideDirective
+],
   animations: [
     trigger('overlayAnimation', [
       state('void', style({
@@ -40,20 +39,20 @@ export class DdrButtonSplitComponent<T> {
   public readonly constants: DdrConstantsService = inject(DdrConstantsService);
   public readonly changeDetectorRef: ChangeDetectorRef = inject(ChangeDetectorRef);
 
-  @Input() actions?: DdrAction<T>[] = [];
-  @Input() showFirst: boolean = true;
-  @Input() showFirstInOptions: boolean = true;
-  @Input() showFirstOnlyIcon: boolean = false;
-  @Input() showOnlyIcon: boolean = false;
-  @Input() transparent: boolean = false;
-  @Input() border: boolean = true;
-  @Input() disabled: boolean = false;
-  @Input() position: DdrOrientationButtonSplit = this.constants.ORIENTATION.BOTTOM_RIGHT;
-  @Input() size: DdrSize = this.constants.SIZE.SMALL;
-  @Input() iconShowOptions: string = 'bi bi-caret-down-fill';
+  readonly actions = input<DdrAction<T>[] | undefined>([]);
+  readonly showFirst = input<boolean>(true);
+  readonly showFirstInOptions = input<boolean>(true);
+  readonly showFirstOnlyIcon = input<boolean>(false);
+  readonly showOnlyIcon = input<boolean>(false);
+  readonly transparent = input<boolean>(false);
+  readonly border = input<boolean>(true);
+  readonly disabled = input<boolean>(false);
+  readonly position = input<DdrOrientationButtonSplit>(this.constants.ORIENTATION.BOTTOM_RIGHT);
+  readonly size = input<DdrSize>(this.constants.SIZE.SMALL);
+  readonly iconShowOptions = input<string>('bi bi-caret-down-fill');
 
-  @Output() selectAction: EventEmitter<DdrAction<T>> = new EventEmitter<DdrAction<T>>();
-  @Output() openActions: EventEmitter<boolean> = new EventEmitter<boolean>();
+  readonly selectAction = output<DdrAction<T>>();
+  readonly openActions = output<boolean>();
 
   public showOptions: boolean = false;
 
