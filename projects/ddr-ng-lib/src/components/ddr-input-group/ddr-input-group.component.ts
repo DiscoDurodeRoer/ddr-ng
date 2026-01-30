@@ -8,16 +8,24 @@ import {
   input,
   output,
   viewChild,
-  contentChild
+  contentChild,
+  InputSignal,
+  OutputEmitterRef,
+  WritableSignal,
+  signal,
+  ModelSignal,
+  OutputRef,
+  model,
+  computed
 } from '@angular/core';
-import { FormsModule, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { DdrConstantsService } from '../../services/ddr-constants.service';
 import { DdrInputComponent } from '../ddr-input/ddr-input.component';
-import { DdrControlValueAccessor } from '../ddr-ngmodel-base/ddr-control-value-accessor-base.component';
 import { DdrButtonComponent } from '../ddr-button/ddr-button.component';
 
 import { NgTemplateOutlet } from '@angular/common';
 import { AutocompleteType, DdrInputError, DdrOrientatioTooltip, DdrSize, DdrTypeInput } from '../../types/types';
+import { DisabledReason, FormValueControl, ValidationError, WithOptionalField } from '@angular/forms/signals';
 
 @Component({
   selector: 'ddr-input-group',
@@ -29,57 +37,65 @@ import { AutocompleteType, DdrInputError, DdrOrientatioTooltip, DdrSize, DdrType
     DdrButtonComponent,
     DdrInputComponent,
     NgTemplateOutlet
-],
-  providers: [
-    {
-      provide: NG_VALUE_ACCESSOR,
-      useExisting: DdrInputGroupComponent,
-      multi: true,
-    },
   ]
 })
-export class DdrInputGroupComponent extends DdrControlValueAccessor {
+export class DdrInputGroupComponent implements FormValueControl<string | number> {
 
   public readonly constants: DdrConstantsService = inject(DdrConstantsService);
 
-  readonly label = input<string>();
-  readonly icon = input<string>('');
-  readonly name = input<string>('');
-  readonly placeholder = input<string>('');
-  readonly type = input<DdrTypeInput>(this.constants.TYPE_INPUT.TEXT);
-  readonly validate = input<boolean>(false);
-  readonly required = input<boolean>(false);
-  readonly readonly = input<boolean>(false);
-  readonly pattern = input<string>('');
-  readonly maxlength = input<string | number | null>(null);
-  readonly minlength = input<string | number | null>(null);
-  readonly inline = input<boolean>(false);
-  readonly disabled = input<boolean>(false);
-  readonly disabledButton = input<boolean>(false);
-  readonly tooltipOrientation = input<DdrOrientatioTooltip>(this.constants.ORIENTATION.BOTTOM);
-  readonly tooltipText = input<string>();
-  readonly labelBold = input<boolean>(false);
-  readonly min = input<number | null>(null);
-  readonly max = input<number | null>(null);
-  readonly size = input<DdrSize>(this.constants.SIZE.MEDIUM);
-  readonly transparent = input<boolean>(false);
-  readonly focus = input<boolean>(false);
-  readonly autocomplete = input<AutocompleteType>('off');
+  readonly label: InputSignal<string | undefined> = input<string | undefined>();
+  readonly icon: InputSignal<string> = input<string>('');
+  readonly name: InputSignal<string> = input<string>('');
+  readonly placeholder: InputSignal<string> = input<string>('');
+  readonly type: InputSignal<DdrTypeInput> = input<DdrTypeInput>(this.constants.TYPE_INPUT.TEXT);
+  readonly validate: InputSignal<boolean> = input<boolean>(false);
+  readonly required: InputSignal<boolean> = input<boolean>(false);
+  readonly readonly: InputSignal<boolean> = input<boolean>(false);
+  // readonly pattern: InputSignal<string> = input<string>('');
+  // readonly maxlength: InputSignal<string | number | null> = input<string | number | null>(null);
+  // readonly minlength: InputSignal<string | number | null> = input<string | number | null>(null);
+  readonly inline: InputSignal<boolean> = input<boolean>(false);
+  readonly disabled: InputSignal<boolean> = input<boolean>(false);
+  readonly disabledButton: InputSignal<boolean> = input<boolean>(false);
+  readonly tooltipOrientation: InputSignal<DdrOrientatioTooltip> = input<DdrOrientatioTooltip>(this.constants.ORIENTATION.BOTTOM);
+  readonly tooltipText: InputSignal<string | undefined> = input<string | undefined>();
+  readonly labelBold: InputSignal<boolean> = input<boolean>(false);
+  // readonly min: InputSignal<number | null> = input<number | null>(null);
+  // readonly max: InputSignal<number | null> = input<number | null>(null);
+  readonly size: InputSignal<DdrSize> = input<DdrSize>(this.constants.SIZE.MEDIUM);
+  readonly transparent: InputSignal<boolean> = input<boolean>(false);
+  readonly focus: InputSignal<boolean> = input<boolean>(false);
+  readonly autocomplete: InputSignal<AutocompleteType> = input<AutocompleteType>('off');
 
-  readonly hasErrors = output<DdrInputError>();
-  readonly action = output<MouseEvent>();
-  readonly clickInput = output<MouseEvent>();
-  readonly keyPressed = output<string>();
-  readonly focusLost = output<void>();
+  readonly hasErrors: OutputEmitterRef<DdrInputError> = output<DdrInputError>();
+  readonly action: OutputEmitterRef<MouseEvent> = output<MouseEvent>();
+  readonly clickInput: OutputEmitterRef<MouseEvent> = output<MouseEvent>();
+  readonly keyPressed: OutputEmitterRef<string> = output<string>();
+  readonly focusLost: OutputEmitterRef<void> = output<void>();
 
   readonly input = viewChild(DdrInputComponent, { read: DdrInputComponent });
   readonly templateValidOutside = contentChild<TemplateRef<any> | null>('templateValid');
   readonly templateErrorsOutside = contentChild<TemplateRef<any> | null>('templateErrors');
 
-  public errorsInput: DdrInputError = this.constants.INPUT_ERRORS.NEUTRAL;
+  public errorsInput: WritableSignal<DdrInputError> = signal<DdrInputError>(this.constants.INPUT_ERRORS.NEUTRAL);
+
+  value: ModelSignal<string | number> = model<string | number>('');
+
+  min: InputSignal<number | undefined> = input<number | undefined>(undefined);
+  minlength: InputSignal<number | undefined> = input<number | undefined>(undefined);
+  max: InputSignal<number | undefined> = input<number | undefined>(undefined);
+  maxlength: InputSignal<number | undefined> = input<number | undefined>(undefined);
+  pattern: InputSignal<readonly RegExp[]> = input<readonly RegExp[]>([]);
+
+  htmlPattern = computed(() => {
+    const patterns = this.pattern();
+    if (!patterns.length) return null;
+
+    return patterns[0].source;
+  });
 
   constructor() {
-    super();
+
   }
 
   clickButton($ev: any) {
@@ -88,9 +104,9 @@ export class DdrInputGroupComponent extends DdrControlValueAccessor {
     }
   }
 
-  checkInput($event: DdrInputError) {
-    this.errorsInput = $event;
-    this.hasErrors.emit($event);
+  checkInput(errors: DdrInputError) {
+    this.errorsInput.set(errors);
+    this.hasErrors.emit(errors);
   }
 
   onclickInput($event: MouseEvent) {
@@ -102,7 +118,6 @@ export class DdrInputGroupComponent extends DdrControlValueAccessor {
   }
 
   onFocusLost() {
-    // TODO: The 'emit' function requires a mandatory void argument
     this.focusLost.emit();
   }
 

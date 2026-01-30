@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, signal, WritableSignal } from '@angular/core';
 import { DdrModalComponent } from './ddr-modal.component';
 
 @Injectable({
@@ -6,19 +6,19 @@ import { DdrModalComponent } from './ddr-modal.component';
 })
 export class DdrModalService {
 
-  private modals: DdrModalComponent[] = [];
+  private modals: WritableSignal<DdrModalComponent[]> = signal([]);
 
   add(modal: DdrModalComponent) {
     const id = modal.id();
     if (!this.getModal(id)) {
-      this.modals.push(modal);
+      this.modals.update((value: DdrModalComponent[]) => [...value, modal]);
     } else {
       console.warn(`Modal with ID ${id} is already registered`);
     }
   }
 
   remove(id: string) {
-    this.modals = this.modals.filter(modal => modal.id() !== id);
+    this.modals.update((value: DdrModalComponent[]) => value.filter(modal => modal.id() !== id));
   }
 
   open(id: string) {
@@ -36,7 +36,7 @@ export class DdrModalService {
   }
 
   private getModal(id: string) {
-    return this.modals.find(modal => modal.id() === id);
+    return this.modals().find(modal => modal.id() === id);
   }
 
 }

@@ -13,14 +13,12 @@
     </div>
   }
   <button type="button" class="ddr-toggle__button"
-    [class]="{
-      'ddr-toggle__button--on': value, 
-      'ddr-toggle__button--off': !value, 
-      'ddr-toggle__button--small': size() == constants.SIZE.SMALL,
-      'ddr-toggle__button--medium': size() == constants.SIZE.MEDIUM,
-      'ddr-toggle__button--large': size() == constants.SIZE.LARGE
-    }" 
-      [attr.aria-expanded]="value"
+    [class.ddr-toggle__button--on]="value()"
+    [class.ddr-toggle__button--off]="!value()"
+    [class.ddr-toggle__button--small]="size() == constants.SIZE.SMALL"
+    [class.ddr-toggle__button--medium]="size() == constants.SIZE.MEDIUM"
+    [class.ddr-toggle__button--large]="size() == constants.SIZE.LARGE"
+    [attr.aria-expanded]="value"
     (click)="onClick()">
   </button>
 </div>

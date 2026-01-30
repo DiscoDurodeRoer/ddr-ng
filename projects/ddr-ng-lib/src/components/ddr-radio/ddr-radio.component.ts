@@ -1,10 +1,8 @@
-import { Component, OnInit, ViewEncapsulation, OnDestroy, ChangeDetectionStrategy, ChangeDetectorRef, inject, input, output } from '@angular/core';
-import { FormsModule, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { Component, ViewEncapsulation, ChangeDetectionStrategy, input, output, InputSignal, OutputEmitterRef, ModelSignal, model, effect } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { DdrSelectItem } from '../../common/ddr-select-item.model';
-import { DdrControlValueAccessor } from '../ddr-ngmodel-base/ddr-control-value-accessor-base.component';
 import { DdrTranslatePipe } from '../../pipes/ddr-translate.pipe';
-
-import { Subscription } from 'rxjs/internal/Subscription';
+import { FormValueControl } from '@angular/forms/signals';
 
 @Component({
   selector: 'ddr-radio',
@@ -15,55 +13,41 @@ import { Subscription } from 'rxjs/internal/Subscription';
   imports: [
     FormsModule,
     DdrTranslatePipe
-],
-  providers: [
-    {
-      provide: NG_VALUE_ACCESSOR,
-      useExisting: DdrRadioComponent,
-      multi: true,
-    },
   ]
 })
-export class DdrRadioComponent<T> extends DdrControlValueAccessor implements OnInit, OnDestroy {
+export class DdrRadioComponent<T> implements FormValueControl<T | null> {
 
-  readonly options = input.required<DdrSelectItem<T>[]>();
-  readonly inline = input<boolean>(false);
+  readonly options: InputSignal<DdrSelectItem<T>[]> = input.required<DdrSelectItem<T>[]>();
+  readonly inline: InputSignal<boolean> = input<boolean>(false);
+  readonly compareFn: InputSignal<Function> = input<Function>((a: T, b: T) => a === b);
 
-  readonly clickRadio = output<T>();
+  readonly clickRadio: OutputEmitterRef<T> = output<T>();
 
-  private subscription: Subscription = new Subscription();
-  private changeDetectorRef: ChangeDetectorRef = inject(ChangeDetectorRef);
+  readonly value: ModelSignal<T | null> = model<T | null>(null);
 
   constructor() {
-    super();
+    effect(() => this.selectValue(this.value()))
   }
 
-  ngOnInit(): void {
-    this.options().forEach(op => op.selected = false);
-    this.subscription = this.changeValue.subscribe({
-      next: (value: T) => {
-        const optionFound = this.options().find(s => JSON.stringify(value) == JSON.stringify(s.value));
-        if (optionFound) {
-          optionFound.selected = true;
-          this.value = value;
-          this.changeDetectorRef.detectChanges();
-        }
+  private selectValue(value: T | null) {
+    if (value) {
+      const optionFound = this.options().find(s => this.compareFn()(value, s.value));
+      if (optionFound) {
+        optionFound.selected = true;
+        this.value.set(value);
       }
-    });
-  }
-
-  onclickRadio($event?: DdrSelectItem<T>) {
-    if ($event && this.value != $event.value) {
-      this.options().map(option => option.selected = false)
-      $event.selected = true;
-      this.value = $event.value;
-      this.clickRadio.emit(this.value);
-      this.changeDetectorRef.detectChanges();
+    } else {
+      this.options().forEach(op => op.selected = false);
     }
   }
 
-  ngOnDestroy(): void {
-    this.subscription?.unsubscribe();
+  onclickRadio($event?: DdrSelectItem<T>) {
+    if ($event && this.value() != $event.value) {
+      this.options().map(option => option.selected = false)
+      $event.selected = true;
+      this.value.set($event.value);
+      this.clickRadio.emit(this.value()!);
+    }
   }
 
 }

@@ -1,11 +1,11 @@
-import { Component, forwardRef, inject, ViewEncapsulation, input, output } from '@angular/core';
-import { DdrOrientation, DdrOrientatioTooltip } from '../../types/types';
+import { Component, inject, ViewEncapsulation, input, output, InputSignal, OutputEmitterRef, WritableSignal, signal, ModelSignal, OutputRef, model } from '@angular/core';
+import { DdrOrientatioTooltip } from '../../types/types';
 import { DdrConstantsService } from '../../services/ddr-constants.service';
 import { DdrInputGroupComponent } from '../ddr-input-group/ddr-input-group.component';
 import { FormsModule, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { DdrControlValueAccessor } from '../ddr-ngmodel-base/ddr-control-value-accessor-base.component';
 import { DdrFileHandle } from '../../common/ddr-file-handler.model';
 import { DomSanitizer } from '@angular/platform-browser';
+import { DisabledReason, FormValueControl, ValidationError, WithOptionalField } from '@angular/forms/signals';
 
 @Component({
   selector: 'ddr-input-file',
@@ -15,41 +15,35 @@ import { DomSanitizer } from '@angular/platform-browser';
   imports: [
     DdrInputGroupComponent,
     FormsModule
-  ],
-  providers: [
-    {
-      provide: NG_VALUE_ACCESSOR,
-      useExisting: DdrInputFileComponent,
-      multi: true,
-    },
   ]
 })
-export class DdrInputFileComponent extends DdrControlValueAccessor {
+export class DdrInputFileComponent implements FormValueControl<File | null> {
 
   public readonly constants: DdrConstantsService = inject(DdrConstantsService);
   private sanitizer: DomSanitizer = inject(DomSanitizer);
 
-  readonly label = input<string>();
-  readonly name = input<string>('');
-  readonly inline = input<boolean>(false);
-  readonly disabled = input<boolean>(false);
-  readonly tooltipText = input<string>();
-  readonly labelBold = input<boolean>(false);
-  readonly tooltipOrientation = input<DdrOrientatioTooltip>(this.constants.ORIENTATION.BOTTOM);
-  readonly required = input<boolean>(false);
+  readonly label: InputSignal<string | undefined> = input<string | undefined>();
+  readonly name: InputSignal<string> = input<string>('');
+  readonly inline: InputSignal<boolean> = input<boolean>(false);
+  readonly disabled: InputSignal<boolean> = input<boolean>(false);
+  readonly tooltipText: InputSignal<string | undefined> = input<string | undefined>();
+  readonly labelBold: InputSignal<boolean> = input<boolean>(false);
+  readonly tooltipOrientation: InputSignal<DdrOrientatioTooltip> = input<DdrOrientatioTooltip>(this.constants.ORIENTATION.BOTTOM);
+  readonly required: InputSignal<boolean> = input<boolean>(false);
 
-  readonly multiple = input<boolean>(false);
-  readonly accept = input<string>('*');
+  readonly multiple: InputSignal<boolean> = input<boolean>(false);
+  readonly accept: InputSignal<string> = input<string>('*');
 
-  readonly fileSelected = output<DdrFileHandle>();
-  readonly filesSelected = output<DdrFileHandle[]>();
+  readonly fileSelected: OutputEmitterRef<DdrFileHandle> = output<DdrFileHandle>();
+  readonly filesSelected: OutputEmitterRef<DdrFileHandle[]> = output<DdrFileHandle[]>();
 
-  public fileNames: string = ''
+  public fileNames: WritableSignal<string> = signal('');
 
   constructor() {
-    super();
+    
   }
-
+  value: ModelSignal<File | null> = model<File | null>(null);
+  
   onFileSelected(event: Event) {
     const input = event.target as HTMLInputElement;
     const files: FileList | null = input.files;
@@ -61,12 +55,12 @@ export class DdrInputFileComponent extends DdrControlValueAccessor {
       }))
 
       if (this.multiple()) {
-        this.value = Array.from(files).map((file: File) => file);
-        this.fileNames = Array.from(files).map(f => f.name).join(', ');
+        // this.value.set(Array.from(files).map((file: File) => file));
+        this.fileNames.set(Array.from(files).map(f => f.name).join(', '));
         this.filesSelected.emit(ddrFiles);
       } else {
-        this.value = ddrFiles[0].file;
-        this.fileNames = ddrFiles[0].file.name;
+        this.value.set(ddrFiles[0].file);
+        this.fileNames.set(ddrFiles[0].file.name);
         this.fileSelected.emit(ddrFiles[0]);
       }
     }

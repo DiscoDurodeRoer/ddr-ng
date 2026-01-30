@@ -1,7 +1,9 @@
-<div class="ddr-spinner" [class]="{'ddr-spinner--overlay ddr-overlay': !embedded, 'ddr-spinner--overlay-embedded ddr-overlay-embedded': embedded}">
-  <div [class]="{
-    'ddr-spinner--overlay__spinner': !embedded, 'ddr-spinner--overlay-embedded__spinner-embedded': embedded
-  }">
+<div class="ddr-spinner" 
+  [class.ddr-spinner--overlay ddr-overlay]="!embedded"
+  [class.ddr-spinner--overlay-embedded ddr-overlay-embedded]="embedded">
+  <div 
+    [class.ddr-spinner--overlay__spinner]="!embedded"
+    [class.ddr-spinner--overlay-embedded__spinner-embedded]="embedded">
     @if(pathImg()){
       <img [src]="pathImg()" alt="spinner">
     }@else{

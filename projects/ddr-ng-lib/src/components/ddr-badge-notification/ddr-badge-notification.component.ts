@@ -1,7 +1,6 @@
 
-import { Component, inject, ViewEncapsulation } from '@angular/core';
+import { Component, inject, signal, ViewEncapsulation, WritableSignal } from '@angular/core';
 import { DdrConstantsService } from '../../services/ddr-constants.service';
-
 import { DdrBadgePillComponent } from '../ddr-badge-pill/ddr-badge-pill.component';
 
 @Component({
@@ -17,9 +16,9 @@ export class DdrBadgeNotificationComponent {
 
   public readonly constants: DdrConstantsService = inject(DdrConstantsService)
 
-  public numberNotifications: number = 0;
-  public limitNotifications: number = 9;
-  public textNotification: string = '';
-  public showNotifications: boolean = true;
+  public numberNotifications: WritableSignal<number> = signal<number>(0);
+  public limitNotifications: WritableSignal<number> = signal<number>(9);
+  public textNotification: WritableSignal<string> = signal<string>('');
+  public showNotifications: WritableSignal<boolean> = signal<boolean>(true);
 
 }

@@ -19,7 +19,7 @@
               [size]="constants.SIZE.MEDIUM" 
               name="username"
               autocomplete="username"
-              [(ngModel)]="user.username"  />
+              [(value)]="user.username"  />
           </div>
 
         </div>
@@ -30,7 +30,7 @@
               [placeholder]="labelPlaceholderPassword() || ('login.placeholder.password' | ddrTranslate)"
               [required]="userPassword()"
               name="password"
-              [(ngModel)]="user.password" />
+              [(value)]="user.password" />
           </div>
         </div>
 

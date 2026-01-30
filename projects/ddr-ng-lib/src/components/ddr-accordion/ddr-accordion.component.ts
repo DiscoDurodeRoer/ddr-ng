@@ -1,14 +1,11 @@
 import { animate, group, state, style, transition, trigger } from '@angular/animations';
-import { AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, inject, ViewEncapsulation, input, output, viewChild } from '@angular/core';
-
-
+import { AfterViewInit, Component, ElementRef, ViewEncapsulation, input, output, viewChild, InputSignal, WritableSignal, signal, effect } from '@angular/core';
 
 @Component({
   selector: 'ddr-accordion',
   templateUrl: './ddr-accordion.component.html',
   styleUrls: ['./ddr-accordion.component.scss'],
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [],
   animations: [
     trigger('slideInOut', [
@@ -22,55 +19,55 @@ import { AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, E
 })
 export class DdrAccordionComponent implements AfterViewInit {
 
-  private changeDetectorRef: ChangeDetectorRef = inject(ChangeDetectorRef);
-
-  readonly titleAccordion = input.required<string>();
-  readonly open = input<boolean>(false);
-  readonly shadow = input<boolean>(true);
-  readonly border = input<boolean>(true);
-  readonly slim = input<boolean>(false);
+  readonly titleAccordion: InputSignal<string> = input.required<string>();
+  readonly open: InputSignal<boolean> = input<boolean>(false);
+  readonly shadow: InputSignal<boolean> = input<boolean>(true);
+  readonly border: InputSignal<boolean> = input<boolean>(true);
+  readonly slim: InputSignal<boolean> = input<boolean>(false);
 
   readonly clickOpen = output<boolean>();
 
   readonly contentAccordion = viewChild.required<ElementRef>("contentAccordion");
 
-  public state: string = 'close';
-  public animate = false;
+  public state: WritableSignal<string> = signal<string>('close');
+  public animate: WritableSignal<boolean> = signal<boolean>(false);
+  public openAccordion: WritableSignal<boolean> = signal<boolean>(this.open());
+
+  constructor() {
+    effect(() => {
+      if (this.animate()) {
+        if (this.state() == 'close') {
+          setTimeout(() => {
+            this.openAccordion.update((value: boolean) => !value);
+            this.clickOpen.emit(this.open());
+          }, 400);
+        } else {
+          this.openAccordion.update((value: boolean) => !value);
+          this.clickOpen.emit(this.open());
+          setTimeout(() => {
+            this.contentAccordion().nativeElement.style.overflow = 'inherit';
+          }, 400);
+        }
+      }
+    })
+  }
 
   ngAfterViewInit() {
 
     if (this.open()) {
-      this.state = 'open';
+      this.state.set('open');
       this.contentAccordion().nativeElement.style.overflow = 'inherit';
     }
 
     setTimeout(() => {
-      this.animate = true;
-      this.changeDetectorRef.detectChanges();
+      this.animate.set(true)
     });
 
   }
 
-  openClose() {
-
-    this.state = this.state == 'open' ? 'close' : 'open';
-
+  toggleAccordion() {
+    this.state.update((value: string) => value == 'open' ? 'close' : 'open');
     this.contentAccordion().nativeElement.style.overflow = 'hidden';
-    if (this.state == 'close') {
-      setTimeout(() => {
-        this.open = !this.open();
-        this.clickOpen.emit(this.open());
-        this.changeDetectorRef.detectChanges();
-      }, 400);
-    } else {
-      this.open = !this.open();
-      this.clickOpen.emit(this.open());
-      setTimeout(() => {
-        this.contentAccordion().nativeElement.style.overflow = 'inherit';
-        this.changeDetectorRef.detectChanges();
-      }, 400);
-    }
-
   }
 
 }

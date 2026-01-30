@@ -1,10 +1,8 @@
-import { Component, forwardRef, OnInit, ViewEncapsulation, OnDestroy, input, output } from '@angular/core';
-import { FormsModule, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { Component, ViewEncapsulation, input, output, InputSignal, OutputEmitterRef, ModelSignal, model, effect } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { DdrSelectItem } from '../../common/ddr-select-item.model';
-import { DdrControlValueAccessor } from '../ddr-ngmodel-base/ddr-control-value-accessor-base.component';
 import { DdrTranslatePipe } from '../../pipes/ddr-translate.pipe';
-
-import { Subscription } from 'rxjs';
+import { FormValueControl } from '@angular/forms/signals';
 
 @Component({
   selector: 'ddr-checkbox',
@@ -14,55 +12,38 @@ import { Subscription } from 'rxjs';
   imports: [
     FormsModule,
     DdrTranslatePipe
-],
-  providers: [
-    {
-      provide: NG_VALUE_ACCESSOR,
-      useExisting: DdrCheckboxComponent,
-      multi: true,
-    },
   ]
 })
-export class DdrCheckboxComponent<T> extends DdrControlValueAccessor implements OnInit, OnDestroy {
+export class DdrCheckboxComponent<T> implements FormValueControl<T[]> {
 
-  readonly options = input.required<DdrSelectItem<T>[]>();
+  readonly options: InputSignal<DdrSelectItem<T>[]> = input.required<DdrSelectItem<T>[]>();
+  readonly disabled: InputSignal<boolean> = input<boolean>(false);
+  readonly inline: InputSignal<boolean> = input<boolean>(false);
+  readonly compareFn: InputSignal<Function> = input<Function>((a: T, b: T) => a === b);
 
-  readonly disabled = input<boolean>(false);
-  readonly inline = input<boolean>(false);
+  readonly clickCheck: OutputEmitterRef<T[]> = output<T[]>();
 
-  readonly clickCheck = output<T[]>();
-
-  private subscription: Subscription = new Subscription();
+  public value: ModelSignal<T[]> = model<T[]>([]);
 
   constructor() {
-    super();
-  }
-
-  ngOnInit(): void {
-    this.subscription = this.changeValue.subscribe({
-      next: (value: T[]) => {
-        if (value instanceof Array) {
-          const options = this.options().filter(s => value.find(v => JSON.stringify(v) == JSON.stringify(s.value)));
-          options.forEach(op => op.selected = true);
-        }
-      }
+    effect(() => {
+      this.options()
+        .filter(s => 
+          this.value().find(v => this.compareFn()(v, s.value)))
+        .forEach(op => op.selected = true);
     })
   }
 
   onClickCheck($event: MouseEvent, option: DdrSelectItem<T>) {
     $event?.stopPropagation();
     if (!this.disabled()) {
-      const optionFound = this.options().find(op => JSON.stringify(op.value) == JSON.stringify(option.value));
+      const optionFound = this.options().find(op => this.compareFn()(op.value, option.value));
       if (optionFound) {
         optionFound.selected = !option.selected
-        this.value = this.options().filter(s => s.selected).map(s => s.value);
-        this.clickCheck.emit(this.value);
+        this.value.set(this.options().filter(s => s.selected).map(s => s.value));
+        this.clickCheck.emit(this.value());
       }
     }
-  }
-
-  ngOnDestroy(): void {
-    this.subscription?.unsubscribe();
   }
 
 }

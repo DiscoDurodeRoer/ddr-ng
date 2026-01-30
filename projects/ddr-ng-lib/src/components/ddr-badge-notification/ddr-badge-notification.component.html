@@ -1,7 +1,7 @@
-@if(showNotifications){
-<ddr-badge-pill class="ddr-badge-notification"
-  [type]="constants.BADGE.DANGER" 
-  [size]="constants.SIZE.SMALL" 
-  [text]="textNotification" 
-  [canClick]="false" />
+@if(showNotifications()){
+  <ddr-badge-pill class="ddr-badge-notification"
+    [type]="constants.BADGE.DANGER" 
+    [size]="constants.SIZE.SMALL" 
+    [text]="textNotification()" 
+    [canClick]="false" />
 }

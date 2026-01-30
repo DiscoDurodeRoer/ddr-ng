@@ -20,7 +20,7 @@
       type="text"
       icon="bi bi-send"
       name="example-1"
-      [(ngModel)]="value"
+      [(value)]="value"
       (action)="clickButton($event)" />
   </div>
 </div>
@@ -46,7 +46,7 @@
       icon="bi bi-send"
       [required]="true"
       [validate]="true"
-      minlength="5"
+      [minlength]="5"
       name="example-2"
       (action)="clickButton($event)">
 
@@ -197,7 +197,7 @@
       name="example-8"
       [min]="0" 
       [max]="10"
-      [(ngModel)]="valueEx8"
+      [(value)]="valueEx8"
       (action)="clickButton($event)" />
     </div>
 </div>

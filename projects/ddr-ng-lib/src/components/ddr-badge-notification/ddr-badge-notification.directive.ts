@@ -1,11 +1,11 @@
-import { Directive, ElementRef, inject, OnChanges, Renderer2, SimpleChanges, ViewContainerRef, input } from '@angular/core';
+import { Directive, ElementRef, inject, Renderer2, ViewContainerRef, input, WritableSignal, signal, effect } from '@angular/core';
 import { DdrBadgeNotificationComponent } from './ddr-badge-notification.component';
 
 @Directive({
   selector: '[ddrNotification]',
   standalone: true
 })
-export class DdrBadgeNotificationDirective implements OnChanges {
+export class DdrBadgeNotificationDirective {
 
   private readonly vc: ViewContainerRef = inject(ViewContainerRef)
   private readonly elementRef = inject(ElementRef)
@@ -18,24 +18,20 @@ export class DdrBadgeNotificationDirective implements OnChanges {
   readonly positionTop = input<string>('');
   readonly positionRight = input<string>('');
 
-  public textNotification: string = '';
+  public textNotification: WritableSignal<string> = signal<string>('');
 
-  ngOnChanges(changes: SimpleChanges): void {
-    if (
-      changes['numberNotifications'] ||
-      changes['limitNotifications'] ||
-      changes['showNotifications']
-    ) {
+  constructor() {
+    effect(() => {
       this.checkNumbersNotification();
       this.putNotification();
-    }
+    })
   }
 
   checkNumbersNotification() {
     if (this.numberNotifications() > this.limitNotifications()) {
-      this.textNotification = '+' + this.limitNotifications();
+      this.textNotification.set(`+ ${this.limitNotifications()}`);
     } else {
-      this.textNotification = this.numberNotifications().toString();
+      this.textNotification.set(this.numberNotifications().toString())
     }
   }
 
@@ -44,10 +40,10 @@ export class DdrBadgeNotificationDirective implements OnChanges {
     this.vc.clear();
 
     const compRef = this.vc.createComponent(DdrBadgeNotificationComponent)
-    compRef.instance.numberNotifications = this.numberNotifications();
-    compRef.instance.limitNotifications = this.limitNotifications();
-    compRef.instance.textNotification = this.textNotification;
-    compRef.instance.showNotifications = this.showNotifications();
+    compRef.instance.numberNotifications.set(this.numberNotifications());
+    compRef.instance.limitNotifications.set(this.limitNotifications());
+    compRef.instance.textNotification.set(this.textNotification());
+    compRef.instance.showNotifications.set(this.showNotifications());
 
     this.renderer.setStyle(compRef.location.nativeElement, 'position', 'absolute');
     const positionTop = this.positionTop();

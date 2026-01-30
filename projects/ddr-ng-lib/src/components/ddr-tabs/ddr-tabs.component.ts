@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, TemplateRef, ViewEncapsulation, ChangeDetectorRef, inject, output, contentChildren } from '@angular/core';
+import { AfterViewInit, Component, TemplateRef, ViewEncapsulation, output, contentChildren, Signal, signal, WritableSignal, OutputEmitterRef } from '@angular/core';
 import { DdrTabItemComponent } from './ddr-tab-item/ddr-tab-item.component';
 import { NgTemplateOutlet } from '@angular/common';
 
@@ -9,34 +9,31 @@ import { NgTemplateOutlet } from '@angular/common';
   encapsulation: ViewEncapsulation.None,
   imports: [
     NgTemplateOutlet
-]
+  ]
 })
 export class DdrTabsComponent implements AfterViewInit {
 
-  private changeDetectorRef: ChangeDetectorRef = inject(ChangeDetectorRef);
+  readonly tabsItems: Signal<readonly DdrTabItemComponent[]> = contentChildren(DdrTabItemComponent);
+  public contentTemplate: WritableSignal<TemplateRef<any> | null | undefined> = signal<null>(null);
 
-  readonly tabsItems = contentChildren(DdrTabItemComponent);
-  public contentTemplate: TemplateRef<any> | null = null;
-
-  readonly changeTab = output<number>();
+  readonly changeTab: OutputEmitterRef<number> = output<number>();
 
   ngAfterViewInit(): void {
-    if (this.tabsItems.length > 0) {
-      this.open(this.tabsItems[0]);
+    if (this.tabsItems().length > 0) {
+      this.open(this.tabsItems()[0]);
     }
   }
 
   open(tab: DdrTabItemComponent) {
-    this.tabsItems.forEach(t => t.open = false);
-    let index = this.tabsItems.findIndex(t => t == tab);
+    this.tabsItems().forEach(t => t.open.set(false));
+    let index = this.tabsItems().findIndex(t => t == tab);
     this.changeTab.emit(index);
-    this.contentTemplate = tab.tabContentTemplate();
-    tab.open = true;
-    this.changeDetectorRef.detectChanges();
+    this.contentTemplate.set(tab.tabContentTemplate());
+    tab.open.set(true);
   }
 
   openByIndex(index: number) {
-    this.open(this.tabsItems[index]);
+    this.open(this.tabsItems()[index]);
   }
 
 }

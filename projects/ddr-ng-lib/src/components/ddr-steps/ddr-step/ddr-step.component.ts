@@ -1,22 +1,21 @@
 
-import { Component, TemplateRef, input, contentChild } from '@angular/core';
+import { Component, TemplateRef, input, contentChild, InputSignal, WritableSignal, signal, Signal } from '@angular/core';
 
 @Component({
   selector: 'ddr-step',
   template: '',
-  standalone: true,
-  imports: []
+  standalone: true
 })
 export class DdrStepComponent {
 
-  readonly titleStep = input.required<string>();
-  readonly canGoNext = input<boolean>(false);
+  readonly titleStep: InputSignal<string> = input.required<string>();
+  readonly canGoNext: InputSignal<boolean> = input<boolean>(false);
 
-  public step: number = 1;
-  public open: boolean = false;
-  public firstStep: boolean = false;
-  public lastStep: boolean = false;
+  public step: WritableSignal<number> = signal<number>(1);
+  public open: WritableSignal<boolean> = signal<boolean>(false);
+  public firstStep: WritableSignal<boolean> = signal<boolean>(false);
+  public lastStep: WritableSignal<boolean> = signal<boolean>(false);
 
-  readonly stepContentTemplate = contentChild.required<TemplateRef<any> | null>('stepContent');
+  readonly stepContentTemplate: Signal<TemplateRef<any> | null> = contentChild.required<TemplateRef<any> | null>('stepContent');
 
 }

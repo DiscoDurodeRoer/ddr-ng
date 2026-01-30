@@ -1,6 +1,6 @@
 
 import { trigger, transition, style, animate } from '@angular/animations';
-import { Component, ViewEncapsulation, inject, OnInit, input, output } from '@angular/core';
+import { Component, ViewEncapsulation, inject, OnInit, input, output, InputSignal, OutputEmitterRef, WritableSignal, signal } from '@angular/core';
 import { DdrConstantsService } from '../../services/ddr-constants.service';
 import { NgTemplateOutlet } from '@angular/common';
 import { DdrOrientatioDetail } from '../../types/types';
@@ -58,19 +58,19 @@ export class DdrDetailComponent implements OnInit {
     public readonly constants: DdrConstantsService = inject(DdrConstantsService)
     public readonly ddrDetailService: DdrDetailService = inject(DdrDetailService);
 
-    readonly id = input.required<string>();
-    readonly orientation = input<DdrOrientatioDetail>(this.constants.ORIENTATION.RIGHT);
+    readonly id: InputSignal<string> = input.required<string>();
+    readonly orientation: InputSignal<DdrOrientatioDetail> = input<DdrOrientatioDetail>(this.constants.ORIENTATION.RIGHT);
 
-    readonly close = output<boolean>();
+    readonly close: OutputEmitterRef<boolean> = output<boolean>();
 
-    public show: boolean = false;
+    public show: WritableSignal<boolean> = signal<boolean>(false);
 
     ngOnInit(): void {
         this.ddrDetailService.add(this)
     }
 
     closeDetail() {
-        this.show = false;
+        this.show.set(false);
         setTimeout(() => {
             this.close.emit(true);
         }, 600);

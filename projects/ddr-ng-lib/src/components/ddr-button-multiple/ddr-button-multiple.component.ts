@@ -1,18 +1,18 @@
 import {
   Component,
+  ModelSignal,
   ViewEncapsulation,
   inject,
   input,
+  model,
   output
 } from '@angular/core';
 import { DdrButton } from './bean/ddr-button';
-import { NG_VALUE_ACCESSOR } from '@angular/forms';
-import { DdrControlValueAccessor } from '../ddr-ngmodel-base/ddr-control-value-accessor-base.component';
 import { DdrConstantsService } from '../../services/ddr-constants.service';
 import { DdrButtonComponent } from '../ddr-button/ddr-button.component';
 import { DdrTranslatePipe } from '../../pipes/ddr-translate.pipe';
 import { DdrSize } from '../../types/types';
-
+import { FormValueControl } from '@angular/forms/signals';
 
 @Component({
   selector: 'ddr-button-multiple',
@@ -22,16 +22,9 @@ import { DdrSize } from '../../types/types';
   imports: [
     DdrButtonComponent,
     DdrTranslatePipe,
-    ],
-  providers: [
-    {
-      provide: NG_VALUE_ACCESSOR,
-      useExisting: DdrButtonMultipleComponent,
-      multi: true,
-    },
   ]
 })
-export class DdrButtonMultipleComponent extends DdrControlValueAccessor {
+export class DdrButtonMultipleComponent implements FormValueControl<string> {
 
   private constants: DdrConstantsService = inject(DdrConstantsService);
 
@@ -40,14 +33,12 @@ export class DdrButtonMultipleComponent extends DdrControlValueAccessor {
   readonly size = input<DdrSize>(this.constants.SIZE.MEDIUM);
   readonly transparent = input<boolean>(false);
 
-  readonly action = output<DdrButton>();;
+  readonly action = output<DdrButton>();
 
-  constructor() {
-    super();
-  }
+  value: ModelSignal<string> = model<string>('');
 
   clickButton(button: DdrButton) {
-    this.value = button.value;
+    this.value.set(button.value);
     this.action.emit(button);
   }
 }

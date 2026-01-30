@@ -46,12 +46,12 @@
 
       <ddr-step [titleStep]="'step.1' | ddrTranslate" [canGoNext]="!!personExample2.name">
         <ng-template #stepContent>
-          <ddr-input [label]="'step.name' | ddrTranslate" [(ngModel)]="personExample2.name" />
+          <ddr-input [label]="'step.name' | ddrTranslate" [(value)]="personExample2.name" />
         </ng-template>
       </ddr-step>
       <ddr-step [titleStep]="'step.2' | ddrTranslate" [canGoNext]="!!personExample2.age">
         <ng-template #stepContent>
-          <ddr-input [label]="'step.age' | ddrTranslate" [(ngModel)]="personExample2.age" />
+          <ddr-input [label]="'step.age' | ddrTranslate" [(value)]="personExample2.age" />
         </ng-template>
       </ddr-step>
 
@@ -217,12 +217,12 @@
       
       <ddr-step [titleStep]="'step.1' | ddrTranslate" [canGoNext]="!!personExample8.name">
         <ng-template #stepContent>
-          <ddr-input [label]="'step.name' | ddrTranslate" [(ngModel)]="personExample8.name" />
+          <ddr-input [label]="'step.name' | ddrTranslate" [(value)]="personExample8.name" />
         </ng-template>
       </ddr-step>
       <ddr-step [titleStep]="'step.2' | ddrTranslate" [canGoNext]="!!personExample8.age">
         <ng-template #stepContent>
-          <ddr-input [label]="'step.age' | ddrTranslate" [(ngModel)]="personExample8.age" />
+          <ddr-input [label]="'step.age' | ddrTranslate" [(value)]="personExample8.age" />
         </ng-template>
       </ddr-step>
 

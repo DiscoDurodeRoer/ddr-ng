@@ -12,7 +12,7 @@
     <ddr-button-multiple
       [buttons]="buttonsSize"
       [showSelectedButton]="true"
-      [(ngModel)]="size" />
+      [(value)]="size" />
   </div>
 </div>
 
@@ -22,7 +22,7 @@
     <ddr-button-multiple
       [buttons]="buttonsSizeButton"
       [showSelectedButton]="true"
-      [(ngModel)]="sizeButton" />
+      [(value)]="sizeButton" />
   </div>
 </div>
 
@@ -32,7 +32,7 @@
     <ddr-button-multiple
       [buttons]="buttonsType"
       [showSelectedButton]="true"
-      [(ngModel)]="type" />
+      [(value)]="type" />
   </div>
 </div>
 
@@ -41,7 +41,7 @@
     <p>clickOutside:</p>
     <ddr-toggle
       size="small"
-      [(ngModel)]="clickOutsideEnabled" />
+      [(value)]="clickOutsideEnabled" />
   </div>
 </div>
 

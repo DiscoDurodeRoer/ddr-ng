@@ -1,17 +1,15 @@
 <span
   [class]="'ddr-badge badge badge-pill ' + customClass()"
   [style.background-color]="background() ? background() : null"
-  [class]="{
-    'ddr-badge--clickable': canClick(),
-    'ddr-badge--info': type() === constants.BADGE.INFO,
-    'ddr-badge--danger': type() === constants.BADGE.DANGER,
-    'ddr-badge--warning': type() === constants.BADGE.WARNING,
-    'ddr-badge--success': type() === constants.BADGE.SUCCESS,
-    'ddr-badge--small': size() === constants.SIZE.SMALL,
-    'ddr-badge--medium': size() === constants.SIZE.MEDIUM,
-    'ddr-badge--large': size() === constants.SIZE.LARGE
-  }"
-  (click)="onclickBadge($event)">
+  [class.ddr-badge--clickable]="canClick()"
+  [class.ddr-badge--info]="type() === constants.BADGE.INFO"
+  [class.ddr-badge--danger]="type() === constants.BADGE.DANGER"
+  [class.ddr-badge--warning]="type() === constants.BADGE.WARNING"
+  [class.ddr-badge--success]="type() === constants.BADGE.SUCCESS"
+  [class.ddr-badge--small]="size() === constants.SIZE.SMALL"
+  [class.ddr-badge--medium]="size() === constants.SIZE.MEDIUM"
+  [class.ddr-badge--large]="size() === constants.SIZE.LARGE"
+  (click)="onClickBadge($event)">
  
   <ng-template [ngTemplateOutlet]="templateContentOutside() ? templateContentOutside() : templateDefault" />
   <ng-template #templateDefault>

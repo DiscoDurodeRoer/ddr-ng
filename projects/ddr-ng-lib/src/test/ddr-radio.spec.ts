@@ -3,7 +3,7 @@ import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { DdrRadioComponent } from '../components/ddr-radio/ddr-radio.component';
 import { DdrTranslatePipe } from '../pipes/ddr-translate.pipe';
-import { DdrControlValueAccessor } from '../components/ddr-ngmodel-base/ddr-control-value-accessor-base.component'
+import { DdrControlValueAccessor } from '../directives/ddr-control-value-accessor.directive'
 
 describe('DdrRadioComponent', () => {
     let fixture: ComponentFixture<DdrRadioComponent<string>>;

@@ -5553,13 +5553,7 @@ export class ButtonMultipleShowcaseComponent {
           class: 'ddr-button-multiple__last-button',
           description: 'button.multiple.style.last.button'
         }
-      },
-      {
-        item: {
-          class: 'ddr-button-multiple__last-button',
-          description: 'button.multiple.style.last.button'
-        }
-      },
+      }
     ]
   },
   "ddr-button-split": {
@@ -9417,6 +9411,15 @@ export class CheckboxShowcaseComponent {
           name: 'inline',
           description: 'checkbox.input.inline',
           default: 'false',
+          type: 'boolean',
+          required: false
+        }
+      },
+      {
+        item: {
+          name: 'compareFn',
+          description: 'checkbox.input.comparefn',
+          default: '(a: T, b: T) => a === b',
           type: 'boolean',
           required: false
         }

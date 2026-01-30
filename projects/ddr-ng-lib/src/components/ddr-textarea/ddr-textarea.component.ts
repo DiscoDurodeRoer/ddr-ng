@@ -1,10 +1,10 @@
-import { Component, forwardRef, TemplateRef, ViewEncapsulation, inject, input, output, contentChild } from '@angular/core';
-import { FormsModule, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { DdrControlValueAccessor } from '../ddr-ngmodel-base/ddr-control-value-accessor-base.component';
+import { Component, TemplateRef, ViewEncapsulation, inject, input, output, contentChild, InputSignal, Signal, OutputEmitterRef, ModelSignal, model, OutputRef } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { DdrConstantsService } from '../../services/ddr-constants.service';
 import { DdrTooltipDirective } from '../../directives/ddr-tooltip.directive';
 import { NgTemplateOutlet } from '@angular/common';
 import { DdrOrientatioTooltip } from '../../types/types';
+import { DisabledReason, FormValueControl, ValidationError, WithOptionalField } from '@angular/forms/signals';
 
 @Component({
   selector: 'ddr-textarea',
@@ -15,44 +15,43 @@ import { DdrOrientatioTooltip } from '../../types/types';
     FormsModule,
     DdrTooltipDirective,
     NgTemplateOutlet
-],
-  providers: [
-    {
-      provide: NG_VALUE_ACCESSOR,
-      useExisting: DdrTextareaComponent,
-      multi: true
-    }
   ]
 })
-export class DdrTextareaComponent extends DdrControlValueAccessor {
+export class DdrTextareaComponent implements FormValueControl<string> {
 
   public readonly constants: DdrConstantsService = inject(DdrConstantsService)
 
-  readonly placeholder = input<string>('');
-  readonly label = input<string>();
-  readonly name = input<string>('');
-  readonly disabled = input<boolean>(false);
-  readonly readonly = input<boolean>(false);
-  readonly maxlength = input<string | number | null>(null);
-  readonly minlength = input<string | number | null>(null);
-  readonly required = input<boolean>(false);
-  readonly validate = input<boolean>(false);
-  readonly inline = input<boolean>(false);
-  readonly rows = input<number>(1);
-  readonly cols = input<number>(10);
-  readonly tooltipOrientation = input<DdrOrientatioTooltip>(this.constants.ORIENTATION.BOTTOM);
-  readonly tooltipText = input<string>();
-  readonly labelBold = input<boolean>(false);
+  readonly placeholder: InputSignal<string> = input<string>('');
+  readonly label: InputSignal<string | undefined> = input<string | undefined>();
+  readonly name: InputSignal<string> = input<string>('');
+  readonly disabled: InputSignal<boolean> = input<boolean>(false);
+  readonly readonly: InputSignal<boolean> = input<boolean>(false);
+  // readonly maxlength: InputSignal<string | number | null> = input<string | number | null>(null);
+  // readonly minlength: InputSignal<string | number | null> = input<string | number | null>(null);
+  readonly required: InputSignal<boolean> = input<boolean>(false);
+  readonly validate: InputSignal<boolean> = input<boolean>(false);
+  readonly inline: InputSignal<boolean> = input<boolean>(false);
+  readonly rows: InputSignal<number> = input<number>(1);
+  readonly cols: InputSignal<number> = input<number>(10);
+  readonly tooltipOrientation: InputSignal<DdrOrientatioTooltip> = input<DdrOrientatioTooltip>(this.constants.ORIENTATION.BOTTOM);
+  readonly tooltipText: InputSignal<string | undefined> = input<string | undefined>();
+  readonly labelBold: InputSignal<boolean> = input<boolean>(false);
 
-  readonly templateValid = contentChild.required<TemplateRef<any> | null>('templateValid');
-  readonly templateErrors = contentChild.required<TemplateRef<any> | null>('templateErrors');
+  readonly templateValid: Signal<TemplateRef<any> | null> = contentChild.required<TemplateRef<any> | null>('templateValid');
+  readonly templateErrors: Signal<TemplateRef<any> | null> = contentChild.required<TemplateRef<any> | null>('templateErrors');
 
-  readonly clickTextarea = output<MouseEvent>();
-  readonly keyPressed = output<string>();
-  readonly blur = output<void>();
+  readonly clickTextarea: OutputEmitterRef<MouseEvent> = output<MouseEvent>();
+  readonly keyPressed: OutputEmitterRef<string> = output<string>();
+  readonly blur: OutputEmitterRef<void> = output<void>();
+
+  value: ModelSignal<string> = model<string>('');
+  errors: InputSignal<readonly WithOptionalField<ValidationError>[]> = input<readonly WithOptionalField<ValidationError>[]>([]);
+  dirty: InputSignal<boolean> = input<boolean>(false);
+  minlength: InputSignal<number | undefined> = input<number | undefined>(undefined);
+  maxlength: InputSignal<number | undefined> = input<number | undefined>(undefined);
 
   constructor() {
-    super();
+
   }
 
   onclick($event: MouseEvent) {
@@ -60,11 +59,10 @@ export class DdrTextareaComponent extends DdrControlValueAccessor {
   }
 
   onKeyup() {
-    this.keyPressed.emit(this.value);
+    this.keyPressed.emit(this.value());
   }
 
   onblur() {
-    // TODO: The 'emit' function requires a mandatory void argument
     this.blur.emit();
   }
 

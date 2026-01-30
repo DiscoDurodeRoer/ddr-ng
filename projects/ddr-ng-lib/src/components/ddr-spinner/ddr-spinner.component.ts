@@ -1,18 +1,13 @@
-import { Component, ViewEncapsulation, input } from '@angular/core';
-
+import { Component, ViewEncapsulation, WritableSignal, signal } from '@angular/core';
 
 @Component({
   selector: 'ddr-spinner',
   templateUrl: './ddr-spinner.component.html',
   styleUrls: ['./ddr-spinner.component.scss'],
   encapsulation: ViewEncapsulation.None,
-  
 })
 export class DdrSpinnerComponent {
-
-  readonly pathImg = input<string>('');
-
-  public show: boolean = false;
-  public embedded: boolean = false;
-
+  public pathImg: WritableSignal<string> = signal<string>('');
+  public show: WritableSignal<boolean> = signal<boolean>(false);
+  public embedded: WritableSignal<boolean> = signal<boolean>(false);
 }

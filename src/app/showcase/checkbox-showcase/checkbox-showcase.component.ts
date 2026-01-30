@@ -2,7 +2,6 @@ import { Component, inject } from '@angular/core';
 import { DdrCheckboxComponent, DdrSelectItem, DdrToastService, DdrTranslatePipe, DdrTranslateService } from 'ddr-ng';
 import { BaseShowcaseComponent } from '../base-showcase/base-showcase.component';
 import { JsonPipe } from '@angular/common';
-import { FormsModule } from '@angular/forms';
 import { ProgrammingLanguage } from './bean/programming-language';
 
 @Component({
@@ -12,8 +11,7 @@ import { ProgrammingLanguage } from './bean/programming-language';
     BaseShowcaseComponent,
     DdrCheckboxComponent,
     DdrTranslatePipe,
-    JsonPipe,
-    FormsModule
+    JsonPipe
   ],
   providers: [
     DdrToastService
@@ -270,6 +268,8 @@ export class CheckboxShowcaseComponent {
       }
     }
   ];
+
+  public compareFn = (a: ProgrammingLanguage, b: ProgrammingLanguage) => a.name == b.name;
 
   public value1: string[] = [];
   public value2: string[] = ['java', 'c'];

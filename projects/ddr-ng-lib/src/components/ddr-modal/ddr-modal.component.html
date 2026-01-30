@@ -1,11 +1,10 @@
-@if (show) {
+@if (show()) {
   <div class="row ddr-modal">
     <div class="ddr-overlay">
-      <div class="col-12 ddr-modal__content" [class]="{
-        'ddr-modal__content--large': size() == constants.SIZE.LARGE,
-        'ddr-modal__content--medium': size() == constants.SIZE.MEDIUM,
-        'ddr-modal__content--small': size() == constants.SIZE.SMALL
-        }">
+      <div class="col-12 ddr-modal__content" 
+        [class.ddr-modal__content--large]="size() == constants.SIZE.LARGE"
+        [class.ddr-modal__content--medium]="size() == constants.SIZE.MEDIUM"
+        [class.ddr-modal__content--small]="size() == constants.SIZE.SMALL">
         <div class="card" ddrClickOutside [clickOutsideEnabled]="clickOutsideEnabled()" (clickOutside)="onClickOutside($event)">
           <div class="card-title">
             <div class="ddr-modal__content--title">

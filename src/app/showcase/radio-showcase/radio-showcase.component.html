@@ -16,7 +16,7 @@
   <div class="col-12">
     <ddr-radio
       [options]="options1"
-      [(ngModel)]="value1"
+      [(value)]="value1"
       (clickRadio)="clickRadio($event)" />
   </div>
 </div>
@@ -37,7 +37,7 @@
   <div class="col-12">
     <ddr-radio
       [options]="options2"
-      [(ngModel)]="value2"
+      [(value)]="value2"
       (clickRadio)="clickRadio($event)" />
   </div>
 </div>
@@ -58,7 +58,8 @@
   <div class="col-12">
     <ddr-radio
       [options]="options3"
-      [(ngModel)]="value3"
+      [compareFn]="compareFn"
+      [(value)]="value3"
       (clickRadio)="clickRadioObject($event)" />
   </div>
 </div>
@@ -79,7 +80,8 @@
   <div class="col-12">
     <ddr-radio
       [options]="options4"
-      [(ngModel)]="value4"
+      [compareFn]="compareFn"
+      [(value)]="value4"
       (clickRadio)="clickRadioObject($event)" />
   </div>
 </div>
@@ -101,7 +103,8 @@
     <ddr-radio
       [options]="options5"
       [inline]="true"
-      [(ngModel)]="value5"
+      [compareFn]="compareFn"
+      [(value)]="value5"
       (clickRadio)="clickRadioObject($event)" />
   </div>
 </div>
@@ -112,25 +115,6 @@
   </div>
 </div>
 
-  </div>
-
-  <div outputs>
-    <table class="table">
-      <thead class="thead-dark">
-        <tr>
-          <th>Nombre</th>
-          <th>Descripción</th>
-          <th>Valor devuelto</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>clickRadio</td>
-          <td>Evento al pulsar el radio</td>
-          <td>T</td>
-        </tr>
-      </tbody>
-    </table>
   </div>
 
 </base-showcase>

@@ -781,6 +781,7 @@
     "checkbox.input.options": "Opciones a mostrar",
     "checkbox.input.disabled": "Deshabilita los checkboxes",
     "checkbox.input.inline": "Muestra los checkboxes en linea",
+    "checkbox.input.comparefn": "Función personalizada para comparar dos elementos. Ideal para objetos",
     "checkbox.output.clickcheck": "Evento al click en un checkbox",
     "checkbox.style.checkbox": "Contenedor principal",
     "checkbox.style.container": "Contenedor del checkbox",

@@ -8,6 +8,7 @@ import {
 } from 'ddr-ng';
 import { BaseShowcaseComponent } from '../base-showcase/base-showcase.component';
 import { FormsModule } from '@angular/forms';
+import { Field } from '@angular/forms/signals';
 
 @Component({
   selector: 'input-showcase',

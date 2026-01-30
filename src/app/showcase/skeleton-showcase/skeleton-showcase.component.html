@@ -9,7 +9,7 @@
     <ddr-radio
       [options]="options"
       [inline]="true"
-      [(ngModel)]="mode"/>
+      [(value)]="mode"/>
 
       <ddr-button class="me-2" 
         text="skeleton.load.data" 
@@ -20,13 +20,13 @@
         type="number" 
         [min]="1" 
         name="number-elements"
-        [(ngModel)]="nElements" />
+        [(value)]="nElements" />
 
       <ddr-input class="me-2" 
         [label]="'skeleton.time.load' | ddrTranslate" 
         type="number" 
         name="time-load"
-        [(ngModel)]="timeout" />
+        [(value)]="timeout" />
 
       <div class="mt-3">
         <ddr-card [showHeader]="false">

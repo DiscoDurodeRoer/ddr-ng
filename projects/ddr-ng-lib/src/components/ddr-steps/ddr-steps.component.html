@@ -4,11 +4,13 @@
     @if (!vertical()) {
       <div class="ddr-steps__horizontal">
         @for (step of steps(); track step) {
-          <div class="ddr-steps__horizontal__info-step" [class]="{'ddr-steps__horizontal__info-step--hover': canJumpStep(), 'cursor-default': !canJumpStep()}" (click)="goToStep(step)">
-            <div class="ddr-steps__horizontal__info-step__number-step" [class]="{
-              'ddr-steps__horizontal__info-step__number-step--open': step.open,
-              'ddr-steps__horizontal__info-step__number-step--closed': !step.open
-              }">
+          <div class="ddr-steps__horizontal__info-step" 
+            [class.ddr-steps__horizontal__info-step--hover]="canJump()"
+            [class.cursor-default]="!canJump()" 
+            (click)="goToStep(step)">
+            <div class="ddr-steps__horizontal__info-step__number-step" 
+              [class.ddr-steps__horizontal__info-step__number-step--open]="step.open()"
+              [class.ddr-steps__horizontal__info-step__number-step--closed]="!step.open()">
               @if (!validateIcon() || (validateIcon() && step.canGoNext() == false)) {
                 <span>{{step.step}}</span>
               }
@@ -29,7 +31,7 @@
       </div>
       <div class="ddr-steps__template">
         @for (step of steps(); track step) {
-          @if (step.open) {
+          @if (step.open()) {
             <div class="ddr-steps__template__content">
               <ng-container [ngTemplateOutlet]="step.stepContentTemplate()"/>
               @if (showButtons() && !openAll() && !step.firstStep) {
@@ -51,12 +53,14 @@
     <!-- Vertical -->
     @if (vertical()) {
       @for (step of steps(); track step) {
-        <div class="row ddr-steps__vertical__info-step" [class]="{'ddr-steps__vertical__info-step--hover': canJumpStep(), 'cursor-default': !canJumpStep()}" (click)="goToStep(step)">
+        <div class="row ddr-steps__vertical__info-step" 
+          [class.ddr-steps__vertical__info-step--hover]="canJump()"
+          [class.cursor-default]="!canJump()"
+          (click)="goToStep(step)">
           <div class="col-12">
-            <div class="ddr-steps__vertical__info-step__number-step" [class]="{
-              'ddr-steps__vertical__info-step__number-step--open': step.open,
-              'ddr-steps__vertical__info-step__number-step--closed': !step.open
-              }">
+            <div class="ddr-steps__vertical__info-step__number-step" 
+              [class.ddr-steps__vertical__info-step__number-step--open]="step.open()"
+              [class.ddr-steps__vertical__info-step__number-step--closed]="!step.open()">
               @if (!validateIcon() || (validateIcon() && !step.canGoNext())) {
                 <span>{{step.step}}</span>
               }
@@ -72,7 +76,7 @@
           </div>
         </div>
         <div class="ddr-steps__template" [class.ddr-steps__template--line]="!step.lastStep">
-          @if (step.open) {
+          @if (step.open()) {
             <div class="ddr-steps__template__content">
               @if(step.stepContentTemplate()){
                 <ng-container [ngTemplateOutlet]="step.stepContentTemplate()"/>

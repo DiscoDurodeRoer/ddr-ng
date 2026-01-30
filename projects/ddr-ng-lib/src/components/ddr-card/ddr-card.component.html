@@ -1,10 +1,9 @@
 <div class="ddr-card"
-  [class]="{
-      'ddr-card--rounded': rounded(), 
-      'border': border(), 
-      'ddr-card--shadow': shadow()
-    }"
-  [style]="{'background-color': background() ? background() : null, 'color': color() ? color():  null}">
+  [class.ddr-card--rounded]="rounded()"
+  [class.border]="border()"
+  [class.ddr-card--shadow]="shadow()"
+  [style.background-color]="background() ? background() : null"
+  [style.color]="color() ? color():  null">
   @if (showHeader()) {
     <div class="ddr-card__title">
       <ng-content select="[card-title]" />

@@ -17,7 +17,7 @@
     <ddr-textarea 
       [readonly]="true" 
       name="textarea-1"
-      [(ngModel)]="valueEx1" />
+      [(value)]="valueEx1" />
     
     <ddr-button 
       text="clipboard.copy"  
@@ -46,7 +46,7 @@
       ddrClipboard 
       [clipboard]="valueEx2"
       clipboardTrigger="ddr-button"
-      [(ngModel)]="valueEx2"
+      [(value)]="valueEx2"
       (action)="copyText()" />
   </div>
 </div>

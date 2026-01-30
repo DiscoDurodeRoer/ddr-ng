@@ -20,7 +20,7 @@
             [labelNoResults]="'dropdown.multiple.no.items' | ddrTranslate"
             [labelPlaceholderFilter]="'dropdown.multiple.filter.placeholder' | ddrTranslate" 
             name="dropdown-multiple-1"
-            [(ngModel)]="value1" 
+            [(value)]="value1" 
             (selectItems)="selectItems($event)" />
     </div>
 </div>
@@ -45,7 +45,7 @@
             [labelNoResults]="'dropdown.multiple.no.items' | ddrTranslate"
             [labelPlaceholderFilter]="'dropdown.multiple.filter.placeholder' | ddrTranslate" 
             name="dropdown-multiple-2"
-            [(ngModel)]="value2" 
+            [(value)]="value2" 
             (selectItems)="selectItems($event)" />
     </div>
 </div>
@@ -71,7 +71,7 @@
             [labelPlaceholderFilter]="'dropdown.multiple.filter.placeholder' | ddrTranslate" 
             [compareFn]="compareFn"
             name="dropdown-multiple-3"
-            [(ngModel)]="value3" 
+            [(value)]="value3" 
             (selectItems)="selectItemsObject($event)" />
     </div>
 </div>
@@ -97,7 +97,7 @@
             [labelPlaceholderFilter]="'dropdown.multiple.filter.placeholder' | ddrTranslate" 
             [compareFn]="compareFn"
             name="dropdown-multiple-4"
-            [(ngModel)]="value4" 
+            [(value)]="value4" 
             (selectItems)="selectItemsObject($event)" />
     </div>
 </div>
@@ -124,7 +124,7 @@
             [labelPlaceholderFilter]="'dropdown.multiple.filter.placeholder' | ddrTranslate" 
             [compareFn]="compareFn"
             name="dropdown-multiple-5"
-            [(ngModel)]="value5"
+            [(value)]="value5"
             (selectItems)="selectItemsObject($event)" />
 
         <ddr-button 
@@ -155,7 +155,7 @@
             [disabled]="true"
             [compareFn]="compareFn"
             name="dropdown-multiple-6"
-            [(ngModel)]="value6"
+            [(value)]="value6"
             (selectItems)="selectItemsObject($event)" />
     </div>
 </div>
@@ -182,7 +182,7 @@
             [modalOptions]="true"
             [compareFn]="compareFn"
             name="dropdown-multiple-7"
-            [(ngModel)]="value7"
+            [(value)]="value7"
             (selectItems)="selectItemsObject($event)" />
     </div>
 </div>
@@ -209,7 +209,7 @@
             [showFilter]="false"
             [compareFn]="compareFn"
             name="dropdown-multiple-8"
-            [(ngModel)]="value8"
+            [(value)]="value8"
             (selectItems)="selectItemsObject($event)" />
     </div>
 </div>
@@ -236,7 +236,7 @@
             [labelPlaceholderFilter]="'dropdown.multiple.filter.placeholder' | ddrTranslate" 
             [compareFn]="compareFn"
             name="dropdown-multiple-9"
-            [(ngModel)]="value9"
+            [(value)]="value9"
             (selectItems)="selectItemsObject($event)" />
     </div>
 </div>
@@ -264,7 +264,7 @@
             [tooltipText]="'dropdown.multiple.tooltip' | ddrTranslate"
             [compareFn]="compareFn"
             name="dropdown-multiple-10"
-            [(ngModel)]="value10"
+            [(value)]="value10"
             (selectItems)="selectItemsObject($event)" />
     </div>
 </div>
@@ -288,7 +288,7 @@
         <ddr-button-multiple class="mb-3"
             [buttons]="buttonsOrientation"
             [showSelectedButton]="true"
-            [(ngModel)]="orientationDropdown" />
+            [(value)]="orientationDropdown" />
 
         <ddr-dropdown-multiple
             [options]="optionsEx11" 
@@ -298,7 +298,7 @@
             [orientation]="orientationDropdown"
             [compareFn]="compareFn"
             name="dropdown-multiple-11"
-            [(ngModel)]="value11"
+            [(value)]="value11"
             (selectItems)="selectItemsObject($event)" />
     </div>
 </div>
@@ -324,7 +324,7 @@
             [labelPlaceholderFilter]="'dropdown.multiple.filter.placeholder' | ddrTranslate" 
             [compareFn]="compareFn"
             name="dropdown-multiple-12"
-            [(ngModel)]="value12"
+            [(value)]="value12"
             (selectItems)="selectItemsObject($event)">
 
             <ng-template #itemTemplate let-item="item">
@@ -354,7 +354,7 @@
             [placeholder]="'dropdown.multiple.placeholder' | ddrTranslate" 
             [labelNoResults]="'dropdown.multiple.no.items' | ddrTranslate"
             [labelPlaceholderFilter]="'dropdown.multiple.filter.placeholder' | ddrTranslate" 
-            [(ngModel)]="value13"
+            [(value)]="value13"
             name="dropdown-multiple-13"
             [compareFn]="compareFn"
             (selectItems)="selectItemsObject($event)" />
@@ -388,7 +388,7 @@
             [required]="true"
             [validate]="true"
             name="dropdown-multiple-14"
-            [(ngModel)]="value14"
+            [(value)]="value14"
             (selectItems)="selectItemsObject($event)" >
 
             <ng-template #templateValid>
@@ -426,7 +426,7 @@
         [compareFn]="compareFn"
         [transparent]="true"
         name="dropdown-multiple-15"
-        [(ngModel)]="value15"
+        [(value)]="value15"
         (selectItems)="selectItemsObject($event)" />
   </div>
 </div>

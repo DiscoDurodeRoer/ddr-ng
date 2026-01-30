@@ -3,18 +3,18 @@
     @if (showFirst() && !showFirstOnlyIcon()) {
       <ddr-button class="ddr-button-split__action-principal"
         [class.ddr-button-split__action-principal--more-actions]="actions() && actions().length > 1"
-        [text]="actions()[0]?.label | ddrTranslate"
-        [icon]="actions()[0]?.icon"
-        [img]="actions()[0]?.img"
+        [text]="actions()[0].label | ddrTranslate"
+        [icon]="actions()[0].icon"
+        [img]="actions()[0].img"
         [size]="size()"
         [disabled]="disabled()"
         (action)="sendAction(actions()[0])" />
     }
-    @if (showFirst() && showFirstOnlyIcon()) {
+    @if (showFirst() && showFirstOnlyIcon() && actions().length > 1) {
       <ddr-button class="ddr-button-split__action-principal"
         [class.ddr-button-split__action-principal--more-actions]="actions().length > 1"
-        [icon]="actions()[0]?.icon"
-        [img]="actions()[0]?.img"
+        [icon]="actions()[0].icon"
+        [img]="actions()[0].img"
         [size]="size()"
         [disabled]="disabled()"
         (action)="sendAction(actions()[0])" />
@@ -30,7 +30,7 @@
         [disabled]="disabled()"
         (action)="togglePanelOptions()" />
     }
-    @if (showOptions) {
+    @if (showOptions()) {
       <div
         [class]="'ddr-button-split__options ddr-button-split__options--position-' + position()"
         [class.ddr-button-split__options--with-text]="!showOnlyIcon()"

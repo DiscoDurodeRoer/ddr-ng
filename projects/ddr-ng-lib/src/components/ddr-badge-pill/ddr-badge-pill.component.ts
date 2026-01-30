@@ -3,15 +3,14 @@ import { DdrConstantsService } from '../../services/ddr-constants.service';
 import { NgTemplateOutlet } from '@angular/common';
 import { DdrSize, DdrStatusBadge } from '../../types/types';
 
-
 @Component({
-    selector: 'ddr-badge-pill',
-    templateUrl: './ddr-badge-pill.component.html',
-    styleUrls: ['./ddr-badge-pill.component.scss'],
-    encapsulation: ViewEncapsulation.None,
-    imports: [
+  selector: 'ddr-badge-pill',
+  templateUrl: './ddr-badge-pill.component.html',
+  styleUrls: ['./ddr-badge-pill.component.scss'],
+  encapsulation: ViewEncapsulation.None,
+  imports: [
     NgTemplateOutlet
-]
+  ]
 })
 export class DdrBadgePillComponent {
 
@@ -24,12 +23,12 @@ export class DdrBadgePillComponent {
   readonly canClick = input<boolean>(true);
   readonly size = input<DdrSize>(this.constants.SIZE.MEDIUM);
   readonly templateContentOutside = contentChild<TemplateRef<any>>("templateContent");
-  
+
   readonly clickBadge = output<MouseEvent>();
 
-  onclickBadge($event: MouseEvent){
+  onClickBadge($event: MouseEvent) {
     if (this.canClick()) {
-      this.clickBadge.emit($event); 
+      this.clickBadge.emit($event);
     }
   }
 

@@ -5,7 +5,9 @@ import {
   ViewEncapsulation,
   input,
   output,
-  viewChild
+  viewChild,
+  InputSignal,
+  OutputEmitterRef
 } from '@angular/core';
 import { DdrAuth } from '../../common/ddr-auth.model';
 import { DdrConstantsService } from '../../services/ddr-constants.service';
@@ -30,32 +32,32 @@ import { DdrCardComponent } from '../ddr-card/ddr-card.component';
     DdrTranslatePipe,
     DdrInputPasswordComponent,
     DdrCardComponent,
-    ]
+  ]
 })
 export class DdrLoginComponent {
 
   public readonly constants: DdrConstantsService = inject(DdrConstantsService);
 
-  readonly showForgotPassword = input<boolean>(false);
-  readonly showCreateUser = input<boolean>(false);
-  readonly showHeader = input<boolean>(false);
-  readonly showFooter = input<boolean>(false);
-  readonly showLabelUser = input<boolean>(true);
-  readonly showLabelPassword = input<boolean>(true);
-  readonly userRequired = input<boolean>(true);
-  readonly userPassword = input<boolean>(true);
+  readonly showForgotPassword: InputSignal<boolean> = input<boolean>(false);
+  readonly showCreateUser: InputSignal<boolean> = input<boolean>(false);
+  readonly showHeader: InputSignal<boolean> = input<boolean>(false);
+  readonly showFooter: InputSignal<boolean> = input<boolean>(false);
+  readonly showLabelUser: InputSignal<boolean> = input<boolean>(true);
+  readonly showLabelPassword: InputSignal<boolean> = input<boolean>(true);
+  readonly userRequired: InputSignal<boolean> = input<boolean>(true);
+  readonly userPassword: InputSignal<boolean> = input<boolean>(true);
 
-  readonly labelSubmit = input<string>();
-  readonly labelForgotenPassword = input<string>();
-  readonly labelCreateUser = input<string>();
-  readonly labelUsername = input<string>();
-  readonly labelPlaceholderUsername = input<string>();
-  readonly labelPassword = input<string>();
-  readonly labelPlaceholderPassword = input<string>();
+  readonly labelSubmit: InputSignal<string | undefined> = input<string | undefined>();
+  readonly labelForgotenPassword: InputSignal<string | undefined> = input<string | undefined>();
+  readonly labelCreateUser: InputSignal<string | undefined> = input<string | undefined>();
+  readonly labelUsername: InputSignal<string | undefined> = input<string | undefined>();
+  readonly labelPlaceholderUsername: InputSignal<string | undefined> = input<string>();
+  readonly labelPassword: InputSignal<string | undefined> = input<string | undefined>();
+  readonly labelPlaceholderPassword: InputSignal<string | undefined> = input<string | undefined>();
 
-  readonly doLogin = output<DdrAuth>();
-  readonly forgotenPassword = output<void>();
-  readonly registerUser = output<void>();
+  readonly doLogin: OutputEmitterRef<DdrAuth> = output<DdrAuth>();
+  readonly forgotenPassword: OutputEmitterRef<void> = output<void>();
+  readonly registerUser: OutputEmitterRef<void> = output<void>();
 
   public user: DdrAuth = {
     username: '',
@@ -69,12 +71,10 @@ export class DdrLoginComponent {
   }
 
   recoverPassword() {
-    // TODO: The 'emit' function requires a mandatory void argument
     this.forgotenPassword.emit();
   }
 
   createUser() {
-    // TODO: The 'emit' function requires a mandatory void argument
     this.registerUser.emit();
   }
 }

@@ -200,6 +200,8 @@ export class RadioShowcaseComponent {
     }
   ];
 
+  public compareFn = (a: ProgrammingLanguage, b: ProgrammingLanguage) => a.name == b.name;
+
   public value1: string = '';
   public value2: string = 'angular';;
   public value3: ProgrammingLanguage | null = null;

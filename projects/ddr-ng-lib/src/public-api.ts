@@ -71,8 +71,6 @@ export * from './components/ddr-steps/ddr-steps.component';
 export * from './components/ddr-steps/ddr-step/ddr-step.component';
 // no data
 export * from './components/ddr-no-data/ddr-no-data.component';
-// ng Model base
-export * from './components/ddr-ngmodel-base/ddr-control-value-accessor-base.component';
 // Services
 export * from './services/ddr-theme.service';
 // Pipes

@@ -1,5 +1,5 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
-import { Component, ViewEncapsulation, inject, ChangeDetectionStrategy, ChangeDetectorRef, input, output } from '@angular/core';
+import { Component, ViewEncapsulation, inject, ChangeDetectionStrategy, ChangeDetectorRef, input, output, WritableSignal, signal, InputSignal, OutputEmitterRef } from '@angular/core';
 import { DdrConstantsService } from '../../services/ddr-constants.service';
 import { DdrAction } from '../../common/ddr-action.model';
 import { DdrButtonComponent } from '../ddr-button/ddr-button.component';
@@ -13,12 +13,11 @@ import { DdrOrientationButtonSplit, DdrSize } from '../../types/types';
   templateUrl: './ddr-button-split.component.html',
   styleUrls: ['./ddr-button-split.component.scss'],
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     DdrButtonComponent,
     DdrTranslatePipe,
     DdrClickOutsideDirective
-],
+  ],
   animations: [
     trigger('overlayAnimation', [
       state('void', style({
@@ -37,47 +36,43 @@ import { DdrOrientationButtonSplit, DdrSize } from '../../types/types';
 export class DdrButtonSplitComponent<T> {
 
   public readonly constants: DdrConstantsService = inject(DdrConstantsService);
-  public readonly changeDetectorRef: ChangeDetectorRef = inject(ChangeDetectorRef);
 
-  readonly actions = input<DdrAction<T>[] | undefined>([]);
-  readonly showFirst = input<boolean>(true);
-  readonly showFirstInOptions = input<boolean>(true);
-  readonly showFirstOnlyIcon = input<boolean>(false);
-  readonly showOnlyIcon = input<boolean>(false);
-  readonly transparent = input<boolean>(false);
-  readonly border = input<boolean>(true);
-  readonly disabled = input<boolean>(false);
-  readonly position = input<DdrOrientationButtonSplit>(this.constants.ORIENTATION.BOTTOM_RIGHT);
-  readonly size = input<DdrSize>(this.constants.SIZE.SMALL);
-  readonly iconShowOptions = input<string>('bi bi-caret-down-fill');
+  readonly actions: InputSignal<DdrAction<T>[]> = input<DdrAction<T>[]>([]);
+  readonly showFirst: InputSignal<boolean> = input<boolean>(true);
+  readonly showFirstInOptions: InputSignal<boolean> = input<boolean>(true);
+  readonly showFirstOnlyIcon: InputSignal<boolean> = input<boolean>(false);
+  readonly showOnlyIcon: InputSignal<boolean> = input<boolean>(false);
+  readonly transparent: InputSignal<boolean> = input<boolean>(false);
+  readonly border: InputSignal<boolean> = input<boolean>(true);
+  readonly disabled: InputSignal<boolean> = input<boolean>(false);
+  readonly position: InputSignal<DdrOrientationButtonSplit> = input<DdrOrientationButtonSplit>(this.constants.ORIENTATION.BOTTOM_RIGHT);
+  readonly size: InputSignal<DdrSize> = input<DdrSize>(this.constants.SIZE.SMALL);
+  readonly iconShowOptions: InputSignal<string> = input<string>('bi bi-caret-down-fill');
 
-  readonly selectAction = output<DdrAction<T>>();
-  readonly openActions = output<boolean>();
+  readonly selectAction: OutputEmitterRef<DdrAction<T>> = output<DdrAction<T>>();
+  readonly openActions: OutputEmitterRef<boolean> = output<boolean>();
 
-  public showOptions: boolean = false;
+  public showOptions: WritableSignal<boolean> = signal<boolean>(false);
 
   togglePanelOptions() {
     setTimeout(() => {
-      this.showOptions = !this.showOptions
-      this.openActions.emit(this.showOptions);
-      this.changeDetectorRef.detectChanges();
+      this.showOptions.update((value: boolean) => !value);
+      this.openActions.emit(this.showOptions());
     }, 100);
   }
 
   sendAction(action: DdrAction<T>) {
     this.selectAction.emit(action);
-    this.showOptions = false;
-    this.openActions.emit(this.showOptions);
-    this.changeDetectorRef.detectChanges();
+    this.showOptions.set(false);
+    this.openActions.emit(this.showOptions());
   }
 
   hideOptions() {
     setTimeout(() => {
-      if (this.showOptions) {
+      if (this.showOptions()) {
         this.openActions.emit(false);
       }
-      this.showOptions = false;
-      this.changeDetectorRef.detectChanges();
+      this.showOptions.set(false);
     }, 100)
   }
 

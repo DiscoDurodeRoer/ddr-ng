@@ -32,12 +32,12 @@ export class SpinnerShowcaseComponent {
   }
 
   showSpinnerImg() {
-    this.ddrSpinnerService.spinnerPathImg = '/img/spinner/spinner.gif';
+    this.ddrSpinnerService.spinnerPathImg.set('/img/spinner/spinner.gif');
     this.ddrSpinnerService.showSpinner();
 
     setTimeout(() => {
       this.ddrSpinnerService.hideSpinner();
-      this.ddrSpinnerService.spinnerPathImg = '';
+      this.ddrSpinnerService.spinnerPathImg.set('');
     }, 5000);
   }
 

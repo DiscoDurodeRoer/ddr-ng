@@ -1,19 +1,17 @@
-
-import { Component, TemplateRef, ViewEncapsulation, input, contentChild } from '@angular/core';
+import { Component, TemplateRef, ViewEncapsulation, input, contentChild, InputSignal, signal, WritableSignal, Signal } from '@angular/core';
 
 @Component({
   selector: 'ddr-tab-item',
   template: '',
   encapsulation: ViewEncapsulation.None,
-  standalone: true,
-  imports: []
+  standalone: true
 })
 export class DdrTabItemComponent {
 
-  readonly titleTab = input.required<string>();
-  readonly icon = input<string>();
-  public open: boolean = false;
+  readonly titleTab: InputSignal<string> = input.required<string>();
+  readonly icon: InputSignal<string | undefined> = input<string | undefined>();
+  public open: WritableSignal<boolean> = signal<boolean>(false);
 
-  readonly tabContentTemplate = contentChild<TemplateRef<any> | null>('tabContent');
-  
+  readonly tabContentTemplate: Signal<TemplateRef<any> | null | undefined> = contentChild<TemplateRef<any> | null>('tabContent');
+
 }

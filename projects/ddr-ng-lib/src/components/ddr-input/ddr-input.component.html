@@ -17,55 +17,54 @@
         }
       </label>
     }
-    <input #input="ngModel"
+    
+<!-- 
+      [min]="min()"
+      [max]="max()"    
+      [required]="required()"
+      [attr.pattern]="htmlPattern()"
+      [attr.maxlength]="maxlength()"
+      [attr.minlength]="minlength()"
+      [readonly]="readonly()"
+      [disabled]="disabled()"
+      [name]="name()"
+-->
+
+    <input #input
       class="ddr-input__input-container__input"
       [attr.id]="name()"
-      [name]="name()"
       [type]="type()"
       [placeholder]="placeholder()"
-      [disabled]="disabled()"
-      [readonly]="readonly()"
-      [maxlength]="maxlength()"
-      [minlength]="minlength()"
-      [required]="required()"
-      [pattern]="pattern()"
-      [min]="min()"
-      [max]="max()"
+      
+    
       [attr.autocomplete]="autocomplete()"
-      [(ngModel)]="value"
-      [class]="{
-      'is-valid': validate() && input.dirty && !input.errors,
-      'is-invalid': validate() && input.dirty && input.errors,
-      'w-100': !inline(),
-      'ddr-input__input-container__input--disabled': disabled(),
-      'ddr-input__input-container__input--border': border(),
-      'ddr-input__input-container__input--without-border': !border(),
-      'ddr-input__input-container__input--small':
-      size() == constants.SIZE.SMALL,
-      'ddr-input__input-container__input--medium':
-      size() == constants.SIZE.MEDIUM,
-      'ddr-input__input-container__input--large':
-      size() == constants.SIZE.LARGE,
-      'ddr-input__input-container__input--inline': inline(),
-      'ddr-input__input-container__input--transparent': transparent(),
-      'ddr-input__input-container__input--border-transparent': transparent()
-      }"
+      [field]="value()"
+      [class.is-valid]="validate() && dirty() && !errors()"
+      [class.is-invalid]="validate() && dirty() && errors()"
+      [class.w-100]="!inline()"
+      [class.ddr-input__input-container__input--disabled]="disabled()"
+      [class.ddr-input__input-container__input--border]="border()"
+      [class.ddr-input__input-container__input--without-border]="!border()"
+      [class.ddr-input__input-container__input--small]="size() == constants.SIZE.SMALL"
+      [class.ddr-input__input-container__input--medium]="size() == constants.SIZE.MEDIUM"
+      [class.ddr-input__input-container__input--large]="size() == constants.SIZE.LARGE"
+      [class.ddr-input__input-container__input--inline]="inline()"
+      [class.ddr-input__input-container__input--transparent.ddr-input__input-container__input--border-transparent]="transparent()"
       ddrSetFocus
       [focus]="focus()"
       (focusLost)="onFocusLost()"
-      ngDefaultControl
       (keyup)="checkInput()"
       (click)="onclickInput($event)" />
-    @if (validate() && input.dirty && !input.errors) {
+    @if (validate() && dirty() && !errors()) {
       <div [class.w-auto]="inline()" [class.d-inline-block]="inline()" [class.mt-5]="inline()" [class.valid-feedback-inline]="inline()" class="valid-feedback">
         <ng-template #templateValid [ngTemplateOutlet]="templateValidOutside()"/>
       </div>
     }
-    @if (validate() && input.dirty && input.errors) {
+    @if (validate() && dirty() && errors()) {
       <div [class.w-auto]="inline()" [class.d-inline-block]="inline()" [class.mt-5]="inline()" [class.invalid-feedback-inline]="inline()" class="invalid-feedback">
         <ng-template #templateErrors
           [ngTemplateOutlet]="templateErrorsOutside()"
-          [ngTemplateOutletContext]="{ errors: input.errors }" />
+          [ngTemplateOutletContext]="{ errors: errors() }" />
       </div>
     }
   </div>

@@ -1,14 +1,12 @@
-import { AfterViewInit, ChangeDetectorRef, Component, forwardRef, inject, OnChanges, OnDestroy, SimpleChanges, input, output, viewChild } from '@angular/core';
+import { Component, inject, input, output, viewChild, InputSignal, OutputEmitterRef, signal, WritableSignal, Signal, ModelSignal, model, effect } from '@angular/core';
 import { DdrCheckboxBinaryComponent } from '../ddr-checkbox-binary/ddr-checkbox-binary.component';
 import { DdrDropdownComponent } from '../ddr-dropdown/ddr-dropdown.component';
 import { DdrConstantsService } from '../../services/ddr-constants.service';
 import { DdrTranslateService } from '../../services/ddr-translate.service';
 import { DdrSelectItem } from '../../common/ddr-select-item.model';
-import { FormsModule, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { DdrControlValueAccessor } from '../ddr-ngmodel-base/ddr-control-value-accessor-base.component';
 import { DdrOrientationDropdown, DdrOrientatioTooltip } from '../../types/types';
-
-import { Subscription } from 'rxjs/internal/Subscription';
+import { FormValueControl } from '@angular/forms/signals';
+import { JsonPipe } from '@angular/common';
 
 @Component({
   selector: 'ddr-dropdown-multiple',
@@ -17,75 +15,51 @@ import { Subscription } from 'rxjs/internal/Subscription';
   imports: [
     DdrDropdownComponent,
     DdrCheckboxBinaryComponent,
-    FormsModule
-    ],
-  providers: [
-    {
-      provide: NG_VALUE_ACCESSOR,
-      useExisting: DdrDropdownMultipleComponent,
-      multi: true,
-    },
+    JsonPipe
   ]
 })
-export class DdrDropdownMultipleComponent<T> extends DdrControlValueAccessor implements OnChanges, AfterViewInit, OnDestroy {
+export class DdrDropdownMultipleComponent<T> implements FormValueControl<T[]> {
 
   public readonly constants: DdrConstantsService = inject(DdrConstantsService);
   private ddrTranslate: DdrTranslateService = inject(DdrTranslateService);
-  private changeDetectorRef: ChangeDetectorRef = inject(ChangeDetectorRef);
 
-  readonly options = input.required<DdrSelectItem<T>[]>();
-  readonly showFilter = input<boolean>(true);
-  readonly label = input<string>();
-  readonly name = input<string>('');
-  readonly inline = input<boolean>(false);
-  readonly orientation = input<DdrOrientationDropdown>(this.constants.ORIENTATION_DROPDOWN.BOTTOM);
-  readonly labelPlaceholderFilter = input<string>('');
-  readonly labelNoResults = input<string>();
-  readonly disabled = input<boolean>(false);
-  readonly placeholder = input<string>('');
-  readonly required = input<boolean>(false);
-  readonly validate = input<boolean>(false);
-  readonly translate = input<boolean>(true);
-  readonly modalOptions = input<boolean>(false);
-  readonly tooltipOrientation = input<DdrOrientatioTooltip>(this.constants.ORIENTATION.BOTTOM);
-  readonly tooltipText = input<string>();
-  readonly compareFn = input<Function>((a: T, b: T) => a === b);
-  readonly transparent = input<boolean>(false);
+  readonly options: InputSignal<DdrSelectItem<T>[]> = input.required<DdrSelectItem<T>[]>();
+  readonly showFilter: InputSignal<boolean> = input<boolean>(true);
+  readonly label: InputSignal<string | undefined> = input<string | undefined>();
+  readonly name: InputSignal<string> = input<string>('');
+  readonly inline: InputSignal<boolean> = input<boolean>(false);
+  readonly orientation: InputSignal<DdrOrientationDropdown> = input<DdrOrientationDropdown>(this.constants.ORIENTATION_DROPDOWN.BOTTOM);
+  readonly labelPlaceholderFilter: InputSignal<string> = input<string>('');
+  readonly labelNoResults: InputSignal<string | undefined> = input<string | undefined>();
+  readonly disabled: InputSignal<boolean> = input<boolean>(false);
+  readonly placeholder: InputSignal<string> = input<string>('');
+  readonly required: InputSignal<boolean> = input<boolean>(false);
+  readonly validate: InputSignal<boolean> = input<boolean>(false);
+  readonly translate: InputSignal<boolean> = input<boolean>(true);
+  readonly modalOptions: InputSignal<boolean> = input<boolean>(false);
+  readonly tooltipOrientation: InputSignal<DdrOrientatioTooltip> = input<DdrOrientatioTooltip>(this.constants.ORIENTATION.BOTTOM);
+  readonly tooltipText: InputSignal<string | undefined> = input<string | undefined>();
+  readonly compareFn: InputSignal<Function> = input<Function>((a: T, b: T) => a === b);
+  readonly transparent: InputSignal<boolean> = input<boolean>(false);
 
-  readonly selectItems = output<DdrSelectItem<T>[]>();
+  readonly selectItems: OutputEmitterRef<DdrSelectItem<T>[]> = output<DdrSelectItem<T>[]>();
 
-  readonly dropdown = viewChild(DdrDropdownComponent);
+  readonly dropdown: Signal<DdrDropdownComponent<any> | undefined> = viewChild(DdrDropdownComponent);
 
-  public optionsSelected: DdrSelectItem<T>[] = [];
-  private subscription: Subscription = new Subscription();
+  public optionsSelected: WritableSignal<DdrSelectItem<T>[]> = signal<DdrSelectItem<T>[]>([]);
+
+  public value: ModelSignal<T[]> = model<T[]>([]);
 
   constructor() {
-    super();
-  }
-
-  ngAfterViewInit(): void {
-    this.subscription = this.changeValue.subscribe({
-      next: (v: T[]) => {
-        this.selectValues(v);
-      }
-    })
-  }
-
-  ngOnChanges(changes: SimpleChanges): void {
-    if (changes) {
-      if (changes['options'] && !changes['options'].firstChange) {
-        this.selectValues(this.value);
-      }
-      this.changeDetectorRef.markForCheck();
-    }
+    effect(() => this.selectValues(this.value()))
   }
 
   private selectValues(value: T[]) {
 
     if (!value || value.length == 0) {
-      this.optionsSelected = [];
+      this.optionsSelected.set([]);
       this.options().forEach(op => op.selected = false);
-      this.dropdown()!.valueShow = '';
+      this.dropdown()!.valueShow.set('');
     } else if (value.length > 0) {
 
       for (const option of this.options()) {
@@ -93,27 +67,21 @@ export class DdrDropdownMultipleComponent<T> extends DdrControlValueAccessor imp
         option.selected = !!optionFound
       }
 
-      this.optionsSelected = this.options().filter(option => option.selected);
+      this.optionsSelected.set(this.options().filter(option => option.selected));
 
-      this.dropdown()!.valueShow = this.optionsSelected.map(option => this.translate() ? this.ddrTranslate.getTranslate(option.label) : option.label).join(', ');
-
+      this.dropdown()!.valueShow.set(this.optionsSelected().map(option => this.translate() ? this.ddrTranslate.getTranslate(option.label) : option.label).join(', '));
     }
   }
 
   onSelectItem(item: DdrSelectItem<T>) {
-
     if (item.selected) {
-      this.optionsSelected.push(item);
+      this.optionsSelected.update((value: DdrSelectItem<T>[]) => [...value, item]);
     } else {
-      this.optionsSelected = this.optionsSelected.filter(option => !this.compareFn()(option.value, item.value));
+      this.optionsSelected.update((value: DdrSelectItem<T>[]) => value.filter(option => !this.compareFn()(option.value, item.value)));
     }
 
-    this.value = this.optionsSelected.map(v => v.value);
-    this.selectItems.emit(this.optionsSelected);
-  }
-
-  ngOnDestroy(): void {
-    this.subscription?.unsubscribe();
+    this.value.set(this.optionsSelected().map(v => v.value));
+    this.selectItems.emit(this.optionsSelected());
   }
 
 }

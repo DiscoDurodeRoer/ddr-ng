@@ -3,7 +3,7 @@ import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { DdrToggleComponent } from '../components/ddr-toggle/ddr-toggle.component';
 import { DdrTranslatePipe } from '../pipes/ddr-translate.pipe';
-import { DdrControlValueAccessor } from '../components/ddr-ngmodel-base/ddr-control-value-accessor-base.component';
+import { DdrControlValueAccessor } from '../directives/ddr-control-value-accessor.directive';
 
 describe('DdrToggleComponent', () => {
     let fixture: ComponentFixture<DdrToggleComponent>;

@@ -17,31 +17,28 @@
     }
   }
   <textarea
-    #textarea="ngModel"
+    #textarea
     class="ddr-textarea__textarea"
     [attr.id]="name()"
     [name]="name()"
     [placeholder]="placeholder()"
     [disabled]="disabled()"
     [readonly]="readonly()"
-    [maxlength]="maxlength()"
-    [minlength]="minlength()"
+    [attr.maxlength]="maxlength()"
+    [attr.minlength]="minlength()"
     [required]="required()"
     [cols]="cols()"
     [rows]="rows()"
-    [(ngModel)]="value"
-    [class]="{
-    'is-valid': validate() && textarea.dirty && !textarea.errors,
-    'is-invalid': validate() && textarea.dirty && textarea.errors,
-    'w-100': !inline(),
-    'ddr-textarea__textarea--inline': inline()
-    }"
-    ngDefaultControl
+    [(value)]="value"
+    [class.is-valid]="validate() && dirty() && !errors()"
+    [class.is-invalid]="validate() && dirty() && errors()"
+    [class.w-100]="!inline()"
+    [class.ddr-textarea__textarea--inline]=" inline()"
     (click)="onclick($event)"
     (keyup)="onKeyup()"
     (blur)="onblur()"></textarea>
   <!--Validation-->
-  @if (validate() && textarea.dirty && !textarea.errors) {
+  @if (validate() && dirty() && !errors()) {
     <div
       [class.w-auto]="inline()" [class.d-inline-block]="inline()" [class.ms-1]="inline()"
       class="valid-feedback"
@@ -49,14 +46,14 @@
       <ng-template [ngTemplateOutlet]="templateValid()" />
     </div>
   }
-  @if (validate() && textarea.dirty && textarea.errors) {
+  @if (validate() && dirty() && errors()) {
     <div
       [class.w-auto]="inline()" [class.d-inline-block]="inline()" [class.ms-1]="inline()"
       class="invalid-feedback"
       >
       <ng-template
         [ngTemplateOutlet]="templateErrors()"
-        [ngTemplateOutletContext]="{ errors: textarea.errors }" />
+        [ngTemplateOutletContext]="{ errors: errors() }" />
     </div>
   }
 </div>

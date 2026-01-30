@@ -1,9 +1,8 @@
-<div class="ddr-dropdown user-select-none" [class]="{
-  'd-inline-block': inline(), 
-  'ddr-dropdown--selectionable': !disabled()
-}">
+<div class="ddr-dropdown user-select-none" 
+  [class.d-inline-block]="inline()"
+  [class.ddr-dropdown--selectionable]="!disabled()">
   <!-- Option orientations TOP -->
-  @if (showItems && orientation() == constants.ORIENTATION_DROPDOWN.TOP) {
+  @if (showItems() && orientation() == constants.ORIENTATION_DROPDOWN.TOP) {
     <div class="ddr-dropdown__panel-items ddr-dropdown__panel-items--top"
       [class.ddr-dropdown__panel-items--modal]="modalOptions()"
       [@overlayAnimationTop]="{ value: 'visible' }">
@@ -18,7 +17,7 @@
     [readonly]="true"
     [required]="required()"
     [disabled]="disabled()"
-    [(ngModel)]="valueShow"
+    [(value)]="valueShow"
     [validate]="validate()" 
     [tooltipOrientation]="tooltipOrientation()"
     [tooltipText]="tooltipText()"
@@ -39,7 +38,7 @@
 
   </ddr-input-group>
   <!-- Option orientations BOTTOM -->
-  @if (showItems && orientation() == constants.ORIENTATION_DROPDOWN.BOTTOM) {
+  @if (showItems() && orientation() == constants.ORIENTATION_DROPDOWN.BOTTOM) {
     <div
       class="ddr-dropdown__panel-items" 
       [class.ddr-dropdown__panel-items--modal]="modalOptions()" 
@@ -52,18 +51,18 @@
     <div ddrClickOutside (clickOutside)="hidePanelItems()">
       <div class="ddr-dropdown__panel-items--search">
         @if (showFilter() && options().length > 0) {
-          <input type="text" [(ngModel)]="filterInput" #search name="value" (keyup)="filter(search.value)"
+          <input type="text" [field]="filterForm.filter"
             class="form-control ddr-dropdown__panel-items--search--input" [placeholder]="labelPlaceholderFilter() | ddrTranslate" />
         }
       </div>
-      @if (optionsShow.length === 0) {
+      @if (optionsShow().length === 0) {
         <div [class.ddr-dropdown__panel-items--no-results--no-filter]="!showFilter()" class="ddr-dropdown__panel-items--no-results">
           <span>{{ labelNoResults() || ('dropdown.no.results' | ddrTranslate) }}</span>
         </div>
       } @else {
         <ul [class.ddr-dropdown__panel-items__with-filter]="showFilter()">
 
-          @for (item of optionsShow; track item; let index = $index) {
+          @for (item of optionsShow(); track item; let index = $index) {
             <li class="d-flex align-items-center cursor-pointer  ddr-dropdown__panel-items__item" [class.ddr-dropdown__panel-items__item--active]="item.selected" (click)="onSelectItem(item)">
               
               @if(itemTemplateOutside()){
@@ -86,6 +85,6 @@
     </div>
   </ng-template>
 </div>
-@if (modalOptions() && showItems) {
+@if (modalOptions() && showItems()) {
   <div class="ddr-overlay" (click)="hidePanelItems()"></div>
 }

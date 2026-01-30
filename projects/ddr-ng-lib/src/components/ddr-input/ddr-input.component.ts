@@ -1,22 +1,28 @@
 import {
   Component,
-  forwardRef,
   inject,
-  numberAttribute,
   TemplateRef,
   ViewEncapsulation,
   input,
   output,
   viewChild,
-  contentChild
+  contentChild,
+  InputSignal,
+  OutputEmitterRef,
+  ModelSignal,
+  model,
+  computed,
+  OutputRef,
+  ElementRef,
+  effect
 } from '@angular/core';
-import { FormsModule, NG_VALUE_ACCESSOR, NgModel } from '@angular/forms';
+import { FormsModule, NgModel } from '@angular/forms';
 import { DdrConstantsService } from '../../services/ddr-constants.service';
-import { DdrControlValueAccessor } from '../ddr-ngmodel-base/ddr-control-value-accessor-base.component';
 import { DdrTooltipDirective } from '../../directives/ddr-tooltip.directive';
 import { NgTemplateOutlet } from '@angular/common';
 import { AutocompleteType, DdrInputError, DdrOrientatioTooltip, DdrSize, DdrTypeInput } from '../../types/types';
 import { DdrSetFocusDirective } from '../../directives/ddr-set-focus.directive';
+import { DisabledReason, Field, FormValueControl, ValidationError, WithOptionalField } from '@angular/forms/signals';
 
 @Component({
   selector: 'ddr-input',
@@ -27,91 +33,100 @@ import { DdrSetFocusDirective } from '../../directives/ddr-set-focus.directive';
     FormsModule,
     DdrTooltipDirective,
     DdrSetFocusDirective,
-    NgTemplateOutlet
-],
-  providers: [
-    {
-      provide: NG_VALUE_ACCESSOR,
-      useExisting: DdrInputComponent,
-      multi: true,
-    },
+    NgTemplateOutlet,
+    Field
   ]
 })
-export class DdrInputComponent extends DdrControlValueAccessor {
+export class DdrInputComponent implements FormValueControl<string | number> {
 
   public readonly constants: DdrConstantsService = inject(DdrConstantsService)
 
-  readonly placeholder = input<string>('');
-  readonly label = input<string>();
+  readonly placeholder: InputSignal<string> = input<string>('');
+  readonly label: InputSignal<string | undefined> = input<string | undefined>();
   readonly type = input<DdrTypeInput>(this.constants.TYPE_INPUT.TEXT);
-  readonly name = input<string>('');
-  readonly disabled = input<boolean>(false);
-  readonly readonly = input<boolean>(false);
-  readonly maxlength = input<string | number | null>(null);
-  readonly minlength = input<string | number | null>(null);
-  readonly required = input<boolean>(false);
-  readonly validate = input<boolean>(false);
-  readonly inline = input<boolean>(false);
-  readonly border = input<boolean>(true);
-  readonly pattern = input<string>('');
-  readonly size = input<DdrSize>(this.constants.SIZE.MEDIUM);
-  readonly min = input<number | null>(null);
-  readonly max = input<number | null>(null);
-  readonly tooltipOrientation = input<DdrOrientatioTooltip>(this.constants.ORIENTATION.BOTTOM);
-  readonly tooltipText = input<string>();
-  readonly labelBold = input<boolean>(false);
-  readonly focus = input<boolean>(false);
-  readonly transparent = input<boolean>(false);
-  readonly autocomplete = input<AutocompleteType>('off');
+  readonly name: InputSignal<string> = input<string>('');
+  readonly disabled: InputSignal<boolean> = input<boolean>(false);
+  readonly readonly: InputSignal<boolean> = input<boolean>(false);
+  // readonly maxlength: InputSignal<string | number | null> = input<string | number | null>(null);
+  // readonly minlength: InputSignal<string | number | null> = input<string | number | null>(null);
+  readonly required: InputSignal<boolean> = input<boolean>(false);
+  readonly validate: InputSignal<boolean> = input<boolean>(false);
+  readonly inline: InputSignal<boolean> = input<boolean>(false);
+  readonly border: InputSignal<boolean> = input<boolean>(true);
+  // readonly pattern: InputSignal<string> = input<string>('');
+  readonly size: InputSignal<DdrSize> = input<DdrSize>(this.constants.SIZE.MEDIUM);
+  // readonly min: InputSignal<number | null> = input<number | null>(null);
+  // readonly max: InputSignal<number | null> = input<number | null>(null);
+  readonly tooltipOrientation: InputSignal<DdrOrientatioTooltip> = input<DdrOrientatioTooltip>(this.constants.ORIENTATION.BOTTOM);
+  readonly tooltipText: InputSignal<string | undefined> = input<string | undefined>();
+  readonly labelBold: InputSignal<boolean> = input<boolean>(false);
+  readonly focus: InputSignal<boolean> = input<boolean>(false);
+  readonly transparent: InputSignal<boolean> = input<boolean>(false);
+  readonly autocomplete: InputSignal<AutocompleteType> = input<AutocompleteType>('off');
 
-  readonly hasErrors = output<DdrInputError>();
-  readonly clickInput = output<MouseEvent>();
-  readonly keyPressed = output<string>();
-  readonly focusLost = output<void>();
+  readonly hasErrors: OutputEmitterRef<DdrInputError> = output<DdrInputError>();
+  readonly clickInput: OutputEmitterRef<MouseEvent> = output<MouseEvent>();
+  readonly keyPressed: OutputEmitterRef<string> = output<string>();
+  readonly focusLost: OutputEmitterRef<void> = output<void>();
 
-  readonly input = viewChild.required<NgModel>('input');
+  readonly input = viewChild.required<ElementRef<HTMLInputElement>>('input');
 
   readonly templateValidOutside = contentChild<TemplateRef<any> | null>('templateValid');
   readonly templateErrorsOutside = contentChild<TemplateRef<any> | null>('templateErrors');
 
+  value: ModelSignal<string | number> = model<string | number>('');
+  min: InputSignal<number | undefined> = input<number | undefined>(undefined);
+  max: InputSignal<number | undefined> = input<number | undefined>(undefined);
+  pattern: InputSignal<readonly RegExp[]> = input<readonly RegExp[]>([]);
+  errors: InputSignal<readonly WithOptionalField<ValidationError>[]> = input<readonly WithOptionalField<ValidationError>[]>([]);
+  dirty: InputSignal<boolean> = input<boolean>(false);
+  minlength: InputSignal<number | undefined> = input<number | undefined>(undefined);
+  maxlength: InputSignal<number | undefined> = input<number | undefined>(undefined);
+
+  htmlPattern = computed(() => {
+    const patterns = this.pattern();
+    if (!patterns.length) return null;
+
+    return patterns[0].source;
+  });
+
   constructor() {
-    super();
+
   }
 
   checkInput() {
 
-    if (this.constants.TYPE_INPUT.NUMBER == this.type()) {
-      this.value = +this.value;
+    // if (this.constants.TYPE_INPUT.NUMBER == this.type()) {
+    //   this.value.set(+this.value);
 
-      const min = this.min();
-      if (min && min !== undefined && this.value < min) {
-        this.value = min;
-      }
-      const max = this.max();
-      if (max && max !== undefined && this.value > max) {
-        this.value = max;
-      }
-    }
+    //   const min = this.min!();
+    //   if (min && min !== undefined && +this.value() < min) {
+    //     this.value.set(min);
+    //   }
+    //   const max = this.max!();
+    //   if (max && max !== undefined && +this.value() > max) {
+    //     this.value.set(max);
+    //   }
+    // }
 
-    const inputValue = this.input();
-    if (this.validate() && inputValue) {
-      if (inputValue.valid) {
-        this.hasErrors.emit(this.constants.INPUT_ERRORS.VALID);
-      } else {
-        this.hasErrors.emit(this.constants.INPUT_ERRORS.ERROR);
-      }
-    } else {
-      this.hasErrors.emit(this.constants.INPUT_ERRORS.NEUTRAL);
-    }
-    this.keyPressed.emit(this.value);
+    // const inputValue = this.input();
+    // if (this.validate() && inputValue) {
+    //   if (inputValue) {
+    //     this.hasErrors.emit(this.constants.INPUT_ERRORS.VALID);
+    //   } else {
+    //     this.hasErrors.emit(this.constants.INPUT_ERRORS.ERROR);
+    //   }
+    // } else {
+    //   this.hasErrors.emit(this.constants.INPUT_ERRORS.NEUTRAL);
+    // }
+    this.keyPressed.emit(this.value().toString());
   }
 
   onclickInput($event: MouseEvent) {
     this.clickInput.emit($event);
   }
 
-  onFocusLost(){
-    // TODO: The 'emit' function requires a mandatory void argument
+  onFocusLost() {
     this.focusLost.emit();
   }
 

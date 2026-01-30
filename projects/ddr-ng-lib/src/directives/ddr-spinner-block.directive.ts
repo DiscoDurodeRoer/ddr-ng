@@ -28,15 +28,15 @@ export class DdrSpinnerBlockDirective implements OnChanges {
   private createSpinner(): void {
     if (!this.spinnerRef) {
       this.spinnerRef = this.viewContainerRef.createComponent(DdrSpinnerComponent);
-      this.spinnerRef.instance.pathImg = this.spinnerPathImg();
-      this.spinnerRef.instance.embedded = true;
+      this.spinnerRef.instance.pathImg.set(this.spinnerPathImg());
+      this.spinnerRef.instance.embedded.set(true);
       this.renderer.appendChild(this.el.nativeElement, this.spinnerRef.location.nativeElement);
     }
   }
 
   private removeSpinner(): void {
     if (this.spinnerRef) {
-      this.spinnerRef.instance.show = false;
+      this.spinnerRef.instance.show.set(false);
       this.spinnerRef.destroy();
       this.spinnerRef = undefined;
     }

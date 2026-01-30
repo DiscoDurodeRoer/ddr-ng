@@ -13,7 +13,7 @@
       type="number"
       [min]="1"
       name="maxtoasts"
-      [(ngModel)]="maxToasts" />
+      [(value)]="maxToasts" />
   </div>
 </div>
 
@@ -24,7 +24,7 @@
       type="number"
       [min]="1"
       name="timeout"
-      [(ngModel)]="toastTimeout" />
+      [(value)]="toastTimeout" />
   </div>
 </div>
 
@@ -34,7 +34,7 @@
       <ddr-button-multiple
             [buttons]="buttonsOrientation"
             [showSelectedButton]="true"
-            [(ngModel)]="toastOrientation"
+            [(value)]="toastOrientation"
             (action)="changeOrientation()" />
   </div>
 </div>

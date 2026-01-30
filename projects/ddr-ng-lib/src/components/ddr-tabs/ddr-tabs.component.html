@@ -3,16 +3,16 @@
     <div
       class="ddr-tabs__title cursor-pointer"
       (click)="open(tab)"
-      [class.ddr-tabs__title--selected]="tab.open">
+      [class.ddr-tabs__title--selected]="tab.open()">
       @if (tab.icon()) {
         <i [class]="tab.icon() + ' me-2'"></i>
       }
       <span>{{tab.titleTab()}}</span>
     </div>
   }
-  @if (contentTemplate) {
+  @if (contentTemplate()) {
     <div class="ddr-tabs__content">
-      <ng-container [ngTemplateOutlet]="contentTemplate" />
+      <ng-container [ngTemplateOutlet]="contentTemplate()!" />
     </div>
   }
 </div>

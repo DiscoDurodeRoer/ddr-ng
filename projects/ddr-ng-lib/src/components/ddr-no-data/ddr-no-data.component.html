@@ -1,9 +1,7 @@
 <div class="ddr-no-data"
-  [class]="{
-    'ddr-no-data--large': size() === constants.SIZE.LARGE,
-    'ddr-no-data--medium': size() === constants.SIZE.MEDIUM,
-    'ddr-no-data--small': size() === constants.SIZE.SMALL
-  }">
+  [class.ddr-no-data--large]="size() === constants.SIZE.LARGE"
+  [class.ddr-no-data--medium]="size() === constants.SIZE.MEDIUM"
+  [class.ddr-no-data--small]="size() === constants.SIZE.SMALL">
   <div class="ddr-no-data__icon mb-2">
     <i [class]="icon()"></i>
   </div>

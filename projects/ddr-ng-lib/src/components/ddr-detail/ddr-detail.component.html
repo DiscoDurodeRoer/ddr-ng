@@ -1,19 +1,19 @@
-@if (show && orientation() == constants.ORIENTATION.LEFT) {
+@if (show() && orientation() == constants.ORIENTATION.LEFT) {
 <div class="ddr-detail" [@slide-left]>
   <ng-container [ngTemplateOutlet]="contentDetail" />
 </div>
 }
-@if (show && orientation() == constants.ORIENTATION.RIGHT) {
+@if (show() && orientation() == constants.ORIENTATION.RIGHT) {
 <div class="ddr-detail" [@slide-right]>
   <ng-container [ngTemplateOutlet]="contentDetail" />
 </div>
 }
-@if (show && orientation() == constants.ORIENTATION.TOP) {
+@if (show() && orientation() == constants.ORIENTATION.TOP) {
 <div class="ddr-detail" [@slide-top]>
   <ng-container [ngTemplateOutlet]="contentDetail" />
 </div>
 }
-@if (show && orientation() == constants.ORIENTATION.BOTTOM) {
+@if (show() && orientation() == constants.ORIENTATION.BOTTOM) {
 <div class="ddr-detail" [@slide-bottom]>
   <ng-container [ngTemplateOutlet]="contentDetail" />
 </div>
@@ -33,6 +33,6 @@
     </div>
   </div>
 </ng-template>
-@if(show){
+@if(show()){
   <div class="ddr-overlay" (click)="closeDetail()"></div>
 }

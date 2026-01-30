@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { DdrCheckboxComponent } from '../components/ddr-checkbox/ddr-checkbox.component';
-import { DdrControlValueAccessor } from '../components/ddr-ngmodel-base/ddr-control-value-accessor-base.component';
+import { DdrControlValueAccessor } from '../directives/ddr-control-value-accessor.directive';
 import { DdrTranslatePipe } from '../pipes/ddr-translate.pipe'
 import { provideHttpClient } from '@angular/common/http';
 

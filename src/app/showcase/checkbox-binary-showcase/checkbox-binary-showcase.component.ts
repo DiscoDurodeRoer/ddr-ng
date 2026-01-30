@@ -6,7 +6,6 @@ import {
   DdrTranslateService
 } from 'ddr-ng';
 import { BaseShowcaseComponent } from '../base-showcase/base-showcase.component';
-import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'checkbox-binary-showcase',
@@ -14,8 +13,7 @@ import { FormsModule } from '@angular/forms';
   imports: [
     BaseShowcaseComponent,
     DdrCheckboxBinaryComponent,
-    DdrTranslatePipe,
-    FormsModule
+    DdrTranslatePipe
   ],
   providers: [
     DdrToastService

@@ -1,12 +1,11 @@
-import { AfterViewInit, ChangeDetectorRef, Component, forwardRef, inject, OnDestroy, OnInit, ViewEncapsulation, input, output, contentChildren } from '@angular/core';
+import { AfterViewInit, Component, OnDestroy, OnInit, ViewEncapsulation, input, output, contentChildren, InputSignal, OutputEmitterRef, WritableSignal, signal, effect, ModelSignal, OutputRef, model } from '@angular/core';
 import { DdrStepComponent } from './ddr-step/ddr-step.component';
 import { DdrButtonComponent } from '../ddr-button/ddr-button.component';
 
 import { DdrTranslatePipe } from '../../pipes/ddr-translate.pipe';
 import { NgTemplateOutlet } from '@angular/common';
-import { NG_VALUE_ACCESSOR } from '@angular/forms';
-import { DdrControlValueAccessor } from '../ddr-ngmodel-base/ddr-control-value-accessor-base.component';
 import { Subscription } from 'rxjs/internal/Subscription';
+import { DisabledReason, FormValueControl, ValidationError, WithOptionalField } from '@angular/forms/signals';
 
 @Component({
   selector: 'ddr-steps',
@@ -17,118 +16,107 @@ import { Subscription } from 'rxjs/internal/Subscription';
     DdrButtonComponent,
     DdrTranslatePipe,
     NgTemplateOutlet,
-    ],
-  providers: [
-    {
-      provide: NG_VALUE_ACCESSOR,
-      useExisting: DdrStepsComponent,
-      multi: true,
-    },
   ]
 })
-export class DdrStepsComponent extends DdrControlValueAccessor implements OnInit, AfterViewInit, OnDestroy {
-
-  private changeDetectorRef: ChangeDetectorRef = inject(ChangeDetectorRef);
-
-  readonly openAll = input<boolean>(false);
-  readonly vertical = input<boolean>(false);
-  readonly canJumpStep = input<boolean>(false);
-  readonly showButtons = input<boolean>(true);
-  readonly leaveValidateVerticalOpened = input<boolean>(false);
-  readonly validateIcon = input<boolean>(false);
-  readonly labelNext = input<string>();
-  readonly labelPrevious = input<string>();
-
-  readonly changeStep = output<number>();
-  readonly lastStep = output<void>();
+export class DdrStepsComponent implements FormValueControl<number>, OnInit, AfterViewInit {
 
   readonly steps = contentChildren(DdrStepComponent);
-  private subscription: Subscription = new Subscription();
+
+  readonly openAll: InputSignal<boolean> = input<boolean>(false);
+  readonly vertical: InputSignal<boolean> = input<boolean>(false);
+  readonly canJumpStep: InputSignal<boolean> = input<boolean>(false);
+  readonly showButtons: InputSignal<boolean> = input<boolean>(true);
+  readonly leaveValidateVerticalOpened: InputSignal<boolean> = input<boolean>(false);
+  readonly validateIcon: InputSignal<boolean> = input<boolean>(false);
+  readonly labelNext: InputSignal<string | undefined> = input<string | undefined>();
+  readonly labelPrevious: InputSignal<string | undefined> = input<string | undefined>();
+
+  readonly changeStep: OutputEmitterRef<number> = output<number>();
+  readonly lastStep: OutputEmitterRef<void> = output<void>();
+
+  public canJump: WritableSignal<boolean> = signal<boolean>(false);
+
+  value: ModelSignal<number> = model<number>(0);
+
+  constructor() {
+    effect(() => this.canJump.set(this.canJumpStep()))
+  }
 
   ngOnInit(): void {
     if (!this.showButtons()) {
-      this.canJumpStep = true;
+      this.canJump.set(true);
     }
 
-    this.subscription = this.changeValue.subscribe({
-      next: (indexTab: number) => {
+    // this.subscription = this.changeValue.subscribe({
+    //   next: (indexTab: number) => {
 
-        const stepsValue = this.steps();
-        if (stepsValue && !this.openAll() && !this.leaveValidateVerticalOpened()) {
-          const steps = stepsValue;
-          for (let index = 0; index < steps.length; index++) {
-            const step = steps[index];
-            step.open = false;
-          }
-          stepsValue[indexTab - 1].open = true;
-        }
-      }
-    })
+    //     const stepsValue = this.steps();
+    //     if (stepsValue && !this.openAll() && !this.leaveValidateVerticalOpened()) {
+    //       const steps = stepsValue;
+    //       for (let index = 0; index < steps.length; index++) {
+    //         const step = steps[index];
+    //         step.open.set(false);
+    //       }
+    //       stepsValue[indexTab - 1].open.set(true);
+    //     }
+    //   }
+    // })
   }
 
   ngAfterViewInit() {
     const steps = this.steps;
     if (steps.length > 0) {
       for (let index = 0; index < steps.length; index++) {
-        const step = steps[index];
+        const step = steps()[index];
         if (((this.openAll() && this.vertical()) || (this.validateIcon() && step.canGoNext())) || index == 0) {
-          step.open = true;
+          step.open.set(true);
         }
-        step.step = index + 1;
-        step.firstStep = step.step == 1;
-        step.lastStep = step.step == steps.length;
+        step.step.set(index + 1);
+        step.firstStep.set(step.step() == 1);
+        step.lastStep.set(step.step() == steps.length);
       }
-      this.value = 1;
+      this.value.set(1);
     }
     if (this.openAll() && this.vertical()) {
-      this.canJumpStep = false;
+      this.canJump.set(false);
     }
-
-    this.changeDetectorRef.detectChanges();
   }
 
   goToStep(step: DdrStepComponent) {
     if (this.canJumpStep() && this.value != step.step) {
       const vertical = this.vertical();
-      if (!vertical || ((vertical && !this.leaveValidateVerticalOpened()) || !this.steps[this.value - 1].canGoNext())) {
-        this.steps[this.value - 1].open = false;
+      if (!vertical || ((vertical && !this.leaveValidateVerticalOpened()) || !this.steps()[this.value() - 1].canGoNext())) {
+        this.steps()[this.value() - 1].open.set(false);
       }
-      this.steps[step.step - 1].open = true;
-      this.value = step.step;
-      this.changeStep.emit(this.value);
-      if (this.steps().length == this.value) {
-        // TODO: The 'emit' function requires a mandatory void argument
+      this.steps()[step.step() - 1].open.set(true);
+      this.value.set(step.step());
+      this.changeStep.emit(this.value());
+      if (this.steps().length == this.value()) {
         this.lastStep.emit();
       }
     }
   }
 
   previous(step: DdrStepComponent) {
-    const index = step.step - 2;
-    step.open = false;
-    this.steps[index].open = true;
-    this.value = step.step - 1;
-    this.changeStep.emit(this.value);
-    if (this.steps().length == this.value) {
-      // TODO: The 'emit' function requires a mandatory void argument
+    const index = step.step() - 2;
+    step.open.set(false);
+    this.steps()[index].open.set(true);
+    this.value.set(step.step() - 1);
+    this.changeStep.emit(this.value());
+    if (this.steps().length == this.value()) {
       this.lastStep.emit();
     }
   }
 
   next(step: DdrStepComponent) {
-    const index = step.step;
-    step.open = false;
-    this.steps[index].open = true;
-    this.value = step.step + 1;
-    this.changeStep.emit(this.value);
-    if (this.steps().length == this.value) {
-      // TODO: The 'emit' function requires a mandatory void argument
+    const index = step.step();
+    step.open.set(false);
+    this.steps()[index].open.set(true);
+    this.value.set(step.step() + 1);
+    this.changeStep.emit(this.value());
+    if (this.steps().length == this.value()) {
       this.lastStep.emit();
     }
-  }
-
-  ngOnDestroy(): void {
-    this.subscription?.unsubscribe();
   }
 
 }

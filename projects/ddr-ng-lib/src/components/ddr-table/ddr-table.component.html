@@ -6,7 +6,7 @@
           @if (multiple() && items() && items().length > 0) {
             <th class="ddr-table__table--header-row--checkbox" [style.width.%]="10">
               <ddr-checkbox-binary
-                [(ngModel)]="checkAll"
+                [(value)]="checkAll"
                 (clickCheck)="selectAll()"/>
             </th>
           }
@@ -40,7 +40,7 @@
         @if (items() && items().length > 0) {
           @for (
             it of items()
-            | paginate: { id, itemsPerPage: rows, currentPage: page(), totalItems: totalItems() }; track
+            | paginate: { id, itemsPerPage: rows(), currentPage: page(), totalItems: totalItemsTable() }; track
             index; let index = $index) {
             <tr class="ddr-table__table--body-row" [class]="{
               'ddr-table__table--body-row--hoveable': canSelectItems(),
@@ -49,7 +49,7 @@
               @if (multiple()) {
                 <td class="ddr-table__table--body-row--checkbox">
                   <ddr-checkbox-binary
-                    [(ngModel)]="it.selected"
+                    [(value)]="it.selected!"
                     (clickCheck)="sendMultipleItems()" />
                 </td>
               }
@@ -98,10 +98,10 @@
                     >
                     <ddr-dropdown
                       [inline]="true"
-                      [options]="optionsRows"
+                      [options]="optionsRows()"
                       [showFilter]="false"
                       [orientation]="constants.ORIENTATION_DROPDOWN.TOP"
-                      [(ngModel)]="rows"
+                      [(value)]="rows"
                       (selectItem)="changeRows($event)">
                       <ng-template #itemTemplate let-item="item">
                         <div class="text-center">{{ item.label }}</div>
@@ -113,15 +113,15 @@
                   <div class="text-end mt-4"
                     [class]="{'col-md-6 col-12': allowChangeRows() && items() && items().length > 0, 'col-12': !(allowChangeRows() && items() && items().length > 0)}"
                     >
-                    @if (showTotal() && showPagination() && totalItems() > rows) {
+                    @if (showTotal() && showPagination() && totalItemsTable() > rows()) {
                       <span class="d-inline-block">
-                        {{ rows * (page() - 1) + 1 }}
+                        {{ rows() * (page() - 1) + 1 }}
                         {{ labelToPagination() || ("to" | ddrTranslate) }}
-                        {{ totalItems() < (rows * page()) ? totalItems() : (rows * page()) }} {{ labelOfPagination() || ("of" | ddrTranslate) }}
-                        {{ totalItems() }} {{ labelRegisters() }}
+                        {{ totalItemsTable() < (rows() * pageTable()) ? totalItemsTable() : (rows() * page()) }} {{ labelOfPagination() || ("of" | ddrTranslate) }}
+                        {{ totalItemsTable() }} {{ labelRegisters() }}
                       </span>
                     }
-                    @if (showTotal() && showPagination() && (!totalItems() || totalItems() <= rows)) {
+                    @if (showTotal() && showPagination() && (!totalItemsTable() || totalItemsTable() <= rows())) {
                       <span class="d-inline-block">
                         {{ items().length }}
                         @if (items().length == 1) {

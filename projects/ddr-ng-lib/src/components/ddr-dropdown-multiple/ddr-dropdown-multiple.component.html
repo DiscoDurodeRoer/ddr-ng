@@ -23,9 +23,10 @@
         (selectItem)="onSelectItem($event)">
 
         <ng-template #itemTemplate let-item="item">
+            {{item | json}}
             <ddr-checkbox-binary class="flex-0 me-2"
                 [label]="item.label"
-                [(ngModel)]="item.selected"
+                [(value)]="item.selected"
                 (clickCheck)="onSelectItem(item)" />           
         </ng-template>
 

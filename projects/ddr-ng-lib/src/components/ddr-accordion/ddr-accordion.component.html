@@ -1,17 +1,17 @@
 
 <div class="ddr-accordion" [class.ddr-accordion--shadow]="shadow()">
-  <div class="ddr-accordion__title cursor-pointer" [class]="{
-    'ddr-accordion__title--is-opened': open(), 
-    'ddr-accordion__title--is-closed': !open(), 
-    'border': border(), 
-    'ddr-accordion__title--slim': slim()
-    }" (click)="openClose()">
+  <div class="ddr-accordion__title cursor-pointer" 
+    [class.ddr-accordion__title--is-opened]="openAccordion()" 
+    [class.ddr-accordion__title--is-closed]="!openAccordion()"
+    [class.border]="border()"
+    [class.ddr-accordion__title--slim]="slim()" 
+    (click)="toggleAccordion()">
     <div class="row">
       <div class="col-md-11 col-10 text-start">
         <span class="ddr-accordion__title--text">{{titleAccordion()}}</span>
       </div>
       <div class="col-md-1 col-2 text-end">
-        @if (!open()) {
+        @if (!openAccordion()) {
           <i class="bi bi-chevron-down ddr-accordion__title--icon" aria-hidden="true"></i>
         }@else{
           <i class="bi bi-chevron-up ddr-accordion__title--icon" aria-hidden="true"></i>
@@ -20,14 +20,12 @@
     </div>
   </div>
   <div class="ddr-accordion__content" #contentAccordion
-    [@slideInOut]="animate ? state : null"
-    [class]="{
-      'ddr-accordion__content--is-opened': open(), 
-      'ddr-accordion__content--is-closed': !open(), 
-      'border': border(),
-      'ddr-accordion__content--slim': slim()
-    }">
-    @if(open()){
+    [@slideInOut]="animate() ? state() : null"
+    [class.ddr-accordion__content--is-opened]="openAccordion()"
+    [class.ddr-accordion__content--is-closed]="!openAccordion()"
+    [class.border]="border()"
+    [class.ddr-accordion__content--slim]="slim()">
+    @if(openAccordion()){
       <ng-content select="[content-accordion]" />
     }
   </div>

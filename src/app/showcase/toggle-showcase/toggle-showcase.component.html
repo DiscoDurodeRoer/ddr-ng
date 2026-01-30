@@ -15,7 +15,7 @@
 <div class="row mt-3">
   <div class="col-12">
     <ddr-toggle 
-      [(ngModel)]="value1" 
+      [(value)]="value1" 
       (toggled)="toggleValue($event)" />
   </div>
 </div>
@@ -38,7 +38,7 @@
   <div class="col-12">
     <ddr-toggle 
       [label]="'toggle.label' | ddrTranslate" 
-      [(ngModel)]="value2" 
+      [(value)]="value2" 
       (toggled)="toggleValue($event)" />
   </div>
 </div>
@@ -60,7 +60,7 @@
     <ddr-toggle 
       [label]="'toggle.label' | ddrTranslate" 
       [inline]="true" 
-      [(ngModel)]="value3" 
+      [(value)]="value3" 
       (toggled)="toggleValue($event)" />
   </div>
 </div>
@@ -116,7 +116,7 @@
   <div class="col-12">
     <ddr-toggle 
       [label]="'toggle.label' | ddrTranslate" 
-      [(ngModel)]="value6" 
+      [(value)]="value6" 
       (toggled)="toggleValue($event)" />
   </div>
 </div>

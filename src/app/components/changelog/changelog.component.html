@@ -18,7 +18,7 @@
               [labelPlaceholderFilter]="'versions.filter' | ddrTranslate"
               [allowDeselect]="true"
               [options]="versions"
-              [(ngModel)]="version"
+              [(value)]="version"
               (selectItem)="filterVersion($event)" />
           </div>
         </div>

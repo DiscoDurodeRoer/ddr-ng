@@ -12,10 +12,9 @@
             @if (node.children && node.children.length > 0 && showIconArrow()) {
               <span class="ddr-tree__container__node__content__icon" (click)="openNode(node, $event)">
                 @if (node.children) {
-                  <i class="bi" [class]="{
-                    'bi-chevron-down cursor-pointer': node.open,
-                    'bi-chevron-right cursor-pointer': !node.open
-                  }"></i>
+                  <i class="cursor-pointer bi" 
+                    [class.bi-chevron-down]="node.open"
+                    [class.bi-chevron-right]="!node.open"></i>
                 }
               </span>
             }

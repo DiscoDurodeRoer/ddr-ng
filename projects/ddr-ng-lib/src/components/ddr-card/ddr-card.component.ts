@@ -1,19 +1,17 @@
-
-import { Component, ViewEncapsulation, input } from '@angular/core';
+import { Component, InputSignal, ViewEncapsulation, input } from '@angular/core';
 
 @Component({
   selector: 'ddr-card',
   templateUrl: './ddr-card.component.html',
   styleUrls: ['./ddr-card.component.scss'],
-  encapsulation: ViewEncapsulation.None,
-  
+  encapsulation: ViewEncapsulation.None
 })
 export class DdrCardComponent {
-  readonly showHeader = input<boolean>(true);
-  readonly showFooter = input<boolean>(false);
-  readonly rounded = input<boolean>(true);
-  readonly border = input<boolean>(true);
-  readonly shadow = input<boolean>(true);
-  readonly background = input<string>();
-  readonly color = input<string>();
+  readonly showHeader: InputSignal<boolean> = input<boolean>(true);
+  readonly showFooter: InputSignal<boolean> = input<boolean>(false);
+  readonly rounded: InputSignal<boolean> = input<boolean>(true);
+  readonly border: InputSignal<boolean> = input<boolean>(true);
+  readonly shadow: InputSignal<boolean> = input<boolean>(true);
+  readonly background: InputSignal<string | undefined> = input<string>();
+  readonly color: InputSignal<string | undefined> = input<string>();
 }

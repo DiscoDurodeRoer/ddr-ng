@@ -1,6 +1,5 @@
 import {
   ChangeDetectionStrategy,
-  ChangeDetectorRef,
   Component,
   inject,
   OnChanges,
@@ -10,7 +9,15 @@ import {
   ViewEncapsulation,
   input,
   output,
-  contentChild
+  contentChild,
+  InputSignal,
+  OutputEmitterRef,
+  WritableSignal,
+  signal,
+  Signal,
+  effect,
+  computed,
+  linkedSignal
 } from '@angular/core';
 import { DdrConstantsService } from '../../services/ddr-constants.service';
 import { DdrTableCol } from './bean/ddr-table-col';
@@ -21,8 +28,6 @@ import { DdrDropdownComponent } from '../ddr-dropdown/ddr-dropdown.component';
 import { FormsModule } from '@angular/forms';
 import { DdrButtonSplitComponent } from '../ddr-button-split/ddr-button-split.component';
 import { DdrTooltipDirective } from '../../directives/ddr-tooltip.directive';
-
-
 import { NgxPaginationModule } from 'ngx-pagination';
 import { DdrTranslatePipe } from '../../pipes/ddr-translate.pipe';
 import { NgTemplateOutlet } from '@angular/common';
@@ -45,95 +50,93 @@ import { DdrNestedPropertyPipe } from '../../pipes/ddr-nested-property.pipe';
     DdrNestedPropertyPipe,
     FormsModule,
     NgTemplateOutlet
-]
+  ]
 })
 export class DdrTableComponent<T extends { [key: string]: any }> implements OnInit, OnChanges {
 
   public readonly constants: DdrConstantsService = inject(DdrConstantsService);
-  private changeDetectorRef: ChangeDetectorRef = inject(ChangeDetectorRef);
 
-  readonly cols = input.required<DdrTableCol[]>();
-  readonly items = input<DdrTableItem<T>[]>([]);
-  readonly showPagination = input<boolean>(true);
-  readonly startPageZero = input<boolean>(false);
-  readonly page = input<number>(1);
-  readonly showTotal = input<boolean>(true);
-  readonly allowChangeRows = input<boolean>(true);
-  readonly multiple = input<boolean>(false);
-  readonly showActions = input<boolean>(false);
-  readonly canSelectItems = input<boolean>(true);
-  readonly canSort = input<boolean>(false);
-  readonly showBorder = input<boolean>(true);
-  readonly showFooter = input<boolean>(true);
-  readonly optionsRowsPagination = input<number[]>([]);
+  readonly cols: InputSignal<DdrTableCol[]> = input.required<DdrTableCol[]>();
+  readonly items: InputSignal<DdrTableItem<T>[]> = input<DdrTableItem<T>[]>([]);
+  readonly showPagination: InputSignal<boolean> = input<boolean>(true);
+  readonly startPageZero: InputSignal<boolean> = input<boolean>(false);
+  readonly page: InputSignal<number> = input<number>(1);
+  readonly showTotal: InputSignal<boolean> = input<boolean>(true);
+  readonly allowChangeRows: InputSignal<boolean> = input<boolean>(true);
+  readonly multiple: InputSignal<boolean> = input<boolean>(false);
+  readonly showActions: InputSignal<boolean> = input<boolean>(false);
+  readonly canSelectItems: InputSignal<boolean> = input<boolean>(true);
+  readonly canSort: InputSignal<boolean> = input<boolean>(false);
+  readonly showBorder: InputSignal<boolean> = input<boolean>(true);
+  readonly showFooter: InputSignal<boolean> = input<boolean>(true);
+  readonly optionsRowsPagination: InputSignal<number[]> = input<number[]>([]);
+  readonly totalItems: InputSignal<number> = input<number>(0);
 
   // Translations
-  readonly labelNoResults = input<string>();
-  readonly labelRegisters = input<string>();
-  readonly labelRegister = input<string>();
-  readonly labelToPagination = input<string>();
-  readonly labelOfPagination = input<string>();
+  readonly labelNoResults: InputSignal<string | undefined> = input<string | undefined>();
+  readonly labelRegisters: InputSignal<string | undefined> = input<string | undefined>();
+  readonly labelRegister: InputSignal<string | undefined> = input<string | undefined>();
+  readonly labelToPagination: InputSignal<string | undefined> = input<string | undefined>();
+  readonly labelOfPagination: InputSignal<string | undefined> = input<string | undefined>();
 
-  readonly totalItems = input<number>(0);
+  readonly selectItem: OutputEmitterRef<DdrTableItem<T>> = output<DdrTableItem<T>>();
+  readonly selectMultipleItem: OutputEmitterRef<T[]> = output<T[]>();
+  readonly selectAction: OutputEmitterRef<DdrAction<T>> = output<DdrAction<T>>();
+  readonly changePage: OutputEmitterRef<number> = output<number>();;
+  readonly changeRow: OutputEmitterRef<number> = output<number>();
+  readonly sort: OutputEmitterRef<DdrTableCol> = output<DdrTableCol>();
 
-  readonly selectItem = output<DdrTableItem<T>>();
-  readonly selectMultipleItem = output<T[]>();
-  readonly selectAction = output<DdrAction<T>>();
-  readonly changePage = output<number>();;
-  readonly changeRow = output<number>();
-  readonly sort = output<DdrTableCol>();
+  public optionsRows: WritableSignal<DdrSelectItem<number>[]> = signal<DdrSelectItem<number>[]>([]);
+  public rows: WritableSignal<number> = signal<number>(10)
 
-  public optionsRows: DdrSelectItem<number>[] = [];
-  public rows: number = 10
-
-  public optionsCheck: DdrSelectItem<T>[] = [];
-  public checkAll: boolean = false;
+  public optionsCheck: WritableSignal<DdrSelectItem<T>[]> = signal<DdrSelectItem<T>[]>([]);
+  public checkAll: WritableSignal<boolean> = signal<boolean>(false);
 
   private static nextId = 1;
   public id: string = ++DdrTableComponent.nextId + '';
-  public colspan: number = 1;
-  public widthCells?: number;
+  public colspan: WritableSignal<number> = signal<number>(1);
+  public widthCells?: WritableSignal<number | undefined> = signal<number | undefined>(undefined);
+  public totalItemsTable: Signal<number> = computed(() => !this.totalItems() ? this.items().length : 0)
+  public pageTable: WritableSignal<number> = linkedSignal(() => this.page())
 
-  readonly templateCell = contentChild<TemplateRef<any>>('templateCell');
+  readonly templateCell: Signal<TemplateRef<any> | undefined> = contentChild<TemplateRef<any>>('templateCell');
+
 
   ngOnInit() {
 
     const optionsRowsPagination = this.optionsRowsPagination();
     if (optionsRowsPagination && optionsRowsPagination.length > 0) {
       for (const row of optionsRowsPagination) {
-        this.optionsRows.push({
+        this.optionsRows.update((value: DdrSelectItem<number>[]) => [...value, {
           label: row.toString(),
           value: row
-        })
+        }])
       }
-      this.rows = this.optionsRows[0].value;
+      this.rows.set(this.optionsRows()[0].value);
     } else {
-      this.optionsRows = [
+      this.optionsRows.set([
         { label: '5', value: 5 },
         { label: '10', value: 10 },
         { label: '25', value: 25 },
         { label: '50', value: 50 },
-      ];
-      this.rows = 10;
+      ]);
+      this.rows.set(10);
     }
 
     if (!this.showPagination()) {
-      this.rows = Number.MAX_VALUE;
+      this.rows.set(Number.MAX_VALUE);
     }
 
     if (this.multiple() && this.items().length > 0) {
       this.initItemsSelected()
     }
 
-    if (!this.totalItems()) {
-      this.totalItems = this.items().length;
-    }
+    // if (!this.totalItems()) {
+    //   this.totalItems = this.items().length;
+    // }
 
     this.calculateCols();
     this.resetSort();
-
-    this.changeDetectorRef.markForCheck();
-
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -142,23 +145,22 @@ export class DdrTableComponent<T extends { [key: string]: any }> implements OnIn
         this.initItemsSelected()
       }
       if (changes['page'] && this.startPageZero()) {
-        this.page = this.page() + 1;
+        this.pageTable.update((value: number) => value + 1);
       }
       if (changes['items'] || changes['multiple'] || changes['showActions']) {
         this.calculateCols();
-        if (changes['items']) {
-          this.totalItems = this.items().length;
-        }
+        // if (changes['items']) {
+        //   this.totalItems = this.items().length;
+        // }
       }
-      if (changes['totalItems']) {
-        if (this.totalItems() <= this.rows) {
-          this.page = 1;
-        }
-      }
+      // if (changes['totalItems']) {
+      //   if (this.totalItems() <= this.rows()) {
+      //     this.page = 1;
+      //   }
+      // }
       if (changes['canSort']) {
         this.resetSort();
       }
-      this.changeDetectorRef.markForCheck();
     }
   }
 
@@ -170,13 +172,12 @@ export class DdrTableComponent<T extends { [key: string]: any }> implements OnIn
   }
 
   changeRows(event: DdrSelectItem<number>) {
-    this.rows = event.value;
-    this.changeRow.emit(this.rows);
-    this.changeDetectorRef.markForCheck();
+    this.rows.set(event.value);
+    this.changeRow.emit(this.rows());
   }
 
   selectAll() {
-    if (this.checkAll) {
+    if (this.checkAll()) {
       this.items().forEach((option) => option.selected = true);
       const itemsReturn: T[] = this.items().map((it) => it.item);
       this.selectMultipleItem.emit(itemsReturn);
@@ -188,7 +189,7 @@ export class DdrTableComponent<T extends { [key: string]: any }> implements OnIn
 
   sendMultipleItems() {
     const valuesSelected: T[] = this.items().filter(it => it.selected).map(it => it.item);
-    this.checkAll = this.items().every(op => op.selected);
+    this.checkAll.set(this.items().every(op => op.selected));
     this.selectMultipleItem.emit(valuesSelected);
   }
 
@@ -198,8 +199,8 @@ export class DdrTableComponent<T extends { [key: string]: any }> implements OnIn
     this.selectAction.emit($event);
   }
 
-  onPageChange($event: number) {
-    this.page = $event;
+  onPageChange(page: number) {
+    this.pageTable.set(page);
     if (this.startPageZero()) {
       this.changePage.emit(this.page() - 1);
     } else {
@@ -234,20 +235,20 @@ export class DdrTableComponent<T extends { [key: string]: any }> implements OnIn
   }
 
   calculateCols() {
-    this.colspan = this.cols().length;
+    this.colspan.set(this.cols().length);
     let maxWidth = 80;
 
     if (this.multiple()) {
-      this.colspan++;
+      this.colspan.update((value: number) => value + 1);
       maxWidth += 10;
     }
 
     if (this.showActions() && this.items().length > 0) {
-      this.colspan++;
+      this.colspan.update((value: number) => value + 1);
       maxWidth += 10;
     }
 
-    this.widthCells = maxWidth / this.cols().length;
+    this.widthCells?.set(maxWidth / this.cols().length);
   }
 
   private initItemsSelected() {
@@ -256,7 +257,7 @@ export class DdrTableComponent<T extends { [key: string]: any }> implements OnIn
         it.selected = false;
       }
     });
-    this.checkAll = this.items().length > 0 && this.items().every(op => op.selected);
+    this.checkAll.set(this.items().length > 0 && this.items().every(op => op.selected));
   }
 
 }

@@ -9,7 +9,7 @@
 <ddr-button-multiple
   [buttons]="buttonsModes"
   [showSelectedButton]="true"
-  [(ngModel)]="modeClickoutside" />
+  [(value)]="modeClickoutside" />
 
 @switch (modeClickoutside) {
   @case ('standard') {
