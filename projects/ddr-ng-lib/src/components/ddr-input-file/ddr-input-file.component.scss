@@ -2,7 +2,7 @@
     user-select: none;
     caret-color: transparent;
 
-    ddr-input-group ddr-input input:not(.ddr-input__input-container--input--disabled) {
+    ddr-input-group ddr-input input:not(.ddr-input__input-container__input--disabled) {
         cursor: pointer;
     }
 

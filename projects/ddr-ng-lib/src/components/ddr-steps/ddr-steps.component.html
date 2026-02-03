@@ -12,7 +12,7 @@
               [class.ddr-steps__horizontal__info-step__number-step--open]="step.open()"
               [class.ddr-steps__horizontal__info-step__number-step--closed]="!step.open()">
               @if (!validateIcon() || (validateIcon() && step.canGoNext() == false)) {
-                <span>{{step.step}}</span>
+                <span>{{step.step()}}</span>
               }
               @if (validateIcon() && step.canGoNext()) {
                 <span>
@@ -24,7 +24,7 @@
               <span>{{step.titleStep()}}</span>
             </div>
           </div>
-          @if (!step.lastStep) {
+          @if (!step.lastStep()) {
             <div class="ddr-steps__horizontal__line"></div>
           }
         }
@@ -34,12 +34,12 @@
           @if (step.open()) {
             <div class="ddr-steps__template__content">
               <ng-container [ngTemplateOutlet]="step.stepContentTemplate()"/>
-              @if (showButtons() && !openAll() && !step.firstStep) {
+              @if (showButtons() && !openAll() && !step.firstStep()) {
                 <ddr-button class="me-1"
                   [text]="labelPrevious() || ('previous' | ddrTranslate)"
                   (action)="previous(step)" />
               }
-              @if (showButtons() && !openAll() && !step.lastStep) {
+              @if (showButtons() && !openAll() && !step.lastStep()) {
                 <ddr-button class="me-1"
                   [disabled]="!step.canGoNext()"
                   [text]="labelNext() || ('next' | ddrTranslate)"
@@ -62,7 +62,7 @@
               [class.ddr-steps__vertical__info-step__number-step--open]="step.open()"
               [class.ddr-steps__vertical__info-step__number-step--closed]="!step.open()">
               @if (!validateIcon() || (validateIcon() && !step.canGoNext())) {
-                <span>{{step.step}}</span>
+                <span>{{step.step()}}</span>
               }
               @if (validateIcon() && step.canGoNext()) {
                 <span>
@@ -75,19 +75,19 @@
             </div>
           </div>
         </div>
-        <div class="ddr-steps__template" [class.ddr-steps__template--line]="!step.lastStep">
+        <div class="ddr-steps__template" [class.ddr-steps__template--line]="!step.lastStep()">
           @if (step.open()) {
             <div class="ddr-steps__template__content">
               @if(step.stepContentTemplate()){
                 <ng-container [ngTemplateOutlet]="step.stepContentTemplate()"/>
               }
-              @if (showButtons() && !openAll() && !step.firstStep) {
+              @if (showButtons() && !openAll() && !step.firstStep()) {
                 <ddr-button
                   class="me-1 mt-1 mb-1"
                   [text]="labelPrevious() || ('previous' | ddrTranslate)"
                   (action)="previous(step)" />
               }
-              @if (showButtons() && !openAll() && !step.lastStep) {
+              @if (showButtons() && !openAll() && !step.lastStep()) {
                 <ddr-button
                   class="me-1 mt-1 mb-1"
                   [disabled]="!step.canGoNext()"

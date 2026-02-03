@@ -17,30 +17,24 @@
         }
       </label>
     }
-    
-<!-- 
-      [min]="min()"
-      [max]="max()"    
-      [required]="required()"
-      [attr.pattern]="htmlPattern()"
-      [attr.maxlength]="maxlength()"
-      [attr.minlength]="minlength()"
-      [readonly]="readonly()"
-      [disabled]="disabled()"
-      [name]="name()"
--->
-
     <input #input
       class="ddr-input__input-container__input"
       [attr.id]="name()"
       [type]="type()"
       [placeholder]="placeholder()"
-      
-    
       [attr.autocomplete]="autocomplete()"
-      [field]="value()"
-      [class.is-valid]="validate() && dirty() && !errors()"
-      [class.is-invalid]="validate() && dirty() && errors()"
+      [attr.required]="required()"
+      [attr.name]="name()"
+      [readonly]="readonly()"
+      [attr.min]="min()"
+      [attr.max]="max()"
+      [attr.pattern]="patternAttr()"
+      [attr.maxlength]="maxLength()"
+      [attr.minlength]="minLength()"
+      [value]="value()"
+      [disabled]="disabled()"
+      [class.is-valid]="validate() && dirtyInput() && valid()"
+      [class.is-invalid]="validate() && dirtyInput() && !valid()"
       [class.w-100]="!inline()"
       [class.ddr-input__input-container__input--disabled]="disabled()"
       [class.ddr-input__input-container__input--border]="border()"
@@ -49,22 +43,32 @@
       [class.ddr-input__input-container__input--medium]="size() == constants.SIZE.MEDIUM"
       [class.ddr-input__input-container__input--large]="size() == constants.SIZE.LARGE"
       [class.ddr-input__input-container__input--inline]="inline()"
-      [class.ddr-input__input-container__input--transparent.ddr-input__input-container__input--border-transparent]="transparent()"
+      [class.ddr-input__input-container__input--transparent]="transparent()"
+      [class.ddr-input__input-container__input--border-transparent]="transparent()"
       ddrSetFocus
       [focus]="focus()"
+      (input)="onInput($event)"
       (focusLost)="onFocusLost()"
-      (keyup)="checkInput()"
-      (click)="onclickInput($event)" />
-    @if (validate() && dirty() && !errors()) {
-      <div [class.w-auto]="inline()" [class.d-inline-block]="inline()" [class.mt-5]="inline()" [class.valid-feedback-inline]="inline()" class="valid-feedback">
+      (keyup)="onKeyPressed()"
+      (click)="onClickInput($event)" />
+    @if (validate() && dirtyInput() && valid()) {
+      <div class="valid-feedback"
+        [class.w-auto]="inline()" 
+        [class.d-inline-block]="inline()" 
+        [class.mt-5]="inline()" 
+        [class.valid-feedback-inline]="inline()">
         <ng-template #templateValid [ngTemplateOutlet]="templateValidOutside()"/>
       </div>
     }
-    @if (validate() && dirty() && errors()) {
-      <div [class.w-auto]="inline()" [class.d-inline-block]="inline()" [class.mt-5]="inline()" [class.invalid-feedback-inline]="inline()" class="invalid-feedback">
+    @if (validate() && dirtyInput() && !valid()) {
+      <div class="invalid-feedback"
+        [class.w-auto]="inline()" 
+        [class.d-inline-block]="inline()" 
+        [class.mt-5]="inline()" 
+        [class.invalid-feedback-inline]="inline()">
         <ng-template #templateErrors
           [ngTemplateOutlet]="templateErrorsOutside()"
-          [ngTemplateOutletContext]="{ errors: errors() }" />
+          [ngTemplateOutletContext]="{ errors }" />
       </div>
     }
   </div>

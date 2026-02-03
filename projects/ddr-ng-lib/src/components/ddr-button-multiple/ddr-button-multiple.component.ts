@@ -17,7 +17,7 @@ import { FormValueControl } from '@angular/forms/signals';
 @Component({
   selector: 'ddr-button-multiple',
   templateUrl: './ddr-button-multiple.component.html',
-  styleUrls: ['./ddr-button-multiple.component.scss'],
+  styleUrl: './ddr-button-multiple.component.scss',
   encapsulation: ViewEncapsulation.None,
   imports: [
     DdrButtonComponent,

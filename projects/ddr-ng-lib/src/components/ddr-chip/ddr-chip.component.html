@@ -12,7 +12,17 @@
         </li>
       }
       <li class="ddr-chip__container__input">
-        <input autocapitalize="none" class="border-0 w-100" type="text" (keyup)="checkValue()" (keyup.backspace)="removeLastElement()" (keyup.enter)="onInsertElement()" [attr.id]="name!()" [attr.name]="name!()" [(value)]="valueInput">
+        <input 
+          autocapitalize="none" 
+          class="border-0 w-100" 
+          type="text" 
+          [attr.id]="name!()" 
+          [attr.name]="name!()"
+          [value]="valueInput()"
+          (keyup)="checkValue()" 
+          (keyup.backspace)="removeLastElement()" 
+          (keyup.enter)="onInsertElement()" 
+          (input)="onInput($event)">
       </li>
     </ul>
   </div>

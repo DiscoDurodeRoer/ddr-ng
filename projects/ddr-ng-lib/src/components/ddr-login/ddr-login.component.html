@@ -7,7 +7,7 @@
     </div>
 
     <div card-content>
-      <form (ngSubmit)="login()">
+      <form (submit)="login($event)">
         <div class="row g-0">
           <div class="col-12">
             <ddr-input 
@@ -15,11 +15,9 @@
               [label]="showLabelUser() ? labelUsername() || ('login.username' | ddrTranslate) : ''"
               [placeholder]="labelPlaceholderUsername() || ('login.placeholder.username' | ddrTranslate)" 
               [border]="true"
-              [required]="userRequired()"
               [size]="constants.SIZE.MEDIUM" 
-              name="username"
               autocomplete="username"
-              [(value)]="user.username"  />
+              [field]="formLogin.username"  />
           </div>
 
         </div>
@@ -28,9 +26,7 @@
             <ddr-input-password class="ddr-login__input-password"
               [label]="showLabelPassword() ? labelPassword() || ('login.password' | ddrTranslate) : ''"
               [placeholder]="labelPlaceholderPassword() || ('login.placeholder.password' | ddrTranslate)"
-              [required]="userPassword()"
-              name="password"
-              [(value)]="user.password" />
+              [field]="formLogin.password" />
           </div>
         </div>
 
@@ -47,7 +43,9 @@
         @if(showForgotPassword() || showCreateUser()){
         <div class="row g-0">
           @if(showForgotPassword()){
-          <div class="text-start mt-3 user-select-none" [class]="{'col-6': showCreateUser(), 'col-12': !showCreateUser()}">
+          <div class="text-start mt-3 user-select-none" 
+            [class.col-6]="showCreateUser()"
+            [class.col-12]="!showCreateUser()">
             <a class="text-secondary text-decoration-none cursor-pointer" (click)="recoverPassword()">
               {{ labelForgotenPassword() || ('login.forgot.password' | ddrTranslate ) }}
             </a>
@@ -56,16 +54,15 @@
 
           @if(showCreateUser()){
           <div class="text-end mt-3 user-select-none"
-            [class]="{'col-6': showForgotPassword(), 'col-12': !showForgotPassword()}">
+            [class.col-6]="showForgotPassword()"
+            [class.col-12]="!showForgotPassword()">
             <a class="text-secondary text-decoration-none cursor-pointer" (click)="createUser()">
               {{ labelCreateUser() || ('login.create.user' | ddrTranslate ) }}
             </a>
           </div>
           }
-
         </div>
         }
-
       </form>
     </div>
 

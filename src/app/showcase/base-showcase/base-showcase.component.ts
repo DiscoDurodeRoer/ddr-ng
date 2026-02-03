@@ -1,4 +1,4 @@
-import { Component, OnInit, input } from '@angular/core';
+import { AfterViewInit, Component, OnInit, input } from '@angular/core';
 import { DdrAccordionComponent, DdrCardComponent, DdrTabItemComponent, DdrTableCol, DdrTableComponent, DdrTableItem, DdrTabsComponent, DdrTranslatePipe, DdrNestedPropertyPipe, DdrBadgePillComponent } from 'ddr-ng';
 import { COMPONENTS_DOCUMENTATION } from './bean/components-documentation';
 import { Documentation, DocumentationInput, DocumentationOutput, DocumentationTranslation, DocumentationTemplate, DocumentationSlot, DocumentationClass, DocumentationServiceMethod, DocumentationStyle } from './bean/documentation';
@@ -7,7 +7,7 @@ declare var Prism: any;
 @Component({
   selector: 'base-showcase',
   templateUrl: './base-showcase.component.html',
-  styleUrls: ['./base-showcase.component.scss'],
+  styleUrl: './base-showcase.component.scss',
   imports: [
     DdrAccordionComponent,
     DdrTabsComponent,
@@ -19,7 +19,7 @@ declare var Prism: any;
     DdrBadgePillComponent
   ]
 })
-export class BaseShowcaseComponent implements OnInit {
+export class BaseShowcaseComponent implements OnInit, AfterViewInit {
 
   readonly component = input.required<string>();
   readonly type = input.required<string>();
@@ -188,8 +188,12 @@ export class BaseShowcaseComponent implements OnInit {
     
   }
 
-  highlight() {
-    setTimeout(() => { Prism.highlightAll(); });
+  ngAfterViewInit(): void {
+    this.highlight(50)
+  }
+
+  highlight(timeout: number = 0) {
+    setTimeout(() => { Prism.highlightAll(); }, timeout);
   }
 
 }

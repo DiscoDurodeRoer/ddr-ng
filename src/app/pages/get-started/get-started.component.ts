@@ -5,7 +5,7 @@ declare var Prism: any;
 @Component({
     selector: 'app-get-started',
     templateUrl: './get-started.component.html',
-    styleUrls: ['./get-started.component.scss'],
+    styleUrl: './get-started.component.scss',
     imports: [
         DdrCardComponent,
         DdrButtonComponent,

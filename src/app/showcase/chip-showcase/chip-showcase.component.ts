@@ -2,7 +2,6 @@ import { Component, inject } from '@angular/core';
 import { DdrChipComponent, DdrToastService, DdrTranslatePipe, DdrTranslateService } from 'ddr-ng';
 import { BaseShowcaseComponent } from '../base-showcase/base-showcase.component';
 import { JsonPipe } from '@angular/common';
-import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'chip-showcase',
@@ -11,8 +10,7 @@ import { FormsModule } from '@angular/forms';
     BaseShowcaseComponent,
     DdrChipComponent,
     DdrTranslatePipe,
-    JsonPipe,
-    FormsModule
+    JsonPipe
   ],
   providers: [
     DdrToastService

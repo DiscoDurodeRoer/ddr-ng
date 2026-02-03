@@ -37,7 +37,7 @@ import { DdrNestedPropertyPipe } from '../../pipes/ddr-nested-property.pipe';
 @Component({
   selector: 'ddr-table',
   templateUrl: './ddr-table.component.html',
-  styleUrls: ['./ddr-table.component.scss'],
+  styleUrl: './ddr-table.component.scss',
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [

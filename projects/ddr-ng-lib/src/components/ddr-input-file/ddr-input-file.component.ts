@@ -1,11 +1,11 @@
-import { Component, inject, ViewEncapsulation, input, output, InputSignal, OutputEmitterRef, WritableSignal, signal, ModelSignal, OutputRef, model } from '@angular/core';
+import { Component, inject, ViewEncapsulation, input, output, InputSignal, OutputEmitterRef, WritableSignal, signal, ModelSignal, model } from '@angular/core';
 import { DdrOrientatioTooltip } from '../../types/types';
 import { DdrConstantsService } from '../../services/ddr-constants.service';
 import { DdrInputGroupComponent } from '../ddr-input-group/ddr-input-group.component';
-import { FormsModule, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { DdrFileHandle } from '../../common/ddr-file-handler.model';
 import { DomSanitizer } from '@angular/platform-browser';
-import { DisabledReason, FormValueControl, ValidationError, WithOptionalField } from '@angular/forms/signals';
+import { FormValueControl } from '@angular/forms/signals';
 
 @Component({
   selector: 'ddr-input-file',
@@ -13,11 +13,10 @@ import { DisabledReason, FormValueControl, ValidationError, WithOptionalField } 
   styleUrl: './ddr-input-file.component.scss',
   encapsulation: ViewEncapsulation.None,
   imports: [
-    DdrInputGroupComponent,
-    FormsModule
+    DdrInputGroupComponent
   ]
 })
-export class DdrInputFileComponent implements FormValueControl<File | null> {
+export class DdrInputFileComponent implements FormValueControl<File[]> {
 
   public readonly constants: DdrConstantsService = inject(DdrConstantsService);
   private sanitizer: DomSanitizer = inject(DomSanitizer);
@@ -39,10 +38,7 @@ export class DdrInputFileComponent implements FormValueControl<File | null> {
 
   public fileNames: WritableSignal<string> = signal('');
 
-  constructor() {
-    
-  }
-  value: ModelSignal<File | null> = model<File | null>(null);
+  public value: ModelSignal<File[]> = model<File[]>([]);
   
   onFileSelected(event: Event) {
     const input = event.target as HTMLInputElement;
@@ -54,13 +50,11 @@ export class DdrInputFileComponent implements FormValueControl<File | null> {
         url: this.sanitizer.bypassSecurityTrustUrl(window.URL.createObjectURL(file))
       }))
 
-      if (this.multiple()) {
-        // this.value.set(Array.from(files).map((file: File) => file));
-        this.fileNames.set(Array.from(files).map(f => f.name).join(', '));
+      this.value.set(ddrFiles.map((ddrFileHandle: DdrFileHandle) => ddrFileHandle.file));
+      this.fileNames.set(ddrFiles.map((ddrFileHandle: DdrFileHandle) => ddrFileHandle.file.name).join(', '));
+      if (this.multiple()) {       
         this.filesSelected.emit(ddrFiles);
       } else {
-        this.value.set(ddrFiles[0].file);
-        this.fileNames.set(ddrFiles[0].file.name);
         this.fileSelected.emit(ddrFiles[0]);
       }
     }

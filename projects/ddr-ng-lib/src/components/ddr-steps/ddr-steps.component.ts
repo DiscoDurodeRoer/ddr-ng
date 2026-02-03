@@ -1,16 +1,14 @@
-import { AfterViewInit, Component, OnDestroy, OnInit, ViewEncapsulation, input, output, contentChildren, InputSignal, OutputEmitterRef, WritableSignal, signal, effect, ModelSignal, OutputRef, model } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewEncapsulation, input, output, contentChildren, InputSignal, OutputEmitterRef, WritableSignal, signal, effect, ModelSignal, model } from '@angular/core';
 import { DdrStepComponent } from './ddr-step/ddr-step.component';
 import { DdrButtonComponent } from '../ddr-button/ddr-button.component';
-
 import { DdrTranslatePipe } from '../../pipes/ddr-translate.pipe';
 import { NgTemplateOutlet } from '@angular/common';
-import { Subscription } from 'rxjs/internal/Subscription';
-import { DisabledReason, FormValueControl, ValidationError, WithOptionalField } from '@angular/forms/signals';
+import { FormValueControl } from '@angular/forms/signals';
 
 @Component({
   selector: 'ddr-steps',
   templateUrl: './ddr-steps.component.html',
-  styleUrls: ['./ddr-steps.component.scss'],
+  styleUrl: './ddr-steps.component.scss',
   encapsulation: ViewEncapsulation.None,
   imports: [
     DdrButtonComponent,

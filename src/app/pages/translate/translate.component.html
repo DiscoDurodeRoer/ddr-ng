@@ -96,7 +96,7 @@ import &#123; DdrTranslatePipe, DdrTranslateService &#125; from 'ddr-ng';
 &#64;Component(&#123;
   selector: 'app-example',
   template: '&lt;div&gt;{{'example' | ddrTranslate}}&lt;/div&gt;',
-  styleUrls: ['./example.component.scss'],
+  styleUrl: './example.component.scss',
   imports: [ DdrTranslatePipe ]
 &#125;)
 export class ExampleComponent implements OnInit &#123;
@@ -136,7 +136,7 @@ import &#123; DdrButtonComponent, DdrTranslateService &#125; from 'ddr-ng';
         &lt;ddr-button text="Change to English" (action)="changeToEnglish()" /&gt;
     &lt;/div&gt;
     `,
-  styleUrls: ['./example.component.scss'],
+  styleUrl: './example.component.scss',
   imports: [ DdrButtonComponent ]
 &#125;)
 export class ExampleComponent &#123;

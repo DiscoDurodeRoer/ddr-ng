@@ -1,8 +1,9 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { DdrCheckboxComponent, DdrSelectItem, DdrToastService, DdrTranslatePipe, DdrTranslateService } from 'ddr-ng';
 import { BaseShowcaseComponent } from '../base-showcase/base-showcase.component';
 import { JsonPipe } from '@angular/common';
 import { ProgrammingLanguage } from './bean/programming-language';
+import { Field, form } from '@angular/forms/signals';
 
 @Component({
   selector: 'checkbox-showcase',
@@ -11,7 +12,8 @@ import { ProgrammingLanguage } from './bean/programming-language';
     BaseShowcaseComponent,
     DdrCheckboxComponent,
     DdrTranslatePipe,
-    JsonPipe
+    JsonPipe,
+    Field
   ],
   providers: [
     DdrToastService
@@ -21,6 +23,10 @@ export class CheckboxShowcaseComponent {
 
   private ddrToastService: DdrToastService = inject(DdrToastService);
   private ddrTranslateService: DdrTranslateService = inject(DdrTranslateService);
+
+  // Showcase 1
+
+  public value1: string[] = [];
 
   public options1: DdrSelectItem<string>[] = [
     {
@@ -48,6 +54,43 @@ export class CheckboxShowcaseComponent {
       value: 'cpp'
     }
   ];
+
+  public options1FormSignals: DdrSelectItem<string>[] = [
+    {
+      label: 'Java',
+      value: 'java'
+    },
+    {
+      label: 'Angular',
+      value: 'angular'
+    },
+    {
+      label: 'NestJS',
+      value: 'nestjs'
+    },
+    {
+      label: 'Javascript',
+      value: 'javascript'
+    },
+    {
+      label: 'C',
+      value: 'c'
+    },
+    {
+      label: 'C++',
+      value: 'cpp'
+    }
+  ];
+
+  private checkboxModelEx1 = signal({
+    example1: []
+  })
+  public formCheckboxEx1 = form(this.checkboxModelEx1) 
+
+  // Showcase 2
+
+  public value2: string[] = ['java', 'c'];
+
   public options2: DdrSelectItem<string>[] = [
     {
       label: 'Java',
@@ -74,6 +117,13 @@ export class CheckboxShowcaseComponent {
       value: 'cpp'
     }
   ];
+
+  // Showcase 3
+
+  public compareFn = (a: ProgrammingLanguage, b: ProgrammingLanguage) => a.name == b.name;
+
+  public value3: ProgrammingLanguage[] = [];
+
   public options3: DdrSelectItem<ProgrammingLanguage>[] = [
     {
       label: 'Java',
@@ -110,6 +160,17 @@ export class CheckboxShowcaseComponent {
       value: {
         name: 'cpp'
       }
+    }
+  ];
+
+  // Showcase 4
+
+  public value4: ProgrammingLanguage[] = [
+    {
+      name: 'java'
+    },
+    {
+      name: 'nestjs'
     }
   ];
 
@@ -152,6 +213,10 @@ export class CheckboxShowcaseComponent {
     }
   ];
 
+  // Showcase 5
+
+  public value5: ProgrammingLanguage[] = [];
+
   public options5: DdrSelectItem<ProgrammingLanguage>[] = [
     {
       label: 'Java',
@@ -188,6 +253,17 @@ export class CheckboxShowcaseComponent {
       value: {
         name: 'cpp'
       }
+    }
+  ];
+
+  // Showcase 6
+
+  public value6: ProgrammingLanguage[] = [
+    {
+      name: 'java'
+    },
+    {
+      name: 'angular'
     }
   ];
 
@@ -230,6 +306,8 @@ export class CheckboxShowcaseComponent {
     }
   ];
 
+  // Showcase 7
+
   public options7: DdrSelectItem<ProgrammingLanguage>[] = [
     {
       label: 'Java',
@@ -269,35 +347,11 @@ export class CheckboxShowcaseComponent {
     }
   ];
 
-  public compareFn = (a: ProgrammingLanguage, b: ProgrammingLanguage) => a.name == b.name;
-
-  public value1: string[] = [];
-  public value2: string[] = ['java', 'c'];
-  public value3: ProgrammingLanguage[] = [];
-  public value4: ProgrammingLanguage[] = [
-    {
-      name: 'java'
-    },
-    {
-      name: 'nestjs'
-    }
-  ];
-  public value5: ProgrammingLanguage[] = [];
-  public value6: ProgrammingLanguage[] = [
-    {
-      name: 'java'
-    },
-    {
-      name: 'angular'
-    }
-  ];
-
   clickCheck(value: ProgrammingLanguage[]) {
     this.ddrToastService.addSuccessMessage(
       this.ddrTranslateService.getTranslate('success'),
       JSON.stringify(value)
     )
   }
-
 
 }

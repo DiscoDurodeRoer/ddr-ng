@@ -1,5 +1,4 @@
 import { Component, ViewEncapsulation, ChangeDetectionStrategy, input, output, InputSignal, OutputEmitterRef, ModelSignal, model, effect } from '@angular/core';
-import { FormsModule } from '@angular/forms';
 import { DdrSelectItem } from '../../common/ddr-select-item.model';
 import { DdrTranslatePipe } from '../../pipes/ddr-translate.pipe';
 import { FormValueControl } from '@angular/forms/signals';
@@ -7,11 +6,10 @@ import { FormValueControl } from '@angular/forms/signals';
 @Component({
   selector: 'ddr-radio',
   templateUrl: './ddr-radio.component.html',
-  styleUrls: ['./ddr-radio.component.scss'],
+  styleUrl: './ddr-radio.component.scss',
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
-    FormsModule,
     DdrTranslatePipe
   ]
 })

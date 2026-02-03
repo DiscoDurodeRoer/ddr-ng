@@ -2,10 +2,8 @@
   @if (label()) {
     <label class="ddr-textarea__label"
       [attr.for]="name()"
-      [class]="{
-      'ddr-textarea__label--inline': inline(),
-      'fw-bold': labelBold()
-      }"
+      [class.ddr-textarea__label--inline]="inline()"
+      [class.fw-bold]="labelBold()"
     >{{ label() + (required() ? "(*):" : "") }}</label>
     @if (tooltipText()) {
       <i
@@ -17,43 +15,45 @@
     }
   }
   <textarea
-    #textarea
     class="ddr-textarea__textarea"
     [attr.id]="name()"
     [name]="name()"
     [placeholder]="placeholder()"
     [disabled]="disabled()"
     [readonly]="readonly()"
-    [attr.maxlength]="maxlength()"
-    [attr.minlength]="minlength()"
+    [attr.maxlength]="maxLength()"
+    [attr.minlength]="minLength()"
     [required]="required()"
     [cols]="cols()"
     [rows]="rows()"
-    [(value)]="value"
-    [class.is-valid]="validate() && dirty() && !errors()"
-    [class.is-invalid]="validate() && dirty() && errors()"
+    [value]="value()"
+    [class.is-valid]="validate() && dirtyInput() && valid()"
+    [class.is-invalid]="validate() && dirtyInput() && !valid()"
     [class.w-100]="!inline()"
     [class.ddr-textarea__textarea--inline]=" inline()"
-    (click)="onclick($event)"
+    (input)="onInput($event)"
+    (click)="onClick($event)"
     (keyup)="onKeyup()"
-    (blur)="onblur()"></textarea>
+    (blur)="onBlur()"></textarea>
   <!--Validation-->
-  @if (validate() && dirty() && !errors()) {
+  @if (validate() && dirtyInput() && valid()) {
     <div
-      [class.w-auto]="inline()" [class.d-inline-block]="inline()" [class.ms-1]="inline()"
-      class="valid-feedback"
-      >
-      <ng-template [ngTemplateOutlet]="templateValid()" />
+      [class.w-auto]="inline()" 
+      [class.d-inline-block]="inline()" 
+      [class.ms-1]="inline()"
+      class="valid-feedback">
+        <ng-template [ngTemplateOutlet]="templateValid()" />
     </div>
   }
-  @if (validate() && dirty() && errors()) {
+  @if (validate() && dirtyInput() && !valid()) {
     <div
-      [class.w-auto]="inline()" [class.d-inline-block]="inline()" [class.ms-1]="inline()"
-      class="invalid-feedback"
-      >
+      [class.w-auto]="inline()" 
+      [class.d-inline-block]="inline()" 
+      [class.ms-1]="inline()"
+      class="invalid-feedback">
       <ng-template
         [ngTemplateOutlet]="templateErrors()"
-        [ngTemplateOutletContext]="{ errors: errors() }" />
+        [ngTemplateOutletContext]="{ errors }" />
     </div>
   }
 </div>

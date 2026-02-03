@@ -6,7 +6,7 @@ import { DdrBadgePillComponent } from '../ddr-badge-pill/ddr-badge-pill.componen
 @Component({
   selector: 'ddr-badge-notification',
   templateUrl: './ddr-badge-notification.component.html',
-  styleUrls: ['./ddr-badge-notification.component.scss'],
+  styleUrl: './ddr-badge-notification.component.scss',
   encapsulation: ViewEncapsulation.None,
   imports: [
     DdrBadgePillComponent

@@ -13,7 +13,7 @@ import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'click-outside-showcase',
   templateUrl: './click-outside-showcase.component.html',
-  styleUrls: ['./click-outside-showcase.component.scss'],
+  styleUrl: './click-outside-showcase.component.scss',
   imports: [
     BaseShowcaseComponent,
     DdrClickOutsideDirective,

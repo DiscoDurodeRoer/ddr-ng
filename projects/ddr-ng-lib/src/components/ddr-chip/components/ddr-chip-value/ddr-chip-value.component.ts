@@ -3,7 +3,7 @@ import { Component, InputSignal, OutputEmitterRef, ViewEncapsulation, input, out
 @Component({
   selector: 'ddr-chip-value',
   templateUrl: './ddr-chip-value.component.html',
-  styleUrls: ['./ddr-chip-value.component.scss'],
+  styleUrl: './ddr-chip-value.component.scss',
   encapsulation: ViewEncapsulation.None,
 })
 export class DdrChipValueComponent {

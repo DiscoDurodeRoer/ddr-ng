@@ -7,7 +7,7 @@ import { FormValueControl } from '@angular/forms/signals';
 @Component({
   selector: 'ddr-toggle',
   templateUrl: './ddr-toggle.component.html',
-  styleUrls: ['./ddr-toggle.component.scss'],
+  styleUrl: './ddr-toggle.component.scss',
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [

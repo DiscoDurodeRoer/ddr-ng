@@ -4,9 +4,8 @@ import { AfterViewInit, Component, ElementRef, ViewEncapsulation, input, output,
 @Component({
   selector: 'ddr-accordion',
   templateUrl: './ddr-accordion.component.html',
-  styleUrls: ['./ddr-accordion.component.scss'],
+  styleUrl: './ddr-accordion.component.scss',
   encapsulation: ViewEncapsulation.None,
-  imports: [],
   animations: [
     trigger('slideInOut', [
       state('open', style({ height: '*' })),
@@ -33,41 +32,41 @@ export class DdrAccordionComponent implements AfterViewInit {
   public animate: WritableSignal<boolean> = signal<boolean>(false);
   public openAccordion: WritableSignal<boolean> = signal<boolean>(this.open());
 
-  constructor() {
-    effect(() => {
-      if (this.animate()) {
-        if (this.state() == 'close') {
-          setTimeout(() => {
-            this.openAccordion.update((value: boolean) => !value);
-            this.clickOpen.emit(this.open());
-          }, 400);
-        } else {
-          this.openAccordion.update((value: boolean) => !value);
-          this.clickOpen.emit(this.open());
-          setTimeout(() => {
-            this.contentAccordion().nativeElement.style.overflow = 'inherit';
-          }, 400);
-        }
-      }
-    })
+  constructor(){
+    effect(() => this.openAccordion.set(this.open()));
   }
 
   ngAfterViewInit() {
 
-    if (this.open()) {
+    if (this.openAccordion()) {
       this.state.set('open');
       this.contentAccordion().nativeElement.style.overflow = 'inherit';
     }
 
     setTimeout(() => {
-      this.animate.set(true)
+      this.animate.set(true);
     });
 
   }
 
-  toggleAccordion() {
-    this.state.update((value: string) => value == 'open' ? 'close' : 'open');
+  openClose() {
+
+    this.state.update( (value: string) => value == 'open' ? 'close' : 'open');
+
     this.contentAccordion().nativeElement.style.overflow = 'hidden';
+    if (this.state() == 'close') {
+      setTimeout(() => {
+        this.openAccordion.update( (value: boolean) => !value);
+        this.clickOpen.emit(this.openAccordion());
+      }, 400);
+    } else {
+       this.openAccordion.update( (value: boolean) => !value);
+      this.clickOpen.emit(this.openAccordion());
+      setTimeout(() => {
+        this.contentAccordion().nativeElement.style.overflow = 'inherit';
+      }, 400);
+    }
+
   }
 
 }

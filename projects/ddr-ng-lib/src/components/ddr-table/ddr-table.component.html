@@ -18,11 +18,10 @@
               {{ col.label | ddrTranslate }}
               @if (canSort() && col.canSort) {
                 <i class="bi d-inline-block me-1 cursor-pointer ddr-table__table--header-cell--sort"
-                  [class]="{
-                  'bi-arrow-down-up': !col.modeSort || col.modeSort == constants.MODE_SORT.NO_SORT,
-                  'bi bi-sort-down-alt': col.modeSort == constants.MODE_SORT.DESCENDING,
-                  'bi bi-sort-up': col.modeSort == constants.MODE_SORT.ASCENDING
-                }" (click)="onSort(col)"></i>
+                  [class.bi-arrow-down-up]="!col.modeSort || col.modeSort == constants.MODE_SORT.NO_SORT"
+                  [class.bi-sort-down-alt]="col.modeSort == constants.MODE_SORT.DESCENDING"
+                  [class.bi-sort-up]="col.modeSort == constants.MODE_SORT.ASCENDING"
+                  (click)="onSort(col)"></i>
               }
             </th>
           }
@@ -42,10 +41,10 @@
             it of items()
             | paginate: { id, itemsPerPage: rows(), currentPage: page(), totalItems: totalItemsTable() }; track
             index; let index = $index) {
-            <tr class="ddr-table__table--body-row" [class]="{
-              'ddr-table__table--body-row--hoveable': canSelectItems(),
-              'ddr-table__table--border': showBorder()
-              }" (click)="onSelectItem($event, it)">
+            <tr class="ddr-table__table--body-row" 
+              [class.ddr-table__table--body-row--hoveable]="canSelectItems()"
+              [class.ddr-table__table--border]="showBorder()"
+              (click)="onSelectItem($event, it)">
               @if (multiple()) {
                 <td class="ddr-table__table--body-row--checkbox">
                   <ddr-checkbox-binary
@@ -94,8 +93,8 @@
               <div class="row">
                 @if (allowChangeRows() && items() && items().length > 0) {
                   <div class="col-6 text-start"
-                    [class]="{'col-md-6 col-12': (showTotal() || showPagination()) && items().length > 0, 'col-12': !((showTotal() || showPagination()) && items().length > 0)}"
-                    >
+                    [class.col-md-6]="(showTotal() || showPagination()) && items().length > 0"
+                    [class.col-12]="!((showTotal() || showPagination()) && items().length > 0)">
                     <ddr-dropdown
                       [inline]="true"
                       [options]="optionsRows()"
@@ -111,8 +110,8 @@
                 }
                 @if ((showTotal() || showPagination()) && items().length > 0) {
                   <div class="text-end mt-4"
-                    [class]="{'col-md-6 col-12': allowChangeRows() && items() && items().length > 0, 'col-12': !(allowChangeRows() && items() && items().length > 0)}"
-                    >
+                    [class.col-md-6]="allowChangeRows() && items() && items().length > 0"
+                    [class.col-md-6]="!(allowChangeRows() && items() && items().length > 0)">
                     @if (showTotal() && showPagination() && totalItemsTable() > rows()) {
                       <span class="d-inline-block">
                         {{ rows() * (page() - 1) + 1 }}

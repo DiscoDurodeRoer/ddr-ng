@@ -2,7 +2,6 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { DdrDropdownMultipleComponent } from '../components/ddr-dropdown-multiple/ddr-dropdown-multiple.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { FormsModule } from '@angular/forms';
 import { DdrButtonComponent } from '../components/ddr-button/ddr-button.component';
 import { DdrInputGroupComponent } from '../components/ddr-input-group/ddr-input-group.component';
 import { DdrCheckboxComponent } from '../components/ddr-checkbox/ddr-checkbox.component';
@@ -20,7 +19,6 @@ describe('DdrDropdownMultipleComponent', () => {
     await TestBed.configureTestingModule({
       imports: [
         BrowserAnimationsModule,
-        FormsModule,
         DdrButtonComponent,
         DdrInputGroupComponent,
         DdrCheckboxComponent,

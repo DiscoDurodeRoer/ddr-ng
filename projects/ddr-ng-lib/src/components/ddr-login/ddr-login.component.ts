@@ -7,31 +7,31 @@ import {
   output,
   viewChild,
   InputSignal,
-  OutputEmitterRef
+  OutputEmitterRef,
+  signal,
+  WritableSignal
 } from '@angular/core';
 import { DdrAuth } from '../../common/ddr-auth.model';
 import { DdrConstantsService } from '../../services/ddr-constants.service';
 import { DdrButtonComponent } from '../ddr-button/ddr-button.component';
 import { DdrInputComponent } from '../ddr-input/ddr-input.component';
-
 import { DdrInputPasswordComponent } from '../ddr-input-password/ddr-input-password.component';
-import { FormsModule } from '@angular/forms';
 import { DdrTranslatePipe } from '../../pipes/ddr-translate.pipe';
-
 import { DdrCardComponent } from '../ddr-card/ddr-card.component';
+import { Field, form, required, submit } from '@angular/forms/signals';
 
 @Component({
   selector: 'ddr-login',
   templateUrl: './ddr-login.component.html',
-  styleUrls: ['./ddr-login.component.scss'],
+  styleUrl: './ddr-login.component.scss',
   encapsulation: ViewEncapsulation.None,
   imports: [
-    FormsModule,
     DdrButtonComponent,
     DdrInputComponent,
     DdrTranslatePipe,
     DdrInputPasswordComponent,
     DdrCardComponent,
+    Field
   ]
 })
 export class DdrLoginComponent {
@@ -45,7 +45,7 @@ export class DdrLoginComponent {
   readonly showLabelUser: InputSignal<boolean> = input<boolean>(true);
   readonly showLabelPassword: InputSignal<boolean> = input<boolean>(true);
   readonly userRequired: InputSignal<boolean> = input<boolean>(true);
-  readonly userPassword: InputSignal<boolean> = input<boolean>(true);
+  readonly passwordRequired: InputSignal<boolean> = input<boolean>(true);
 
   readonly labelSubmit: InputSignal<string | undefined> = input<string | undefined>();
   readonly labelForgotenPassword: InputSignal<string | undefined> = input<string | undefined>();
@@ -59,15 +59,24 @@ export class DdrLoginComponent {
   readonly forgotenPassword: OutputEmitterRef<void> = output<void>();
   readonly registerUser: OutputEmitterRef<void> = output<void>();
 
-  public user: DdrAuth = {
+  private loginModel: WritableSignal<DdrAuth> = signal<DdrAuth>({
     username: '',
     password: ''
-  };
+  });
+  public formLogin = form(this.loginModel, (login) => {
+    required(login.username, { when: () => this.userRequired() })
+    required(login.password, { when: () => this.passwordRequired() })
+  })
 
-  readonly inputPwd = viewChild<ElementRef>('pwd');
+  constructor(){
 
-  login() {
-    this.doLogin.emit(this.user);
+  }
+
+  login(event: Event) {
+    event.preventDefault();
+    submit(this.formLogin, async () => {
+      this.doLogin.emit(this.loginModel());
+    });
   }
 
   recoverPassword() {

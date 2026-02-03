@@ -1,9 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { DdrToggleComponent } from '../components/ddr-toggle/ddr-toggle.component';
 import { DdrTranslatePipe } from '../pipes/ddr-translate.pipe';
-import { DdrControlValueAccessor } from '../directives/ddr-control-value-accessor.directive';
 
 describe('DdrToggleComponent', () => {
     let fixture: ComponentFixture<DdrToggleComponent>;
@@ -12,8 +10,6 @@ describe('DdrToggleComponent', () => {
     beforeEach(async () => {
         await TestBed.configureTestingModule({
             imports: [
-                FormsModule,
-                DdrControlValueAccessor,
                 DdrTranslatePipe,
                 DdrToggleComponent
             ]

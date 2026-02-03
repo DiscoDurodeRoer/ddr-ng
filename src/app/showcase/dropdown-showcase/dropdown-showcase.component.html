@@ -450,9 +450,9 @@
       </ng-template>
 
       <ng-template #templateErrors let-errors="errors">
-        @if(errors?.required){
-          <span>{{'dropdown.value.required' | ddrTranslate}}</span>
-        }
+          @for (error of errors(); track error.kind) {
+            <span>{{ error.message | ddrTranslate }} {{ error.min }}</span>
+          }
       </ng-template>
 
     </ddr-dropdown>

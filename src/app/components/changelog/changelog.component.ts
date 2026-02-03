@@ -8,7 +8,7 @@ import { FormsModule } from '@angular/forms';
 @Component({
     selector: 'app-changelog',
     templateUrl: './changelog.component.html',
-    styleUrls: ['./changelog.component.scss'],
+    styleUrl: './changelog.component.scss',
     imports: [
         DdrTreeComponent,
         DdrDropdownComponent,

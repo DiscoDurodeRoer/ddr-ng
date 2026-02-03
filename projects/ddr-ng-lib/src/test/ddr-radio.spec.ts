@@ -1,9 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { DdrRadioComponent } from '../components/ddr-radio/ddr-radio.component';
 import { DdrTranslatePipe } from '../pipes/ddr-translate.pipe';
-import { DdrControlValueAccessor } from '../directives/ddr-control-value-accessor.directive'
 
 describe('DdrRadioComponent', () => {
     let fixture: ComponentFixture<DdrRadioComponent<string>>;
@@ -12,8 +10,6 @@ describe('DdrRadioComponent', () => {
     beforeEach(async () => {
         await TestBed.configureTestingModule({
             imports: [
-                FormsModule,
-                DdrControlValueAccessor,
                 DdrTranslatePipe,
                 DdrRadioComponent
             ]

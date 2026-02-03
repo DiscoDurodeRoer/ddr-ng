@@ -383,6 +383,14 @@ $color-warning: #b4894b;
       &__textarea {
         background-color: $primary;
         color: $input-color;
+
+        &.is-valid {
+          border-color: $color-success;
+        }
+
+        &.is-invalid {
+          border-color: $color-danger;
+        }
       }
     }
   }

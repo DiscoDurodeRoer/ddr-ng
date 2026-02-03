@@ -1,5 +1,4 @@
 import { Component, ViewEncapsulation, input, output, InputSignal, OutputEmitterRef, ModelSignal, model, effect } from '@angular/core';
-import { FormsModule } from '@angular/forms';
 import { DdrSelectItem } from '../../common/ddr-select-item.model';
 import { DdrTranslatePipe } from '../../pipes/ddr-translate.pipe';
 import { FormValueControl } from '@angular/forms/signals';
@@ -7,10 +6,9 @@ import { FormValueControl } from '@angular/forms/signals';
 @Component({
   selector: 'ddr-checkbox',
   templateUrl: './ddr-checkbox.component.html',
-  styleUrls: ['./ddr-checkbox.component.scss'],
+  styleUrl: './ddr-checkbox.component.scss',
   encapsulation: ViewEncapsulation.None,
   imports: [
-    FormsModule,
     DdrTranslatePipe
   ]
 })

@@ -5,7 +5,7 @@
     [class.ddr-accordion__title--is-closed]="!openAccordion()"
     [class.border]="border()"
     [class.ddr-accordion__title--slim]="slim()" 
-    (click)="toggleAccordion()">
+    (click)="openClose()">
     <div class="row">
       <div class="col-md-11 col-10 text-start">
         <span class="ddr-accordion__title--text">{{titleAccordion()}}</span>

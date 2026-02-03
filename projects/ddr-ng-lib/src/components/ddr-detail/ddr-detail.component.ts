@@ -9,7 +9,7 @@ import { DdrDetailService } from './ddr-detail.service';
 @Component({
     selector: 'ddr-detail',
     templateUrl: './ddr-detail.component.html',
-    styleUrls: ['./ddr-detail.component.scss'],
+    styleUrl: './ddr-detail.component.scss',
     encapsulation: ViewEncapsulation.None,
     imports: [
         NgTemplateOutlet

@@ -12,11 +12,13 @@
   <ddr-input-group
     [label]="label()"
     [inline]="inline()"
-    [icon]="orientation() === 'bottom' ? 'bi bi-caret-down-fill' : 'bi bi-caret-up-fill'"
+    [icon]="iconOrientation()"
     [placeholder]="placeholder()"
     [readonly]="true"
     [required]="required()"
     [disabled]="disabled()"
+    [dirty]="true"
+    [errors]="errors()"
     [(value)]="valueShow"
     [validate]="validate()" 
     [tooltipOrientation]="tooltipOrientation()"
@@ -31,7 +33,7 @@
       <ng-container [ngTemplateOutlet]="templateValidOutside()" />
     </ng-template>
 
-    <ng-template #templateErrors let-errors="errors">
+    <ng-template #template let-errors="errors">
       <ng-container [ngTemplateOutlet]="templateErrorsOutside()"
         [ngTemplateOutletContext]="{ errors }" />
     </ng-template>

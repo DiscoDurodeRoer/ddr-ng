@@ -1,5 +1,6 @@
 <div class="ddr-radio" 
-  [class.flex-row.flex-wrap]="inline()"
+  [class.flex-row]="inline()"
+  [class.flex-wrap]="inline()"
   [class.flex-column]="!inline()">
   @for (option of options(); track option) {
     <div class="ddr-radio__container user-select-none" [class.me-4]="inline()">

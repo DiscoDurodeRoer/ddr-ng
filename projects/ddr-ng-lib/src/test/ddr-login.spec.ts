@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { DdrAuth } from '../common/ddr-auth.model';
 import { DdrButtonComponent } from '../components/ddr-button/ddr-button.component';
@@ -20,7 +19,6 @@ describe('DdrLoginComponent', () => {
     beforeEach(async () => {
         await TestBed.configureTestingModule({
             imports: [
-                FormsModule,
                 DdrButtonComponent,
                 DdrInputComponent,
                 DdrInputGroupComponent,

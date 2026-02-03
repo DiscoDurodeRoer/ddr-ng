@@ -5,7 +5,7 @@ import { NgTemplateOutlet } from '@angular/common';
 @Component({
   selector: 'ddr-tabs',
   templateUrl: './ddr-tabs.component.html',
-  styleUrls: ['./ddr-tabs.component.scss'],
+  styleUrl: './ddr-tabs.component.scss',
   encapsulation: ViewEncapsulation.None,
   imports: [
     NgTemplateOutlet

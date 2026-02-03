@@ -1,19 +1,17 @@
 import { Component, TemplateRef, ViewEncapsulation, inject, input, output, contentChild, InputSignal, OutputEmitterRef, computed, Signal, effect, WritableSignal, signal, ModelSignal, model } from '@angular/core';
-import { FormsModule } from '@angular/forms';
 import { DdrConstantsService } from '../../services/ddr-constants.service';
 import { DdrInputGroupComponent } from '../ddr-input-group/ddr-input-group.component';
 import { DdrInputError, DdrOrientatioTooltip, DdrTypeInput } from '../../types/types';
 import { NgTemplateOutlet } from '@angular/common';
-import { FormValueControl } from '@angular/forms/signals';
+import { FormValueControl, ValidationError, WithOptionalField } from '@angular/forms/signals';
 
 @Component({
   selector: 'ddr-input-password',
   templateUrl: './ddr-input-password.component.html',
-  styleUrls: ['./ddr-input-password.component.scss'],
+  styleUrl: './ddr-input-password.component.scss',
   encapsulation: ViewEncapsulation.None,
   imports: [
     DdrInputGroupComponent,
-    FormsModule,
     NgTemplateOutlet
   ]
 })
@@ -26,7 +24,7 @@ export class DdrInputPasswordComponent implements FormValueControl<string> {
   readonly required: InputSignal<boolean> = input<boolean>(false);
   readonly validate: InputSignal<boolean> = input<boolean>(false);
   readonly inline: InputSignal<boolean> = input<boolean>(false);
-  readonly pattern: InputSignal<readonly RegExp[]> | undefined = input<readonly RegExp[]>([]);
+  readonly pattern: InputSignal<readonly RegExp[]> = input<readonly RegExp[]>([]);
   readonly name: InputSignal<string> = input<string>('');
   readonly readonly: InputSignal<boolean> = input<boolean>(false);
   readonly disabled: InputSignal<boolean> = input<boolean>(false);
@@ -34,6 +32,8 @@ export class DdrInputPasswordComponent implements FormValueControl<string> {
   readonly tooltipText: InputSignal<string | undefined> = input<string | undefined>();
   readonly labelBold: InputSignal<boolean> = input<boolean>(false);
   readonly showPassword: InputSignal<boolean> = input<boolean>(false);
+
+  readonly errors: InputSignal<readonly WithOptionalField<ValidationError>[]> = input<readonly WithOptionalField<ValidationError>[]>([]);
 
   readonly hasErrors: OutputEmitterRef<DdrInputError> = output<DdrInputError>();
   readonly clickInput: OutputEmitterRef<MouseEvent> = output<MouseEvent>();
@@ -46,7 +46,7 @@ export class DdrInputPasswordComponent implements FormValueControl<string> {
   public typePassword: Signal<DdrTypeInput> = computed<DdrTypeInput>(() => this.show() ? this.constants.TYPE_INPUT.TEXT : this.constants.TYPE_INPUT.PASSWORD);
   public iconPassword: Signal<string> = computed<string>(() => this.show() ? 'bi bi-eye' : 'bi bi-eye-slash');
   
-  value: ModelSignal<string> = model<string>('');
+  public value: ModelSignal<string> = model<string>('');
 
   constructor() {
     effect(() => this.show.set(this.showPassword()))
@@ -64,7 +64,7 @@ export class DdrInputPasswordComponent implements FormValueControl<string> {
     this.keyPressed.emit($event);
   }
 
-  onclickInput($event: MouseEvent) {
+  onClickInput($event: MouseEvent) {
     this.clickInput.emit($event);
   }
 

@@ -3,7 +3,7 @@ import { Component, InputSignal, ViewEncapsulation, input } from '@angular/core'
 @Component({
   selector: 'ddr-card',
   templateUrl: './ddr-card.component.html',
-  styleUrls: ['./ddr-card.component.scss'],
+  styleUrl: './ddr-card.component.scss',
   encapsulation: ViewEncapsulation.None
 })
 export class DdrCardComponent {
@@ -12,6 +12,6 @@ export class DdrCardComponent {
   readonly rounded: InputSignal<boolean> = input<boolean>(true);
   readonly border: InputSignal<boolean> = input<boolean>(true);
   readonly shadow: InputSignal<boolean> = input<boolean>(true);
-  readonly background: InputSignal<string | undefined> = input<string>();
-  readonly color: InputSignal<string | undefined> = input<string>();
+  readonly background: InputSignal<string | undefined> = input<string | undefined>(undefined);
+  readonly color: InputSignal<string | undefined> = input<string | undefined>(undefined);
 }

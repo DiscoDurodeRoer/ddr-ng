@@ -5,7 +5,7 @@ import { BaseShowcaseComponent } from '../base-showcase/base-showcase.component'
 @Component({
   selector: 'badge-showcase',
   templateUrl: './badge-showcase.component.html',
-  styleUrls: ['./badge-showcase.component.scss'],
+  styleUrl: './badge-showcase.component.scss',
   encapsulation: ViewEncapsulation.None,
   imports: [
     BaseShowcaseComponent,

@@ -14,6 +14,12 @@
 
 <div class="row mt-3">
   <div class="col-12">
+    <span class="h5">{{'without.form.signal' | ddrTranslate}}</span>
+  </div>
+</div>
+
+<div class="row mt-3">
+  <div class="col-12">
     <ddr-toggle 
       [(value)]="value1" 
       (toggled)="toggleValue($event)" />
@@ -24,6 +30,28 @@
   <div class="col-12">
     <div class="col-12">
       <span>{{'toggle.value' | ddrTranslate}}: {{value1}}</span>
+    </div>  
+  </div>
+</div>
+
+<div class="row mt-3">
+  <div class="col-12">
+    <span class="h5">{{'with.form.signal' | ddrTranslate}}</span>
+  </div>
+</div>
+
+<div class="row mt-3">
+  <div class="col-12">
+    <ddr-toggle 
+      [field]="formToggleEx1.example1"
+      (toggled)="toggleValue($event)" />
+  </div>
+</div>
+
+<div class="row mt-3">
+  <div class="col-12">
+    <div class="col-12">
+      <span>{{'toggle.value' | ddrTranslate}}: {{formToggleEx1.example1().value()}}</span>
     </div>  
   </div>
 </div>
@@ -114,6 +142,12 @@
 
 <div class="row mt-3">
   <div class="col-12">
+    <span class="h5">{{'without.form.signal' | ddrTranslate}}</span>
+  </div>
+</div>
+
+<div class="row mt-3">
+  <div class="col-12">
     <ddr-toggle 
       [label]="'toggle.label' | ddrTranslate" 
       [(value)]="value6" 
@@ -124,6 +158,27 @@
 <div class="row mt-3">
   <div class="col-12">
     <span>{{'toggle.value' | ddrTranslate}}: {{value6}}</span>
+  </div>
+</div>
+
+<div class="row mt-3">
+  <div class="col-12">
+    <span class="h5">{{'with.form.signal' | ddrTranslate}}</span>
+  </div>
+</div>
+
+<div class="row mt-3">
+  <div class="col-12">
+    <ddr-toggle 
+      [label]="'toggle.label' | ddrTranslate" 
+      [field]="formToggleEx6.example6" 
+      (toggled)="toggleValue($event)" />
+  </div>
+</div>
+
+<div class="row mt-3">
+  <div class="col-12">
+    <span>{{'toggle.value' | ddrTranslate}}: {{formToggleEx6.example6().value()}}</span>
   </div>
 </div>
       

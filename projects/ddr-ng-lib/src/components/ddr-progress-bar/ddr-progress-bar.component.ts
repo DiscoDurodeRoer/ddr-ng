@@ -3,7 +3,7 @@ import { Component, InputSignal, ViewEncapsulation, input } from '@angular/core'
 @Component({
   selector: 'ddr-progress-bar',
   templateUrl: './ddr-progress-bar.component.html',
-  styleUrls: ['./ddr-progress-bar.component.scss'],
+  styleUrl: './ddr-progress-bar.component.scss',
   encapsulation: ViewEncapsulation.None
 })
 export class DdrProgressBarComponent {

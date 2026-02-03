@@ -6,7 +6,7 @@ import { DdrSize, DdrStatusBadge } from '../../types/types';
 @Component({
   selector: 'ddr-badge-pill',
   templateUrl: './ddr-badge-pill.component.html',
-  styleUrls: ['./ddr-badge-pill.component.scss'],
+  styleUrl: './ddr-badge-pill.component.scss',
   encapsulation: ViewEncapsulation.None,
   imports: [
     NgTemplateOutlet

@@ -9,7 +9,7 @@ import { BaseShowcaseComponent } from '../base-showcase/base-showcase.component'
 @Component({
   selector: 'spinner-showcase',
   templateUrl: './spinner-showcase.component.html',
-  styleUrls: ['./spinner-showcase.component.scss'],
+  styleUrl: './spinner-showcase.component.scss',
   imports: [
     BaseShowcaseComponent,
     DdrButtonComponent,

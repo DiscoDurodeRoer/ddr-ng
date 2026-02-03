@@ -3,7 +3,7 @@ import { Component, ViewEncapsulation, WritableSignal, signal } from '@angular/c
 @Component({
   selector: 'ddr-spinner',
   templateUrl: './ddr-spinner.component.html',
-  styleUrls: ['./ddr-spinner.component.scss'],
+  styleUrl: './ddr-spinner.component.scss',
   encapsulation: ViewEncapsulation.None,
 })
 export class DdrSpinnerComponent {

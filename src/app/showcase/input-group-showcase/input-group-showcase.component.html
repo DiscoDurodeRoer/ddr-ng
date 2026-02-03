@@ -14,6 +14,12 @@
 
 <div class="row mt-3">
   <div class="col-12">
+    <span class="h5">{{'without.form.signal' | ddrTranslate}}</span>
+  </div>
+</div>
+
+<div class="row mt-3">
+  <div class="col-12">
     <ddr-input-group
       [label]="'input.group.label' | ddrTranslate"
       [placeholder]="'input.group.placeholder' | ddrTranslate"
@@ -33,7 +39,37 @@
 
 <div class="row mt-3">
   <div class="col-12">
+    <span class="h5">{{'with.form.signal' | ddrTranslate}}</span>
+  </div>
+</div>
+
+<div class="row mt-3">
+  <div class="col-12">
+    <ddr-input-group
+      [label]="'input.group.label' | ddrTranslate"
+      [placeholder]="'input.group.placeholder' | ddrTranslate"
+      type="text"
+      icon="bi bi-send"
+      [field]="formInputEx1.example1"
+      (action)="clickButton($event)" />
+  </div>
+</div>
+
+<div class="row mt-3">
+  <div class="col-12">
+    <span>{{'input.group.value' | ddrTranslate}}: {{formInputEx1.example1().value()}}</span>
+  </div>
+</div>
+
+<div class="row mt-3">
+  <div class="col-12">
     <span class="h3">{{'input.group.example.2' | ddrTranslate}}</span>
+  </div>
+</div>
+
+<div class="row mt-3">
+  <div class="col-12">
+    <span class="h5">{{'without.form.signal' | ddrTranslate}}</span>
   </div>
 </div>
   
@@ -46,7 +82,7 @@
       icon="bi bi-send"
       [required]="true"
       [validate]="true"
-      [minlength]="5"
+      [minLength]="5"
       name="example-2"
       (action)="clickButton($event)">
 
@@ -70,6 +106,50 @@
 
 <div class="row mt-3">
   <div class="col-12">
+    <span class="h5">{{'with.form.signal' | ddrTranslate}}</span>
+  </div>
+</div>
+
+<div class="row mt-3">
+  <div class="col-12">
+    <ddr-input-group
+      [label]="'input.group.label' | ddrTranslate"
+      [placeholder]="'input.group.placeholder' | ddrTranslate"
+      type="text"
+      icon="bi bi-send"
+      [validate]="true"
+      [field]="formInputEx2.example2"
+      (action)="clickButton($event)">
+
+        <ng-template #templateValid>
+            <span>{{'input.group.ok' | ddrTranslate}}</span>
+        </ng-template>
+
+        <ng-template #templateErrors let-errors="errors">
+          @for (error of errors(); track error.kind) {
+            @switch(error.kind){
+              @case('required'){
+                <span>{{ error.message | ddrTranslate }}</span>
+              }
+              @case('minLength'){
+                <span class="me-2">{{'input.minlength.required' | ddrTranslate}} {{ error.minLength }}</span>
+              }
+              @case('maxLength'){
+                <span class="me-2">{{'input.maxlength.required' | ddrTranslate}} {{ error.maxLength }}</span>
+              }
+              @case('pattern'){
+                <span class="me-2">{{ error.message | ddrTranslate }}</span>
+              }
+            }
+          }
+        </ng-template>
+
+    </ddr-input-group>
+  </div>
+</div>
+
+<div class="row mt-3">
+  <div class="col-12">
     <span class="h3">{{'input.group.example.3' | ddrTranslate}}</span>
   </div>
 </div>
@@ -82,32 +162,20 @@
       [inline]="true"
       type="text"
       icon="bi bi-send"
-      [required]="true"
-      [validate]="true"
       name="example-3"
-      (action)="clickButton($event)">
-
-        <ng-template #templateValid>
-            <span>{{'input.group.ok' | ddrTranslate}}</span>
-        </ng-template>
-
-        <ng-template #templateErrors let-errors="errors">
-          @if(errors?.required){
-            <span>{{'input.group.value.required' | ddrTranslate}}</span>
-          }
-          @if(errors?.minlength){
-            <span class="me-2">{{'input.group.minlength.required' | ddrTranslate}} {{ errors?.minlength.requiredLength }}</span>
-            <span>{{'input.group.minlength.actual' | ddrTranslate}} {{ errors?.minlength?.actualLength }}</span>
-          }
-        </ng-template>
-
-      </ddr-input-group>
+      (action)="clickButton($event)" />
     </div>
 </div>
 
 <div class="row mt-3">
   <div class="col-12">
     <span class="h3">{{'input.group.example.4' | ddrTranslate}}</span>
+  </div>
+</div>
+
+<div class="row mt-3">
+  <div class="col-12">
+    <span class="h5">{{'without.form.signal' | ddrTranslate}}</span>
   </div>
 </div>
 
@@ -120,6 +188,24 @@
       icon="bi bi-send"
       [disabled]="true"
       name="example-4"
+      (action)="clickButton($event)" />
+    </div>
+</div>
+
+<div class="row mt-3">
+  <div class="col-12">
+    <span class="h5">{{'with.form.signal' | ddrTranslate}}</span>
+  </div>
+</div>
+
+<div class="row mt-3">
+  <div class="col-12">
+    <ddr-input-group
+      [label]="'input.group.label' | ddrTranslate"
+      [placeholder]="'input.group.placeholder' | ddrTranslate"
+      type="text"
+      icon="bi bi-send"
+      [field]="formInputEx4.example4"
       (action)="clickButton($event)" />
     </div>
 </div>
@@ -189,6 +275,12 @@
 
 <div class="row mt-3">
   <div class="col-12">
+    <span class="h5">{{'without.form.signal' | ddrTranslate}}</span>
+  </div>
+</div>
+
+<div class="row mt-3">
+  <div class="col-12">
     <ddr-input-group
       [label]="'input.group.label' | ddrTranslate"
       [placeholder]="'input.group.placeholder' | ddrTranslate"
@@ -205,6 +297,49 @@
 <div class="row mt-3">
   <div class="col-12">
     <span>{{'input.group.value' | ddrTranslate}}: {{valueEx8}}</span>
+  </div>
+</div>
+
+<div class="row mt-3">
+  <div class="col-12">
+    <span class="h5">{{'with.form.signal' | ddrTranslate}}</span>
+  </div>
+</div>
+
+<div class="row mt-3">
+  <div class="col-12">
+    <ddr-input-group
+      [label]="'input.group.label' | ddrTranslate"
+      [placeholder]="'input.group.placeholder' | ddrTranslate"
+      icon="bi bi-send"
+      type="number"
+      [validate]="true"
+      [field]="formInputEx8.example8"
+      (action)="clickButton($event)">
+
+        <ng-template #templateValid>
+          <span>{{'input.ok' | ddrTranslate}}</span>
+        </ng-template>
+
+        <ng-template #templateErrors let-errors="errors">
+          @for (error of errors(); track error.kind) {
+              @switch(error.kind){
+                @case('min'){
+                  <span>{{ error.message | ddrTranslate }} {{ error.min }}</span>
+                }
+                @case('max'){
+                  <span class="me-2">{{error.message | ddrTranslate}} {{ error.max }}</span>
+                }
+              }
+            }
+        </ng-template>
+      </ddr-input-group>
+    </div>
+</div>
+
+<div class="row mt-3">
+  <div class="col-12">
+    <span>{{'input.group.value' | ddrTranslate}}: {{formInputEx8.example8().value()}}</span>
   </div>
 </div>
 

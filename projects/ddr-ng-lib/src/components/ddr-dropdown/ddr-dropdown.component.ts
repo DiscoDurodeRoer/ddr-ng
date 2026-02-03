@@ -9,13 +9,13 @@ import { DdrClickOutsideDirective } from '../../directives/ddr-click-outside.dir
 import { DdrTranslatePipe } from '../../pipes/ddr-translate.pipe';
 import { NgTemplateOutlet } from '@angular/common';
 import { DdrOrientationDropdown, DdrOrientatioTooltip, DdrSize } from '../../types/types';
-import { Field, FieldTree, form, FormValueControl } from '@angular/forms/signals';
+import { Field, FieldTree, form, FormValueControl, ValidationError, WithOptionalField } from '@angular/forms/signals';
 import { DdrFilterDropdown } from './bean/filter-dropdown.model';
 
 @Component({
   selector: 'ddr-dropdown',
   templateUrl: './ddr-dropdown.component.html',
-  styleUrls: ['./ddr-dropdown.component.scss'],
+  styleUrl: './ddr-dropdown.component.scss',
   encapsulation: ViewEncapsulation.None,
   imports: [
     FormsModule,
@@ -79,6 +79,8 @@ export class DdrDropdownComponent<T> implements FormValueControl<T | null> {
   readonly size: InputSignal<DdrSize> = input<DdrSize>(this.constants.SIZE.MEDIUM);
   readonly transparent: InputSignal<boolean> = input<boolean>(false);
 
+  readonly errors: InputSignal<readonly WithOptionalField<ValidationError>[]> = input<readonly WithOptionalField<ValidationError>[]>([]);
+
   readonly selectItem: OutputEmitterRef<DdrSelectItem<T>> = output<DdrSelectItem<T>>();
 
   readonly itemTemplateOutside = contentChild<TemplateRef<any> | null>('itemTemplate');
@@ -96,6 +98,8 @@ export class DdrDropdownComponent<T> implements FormValueControl<T | null> {
   public filterModel: WritableSignal<DdrFilterDropdown> = signal<DdrFilterDropdown>({ filter: '' });
   public filterForm: FieldTree<DdrFilterDropdown> = form(this.filterModel);
 
+  public iconOrientation: Signal<string> = computed<string>(() => this.orientation() === this.constants.ORIENTATION.BOTTOM ? 'bi bi-caret-down-fill' : 'bi bi-caret-up-fill')
+
   constructor() {
     effect(() => this.selectValue(this.value()))
   }
@@ -104,12 +108,8 @@ export class DdrDropdownComponent<T> implements FormValueControl<T | null> {
     if (!value) {
       this.valueShow.set('');
       this.optionsShow().forEach(op => op.selected = op.selected || false);
-      const inputGroup = this.inputGroup();
-      if (inputGroup) {
-        // inputGroup!.input()!.input().control.markAsDirty();
-        if (this.validate()) {
-          inputGroup.checkInput(this.constants.INPUT_ERRORS.VALID);
-        }
+      if (this.validate() && this.inputGroup()) {
+        this.inputGroup().checkInput(this.constants.INPUT_ERRORS.ERROR);
       }
 
     } else {
@@ -117,15 +117,11 @@ export class DdrDropdownComponent<T> implements FormValueControl<T | null> {
       if (optionFound) {
         this.valueShow.set(this.translate() ? this.ddrTranslate.getTranslate(optionFound.label) : optionFound.label);
         this.optionsShow().forEach(option => option.selected = option.selected || this.compareFn()(option.value, optionFound.value));
-        const inputGroup = this.inputGroup();
-        if (inputGroup) {
-          // inputGroup!.input()!.input().control.markAsDirty();
-          if (this.validate()) {
-            if (this.value == null) {
-              inputGroup.checkInput(this.constants.INPUT_ERRORS.ERROR);
-            } else {
-              inputGroup.checkInput(this.constants.INPUT_ERRORS.VALID);
-            }
+        if (this.validate() && this.inputGroup()) {
+          if (this.value() == null) {
+            this.inputGroup().checkInput(this.constants.INPUT_ERRORS.ERROR);
+          } else {
+            this.inputGroup().checkInput(this.constants.INPUT_ERRORS.VALID);
           }
         }
       } else {

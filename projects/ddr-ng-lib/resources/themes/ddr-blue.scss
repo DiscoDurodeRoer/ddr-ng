@@ -359,6 +359,14 @@ $color-warning: #f0ad4e;
       &__textarea {
         background-color: $input-background;
         color: $input-color;
+
+        &.is-valid {
+          border-color: $color-success;
+        }
+
+        &.is-invalid {
+          border-color: $color-danger;
+        }
       }
     }
   }

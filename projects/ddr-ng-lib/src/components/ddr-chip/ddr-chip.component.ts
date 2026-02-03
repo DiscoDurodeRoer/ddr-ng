@@ -1,21 +1,22 @@
-import { Component, InputSignal, ModelSignal, OutputEmitterRef, OutputRef, ViewEncapsulation, WritableSignal, input, model, output, signal } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { Component, InputSignal, ModelSignal, OutputEmitterRef, ViewEncapsulation, WritableSignal, effect, input, model, output, signal } from '@angular/core';
 import { DdrChipValueComponent } from './components/ddr-chip-value/ddr-chip-value.component';
-import { DisabledReason, FormValueControl, ValidationError, WithOptionalField } from '@angular/forms/signals';
+import { FormValueControl } from '@angular/forms/signals';
+import { JsonPipe } from '@angular/common';
+import { untracked } from '@angular/core/primitives/signals';
 
 @Component({
   selector: 'ddr-chip',
   templateUrl: './ddr-chip.component.html',
-  styleUrls: ['./ddr-chip.component.scss'],
+  styleUrl: './ddr-chip.component.scss',
   encapsulation: ViewEncapsulation.None,
   imports: [
     DdrChipValueComponent,
-    FormsModule
+    JsonPipe
   ]
 })
 export class DdrChipComponent implements FormValueControl<string[]> {
 
-  readonly separator: InputSignal<string> = input<string>(' ');
+  readonly separator: InputSignal<string> = input<string>('');
   readonly maxValues: InputSignal<number> = input<number>(0);
   readonly readonly: InputSignal<boolean> = input<boolean>(false);
   readonly label: InputSignal<string | undefined> = input<string | undefined>();
@@ -29,24 +30,27 @@ export class DdrChipComponent implements FormValueControl<string[]> {
 
   public valueInput: WritableSignal<string> = signal('');
 
-  value: ModelSignal<string[]> = model<string[]>([]);
+  public value: ModelSignal<string[]> = model<string[]>([]);
   
   constructor() {
-
+    effect(() => {
+      if (this.maxValues() > 0 && untracked(() => this.value().length) > 0) {
+        this.value.update((value: any[]) =>
+          value.slice(0, this.maxValues())
+        );
+      }
+    })
   }
 
-  ngOnInit() {
-    if (!this.value()) {
-      this.value.set([]);
-    } else if (this.maxValues() >= 0) {
-      this.value.update((value: any[]) => value.splice(0, this.maxValues()));
-    }
+  onInput(event: Event) {
+    const input = event.target as HTMLInputElement;
+    this.valueInput.set(input.value);
   }
 
   onInsertElement() {
     const maxValues = this.maxValues();
-    if (this.valueInput && !this.value()!.find((v: any) => v == this.valueInput) && (!maxValues || this.value.length < maxValues)) {
-      this.value()!.push(this.valueInput());
+    if (this.valueInput() && !this.value().find((v: string) => v == this.valueInput()) && (!maxValues || this.value().length < maxValues)) {
+      this.value.update((value: string[]) => [...value, this.valueInput()]);
       this.insertValue.emit(this.valueInput());
     }
     this.valueInput.set('');
@@ -54,18 +58,18 @@ export class DdrChipComponent implements FormValueControl<string[]> {
   }
 
   checkValue() {
-    const separator = this.separator();
-    if (this.valueInput && this.valueInput().includes(separator)) {
-      this.valueInput.update((value: string) => value.split(separator)[0]);
+    if (this.valueInput() && this.separator() && this.valueInput().includes(this.separator())) {
+      this.valueInput.update((value: string) => value.split(this.separator())[0]);
       this.onInsertElement();
     }
   }
 
   removeLastElement() {
-    if (!this.valueInput && this.value.length > 0) {
-      const value = this.value().pop();
-      this.removeValue.emit(value!);
-      this.getValues.emit(this.value()!);
+    if (!this.valueInput() && this.value().length > 0) {
+      const lastValue = this.value()[this.value().length - 1];
+      this.value.update( (value: string[]) => value.slice(0, -1))
+      this.removeValue.emit(lastValue);
+      this.getValues.emit(this.value());
     }
   }
 
@@ -75,8 +79,8 @@ export class DdrChipComponent implements FormValueControl<string[]> {
 
   onDelete(value: string) {
     this.removeValue.emit(value);
-    this.value.update((value: any[] | null) => value!.filter((v: any) => v != value));
-    this.getValues.emit(this.value()!);
+    this.value.update((values: string[]) => values.filter((v: string) => v != value));
+    this.getValues.emit(this.value());
   }
 
 }

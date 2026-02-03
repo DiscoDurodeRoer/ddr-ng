@@ -9,7 +9,7 @@ import { map } from 'rxjs/internal/operators/map';
 @Component({
     selector: 'app-root',
     templateUrl: './app.component.html',
-    styleUrls: ['./app.component.scss'],
+    styleUrl: './app.component.scss',
     encapsulation: ViewEncapsulation.None,
     imports: [
         RouterOutlet,

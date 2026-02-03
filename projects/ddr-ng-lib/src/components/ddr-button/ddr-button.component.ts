@@ -20,7 +20,7 @@ import { DdrTranslatePipe } from '../../pipes/ddr-translate.pipe';
 @Component({
   selector: 'ddr-button',
   templateUrl: './ddr-button.component.html',
-  styleUrls: ['./ddr-button.component.scss'],
+  styleUrl: './ddr-button.component.scss',
   encapsulation: ViewEncapsulation.None,
   imports: [
     DdrTooltipDirective,

@@ -8,7 +8,7 @@ import { DdrOrientationToast } from '../../types/types';
 @Component({
   selector: 'ddr-toast',
   templateUrl: './ddr-toast.component.html',
-  styleUrls: ['./ddr-toast.component.scss'],
+  styleUrl: './ddr-toast.component.scss',
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [],
