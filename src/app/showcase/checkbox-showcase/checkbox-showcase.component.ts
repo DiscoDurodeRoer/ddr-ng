@@ -3,7 +3,7 @@ import { DdrCheckboxComponent, DdrSelectItem, DdrToastService, DdrTranslatePipe,
 import { BaseShowcaseComponent } from '../base-showcase/base-showcase.component';
 import { JsonPipe } from '@angular/common';
 import { ProgrammingLanguage } from './bean/programming-language';
-import { Field, form } from '@angular/forms/signals';
+import { Field, form, FormField } from '@angular/forms/signals';
 
 @Component({
   selector: 'checkbox-showcase',
@@ -13,7 +13,7 @@ import { Field, form } from '@angular/forms/signals';
     DdrCheckboxComponent,
     DdrTranslatePipe,
     JsonPipe,
-    Field
+    FormField
   ],
   providers: [
     DdrToastService

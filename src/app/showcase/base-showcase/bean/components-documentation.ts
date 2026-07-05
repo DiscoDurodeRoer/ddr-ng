@@ -204,6 +204,33 @@ export class AccordionShowcaseComponent {
       },
       {
         item: {
+          name: "open",
+          description: "accordion.input.open",
+          type: "boolean",
+          required: false,
+          default: "false"
+        }
+      },
+      {
+        item: {
+          name: "shadow",
+          description: "accordion.input.shadow",
+          type: "boolean",
+          required: true,
+          default: "true"
+        }
+      },
+      {
+        item: {
+          name: "border",
+          description: "accordion.input.border",
+          type: "boolean",
+          required: true,
+          default: "true"
+        }
+      },
+      {
+        item: {
           name: "slim",
           description: "accordion.input.slim",
           type: "boolean",
@@ -528,7 +555,7 @@ export class BadgeShowcaseComponent {
     templates: [
       {
         item: {
-          name: 'template',
+          name: 'templateContent',
           description: 'badge.template.template'
         }
       }
@@ -4653,6 +4680,13 @@ export class TreeShowcaseComponent {
           type: 'T'
         }
       },
+      {
+        item: {
+          name: 'clickNode',
+          description: 'tree.output.clicknode',
+          type: 'T'
+        }
+      }
     ],
     templates: [
       {
@@ -11028,6 +11062,15 @@ export class DropdownShowcaseComponent {
           default: "''"
         }
       },
+      {
+        item: {
+          name: 'textInput',
+          description: 'dropdown.input.textinput',
+          required: false,
+          type: 'string | undefined',
+          default: "undefined"
+        }
+      },
     ],
     outputs: [
       {
@@ -14938,7 +14981,7 @@ export class SpinnerShowcaseComponent {
     tsCode: `
 import { Component } from '@angular/core';
 import { BaseShowcaseComponent } from '../base-showcase/base-showcase.component';
-import { ddrSpinnerBlockDirective, DdrButtonComponent, DdrCardComponent, DdrTranslatePipe } from 'ddr-ng';
+import { DdrSpinnerBlockDirective, DdrButtonComponent, DdrCardComponent, DdrTranslatePipe } from 'ddr-ng';
 
 @Component({
   selector: 'spinner-block',
@@ -14946,7 +14989,7 @@ import { ddrSpinnerBlockDirective, DdrButtonComponent, DdrCardComponent, DdrTran
   styleUrl: './spinner-block-showcase.component.scss',
   imports: [
     BaseShowcaseComponent,
-    ddrSpinnerBlockDirective,
+    DdrSpinnerBlockDirective,
     DdrCardComponent,
     DdrButtonComponent,
     DdrTranslatePipe

@@ -1,8 +1,7 @@
 import { Directive, ElementRef, Renderer2, OnInit, inject, input } from '@angular/core';
 
 @Directive({
-  selector: '[ddrSkeleton]',
-  standalone: true
+  selector: '[ddrSkeleton]'
 })
 export class DdrSkeletonDirective implements OnInit {
 

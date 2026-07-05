@@ -1,7 +1,7 @@
 import { Component, inject, signal } from '@angular/core';
 import { DdrToastService, DdrToggleComponent, DdrTranslatePipe, DdrTranslateService } from 'ddr-ng';
 import { BaseShowcaseComponent } from '../base-showcase/base-showcase.component';
-import { Field, form } from '@angular/forms/signals';
+import { form, FormField } from '@angular/forms/signals';
 
 @Component({
   selector: 'toggle-showcase',
@@ -10,7 +10,7 @@ import { Field, form } from '@angular/forms/signals';
     BaseShowcaseComponent,
     DdrToggleComponent,
     DdrTranslatePipe,
-    Field
+    FormField
   ],
   providers: [
     DdrToastService

@@ -118,9 +118,9 @@ export class HeaderComponent implements OnInit {
 
   changeVersion(version: DdrAction<string>) {
     if (this.versions[0].value === version.value) {
-      window.open(environment.url, '_blank');
+      window.open('/', '_blank');
     } else {
-      window.open(`${environment.url}/docs/${version.value}`, '_blank');
+      window.open(`/docs/${version.value}`, '_blank');
     }
 
   }

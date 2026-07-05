@@ -1,6 +1,7 @@
 import {
   Component,
   ModelSignal,
+  OnInit,
   ViewEncapsulation,
   inject,
   input,
@@ -24,7 +25,7 @@ import { FormValueControl } from '@angular/forms/signals';
     DdrTranslatePipe,
   ]
 })
-export class DdrButtonMultipleComponent implements FormValueControl<string> {
+export class DdrButtonMultipleComponent implements OnInit, FormValueControl<string> {
 
   private constants: DdrConstantsService = inject(DdrConstantsService);
 
@@ -35,7 +36,13 @@ export class DdrButtonMultipleComponent implements FormValueControl<string> {
 
   readonly action = output<DdrButton>();
 
-  value: ModelSignal<string> = model<string>('');
+  public value: ModelSignal<string> = model<string>('');
+
+  ngOnInit(): void {
+    if (this.showSelectedButton() && this.buttons().length > 0 && this.value() == '') {
+      this.value.set(this.buttons()[0].value);
+    }
+  }
 
   clickButton(button: DdrButton) {
     this.value.set(button.value);

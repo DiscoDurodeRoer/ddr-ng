@@ -6,7 +6,7 @@ import {
   DdrTranslateService
 } from 'ddr-ng';
 import { BaseShowcaseComponent } from '../base-showcase/base-showcase.component';
-import { Field, form, maxLength, minLength, required } from '@angular/forms/signals';
+import { form, FormField, maxLength, minLength, required } from '@angular/forms/signals';
 
 @Component({
   selector: 'textarea-showcase',
@@ -15,7 +15,7 @@ import { Field, form, maxLength, minLength, required } from '@angular/forms/sign
     BaseShowcaseComponent,
     DdrTextareaComponent,
     DdrTranslatePipe,
-    Field
+    FormField
   ],
   providers: [
     DdrToastService

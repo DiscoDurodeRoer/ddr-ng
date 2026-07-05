@@ -1,11 +1,9 @@
 import {
   Component,
-  ElementRef,
   inject,
   ViewEncapsulation,
   input,
   output,
-  viewChild,
   InputSignal,
   OutputEmitterRef,
   signal,
@@ -18,7 +16,7 @@ import { DdrInputComponent } from '../ddr-input/ddr-input.component';
 import { DdrInputPasswordComponent } from '../ddr-input-password/ddr-input-password.component';
 import { DdrTranslatePipe } from '../../pipes/ddr-translate.pipe';
 import { DdrCardComponent } from '../ddr-card/ddr-card.component';
-import { Field, form, required, submit } from '@angular/forms/signals';
+import { form, FormField, required, submit } from '@angular/forms/signals';
 
 @Component({
   selector: 'ddr-login',
@@ -31,7 +29,7 @@ import { Field, form, required, submit } from '@angular/forms/signals';
     DdrTranslatePipe,
     DdrInputPasswordComponent,
     DdrCardComponent,
-    Field
+    FormField
   ]
 })
 export class DdrLoginComponent {
@@ -67,10 +65,6 @@ export class DdrLoginComponent {
     required(login.username, { when: () => this.userRequired() })
     required(login.password, { when: () => this.passwordRequired() })
   })
-
-  constructor(){
-
-  }
 
   login(event: Event) {
     event.preventDefault();

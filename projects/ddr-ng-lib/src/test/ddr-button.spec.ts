@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DdrButtonComponent } from '../components/ddr-button/ddr-button.component';
+import { expect, describe, it, vi, beforeEach } from 'vitest';
 
 describe('DdrButtonComponent', () => {
     let fixture: ComponentFixture<DdrButtonComponent>;
@@ -16,30 +17,26 @@ describe('DdrButtonComponent', () => {
         fixture = TestBed.createComponent(DdrButtonComponent);
         component = fixture.componentInstance;
     });
-    
-    it('should click button', async () => {
+
+    it('should click button', () => {
         fixture.detectChanges();
-        await fixture.whenStable();
 
         let button = fixture.debugElement.query(By.css('button')).nativeElement;
-        spyOn(component.action, "emit");
+        vi.spyOn(component.action, "emit");
         button.dispatchEvent(new Event('click'));
-        await fixture.whenStable();
         fixture.detectChanges();
-        expect(component.action.emit).withContext('El evento action debe lanzarse').toHaveBeenCalled();
+        expect(component.action.emit, 'El evento action debe lanzarse').toHaveBeenCalled();
 
     });
-    it('should not click button', async () => {
+    it('should not click button', () => {
         fixture.detectChanges();
-        await fixture.whenStable();
-        component.disabled = true;
+        fixture.componentRef.setInput('disabled', true);
 
         let button = fixture.debugElement.query(By.css('button')).nativeElement;
-        spyOn(component.action, "emit");
+        vi.spyOn(component.action, "emit");
         button.dispatchEvent(new Event('click'));
-        await fixture.whenStable();
         fixture.detectChanges();
-        expect(component.action.emit).withContext('El evento action no debe lanzarse').not.toHaveBeenCalled();
+        expect(component.action.emit, 'El evento action no debe lanzarse').not.toHaveBeenCalled();
 
     });
 });

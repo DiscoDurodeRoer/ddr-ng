@@ -7,9 +7,10 @@ import { DdrDropdownComponent } from '../components/ddr-dropdown/ddr-dropdown.co
 import { DdrInputGroupComponent } from '../components/ddr-input-group/ddr-input-group.component';
 import { DdrClickOutsideDirective } from '../directives/ddr-click-outside.directive';
 import { DdrTranslatePipe } from '../pipes/ddr-translate.pipe';
-import { DdrButtonComponent } from '../components/ddr-button/ddr-button.component'
+import { DdrButtonComponent } from '../components/ddr-button/ddr-button.component';
 import { DdrCheckboxComponent } from '../components/ddr-checkbox/ddr-checkbox.component';
 import { provideHttpClient } from '@angular/common/http';
+import { expect, describe, it, vi, beforeEach } from 'vitest';
 
 describe('DdrDropdown', () => {
 
@@ -17,8 +18,12 @@ describe('DdrDropdown', () => {
     let componentDropdownNumber: DdrDropdownComponent<number>;
     let inputGroupDropdownNumber: DebugElement;
 
-    let fixtureDropdownObject: ComponentFixture<DdrDropdownComponent<{ value: string }>>;
-    let componentDropdownObject: DdrDropdownComponent<{ value: string }>;
+    let fixtureDropdownObject: ComponentFixture<DdrDropdownComponent<{
+        value: string;
+    }>>;
+    let componentDropdownObject: DdrDropdownComponent<{
+        value: string;
+    }>;
     let inputGroupDropdownObject: DebugElement;
 
     beforeEach(async () => {
@@ -42,7 +47,7 @@ describe('DdrDropdown', () => {
         fixtureDropdownNumber = TestBed.createComponent(DdrDropdownComponent<number>);
 
         componentDropdownNumber = fixtureDropdownNumber.componentInstance;
-        componentDropdownNumber.options = [
+        fixtureDropdownNumber.componentRef.setInput('options', [
             {
                 label: 'Label1',
                 value: 1
@@ -59,15 +64,17 @@ describe('DdrDropdown', () => {
                 label: 'Label4',
                 value: 4
             }
-        ];
+        ]);
 
-        fixtureDropdownNumber.detectChanges()
+        fixtureDropdownNumber.detectChanges();
 
         inputGroupDropdownNumber = fixtureDropdownNumber.debugElement.query(By.directive(DdrInputGroupComponent));
 
-        fixtureDropdownObject = TestBed.createComponent(DdrDropdownComponent<{ value: string }>);
+        fixtureDropdownObject = TestBed.createComponent(DdrDropdownComponent<{
+            value: string;
+        }>);
         componentDropdownObject = fixtureDropdownObject.componentInstance;
-        componentDropdownObject.options = [
+        fixtureDropdownObject.componentRef.setInput('options', [
             {
                 label: 'Label1',
                 value: { value: 'Value1' }
@@ -84,36 +91,39 @@ describe('DdrDropdown', () => {
                 label: 'Label4',
                 value: { value: 'Value4' }
             },
-        ];
-        componentDropdownObject.compareFn = (a: { value: string }, b: { value: string }) => a.value == b.value;
+        ]);
+        fixtureDropdownObject.componentRef.setInput('compareFn', (a: {
+            value: string;
+        }, b: {
+            value: string;
+        }) => a.value == b.value)
         fixtureDropdownObject.detectChanges();
         inputGroupDropdownObject = fixtureDropdownObject.debugElement.query(By.directive(DdrInputGroupComponent));
     });
 
     it('element should be selected (numbers)', async () => {
         fixtureDropdownNumber.detectChanges();
-        await fixtureDropdownNumber.whenStable()
 
         inputGroupDropdownNumber.triggerEventHandler('action');
 
         await new Promise(r => setTimeout(r, 150));
 
-        expect(componentDropdownNumber.showItems).toBeTrue();
+        expect(componentDropdownNumber.showItems()).toBe(true);
 
         let panelItems = fixtureDropdownNumber.debugElement.query(By.css('.ddr-dropdown__panel-items'));
         expect(panelItems).not.toBeNull();
 
-        spyOn(componentDropdownNumber.selectItem, "emit");
+        vi.spyOn(componentDropdownNumber.selectItem, "emit");
 
         fixtureDropdownNumber.detectChanges();
         const firstElement = fixtureDropdownNumber.debugElement.query(By.css('.ddr-dropdown__panel-items ul li:first-child'));
         firstElement.triggerEventHandler('click');
 
-        expect(componentDropdownNumber.value).toEqual(1);
-        expect(componentDropdownNumber.valueShow).toBe('Label1');
-        expect(componentDropdownNumber.showItems).toBeFalse();
+        expect(componentDropdownNumber.value()).toEqual(1);
+        expect(componentDropdownNumber.valueShow()).toBe('Label1');
+        expect(componentDropdownNumber.showItems()).toBe(false);
 
-        expect(componentDropdownNumber.selectItem.emit).withContext('El evento selectItem debe lanzarse').toHaveBeenCalledWith({
+        expect(componentDropdownNumber.selectItem.emit, 'El evento selectItem debe lanzarse').toHaveBeenCalledWith({
             label: 'Label1',
             value: 1,
             selected: true
@@ -123,18 +133,17 @@ describe('DdrDropdown', () => {
 
     it('element should be selected (objects)', async () => {
         fixtureDropdownObject.detectChanges();
-        await fixtureDropdownObject.whenStable();
 
         inputGroupDropdownObject.triggerEventHandler('action');
 
         await new Promise(r => setTimeout(r, 150));
 
-        expect(componentDropdownObject.showItems).toBeTrue();
+        expect(componentDropdownObject.showItems()).toBe(true);
 
         let panelItems = fixtureDropdownObject.debugElement.query(By.css('.ddr-dropdown__panel-items'));
         expect(panelItems).not.toBeNull();
 
-        spyOn(componentDropdownObject.selectItem, "emit");
+        vi.spyOn(componentDropdownObject.selectItem, "emit");
 
         fixtureDropdownObject.detectChanges();
         const firstElement = fixtureDropdownObject.debugElement.query(By.css('.ddr-dropdown__panel-items ul li:first-child'));
@@ -143,11 +152,11 @@ describe('DdrDropdown', () => {
         await fixtureDropdownObject.whenStable();
         fixtureDropdownObject.detectChanges();
 
-        expect(componentDropdownObject.value).toEqual({ value: 'Value1' });
-        expect(componentDropdownObject.valueShow).toBe('Label1');
-        expect(componentDropdownObject.showItems).toBeFalse();
+        expect(componentDropdownObject.value()).toEqual({ value: 'Value1' });
+        expect(componentDropdownObject.valueShow()).toBe('Label1');
+        expect(componentDropdownObject.showItems()).toBe(false);
 
-        expect(componentDropdownObject.selectItem.emit).withContext('El evento selectItem debe lanzarse').toHaveBeenCalledWith({
+        expect(componentDropdownObject.selectItem.emit, 'El evento selectItem debe lanzarse').toHaveBeenCalledWith({
             label: 'Label1',
             value: { value: 'Value1' },
             selected: true
@@ -157,11 +166,10 @@ describe('DdrDropdown', () => {
 
     it('should filter by text', async () => {
         fixtureDropdownObject.detectChanges();
-        await fixtureDropdownObject.whenStable();
 
         inputGroupDropdownObject.triggerEventHandler('action');
         await new Promise(r => setTimeout(r, 150));
-        expect(componentDropdownObject.showItems).toBeTrue();
+        expect(componentDropdownObject.showItems()).toBe(true);
 
         let panelItems = fixtureDropdownObject.debugElement.query(By.css('.ddr-dropdown__panel-items'));
         fixtureDropdownObject.detectChanges();
@@ -171,63 +179,59 @@ describe('DdrDropdown', () => {
 
         let inputFilter = fixtureDropdownObject.debugElement.query(By.css('.ddr-dropdown__panel-items--search--input'));
         inputFilter.nativeElement.value = 'Label2';
-        inputFilter.triggerEventHandler('keyup');
+        inputFilter.nativeElement.dispatchEvent(new Event('input'));
         fixtureDropdownObject.detectChanges();
 
         let firstElement = fixtureDropdownObject.debugElement.query(By.css('.ddr-dropdown__panel-items ul li:first-child'));
 
         expect(firstElement).not.toBeNull();
-        expect(componentDropdownObject.optionsShow[0].label).toBe('Label2');
+        expect(componentDropdownObject.optionsShow()[0].label).toBe('Label2');
 
     });
 
     it('should not appear options when we filter', async () => {
         fixtureDropdownObject.detectChanges();
-        await fixtureDropdownObject.whenStable();
 
         inputGroupDropdownObject.triggerEventHandler('action');
         await new Promise(r => setTimeout(r, 150));
-        expect(componentDropdownObject.showItems).toBeTrue();
+        expect(componentDropdownObject.showItems()).toBe(true);
 
         let panelItems = fixtureDropdownObject.debugElement.query(By.css('.ddr-dropdown__panel-items'));
         expect(panelItems).not.toBeNull();
 
         let inputFilter = fixtureDropdownObject.debugElement.query(By.css('.ddr-dropdown__panel-items--search--input'));
         inputFilter.nativeElement.value = 'Label11';
-        inputFilter.triggerEventHandler('keyup');
+        inputFilter.nativeElement.dispatchEvent(new Event('input'));
         fixtureDropdownObject.detectChanges();
 
         let firstElement = fixtureDropdownObject.debugElement.query(By.css('.ddr-dropdown__panel-items ul li:first-child'));
-
+        fixtureDropdownObject.detectChanges();
         expect(firstElement).toBeNull();
-        expect(componentDropdownObject.optionsShow.length).toBe(0);
+        expect(componentDropdownObject.optionsShow().length).toBe(0);
 
     });
 
     it('options panel should not appear', async () => {
         fixtureDropdownObject.detectChanges();
-        await fixtureDropdownObject.whenStable();
 
-        componentDropdownObject.disabled = true;
+        fixtureDropdownObject.componentRef.setInput('disabled', true)
         inputGroupDropdownObject.triggerEventHandler('action');
         await new Promise(r => setTimeout(r, 150));
-        expect(componentDropdownObject.showItems).toBeFalse();
+        expect(componentDropdownObject.showItems()).toBe(false);
 
     });
 
     it('empty options', async () => {
         fixtureDropdownObject.detectChanges();
-        await fixtureDropdownObject.whenStable();
 
-        componentDropdownObject.options = [];
-        componentDropdownObject.optionsShow = [];
+        fixtureDropdownObject.componentRef.setInput('options', [])
         fixtureDropdownObject.detectChanges();
 
         inputGroupDropdownObject.triggerEventHandler('action');
 
         await new Promise(r => setTimeout(r, 150));
 
-        expect(componentDropdownObject.showItems).toBeTrue();
+        expect(componentDropdownObject.showItems()).toBe(true);
 
         let panelItems = fixtureDropdownObject.debugElement.query(By.css('.ddr-dropdown__panel-items'));
         expect(panelItems).not.toBeNull();
@@ -238,77 +242,68 @@ describe('DdrDropdown', () => {
 
     });
 
-    it('preload element', async () => {
-        fixtureDropdownObject.detectChanges();
-        await fixtureDropdownObject.whenStable();
-
-        spyOn(componentDropdownObject.selectItem, "emit");
-
-        componentDropdownObject.value = { value: 'Value2' };
-
+    it('preload element', () => {
         fixtureDropdownObject.detectChanges();
 
-        expect(componentDropdownObject.value).toEqual({ value: 'Value2' });
-        expect(componentDropdownObject.valueShow).toBe('Label2');
-        expect(componentDropdownObject.showItems).toBeFalse();
+        vi.spyOn(componentDropdownObject.selectItem, "emit");
 
-        expect(componentDropdownObject.selectItem.emit).withContext('El evento selectItem no debe lanzarse').not.toHaveBeenCalledWith(
-            {
-                label: 'Label2',
-                value: { value: 'Value2' }
-            },
-        );
+        componentDropdownObject.value.set({ value: 'Value2' });
+
+        fixtureDropdownObject.detectChanges();
+
+        expect(componentDropdownObject.value()).toEqual({ value: 'Value2' });
+        expect(componentDropdownObject.valueShow()).toBe('Label2');
+        expect(componentDropdownObject.showItems()).toBe(false);
+
+        expect(componentDropdownObject.selectItem.emit, 'El evento selectItem no debe lanzarse').not.toHaveBeenCalledWith({
+            label: 'Label2',
+            value: { value: 'Value2' }
+        });
 
     });
 
-    it('clean value', async () => {
+    it('clean value', () => {
 
         fixtureDropdownObject.detectChanges();
-        await fixtureDropdownObject.whenStable();
 
-        spyOn(componentDropdownObject.selectItem, "emit");
+        vi.spyOn(componentDropdownObject.selectItem, "emit");
 
-        componentDropdownObject.value = { value: 'Value2' };
+        componentDropdownObject.value.set({ value: 'Value2' });
         fixtureDropdownObject.detectChanges();
 
-        expect(componentDropdownObject.value).toEqual({ value: 'Value2' });
-        expect(componentDropdownObject.valueShow).toBe('Label2');
-        expect(componentDropdownObject.showItems).toBeFalse();
+        expect(componentDropdownObject.value()).toEqual({ value: 'Value2' });
+        expect(componentDropdownObject.valueShow()).toBe('Label2');
+        expect(componentDropdownObject.showItems()).toBe(false);
         fixtureDropdownObject.detectChanges();
 
-        componentDropdownObject.value = null;
+        componentDropdownObject.value.set(null);
         fixtureDropdownObject.detectChanges();
 
-        expect(componentDropdownObject.value).toEqual(null);
-        expect(componentDropdownObject.valueShow).toBe('');
+        expect(componentDropdownObject.value()).toEqual(null);
+        expect(componentDropdownObject.valueShow()).toBe('');
         fixtureDropdownObject.detectChanges();
 
     });
 
-    it('Modify value', async () => {
+    it('Modify value', () => {
 
-        spyOn(componentDropdownObject.changeValue, "next");
+        componentDropdownObject.value.set({ value: 'Value2' });
 
-        componentDropdownObject.value = { value: 'Value2' };
-
-        expect(componentDropdownObject.value).toEqual({ value: 'Value2' })
-
-        expect(componentDropdownObject.changeValue.next).withContext('changeValue debe llamarse').toHaveBeenCalledWith({ value: 'Value2' });
+        expect(componentDropdownObject.value()).toEqual({ value: 'Value2' });
 
     });
 
     it('allowDeselect', async () => {
 
-        componentDropdownObject.allowDeselect = true;
+        fixtureDropdownObject.componentRef.setInput('allowDeselect', true);
 
         fixtureDropdownObject.detectChanges();
-        await fixtureDropdownObject.whenStable();
 
-        spyOn(componentDropdownObject.selectItem, "emit");
+        vi.spyOn(componentDropdownObject.selectItem, "emit");
 
         inputGroupDropdownObject.triggerEventHandler('action');
         await new Promise(r => setTimeout(r, 150));
-        expect(componentDropdownObject.showItems).toBeTrue();
+        expect(componentDropdownObject.showItems()).toBe(true);
 
         let panelItems = fixtureDropdownObject.debugElement.query(By.css('.ddr-dropdown__panel-items'));
         expect(panelItems).not.toBeNull();
@@ -317,11 +312,11 @@ describe('DdrDropdown', () => {
         const firstElement = fixtureDropdownObject.debugElement.query(By.css('.ddr-dropdown__panel-items ul li:first-child'));
         firstElement.triggerEventHandler('click');
 
-        expect(componentDropdownObject.value).toEqual({ value: 'Value1' });
-        expect(componentDropdownObject.valueShow).toBe('Label1');
-        expect(componentDropdownObject.showItems).toBeFalse();
+        expect(componentDropdownObject.value()).toEqual({ value: 'Value1' });
+        expect(componentDropdownObject.valueShow()).toBe('Label1');
+        expect(componentDropdownObject.showItems()).toBe(false);
 
-        expect(componentDropdownObject.selectItem.emit).withContext('El evento selectItem debe lanzarse').toHaveBeenCalledWith({
+        expect(componentDropdownObject.selectItem.emit, 'El evento selectItem debe lanzarse').toHaveBeenCalledWith({
             label: 'Label1',
             value: { value: 'Value1' },
             selected: true
@@ -329,9 +324,9 @@ describe('DdrDropdown', () => {
 
         firstElement.triggerEventHandler('click');
 
-        expect(componentDropdownObject.value).toBeNull();
+        expect(componentDropdownObject.value()).toBeNull();
 
-        expect(componentDropdownObject.selectItem.emit).withContext('El evento selectItem debe lanzarse').toHaveBeenCalledWith({
+        expect(componentDropdownObject.selectItem.emit, 'El evento selectItem debe lanzarse').toHaveBeenCalledWith({
             label: 'Label1',
             value: { value: 'Value1' },
             selected: false

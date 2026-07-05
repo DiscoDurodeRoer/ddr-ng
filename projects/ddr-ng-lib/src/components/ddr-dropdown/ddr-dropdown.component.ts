@@ -9,7 +9,7 @@ import { DdrClickOutsideDirective } from '../../directives/ddr-click-outside.dir
 import { DdrTranslatePipe } from '../../pipes/ddr-translate.pipe';
 import { NgTemplateOutlet } from '@angular/common';
 import { DdrOrientationDropdown, DdrOrientatioTooltip, DdrSize } from '../../types/types';
-import { Field, FieldTree, form, FormValueControl, ValidationError, WithOptionalField } from '@angular/forms/signals';
+import { FieldTree, form, FormField, FormValueControl, ValidationError, WithOptionalField } from '@angular/forms/signals';
 import { DdrFilterDropdown } from './bean/filter-dropdown.model';
 
 @Component({
@@ -23,7 +23,7 @@ import { DdrFilterDropdown } from './bean/filter-dropdown.model';
     DdrTranslatePipe,
     DdrClickOutsideDirective,
     NgTemplateOutlet,
-    Field
+    FormField
   ],
   animations: [
     trigger('overlayAnimationBottom', [
@@ -78,6 +78,7 @@ export class DdrDropdownComponent<T> implements FormValueControl<T | null> {
   readonly compareFn: InputSignal<Function> = input<Function>((a: T, b: T) => a === b);
   readonly size: InputSignal<DdrSize> = input<DdrSize>(this.constants.SIZE.MEDIUM);
   readonly transparent: InputSignal<boolean> = input<boolean>(false);
+  readonly textInput: InputSignal<string | undefined> = input<string | undefined>();
 
   readonly errors: InputSignal<readonly WithOptionalField<ValidationError>[]> = input<readonly WithOptionalField<ValidationError>[]>([]);
 
@@ -91,8 +92,21 @@ export class DdrDropdownComponent<T> implements FormValueControl<T | null> {
 
   public showItems: WritableSignal<boolean> = signal<boolean>(false);
   public optionsShow: Signal<DdrSelectItem<T>[]> = computed<DdrSelectItem<T>[]>(() =>
-    !this.options()?.length ? [] : this.options().filter(option => option.label.toLowerCase().includes(this.filterForm.filter().value().toLowerCase())));
-  public valueShow: WritableSignal<string> = signal<string>('');
+    !this.options()?.length ? [] :
+      this.options()
+        .filter(option => option.label.toLowerCase().includes(this.filterForm.filter().value().toLowerCase()))
+        .map(option => ({
+          ...option,
+          selected: this.value() != null ? this.compareFn()(option.value, this.value()) : option.selected
+        }))
+  );
+  public valueShow: Signal<string> = computed(() =>
+    this.value() != null ?
+      this.options()
+        .filter(option => this.compareFn()(option.value, this.value()))
+        .map(option => this.translate() ? this.ddrTranslate.getTranslate(option.label) : option.label)
+        .join(', ') : ''
+  );
 
   public value: ModelSignal<T | null> = model<T | null>(null);
   public filterModel: WritableSignal<DdrFilterDropdown> = signal<DdrFilterDropdown>({ filter: '' });
@@ -105,27 +119,11 @@ export class DdrDropdownComponent<T> implements FormValueControl<T | null> {
   }
 
   private selectValue(value: T | null) {
-    if (!value) {
-      this.valueShow.set('');
-      this.optionsShow().forEach(op => op.selected = op.selected || false);
-      if (this.validate() && this.inputGroup()) {
+    if (this.validate() && this.inputGroup()) {
+      if (value == null) {
         this.inputGroup().checkInput(this.constants.INPUT_ERRORS.ERROR);
-      }
-
-    } else {
-      const optionFound: DdrSelectItem<T> | undefined = this.options().find(option => this.compareFn()(option.value, value));
-      if (optionFound) {
-        this.valueShow.set(this.translate() ? this.ddrTranslate.getTranslate(optionFound.label) : optionFound.label);
-        this.optionsShow().forEach(option => option.selected = option.selected || this.compareFn()(option.value, optionFound.value));
-        if (this.validate() && this.inputGroup()) {
-          if (this.value() == null) {
-            this.inputGroup().checkInput(this.constants.INPUT_ERRORS.ERROR);
-          } else {
-            this.inputGroup().checkInput(this.constants.INPUT_ERRORS.VALID);
-          }
-        }
       } else {
-        this.value.set(null);
+        this.inputGroup().checkInput(this.constants.INPUT_ERRORS.VALID);
       }
     }
   }
@@ -147,13 +145,8 @@ export class DdrDropdownComponent<T> implements FormValueControl<T | null> {
       if (this.closeOnSelect()) {
         this.showItems.set(false);
       }
-      if (item.selected) {
-        this.valueShow.set(this.translate() ? this.ddrTranslate.getTranslate(item.label) : item.label);
-        this.value.set(item.value);
-      } else {
-        this.valueShow.set('');
-        this.value.set(null);
-      }
+
+      this.value.set(item.selected ? item.value : null);
 
       this.selectItem.emit(item);
 

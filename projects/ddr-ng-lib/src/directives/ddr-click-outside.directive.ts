@@ -1,8 +1,7 @@
 import { Directive, HostListener, ElementRef, inject, input, output } from '@angular/core';
 
 @Directive({
-  selector: '[ddrClickOutside]',
-  standalone: true
+  selector: '[ddrClickOutside]'
 })
 export class DdrClickOutsideDirective {
 

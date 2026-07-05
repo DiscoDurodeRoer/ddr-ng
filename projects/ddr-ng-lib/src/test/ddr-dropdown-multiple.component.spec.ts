@@ -10,258 +10,280 @@ import { DdrClickOutsideDirective } from '../directives/ddr-click-outside.direct
 import { DdrDropdownComponent } from '../components/ddr-dropdown/ddr-dropdown.component';
 import { By } from '@angular/platform-browser';
 import { provideHttpClient } from '@angular/common/http';
+import { expect, describe, it, vi, beforeEach } from 'vitest';
 
 describe('DdrDropdownMultipleComponent', () => {
-  let component: DdrDropdownMultipleComponent<{ value: string }>;
-  let fixture: ComponentFixture<DdrDropdownMultipleComponent<{ value: string }>>;
+    let component: DdrDropdownMultipleComponent<{
+        value: string;
+    }>;
+    let fixture: ComponentFixture<DdrDropdownMultipleComponent<{
+        value: string;
+    }>>;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [
-        BrowserAnimationsModule,
-        DdrButtonComponent,
-        DdrInputGroupComponent,
-        DdrCheckboxComponent,
-        DdrTranslatePipe,
-        DdrClickOutsideDirective,
-        DdrDropdownComponent,
-        DdrDropdownMultipleComponent
-      ],
-      providers: [
-        provideHttpClient()
-      ]
-    }).compileComponents()
+    beforeEach(async () => {
+        await TestBed.configureTestingModule({
+            imports: [
+                BrowserAnimationsModule,
+                DdrButtonComponent,
+                DdrInputGroupComponent,
+                DdrCheckboxComponent,
+                DdrTranslatePipe,
+                DdrClickOutsideDirective,
+                DdrDropdownComponent,
+                DdrDropdownMultipleComponent
+            ],
+            providers: [
+                provideHttpClient()
+            ]
+        }).compileComponents();
 
-    fixture = TestBed.createComponent(DdrDropdownMultipleComponent<{ value: string }>);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-    component.options = [
-      {
-        label: 'Label1',
-        value: { value: 'Value1' }
-      },
-      {
-        label: 'Label2',
-        value: { value: 'Value2' }
-      },
-      {
-        label: 'Label3',
-        value: { value: 'Value3' }
-      },
-      {
-        label: 'Label4',
-        value: { value: 'Value4' }
-      },
-    ];
-    component.compareFn = (a: { value: string }, b: { value: string }) => a.value == b.value;
+        fixture = TestBed.createComponent(DdrDropdownMultipleComponent<{
+            value: string;
+        }>);
+        component = fixture.componentInstance;
+        fixture.componentRef.setInput('options', [
+            {
+                label: 'Label1',
+                value: { value: 'Value1' }
+            },
+            {
+                label: 'Label2',
+                value: { value: 'Value2' }
+            },
+            {
+                label: 'Label3',
+                value: { value: 'Value3' }
+            },
+            {
+                label: 'Label4',
+                value: { value: 'Value4' }
+            },
+        ]);
+        fixture.componentRef.setInput('compareFn', (a: {
+            value: string;
+        }, b: {
+            value: string;
+        }) => a.value == b.value);
 
-  });
+        fixture.detectChanges();
+    });
 
-  it('preload elements', async () => {
+    it('preload elements', () => {
 
-    fixture.detectChanges();
-    await fixture.whenStable();
+        vi.spyOn(component.selectItems, "emit");
 
-    spyOn(component.selectItems, "emit");
+        component.value.set([
+            { value: 'Value2' },
+            { value: 'Value3' }
+        ]);
+        fixture.detectChanges();
 
-    spyOn(component.changeValue, "subscribe");
-    component.writeValue([
-      { value: 'Value2' },
-      { value: 'Value3' }
-    ]);
-    fixture.detectChanges();
+        expect(component.value()).toEqual([
+            { value: 'Value2' },
+            { value: 'Value3' }
+        ]);
 
-    expect(component.value).toEqual([
-      { value: 'Value2' },
-      { value: 'Value3' }
-    ]);
+        expect(component.textInput()).toBe('Label2, Label3');
 
-    expect(component.dropdown()!.valueShow).toBe('Label2, Label3');
+        expect(component.selectItems.emit, 'El evento selectItem no debe lanzarse').not.toHaveBeenCalledWith([
+            {
+                label: 'Label2',
+                value: { value: 'Value2' }
+            },
+            {
+                label: 'Label3',
+                value: { value: 'Value3' }
+            },
+        ]);
 
-    expect(component.selectItems.emit).withContext('El evento selectItem no debe lanzarse').not.toHaveBeenCalledWith([
-      {
-        label: 'Label2',
-        value: { value: 'Value2' }
-      },
-      {
-        label: 'Label3',
-        value: { value: 'Value3' }
-      },
-    ]);
+    });
 
-  });
+    it('elements should be selected', async () => {
 
-  it('elements should be selected', async () => {
-    fixture.detectChanges();
-    await fixture.whenStable();
+        let inputGroup = fixture.debugElement.query(By.directive(DdrInputGroupComponent));
+        inputGroup.triggerEventHandler('action');
+        await new Promise(r => setTimeout(r, 150));
+        fixture.detectChanges();
 
-    const inputGroup = fixture.debugElement.query(By.directive(DdrInputGroupComponent));
-    inputGroup.triggerEventHandler('action');
-    await new Promise(r => setTimeout(r, 150));
+        let panelItems = fixture.debugElement.query(By.css('.ddr-dropdown__panel-items'));
+        expect(panelItems).not.toBeNull();
 
-    let panelItems = fixture.debugElement.query(By.css('.ddr-dropdown__panel-items'));
-    expect(panelItems).not.toBeNull();
+        vi.spyOn(component.selectItems, "emit");
 
-    spyOn(component.selectItems, "emit");
+        let items = fixture.debugElement.queryAll(
+            By.css('.ddr-dropdown__panel-items ul li')
+        );
+        items[0].nativeElement.click();
 
-    let firstElement = fixture.debugElement.query(By.css('.ddr-dropdown__panel-items ul li:nth-child(1)'));
-    firstElement.triggerEventHandler('click');
+        fixture.detectChanges();
 
-    expect(component.value).toEqual([
-      { value: 'Value1' }
-    ]);
-    expect(component.dropdown()!.valueShow).toBe('Label1');
-    expect(component.selectItems.emit).withContext('El evento selectItems debe lanzarse').toHaveBeenCalledWith([
-      {
-        label: 'Label1',
-        value: { value: 'Value1' },
-        selected: true
-      }
-    ]);
+        expect(component.value()).toEqual([
+            { value: 'Value1' }
+        ]);
+        expect(component.textInput()).toBe('Label1');
+        expect(component.selectItems.emit, 'El evento selectItems debe lanzarse').toHaveBeenCalledWith([
+            {
+                label: 'Label1',
+                value: { value: 'Value1' },
+                selected: true
+            }
+        ]);
 
-    let secondElement = fixture.debugElement.query(By.css('.ddr-dropdown__panel-items ul li:nth-child(2)'));
-    secondElement.triggerEventHandler('click');
+        items = fixture.debugElement.queryAll(
+            By.css('.ddr-dropdown__panel-items ul li')
+        );
+        items[1].nativeElement.click();
 
-    expect(component.value).toEqual([
-      { value: 'Value1' },
-      { value: 'Value2' }
-    ]);
-    expect(component.dropdown()!.valueShow).toBe('Label1, Label2');
-    expect(component.selectItems.emit).withContext('El evento selectItems debe lanzarse').toHaveBeenCalledWith([
-      {
-        label: 'Label1',
-        value: { value: 'Value1' },
-        selected: true
-      },
-      {
-        label: 'Label2',
-        value: { value: 'Value2' },
-        selected: true
-      },
-    ]);
+        fixture.detectChanges();
 
-    secondElement.triggerEventHandler('click');
+        expect(component.value()).toEqual([
+            { value: 'Value1' },
+            { value: 'Value2' }
+        ]);
+        expect(component.textInput()).toBe('Label1, Label2');
+        expect(component.selectItems.emit, 'El evento selectItems debe lanzarse').toHaveBeenCalledWith([
+            {
+                label: 'Label1',
+                value: { value: 'Value1' },
+                selected: true
+            },
+            {
+                label: 'Label2',
+                value: { value: 'Value2' },
+                selected: true
+            },
+        ]);
 
-    expect(component.value).toEqual([
-      { value: 'Value1' }
-    ]);
-    expect(component.dropdown()!.valueShow).toBe('Label1');
-    expect(component.selectItems.emit).withContext('El evento selectItems debe lanzarse').toHaveBeenCalledWith([
-      {
-        label: 'Label1',
-        value: { value: 'Value1' },
-        selected: true
-      }
-    ]);
-    firstElement.triggerEventHandler('click');
+        fixture.detectChanges();
 
-    expect(component.value).toEqual([]);
-    expect(component.dropdown()!.valueShow).toBe('');
-    expect(component.selectItems.emit).withContext('El evento selectItems debe lanzarse').toHaveBeenCalledWith([]);
+        items = fixture.debugElement.queryAll(
+            By.css('.ddr-dropdown__panel-items ul li')
+        );
+        items[1].nativeElement.click();
 
-  });
+        fixture.detectChanges();
 
-  it('elements should be selected using checkbox', async () => {
-    fixture.detectChanges();
-    await fixture.whenStable();
+        expect(component.value()).toEqual([
+            { value: 'Value1' }
+        ]);
+        expect(component.textInput()).toBe('Label1');
+        expect(component.selectItems.emit, 'El evento selectItems debe lanzarse').toHaveBeenCalledWith([
+            {
+                label: 'Label1',
+                value: { value: 'Value1' },
+                selected: true
+            }
+        ]);
 
-    const inputGroup = fixture.debugElement.query(By.directive(DdrInputGroupComponent));
-    inputGroup.triggerEventHandler('action');
+        fixture.detectChanges();
 
-    await new Promise(r => setTimeout(r, 150));
+        items = fixture.debugElement.queryAll(
+            By.css('.ddr-dropdown__panel-items ul li')
+        );
+        items[0].nativeElement.click();
 
-    const panelItems = fixture.debugElement.query(By.css('.ddr-dropdown__panel-items'));
-    fixture.detectChanges();
-    await fixture.whenStable();
-    fixture.detectChanges();
-    expect(panelItems).not.toBeNull();
+        fixture.detectChanges();
 
-    spyOn(component.selectItems, "emit");
+        expect(component.value()).toEqual([]);
+        expect(component.textInput()).toBe('');
+        expect(component.selectItems.emit, 'El evento selectItems debe lanzarse').toHaveBeenCalledWith([]);
 
-    const firstElement = fixture.debugElement.query(By.css('.ddr-dropdown__panel-items ul li:nth-child(1) .ddr-checkbox__container--input'));
-    firstElement.triggerEventHandler('click');
+    });
 
-    expect(component.value).toEqual([
-      { value: 'Value1' }
-    ]);
-    expect(component.dropdown()!.valueShow).toBe('Label1');
-    expect(component.selectItems.emit).withContext('El evento selectItems debe lanzarse').toHaveBeenCalledWith([
-      {
-        label: 'Label1',
-        value: { value: 'Value1' },
-        selected: true
-      }
-    ]);
+    it('elements should be selected using checkbox', async () => {
 
-    const secondElement = fixture.debugElement.query(By.css('.ddr-dropdown__panel-items ul li:nth-child(2) .ddr-checkbox__container--input'));
-    secondElement.triggerEventHandler('click');
+        const inputGroup = fixture.debugElement.query(By.directive(DdrInputGroupComponent));
+        inputGroup.triggerEventHandler('action');
 
-    expect(component.value).toEqual([
-      { value: 'Value1' },
-      { value: 'Value2' }
-    ]);
-    expect(component.dropdown()!.valueShow).toBe('Label1, Label2');
-    expect(component.selectItems.emit).withContext('El evento selectItems debe lanzarse').toHaveBeenCalledWith([
-      {
-        label: 'Label1',
-        value: { value: 'Value1' },
-        selected: true
-      },
-      {
-        label: 'Label2',
-        value: { value: 'Value2' },
-        selected: true
-      },
-    ]);
+        await new Promise(r => setTimeout(r, 150));
 
-    secondElement.triggerEventHandler('click');
+        const panelItems = fixture.debugElement.query(By.css('.ddr-dropdown__panel-items'));
 
-    expect(component.value).toEqual([
-      { value: 'Value1' }
-    ]);
-    expect(component.dropdown()!.valueShow).toBe('Label1');
-    expect(component.selectItems.emit).withContext('El evento selectItems debe lanzarse').toHaveBeenCalledWith([
-      {
-        label: 'Label1',
-        value: { value: 'Value1' },
-        selected: true
-      }
-    ]);
-    firstElement.triggerEventHandler('click');
+        fixture.detectChanges();
+        expect(panelItems).not.toBeNull();
 
-    expect(component.value).toEqual([]);
-    expect(component.dropdown()!.valueShow).toBe('');
-    expect(component.selectItems.emit).withContext('El evento selectItems debe lanzarse').toHaveBeenCalledWith([]);
+        vi.spyOn(component.selectItems, "emit");
 
-  });
+        const firstElement = fixture.debugElement.query(By.css('.ddr-dropdown__panel-items ul li:nth-child(1) .ddr-checkbox__container--input'));
+        firstElement.nativeElement.click();
 
-  it('clean values', async () => {
+        expect(component.value()).toEqual([
+            { value: 'Value1' }
+        ]);
+        expect(component.textInput()).toBe('Label1');
+        expect(component.selectItems.emit, 'El evento selectItems debe lanzarse').toHaveBeenCalledWith([
+            {
+                label: 'Label1',
+                value: { value: 'Value1' },
+                selected: true
+            }
+        ]);
 
-    fixture.detectChanges();
-    await fixture.whenStable();
+        const secondElement = fixture.debugElement.query(By.css('.ddr-dropdown__panel-items ul li:nth-child(2) .ddr-checkbox__container--input'));
+        secondElement.nativeElement.click();
 
-    spyOn(component.selectItems, "emit");
+        expect(component.value()).toEqual([
+            { value: 'Value1' },
+            { value: 'Value2' }
+        ]);
+        expect(component.textInput()).toBe('Label1, Label2');
+        expect(component.selectItems.emit, 'El evento selectItems debe lanzarse').toHaveBeenCalledWith([
+            {
+                label: 'Label1',
+                value: { value: 'Value1' },
+                selected: true
+            },
+            {
+                label: 'Label2',
+                value: { value: 'Value2' },
+                selected: true
+            },
+        ]);
 
-    spyOn(component.changeValue, "subscribe");
-    component.writeValue([
-      { value: 'Value1' },
-      { value: 'Value2' }
-    ]);
-    fixture.detectChanges();
+        secondElement.nativeElement.click();
 
-    expect(component.value).toEqual([
-      { value: 'Value1' },
-      { value: 'Value2' }
-    ]);
-    expect(component.dropdown()!.valueShow).toBe('Label1, Label2');
-    fixture.detectChanges();
+        expect(component.value()).toEqual([
+            { value: 'Value1' }
+        ]);
+        expect(component.textInput()).toBe('Label1');
+        expect(component.selectItems.emit, 'El evento selectItems debe lanzarse').toHaveBeenCalledWith([
+            {
+                label: 'Label1',
+                value: { value: 'Value1' },
+                selected: true
+            }
+        ]);
+        firstElement.nativeElement.click();
 
-    component.writeValue(null);
-    fixture.detectChanges();
+        expect(component.value()).toEqual([]);
+        expect(component.textInput()).toBe('');
+        expect(component.selectItems.emit, 'El evento selectItems debe lanzarse').toHaveBeenCalledWith([]);
 
-    expect(component.value).toEqual(null);
-    expect(component.dropdown()!.valueShow).toBe('');
-    fixture.detectChanges();
+    });
 
-  });
+    it('clean values', () => {
+
+        vi.spyOn(component.selectItems, "emit");
+
+        component.value.set([
+            { value: 'Value1' },
+            { value: 'Value2' }
+        ]);
+        fixture.detectChanges();
+
+        expect(component.value()).toEqual([
+            { value: 'Value1' },
+            { value: 'Value2' }
+        ]);
+        expect(component.textInput()).toBe('Label1, Label2');
+        fixture.detectChanges();
+
+        component.value.set([]);
+        fixture.detectChanges();
+
+        expect(component.value()).toEqual([]);
+        expect(component.textInput()).toBe('');
+        fixture.detectChanges();
+
+    });
 });

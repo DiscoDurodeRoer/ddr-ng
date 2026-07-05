@@ -1,4 +1,4 @@
-import { Component, inject, input, output, viewChild, InputSignal, OutputEmitterRef, signal, WritableSignal, Signal, ModelSignal, model, effect } from '@angular/core';
+import { Component, inject, input, output, viewChild, InputSignal, OutputEmitterRef, signal, WritableSignal, Signal, ModelSignal, model, effect, computed } from '@angular/core';
 import { DdrCheckboxBinaryComponent } from '../ddr-checkbox-binary/ddr-checkbox-binary.component';
 import { DdrDropdownComponent } from '../ddr-dropdown/ddr-dropdown.component';
 import { DdrConstantsService } from '../../services/ddr-constants.service';
@@ -14,8 +14,7 @@ import { JsonPipe } from '@angular/common';
   styleUrl: './ddr-dropdown-multiple.component.scss',
   imports: [
     DdrDropdownComponent,
-    DdrCheckboxBinaryComponent,
-    JsonPipe
+    DdrCheckboxBinaryComponent
   ]
 })
 export class DdrDropdownMultipleComponent<T> implements FormValueControl<T[]> {
@@ -41,6 +40,12 @@ export class DdrDropdownMultipleComponent<T> implements FormValueControl<T[]> {
   readonly tooltipText: InputSignal<string | undefined> = input<string | undefined>();
   readonly compareFn: InputSignal<Function> = input<Function>((a: T, b: T) => a === b);
   readonly transparent: InputSignal<boolean> = input<boolean>(false);
+  public textInput = computed(() => this.value().length ?
+    this.optionsSelected()
+      .filter(option => option.selected)
+      .map(option => this.translate() ? this.ddrTranslate.getTranslate(option.label) : option.label)
+      .join(', ')
+    : '')
 
   readonly selectItems: OutputEmitterRef<DdrSelectItem<T>[]> = output<DdrSelectItem<T>[]>();
 
@@ -59,21 +64,18 @@ export class DdrDropdownMultipleComponent<T> implements FormValueControl<T[]> {
     if (!value || value.length == 0) {
       this.optionsSelected.set([]);
       this.options().forEach(op => op.selected = false);
-      this.dropdown()!.valueShow.set('');
     } else if (value.length > 0) {
 
       for (const option of this.options()) {
         const optionFound = value.find(v => this.compareFn()(v, option.value));
         option.selected = !!optionFound
       }
-
       this.optionsSelected.set(this.options().filter(option => option.selected));
-
-      this.dropdown()!.valueShow.set(this.optionsSelected().map(option => this.translate() ? this.ddrTranslate.getTranslate(option.label) : option.label).join(', '));
     }
   }
 
   onSelectItem(item: DdrSelectItem<T>) {
+    this.dropdown()!.value.set(null);
     if (item.selected) {
       this.optionsSelected.update((value: DdrSelectItem<T>[]) => [...value, item]);
     } else {

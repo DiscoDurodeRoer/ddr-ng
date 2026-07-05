@@ -1,8 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { DdrTranslatePipe } from '../pipes/ddr-translate.pipe'
+import { DdrTranslatePipe } from '../pipes/ddr-translate.pipe';
 import { provideHttpClient } from '@angular/common/http';
 import { DdrCheckboxBinaryComponent } from '../components/ddr-checkbox-binary/ddr-checkbox-binary.component';
+import { expect, describe, it, vi, beforeEach } from 'vitest';
 
 describe('DdrCheckboxBinaryComponent', () => {
     let fixture: ComponentFixture<DdrCheckboxBinaryComponent>;
@@ -22,50 +23,51 @@ describe('DdrCheckboxBinaryComponent', () => {
         fixture = TestBed.createComponent(DdrCheckboxBinaryComponent);
         component = fixture.componentInstance;
     });
-    
-    it('should click check binary', async () => {
-        fixture.detectChanges();
-        await fixture.whenStable();
 
-        spyOn(component.clickCheck, "emit");
-
-        let firstCheckbox = fixture.debugElement.query(By.css('.ddr-checkbox__container--input'));
-        firstCheckbox.triggerEventHandler('click');
-        await fixture.whenStable();
+    it('should click check binary', () => {
         fixture.detectChanges();
-        expect(component.clickCheck.emit).withContext('El evento clickCheck debe lanzarse').toHaveBeenCalledWith(true);
 
-        firstCheckbox.triggerEventHandler('click');
-        await fixture.whenStable();
+        vi.spyOn(component.clickCheck, "emit");
+
+        let checkbox = fixture.debugElement.query(By.css('.ddr-checkbox__container--input'));
+        checkbox.nativeElement.click();
+
         fixture.detectChanges();
-        expect(component.clickCheck.emit).withContext('El evento clickCheck debe lanzarse').toHaveBeenCalledWith(false);
+
+        expect(component.clickCheck.emit, 'El evento clickCheck debe lanzarse').toHaveBeenCalledWith(true);
+
+        checkbox = fixture.debugElement.query(By.css('.ddr-checkbox__container--input'));
+        checkbox.nativeElement.click();
+
+        fixture.detectChanges();
+
+        expect(component.clickCheck.emit, 'El evento clickCheck debe lanzarse').toHaveBeenCalledWith(false);
 
     });
 
-    it('checkbox selected first time', async () => {
-        component.value = true;
+    it('checkbox selected first time', () => {
+        component.value.set(true);
+
         fixture.detectChanges();
-        await fixture.whenStable();
 
         let checkbox = fixture.debugElement.query(By.css('.ddr-checkbox__container--input--active'));
 
-        expect(checkbox).toBeNull();
+        expect(checkbox).not.toBeNull();
 
     });
 
-    it('should not click checkbox', async () => {
-        component.disabled = true;
+    it('should not click checkbox', () => {
+        fixture.componentRef.setInput('disabled', true);
         fixture.detectChanges();
-        await fixture.whenStable();
 
-        spyOn(component.clickCheck, "emit");
+        vi.spyOn(component.clickCheck, "emit");
 
         const checkbox = fixture.debugElement.query(By.css('.ddr-checkbox__container--input'));
         checkbox.triggerEventHandler('click');
-        await fixture.whenStable();
+
         fixture.detectChanges();
 
-        expect(component.clickCheck.emit).withContext('El evento clickCheck no debe lanzarse').not.toHaveBeenCalledWith(true);
+        expect(component.clickCheck.emit, 'El evento clickCheck no debe lanzarse').not.toHaveBeenCalledWith(true);
 
     });
 });

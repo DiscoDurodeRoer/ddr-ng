@@ -34,44 +34,39 @@ export class DdrStepsComponent implements FormValueControl<number>, OnInit, Afte
 
   public canJump: WritableSignal<boolean> = signal<boolean>(false);
 
-  value: ModelSignal<number> = model<number>(0);
+  public value: ModelSignal<number> = model<number>(1);
 
   constructor() {
     effect(() => this.canJump.set(this.canJumpStep()))
+    effect(() => {
+      const stepsValue = this.steps();
+      if (stepsValue && !this.openAll() && !this.leaveValidateVerticalOpened()) {
+        const steps = stepsValue;
+        for (let index = 0; index < steps.length; index++) {
+          const step = steps[index];
+          step.open.set(false);
+        }
+        stepsValue[this.value() - 1].open.set(true);
+      }
+    })
   }
 
   ngOnInit(): void {
     if (!this.showButtons()) {
       this.canJump.set(true);
     }
-
-    // this.subscription = this.changeValue.subscribe({
-    //   next: (indexTab: number) => {
-
-    //     const stepsValue = this.steps();
-    //     if (stepsValue && !this.openAll() && !this.leaveValidateVerticalOpened()) {
-    //       const steps = stepsValue;
-    //       for (let index = 0; index < steps.length; index++) {
-    //         const step = steps[index];
-    //         step.open.set(false);
-    //       }
-    //       stepsValue[indexTab - 1].open.set(true);
-    //     }
-    //   }
-    // })
   }
 
   ngAfterViewInit() {
-    const steps = this.steps;
-    if (steps.length > 0) {
-      for (let index = 0; index < steps.length; index++) {
-        const step = steps()[index];
+    if (this.steps().length > 0) {
+      for (let index = 0; index < this.steps().length; index++) {
+        const step = this.steps()[index];
         if (((this.openAll() && this.vertical()) || (this.validateIcon() && step.canGoNext())) || index == 0) {
           step.open.set(true);
         }
         step.step.set(index + 1);
         step.firstStep.set(step.step() == 1);
-        step.lastStep.set(step.step() == steps.length);
+        step.lastStep.set(step.step() == this.steps().length);
       }
       this.value.set(1);
     }

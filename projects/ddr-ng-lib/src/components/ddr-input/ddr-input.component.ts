@@ -20,10 +20,10 @@ import {
 } from '@angular/core';
 import { DdrConstantsService } from '../../services/ddr-constants.service';
 import { DdrTooltipDirective } from '../../directives/ddr-tooltip.directive';
-import { JsonPipe, NgTemplateOutlet } from '@angular/common';
+import { NgTemplateOutlet } from '@angular/common';
 import { AutocompleteType, DdrInputError, DdrOrientatioTooltip, DdrSize, DdrTypeInput } from '../../types/types';
 import { DdrSetFocusDirective } from '../../directives/ddr-set-focus.directive';
-import { Field, form, FormValueControl, ValidationError, WithOptionalField } from '@angular/forms/signals';
+import { FormValueControl, ValidationError, WithOptionalFieldTree } from '@angular/forms/signals';
 
 @Component({
   selector: 'ddr-input',
@@ -33,9 +33,7 @@ import { Field, form, FormValueControl, ValidationError, WithOptionalField } fro
   imports: [
     DdrTooltipDirective,
     DdrSetFocusDirective,
-    NgTemplateOutlet,
-    Field,
-    JsonPipe
+    NgTemplateOutlet
   ]
 })
 export class DdrInputComponent implements FormValueControl<string | number> {
@@ -45,18 +43,12 @@ export class DdrInputComponent implements FormValueControl<string | number> {
   readonly placeholder: InputSignal<string> = input<string>('');
   readonly label: InputSignal<string | undefined> = input<string | undefined>();
   readonly type = input<DdrTypeInput>(this.constants.TYPE_INPUT.TEXT);
-  // readonly disabled: InputSignal<boolean> = input<boolean>(false);
   readonly readonly: InputSignal<boolean> = input<boolean>(false);
-  // readonly maxlength: InputSignal<string | number | null> = input<string | number | null>(null);
-  // readonly minlength: InputSignal<string | number | null> = input<string | number | null>(null);
   readonly required: InputSignal<boolean> = input<boolean>(false);
   readonly validate: InputSignal<boolean> = input<boolean>(false);
   readonly inline: InputSignal<boolean> = input<boolean>(false);
   readonly border: InputSignal<boolean> = input<boolean>(true);
-  // readonly pattern: InputSignal<string> = input<string>('');
   readonly size: InputSignal<DdrSize> = input<DdrSize>(this.constants.SIZE.MEDIUM);
-  // readonly min: InputSignal<number | null> = input<number | null>(null);
-  // readonly max: InputSignal<number | null> = input<number | null>(null);
   readonly tooltipOrientation: InputSignal<DdrOrientatioTooltip> = input<DdrOrientatioTooltip>(this.constants.ORIENTATION.BOTTOM);
   readonly tooltipText: InputSignal<string | undefined> = input<string | undefined>();
   readonly labelBold: InputSignal<boolean> = input<boolean>(false);
@@ -71,7 +63,7 @@ export class DdrInputComponent implements FormValueControl<string | number> {
   readonly min: InputSignal<number | undefined> = input<number | undefined>(undefined);
   readonly max: InputSignal<number | undefined> = input<number | undefined>(undefined);
   readonly pattern: InputSignal<readonly RegExp[]> = input<readonly RegExp[]>([]);
-  readonly errors: InputSignal<readonly WithOptionalField<ValidationError>[]> = input<readonly WithOptionalField<ValidationError>[]>([]);
+  readonly errors: InputSignal<readonly WithOptionalFieldTree<ValidationError>[]> = input<readonly WithOptionalFieldTree<ValidationError>[]>([]);
   readonly minLength: InputSignal<number | undefined> = input<number | undefined>(undefined);
   readonly maxLength: InputSignal<number | undefined> = input<number | undefined>(undefined);
   readonly disabled: InputSignal<boolean> = input<boolean>(false);
@@ -91,15 +83,7 @@ export class DdrInputComponent implements FormValueControl<string | number> {
   
   public dirtyInput: WritableSignal<boolean> = signal<boolean>(false)
   public valid: Signal<boolean> = computed<boolean>(() => this.errors().length == 0)
-  public patternAttr(): string | null {
-    const patterns = this.pattern();
-
-    if (!patterns || patterns.length === 0) {
-      return null;
-    }
-
-    return patterns.map(p => p.source).join('|');
-  }
+  
   
   constructor(){
     effect(() => this.dirtyInput.set(this.dirty()))

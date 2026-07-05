@@ -18,7 +18,7 @@
     [class.ddr-toggle__button--small]="size() == constants.SIZE.SMALL"
     [class.ddr-toggle__button--medium]="size() == constants.SIZE.MEDIUM"
     [class.ddr-toggle__button--large]="size() == constants.SIZE.LARGE"
-    [attr.aria-expanded]="value"
+    [attr.aria-expanded]="value()"
     (click)="onClick()">
   </button>
 </div>

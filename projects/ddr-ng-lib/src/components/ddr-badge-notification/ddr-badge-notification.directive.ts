@@ -2,8 +2,7 @@ import { Directive, ElementRef, inject, Renderer2, ViewContainerRef, input, Writ
 import { DdrBadgeNotificationComponent } from './ddr-badge-notification.component';
 
 @Directive({
-  selector: '[ddrNotification]',
-  standalone: true
+  selector: '[ddrNotification]'
 })
 export class DdrBadgeNotificationDirective {
 
@@ -29,7 +28,7 @@ export class DdrBadgeNotificationDirective {
 
   checkNumbersNotification() {
     if (this.numberNotifications() > this.limitNotifications()) {
-      this.textNotification.set(`+ ${this.limitNotifications()}`);
+      this.textNotification.set(`+${this.limitNotifications()}`);
     } else {
       this.textNotification.set(this.numberNotifications().toString())
     }

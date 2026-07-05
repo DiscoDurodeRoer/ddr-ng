@@ -52,14 +52,14 @@ export class DdrButtonComponent {
   public positionButton: WritableSignal<DdrOrientation | undefined> = signal<DdrOrientation | undefined>(this.constants.ORIENTATION.BOTTOM_RIGHT);
 
   constructor() {
-    effect(() => this.positionButton.set(this.position()))
+    effect(() => {
+      if (this.floatButton() && !this.position()) {
+        this.positionButton.set(this.constants.ORIENTATION.BOTTOM_RIGHT);
+      } else {
+        this.positionButton.set(this.position())
+      }
+    })
   }
-
-  // ngOnInit() {
-  //   if (this.floatButton() && !this.position()) {
-  //     this.position = this.constants.ORIENTATION.BOTTOM_RIGHT;
-  //   }
-  // }
 
   clickButton($event: any) {
     if (!this.disabled()) {

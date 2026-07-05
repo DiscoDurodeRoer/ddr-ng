@@ -45,7 +45,7 @@
     <ddr-textarea 
       [label]="'textarea.label' | ddrTranslate" 
       [placeholder]="'textarea.placeholder' | ddrTranslate"
-      [field]="formTextareaEx1.example1" />
+      [formField]="formTextareaEx1.example1" />
   </div>
 </div>
 
@@ -95,7 +95,7 @@
     <ddr-textarea 
       [label]="'textarea.label' | ddrTranslate" 
       [placeholder]="'textarea.placeholder' | ddrTranslate"
-      [field]="formTextareaEx2.example2" />
+      [formField]="formTextareaEx2.example2" />
   </div>
 </div>
 
@@ -157,7 +157,7 @@
       [label]="'textarea.label' | ddrTranslate" 
       [placeholder]="'textarea.placeholder' | ddrTranslate"
       [validate]="true"
-      [field]="formTextareaEx3.example3">
+      [formField]="formTextareaEx3.example3">
 
       <ng-template #templateValid>
         <span>{{'textarea.ok' | ddrTranslate}}</span>

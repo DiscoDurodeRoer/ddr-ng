@@ -3,8 +3,7 @@ import { DdrConstantsService } from '../services/ddr-constants.service';
 import { DdrOrientatioTooltip } from '../types/types';
 
 @Directive({
-  selector: '[ddrTooltip]',
-  standalone: true
+  selector: '[ddrTooltip]'
 })
 export class DdrTooltipDirective implements OnInit {
 

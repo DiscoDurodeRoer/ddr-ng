@@ -7,7 +7,7 @@ import {
   DdrButtonComponent
 } from 'ddr-ng';
 import { BaseShowcaseComponent } from '../base-showcase/base-showcase.component';
-import { disabled, Field, form, max, maxLength, min, minLength, pattern, required } from '@angular/forms/signals';
+import { disabled, form, FormField, max, maxLength, min, minLength, pattern, required } from '@angular/forms/signals';
 
 @Component({
   selector: 'input-group-showcase',
@@ -18,7 +18,7 @@ import { disabled, Field, form, max, maxLength, min, minLength, pattern, require
     DdrInputGroupComponent,
     DdrButtonComponent,
     DdrTranslatePipe,
-    Field
+    FormField
   ],
   providers: [
     DdrToastService

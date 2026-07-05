@@ -33,13 +33,13 @@
       <tbody>
         @if (items().length == 0) {
           <tr class="ddr-table__table--body-row text-center" [class.ddr-table__table--border]="showBorder()">
-            <td [style.width.%]="100" [attr.colspan]="colspan">{{ labelNoResults() }}</td>
+            <td [style.width.%]="100" [attr.colspan]="colspan()">{{ labelNoResults() }}</td>
           </tr>
         }
         @if (items() && items().length > 0) {
           @for (
             it of items()
-            | paginate: { id, itemsPerPage: rows(), currentPage: page(), totalItems: totalItemsTable() }; track
+            | paginate: { id, itemsPerPage: rows(), currentPage: pageTable(), totalItems: totalItemsTable() }; track
             index; let index = $index) {
             <tr class="ddr-table__table--body-row" 
               [class.ddr-table__table--body-row--hoveable]="canSelectItems()"
@@ -89,7 +89,7 @@
       @if (showFooter()) {
         <tfoot>
           <tr class="ddr-table__table--foot-row">
-            <td [attr.colspan]="colspan" class="ddr-table__table--foot-cell">
+            <td [attr.colspan]="colspan()" class="ddr-table__table--foot-cell">
               <div class="row">
                 @if (allowChangeRows() && items() && items().length > 0) {
                   <div class="col-6 text-start"
@@ -99,6 +99,7 @@
                       [inline]="true"
                       [options]="optionsRows()"
                       [showFilter]="false"
+                      [name]="id"
                       [orientation]="constants.ORIENTATION_DROPDOWN.TOP"
                       [(value)]="rows"
                       (selectItem)="changeRows($event)">
@@ -114,9 +115,9 @@
                     [class.col-md-6]="!(allowChangeRows() && items() && items().length > 0)">
                     @if (showTotal() && showPagination() && totalItemsTable() > rows()) {
                       <span class="d-inline-block">
-                        {{ rows() * (page() - 1) + 1 }}
+                        {{ rows() * (pageTable() - 1) + 1 }}
                         {{ labelToPagination() || ("to" | ddrTranslate) }}
-                        {{ totalItemsTable() < (rows() * pageTable()) ? totalItemsTable() : (rows() * page()) }} {{ labelOfPagination() || ("of" | ddrTranslate) }}
+                        {{ totalItemsTable() < (rows() * pageTable()) ? totalItemsTable() : (rows() * pageTable()) }} {{ labelOfPagination() || ("of" | ddrTranslate) }}
                         {{ totalItemsTable() }} {{ labelRegisters() }}
                       </span>
                     }

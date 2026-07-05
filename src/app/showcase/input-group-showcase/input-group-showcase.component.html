@@ -50,7 +50,7 @@
       [placeholder]="'input.group.placeholder' | ddrTranslate"
       type="text"
       icon="bi bi-send"
-      [field]="formInputEx1.example1"
+      [formField]="formInputEx1.example1"
       (action)="clickButton($event)" />
   </div>
 </div>
@@ -118,7 +118,7 @@
       type="text"
       icon="bi bi-send"
       [validate]="true"
-      [field]="formInputEx2.example2"
+      [formField]="formInputEx2.example2"
       (action)="clickButton($event)">
 
         <ng-template #templateValid>
@@ -205,7 +205,7 @@
       [placeholder]="'input.group.placeholder' | ddrTranslate"
       type="text"
       icon="bi bi-send"
-      [field]="formInputEx4.example4"
+      [formField]="formInputEx4.example4"
       (action)="clickButton($event)" />
     </div>
 </div>
@@ -314,7 +314,7 @@
       icon="bi bi-send"
       type="number"
       [validate]="true"
-      [field]="formInputEx8.example8"
+      [formField]="formInputEx8.example8"
       (action)="clickButton($event)">
 
         <ng-template #templateValid>

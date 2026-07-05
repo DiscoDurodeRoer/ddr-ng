@@ -2,11 +2,11 @@ import { Component, inject, signal } from '@angular/core';
 import {
   DdrInputPasswordComponent,
   DdrToastService,
-  DdrTranslatePipe, 
+  DdrTranslatePipe,
   DdrTranslateService
 } from 'ddr-ng';
 import { BaseShowcaseComponent } from '../base-showcase/base-showcase.component';
-import { disabled, Field, form, maxLength, minLength, pattern, readonly, required } from '@angular/forms/signals';
+import { disabled, form, FormField, maxLength, minLength, pattern, readonly, required } from '@angular/forms/signals';
 
 @Component({
   selector: 'input-password-showcase',
@@ -15,7 +15,7 @@ import { disabled, Field, form, maxLength, minLength, pattern, readonly, require
     BaseShowcaseComponent,
     DdrInputPasswordComponent,
     DdrTranslatePipe,
-    Field
+    FormField
   ],
   providers: [
     DdrToastService
@@ -42,9 +42,9 @@ export class InputPasswordShowcaseComponent {
   })
   public formInputPasswordEx2 = form(this.inputPasswordModelEx2, (input) => {
     required(input.example2, { message: 'input.value.required' }),
-    minLength(input.example2, 8, { message: 'input.minlength.required'})
-    maxLength(input.example2, 9, { message: 'input.maxlength.required'})
-    pattern(input.example2, /^(?=.*[A-Za-z])(?=.*\d).{8,}$/, { message: 'input.pattern'})
+      minLength(input.example2, 8, { message: 'input.minlength.required' })
+    maxLength(input.example2, 9, { message: 'input.maxlength.required' })
+    pattern(input.example2, /^(?=.*[A-Za-z])(?=.*\d).{8,}$/, { message: 'input.pattern' })
   })
 
   // Showcase 4
@@ -61,7 +61,7 @@ export class InputPasswordShowcaseComponent {
   // Showcase 5
 
   public valueEx5: string = 'Read only';
-    
+
   private inputPasswordModelEx5 = signal({
     example5: 'Read only'
   })

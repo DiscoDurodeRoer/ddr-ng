@@ -9,7 +9,7 @@ import {
 import { BaseShowcaseComponent } from '../base-showcase/base-showcase.component';
 import { JsonPipe } from '@angular/common';
 import { ProgrammingLanguage } from './bean/programming-language';
-import { Field, form } from '@angular/forms/signals';
+import { Field, form, FormField } from '@angular/forms/signals';
 
 @Component({
   selector: 'radio-showcase',
@@ -19,7 +19,7 @@ import { Field, form } from '@angular/forms/signals';
     DdrRadioComponent,
     DdrTranslatePipe,
     JsonPipe,
-    Field
+    FormField
   ],
   providers: [
     DdrToastService
@@ -91,7 +91,7 @@ export class RadioShowcaseComponent {
   private radioModelEx1 = signal({
     example1: ''
   })
-  public formRadioEx1 = form(this.radioModelEx1) 
+  public formRadioEx1 = form(this.radioModelEx1)
 
   // Showcase 2
 
@@ -125,9 +125,9 @@ export class RadioShowcaseComponent {
   ];
 
   // Showcase 3
-  
+
   public value3: ProgrammingLanguage | null = null;
-  
+
   public compareFn = (a: ProgrammingLanguage, b: ProgrammingLanguage) => a.name == b.name;
 
   public options3: DdrSelectItem<ProgrammingLanguage>[] = [
@@ -172,7 +172,7 @@ export class RadioShowcaseComponent {
   // Showcase 4
 
   public value4: ProgrammingLanguage = { name: 'cpp' };
-  
+
   public options4: DdrSelectItem<ProgrammingLanguage>[] = [
     {
       label: 'Java',
@@ -254,7 +254,7 @@ export class RadioShowcaseComponent {
       }
     }
   ];
-  
+
   public clickRadio(value: string) {
     this.ddrToastService.addSuccessMessage(
       this.ddrTranslateService.getTranslate('success'),

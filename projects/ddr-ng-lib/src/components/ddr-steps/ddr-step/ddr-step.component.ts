@@ -3,8 +3,7 @@ import { Component, TemplateRef, input, contentChild, InputSignal, WritableSigna
 
 @Component({
   selector: 'ddr-step',
-  template: '',
-  standalone: true
+  template: ''
 })
 export class DdrStepComponent {
 

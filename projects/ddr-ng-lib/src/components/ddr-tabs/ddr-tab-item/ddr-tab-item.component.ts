@@ -3,8 +3,7 @@ import { Component, TemplateRef, ViewEncapsulation, input, contentChild, InputSi
 @Component({
   selector: 'ddr-tab-item',
   template: '',
-  encapsulation: ViewEncapsulation.None,
-  standalone: true
+  encapsulation: ViewEncapsulation.None
 })
 export class DdrTabItemComponent {
 

@@ -17,7 +17,7 @@
               [border]="true"
               [size]="constants.SIZE.MEDIUM" 
               autocomplete="username"
-              [field]="formLogin.username"  />
+              [formField]="formLogin.username"  />
           </div>
 
         </div>
@@ -26,7 +26,7 @@
             <ddr-input-password class="ddr-login__input-password"
               [label]="showLabelPassword() ? labelPassword() || ('login.password' | ddrTranslate) : ''"
               [placeholder]="labelPlaceholderPassword() || ('login.placeholder.password' | ddrTranslate)"
-              [field]="formLogin.password" />
+              [formField]="formLogin.password" />
           </div>
         </div>
 

@@ -19,7 +19,7 @@
     [disabled]="disabled()"
     [dirty]="true"
     [errors]="errors()"
-    [(value)]="valueShow"
+    [value]="textInput() || valueShow()"
     [validate]="validate()" 
     [tooltipOrientation]="tooltipOrientation()"
     [tooltipText]="tooltipText()"
@@ -53,7 +53,7 @@
     <div ddrClickOutside (clickOutside)="hidePanelItems()">
       <div class="ddr-dropdown__panel-items--search">
         @if (showFilter() && options().length > 0) {
-          <input type="text" [field]="filterForm.filter"
+          <input type="text" [formField]="filterForm.filter"
             class="form-control ddr-dropdown__panel-items--search--input" [placeholder]="labelPlaceholderFilter() | ddrTranslate" />
         }
       </div>
@@ -64,7 +64,7 @@
       } @else {
         <ul [class.ddr-dropdown__panel-items__with-filter]="showFilter()">
 
-          @for (item of optionsShow(); track item; let index = $index) {
+          @for (item of optionsShow(); track item.value; let index = $index) {
             <li class="d-flex align-items-center cursor-pointer  ddr-dropdown__panel-items__item" [class.ddr-dropdown__panel-items__item--active]="item.selected" (click)="onSelectItem(item)">
               
               @if(itemTemplateOutside()){

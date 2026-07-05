@@ -46,7 +46,7 @@
       [label]="'input.label' | ddrTranslate" 
       [placeholder]="'input.placeholder' | ddrTranslate" 
       type="text"
-      [field]="formInputEx1.example1" />
+      [formField]="formInputEx1.example1" />
   </div>
 </div>
 
@@ -108,7 +108,7 @@
       [label]="'input.label' | ddrTranslate" 
       [placeholder]="'input.placeholder' | ddrTranslate" 
       type="text" 
-      [field]="formInputEx3.example3"/>
+      [formField]="formInputEx3.example3"/>
   </div>
 </div>
 
@@ -183,7 +183,7 @@
       [label]="'input.label' | ddrTranslate" 
       [placeholder]="'input.placeholder' | ddrTranslate" 
       type="text"
-      [field]="formInputEx5.example5"
+      [formField]="formInputEx5.example5"
       [validate]="true" >
 
       <ng-template #templateValid>
@@ -270,7 +270,7 @@
       type="text"
       [inline]="true"
       [validate]="true" 
-      [field]="formInputEx6.example6" >
+      [formField]="formInputEx6.example6" >
 
       <ng-template #templateValid>
         <span>{{'input.ok' | ddrTranslate}}</span>
@@ -326,7 +326,7 @@
     <ddr-input 
       [label]="'input.label' | ddrTranslate" 
       type="text" 
-      [field]="formInputEx7.example7" />
+      [formField]="formInputEx7.example7" />
   </div>
 </div>
 
@@ -364,7 +364,7 @@
     <ddr-input 
       [label]="'input.label' | ddrTranslate" 
       type="text" 
-      [field]="formInputEx8.example8" />
+      [formField]="formInputEx8.example8" />
   </div>
 </div>
 
@@ -412,7 +412,7 @@
       [placeholder]="'input.placeholder.number' | ddrTranslate" 
       type="number"
       [validate]="true"
-      [field]="formInputEx9.example9">
+      [formField]="formInputEx9.example9">
 
       <ng-template #templateValid>
         <span>{{'input.ok' | ddrTranslate}}</span>
@@ -578,7 +578,7 @@
       [placeholder]="'input.placeholder' | ddrTranslate"
       type="email"
       [validate]="true"
-      [field]="formInputEx16.example16">
+      [formField]="formInputEx16.example16">
 
       <ng-template #templateValid>
         <span>{{'input.ok' | ddrTranslate}}</span>

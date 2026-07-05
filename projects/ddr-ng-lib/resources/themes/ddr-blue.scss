@@ -680,6 +680,12 @@ $color-warning: #f0ad4e;
       background: $primary;
       color: $text-color-secondary;
 
+      ddr-accordion {
+        .ddr-accordion {
+          background: transparent;
+        }
+      }
+
       ddr-dropdown {
         .ddr-input {
           &__input-container {
