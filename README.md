@@ -13,6 +13,7 @@
 
 |ddr-ng | Compatibility   |
 |-------|-----------------|
+|22.x.x | ✅ Full support |
 |21.x.x | ✅ Full support |
 |20.x.x | ✅ Full support |
 |19.x.x | ✅ Full support |
@@ -56,14 +57,32 @@ If you want to have all available themes, you can add them all in styles
 ]
 ```
 
-## 🎨 Applying a theme
+## ⚙️ Provider Ddr
 
-In the main container, you must add the class of the theme being used. For example:
+To configure the library, you must add the "provideDdr" provider to the providers in app.config, specifying the theme to use and the i18n configuration (optional).
 
-```html
-<body class="ddr-blue">
-  <!-- Your app content -->
-</body>
+```ts
+import { ApplicationConfig } from '@angular/core';
+import { provideRouter } from '@angular/router';
+import { routes } from './app.routes';
+import { provideAnimations } from '@angular/platform-browser/animations';
+import { provideDdr } from 'ddr-ng/providers/config';
+
+export const appConfig: ApplicationConfig = {
+  providers: [
+    provideRouter(routes),
+    provideAnimations(),
+    provideDdr({
+      theme: {
+        name: 'ddr-blue'
+      },
+      translate: {
+        path: `/assets/i18n/`,
+        language: 'en'
+      }
+    })
+  ]
+}; 
 ```
 
 Now you can use everything exported from the library, check the [showcases](https://ddr-ng.com) for examples.
