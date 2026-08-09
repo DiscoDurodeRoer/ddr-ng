@@ -1,25 +1,21 @@
-<base-showcase component="ddrTranslate" type="service" [showInputs]="false" [showOutputs]="false">
+<base-showcase 
+  component="ddr-translate-service" 
+  type="service" 
+  [documentation]="documentation"
+  [showInputs]="false" 
+  [showService]="true" 
+  [showOutputs]="false">
 
   <div description>
     <p>{{'translate.description' | ddrTranslate}}</p>
   </div>
 
-  <div examples>
+  <ng-template #example>
+    <translate-showcase-1 />
+  </ng-template>
 
-<div class="row">
-  <div class="col-12">
-    <span class="h3">{{'translate.example.1' | ddrTranslate}}</span>
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <ddr-button 
-        text="translate.example" 
-        (action)="showToast()" />
-  </div>
-</div>
-
-  </div>
+  <ng-template #example>
+    <translate-showcase-2 />
+  </ng-template>
 
 </base-showcase>

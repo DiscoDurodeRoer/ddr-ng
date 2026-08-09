@@ -1,0 +1,1 @@
+export { DdrChipComponent } from './src/ddr-chip.component';

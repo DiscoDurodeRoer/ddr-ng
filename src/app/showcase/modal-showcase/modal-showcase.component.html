@@ -1,80 +1,29 @@
-<base-showcase component="ddr-modal" type="component"  [showSlots]="true" [showService]="true" [showStyles]="true">
+<base-showcase 
+  component="ddr-modal" 
+  type="component" 
+  [documentation]="documentation" 
+  [showSlots]="true" 
+  [showService]="true" 
+  [showStyles]="true">
   
   <div description>
     <p>{{'modal.description' | ddrTranslate}}</p>
   </div>
 
-  <div examples>
+  <ng-template #example>
+    <modal-showcase-1 />
+  </ng-template>
 
-<div class="row mt-3">
-  <div class="col-12">
-    <p>{{'modal.size' | ddrTranslate}}:</p>
-    <ddr-button-multiple
-      [buttons]="buttonsSize"
-      [showSelectedButton]="true"
-      [(value)]="size" />
-  </div>
-</div>
+  <ng-template #example>
+    <modal-showcase-2 />
+  </ng-template>
+  
+  <ng-template #example>
+    <modal-showcase-3 />
+  </ng-template>
 
-<div class="row mt-3">
-  <div class="col-12">
-    <p>{{'modal.size.button' | ddrTranslate}}:</p>
-    <ddr-button-multiple
-      [buttons]="buttonsSizeButton"
-      [showSelectedButton]="true"
-      [(value)]="sizeButton" />
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <p>{{'modal.type' | ddrTranslate}}:</p>
-    <ddr-button-multiple
-      [buttons]="buttonsType"
-      [showSelectedButton]="true"
-      [(value)]="type" />
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <p>clickOutside:</p>
-    <ddr-toggle
-      size="small"
-      [(value)]="clickOutsideEnabled" />
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <ddr-button
-      [text]="'modal.open' | ddrTranslate"
-      size="medium"
-      (action)="openModal()" />
-  </div>
-</div>
-
-<ddr-modal
-  id="modal-example"
-  [type]="type"
-  [labelConfirm]="'modal.confirm' | ddrTranslate"
-  [labelClose]="'modal.close' | ddrTranslate"
-  [size]="size"
-  [sizeButton]="sizeButton"
-  [clickOutsideEnabled]="clickOutsideEnabled"
-  (close)="closeModal()"
-  (accept)="closeModal()"
-  (clickOutside)="clickOutside($event)">
-  <span class="h1" modal-title>Lorem</span>
-
-  <span modal-content>
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nobis
-    reiciendis, recusandae enim, accusamus illo dicta obcaecati, nam ab
-    voluptatum asperiores tenetur error. Similique doloribus at possimus
-    fuga excepturi veritatis distinctio!
-  </span>
-</ddr-modal>
-
-  </div>
+  <ng-template #example>
+    <modal-showcase-4 />
+  </ng-template>
 
 </base-showcase>

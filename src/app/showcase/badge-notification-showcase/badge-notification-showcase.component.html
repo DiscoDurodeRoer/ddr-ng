@@ -1,122 +1,37 @@
-<base-showcase component="ddrNotification" type="directive" [showOutputs]="false" [showPossibleValues]="false" [showStyles]="true">
+<base-showcase 
+  component="ddr-badge-notification-directive" 
+  type="directive" 
+  [documentation]="documentation"
+  [showOutputs]="false" 
+  [showPossibleValues]="false" 
+  [showStyles]="true">
 
   <div description>
     <p>{{'badge.notification.description' | ddrTranslate}}</p>
   </div>
 
-  <div examples>
+  <ng-template #example>
+    <badge-notification-showcase-1 />
+  </ng-template>
 
-<div class="row">
-  <div class="col-12 ">
-    <span class="h3">{{'badge.notification.example.1' | ddrTranslate}}</span>
-  </div>
-</div>
+  <ng-template #example>
+    <badge-notification-showcase-2 />
+  </ng-template>
 
-<div class="row mt-3">
-  <div class="col-12">
-    <ddr-button 
-      text="badge.notification.text"
-      ddrNotification 
-      [numberNotifications]="5" 
-      [limitNotifications]="9" />
-  </div>
-</div>
+  <ng-template #example>
+    <badge-notification-showcase-3 />
+  </ng-template>
 
-<div class="row mt-3">
-  <div class="col-12 ">
-    <span class="h3">{{'badge.notification.example.2' | ddrTranslate}}</span>
-  </div>
-</div>
+  <ng-template #example>
+    <badge-notification-showcase-4 />
+  </ng-template>
 
-<div class="row mt-3">
-  <div class="col-12">
-    <ddr-button 
-      text="badge.notification.text"
-      ddrNotification 
-      [numberNotifications]="15" 
-      [limitNotifications]="9" />
-  </div>
-</div>
+  <ng-template #example>
+    <badge-notification-showcase-5 />
+  </ng-template>
 
-<div class="row mt-3">
-  <div class="col-12 ">
-    <span class="h3">{{'badge.notification.example.3' | ddrTranslate}}</span>
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <ddr-button 
-      text="badge.notification.text"
-      ddrNotification 
-      [numberNotifications]="100" 
-      [limitNotifications]="99" />
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12 ">
-    <span class="h3">{{'badge.notification.example.4' | ddrTranslate}}</span>
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <i class="fs-2 bi bi-house-door-fill"
-    ddrNotification 
-    [numberNotifications]="15" 
-    [limitNotifications]="9">
-  </i>
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12 ">
-    <span class="h3">{{'badge.notification.example.5' | ddrTranslate}}</span>
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <ddr-button 
-      [text]="showNotifications ? 
-        'badge.notification.hide.notifications' : 
-        'badge.notification.show.notifications'"
-      (action)="toggleNotifications()" />
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <i class="fs-2 bi bi-house-door-fill"
-      ddrNotification 
-      [numberNotifications]="15" 
-      [limitNotifications]="9"
-      [showNotifications]="showNotifications">
-    </i>
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12 ">
-    <span class="h3">{{'badge.notification.example.6' | ddrTranslate}}</span>
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <ddr-button 
-      icon="bi bi-house-door-fill"
-      [floatButton]="true"
-      ddrNotification 
-      [elementToInsert]="'button'"
-      [positionTop]="'0%'"
-      [positionRight]="'calc(0% - 10px)'"
-      [numberNotifications]="100" 
-      [limitNotifications]="99" />
-  </div>
-</div>
-
-  </div>
+  <ng-template #example>
+    <badge-notification-showcase-6 />
+  </ng-template>
 
 </base-showcase>

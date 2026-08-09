@@ -1,0 +1,34 @@
+<div class="row mt-3">
+    <div class="col-12">
+        <p>clickOutside:</p>
+        <ddr-toggle size="small" [(value)]="clickOutsideEnabled" />
+    </div>
+</div>
+
+<div class="row mt-3">
+    <div class="col-12">
+        <ddr-button 
+            [text]="'modal.open' | ddrTranslate" 
+            size="medium" 
+            (action)="openModal()" />
+    </div>
+</div>
+
+<ddr-modal 
+    [id]="ID_MODAL()"
+    type="info"
+    [labelConfirm]="'modal.confirm' | ddrTranslate"
+    [labelClose]="'modal.close' | ddrTranslate" 
+    [clickOutsideEnabled]="clickOutsideEnabled()" 
+    (close)="closeModal()" 
+    (accept)="closeModal()"
+    (clickOutside)="clickOutside($event)">
+    <span class="h1" modal-title>Lorem</span>
+
+    <span modal-content>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nobis
+        reiciendis, recusandae enim, accusamus illo dicta obcaecati, nam ab
+        voluptatum asperiores tenetur error. Similique doloribus at possimus
+        fuga excepturi veritatis distinctio!
+    </span>
+</ddr-modal>

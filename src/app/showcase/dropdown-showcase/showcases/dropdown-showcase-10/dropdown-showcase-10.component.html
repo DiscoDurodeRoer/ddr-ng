@@ -1,0 +1,18 @@
+<ddr-dropdown 
+    [options]="options()" 
+    [placeholder]="'dropdown.placeholder' | ddrTranslate" 
+    [labelNoResults]="'dropdown.no.items' | ddrTranslate"
+    [labelPlaceholderFilter]="'dropdown.filter.placeholder' | ddrTranslate"
+    [compareFn]="compareFn"
+    name="dropdown-10"
+    [(value)]="value" />
+
+<ddr-button 
+    [text]="'dropdown.reset.value' | ddrTranslate" 
+    (action)="resetValue()" />
+<ddr-button 
+    [text]="'dropdown.remove.options' | ddrTranslate" 
+    (action)="removeOptions()" />
+<ddr-button 
+    [text]="'dropdown.reset.options' | ddrTranslate" 
+    (action)="resetOptions()" />

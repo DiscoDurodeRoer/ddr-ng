@@ -130,6 +130,14 @@ export const routes: Routes = [
         }
     },
     {
+        path: 'ddr-input-number',
+        loadComponent: () => import('./showcase/input-number-showcase/input-number-showcase.component').then(c => c.InputNumberShowcaseComponent),
+        data: {
+            title: 'Input Number',
+            type: 'component'
+        }
+    },
+    {
         path: 'ddr-textarea',
         loadComponent: () => import('./showcase/textarea-showcase/textarea-showcase.component').then(c => c.TextareaShowcaseComponent),
         data: {

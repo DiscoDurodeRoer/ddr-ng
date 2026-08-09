@@ -1,602 +1,105 @@
-<base-showcase component="ddr-input" type="component" [showTemplates]="true" [showCodeCSS]="true" [showStyles]="true">
-  
+<base-showcase 
+  component="ddr-input" 
+  type="component" 
+  [documentation]="documentation" 
+  [showTemplates]="true" 
+  [showInputsOutputs]="true"
+  [showStyles]="true">
+
   <div description>
     <p>{{'input.description' | ddrTranslate}}</p>
   </div>
 
-  <div examples>
-
-<div class="row">
-  <div class="col-12">
-    <span class="h3">{{'input.example.1' | ddrTranslate}}</span>
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <span class="h5">{{'without.form.signal' | ddrTranslate}}</span>
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <ddr-input 
-      [label]="'input.label' | ddrTranslate" 
-      [placeholder]="'input.placeholder' | ddrTranslate" 
-      type="text"
-      [(value)]="valueEx1" />
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <span>{{'input.value' | ddrTranslate}}: {{valueEx1}}</span>
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <span class="h5">{{'with.form.signal' | ddrTranslate}}</span>
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <ddr-input 
-      [label]="'input.label' | ddrTranslate" 
-      [placeholder]="'input.placeholder' | ddrTranslate" 
-      type="text"
-      [formField]="formInputEx1.example1" />
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <span>{{'input.value' | ddrTranslate}}: {{formInputEx1.example1().value()}}</span>
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <span class="h3">{{'input.example.2' | ddrTranslate}}</span>
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <ddr-input 
-      [label]="'input.label' | ddrTranslate" 
-      [placeholder]="'input.placeholder' | ddrTranslate" 
-      type="text" 
-      name="example-2" 
-      [inline]="true" />
-  </div>
-</div>
-
-<div class="row mt-2">
-  <div class="col-12">
-    <span class="h3">{{'input.example.3' | ddrTranslate}}</span>
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <span class="h5">{{'without.form.signal' | ddrTranslate}}</span>
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <ddr-input 
-      [label]="'input.label' | ddrTranslate" 
-      [placeholder]="'input.placeholder' | ddrTranslate" 
-      type="text" 
-      name="example-3" 
-      [required]="true" />
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <span class="h5">{{'with.form.signal' | ddrTranslate}}</span>
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <ddr-input 
-      [label]="'input.label' | ddrTranslate" 
-      [placeholder]="'input.placeholder' | ddrTranslate" 
-      type="text" 
-      [formField]="formInputEx3.example3"/>
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <span class="h3">{{'input.example.4' | ddrTranslate}}</span>
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <ddr-input [label]="'input.label' | ddrTranslate" 
-      [placeholder]="'input.placeholder' | ddrTranslate" 
-      type="text" 
-      name="example-4" 
-      [border]="false" />
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <span class="h3">{{'input.example.5' | ddrTranslate}}</span>
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <span class="h5">{{'without.form.signal' | ddrTranslate}}</span>
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <ddr-input 
-      [label]="'input.label' | ddrTranslate" 
-      [placeholder]="'input.placeholder' | ddrTranslate" 
-      type="email" 
-      name="example-5" 
-      [required]="true" 
-      [validate]="true"
-      [minLength]="5" >
-
-      <ng-template #templateValid>
-        <span>{{'input.ok' | ddrTranslate}}</span>
-      </ng-template>
-
-      <ng-template #templateErrors let-errors="errors">
-        @for (error of errors(); track error.kind) {
-            @switch(error.kind){
-              @case('required'){
-                <span>{{ error.message | ddrTranslate }}</span>
-              }
-              @case('minLength'){
-                <span class="me-2">{{ error.message | ddrTranslate }}: {{ errors.minLength }}</span>
-              }
-            }
-          }
-      </ng-template>
-    </ddr-input>
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <span class="h5">{{'with.form.signal' | ddrTranslate}}</span>
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <ddr-input 
-      [label]="'input.label' | ddrTranslate" 
-      [placeholder]="'input.placeholder' | ddrTranslate" 
-      type="text"
-      [formField]="formInputEx5.example5"
-      [validate]="true" >
-
-      <ng-template #templateValid>
-        <span>{{'input.ok' | ddrTranslate}}</span>
-      </ng-template>
-
-      <ng-template #templateErrors let-errors="errors">
-          @for (error of errors(); track error.kind) {
-            @switch(error.kind){
-              @case('required'){
-                <span>{{ error.message | ddrTranslate }}</span>
-              }
-              @case('minLength'){
-                <span class="me-2">{{'input.minlength.required' | ddrTranslate}} {{ error.minLength }}</span>
-              }
-              @case('maxLength'){
-                <span class="me-2">{{'input.maxlength.required' | ddrTranslate}} {{ error.maxLength }}</span>
-              }
-              @case('pattern'){
-                <span class="me-2">{{ error.message | ddrTranslate }}</span>
-              }
-            }
-          }
-      </ng-template>
-    </ddr-input>
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <span class="h3">{{'input.example.6' | ddrTranslate}}</span>
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <span class="h5">{{'without.form.signal' | ddrTranslate}}</span>
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <ddr-input 
-      [label]="'input.label' | ddrTranslate" 
-      [placeholder]="'input.placeholder' | ddrTranslate" 
-      type="text" 
-      name="example-6" 
-      [required]="true" 
-      [inline]="true"
-      [validate]="true" 
-      [minLength]="5" >
-
-      <ng-template #templateValid>
-        <span>{{'input.ok' | ddrTranslate}}</span>
-      </ng-template>
-
-      <ng-template #templateErrors let-errors="errors">
-        @for (error of errors(); track error.kind) {
-            @switch(error.kind){
-              @case('required'){
-                <span>{{ error.message | ddrTranslate }}</span>
-              }
-              @case('minLength'){
-                <span class="me-2">{{ error.message | ddrTranslate }} {{ errors.minLength }}</span>
-              }
-            }
-          }
-      </ng-template>
-    </ddr-input>
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <span class="h5">{{'with.form.signal' | ddrTranslate}}</span>
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <ddr-input 
-      [label]="'input.label' | ddrTranslate" 
-      [placeholder]="'input.placeholder' | ddrTranslate" 
-      type="text"
-      [inline]="true"
-      [validate]="true" 
-      [formField]="formInputEx6.example6" >
-
-      <ng-template #templateValid>
-        <span>{{'input.ok' | ddrTranslate}}</span>
-      </ng-template>
-
-      <ng-template #templateErrors let-errors="errors">
-        @for (error of errors(); track error.kind) {
-            @switch(error.kind){
-              @case('required'){
-                <span>{{ error.message | ddrTranslate }}</span>
-              }
-              @case('minLength'){
-                <span class="me-2">{{'error.message' | ddrTranslate}} {{ error.minLength }}</span>
-              }
-            }
-          }
-      </ng-template>
-    </ddr-input>
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <span class="h3">{{'input.example.7' | ddrTranslate}}</span>
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <span class="h5">{{'without.form.signal' | ddrTranslate}}</span>
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <ddr-input 
-      [label]="'input.label' | ddrTranslate" 
-      type="text" 
-      name="example-7" 
-      [disabled]="true"
-      [(value)]="valueEx7" />
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <span class="h5">{{'with.form.signal' | ddrTranslate}}</span>
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <ddr-input 
-      [label]="'input.label' | ddrTranslate" 
-      type="text" 
-      [formField]="formInputEx7.example7" />
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <span class="h3">{{'input.example.8' | ddrTranslate}}</span>
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <span class="h5">{{'without.form.signal' | ddrTranslate}}</span>
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <ddr-input 
-      [label]="'input.label' | ddrTranslate" 
-      type="text" 
-      name="example-8" 
-      [readonly]="true"
-      [(value)]="valueEx8" />
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <span class="h5">{{'with.form.signal' | ddrTranslate}}</span>
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <ddr-input 
-      [label]="'input.label' | ddrTranslate" 
-      type="text" 
-      [formField]="formInputEx8.example8" />
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <span class="h3">{{'input.example.9' | ddrTranslate}}</span>
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <span class="h5">{{'without.form.signal' | ddrTranslate}}</span>
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <ddr-input 
-      [label]="'input.label' | ddrTranslate" 
-      [placeholder]="'input.placeholder.number' | ddrTranslate" 
-      type="number" 
-      name="example-9"
-      [min]="0" 
-      [max]="10"
-      [(value)]="valueEx9" />
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <p>{{'input.value' | ddrTranslate }}: {{valueEx9}}</p>
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <span class="h5">{{'with.form.signal' | ddrTranslate}}</span>
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <ddr-input 
-      [label]="'input.label' | ddrTranslate" 
-      [placeholder]="'input.placeholder.number' | ddrTranslate" 
-      type="number"
-      [validate]="true"
-      [formField]="formInputEx9.example9">
-
-      <ng-template #templateValid>
-        <span>{{'input.ok' | ddrTranslate}}</span>
-      </ng-template>
-
-      <ng-template #templateErrors let-errors="errors">
-          @for (error of errors(); track error.kind) {
-            @switch(error.kind){
-              @case('min'){
-                <span>{{ error.message | ddrTranslate }} {{ error.min }}</span>
-              }
-              @case('max'){
-                <span class="me-2">{{error.message | ddrTranslate}} {{ error.max }}</span>
-              }
-            }
-          }
-      </ng-template>
-    </ddr-input>
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <p>{{'input.value' | ddrTranslate }}: {{formInputEx9.example9().value()}}</p>
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <span class="h3">{{'input.example.10' | ddrTranslate}}</span>
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <ddr-input 
-      [label]="'input.label' | ddrTranslate" 
-      [placeholder]="'input.placeholder' | ddrTranslate" 
-      [labelBold]="true" 
-      type="text" 
-      name="example-10" />
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <span class="h3">{{'input.example.11' | ddrTranslate}}</span>
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <ddr-input 
-      [label]="'input.label' | ddrTranslate" 
-      [placeholder]="'input.placeholder' | ddrTranslate" 
-      [tooltipText]="'input.tooltip' | ddrTranslate" 
-      type="text" 
-      name="example-11" />
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <span class="h3">{{'input.example.12' | ddrTranslate}}</span>
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <ddr-input 
-      [label]="'input.label' | ddrTranslate" 
-      [placeholder]="'input.placeholder' | ddrTranslate"
-      type="text" 
-      name="example-12"
-      (clickInput)="clickInput($event)"
-      (keyPressed)="keyPressed($event)" />
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <span class="h3">{{'input.example.13' | ddrTranslate}}</span>
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <ddr-input 
-      [label]="'small' | ddrTranslate" 
-      [placeholder]="'input.placeholder' | ddrTranslate" 
-      size="small"
-      type="text" 
-      name="example-13-small" />
-    <ddr-input 
-      [label]="'medium' | ddrTranslate" 
-      [placeholder]="'input.placeholder' | ddrTranslate" 
-      size="medium"
-      type="text" 
-      name="example-13-medium" />
-    <ddr-input 
-      [label]="'large' | ddrTranslate" 
-      [placeholder]="'input.placeholder' | ddrTranslate" 
-      size="large"
-      type="text" 
-      name="example-13-large" />
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <span class="h3">{{'input.example.14' | ddrTranslate}}</span>
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <ddr-button 
-      text="input.focus"
-      (action)="focusInput()" />
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <ddr-input 
-      [label]="'input.label' | ddrTranslate" 
-      [placeholder]="'input.placeholder' | ddrTranslate"
-      [focus]="focusEx14"
-      type="text" 
-      name="example-14"
-      (focusLost)="onFocusLost()" />
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <span class="h3">{{'input.example.15' | ddrTranslate}}</span>
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12 background-test-transparent">
-    <ddr-input 
-      [label]="'input.label' | ddrTranslate" 
-      [placeholder]="'input.placeholder' | ddrTranslate"
-      [transparent]="true"
-      [border]="true"
-      type="text" 
-      name="example-15" />
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <span class="h3">{{'input.example.16' | ddrTranslate}}</span>
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <ddr-input 
-      [label]="'input.label' | ddrTranslate" 
-      [placeholder]="'input.placeholder' | ddrTranslate"
-      type="email"
-      [validate]="true"
-      [formField]="formInputEx16.example16">
-
-      <ng-template #templateValid>
-        <span>{{'input.ok' | ddrTranslate}}</span>
-      </ng-template>
-
-      <ng-template #templateErrors let-errors="errors">
-        @for (error of errors(); track error.kind) {
-            @switch(error.kind){
-              @case('email'){
-                <span>{{ error.message | ddrTranslate }}</span>
-              }
-            }
-          }
-      </ng-template>
-    </ddr-input>
-  </div>
-</div>
-
-  </div>
+  <ng-template #example>
+    <input-showcase-1 />
+  </ng-template>
+
+  <ng-template #example>
+    <input-showcase-2 />
+  </ng-template>
+
+  <ng-template #example>
+    <input-showcase-3 />
+  </ng-template>
+
+  <ng-template #example>
+    <input-showcase-4 />
+  </ng-template>
+
+  <ng-template #example>
+    <input-showcase-5 />
+  </ng-template>
+
+  <ng-template #example>
+    <input-showcase-6 />
+  </ng-template>
+
+  <ng-template #example>
+    <input-showcase-7 />
+  </ng-template>
+
+  <ng-template #example>
+    <input-showcase-8 />
+  </ng-template>
+
+  <ng-template #example>
+    <input-showcase-9 />
+  </ng-template>
+
+  <ng-template #example>
+    <input-showcase-10 />
+  </ng-template>
+
+  <ng-template #example>
+    <input-showcase-11 />
+  </ng-template>
+
+  <ng-template #example>
+    <input-showcase-12 />
+  </ng-template>
+
+  <ng-template #example>
+    <input-showcase-13 />
+  </ng-template>
+
+  <ng-template #example>
+    <input-showcase-14 />
+  </ng-template>
+
+  <ng-template #example>
+    <input-showcase-15 />
+  </ng-template>
+
+  <ng-template #example>
+    <input-showcase-16 />
+  </ng-template>
+
+  <ng-template #example>
+    <input-showcase-17 />
+  </ng-template>
+
+  <ng-template #example>
+    <input-showcase-18 />
+  </ng-template>
+
+  <ng-template #example>
+    <input-showcase-19 />
+  </ng-template>
+
+  <ng-template #example>
+    <input-showcase-20 />
+  </ng-template>
+
+  <ng-template #example>
+    <input-showcase-21 />
+  </ng-template>
+
+  <ng-template #example>
+    <input-showcase-22 />
+  </ng-template>
+
+  <ng-template #example>
+    <input-showcase-23 />
+  </ng-template>
 
 </base-showcase>

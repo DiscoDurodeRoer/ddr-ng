@@ -1,0 +1,25 @@
+<ddr-dropdown 
+    [options]="options()" 
+    [placeholder]="'dropdown.placeholder' | ddrTranslate" 
+    [labelNoResults]="'dropdown.no.items' | ddrTranslate"
+    [labelPlaceholderFilter]="'dropdown.filter.placeholder' | ddrTranslate"
+    [allowDeselect]="true"   
+    [validate]="true" 
+    [compareFn]="compareFn"
+    [formField]="dropdownForm.language">
+
+    <ng-template #templateValid>
+        <span>{{'dropdown.ok' | ddrTranslate}}</span>
+    </ng-template>
+
+    <ng-template #templateErrors let-errors="errors">
+        @for (error of errors(); track error.kind) {
+            <span>{{ error.message | ddrTranslate }}</span>
+        }
+    </ng-template>
+    
+</ddr-dropdown>
+
+<div class="mt-2">
+    <span>{{'dropdown.value' | ddrTranslate}}: {{dropdownForm.language().value() | json}}</span>
+</div>

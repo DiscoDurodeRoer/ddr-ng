@@ -1,0 +1,29 @@
+<form [formGroup]="stepForm">
+    <ddr-steps 
+        [labelNext]="'steps.next' | ddrTranslate" 
+        [labelPrevious]="'steps.previous' | ddrTranslate"
+        formControlName="step">
+
+        <ddr-step 
+            [titleStep]="'step.1' | ddrTranslate" 
+            [canGoNext]="true">
+            <ng-template #stepContent>
+                <p>{{'step.1' | ddrTranslate}}</p>
+            </ng-template>
+        </ddr-step>
+
+        <ddr-step 
+            [titleStep]="'step.2' | ddrTranslate" 
+            [canGoNext]="true">
+            <ng-template #stepContent>
+                <p>{{'step.2' | ddrTranslate}}</p>
+            </ng-template>
+        </ddr-step>
+
+    </ddr-steps>
+
+    <div class="mt-2">
+        <span>{{'step.value' | ddrTranslate}} {{stepForm.value | json}}</span>
+    </div>
+
+</form>

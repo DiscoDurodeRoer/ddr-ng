@@ -1,0 +1,1 @@
+export { DdrDragDropDirective } from './src/ddr-drag-drop.directive';

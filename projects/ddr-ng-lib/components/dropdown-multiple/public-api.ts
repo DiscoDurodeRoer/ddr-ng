@@ -1,0 +1,1 @@
+export { DdrDropdownMultipleComponent } from './src/ddr-dropdown-multiple.component';

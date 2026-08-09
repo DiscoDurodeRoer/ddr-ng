@@ -1,0 +1,11 @@
+<ddr-login 
+    [labelUsername]="'login.component.username' | ddrTranslate"
+    [labelPlaceholderUsername]="'login.component.placeholder.username' | ddrTranslate"
+    [labelPassword]="'login.component.password' | ddrTranslate"
+    [labelPlaceholderPassword]="'login.component.placeholder.password' | ddrTranslate"
+    [labelSubmit]="'login.component.submit' | ddrTranslate"
+    [labelForgotenPassword]="'login.component.forgoten.password' | ddrTranslate"
+    [showForgotPassword]="true"
+    (doLogin)="login($event)"
+    (forgotenPassword)="forgotenPassword()" 
+    (registerUser)="registerUser()" />

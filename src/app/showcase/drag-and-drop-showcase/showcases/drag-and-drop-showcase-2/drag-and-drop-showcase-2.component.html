@@ -1,0 +1,10 @@
+<ddr-button 
+    [text]="(dragDropEnabled() ? 'drag.drop.disabled' : 'drag.drop.active') | ddrTranslate" 
+    (action)="toggleEnabled()" />
+
+<div class="drag-and-drop" 
+    ddrDragDrop 
+    [dragDropEnabled]="dragDropEnabled()" 
+    (dragDropFiles)="loadFiles($event)">
+    {{'drag.drop.message' | ddrTranslate}}
+</div>

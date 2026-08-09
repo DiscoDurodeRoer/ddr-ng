@@ -1,235 +1,68 @@
-<base-showcase component="ddr-steps" type="component" [hasComponentChild]="true" [showPossibleValues]="false" [showTranslations]="true" [showTemplates]="true" [showClasses]="true" [showStyles]="true">
+<base-showcase 
+  component="ddr-steps" 
+  type="component" 
+  [documentation]="documentation" 
+  [hasComponentChild]="true" 
+  [showPossibleValues]="false" 
+  [showTranslations]="true" 
+  [showTemplates]="true" 
+  [showInputsOutputs]="true"
+  [showStyles]="true">
 
   <div description>
     <p>{{'steps.description' | ddrTranslate}}</p>
   </div>
 
-  <div examples>
+  <ng-template #example>
+    <steps-showcase-1 />
+  </ng-template>
 
-<div class="row">
-  <div class="col-12">
-    <span class="h3">{{'steps.example.1' | ddrTranslate}}</span>
-  </div>
-</div>
+  <ng-template #example>
+    <steps-showcase-2 />
+  </ng-template>
 
-<div class="row mt-3">
-  <div class="col-12">
-    <ddr-steps 
-      [labelNext]="'steps.next' | ddrTranslate" 
-      [labelPrevious]="'steps.previous' | ddrTranslate">
+  <ng-template #example>
+    <steps-showcase-3 />
+  </ng-template>
+  
+  <ng-template #example>
+    <steps-showcase-4 />
+  </ng-template>
 
-      <ddr-step [titleStep]="'step.1' | ddrTranslate" [canGoNext]="true">
-        <ng-template #stepContent>
-          <p>{{'step.1' | ddrTranslate}}</p>
-        </ng-template>
-      </ddr-step>
-      <ddr-step [titleStep]="'step.2' | ddrTranslate" [canGoNext]="true">
-        <ng-template #stepContent>
-          <p>{{'step.2' | ddrTranslate}}</p>
-        </ng-template>
-      </ddr-step>
-    </ddr-steps>
-  </div>
-</div>
+  <ng-template #example>
+    <steps-showcase-5 />
+  </ng-template>
+  
+  <ng-template #example>
+    <steps-showcase-6 />
+  </ng-template>
 
-<div class="row">
-  <div class="col-12">
-    <span class="h3">{{'steps.example.2' | ddrTranslate}}</span>    
-  </div>
-</div>
+  <ng-template #example>
+    <steps-showcase-7 />
+  </ng-template>
 
-<div class="row mt-3">
-  <div class="col-12">
-    <ddr-steps 
-      [labelNext]="'steps.next' | ddrTranslate" 
-      [labelPrevious]="'steps.previous' | ddrTranslate">
+  <ng-template #example>
+    <steps-showcase-8 />
+  </ng-template>
 
-      <ddr-step [titleStep]="'step.1' | ddrTranslate" [canGoNext]="!!personExample2.name">
-        <ng-template #stepContent>
-          <ddr-input [label]="'step.name' | ddrTranslate" [(value)]="personExample2.name" />
-        </ng-template>
-      </ddr-step>
-      <ddr-step [titleStep]="'step.2' | ddrTranslate" [canGoNext]="!!personExample2.age">
-        <ng-template #stepContent>
-          <ddr-input [label]="'step.age' | ddrTranslate" [(value)]="personExample2.age" />
-        </ng-template>
-      </ddr-step>
+  <ng-template #example>
+    <steps-showcase-9 />
+  </ng-template>
 
-    </ddr-steps>
-  </div>
-</div>
+  <ng-template #example>
+    <steps-showcase-10 />
+  </ng-template>
 
-<div class="row">
-  <div class="col-12">
-    <span class="h3">{{'steps.example.3' | ddrTranslate}}</span>
-  </div>
-</div>
+  <ng-template #example>
+    <steps-showcase-11 />
+  </ng-template>
 
-<div class="row mt-3">
-  <div class="col-12">
-    <ddr-steps 
-      [labelNext]="'steps.next' | ddrTranslate" 
-      [labelPrevious]="'steps.previous' | ddrTranslate"
-      [canJumpStep]="true">
+  <ng-template #example>
+    <steps-showcase-12 />
+  </ng-template>
 
-      <ddr-step [titleStep]="'step.1' | ddrTranslate" [canGoNext]="true">
-        <ng-template #stepContent>
-          <p>{{'step.1' | ddrTranslate}}</p>
-        </ng-template>
-      </ddr-step>
-      <ddr-step [titleStep]="'step.2' | ddrTranslate" [canGoNext]="true">
-        <ng-template #stepContent>
-          <p>{{'step.2' | ddrTranslate}}</p>
-        </ng-template>
-      </ddr-step>
-    </ddr-steps>
-  </div>
-</div>
-
-<div class="row">
-  <div class="col-12">
-    <span class="h3">{{'steps.example.4' | ddrTranslate}}</span>
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <ddr-steps 
-      [labelNext]="'steps.next' | ddrTranslate" 
-      [labelPrevious]="'steps.previous' | ddrTranslate"
-      [vertical]="true"
-      [canJumpStep]="true">
-
-      <ddr-step [titleStep]="'step.1' | ddrTranslate" [canGoNext]="true">
-        <ng-template #stepContent>
-          <p>{{'step.1' | ddrTranslate}}</p>
-        </ng-template>
-      </ddr-step>
-      <ddr-step [titleStep]="'step.2' | ddrTranslate" [canGoNext]="true">
-        <ng-template #stepContent>
-          <p>{{'step.2' | ddrTranslate}}</p>
-        </ng-template>
-      </ddr-step>
-      <ddr-step [titleStep]="'step.3' | ddrTranslate" [canGoNext]="true">
-        <ng-template #stepContent>
-          <p>{{'step.3' | ddrTranslate}}</p>
-        </ng-template>
-      </ddr-step>
-
-    </ddr-steps>
-  </div>
-</div>
-
-<div class="row">
-  <div class="col-12">
-    <span class="h3">{{'steps.example.5' | ddrTranslate}}</span>
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <ddr-steps 
-      [labelNext]="'steps.next' | ddrTranslate" 
-      [labelPrevious]="'steps.previous' | ddrTranslate"
-      [canJumpStep]="true"
-      (changeStep)="changeStep($event)">
-
-      <ddr-step [titleStep]="'step.1' | ddrTranslate" [canGoNext]="true">
-        <ng-template #stepContent>
-          <p>{{'step.1' | ddrTranslate}}</p>
-        </ng-template>
-      </ddr-step>
-      <ddr-step [titleStep]="'step.2' | ddrTranslate" [canGoNext]="true">
-        <ng-template #stepContent>
-          <p>{{'step.2' | ddrTranslate}}</p>
-        </ng-template>
-      </ddr-step>
-    </ddr-steps>
-  </div>
-</div>
-
-<div class="row">
-  <div class="col-12">
-    <span class="h3">{{'steps.example.6' | ddrTranslate}}</span>
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <ddr-steps 
-      [labelNext]="'steps.next' | ddrTranslate" 
-      [labelPrevious]="'steps.previous' | ddrTranslate"
-      [canJumpStep]="true"
-      (lastStep)="lastStep()">
-
-      <ddr-step [titleStep]="'step.1' | ddrTranslate" [canGoNext]="true">
-        <ng-template #stepContent>
-          <p>{{'step.1' | ddrTranslate}}</p>
-        </ng-template>
-      </ddr-step>
-      <ddr-step [titleStep]="'step.2' | ddrTranslate" [canGoNext]="true">
-        <ng-template #stepContent>
-          <p>{{'step.2' | ddrTranslate}}</p>
-        </ng-template>
-      </ddr-step>
-    </ddr-steps>
-  </div>
-</div>
-
-<div class="row">
-  <div class="col-12">
-    <span class="h3">{{'steps.example.7' | ddrTranslate}}</span>
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <ddr-steps 
-      [showButtons]="false">
-
-      <ddr-step [titleStep]="'step.1' | ddrTranslate" [canGoNext]="true">
-        <ng-template #stepContent>
-          <p>{{'step.1' | ddrTranslate}}</p>
-        </ng-template>
-      </ddr-step>
-      <ddr-step [titleStep]="'step.2' | ddrTranslate" [canGoNext]="true">
-        <ng-template #stepContent>
-          <p>{{'step.2' | ddrTranslate}}</p>
-        </ng-template>
-      </ddr-step>
-
-    </ddr-steps>
-  </div>
-</div>
-
-<div class="row">
-  <div class="col-12">
-    <span class="h3">{{'steps.example.8' | ddrTranslate}}</span>
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <ddr-steps 
-      [labelNext]="'steps.next' | ddrTranslate" 
-      [labelPrevious]="'steps.previous' | ddrTranslate"
-      [validateIcon]="true">
-      
-      <ddr-step [titleStep]="'step.1' | ddrTranslate" [canGoNext]="!!personExample8.name">
-        <ng-template #stepContent>
-          <ddr-input [label]="'step.name' | ddrTranslate" [(value)]="personExample8.name" />
-        </ng-template>
-      </ddr-step>
-      <ddr-step [titleStep]="'step.2' | ddrTranslate" [canGoNext]="!!personExample8.age">
-        <ng-template #stepContent>
-          <ddr-input [label]="'step.age' | ddrTranslate" [(value)]="personExample8.age" />
-        </ng-template>
-      </ddr-step>
-
-    </ddr-steps>
-  </div>
-</div>
-
-  </div>
+  <ng-template #example>
+    <steps-showcase-13 />
+  </ng-template>
 
 </base-showcase>

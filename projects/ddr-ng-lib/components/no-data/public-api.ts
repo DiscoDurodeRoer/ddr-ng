@@ -1,0 +1,1 @@
+export { DdrNoDataComponent } from './src/ddr-no-data.component';

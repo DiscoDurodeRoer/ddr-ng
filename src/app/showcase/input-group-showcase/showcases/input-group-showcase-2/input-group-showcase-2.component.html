@@ -1,0 +1,23 @@
+<ddr-input-group
+    [label]="'input.group.label' | ddrTranslate"
+    [placeholder]="'input.group.placeholder' | ddrTranslate"
+    icon="bi bi-send"
+    [required]="true"
+    [validate]="true"
+    name="input-group-2">
+
+        <ng-template #templateValid>
+            <span>{{'input.ok' | ddrTranslate}}</span>
+        </ng-template>
+
+        <ng-template #templateErrors let-errors="errors">
+            @for (error of errors(); track error.kind) {
+                @switch(error.kind){
+                    @case('required'){
+                        <span>{{ 'input.group.value.required' | ddrTranslate }}</span>
+                    }
+                }
+            }
+        </ng-template>
+
+</ddr-input-group>

@@ -1,0 +1,14 @@
+<form [formGroup]="dropdownForm">
+    <ddr-dropdown 
+        [options]="options()" 
+        [placeholder]="'dropdown.placeholder' | ddrTranslate" 
+        [labelNoResults]="'dropdown.no.items' | ddrTranslate"
+        [labelPlaceholderFilter]="'dropdown.filter.placeholder' | ddrTranslate"
+        [compareFn]="compareFn"
+        formControlName="dropdown"
+        name="dropdown-19" />
+
+    <div class="mt-2">
+        <span>{{'dropdown.value' | ddrTranslate}}: {{dropdownForm.value | json}}</span>
+    </div>
+</form>

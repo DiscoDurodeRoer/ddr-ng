@@ -1,0 +1,23 @@
+<div class="mt-3">
+    <p>{{'small' | ddrTranslate}}</p>
+    <ddr-button-split
+        [actions]="actions()"
+        size="small"
+        (selectAction)="selectAction($event)" />
+</div>
+
+<div class="mt-3">
+    <p>{{'medium' | ddrTranslate}}</p>
+    <ddr-button-split
+        [actions]="actions()"
+        size="medium"
+        (selectAction)="selectAction($event)" />
+</div>
+
+<div class="mt-3">
+    <p>{{'large' | ddrTranslate}}</p>
+    <ddr-button-split
+        [actions]="actions()"
+        size="large"
+        (selectAction)="selectAction($event)" />
+</div>

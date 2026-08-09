@@ -1,0 +1,31 @@
+
+<ddr-button-multiple
+  [buttons]="buttonsModes()"
+  [showSelectedButton]="true"
+  [(value)]="modeClickoutside" />
+
+@switch (modeClickoutside()) {
+  @case ('standard') {
+    <div class="block" 
+        ddrClickOutside 
+        (clickOutside)="clickOutside($event)" >
+      <p>{{'clickoutside.standard.click' | ddrTranslate}}</p>
+    </div>
+  }
+  @case ('delay') {
+    <div class="block" 
+        ddrClickOutside 
+        [clickOutsideDelay]="5000" 
+        (clickOutside)="clickOutside($event)" >
+      <p>{{'clickoutside.delay.click' | ddrTranslate}}</p>
+    </div>
+  }
+  @case ('disactivated') {
+    <div class="block"
+        ddrClickOutside 
+        [clickOutsideEnabled]="false" 
+        (clickOutside)="clickOutside($event)" >
+      <p>{{'clickoutside.disactivated.click' | ddrTranslate}}</p>
+    </div>
+  }
+}

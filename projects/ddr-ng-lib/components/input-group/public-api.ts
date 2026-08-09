@@ -1,0 +1,1 @@
+export { DdrInputGroupComponent } from './src/ddr-input-group.component';

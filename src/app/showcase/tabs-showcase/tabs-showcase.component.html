@@ -1,128 +1,26 @@
-<base-showcase component="ddr-tabs" type="component" [hasComponentChild]="true" [showPossibleValues]="false" [showTemplates]="true" [showStyles]="true">
+<base-showcase 
+  component="ddr-tabs" 
+  type="component" 
+  [documentation]="documentation" 
+  [hasComponentChild]="true" 
+  [showPossibleValues]="false" 
+  [showTemplates]="true" 
+  [showStyles]="true">
 
   <div description>
     <p>{{'tabs.description' | ddrTranslate}}</p>
   </div>
 
-  <div examples>
+  <ng-template #example>
+    <tabs-showcase-1 />
+  </ng-template>
 
-<div class="row mt-3">
-  <div class="col-12">
-    <span class="h3">{{'tabs.example.1' | ddrTranslate}}</span>
-  </div>
-</div>
+  <ng-template #example>
+    <tabs-showcase-2 />
+  </ng-template>
 
-<div class="row mt-3">
-  <div class="col-12">
-    <ddr-tabs>
-      <ddr-tab-item titleTab="tab1">
-        <ng-template #tabContent>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque ullam, facere suscipit id, veniam ad esse dignissimos sed aperiam tempora accusamus! Nam eum velit odit cumque facere voluptate doloribus corrupti.
-        </ng-template>
-      </ddr-tab-item>
-      <ddr-tab-item titleTab="tab2">
-        <ng-template #tabContent>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim maxime soluta omnis saepe nobis necessitatibus mollitia fugit vero id. Ullam earum, in dicta cum nesciunt eligendi ad facere vel aperiam!
-          Eius dignissimos voluptates nulla ipsa autem facilis facere nostrum nam tempora. Veritatis praesentium quod minima quis laboriosam ab similique, ratione, vel adipisci magnam numquam distinctio accusamus, error a excepturi ut!
-          Eaque, iste incidunt molestiae aperiam, nisi at, autem nobis eveniet quo delectus esse fuga recusandae quibusdam nemo! Dolore voluptatem dolores dolorem numquam fuga! Minima accusantium explicabo in porro sit velit.
-        </ng-template>
-      </ddr-tab-item>
-      <ddr-tab-item titleTab="tab3">
-        <ng-template #tabContent>
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Blanditiis, distinctio nostrum. Quisquam minima, deleniti sunt doloremque laborum quibusdam quia sapiente inventore natus voluptate laboriosam nobis ducimus rem quas odio maxime.
-          In quae praesentium quasi, corporis saepe accusantium debitis rem ab commodi nemo fugiat ex eveniet explicabo autem? Corrupti, iure nostrum dolores dicta neque et dignissimos minima accusantium ratione quod error?
-          Itaque enim inventore optio provident veniam dolore iste corporis in ratione harum voluptas, totam impedit, ipsa neque sit asperiores dolorem et dolorum placeat deserunt! Provident voluptatem aliquam deserunt omnis recusandae!
-          Ex perspiciatis delectus nisi, eaque dignissimos nemo iste quasi reprehenderit cum. Dolorum sit veritatis recusandae consectetur a ipsa nostrum laborum fuga in officiis voluptatum nesciunt voluptatibus, est adipisci, quia corrupti?
-          Cumque accusantium fugit sit inventore aut, repellat facilis vitae debitis, ex alias officia, error ducimus adipisci voluptatum. Iste impedit earum eum esse optio excepturi ipsa non adipisci vitae accusamus! Pariatur?
-          Placeat, sint nam doloremque harum cum similique magnam, vero quae dolores temporibus aut aliquid sit excepturi perferendis maiores nemo praesentium rem delectus? Corporis accusamus nemo ullam laborum consequuntur non unde.
-          Ipsum ab quae ut nihil, vero aut, voluptatibus culpa tenetur omnis exercitationem, animi ullam placeat totam distinctio facilis ad voluptas esse. Dolorum maiores suscipit id ad, ab rem? Molestiae, explicabo!
-          Id, quisquam temporibus, commodi quidem odit eius consectetur necessitatibus labore nemo amet quam quae consequuntur unde fuga? Labore dolore alias sint, maxime ducimus consectetur deserunt dolor veritatis facere deleniti necessitatibus.
-          Expedita explicabo soluta beatae ad iste libero debitis, facilis id quae aperiam mollitia quas dicta error, corporis maxime saepe esse consectetur odio delectus officiis reprehenderit? Quisquam soluta laborum consequuntur nisi.
-          Voluptate consectetur quo minima quam at labore error earum, repellat doloribus numquam recusandae necessitatibus nisi unde neque deleniti delectus, distinctio nihil autem sed? In, nisi. Ad similique odio ex corporis.
-        </ng-template>
-      </ddr-tab-item>
-    </ddr-tabs>
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <span class="h3">{{'tabs.example.2' | ddrTranslate}}</span>
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <ddr-tabs>
-      <ddr-tab-item titleTab="tab1" icon="bi bi-house-fill">
-        <ng-template #tabContent>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque ullam, facere suscipit id, veniam ad esse dignissimos sed aperiam tempora accusamus! Nam eum velit odit cumque facere voluptate doloribus corrupti.
-        </ng-template>
-      </ddr-tab-item>
-      <ddr-tab-item titleTab="tab2" icon="bi bi-person-fill">
-        <ng-template #tabContent>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim maxime soluta omnis saepe nobis necessitatibus mollitia fugit vero id. Ullam earum, in dicta cum nesciunt eligendi ad facere vel aperiam!
-          Eius dignissimos voluptates nulla ipsa autem facilis facere nostrum nam tempora. Veritatis praesentium quod minima quis laboriosam ab similique, ratione, vel adipisci magnam numquam distinctio accusamus, error a excepturi ut!
-          Eaque, iste incidunt molestiae aperiam, nisi at, autem nobis eveniet quo delectus esse fuga recusandae quibusdam nemo! Dolore voluptatem dolores dolorem numquam fuga! Minima accusantium explicabo in porro sit velit.
-        </ng-template>
-      </ddr-tab-item>
-        <ddr-tab-item titleTab="tab3" icon="bi bi-bell-fill">
-        <ng-template #tabContent>
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Blanditiis, distinctio nostrum. Quisquam minima, deleniti sunt doloremque laborum quibusdam quia sapiente inventore natus voluptate laboriosam nobis ducimus rem quas odio maxime.
-          In quae praesentium quasi, corporis saepe accusantium debitis rem ab commodi nemo fugiat ex eveniet explicabo autem? Corrupti, iure nostrum dolores dicta neque et dignissimos minima accusantium ratione quod error?
-          Itaque enim inventore optio provident veniam dolore iste corporis in ratione harum voluptas, totam impedit, ipsa neque sit asperiores dolorem et dolorum placeat deserunt! Provident voluptatem aliquam deserunt omnis recusandae!
-          Ex perspiciatis delectus nisi, eaque dignissimos nemo iste quasi reprehenderit cum. Dolorum sit veritatis recusandae consectetur a ipsa nostrum laborum fuga in officiis voluptatum nesciunt voluptatibus, est adipisci, quia corrupti?
-          Cumque accusantium fugit sit inventore aut, repellat facilis vitae debitis, ex alias officia, error ducimus adipisci voluptatum. Iste impedit earum eum esse optio excepturi ipsa non adipisci vitae accusamus! Pariatur?
-          Placeat, sint nam doloremque harum cum similique magnam, vero quae dolores temporibus aut aliquid sit excepturi perferendis maiores nemo praesentium rem delectus? Corporis accusamus nemo ullam laborum consequuntur non unde.
-          Ipsum ab quae ut nihil, vero aut, voluptatibus culpa tenetur omnis exercitationem, animi ullam placeat totam distinctio facilis ad voluptas esse. Dolorum maiores suscipit id ad, ab rem? Molestiae, explicabo!
-          Id, quisquam temporibus, commodi quidem odit eius consectetur necessitatibus labore nemo amet quam quae consequuntur unde fuga? Labore dolore alias sint, maxime ducimus consectetur deserunt dolor veritatis facere deleniti necessitatibus.
-          Expedita explicabo soluta beatae ad iste libero debitis, facilis id quae aperiam mollitia quas dicta error, corporis maxime saepe esse consectetur odio delectus officiis reprehenderit? Quisquam soluta laborum consequuntur nisi.
-          Voluptate consectetur quo minima quam at labore error earum, repellat doloribus numquam recusandae necessitatibus nisi unde neque deleniti delectus, distinctio nihil autem sed? In, nisi. Ad similique odio ex corporis.
-        </ng-template>
-      </ddr-tab-item>
-    </ddr-tabs>
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <span class="h3">{{'tabs.example.3' | ddrTranslate}}</span>
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <ddr-tabs (changeTab)="changeTab($event)">
-      <ddr-tab-item titleTab="tab1">
-        <ng-template #tabContent>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque ullam, facere suscipit id, veniam ad esse dignissimos sed aperiam tempora accusamus! Nam eum velit odit cumque facere voluptate doloribus corrupti.
-        </ng-template>
-      </ddr-tab-item>
-      <ddr-tab-item titleTab="tab2">
-        <ng-template #tabContent>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim maxime soluta omnis saepe nobis necessitatibus mollitia fugit vero id. Ullam earum, in dicta cum nesciunt eligendi ad facere vel aperiam!
-          Eius dignissimos voluptates nulla ipsa autem facilis facere nostrum nam tempora. Veritatis praesentium quod minima quis laboriosam ab similique, ratione, vel adipisci magnam numquam distinctio accusamus, error a excepturi ut!
-          Eaque, iste incidunt molestiae aperiam, nisi at, autem nobis eveniet quo delectus esse fuga recusandae quibusdam nemo! Dolore voluptatem dolores dolorem numquam fuga! Minima accusantium explicabo in porro sit velit.
-        </ng-template>
-      </ddr-tab-item>
-        <ddr-tab-item titleTab="tab3">
-        <ng-template #tabContent>
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Blanditiis, distinctio nostrum. Quisquam minima, deleniti sunt doloremque laborum quibusdam quia sapiente inventore natus voluptate laboriosam nobis ducimus rem quas odio maxime.
-          In quae praesentium quasi, corporis saepe accusantium debitis rem ab commodi nemo fugiat ex eveniet explicabo autem? Corrupti, iure nostrum dolores dicta neque et dignissimos minima accusantium ratione quod error?
-          Itaque enim inventore optio provident veniam dolore iste corporis in ratione harum voluptas, totam impedit, ipsa neque sit asperiores dolorem et dolorum placeat deserunt! Provident voluptatem aliquam deserunt omnis recusandae!
-          Ex perspiciatis delectus nisi, eaque dignissimos nemo iste quasi reprehenderit cum. Dolorum sit veritatis recusandae consectetur a ipsa nostrum laborum fuga in officiis voluptatum nesciunt voluptatibus, est adipisci, quia corrupti?
-          Cumque accusantium fugit sit inventore aut, repellat facilis vitae debitis, ex alias officia, error ducimus adipisci voluptatum. Iste impedit earum eum esse optio excepturi ipsa non adipisci vitae accusamus! Pariatur?
-          Placeat, sint nam doloremque harum cum similique magnam, vero quae dolores temporibus aut aliquid sit excepturi perferendis maiores nemo praesentium rem delectus? Corporis accusamus nemo ullam laborum consequuntur non unde.
-          Ipsum ab quae ut nihil, vero aut, voluptatibus culpa tenetur omnis exercitationem, animi ullam placeat totam distinctio facilis ad voluptas esse. Dolorum maiores suscipit id ad, ab rem? Molestiae, explicabo!
-          Id, quisquam temporibus, commodi quidem odit eius consectetur necessitatibus labore nemo amet quam quae consequuntur unde fuga? Labore dolore alias sint, maxime ducimus consectetur deserunt dolor veritatis facere deleniti necessitatibus.
-          Expedita explicabo soluta beatae ad iste libero debitis, facilis id quae aperiam mollitia quas dicta error, corporis maxime saepe esse consectetur odio delectus officiis reprehenderit? Quisquam soluta laborum consequuntur nisi.
-          Voluptate consectetur quo minima quam at labore error earum, repellat doloribus numquam recusandae necessitatibus nisi unde neque deleniti delectus, distinctio nihil autem sed? In, nisi. Ad similique odio ex corporis.
-        </ng-template>
-      </ddr-tab-item>
-    </ddr-tabs>
-  </div>
-</div>
-
-  </div>
+  <ng-template #example>
+    <tabs-showcase-3 />
+  </ng-template>
 
 </base-showcase>

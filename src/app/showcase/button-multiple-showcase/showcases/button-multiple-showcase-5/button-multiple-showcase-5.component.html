@@ -1,0 +1,23 @@
+<div class="mt-3">
+    <p>{{'small' | ddrTranslate}}</p>
+    <ddr-button-multiple
+        [buttons]="buttons"
+        size="small"
+        (action)="clickButton($event)" />
+</div>
+
+<div class="mt-3">
+    <p>{{'medium' | ddrTranslate}}</p>
+    <ddr-button-multiple
+        [buttons]="buttons"
+        size="medium"
+        (action)="clickButton($event)" />
+</div>
+
+<div class="mt-3">
+    <p>{{'large' | ddrTranslate}}</p>
+    <ddr-button-multiple
+        [buttons]="buttons"
+        size="large"
+        (action)="clickButton($event)" />
+</div>

@@ -1,121 +1,56 @@
-<base-showcase component="ddr-input-file" type="component"  [showClasses]="true" [showStyles]="true">
+<base-showcase 
+    component="ddr-input-file" 
+    type="component" 
+    [documentation]="documentation" 
+    [showInputsOutputs]="true"
+    [showStyles]="true">
 
     <div description>
         <p>{{'input.file.description' | ddrTranslate}}</p>
     </div>
 
-    <div examples>
+    <ng-template #example>
+        <input-file-showcase-1 />
+    </ng-template>
 
-<div class="row">
-    <div class="col-12">
-        <span class="h3">{{'input.file.example.1' | ddrTranslate}}</span>
-    </div>
-</div>
+    <ng-template #example>
+        <input-file-showcase-2 />
+    </ng-template>
 
-<div class="row mt-3">
-    <div class="col-12">
-        <ddr-input-file 
-            [label]="'input.file' | ddrTranslate"
-            name="example-1"
-            (fileSelected)="fileSelected($event)" />
-    </div>
-</div>
+    <ng-template #example>
+        <input-file-showcase-3 />
+    </ng-template>
 
-<div class="row mt-3">
-    <div class="col-12">
-        <span class="h3">{{'input.file.example.2' | ddrTranslate}}</span>
-    </div>
-</div>
+    <ng-template #example>
+        <input-file-showcase-4 />
+    </ng-template>
 
-<div class="row mt-3">
-    <div class="col-12">
-        <ddr-input-file 
-            [label]="'input.file' | ddrTranslate"
-            name="example-2"
-            [multiple]="true"
-            (filesSelected)="filesSelected($event)" />
-    </div>
-</div>
+    <ng-template #example>
+        <input-file-showcase-5 />
+    </ng-template>
 
-<div class="row mt-3">
-    <div class="col-12">
-        <span class="h3">{{'input.file.example.3' | ddrTranslate}}</span>
-    </div>
-</div>
+    <ng-template #example>
+        <input-file-showcase-6 />
+    </ng-template>
+  
+    <ng-template #example>
+        <input-file-showcase-7 />
+    </ng-template>
+      
+    <ng-template #example>
+        <input-file-showcase-8 />
+    </ng-template>
 
-<div class="row mt-3">
-    <div class="col-12">
-        <ddr-input-file 
-            [label]="'input.file' | ddrTranslate"
-            name="example-3"
-            accept=".pdf, .txt"
-            (fileSelected)="fileSelected($event)" />
-    </div>
-</div>
+    <ng-template #example>
+        <input-file-showcase-9 />
+    </ng-template>
 
-<div class="row mt-3">
-    <div class="col-12">
-        <span class="h3">{{'input.file.example.4' | ddrTranslate}}</span>
-    </div>
-</div>
+    <ng-template #example>
+        <input-file-showcase-10 />
+    </ng-template>
 
-<div class="row mt-3">
-    <div class="col-12">
-        <ddr-input-file 
-            [label]="'input.file' | ddrTranslate"
-            name="example-4"
-            [disabled]="true"
-            (fileSelected)="fileSelected($event)" />
-    </div>
-</div>
+    <ng-template #example>
+        <input-file-showcase-11 />
+    </ng-template>
 
-<div class="row mt-3">
-    <div class="col-12">
-        <span class="h3">{{'input.file.example.5' | ddrTranslate}}</span>
-    </div>
-</div>
-
-<div class="row mt-3">
-    <div class="col-12">
-        <ddr-input-file 
-            [label]="'input.file' | ddrTranslate"
-            name="example-5"
-            [inline]="true"
-            (fileSelected)="fileSelected($event)" />
-    </div>
-</div>
-
-<div class="row mt-3">
-    <div class="col-12">
-        <span class="h3">{{'input.file.example.6' | ddrTranslate}}</span>
-    </div>
-</div>
-
-<div class="row mt-3">
-    <div class="col-12">
-        <ddr-input-file 
-            [label]="'input.file' | ddrTranslate"
-            name="example-6"
-            [tooltipText]="'input.file.tooltip' | ddrTranslate"
-            (fileSelected)="fileSelected($event)" />
-    </div>
-</div>
-
-<div class="row mt-3">
-    <div class="col-12">
-        <span class="h3">{{'input.file.example.7' | ddrTranslate}}</span>
-    </div>
-</div>
-
-<div class="row mt-3">
-    <div class="col-12">
-        <ddr-input-file 
-            [label]="'input.file' | ddrTranslate"
-            name="example-7"
-            [labelBold]="true"
-            (fileSelected)="fileSelected($event)" />
-    </div>
-</div>
-
-    </div>
 </base-showcase>

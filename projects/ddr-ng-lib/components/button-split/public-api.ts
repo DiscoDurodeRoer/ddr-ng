@@ -1,0 +1,1 @@
+export { DdrButtonSplitComponent } from './src/ddr-button-split.component';

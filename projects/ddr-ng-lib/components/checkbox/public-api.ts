@@ -1,0 +1,1 @@
+export { DdrCheckboxComponent } from './src/ddr-checkbox.component';

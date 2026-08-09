@@ -1,23 +1,22 @@
-<base-showcase component="ddrTranslatePipe" type="pipe" [showInputs]="false" [showOutputs]="false">
+<base-showcase 
+  component="ddr-translate-pipe" 
+  type="pipe" 
+  [documentation]="documentation" 
+  [showParams]="true" 
+  [showInputs]="false" 
+  [showPossibleValues]="false"
+  [showOutputs]="false">
 
   <div description>
     <p>{{'translate.pipe.description' | ddrTranslate}}</p>
   </div>
 
-  <div examples>
+  <ng-template #example>
+    <translate-pipe-showcase-1 />
+  </ng-template>
 
-<div class="row">
-  <div class="col-12">
-    <span class="h3">{{'translate.pipe.example.1' | ddrTranslate}}</span>
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <p>{{'translate.pipe.example' | ddrTranslate}}</p>
-  </div>
-</div>
-
-  </div>
+  <ng-template #example>
+    <translate-pipe-showcase-2 />
+  </ng-template>
 
 </base-showcase>

@@ -1,0 +1,1 @@
+export { DdrSafePipe } from './src/ddr-safe.pipe';

@@ -1,0 +1,8 @@
+<ddr-checkbox-binary 
+    [label]="'checkbox.binary.label' | ddrTranslate"
+    [formField]="checkboxForm.checkbox" />
+
+<div class="mt-2">
+    <span>{{'checkbox.binary.value' | ddrTranslate}}: {{checkboxForm.checkbox().value()}}</span>
+</div>
+    

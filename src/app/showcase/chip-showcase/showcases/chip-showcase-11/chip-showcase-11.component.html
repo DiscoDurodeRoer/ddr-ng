@@ -1,0 +1,12 @@
+<p class="mt-2">{{'chip.enter' | ddrTranslate}}</p>
+
+<form [formGroup]="chipForm">
+    <ddr-chip 
+        [label]="'chip.example' | ddrTranslate"
+        name="chip-11"
+        formControlName="items" />
+
+    <div class="mt-2">
+        <span>{{'chip.elements' | ddrTranslate}}: {{chipForm.value | json}}</span>
+    </div>
+</form>

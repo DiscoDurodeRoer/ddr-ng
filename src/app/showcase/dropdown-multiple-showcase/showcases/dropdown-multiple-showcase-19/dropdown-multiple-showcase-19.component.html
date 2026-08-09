@@ -1,0 +1,10 @@
+<ddr-dropdown-multiple 
+    [options]="options()" 
+    [placeholder]="'dropdown.multiple.placeholder' | ddrTranslate" 
+    [labelNoResults]="'dropdown.multiple.no.items' | ddrTranslate"
+    [labelPlaceholderFilter]="'dropdown.multiple.filter.placeholder' | ddrTranslate"
+    [formField]="dropdownMultipleForm.languages"  />
+
+<div class="mt-2">
+    <span>{{'dropdown.multiple.value' | ddrTranslate}}: {{dropdownMultipleForm.languages().value() | json}}</span>
+</div>

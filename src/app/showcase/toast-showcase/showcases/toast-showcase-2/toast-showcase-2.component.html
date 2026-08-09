@@ -1,0 +1,11 @@
+
+<ddr-button-multiple
+    [buttons]="buttons()"
+    [showSelectedButton]="true"
+    [(value)]="buttonSelected" />
+
+<div class="mt-2">
+    <ddr-button
+        [text]="'toast.show.toast' | ddrTranslate"
+        (action)="showToast()" />
+</div>

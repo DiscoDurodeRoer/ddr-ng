@@ -1,0 +1,25 @@
+<ddr-input 
+    [label]="'input.label' | ddrTranslate" 
+    [placeholder]="'input.placeholder.email' | ddrTranslate"
+    [validate]="true"
+    [required]="true"
+    [pattern]="pattern()"
+    name="input-16">
+
+    <ng-template #templateValid>
+        <span>{{'input.ok' | ddrTranslate}}</span>
+    </ng-template>
+
+    <ng-template #templateErrors let-errors="errors">
+        @for (error of errors(); track error.kind) {
+            @switch(error.kind){
+                @case('required'){
+                    <span>{{ 'input.value.required' | ddrTranslate }}</span>
+                }
+                @case('pattern'){
+                    <span>{{ 'input.pattern' | ddrTranslate }}</span>
+                }
+            }
+        }
+    </ng-template>
+</ddr-input>

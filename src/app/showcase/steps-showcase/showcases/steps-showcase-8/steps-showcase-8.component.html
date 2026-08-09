@@ -1,0 +1,28 @@
+<ddr-steps 
+    [labelNext]="'steps.next' | ddrTranslate" 
+    [labelPrevious]="'steps.previous' | ddrTranslate"
+    [validateIcon]="true">
+    
+    <ddr-step 
+        [titleStep]="'step.1' | ddrTranslate" 
+        [canGoNext]="!!person().name">
+        <ng-template #stepContent>
+            <ddr-input 
+                [label]="'step.name' | ddrTranslate" 
+                name="input-8"
+                [(value)]="person().name" />
+        </ng-template>
+    </ddr-step>
+
+    <ddr-step 
+        [titleStep]="'step.2' | ddrTranslate" 
+        [canGoNext]="!!person().age">
+        <ng-template #stepContent>
+            <ddr-input-number 
+                [label]="'step.age' | ddrTranslate" 
+                name="input-number-8"
+                [(value)]="person().age" />
+        </ng-template>
+    </ddr-step>
+
+</ddr-steps>

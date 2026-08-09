@@ -1,0 +1,28 @@
+<ddr-input-group
+    [label]="'input.group.label' | ddrTranslate"
+    [placeholder]="'input.group.placeholder' | ddrTranslate"
+    icon="bi bi-send"
+    [validate]="true"
+    [formField]="inputForm.text">
+
+        <ng-template #templateValid>
+            <span>{{'input.ok' | ddrTranslate}}</span>
+        </ng-template>
+
+        <ng-template #templateErrors let-errors="errors">
+            @for (error of errors(); track error.kind) {
+                @switch(error.kind){
+                    @case('minLength'){
+                        <span>{{ error.message | ddrTranslate }} {{error.minLength}}</span>
+                    }
+                    @case('maxLength'){
+                        <span>{{ error.message | ddrTranslate }} {{error.maxLength}}</span>
+                    }
+                    @default {
+                        <span>{{ error.message | ddrTranslate }}</span>
+                    }
+                }
+            }
+        </ng-template>
+
+</ddr-input-group>

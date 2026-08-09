@@ -1,0 +1,17 @@
+<ddr-input
+    [label]="'input.label' | ddrTranslate" 
+    [placeholder]="'input.placeholder.email' | ddrTranslate"
+    [formField]="inputForm.text"
+    [validate]="true">
+
+    <ng-template #templateValid>
+        <span>{{'input.ok' | ddrTranslate}}</span>
+    </ng-template>
+
+    <ng-template #templateErrors let-errors="errors">
+        @for (error of errors(); track error.kind) {
+            <span class="me-2">{{ error.message | ddrTranslate}}</span>
+        }
+    </ng-template>
+
+</ddr-input>

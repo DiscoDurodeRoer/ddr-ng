@@ -1,10 +1,9 @@
-import { Injectable } from '@angular/core';
+import { Service } from '@angular/core';
 import { environment } from '../../environments/environment';
-import { DdrAction, DdrSelectItem, DdrTreeNode } from 'ddr-ng';
+import { DdrTreeNode } from 'ddr-ng/components/tree';
+import { DdrAction, DdrSelectItem } from 'ddr-ng/models';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Service()
 export class DataService {
 
   async getChangelog() {

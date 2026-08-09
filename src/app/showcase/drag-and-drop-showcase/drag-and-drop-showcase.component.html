@@ -1,34 +1,19 @@
-<base-showcase component="ddrDragDrop" type="directive"  [showCodeCSS]="true" [showPossibleValues]="false">
+<base-showcase 
+  component="ddr-drag-drop-directive" 
+  type="directive" 
+  [documentation]="documentation" 
+  [showPossibleValues]="false">
 
   <div description>
     <p>{{'drag.drop.description' | ddrTranslate}}</p>
   </div>
 
-  <div examples>
+  <ng-template #example>
+    <drag-and-drop-showcase-1 />
+  </ng-template>
 
-<div class="row">
-  <div class="col-12">
-    <span class="h3">{{'drag.drop.example.1' | ddrTranslate}}</span>
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-
-    <ddr-button 
-      [text]="dragDropEnabled ? 'drag.drop.disabled' : 'drag.drop.active'" 
-      (action)="toggleEnabled()" />
-
-    <div class="drag-and-drop" 
-      ddrDragDrop 
-      [dragDropEnabled]="dragDropEnabled" 
-      (dragDropFiles)="loadFiles($event)">
-      {{'drag.drop.message' | ddrTranslate}}
-    </div>
-  </div>
-</div>
-
-  </div>
-
+  <ng-template #example>
+    <drag-and-drop-showcase-2 />
+  </ng-template>
 
 </base-showcase>

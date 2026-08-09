@@ -1,0 +1,14 @@
+<form [formGroup]="dropdownMultipleForm">
+    <ddr-dropdown-multiple 
+        [options]="options()" 
+        [placeholder]="'dropdown.multiple.placeholder' | ddrTranslate" 
+        [labelNoResults]="'dropdown.multiple.no.items' | ddrTranslate"
+        [labelPlaceholderFilter]="'dropdown.multiple.filter.placeholder' | ddrTranslate"
+        [compareFn]="compareFn"
+        formControlName="dropdownMultiple"
+        name="dropdown-multiple-17"  />
+
+    <div class="mt-2">
+        <span>{{'dropdown.multiple.value' | ddrTranslate}}: {{dropdownMultipleForm.value | json}}</span>
+    </div>
+</form>

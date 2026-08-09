@@ -1,0 +1,8 @@
+ <ddr-tree 
+    [nodes]="nodes()" >
+
+        <ng-template #templateNode let-item="item">
+            <div class="mt-2">{{'tree.value' | ddrTranslate}}: {{ item.value }}</div>
+        </ng-template>
+
+</ddr-tree>

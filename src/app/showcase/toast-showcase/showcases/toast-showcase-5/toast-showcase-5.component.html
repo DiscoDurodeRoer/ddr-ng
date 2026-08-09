@@ -1,0 +1,9 @@
+<ddr-input-number
+    [label]="'toast.maxtoasts' | ddrTranslate"
+    [min]="1"
+    name="input-5"
+    [(value)]="maxToasts" />
+
+<ddr-button
+    [text]="'toast.show.toast' | ddrTranslate"
+    (action)="showToast()" />

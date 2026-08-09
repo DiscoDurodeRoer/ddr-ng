@@ -1,0 +1,1 @@
+export { DdrLoopNumberPipe } from './src/ddr-loop-number.pipe';

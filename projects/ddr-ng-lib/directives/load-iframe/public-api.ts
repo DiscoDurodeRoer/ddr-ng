@@ -1,0 +1,1 @@
+export { DdrLoadIframeDirective } from './src/ddr-load-iframe.directive';

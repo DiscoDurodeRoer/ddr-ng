@@ -1,0 +1,1 @@
+export { DdrBadgeNotificationDirective } from './src/directives/ddr-badge-notification.directive';

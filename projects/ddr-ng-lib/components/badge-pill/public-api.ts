@@ -1,0 +1,1 @@
+export { DdrBadgePillComponent } from './src/ddr-badge-pill.component';

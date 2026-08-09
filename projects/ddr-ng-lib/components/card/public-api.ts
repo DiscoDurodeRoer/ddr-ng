@@ -1,0 +1,1 @@
+export { DdrCardComponent } from './src/ddr-card.component';

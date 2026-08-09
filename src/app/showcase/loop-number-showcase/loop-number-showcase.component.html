@@ -1,110 +1,38 @@
-<base-showcase component="ddr-loop-number" type="pipe"  [showInputs]="false" [showOutputs]="false" [showClasses]="true">
+<base-showcase 
+  component="ddr-loop-number-pipe" 
+  type="pipe" 
+  [documentation]="documentation" 
+  [showInputs]="false" 
+  [showParams]="true" 
+  [showPossibleValues]="false"
+  [showOutputs]="false">
 
   <div description>
     <p>{{'loop.number.description' | ddrTranslate}}</p>
   </div>
 
-<div examples>
+  <ng-template #example>
+    <loop-number-showcase-1 />
+  </ng-template>
 
-<div class="row">
-  <div class="col-12">
-    <span class="h3">{{'loop.number.example.1' | ddrTranslate}}</span>
-  </div>
-</div>
+  <ng-template #example>
+    <loop-number-showcase-2 />
+  </ng-template>
 
-<div class="row mt-3">
-  <div class="col-12">
-    @for (i of 10 | ddrLoopNumber; track i) {
-      <div>
-        <span>{{i}}</span>
-      </div>
-    }
-  </div>
-</div>
+  <ng-template #example>
+    <loop-number-showcase-3 />
+  </ng-template>
 
-<div class="row mt-3">
-  <div class="col-12">
-    <span class="h3">{{'loop.number.example.2' | ddrTranslate}}</span>
-  </div>
-</div>
+  <ng-template #example>
+    <loop-number-showcase-4 />
+  </ng-template>
 
-<div class="row mt-3">
-  <div class="col-12">
-    @for (i of 5 | ddrLoopNumber: {start: -5} ; track i) {
-      <div>
-        <span>{{i}}</span>
-      </div>
-    }
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <span class="h3">{{'loop.number.example.3' | ddrTranslate}}</span>
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <table class="table table-bordered">
-      @for (i of 10 | ddrLoopNumber; track i) {
-        <tr>
-          @for (j of 10 | ddrLoopNumber; track j) {
-            <td> {{i}} {{j}}</td>
-          }
-        </tr>
-      }
-    </table>
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <span class="h3">{{'loop.number.example.4' | ddrTranslate}}</span>
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    @for (i of 10 | ddrLoopNumber:{reverse: true} ; track i) {
-      <div>
-        <span>{{i}}</span>
-      </div>
-    }
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <span class="h3">{{'loop.number.example.5' | ddrTranslate}}</span>
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    @for (i of 10 | ddrLoopNumber:{step: 2} ; track i) {
-      <div>
-        <span>{{i}}</span>
-      </div>
-    }
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <span class="h3">{{'loop.number.example.6' | ddrTranslate}}</span>
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    @for (i of 10 | ddrLoopNumber:{includeLast: true} ; track i) {
-      <div>
-        <span>{{i}}</span>
-      </div>
-    }
-  </div>
-</div>
-</div>
+  <ng-template #example>
+    <loop-number-showcase-5 />
+  </ng-template>
+  
+  <ng-template #example>
+    <loop-number-showcase-6 />
+  </ng-template>
 
 </base-showcase>

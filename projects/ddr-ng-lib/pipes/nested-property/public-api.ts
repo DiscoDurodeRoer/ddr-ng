@@ -1,0 +1,1 @@
+export { DdrNestedPropertyPipe } from './src/ddr-nested-property.pipe';

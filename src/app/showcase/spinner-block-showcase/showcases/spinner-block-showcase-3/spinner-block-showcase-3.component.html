@@ -1,0 +1,26 @@
+<ddr-button 
+    [text]="'spinner.block.data.load' | ddrTranslate" 
+    (action)="onLoadDataBlock1()" />
+<ddr-button 
+    [text]="'spinner.block.data.load' | ddrTranslate" 
+    (action)="onLoadDataBlock2()" />
+
+<ddr-card [showHeader]="false">
+    <div card-content 
+        ddrSpinnerBlock 
+        [spinnerShow]="!loadDataBlock1()">
+            @if(loadDataBlock1()){
+                <span>{{'spinner.block.data.loaded' | ddrTranslate}}</span>
+            }
+    </div>
+</ddr-card>
+
+<ddr-card [showHeader]="false">
+    <div card-content 
+        ddrSpinnerBlock 
+        [spinnerShow]="!loadDataBlock2()">
+            @if(loadDataBlock2()){
+                <span>{{'spinner.block.data.loaded' | ddrTranslate}}</span>
+            }
+    </div>
+</ddr-card>

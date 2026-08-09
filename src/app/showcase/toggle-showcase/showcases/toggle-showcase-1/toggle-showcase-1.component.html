@@ -1,0 +1,7 @@
+<ddr-toggle 
+    [(value)]="value" 
+    (toggled)="toggleValue($event)" />
+
+<div class="mt-2">
+    <span>{{'toggle.value' | ddrTranslate}}: {{value()}}</span>
+</div>

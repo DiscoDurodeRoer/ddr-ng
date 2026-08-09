@@ -1,6 +1,6 @@
 {
   "name": "ddr-ng",
-  "version": "21.0.2",
+  "version": "22.0.0",
   "description": "Angular component library by Disco Duro de Roer",
   "author": {
     "name": "Fernando Ureña",
@@ -15,11 +15,11 @@
     }
   ],
   "peerDependencies": {
-    "@angular/animations": "^21.0.0",
-    "@angular/cdk": "^21.0.0",
-    "@angular/common": "^21.0.0",
-    "@angular/core": "^21.0.0",
-    "@angular/forms": "^21.0.0"
+    "@angular/animations": "^22.0.0",
+    "@angular/cdk": "^22.0.0",
+    "@angular/common": "^22.0.0",
+    "@angular/core": "^22.0.0",
+    "@angular/forms": "^22.0.0"
   },
   "dependencies": {
     "bootstrap": "^5.3.2",
@@ -28,7 +28,6 @@
     "ngx-pagination": "^6.0.3",
     "tslib": "^2.3.0"
   },
-  "devDependencies": {},
   "repository": {
     "type": "git",
     "url": "https://github.com/DiscoDurodeRoer/ddr-ng"

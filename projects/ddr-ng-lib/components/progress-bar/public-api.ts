@@ -1,0 +1,1 @@
+export { DdrProgressBarComponent } from './src/ddr-progress-bar.component';

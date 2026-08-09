@@ -1,0 +1,9 @@
+<ddr-input-group
+    [label]="'input.group.label' | ddrTranslate"
+    [placeholder]="'input.group.placeholder' | ddrTranslate"
+    icon="bi bi-send"
+    [formField]="inputForm.text" />
+
+<div class="mt-2">
+    <span>{{'input.group.value' | ddrTranslate}}: {{inputForm.text().value() | json}}</span>
+</div>

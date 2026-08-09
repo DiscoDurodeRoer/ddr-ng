@@ -1,0 +1,14 @@
+<ddr-progress-bar 
+    [value]="value()"
+    [label]="value() + '%'"
+    [height]="200"
+    [striped]="true" />
+
+<div class="mt-2">
+    <ddr-button
+        [text]="'progressbar.increase' | ddrTranslate"
+        (action)="increase()" />
+    <ddr-button
+        [text]="'progressbar.decrease' | ddrTranslate"
+        (action)="decrease()" />
+</div>

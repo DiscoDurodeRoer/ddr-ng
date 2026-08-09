@@ -1,0 +1,28 @@
+<ddr-input
+      [label]="'input.label' | ddrTranslate" 
+      [placeholder]="'input.placeholder' | ddrTranslate"
+      [formField]="inputForm.text"
+      [tooltipText]="'input.tooltip.password' | ddrTranslate"
+      [validate]="true">
+
+    <ng-template #templateValid>
+        <span>{{'input.ok' | ddrTranslate}}</span>
+    </ng-template>
+
+    <ng-template #templateErrors let-errors="errors">
+    @for (error of errors(); track error.kind) {
+        @switch(error.kind){
+            @case('minLength'){
+                <span class="me-2">{{ error.message | ddrTranslate }}: {{ error.minLength }}</span>
+            }
+            @case('maxLength'){
+                <span class="me-2">{{ error.message | ddrTranslate }}: {{ error.maxLength }}</span>
+            }
+            @default {
+                <span class="me-2">{{ error.message | ddrTranslate}}</span>
+            }
+        }
+        }
+    </ng-template>
+
+</ddr-input>

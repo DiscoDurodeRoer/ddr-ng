@@ -1,56 +1,20 @@
-<base-showcase component="ddrClipboard" type="directive"  [showOutputs]="false" [showPossibleValues]="false">
+<base-showcase 
+  component="ddr-clipboard-directive" 
+  type="directive" 
+  [documentation]="documentation" 
+  [showOutputs]="false" 
+  [showPossibleValues]="false">
 
   <div description>
     <p>{{'clipboard.description' | ddrTranslate}}</p>
   </div>
 
-  <div examples>
+  <ng-template #example>
+    <clipboard-showcase-1 />
+  </ng-template>
 
-<div class="row">
-  <div class="col-12">
-    <span class="h3">{{'clipboard.example.1' | ddrTranslate}}</span>
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <ddr-textarea 
-      [readonly]="true" 
-      name="textarea-1"
-      [(value)]="valueEx1" />
-    
-    <ddr-button 
-      text="clipboard.copy"  
-      ddrClipboard 
-      [clipboard]="valueEx1" 
-      (action)="copyText()" />
-    
-    <ddr-textarea 
-      name="textarea-2" />
-  </div>
-</div>
-
-
-<div class="row">
-  <div class="col-12">
-    <span class="h3">{{'clipboard.example.2' | ddrTranslate}}</span>
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <ddr-input-group
-      type="text"
-      icon="bi bi-copy"
-      name="example-1"
-      ddrClipboard 
-      [clipboard]="valueEx2"
-      clipboardTrigger="ddr-button"
-      [(value)]="valueEx2"
-      (action)="copyText()" />
-  </div>
-</div>
-
-  </div>
+  <ng-template #example>
+    <clipboard-showcase-2 />
+  </ng-template>
 
 </base-showcase>

@@ -1,446 +1,82 @@
-<base-showcase component="ddr-input-group" type="component" [showCodeCSS]="true" [showTemplates]="true" [showStyles]="true">
+<base-showcase 
+  component="ddr-input-group" 
+  type="component" 
+  [documentation]="documentation" 
+  [showTemplates]="true" 
+  [showInputsOutputs]="true"
+  [showStyles]="true">
 
   <div description>
     <p>{{'input.group.description' | ddrTranslate}}</p>
   </div>
 
-  <div examples>
+  <ng-template #example>
+    <input-group-showcase-1 />
+  </ng-template>
 
-<div class="row">
-  <div class="col-12">
-      <span class="h3">{{'input.group.example.1' | ddrTranslate}}</span>
-  </div>
-</div>
+  <ng-template #example>
+    <input-group-showcase-2 />
+  </ng-template>
 
-<div class="row mt-3">
-  <div class="col-12">
-    <span class="h5">{{'without.form.signal' | ddrTranslate}}</span>
-  </div>
-</div>
+  <ng-template #example>
+    <input-group-showcase-3 />
+  </ng-template>
 
-<div class="row mt-3">
-  <div class="col-12">
-    <ddr-input-group
-      [label]="'input.group.label' | ddrTranslate"
-      [placeholder]="'input.group.placeholder' | ddrTranslate"
-      type="text"
-      icon="bi bi-send"
-      name="example-1"
-      [(value)]="value"
-      (action)="clickButton($event)" />
-  </div>
-</div>
+  <ng-template #example>
+    <input-group-showcase-4 />
+  </ng-template>
 
-<div class="row mt-3">
-  <div class="col-12">
-    <span>{{'input.group.value' | ddrTranslate}}: {{value}}</span>
-  </div>
-</div>
+  <ng-template #example>
+    <input-group-showcase-5 />
+  </ng-template>
 
-<div class="row mt-3">
-  <div class="col-12">
-    <span class="h5">{{'with.form.signal' | ddrTranslate}}</span>
-  </div>
-</div>
+  <ng-template #example>
+    <input-group-showcase-6 />
+  </ng-template>
 
-<div class="row mt-3">
-  <div class="col-12">
-    <ddr-input-group
-      [label]="'input.group.label' | ddrTranslate"
-      [placeholder]="'input.group.placeholder' | ddrTranslate"
-      type="text"
-      icon="bi bi-send"
-      [formField]="formInputEx1.example1"
-      (action)="clickButton($event)" />
-  </div>
-</div>
+  <ng-template #example>
+    <input-group-showcase-7 />
+  </ng-template>
 
-<div class="row mt-3">
-  <div class="col-12">
-    <span>{{'input.group.value' | ddrTranslate}}: {{formInputEx1.example1().value()}}</span>
-  </div>
-</div>
+  <ng-template #example>
+    <input-group-showcase-8 />
+  </ng-template>
 
-<div class="row mt-3">
-  <div class="col-12">
-    <span class="h3">{{'input.group.example.2' | ddrTranslate}}</span>
-  </div>
-</div>
+  <ng-template #example>
+    <input-group-showcase-9 />
+  </ng-template>
 
-<div class="row mt-3">
-  <div class="col-12">
-    <span class="h5">{{'without.form.signal' | ddrTranslate}}</span>
-  </div>
-</div>
+  <ng-template #example>
+    <input-group-showcase-10 />
+  </ng-template>
+
+  <ng-template #example>
+    <input-group-showcase-11 />
+  </ng-template>
+
+  <ng-template #example>
+    <input-group-showcase-12 />
+  </ng-template>
   
-<div class="row mt-3">
-  <div class="col-12">
-    <ddr-input-group
-      [label]="'input.group.label' | ddrTranslate"
-      [placeholder]="'input.group.placeholder' | ddrTranslate"
-      type="text"
-      icon="bi bi-send"
-      [required]="true"
-      [validate]="true"
-      [minLength]="5"
-      name="example-2"
-      (action)="clickButton($event)">
+  <ng-template #example>
+    <input-group-showcase-13 />
+  </ng-template>
 
-        <ng-template #templateValid>
-            <span>{{'input.group.ok' | ddrTranslate}}</span>
-        </ng-template>
+  <ng-template #example>
+    <input-group-showcase-14 />
+  </ng-template>
 
-        <ng-template #templateErrors let-errors="errors">
-          @if(errors?.required){
-            <span>{{'input.group.value.required' | ddrTranslate}}</span>
-          }
-          @if(errors?.minlength){
-            <span class="me-2">{{'input.group.minlength.required' | ddrTranslate}} {{ errors?.minlength.requiredLength }}</span>
-            <span>{{'input.group.minlength.actual' | ddrTranslate}} {{ errors?.minlength?.actualLength }}</span>
-          }
-        </ng-template>
+  <ng-template #example>
+    <input-group-showcase-15 />
+  </ng-template>
+  
+  <ng-template #example>
+    <input-group-showcase-16 />
+  </ng-template>
 
-    </ddr-input-group>
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <span class="h5">{{'with.form.signal' | ddrTranslate}}</span>
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <ddr-input-group
-      [label]="'input.group.label' | ddrTranslate"
-      [placeholder]="'input.group.placeholder' | ddrTranslate"
-      type="text"
-      icon="bi bi-send"
-      [validate]="true"
-      [formField]="formInputEx2.example2"
-      (action)="clickButton($event)">
-
-        <ng-template #templateValid>
-            <span>{{'input.group.ok' | ddrTranslate}}</span>
-        </ng-template>
-
-        <ng-template #templateErrors let-errors="errors">
-          @for (error of errors(); track error.kind) {
-            @switch(error.kind){
-              @case('required'){
-                <span>{{ error.message | ddrTranslate }}</span>
-              }
-              @case('minLength'){
-                <span class="me-2">{{'input.minlength.required' | ddrTranslate}} {{ error.minLength }}</span>
-              }
-              @case('maxLength'){
-                <span class="me-2">{{'input.maxlength.required' | ddrTranslate}} {{ error.maxLength }}</span>
-              }
-              @case('pattern'){
-                <span class="me-2">{{ error.message | ddrTranslate }}</span>
-              }
-            }
-          }
-        </ng-template>
-
-    </ddr-input-group>
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <span class="h3">{{'input.group.example.3' | ddrTranslate}}</span>
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <ddr-input-group
-      [label]="'input.group.label' | ddrTranslate"
-      [placeholder]="'input.group.placeholder' | ddrTranslate"
-      [inline]="true"
-      type="text"
-      icon="bi bi-send"
-      name="example-3"
-      (action)="clickButton($event)" />
-    </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <span class="h3">{{'input.group.example.4' | ddrTranslate}}</span>
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <span class="h5">{{'without.form.signal' | ddrTranslate}}</span>
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <ddr-input-group
-      [label]="'input.group.label' | ddrTranslate"
-      [placeholder]="'input.group.placeholder' | ddrTranslate"
-      type="text"
-      icon="bi bi-send"
-      [disabled]="true"
-      name="example-4"
-      (action)="clickButton($event)" />
-    </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <span class="h5">{{'with.form.signal' | ddrTranslate}}</span>
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <ddr-input-group
-      [label]="'input.group.label' | ddrTranslate"
-      [placeholder]="'input.group.placeholder' | ddrTranslate"
-      type="text"
-      icon="bi bi-send"
-      [formField]="formInputEx4.example4"
-      (action)="clickButton($event)" />
-    </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <span class="h3">{{'input.group.example.5' | ddrTranslate}}</span>
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <ddr-input-group
-      [label]="'input.group.label' | ddrTranslate"
-      [placeholder]="'input.group.placeholder' | ddrTranslate"
-      type="text"
-      icon="bi bi-send"
-      [disabledButton]="true"
-      name="example-5"
-      (action)="clickButton($event)" />
-    </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <span class="h3">{{'input.group.example.6' | ddrTranslate}}</span>
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <ddr-input-group
-      [label]="'input.group.label' | ddrTranslate"
-      [placeholder]="'input.group.placeholder' | ddrTranslate"
-      type="text"
-      icon="bi bi-send"
-      [tooltipText]="'input.group.tooltip' | ddrTranslate" 
-      name="example-6"
-      (action)="clickButton($event)" />
-    </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <span class="h3">{{'input.group.example.7' | ddrTranslate}}</span>
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <ddr-input-group
-      [label]="'input.group.label' | ddrTranslate"
-      [placeholder]="'input.group.placeholder' | ddrTranslate"
-      type="text"
-      icon="bi bi-send"
-      [labelBold]="true"
-      name="example-7"
-      (action)="clickButton($event)" />
-    </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <span class="h3">{{'input.group.example.8' | ddrTranslate}}</span>
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <span class="h5">{{'without.form.signal' | ddrTranslate}}</span>
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <ddr-input-group
-      [label]="'input.group.label' | ddrTranslate"
-      [placeholder]="'input.group.placeholder' | ddrTranslate"
-      icon="bi bi-send"
-      type="number" 
-      name="example-8"
-      [min]="0" 
-      [max]="10"
-      [(value)]="valueEx8"
-      (action)="clickButton($event)" />
-    </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <span>{{'input.group.value' | ddrTranslate}}: {{valueEx8}}</span>
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <span class="h5">{{'with.form.signal' | ddrTranslate}}</span>
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <ddr-input-group
-      [label]="'input.group.label' | ddrTranslate"
-      [placeholder]="'input.group.placeholder' | ddrTranslate"
-      icon="bi bi-send"
-      type="number"
-      [validate]="true"
-      [formField]="formInputEx8.example8"
-      (action)="clickButton($event)">
-
-        <ng-template #templateValid>
-          <span>{{'input.ok' | ddrTranslate}}</span>
-        </ng-template>
-
-        <ng-template #templateErrors let-errors="errors">
-          @for (error of errors(); track error.kind) {
-              @switch(error.kind){
-                @case('min'){
-                  <span>{{ error.message | ddrTranslate }} {{ error.min }}</span>
-                }
-                @case('max'){
-                  <span class="me-2">{{error.message | ddrTranslate}} {{ error.max }}</span>
-                }
-              }
-            }
-        </ng-template>
-      </ddr-input-group>
-    </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <span>{{'input.group.value' | ddrTranslate}}: {{formInputEx8.example8().value()}}</span>
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <span class="h3">{{'input.group.example.9' | ddrTranslate}}</span>
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <ddr-input-group
-      [label]="'input.group.label' | ddrTranslate"
-      [placeholder]="'input.group.placeholder' | ddrTranslate"
-      icon="bi bi-send"
-      type="text" 
-      name="example-9"
-      (action)="clickButton($event)"
-      (clickInput)="clickInput($event)"
-      (keyPressed)="keyPressed($event)" />
-    </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <span class="h3">{{'input.group.example.10' | ddrTranslate}}</span>
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <ddr-input-group
-      [label]="'input.group.label' | ddrTranslate"
-      [placeholder]="'input.group.placeholder' | ddrTranslate"
-      icon="bi bi-send"
-      type="text" 
-      size="small"
-      name="example-10-small" />
-    <ddr-input-group
-      [label]="'input.group.label' | ddrTranslate"
-      [placeholder]="'input.group.placeholder' | ddrTranslate"
-      icon="bi bi-send"
-      type="text" 
-      size="medium"
-      name="example-10-medium" />
-    <ddr-input-group
-      [label]="'input.group.label' | ddrTranslate"
-      [placeholder]="'input.group.placeholder' | ddrTranslate"
-      icon="bi bi-send"
-      type="text" 
-      size="large"
-      name="example-10-large" />
-    </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <span class="h3">{{'input.group.example.11' | ddrTranslate}}</span>
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <ddr-button 
-      text="input.group.focus"
-      (action)="focusInputGroup()" />
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <ddr-input-group
-      [label]="'input.group.label' | ddrTranslate"
-      [placeholder]="'input.group.placeholder' | ddrTranslate"
-      icon="bi bi-send"
-      type="text" 
-      [focus]="focusEx11"
-      name="example-11"
-      (focusLost)="onFocusLost()"  />
-    </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <span class="h3">{{'input.group.example.12' | ddrTranslate}}</span>
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12 background-test-transparent ">
-    <ddr-input-group
-      [label]="'input.group.label' | ddrTranslate"
-      [placeholder]="'input.group.placeholder' | ddrTranslate"
-      icon="bi bi-send"
-      type="text" 
-      [transparent]="true"
-      name="example-12" />
-    </div>
-</div>
-
-  </div>
+  <ng-template #example>
+    <input-group-showcase-17 />
+  </ng-template>
 
 </base-showcase>
 

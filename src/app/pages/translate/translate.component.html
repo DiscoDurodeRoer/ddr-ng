@@ -13,13 +13,13 @@
 
                 <div class="row mt-3">
                     <div class="col-12">
-                        <span>{{'translate.page.p2' | ddrTranslate}}</span>
+                        <span class="fs-5">{{'translate.page.p2' | ddrTranslate}}</span>
                     </div>
                 </div>
 
                 <div class="row mt-3">
                     <div class="col-12">
-                        <span>{{'translate.page.p3' | ddrTranslate}}</span>
+                        <span class="fs-5">{{'translate.page.p3' | ddrTranslate}}</span>
                     </div>
                 </div>
 
@@ -31,51 +31,59 @@
 
                 <div class="row mt-3">
                     <div class="col-12">
-                        <span>{{'translate.page.p4' | ddrTranslate}}</span>
+                        <span class="fs-5">{{'translate.page.p4' | ddrTranslate}}</span>
                     </div>
                 </div>
 
                 <div class="row mt-3">
                     <div class="col-12">
-                        <span class="d-block mb-2">en.json</span>
+                        <span class="d-block mb-2 fs-5">en.json</span>
                         <img class="mw-100" src="./img/translate/example-translate-2.png">
                     </div>
                 </div>
 
                 <div class="row mt-3">
                     <div class="col-12">
-                        <span class="d-block mb-2">es.json</span>
+                        <span class="d-block mb-2 fs-5">es.json</span>
                         <img class="mw-100" src="./img/translate/example-translate-3.png">
                     </div>
                 </div>
 
                 <div class="row mt-3">
                     <div class="col-12">
-                        <span>{{'translate.page.p5' | ddrTranslate}}</span>
+                        <span class="fs-5">{{'translate.page.p5.1' | ddrTranslate}}</span>
                     </div>
                 </div>
 
                 <div class="row mt-3">
                     <div class="col-12">
-                        <span>{{'translate.page.p6' | ddrTranslate}}</span>
+                        <span class="fs-5">{{'translate.page.p6.1' | ddrTranslate}}</span>
                     </div>
                 </div>
 
                 <div class="row mt-3">
                     <div class="col-12">
                         <span></span>
-<pre class="language-typescript"><code class="language-typescript" ngNonBindable>import &#123; ApplicationConfig, provideAppInitializer, inject &#125; from "&#64;angular/core";
-import &#123; provideRouter &#125; from "&#64;angular/router";
-import &#123; DdrTranslateService &#125; from "ddr-ng";
-import &#123; routes &#125; from "./app.routes";
+<pre class="language-typescript"><code class="language-typescript" ngNonBindable>import &#123;
+  ApplicationConfig,
+  provideBrowserGlobalErrorListeners
+&#125; from '&#64;angular/core';
+import &#123; provideRouter &#125; from '&#64;angular/router';
+import &#123; routes &#125; from './app.routes';
+import &#123; provideDdr &#125; from 'ddr-ng/providers/config';
+import &#123; provideAnimations &#125; from '&#64;angular/platform-browser/animations';
 
 export const appConfig: ApplicationConfig = &#123;
   providers: [
+    provideBrowserGlobalErrorListeners(),
     provideRouter(routes),
-    provideAppInitializer(() => &#123;
-      const translateService = inject(DdrTranslateService);
-      return translateService.getData(`/i18n/`, 'en');
-    &#125;),
+    provideAnimations(),
+    provideDdr(&#123;
+      translate: &#123;
+        path: `/assets/i18n/`,
+        language: 'en'
+      &#125;
+    &#125;)
   ]
 &#125;;
 </code></pre>
@@ -84,14 +92,14 @@ export const appConfig: ApplicationConfig = &#123;
 
                 <div class="row mt-3">
                     <div class="col-12">
-                        <span>{{'translate.page.p7' | ddrTranslate}}</span>
+                        <span class="fs-5">{{'translate.page.p7' | ddrTranslate}}</span>
                     </div>
                 </div>
 
                 <div class="row mt-3">
                     <div class="col-12">
 <pre class="language-typescript"><code class="language-typescript" ngNonBindable>import &#123; Component, OnInit, inject &#125; from '&#64;angular/core';
-import &#123; DdrTranslatePipe, DdrTranslateService &#125; from 'ddr-ng';
+import &#123; DdrTranslatePipe, DdrTranslateService &#125; from 'ddr-ng/translate';
     
 &#64;Component(&#123;
   selector: 'app-example',
@@ -119,20 +127,20 @@ export class ExampleComponent implements OnInit &#123;
 
                 <div class="row mt-3">
                     <div class="col-12">
-                        <span>{{'translate.page.p9' | ddrTranslate}}</span>
+                        <span class="fs-5">{{'translate.page.p9' | ddrTranslate}}</span>
                     </div>
                 </div>
 
                 <div class="row mt-3">
                     <div class="col-12">
 <pre class="language-typescript"><code class="language-typescript" ngNonBindable>import &#123; Component, inject &#125; from '&#64;angular/core';
-import &#123; DdrButtonComponent, DdrTranslateService &#125; from 'ddr-ng';
+import &#123; DdrButtonComponent, DdrTranslateService &#125; from 'ddr-ng/translate';
     
 &#64;Component(&#123;
   selector: 'app-example',
   template: `
     &lt;div&gt;
-        &lt;ddr-button text="Change to Spanish" (action)="changeToSpanish()" /&gt;
+        &lt;ddr-button [text]="Change to Spanish" (action)="changeToSpanish()" /&gt;
         &lt;ddr-button text="Change to English" (action)="changeToEnglish()" /&gt;
     &lt;/div&gt;
     `,
@@ -154,6 +162,96 @@ export class ExampleComponent &#123;
 </code></pre>
                     </div>
                 </div>
+
+
+            <div class="row mt-3">
+                <div class="col-12">
+                    <span class="h3">{{'translate.page.p10' | ddrTranslate}}</span>
+                </div>
+            </div>
+
+            <div class="row mt-3">
+                <div class="col-12">
+                    <span class="fs-5">{{'translate.page.p11' | ddrTranslate}}</span>
+                </div>
+            </div>
+
+            <div class="row mt-3">
+                <div class="col-12">
+                    <span class="fs-5">{{'translate.page.p12' | ddrTranslate}}</span>
+                </div>
+            </div>
+
+            <div class="row mt-3">
+                    <div class="col-12">
+                        <span class="d-block mb-2 fs-5">en.json</span>
+                        <img class="mw-100" src="./img/translate/example-translate-4.png">
+                    </div>
+                </div>
+
+                <div class="row mt-3">
+                    <div class="col-12">
+                        <span class="d-block mb-2 fs-5">es.json</span>
+                        <img class="mw-100" src="./img/translate/example-translate-5.png">
+                    </div>
+                </div>
+
+            <div class="row mt-3">
+                <div class="col-12">
+<pre class="language-typescript"><code class="language-typescript" ngNonBindable>import &#123;
+  Component,
+  inject,
+  signal,
+  WritableSignal
+&#125; from '&#64;angular/core';
+import &#123; DdrButtonComponent &#125; from 'ddr-ng/components/button';
+import &#123;
+  DdrTranslatePipe,
+  DdrTranslateService
+&#125; from 'ddr-ng/translate';
+
+&#64;Component(&#123;
+  selector: 'translate-standalone',
+  template: `&lt;ddr-button 
+    [text]="'change.language' | ddrTranslate"
+    (action)="changeLanguage()"
+/&gt;
+&lt;p&gt;&#123;&#123;'standalone.translation' | ddrTranslate&#125;&#125;&lt;/p&gt;`,
+  imports: [
+    DdrButtonComponent,
+    DdrTranslatePipe
+  ],
+  providers: [
+    DdrTranslateService
+  ]
+&#125;)
+export class TranslateShowcase3Component &#123;
+
+  private ddrTranslateService: DdrTranslateService = inject(DdrTranslateService);
+
+  private language: WritableSignal&lt;string&gt; = signal&lt;string&gt;('en')
+
+  constructor() &#123;
+    this.ddrTranslateService.getData('/data/i18n/translate-showcase/', 'en')
+  &#125;
+
+  changeLanguage() &#123;
+    switch (this.language()) &#123;
+      case 'es':
+        this.language.set('en');
+        break;
+      case 'en':
+        this.language.set('es');
+        break;
+    &#125;
+    this.ddrTranslateService.getData('/data/i18n/translate-showcase/', this.language())
+  &#125;
+
+
+&#125;
+</code></pre>
+                </div>
+            </div>
 
             </div>
 

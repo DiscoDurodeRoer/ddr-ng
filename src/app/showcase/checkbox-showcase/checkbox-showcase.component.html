@@ -1,173 +1,70 @@
-<base-showcase component="ddr-checkbox" type="component"  [showPossibleValues]="false" [showClasses]="true" [showStyles]="true">
+<base-showcase 
+  component="ddr-checkbox" 
+  type="component" 
+  [documentation]="documentation" 
+  [showInputsOutputs]="true"
+  [showPossibleValues]="false" 
+  [showStyles]="true">
 
   <div description>
     <p>{{'checkbox.description' | ddrTranslate}}</p>
   </div>
 
-  <div examples>
+  <ng-template #example>
+    <checkbox-showcase-1 />
+  </ng-template>
 
-<div class="row">
-  <div class="col-12">
-    <span class="h3">{{'checkbox.example.1' | ddrTranslate}}</span>
-  </div>
-</div>
+  <ng-template #example>
+    <checkbox-showcase-2 />
+  </ng-template>
 
-<div class="row mt-3">
-  <div class="col-12">
-    <span class="h5">{{'without.form.signal' | ddrTranslate}}</span>
-  </div>
-</div>
+  <ng-template #example>
+    <checkbox-showcase-3 />
+  </ng-template>
 
-<div class="row mt-3">
-  <div class="col-12">
-    <ddr-checkbox
-      [options]="options1"
-      [(value)]="value1" />
-  </div>
-</div>
+  <ng-template #example>
+    <checkbox-showcase-4 />
+  </ng-template>
 
-<div class="row mt-3">
-  <div class="col-12">
-    <span>{{'checkbox.value' | ddrTranslate}}: {{value1 | json}}</span>
-  </div>
-</div>
+  <ng-template #example>
+    <checkbox-showcase-5 />
+  </ng-template>
 
-<div class="row mt-3">
-  <div class="col-12">
-    <span class="h5">{{'with.form.signal' | ddrTranslate}}</span>
-  </div>
-</div>
+  <ng-template #example>
+    <checkbox-showcase-6 />
+  </ng-template>
 
-<div class="row mt-3">
-  <div class="col-12">
-    <ddr-checkbox
-      [options]="options1FormSignals"
-      [formField]="formCheckboxEx1.example1" />
-  </div>
-</div>
+  <ng-template #example>
+    <checkbox-showcase-7 />
+  </ng-template>
 
-<div class="row mt-3">
-  <div class="col-12">
-    <span>{{'checkbox.value' | ddrTranslate}}: {{formCheckboxEx1.example1().value() | json}}</span>
-  </div>
-</div>
-  
-<div class="row mt-3">
-  <div class="col-12">
-    <span class="h3">{{'checkbox.example.2' | ddrTranslate}}</span>
-  </div>
-</div>
+  <ng-template #example>
+    <checkbox-showcase-8 />
+  </ng-template>
 
-<div class="row mt-3">
-  <div class="col-12">
-    <ddr-checkbox
-      [options]="options2"
-      [(value)]="value2" />
-  </div>
-</div>
-  
-<div class="row mt-3">
-  <div class="col-12">
-    <span>{{'checkbox.value' | ddrTranslate}}: {{value2 | json}}</span>
-  </div>
-</div>
-  
-<div class="row mt-3">
-  <div class="col-12">
-    <span class="h3">{{'checkbox.example.3' | ddrTranslate}}</span>
-  </div>
-</div>
+  <ng-template #example>
+    <checkbox-showcase-9 />
+  </ng-template>
+    
+  <ng-template #example>
+    <checkbox-showcase-10 />
+  </ng-template>
 
-<div class="row mt-3">
-  <div class="col-12">
-    <ddr-checkbox
-      [options]="options3"
-      [compareFn]="compareFn"
-      [(value)]="value3" />
-  </div>
-</div>
+  <ng-template #example>
+    <checkbox-showcase-11 />
+  </ng-template>
 
-<div class="row mt-3">
-  <div class="col-12">
-    <span>{{'checkbox.value' | ddrTranslate}}: {{value3 | json}}</span>
-  </div>
-</div>
+  <ng-template #example>
+    <checkbox-showcase-12 />
+  </ng-template>
 
-<div class="row mt-3">
-  <div class="col-12">
-    <span class="h3">{{'checkbox.example.4' | ddrTranslate}}</span>
-  </div>
-</div>
+  <ng-template #example>
+    <checkbox-showcase-13 />
+  </ng-template>
 
-<div class="row mt-3">
-  <div class="col-12">
-    <ddr-checkbox
-      [options]="options4"
-      [compareFn]="compareFn"
-      [(value)]="value4" />
-  </div>
-</div>
-  
-<div class="row mt-3">
-  <div class="col-12">
-    <span>{{'checkbox.value' | ddrTranslate}}: {{value4 | json}}</span>
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <span class="h3">{{'checkbox.example.5' | ddrTranslate}}</span>
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <ddr-checkbox
-      [options]="options5"
-      [inline]="true"
-      [compareFn]="compareFn"
-      [(value)]="value5" />
-  </div>
-</div>
-  
-<div class="row mt-3">
-  <div class="col-12">
-    <span>{{'checkbox.value' | ddrTranslate}}: {{value5 | json}}</span>
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <span class="h3">{{'checkbox.example.6' | ddrTranslate}}</span>
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <ddr-checkbox
-      [options]="options6"
-      [disabled]="true"
-      [compareFn]="compareFn"
-      [(value)]="value6" />
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <span class="h3">{{'checkbox.example.7' | ddrTranslate}}</span>
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <ddr-checkbox
-      [options]="options7"
-      [compareFn]="compareFn"
-      (clickCheck)="clickCheck($event)" />
-  </div>
-</div>
-
-  </div>
+  <ng-template #example>
+    <checkbox-showcase-14 />
+  </ng-template>
 
 </base-showcase>
 

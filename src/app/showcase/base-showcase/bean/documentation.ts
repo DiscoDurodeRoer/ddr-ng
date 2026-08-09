@@ -10,6 +10,15 @@ export interface DocumentationInput {
   values?: string
 }
 
+export interface DocumentationParam {
+  name: string
+  description: string
+  type: string
+  required: boolean
+  default?: string
+  values?: string
+}
+
 export interface DocumentationOutput {
   name: string
   component?: string
@@ -52,12 +61,34 @@ export interface DocumentationStyle {
   description: string
 }
 
-export interface Documentation {
+export interface DocumentationExample {
   htmlCode: string
   cssCode?: string
   tsCode: string
+  name?: string;
   classes?: DocumentationClass[]
+}
+
+export interface DocumentationProvider {
+  name: string
+  description: string
+  type?: string
+  required?: boolean
+  default?: string
+  values?: string
+}
+
+export interface Documentation {
+
+  htmlCode?: string
+  cssCode?: string
+  tsCode?: string
+
+
+  examples?: DocumentationExample[]
   inputs?: DdrTableItem<DocumentationInput>[]
+  params?: DdrTableItem<DocumentationParam>[]
+  inputsOutputs?: DdrTableItem<DocumentationInput>[]
   outputs?: DdrTableItem<DocumentationOutput>[]
   translations?: DdrTableItem<DocumentationTranslation>[]
   templates?: DdrTableItem<DocumentationTemplate>[]
@@ -171,6 +202,11 @@ export interface DdrLoopNumberParams {
     includeLast?: boolean;
     step?: number;
     reverse?: boolean;
-}`
+}`,
+  },
+  'TreeData': {
+    htmlCode: `export interface TreeData {
+    value: string
+}`    
   }
 }

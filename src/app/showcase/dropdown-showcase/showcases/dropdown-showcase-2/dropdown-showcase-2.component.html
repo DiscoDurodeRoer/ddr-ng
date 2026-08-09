@@ -1,0 +1,12 @@
+<ddr-dropdown 
+    [options]="options()" 
+    [placeholder]="'dropdown.placeholder' | ddrTranslate" 
+    [labelNoResults]="'dropdown.no.items' | ddrTranslate"
+    [labelPlaceholderFilter]="'dropdown.filter.placeholder' | ddrTranslate"
+    name="dropdown-2"
+    [(value)]="value"
+    (selectItem)="selectItem($event)" />
+
+<div class="mt-2">
+    <span>{{'dropdown.value' | ddrTranslate}}: {{value() | json}}</span>
+</div>

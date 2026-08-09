@@ -1,0 +1,9 @@
+<ddr-input 
+    [label]="'input.label' | ddrTranslate" 
+    [placeholder]="'input.placeholder' | ddrTranslate"
+    [(ngModel)]="value"
+    name="input-17" />
+
+<div class="mt-2">
+    <span>{{'input.value' | ddrTranslate}}: {{value() | json}}</span>
+</div>

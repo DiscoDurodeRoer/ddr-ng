@@ -1,0 +1,1 @@
+export { DdrClipboardDirective } from './src/ddr-clipboard.directive';

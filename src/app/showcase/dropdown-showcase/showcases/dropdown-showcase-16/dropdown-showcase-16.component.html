@@ -1,0 +1,27 @@
+<ddr-dropdown 
+    [options]="options()" 
+    [label]="'dropdown.label' | ddrTranslate"
+    [placeholder]="'dropdown.placeholder' | ddrTranslate" 
+    [labelNoResults]="'dropdown.no.items' | ddrTranslate"
+    [labelPlaceholderFilter]="'dropdown.filter.placeholder' | ddrTranslate"
+    [compareFn]="compareFn"
+    [validate]="true"
+    [required]="true"
+    [allowDeselect]="true"
+    name="dropdown-16" >
+
+    <ng-template #templateValid>
+        <span>{{'dropdown.ok' | ddrTranslate}}</span>
+    </ng-template>
+
+    <ng-template #templateErrors let-errors="errors">
+        @for (error of errors(); track error.kind) {
+            @switch(error.kind){
+                @case('required'){
+                    <span>{{ 'dropdown.value.required' | ddrTranslate }}</span>
+                }
+            }
+        }
+    </ng-template>
+
+</ddr-dropdown>

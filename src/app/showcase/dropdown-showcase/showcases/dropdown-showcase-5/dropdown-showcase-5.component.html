@@ -1,0 +1,18 @@
+<ddr-dropdown 
+    [options]="options()" 
+    [placeholder]="'dropdown.placeholder' | ddrTranslate" 
+    [labelNoResults]="'dropdown.no.items' | ddrTranslate"
+    [labelPlaceholderFilter]="'dropdown.filter.placeholder' | ddrTranslate" 
+    [compareFn]="compareFn"
+    name="dropdown-5"
+    [(value)]="value">
+
+    <ng-template #itemTemplate let-item="item">
+        <span>{{item.label + ' [' + item.value.name + ']'}}</span>
+    </ng-template>
+
+</ddr-dropdown>
+
+<div class="mt-2">
+    <span>{{'dropdown.value' | ddrTranslate}}: {{value() | json}}</span>
+</div>

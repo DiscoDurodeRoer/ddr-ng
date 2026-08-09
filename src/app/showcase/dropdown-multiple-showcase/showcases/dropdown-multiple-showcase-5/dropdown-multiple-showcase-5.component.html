@@ -1,0 +1,17 @@
+<ddr-dropdown-multiple
+    [options]="options()" 
+    [placeholder]="'dropdown.multiple.placeholder' | ddrTranslate" 
+    [labelNoResults]="'dropdown.multiple.no.items' | ddrTranslate"
+    [labelPlaceholderFilter]="'dropdown.multiple.filter.placeholder' | ddrTranslate" 
+    [compareFn]="compareFn"
+    name="dropdown-multiple-5"
+    [(value)]="value" />
+
+<ddr-button 
+    [text]="'dropdown.multiple.reset' | ddrTranslate" 
+    (action)="resetValues()" />
+
+<div class="mt-2">
+    <span>{{'dropdown.multiple.value' | ddrTranslate}}: {{value() | json}}</span>
+</div>
+    

@@ -1,0 +1,11 @@
+<ddr-input-group
+    icon="bi bi-copy"
+    ddrClipboard 
+    [clipboard]="value()"
+    clipboardTrigger="ddr-button"
+    name="input-group-2"
+    [(value)]="value"
+    (action)="copyText()" />
+
+<ddr-textarea 
+    name="textarea-2-copied"/>

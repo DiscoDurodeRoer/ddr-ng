@@ -1,0 +1,8 @@
+<form [formGroup]="toggleForm">
+    <ddr-toggle 
+        formControlName="toggle" />
+
+    <div class="mt-2">
+        <span>{{'toggle.value' | ddrTranslate}}: {{toggleForm.value | json}}</span>
+    </div>
+</form>

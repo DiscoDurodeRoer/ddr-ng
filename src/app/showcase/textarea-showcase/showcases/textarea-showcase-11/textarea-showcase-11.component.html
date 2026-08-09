@@ -1,0 +1,9 @@
+<ddr-textarea 
+    [label]="'textarea.label' | ddrTranslate" 
+    [placeholder]="'textarea.placeholder' | ddrTranslate"
+    name="textarea-11"
+    [(ngModel)]="value" />
+
+<div class="mt-2">
+    <span>{{'textarea.value' | ddrTranslate}}: {{value()}}</span>
+</div>

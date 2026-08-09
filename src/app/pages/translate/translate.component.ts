@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { DdrCardComponent, DdrTranslatePipe } from 'ddr-ng';
+import { DdrCardComponent } from 'ddr-ng/components/card';
+import { DdrTranslatePipe } from 'ddr-ng/translate';
 import Prism from 'prismjs';
 import 'prismjs/components/prism-typescript';
 
@@ -7,15 +8,12 @@ import 'prismjs/components/prism-typescript';
   selector: 'app-translate',
   templateUrl: './translate.component.html',
   styleUrl: './translate.component.scss',
-  imports: [
-    DdrCardComponent,
-    DdrTranslatePipe
-  ]
+  imports: [DdrCardComponent, DdrTranslatePipe],
 })
 export class TranslateComponent {
-
   ngAfterViewInit(): void {
-    setTimeout(() => { Prism.highlightAll(); });
+    setTimeout(() => {
+      Prism.highlightAll();
+    });
   }
-
 }

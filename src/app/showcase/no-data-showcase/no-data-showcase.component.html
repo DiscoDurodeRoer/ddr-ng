@@ -1,31 +1,17 @@
-<base-showcase component="ddr-no-data" type="component" [showOutputs]="false" [showStyles]="true">
+<base-showcase 
+  component="ddr-no-data" 
+  type="component" 
+  [documentation]="documentation" 
+  [showOutputs]="false" 
+  [showStyles]="true">
 
   <div description>
     <p>{{'no.data.description' | ddrTranslate}}</p>
   </div>
 
-  <div examples>
-
-<div class="row mt-3">
-  <div class="col-12">
-      <p>{{'no.data.size' | ddrTranslate}}: </p>
-      <ddr-button-multiple
-        [buttons]="buttonsSize"
-        [showSelectedButton]="true"
-        [(value)]="size" />
-  </div>
-</div>
-
-<div class="row  mt-3">
-  <div class="col-12">
-      <ddr-no-data 
-        icon="bi bi-database-fill-x"
-        text="no.data.text"
-        [size]="size" />
-  </div>
-</div>
-
-  </div>
+  <ng-template #example>
+    <no-data-showcase-1 />
+  </ng-template>
 
 </base-showcase>
 

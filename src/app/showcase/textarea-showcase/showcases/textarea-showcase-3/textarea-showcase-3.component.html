@@ -1,0 +1,29 @@
+<ddr-textarea 
+    [label]="'textarea.label' | ddrTranslate" 
+    [placeholder]="'textarea.placeholder' | ddrTranslate"
+    [minLength]="3"
+    [maxLength]="10" 
+    [required]="true" 
+    [validate]="true"
+    name="textarea-3">
+
+    <ng-template #templateValid>
+        <span>{{'textarea.ok' | ddrTranslate}}</span>
+    </ng-template>
+
+    <ng-template #templateErrors let-errors="errors">
+        @for (error of errors(); track error.kind) {
+            @switch(error.kind){
+                @case('required'){
+                    <span class="me-2">{{ 'textarea.value.required' | ddrTranslate }}</span>
+                }
+                @case('minLength'){
+                    <span class="me-2">{{ 'textarea.minlength.required' | ddrTranslate }}: {{ error.minLength }}</span>
+                }
+                @case('maxLength'){
+                    <span class="me-2">{{ 'textarea.maxlength.required' | ddrTranslate }}: {{ error.maxLength }}</span>
+                }
+            }
+        }
+    </ng-template>
+</ddr-textarea>

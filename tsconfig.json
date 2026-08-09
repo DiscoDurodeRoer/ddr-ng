@@ -4,9 +4,16 @@
   "compileOnSave": false,
   "compilerOptions": {
     "paths": {
-      "ddr-ng": [
-        "/node_modules/ddr-ng"
-      ]
+      "ddr-ng": ["./dist/ddr-ng"],
+      "ddr-ng/components/*": ["./dist/ddr-ng/components/*"],
+      "ddr-ng/services/*": ["./dist/ddr-ng/services/*"],
+      "ddr-ng/directives/*": ["./dist/ddr-ng/directives/*"],
+      "ddr-ng/pipes/*": ["./dist/ddr-ng/pipes/*"],
+      "ddr-ng/translate": ["./dist/ddr-ng/translate"],
+      "ddr-ng/spinner": ["./dist/ddr-ng/spinner"],
+      "ddr-ng/models": ["./dist/ddr-ng/models"],
+      "ddr-ng/types": ["./dist/ddr-ng/types"]
+
     },
     "outDir": "./dist/out-tsc",
     "strict": true,

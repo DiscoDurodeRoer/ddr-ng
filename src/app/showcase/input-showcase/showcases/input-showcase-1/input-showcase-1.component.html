@@ -1,0 +1,10 @@
+<ddr-input 
+    [label]="'input.label' | ddrTranslate" 
+    [placeholder]="'input.placeholder' | ddrTranslate" 
+    name="input-1"
+    [(value)]="value" />
+
+<div class="mt-2">
+    <span>{{'input.value' | ddrTranslate}}: {{value() | json}}</span>
+</div>
+

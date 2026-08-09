@@ -1,442 +1,106 @@
-<base-showcase component="ddr-dropdown-multiple" type="component" [showCodeCSS]="true" [showTemplates]="true" [showClasses]="true" [showTranslations]="true" [showStyles]="true">
+<base-showcase 
+    component="ddr-dropdown-multiple" 
+    type="component" 
+    [documentation]="documentation" 
+    [showTemplates]="true" 
+    [showInputsOutputs]="true"
+    [showTranslations]="true" 
+    [showStyles]="true">
 
     <div description>
         <p>{{'dropdown.multiple.description' | ddrTranslate}}</p>
     </div>
 
-    <div examples>
+    <ng-template #example>
+        <dropdown-multiple-showcase-1 />
+    </ng-template>
 
-<div class="row mt-3">
-    <div class="col-12">
-        <span class="h3">{{'dropdown.multiple.example.1' | ddrTranslate}}</span>
-    </div>
-</div>
+    <ng-template #example>
+        <dropdown-multiple-showcase-2 />
+    </ng-template>
 
-<div class="row mt-3">
-    <div class="col-12">
-        <ddr-dropdown-multiple 
-            [options]="optionsEx1" 
-            [placeholder]="'dropdown.multiple.placeholder' | ddrTranslate" 
-            [labelNoResults]="'dropdown.multiple.no.items' | ddrTranslate"
-            [labelPlaceholderFilter]="'dropdown.multiple.filter.placeholder' | ddrTranslate" 
-            name="dropdown-multiple-1"
-            [(value)]="value1" 
-            (selectItems)="selectItems($event)" />
-    </div>
-</div>
+    <ng-template #example>
+        <dropdown-multiple-showcase-3 />
+    </ng-template>
 
-<div class="row mt-3">
-    <div class="col-12">
-        <p>{{'Valor :' + (value1 | json)}}</p>
-    </div>
-</div>
+    <ng-template #example>
+        <dropdown-multiple-showcase-4 />
+    </ng-template>
 
-<div class="row mt-3">
-    <div class="col-12">
-        <span class="h3">{{'dropdown.multiple.example.2' | ddrTranslate}}</span>
-    </div>
-</div>
+    <ng-template #example>
+        <dropdown-multiple-showcase-5 />
+    </ng-template>
 
-<div class="row mt-3">
-    <div class="col-12">
-        <ddr-dropdown-multiple
-            [options]="optionsEx2" 
-            [placeholder]="'dropdown.multiple.placeholder' | ddrTranslate" 
-            [labelNoResults]="'dropdown.multiple.no.items' | ddrTranslate"
-            [labelPlaceholderFilter]="'dropdown.multiple.filter.placeholder' | ddrTranslate" 
-            name="dropdown-multiple-2"
-            [(value)]="value2" 
-            (selectItems)="selectItems($event)" />
-    </div>
-</div>
+    <ng-template #example>
+        <dropdown-multiple-showcase-6 />
+    </ng-template>
 
-<div class="row mt-3">
-    <div class="col-12">
-        <p>{{'Valor :' + (value2 | json)}}</p>
-    </div>
-</div>
+    <ng-template #example>
+        <dropdown-multiple-showcase-7 />
+    </ng-template>
 
-<div class="row mt-3">
-    <div class="col-12">
-        <span class="h3">{{'dropdown.multiple.example.3' | ddrTranslate}}</span>
-    </div>
-</div>
+    <ng-template #example>
+        <dropdown-multiple-showcase-8 />
+    </ng-template>
 
-<div class="row mt-3">
-    <div class="col-12">
-        <ddr-dropdown-multiple 
-            [options]="optionsEx3" 
-            [placeholder]="'dropdown.multiple.placeholder' | ddrTranslate" 
-            [labelNoResults]="'dropdown.multiple.no.items' | ddrTranslate"
-            [labelPlaceholderFilter]="'dropdown.multiple.filter.placeholder' | ddrTranslate" 
-            [compareFn]="compareFn"
-            name="dropdown-multiple-3"
-            [(value)]="value3" 
-            (selectItems)="selectItemsObject($event)" />
-    </div>
-</div>
+    <ng-template #example>
+        <dropdown-multiple-showcase-9 />
+    </ng-template>
 
-<div class="row mt-3">
-    <div class="col-12">
-        <span>{{'dropdown.multiple.value' | ddrTranslate}}: {{value3 | json}}</span>
-    </div>
-</div>
+    <ng-template #example>
+        <dropdown-multiple-showcase-10 />
+    </ng-template>
 
-<div class="row mt-3">
-    <div class="col-12">
-        <span class="h3">{{'dropdown.multiple.example.4' | ddrTranslate}}</span>
-    </div>
-</div>
+        <ng-template #example>
+        <dropdown-multiple-showcase-11 />
+    </ng-template>
 
-<div class="row mt-3">
-    <div class="col-12">
-        <ddr-dropdown-multiple 
-            [options]="optionsEx4" 
-            [placeholder]="'dropdown.multiple.placeholder' | ddrTranslate" 
-            [labelNoResults]="'dropdown.multiple.no.items' | ddrTranslate"
-            [labelPlaceholderFilter]="'dropdown.multiple.filter.placeholder' | ddrTranslate" 
-            [compareFn]="compareFn"
-            name="dropdown-multiple-4"
-            [(value)]="value4" 
-            (selectItems)="selectItemsObject($event)" />
-    </div>
-</div>
+    <ng-template #example>
+        <dropdown-multiple-showcase-12 />
+    </ng-template>
 
-<div class="row mt-3">
-    <div class="col-12">
-        <span>{{'dropdown.multiple.value' | ddrTranslate}}: {{value4 | json}}</span>
-    </div>
-</div>
+    <ng-template #example>
+        <dropdown-multiple-showcase-13 />
+    </ng-template>
 
-<div class="row mt-3">
-    <div class="col-12">
-        <span class="h3">{{'dropdown.multiple.example.5' | ddrTranslate}}</span>
-        <h3></h3>
-    </div>
-</div>
-
-<div class="row mt-3">
-    <div class="col-12">
-        <ddr-dropdown-multiple
-            [options]="optionsEx5" 
-                [placeholder]="'dropdown.multiple.placeholder' | ddrTranslate" 
-            [labelNoResults]="'dropdown.multiple.no.items' | ddrTranslate"
-            [labelPlaceholderFilter]="'dropdown.multiple.filter.placeholder' | ddrTranslate" 
-            [compareFn]="compareFn"
-            name="dropdown-multiple-5"
-            [(value)]="value5"
-            (selectItems)="selectItemsObject($event)" />
-
-        <ddr-button 
-            text="dropdown.multiple.reset" 
-            (action)="resetValuesEx5()" />
-    </div>
-</div>
-
-<div class="row mt-3">
-    <div class="col-12">
-        <span>{{'dropdown.multiple.value' | ddrTranslate}}: {{value5 | json}}</span>
-    </div>
-</div>
-
-<div class="row mt-3">
-    <div class="col-12">
-        <span class="h3">{{'dropdown.multiple.example.6' | ddrTranslate}}</span>
-    </div>
-</div>
-
-<div class="row mt-3">
-    <div class="col-12">
-        <ddr-dropdown-multiple
-            [options]="optionsEx6" 
-            [placeholder]="'dropdown.multiple.placeholder' | ddrTranslate" 
-            [labelNoResults]="'dropdown.multiple.no.items' | ddrTranslate"
-            [labelPlaceholderFilter]="'dropdown.multiple.filter.placeholder' | ddrTranslate" 
-            [disabled]="true"
-            [compareFn]="compareFn"
-            name="dropdown-multiple-6"
-            [(value)]="value6"
-            (selectItems)="selectItemsObject($event)" />
-    </div>
-</div>
-
-<div class="row mt-3">
-    <div class="col-12">
-        <span>{{'dropdown.multiple.value' | ddrTranslate}}: {{value6 | json}}</span>
-    </div>
-</div>
-
-<div class="row mt-3">
-    <div class="col-12">
-        <span class="h3">{{'dropdown.multiple.example.7' | ddrTranslate}}</span>
-    </div>
-</div>
-
-<div class="row mt-3">
-    <div class="col-12">
-        <ddr-dropdown-multiple
-            [options]="optionsEx7" 
-            [placeholder]="'dropdown.multiple.placeholder' | ddrTranslate" 
-            [labelNoResults]="'dropdown.multiple.no.items' | ddrTranslate"
-            [labelPlaceholderFilter]="'dropdown.multiple.filter.placeholder' | ddrTranslate" 
-            [modalOptions]="true"
-            [compareFn]="compareFn"
-            name="dropdown-multiple-7"
-            [(value)]="value7"
-            (selectItems)="selectItemsObject($event)" />
-    </div>
-</div>
-
-<div class="row mt-3">
-    <div class="col-12">
-        <span>{{'dropdown.multiple.value' | ddrTranslate}}: {{value7 | json}}</span>
-    </div>
-</div>
-
-<div class="row mt-3">
-    <div class="col-12">
-        <span class="h3">{{'dropdown.multiple.example.8' | ddrTranslate}}</span>
-    </div>
-</div>
-
-<div class="row mt-3">
-    <div class="col-12">
-        <ddr-dropdown-multiple
-            [options]="optionsEx8" 
-            [placeholder]="'dropdown.multiple.placeholder' | ddrTranslate" 
-            [labelNoResults]="'dropdown.multiple.no.items' | ddrTranslate"
-            [labelPlaceholderFilter]="'dropdown.multiple.filter.placeholder' | ddrTranslate" 
-            [showFilter]="false"
-            [compareFn]="compareFn"
-            name="dropdown-multiple-8"
-            [(value)]="value8"
-            (selectItems)="selectItemsObject($event)" />
-    </div>
-</div>
-
-<div class="row mt-3">
-    <div class="col-12">
-        <span>{{'dropdown.multiple.value' | ddrTranslate}}: {{value8 | json}}</span>
-    </div>
-</div>
-
-<div class="row mt-3">
-    <div class="col-12">
-        <span class="h3">{{'dropdown.multiple.example.9' | ddrTranslate}}</span>
-    </div>
-</div>
-
-<div class="row mt-3">
-    <div class="col-12">
-        <ddr-dropdown-multiple
-            [options]="optionsEx9" 
-            [label]="'dropdown.multiple.label' | ddrTranslate" 
-            [placeholder]="'dropdown.multiple.placeholder' | ddrTranslate" 
-            [labelNoResults]="'dropdown.multiple.no.items' | ddrTranslate"
-            [labelPlaceholderFilter]="'dropdown.multiple.filter.placeholder' | ddrTranslate" 
-            [compareFn]="compareFn"
-            name="dropdown-multiple-9"
-            [(value)]="value9"
-            (selectItems)="selectItemsObject($event)" />
-    </div>
-</div>
-
-<div class="row mt-3">
-    <div class="col-12">
-        <span>{{'dropdown.multiple.value' | ddrTranslate}}: {{value9 | json}}</span>
-    </div>
-</div>
-
-<div class="row mt-3">
-    <div class="col-12">
-        <span class="h3">{{'dropdown.multiple.example.10' | ddrTranslate}}</span>
-    </div>
-</div>
-
-<div class="row mt-3">
-    <div class="col-12">
-        <ddr-dropdown-multiple
-            [options]="optionsEx10" 
-            [label]="'dropdown.multiple.label' | ddrTranslate" 
-            [placeholder]="'dropdown.multiple.placeholder' | ddrTranslate" 
-            [labelNoResults]="'dropdown.multiple.no.items' | ddrTranslate"
-            [labelPlaceholderFilter]="'dropdown.multiple.filter.placeholder' | ddrTranslate" 
-            [tooltipText]="'dropdown.multiple.tooltip' | ddrTranslate"
-            [compareFn]="compareFn"
-            name="dropdown-multiple-10"
-            [(value)]="value10"
-            (selectItems)="selectItemsObject($event)" />
-    </div>
-</div>
-
-<div class="row mt-3">
-    <div class="col-12">
-        <span>{{'dropdown.multiple.value' | ddrTranslate}}: {{value10 | json}}</span>
-    </div>
-</div>
-
-
-<div class="row mt-3">
-    <div class="col-12">
-        <span class="h3">{{'dropdown.multiple.example.11' | ddrTranslate}}</span>
-    </div>
-</div>
-
-<div class="row mt-3">
-    <div class="col-12">
-
-        <ddr-button-multiple class="mb-3"
-            [buttons]="buttonsOrientation"
-            [showSelectedButton]="true"
-            [(value)]="orientationDropdown" />
-
-        <ddr-dropdown-multiple
-            [options]="optionsEx11" 
-            [placeholder]="'dropdown.multiple.placeholder' | ddrTranslate" 
-            [labelNoResults]="'dropdown.multiple.no.items' | ddrTranslate"
-            [labelPlaceholderFilter]="'dropdown.multiple.filter.placeholder' | ddrTranslate" 
-            [orientation]="orientationDropdown"
-            [compareFn]="compareFn"
-            name="dropdown-multiple-11"
-            [(value)]="value11"
-            (selectItems)="selectItemsObject($event)" />
-    </div>
-</div>
-
-<div class="row mt-3">
-    <div class="col-12">
-        <span>{{'dropdown.multiple.value' | ddrTranslate}}: {{value11 | json}}</span>
-    </div>
-</div>
-
-<div class="row mt-3">
-    <div class="col-12">
-        <span class="h3">{{'dropdown.multiple.example.12' | ddrTranslate}}</span>
-    </div>
-</div>
-
-<div class="row mt-3">
-    <div class="col-12">
-        <ddr-dropdown-multiple
-            [options]="optionsEx12" 
-            [placeholder]="'dropdown.multiple.placeholder' | ddrTranslate" 
-            [labelNoResults]="'dropdown.multiple.no.items' | ddrTranslate"
-            [labelPlaceholderFilter]="'dropdown.multiple.filter.placeholder' | ddrTranslate" 
-            [compareFn]="compareFn"
-            name="dropdown-multiple-12"
-            [(value)]="value12"
-            (selectItems)="selectItemsObject($event)">
-
-            <ng-template #itemTemplate let-item="item">
-                <span>{{item.label + ' ' + (item.value | json)}}</span>
-            </ng-template>
-
-        </ddr-dropdown-multiple>
-    </div>
-</div>
-
-<div class="row mt-3">
-    <div class="col-12">
-        <span>{{'dropdown.multiple.value' | ddrTranslate}}: {{value12 | json}}</span>
-    </div>
-</div>
-
-<div class="row mt-3">
-    <div class="col-12">
-        <span class="h3">{{'dropdown.multiple.example.13' | ddrTranslate}}</span>
-    </div>
-</div>
-
-<div class="row mt-3">
-    <div class="col-12">
-        <ddr-dropdown-multiple
-            [options]="optionsEx13" 
-            [placeholder]="'dropdown.multiple.placeholder' | ddrTranslate" 
-            [labelNoResults]="'dropdown.multiple.no.items' | ddrTranslate"
-            [labelPlaceholderFilter]="'dropdown.multiple.filter.placeholder' | ddrTranslate" 
-            [(value)]="value13"
-            name="dropdown-multiple-13"
-            [compareFn]="compareFn"
-            (selectItems)="selectItemsObject($event)" />
-
-        <ddr-button 
-            text="dropdown.multiple.change.options" 
-            (action)="changeOptionsEx13()" />
-    </div>
-</div>
-
-<div class="row mt-3">
-    <div class="col-12">
-        <span>{{'dropdown.multiple.value' | ddrTranslate}}: {{value13 | json}}</span>
-    </div>
-</div>
-
-<div class="row mt-3">
-    <div class="col-12">
-        <span class="h3">{{'dropdown.multiple.example.14' | ddrTranslate}}</span>
-    </div>
-</div>
-
-<div class="row mt-3">
-    <div class="col-12">
-        <ddr-dropdown-multiple
-            [options]="optionsEx14" 
-            [placeholder]="'dropdown.multiple.placeholder' | ddrTranslate" 
-            [labelNoResults]="'dropdown.multiple.no.items' | ddrTranslate"
-            [labelPlaceholderFilter]="'dropdown.multiple.filter.placeholder' | ddrTranslate" 
-            [compareFn]="compareFn"
-            [required]="true"
-            [validate]="true"
-            name="dropdown-multiple-14"
-            [(value)]="value14"
-            (selectItems)="selectItemsObject($event)" >
-
-            <ng-template #templateValid>
-                <span>{{'dropdown.multiple.ok' | ddrTranslate}}</span>
-            </ng-template>
-
-            <ng-template #templateErrors let-errors="errors">
-                @if(errors?.required){
-                <span>{{'dropdown.multiple.value.required' | ddrTranslate}}</span>
-                }
-            </ng-template>
-        </ddr-dropdown-multiple>
-    </div>
-</div>
-
-<div class="row mt-3">
-    <div class="col-12">
-        <span>{{'dropdown.multiple.value' | ddrTranslate}}: {{value14 | json}}</span>
-    </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <span class="h3">{{'dropdown.multiple.example.15' | ddrTranslate}}</span>
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12 background-test-transparent">
-    <ddr-dropdown-multiple
-        [options]="optionsEx15" 
-        [placeholder]="'dropdown.multiple.placeholder' | ddrTranslate" 
-        [labelNoResults]="'dropdown.multiple.no.items' | ddrTranslate"
-        [labelPlaceholderFilter]="'dropdown.multiple.filter.placeholder' | ddrTranslate" 
-        [compareFn]="compareFn"
-        [transparent]="true"
-        name="dropdown-multiple-15"
-        [(value)]="value15"
-        (selectItems)="selectItemsObject($event)" />
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <span>{{'dropdown.value' | ddrTranslate}}: {{value15 | json}}</span>
-  </div>
-</div>
-
-    </div>
+    <ng-template #example>
+        <dropdown-multiple-showcase-14 />
+    </ng-template>
     
+    <ng-template #example>
+        <dropdown-multiple-showcase-15 />
+    </ng-template>
+    
+    <ng-template #example>
+        <dropdown-multiple-showcase-16 />
+    </ng-template>
+
+    <ng-template #example>
+        <dropdown-multiple-showcase-17 />
+    </ng-template>
+
+    <ng-template #example>
+        <dropdown-multiple-showcase-18 />
+    </ng-template>
+
+    <ng-template #example>
+        <dropdown-multiple-showcase-19 />
+    </ng-template>
+
+    <ng-template #example>
+        <dropdown-multiple-showcase-20 />
+    </ng-template>
+
+    <ng-template #example>
+        <dropdown-multiple-showcase-21 />
+    </ng-template>
+
+    <ng-template #example>
+        <dropdown-multiple-showcase-22 />
+    </ng-template>
+
+    <ng-template #example>
+        <dropdown-multiple-showcase-23 />
+    </ng-template>
+
 </base-showcase>

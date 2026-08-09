@@ -1,0 +1,19 @@
+
+<ddr-button-multiple class="mb-3"
+    [buttons]="buttonsOrientation()"
+    [showSelectedButton]="true"
+    [(value)]="orientationDropdown" />
+
+<ddr-dropdown-multiple
+    [options]="options()" 
+    [placeholder]="'dropdown.multiple.placeholder' | ddrTranslate" 
+    [labelNoResults]="'dropdown.multiple.no.items' | ddrTranslate"
+    [labelPlaceholderFilter]="'dropdown.multiple.filter.placeholder' | ddrTranslate" 
+    [orientation]="orientationDropdown()"
+    [compareFn]="compareFn"
+    name="dropdown-multiple-11"
+    [(value)]="value" />
+    
+<div class="mt-2">
+    <span>{{'dropdown.multiple.value' | ddrTranslate}}: {{value() | json}}</span>
+</div>

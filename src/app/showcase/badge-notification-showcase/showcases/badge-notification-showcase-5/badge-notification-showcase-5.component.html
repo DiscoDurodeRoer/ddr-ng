@@ -1,0 +1,9 @@
+<ddr-button 
+    [text]="(showNotifications() ? 'badge.notification.hide.notifications' :  'badge.notification.show.notifications') | ddrTranslate"
+    (action)="toggleNotifications()" />
+
+<i class="fs-2 bi bi-house-door-fill"
+    ddrNotification 
+    [numberNotifications]="15" 
+    [limitNotifications]="9"
+    [showNotifications]="showNotifications()">

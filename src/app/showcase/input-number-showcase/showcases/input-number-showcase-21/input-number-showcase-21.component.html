@@ -1,0 +1,23 @@
+<ddr-input-number
+    [label]="'input.number.label' | ddrTranslate" 
+    [validate]="true"
+    [formField]="inputNumberForm.number" >
+
+        <ng-template #templateValid>
+            <span>{{'input.ok' | ddrTranslate}}</span>
+        </ng-template>
+
+        <ng-template #templateErrors let-errors="errors">
+            @for (error of errors(); track error.kind) {
+                @switch(error.kind){
+                    @case('max'){
+                        <span>{{ error.message | ddrTranslate }} {{error.max}}</span>
+                    }
+                    @case('min'){
+                        <span>{{ error.message | ddrTranslate }} {{error.min}}</span>
+                    }
+                }
+            }
+        </ng-template>
+
+</ddr-input-number>

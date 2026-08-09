@@ -1,174 +1,33 @@
-<base-showcase component="ddr-accordion" type="component" [showPossibleValues]="false" [showSlots]="true" [showStyles]="true">
+<base-showcase 
+  component="ddr-accordion" 
+  type="component" 
+  [documentation]="documentation"
+  [showPossibleValues]="false" 
+  [showSlots]="true" 
+  [showStyles]="true">
 
   <div description>
     <p>{{'accordion.description' | ddrTranslate}}</p>
   </div>
 
-  <div examples>
+  <ng-template #example>
+    <accordion-showcase-1 />
+  </ng-template>
 
-<div class="row">
-  <div class="col-12 mb-2">
-    <span class="h3">{{'accordion.example.1' | ddrTranslate}}</span>
-  </div>
-</div>
+  <ng-template #example>
+    <accordion-showcase-2 />
+  </ng-template>
 
-<div class="row">
-  <div class="col-12">
-    <ddr-accordion [titleAccordion]="'accordion.title' | ddrTranslate">
+  <ng-template #example>
+    <accordion-showcase-3 />
+  </ng-template>
 
-      <div content-accordion>
-        <p>
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Expedita tempore magni quaerat voluptatem
-          repudiandae, odio assumenda perspiciatis aspernatur! Libero similique dolores nesciunt ratione
-          voluptatibus nobis, minima recusandae amet nam earum?
-          Iure ratione alias incidunt dolores repellat asperiores, autem exercitationem aliquid quam voluptatem eos
-          sint ea minima odit nisi quibusdam, cum optio minus qui mollitia a? Libero eveniet hic eum quos?
-          Voluptas qui, tempore illo ea et, accusamus tempora beatae cupiditate magnam iusto, praesentium quia vel
-          explicabo impedit hic aliquam dolorum aperiam. Nostrum nobis rem modi eum tempora, repudiandae sapiente
-          ex!
-          Repellendus, quaerat impedit, quasi sunt saepe molestiae excepturi fugit officia eveniet, ad hic ipsum
-          minus dolor velit ipsa ut optio unde. Quam eaque optio laudantium suscipit animi praesentium voluptatum
-          saepe?
-          Necessitatibus iusto nemo ipsam eum excepturi aperiam nisi neque consequuntur libero distinctio? Molestias
-          alias vero ullam eos velit numquam officiis dicta eligendi, nesciunt libero expedita distinctio fugiat
-          harum quaerat. Suscipit.
-        </p>
-      </div>
+  <ng-template #example>
+    <accordion-showcase-4 />
+  </ng-template>
 
-    </ddr-accordion>
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12 mb-2">
-    <span class="h3">{{'accordion.example.2' | ddrTranslate}}</span>
-  </div>
-</div>
-
-<div class="row">
-  <div class="col-12">
-
-    <ddr-accordion [titleAccordion]="'accordion.title' | ddrTranslate" [open]="true">
-
-      <div content-accordion>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde, assumenda numquam dolore a, harum alias
-          enim repellendus recusandae qui non illum consequatur. Quas culpa sunt ex illum molestias ipsam
-          consectetur.
-          Libero enim nesciunt vitae temporibus adipisci optio magni laudantium possimus rerum. Quos, odit, delectus
-          soluta debitis facere dignissimos inventore ratione, eligendi amet in cumque eveniet? Possimus assumenda
-          expedita asperiores sit.
-          Reiciendis nisi error minima dicta libero voluptatum quod porro fugit sapiente aliquam eveniet totam
-          accusamus voluptates, a commodi repellat nostrum beatae. Doloribus repudiandae provident dolore recusandae
-          vero aliquid quae aspernatur!
-          Animi veniam ex dolorem, recusandae voluptatibus inventore labore repellat voluptatem. Iure porro
-          molestias reprehenderit eius, deserunt incidunt dicta ipsum ut ullam quidem illum voluptates, explicabo
-          odio unde quis voluptatum necessitatibus.
-          Nostrum saepe fuga reprehenderit est rerum ipsam cumque nihil officia mollitia, illo laudantium eveniet
-          quas consequatur nulla, commodi excepturi officiis! Incidunt quas sunt praesentium eius sed, voluptatem
-          repellendus fugiat assumenda?
-        </p>
-      </div>
-    </ddr-accordion>
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12 mb-2">
-    <span class="h3">{{'accordion.example.3' | ddrTranslate}}</span>
-  </div>
-</div>
-
-<div class="row">
-  <div class="col-12">
-
-    <ddr-accordion [titleAccordion]="'accordion.title' | ddrTranslate" [shadow]="false" [border]="false">
-
-      <div content-accordion>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. At, fuga. Aliquam blanditiis similique commodi
-          excepturi eveniet laudantium atque provident, ipsam modi quae sapiente! Molestiae numquam esse ducimus,
-          sed velit a!
-          Fugiat ipsam consequuntur ad exercitationem non amet aut sit perferendis quo error, culpa cupiditate
-          quaerat maxime iure! Quae, illo quod modi autem earum repudiandae non recusandae, ullam numquam quisquam
-          quam!
-          Veritatis error praesentium illo inventore, nihil dicta! Impedit aperiam quisquam ex ipsum dolore at a
-          dolorem, aliquam consequatur omnis pariatur nulla mollitia! Magnam illo soluta nemo vero quia et ea?
-          In mollitia velit maxime qui ea. Suscipit, minus esse atque laborum nobis hic a eaque. Quos dolorum quae
-          sed nisi iure totam assumenda voluptas, itaque, eius, earum repellendus! Perferendis, dolor?
-          Voluptatum voluptates voluptatem vero id sequi rem dignissimos aspernatur laudantium quidem sit
-          reprehenderit modi, incidunt tempora adipisci nobis. Officiis, ad inventore accusantium incidunt quod
-          labore. Architecto facilis quaerat quidem consectetur!
-        </p>
-      </div>
-    </ddr-accordion>
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12 mb-2">
-    <span class="h3">{{'accordion.example.4' | ddrTranslate}}</span>
-  </div>
-</div>
-
-<div class="row">
-  <div class="col-12">
-
-    <ddr-accordion [titleAccordion]="'accordion.title' | ddrTranslate" [slim]="true">
-
-      <div content-accordion>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. At, fuga. Aliquam blanditiis similique commodi
-          excepturi eveniet laudantium atque provident, ipsam modi quae sapiente! Molestiae numquam esse ducimus,
-          sed velit a!
-          Fugiat ipsam consequuntur ad exercitationem non amet aut sit perferendis quo error, culpa cupiditate
-          quaerat maxime iure! Quae, illo quod modi autem earum repudiandae non recusandae, ullam numquam quisquam
-          quam!
-          Veritatis error praesentium illo inventore, nihil dicta! Impedit aperiam quisquam ex ipsum dolore at a
-          dolorem, aliquam consequatur omnis pariatur nulla mollitia! Magnam illo soluta nemo vero quia et ea?
-          In mollitia velit maxime qui ea. Suscipit, minus esse atque laborum nobis hic a eaque. Quos dolorum quae
-          sed nisi iure totam assumenda voluptas, itaque, eius, earum repellendus! Perferendis, dolor?
-          Voluptatum voluptates voluptatem vero id sequi rem dignissimos aspernatur laudantium quidem sit
-          reprehenderit modi, incidunt tempora adipisci nobis. Officiis, ad inventore accusantium incidunt quod
-          labore. Architecto facilis quaerat quidem consectetur!
-        </p>
-      </div>
-    </ddr-accordion>
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12 mb-2">
-    <span class="h3">{{'accordion.example.5' | ddrTranslate}}</span>
-  </div>
-</div>
-
-<div class="row">
-  <div class="col-12">
-
-    <ddr-accordion [titleAccordion]="'accordion.title' | ddrTranslate" (clickOpen)="onClickOpen($event)">
-
-      <div content-accordion>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. At, fuga. Aliquam blanditiis similique commodi
-          excepturi eveniet laudantium atque provident, ipsam modi quae sapiente! Molestiae numquam esse ducimus,
-          sed velit a!
-          Fugiat ipsam consequuntur ad exercitationem non amet aut sit perferendis quo error, culpa cupiditate
-          quaerat maxime iure! Quae, illo quod modi autem earum repudiandae non recusandae, ullam numquam quisquam
-          quam!
-          Veritatis error praesentium illo inventore, nihil dicta! Impedit aperiam quisquam ex ipsum dolore at a
-          dolorem, aliquam consequatur omnis pariatur nulla mollitia! Magnam illo soluta nemo vero quia et ea?
-          In mollitia velit maxime qui ea. Suscipit, minus esse atque laborum nobis hic a eaque. Quos dolorum quae
-          sed nisi iure totam assumenda voluptas, itaque, eius, earum repellendus! Perferendis, dolor?
-          Voluptatum voluptates voluptatem vero id sequi rem dignissimos aspernatur laudantium quidem sit
-          reprehenderit modi, incidunt tempora adipisci nobis. Officiis, ad inventore accusantium incidunt quod
-          labore. Architecto facilis quaerat quidem consectetur!
-        </p>
-      </div>
-    </ddr-accordion>
-  </div>
-</div>
-
-  </div>
+  <ng-template #example>
+    <accordion-showcase-5 />
+  </ng-template>
 
 </base-showcase>

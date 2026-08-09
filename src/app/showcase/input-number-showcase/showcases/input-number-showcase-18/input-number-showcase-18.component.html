@@ -1,0 +1,7 @@
+<ddr-input-number
+    [label]="'input.number.label' | ddrTranslate" 
+    [formField]="inputNumberForm.number" />
+
+<div class="mt-2">
+    <span>{{'input.number.value' | ddrTranslate}}: {{inputNumberForm.number().value()}}</span>
+</div>

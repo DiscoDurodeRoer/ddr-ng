@@ -1,0 +1,35 @@
+<div class="row mt-3">
+    <div class="col-12">
+        <p>{{'modal.size' | ddrTranslate}}:</p>
+        <ddr-button-multiple 
+            [buttons]="buttonsSize()" 
+            [showSelectedButton]="true" 
+            [(value)]="size" />
+    </div>
+</div>
+
+<div class="row mt-3">
+    <div class="col-12">
+        <ddr-button 
+            [text]="'modal.open' | ddrTranslate" 
+            size="medium" 
+            (action)="openModal()" />
+    </div>
+</div>
+
+<ddr-modal 
+    [id]="ID_MODAL()" 
+    [labelConfirm]="'modal.confirm' | ddrTranslate"
+    [labelClose]="'modal.close' | ddrTranslate" 
+    [size]="size()" 
+    (close)="closeModal()" 
+    (accept)="closeModal()">
+    <span class="h1" modal-title>Lorem</span>
+
+    <span modal-content>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nobis
+        reiciendis, recusandae enim, accusamus illo dicta obcaecati, nam ab
+        voluptatum asperiores tenetur error. Similique doloribus at possimus
+        fuga excepturi veritatis distinctio!
+    </span>
+</ddr-modal>

@@ -1,100 +1,34 @@
-<base-showcase component="ddrToastService" type="service" [showInputs]="false" [showOutputs]="false" [showStyles]="true">
+<base-showcase 
+  component="ddr-toast-service" 
+  type="service" 
+  [documentation]="documentation" 
+  [showInputs]="false" 
+  [showService]="true" 
+  [showOutputs]="false" 
+  [showStyles]="true">
 
   <div description>
     <p>{{'toast.description' | ddrTranslate}}</p>
   </div>
 
-  <div examples>
-    
-<div class="row">
-  <div class="col-12">
-    <ddr-input
-      [label]="'toast.maxtoasts' | ddrTranslate"
-      type="number"
-      [min]="1"
-      name="maxtoasts"
-      [(value)]="maxToasts" />
-  </div>
-</div>
+  <ng-template #example>
+    <toast-showcase-1 />
+  </ng-template>
 
-<div class="row mt-3">
-  <div class="col-12">
-    <ddr-input
-      [label]="'toast.timeout' | ddrTranslate"
-      type="number"
-      [min]="1"
-      name="timeout"
-      [(value)]="toastTimeout" />
-  </div>
-</div>
+  <ng-template #example>
+    <toast-showcase-2 />
+  </ng-template>
 
-<div class="row mt-3">
-  <div class="col-12">
-      <p>{{'toast.orientation' | ddrTranslate}}</p>
-      <ddr-button-multiple
-            [buttons]="buttonsOrientation"
-            [showSelectedButton]="true"
-            [(value)]="toastOrientation"
-            (action)="changeOrientation()" />
-  </div>
-</div>
+  <ng-template #example>
+    <toast-showcase-3 />
+  </ng-template>
+  
+  <ng-template #example>
+    <toast-showcase-4 />
+  </ng-template>
 
-<div class="row mt-3">
-  <div class="col-12">
-    <p>{{'toast.show.toast' | ddrTranslate}}</p>
-    <ddr-button-multiple
-      [buttons]="buttons"
-      (action)="showToast($event)" />
-  </div>
-</div>
-   
-  </div>
+  <ng-template #example>
+    <toast-showcase-5 />
+  </ng-template>
 
-  <div inputs>
-    <table class="table">
-      <thead class="thead-dark">
-        <tr>
-          <th>Nombre</th>
-          <th>Descripción</th>
-          <th>Tipo</th>
-          <th>Valor por defecto</th>
-          <th>Posibles valores (constants)</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>timeOut</td>
-          <td>Tiempo para que desaparezca el toast</td>
-          <td>number</td>
-          <td>5000</td>
-          <td>
-            <ul>
-              <li>ToastConstants.TIMEOUT_DEFAULT</li>
-            </ul>
-          </td>
-        </tr>
-        <tr>
-          <td>orientation</td>
-          <td>Orientacion por donde sale el toast</td>
-          <td>string</td>
-          <td>'top-left'</td>
-          <td>
-            <ul>
-              <li>ORIENTATION.TOP_LEFT</li>
-              <li>ORIENTATION.TOP_RIGHT</li>
-              <li>ORIENTATION.BOTTOM_LEFT</li>
-              <li>ORIENTATION.BOTTOM_RIGHT</li>
-            </ul>
-          </td>
-        </tr>
-        <tr>
-          <td>block</td>
-          <td>Muestra el toast en modo bloque</td>
-          <td>boolean</td>
-          <td>false</td>
-          <td></td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
 </base-showcase>

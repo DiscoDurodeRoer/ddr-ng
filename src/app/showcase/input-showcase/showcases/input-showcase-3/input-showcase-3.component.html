@@ -1,0 +1,10 @@
+<form (submit)="submitForm($event)">
+    <ddr-input 
+        [label]="'input.label' | ddrTranslate" 
+        [placeholder]="'input.placeholder' | ddrTranslate" 
+        name="input-3"
+        [required]="true" />
+    <ddr-button
+        type="submit"
+        [text]="'button.text' | ddrTranslate" />
+</form>

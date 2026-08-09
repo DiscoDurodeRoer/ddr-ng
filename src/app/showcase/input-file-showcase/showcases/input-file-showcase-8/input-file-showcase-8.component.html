@@ -1,0 +1,9 @@
+<ddr-input-file 
+    [label]="'input.file' | ddrTranslate"
+    name="input-file-8"
+    [(ngModel)]="value" />
+
+<div class="mt-2">
+    <span class="d-block">{{'input.file.name' | ddrTranslate}}: {{value().length ? value()[0].name : ''}}</span>
+    <span class="d-block">{{'input.file.type' | ddrTranslate}}: {{value().length ? value()[0].type : ''}}</span>
+</div>

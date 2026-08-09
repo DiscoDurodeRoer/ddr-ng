@@ -1,0 +1,13 @@
+<div class="mb-3">
+    <ddr-button-multiple
+        [buttons]="buttons()"
+        [(value)]="position"
+        [showSelectedButton]="true" />
+</div>
+    
+<div >
+    <ddr-button-split
+        [actions]="actions()"
+        [position]="position()"
+        (selectAction)="selectAction($event)" />
+</div>

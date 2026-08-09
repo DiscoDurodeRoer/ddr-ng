@@ -1,270 +1,81 @@
-<base-showcase component="ddr-textarea" type="component" [showTemplates]="true" [showStyles]="true">
+<base-showcase 
+  component="ddr-textarea" 
+  type="component" 
+  [documentation]="documentation" 
+  [showTemplates]="true" 
+  [showInputsOutputs]="true"
+  [showStyles]="true">
 
   <div description>
     <p>{{'textarea.description' | ddrTranslate}}</p>
   </div>
 
-  <div examples>
+  <ng-template #example>
+    <textarea-showcase-1 />
+  </ng-template>
+  
+  <ng-template #example>
+    <textarea-showcase-2 />
+  </ng-template>
 
-<div class="row">
-  <div class="col-12">
-    <span class="h3">{{'textarea.example.1' | ddrTranslate}}</span>
-  </div>
-</div>
+  <ng-template #example>
+    <textarea-showcase-3 />
+  </ng-template>
 
-<div class="row mt-3">
-  <div class="col-12">
-    <span class="h5">{{'without.form.signal' | ddrTranslate}}</span>
-  </div>
-</div>
+  <ng-template #example>
+    <textarea-showcase-4 />
+  </ng-template>
 
-<div class="row mt-3">
-  <div class="col-12">
-    <ddr-textarea 
-      [label]="'textarea.label' | ddrTranslate" 
-      [placeholder]="'textarea.placeholder' | ddrTranslate"
-      name="example-1" 
-      [(value)]="value1" />
-  </div>
-</div>
+  <ng-template #example>
+    <textarea-showcase-5 />
+  </ng-template>
 
-<div class="row mt-3">
-  <div class="col-12">
-    <span>{{'textarea.value' | ddrTranslate}}: {{value1}}</span>
-  </div>
-</div>
+  <ng-template #example>
+    <textarea-showcase-6 />
+  </ng-template>
 
-<div class="row mt-3">
-  <div class="col-12">
-    <span class="h5">{{'with.form.signal' | ddrTranslate}}</span>
-  </div>
-</div>
+  <ng-template #example>
+    <textarea-showcase-7 />
+  </ng-template>
 
-<div class="row mt-3">
-  <div class="col-12">
-    <ddr-textarea 
-      [label]="'textarea.label' | ddrTranslate" 
-      [placeholder]="'textarea.placeholder' | ddrTranslate"
-      [formField]="formTextareaEx1.example1" />
-  </div>
-</div>
+  <ng-template #example>
+    <textarea-showcase-8 />
+  </ng-template>
 
-<div class="row mt-3">
-  <div class="col-12">
-    <span>{{'textarea.value' | ddrTranslate}}: {{formTextareaEx1.example1().value()}}</span>
-  </div>
-</div>
+  <ng-template #example>
+    <textarea-showcase-9 />
+  </ng-template>
 
-<div class="row mt-3">
-  <div class="col-12">
-    <span class="h3">{{'textarea.example.2' | ddrTranslate}}</span>
-  </div>
-</div>
+  <ng-template #example>
+    <textarea-showcase-10 />
+  </ng-template>
 
-<div class="row mt-3">
-  <div class="col-12">
-    <span class="h5">{{'without.form.signal' | ddrTranslate}}</span>
-  </div>
-</div>
+  <ng-template #example>
+    <textarea-showcase-11 />
+  </ng-template>
 
+    <ng-template #example>
+    <textarea-showcase-12 />
+  </ng-template>
 
-<div class="row mt-3">
-  <div class="col-12">
-    <ddr-textarea 
-      [label]="'textarea.label' | ddrTranslate" 
-      [placeholder]="'textarea.placeholder' | ddrTranslate"
-      name="example-2" 
-      [(value)]="value2" />
-  </div>
-</div>
+  <ng-template #example>
+    <textarea-showcase-13 />
+  </ng-template>
 
-<div class="row mt-3">
-  <div class="col-12">
-    <span>{{'textarea.value' | ddrTranslate}}: {{value2}}</span>
-  </div>
-</div>
+  <ng-template #example>
+    <textarea-showcase-14 />
+  </ng-template>
 
-<div class="row mt-3">
-  <div class="col-12">
-    <span class="h5">{{'with.form.signal' | ddrTranslate}}</span>
-  </div>
-</div>
+  <ng-template #example>
+    <textarea-showcase-15 />
+  </ng-template>
 
-<div class="row mt-3">
-  <div class="col-12">
-    <ddr-textarea 
-      [label]="'textarea.label' | ddrTranslate" 
-      [placeholder]="'textarea.placeholder' | ddrTranslate"
-      [formField]="formTextareaEx2.example2" />
-  </div>
-</div>
+  <ng-template #example>
+    <textarea-showcase-16 />
+  </ng-template>
 
-<div class="row mt-3">
-  <div class="col-12">
-    <span>{{'textarea.value' | ddrTranslate}}: {{formTextareaEx2.example2().value()}}</span>
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <span class="h3">{{'textarea.example.3' | ddrTranslate}}</span>
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <span class="h5">{{'without.form.signal' | ddrTranslate}}</span>
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <ddr-textarea 
-      [label]="'textarea.label' | ddrTranslate" 
-      [placeholder]="'textarea.placeholder' | ddrTranslate"
-      name="example-3" 
-      [minLength]="3"
-      [maxLength]="10" 
-      [required]="true" 
-      [validate]="true">
-
-      <ng-template #templateValid>
-        <span>{{'textarea.ok' | ddrTranslate}}</span>
-      </ng-template>
-
-      <ng-template #templateErrors let-errors="errors">
-        @if (errors?.required) {
-          <span>{{'textarea.value.required' | ddrTranslate}}</span>
-        }
-        @if(errors?.minlength){
-          <span class="me-2">{{'textarea.minlength.required' | ddrTranslate}} {{ errors?.minlength.requiredLength }}</span>
-          <span>{{'textarea.minlength.actual' | ddrTranslate}} {{ errors?.minlength?.actualLength }}</span>
-        }
-      </ng-template>
-    </ddr-textarea>
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <span class="h5">{{'with.form.signal' | ddrTranslate}}</span>
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <ddr-textarea 
-      [label]="'textarea.label' | ddrTranslate" 
-      [placeholder]="'textarea.placeholder' | ddrTranslate"
-      [validate]="true"
-      [formField]="formTextareaEx3.example3">
-
-      <ng-template #templateValid>
-        <span>{{'textarea.ok' | ddrTranslate}}</span>
-      </ng-template>
-
-      <ng-template #templateErrors let-errors="errors">
-        @for (error of errors(); track error.kind) {
-            @switch(error.kind){
-              @case('required'){
-                <span>{{ error.message | ddrTranslate }}</span>
-              }
-              @case('minLength'){
-                <span class="me-2">{{ error.message | ddrTranslate }} {{ error.minLength }}</span>
-              }
-              @case('maxLength'){
-                <span class="me-2">{{ error.message | ddrTranslate }} {{ error.maxLength }}</span>
-              }
-            }
-          }
-      </ng-template>
-    </ddr-textarea>
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <span class="h3">{{'textarea.example.4' | ddrTranslate}}</span>
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <ddr-textarea 
-      [label]="'textarea.label' | ddrTranslate" 
-      [placeholder]="'textarea.placeholder' | ddrTranslate"
-      name="example-4" 
-      [inline]="true" />
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <span class="h3">{{'textarea.example.5' | ddrTranslate}}</span>
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <ddr-textarea 
-      [label]="'textarea.label' | ddrTranslate" 
-      [placeholder]="'textarea.placeholder' | ddrTranslate"
-      name="example-5"
-      [rows]="15"
-      [cols]="30" />
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <span class="h3">{{'textarea.example.6' | ddrTranslate}}</span>
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <ddr-textarea 
-      [label]="'textarea.label' | ddrTranslate" 
-      [placeholder]="'textarea.placeholder' | ddrTranslate"
-      name="example-6"
-      [tooltipText]="'textarea.tooltip' | ddrTranslate" />
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <span class="h3">{{'textarea.example.7' | ddrTranslate}}</span>
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <ddr-textarea 
-      [label]="'textarea.label' | ddrTranslate" 
-      [placeholder]="'textarea.placeholder' | ddrTranslate"
-      name="example-7"
-      [labelBold]="true" />
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <span class="h3">{{'textarea.example.8' | ddrTranslate}}</span>
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <ddr-textarea 
-      [label]="'textarea.label' | ddrTranslate" 
-      [placeholder]="'textarea.placeholder' | ddrTranslate"
-      name="example-8"
-      (clickTextarea)="clickTextarea($event)"
-      (keyPressed)="keyPressed($event)"
-      (blur)="blur()" />
-  </div>
-</div>
-
-  </div>
+  <ng-template #example>
+    <textarea-showcase-17 />
+  </ng-template>
 
 </base-showcase>

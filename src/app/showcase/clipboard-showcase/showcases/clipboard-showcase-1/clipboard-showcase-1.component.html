@@ -1,0 +1,13 @@
+<ddr-textarea 
+    name="textarea-1"
+    [readonly]="true" 
+    [(value)]="value" />
+    
+<ddr-button 
+    [text]="'clipboard.copy' | ddrTranslate"  
+    ddrClipboard 
+    [clipboard]="value()" 
+    (action)="copyText()" />
+    
+<ddr-textarea 
+    name="textarea-1-copied"/>

@@ -1,33 +1,15 @@
-<base-showcase component="ddrClickOutside" type="directive"  [showCodeCSS]="true" [showPossibleValues]="false">
+<base-showcase 
+  component="ddr-click-outside-directive" 
+  type="directive" 
+  [documentation]="documentation" 
+  [showPossibleValues]="false">
 
   <div description>
     <p>{{'clickoutside.description' | ddrTranslate}}</p>
   </div>
 
-  <div examples>
-    
-<ddr-button-multiple
-  [buttons]="buttonsModes"
-  [showSelectedButton]="true"
-  [(value)]="modeClickoutside" />
-
-@switch (modeClickoutside) {
-  @case ('standard') {
-    <div ddrClickOutside (clickOutside)="clickOutside($event)" class="block">
-      <p>{{'clickoutside.standard.click' | ddrTranslate}}</p>
-    </div>
-  }
-  @case ('delay') {
-    <div ddrClickOutside [clickOutsideDelay]="5000" (clickOutside)="clickOutside($event)" class="block">
-      <p>{{'clickoutside.delay.click' | ddrTranslate}}</p>
-    </div>
-  }
-  @case ('disactivated') {
-    <div ddrClickOutside [clickOutsideEnabled]="false" (clickOutside)="clickOutside($event)" class="block">
-      <p>{{'clickoutside.disactivated.click' | ddrTranslate}}</p>
-    </div>
-  }
-}
-  </div>
+  <ng-template #example>
+    <click-outside-showcase-1 />
+  </ng-template>
 
 </base-showcase>

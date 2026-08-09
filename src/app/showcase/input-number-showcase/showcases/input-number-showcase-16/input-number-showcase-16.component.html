@@ -1,0 +1,10 @@
+<form [formGroup]="inputNumberForm">
+    <ddr-input-number
+        [label]="'input.number.label' | ddrTranslate" 
+        formControlName="input"
+        name="input-number-16" />
+
+    <div class="mt-2">
+        <span>{{'input.number.value' | ddrTranslate}}: {{inputNumberForm.value | json}}</span>
+    </div>
+</form>

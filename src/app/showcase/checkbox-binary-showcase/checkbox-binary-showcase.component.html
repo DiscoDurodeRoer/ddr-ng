@@ -1,105 +1,41 @@
-<base-showcase component="ddr-checkbox-binary" type="component"  [showPossibleValues]="false" [showStyles]="true">
+<base-showcase 
+  component="ddr-checkbox-binary" 
+  type="component"
+  [documentation]="documentation" 
+  [showPossibleValues]="false" 
+  [showInputsOutputs]="true"
+  [showStyles]="true">
 
   <div description>
     <p>{{'checkbox.binary.description' | ddrTranslate}}</p>
   </div>
 
-  <div examples>
+  <ng-template #example>
+    <checkbox-binary-showcase-1 />
+  </ng-template>
 
-<div class="row">
-  <div class="col-12">
-    <span class="h3">{{'checkbox.binary.example.1' | ddrTranslate}}</span>
-  </div>
-</div>
+  <ng-template #example>
+    <checkbox-binary-showcase-2 />
+  </ng-template>
 
-<div class="row mt-3">
-  <div class="col-12">
-    <span class="h5">{{'without.form.signal' | ddrTranslate}}</span>
-  </div>
-</div>
+  <ng-template #example>
+    <checkbox-binary-showcase-3 />
+  </ng-template>
 
-<div class="row mt-3">
-  <div class="col-12">
-    <ddr-checkbox-binary 
-        label="checkbox.binary.label"
-        [(value)]="value" />
-  </div>
-</div>
+  <ng-template #example>
+    <checkbox-binary-showcase-4 />
+  </ng-template>
 
-<div class="row mt-3">
-  <div class="col-12">
-    <span>{{'checkbox.binary.value' | ddrTranslate}}: {{value}}</span>
-  </div>
-</div>
+  <ng-template #example>
+    <checkbox-binary-showcase-5 />
+  </ng-template>
 
-<div class="row mt-3">
-  <div class="col-12">
-    <span class="h5">{{'with.form.signal' | ddrTranslate}}</span>
-  </div>
-</div>
+  <ng-template #example>
+    <checkbox-binary-showcase-6 />
+  </ng-template>
 
-<div class="row mt-3">
-  <div class="col-12">
-    <ddr-checkbox-binary 
-      label="checkbox.binary.label"
-      [formField]="checkboxEx1.example1" />
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <span>{{'checkbox.binary.value' | ddrTranslate}}: {{checkboxEx1.example1().value()}}</span>
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <span class="h3">{{'checkbox.binary.example.2' | ddrTranslate}}</span>
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <span class="h5">{{'without.form.signal' | ddrTranslate}}</span>
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <ddr-checkbox-binary 
-      label="checkbox.binary.label"
-      [disabled]="true" />
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <span class="h5">{{'with.form.signal' | ddrTranslate}}</span>
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <ddr-checkbox-binary 
-      label="checkbox.binary.label"
-      [formField]="checkboxEx2.example2" />
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <span class="h3">{{'checkbox.binary.example.3' | ddrTranslate}}</span>
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <ddr-checkbox-binary 
-          label="checkbox.binary.label"
-          (clickCheck)="clickCheck($event)" />
-  </div>
-</div>
-
-  </div>
+  <ng-template #example>
+    <checkbox-binary-showcase-7 />
+  </ng-template>
 
 </base-showcase>

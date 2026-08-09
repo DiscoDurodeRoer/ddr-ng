@@ -6,33 +6,33 @@
                         
                 <div class="row mt-3">
                     <div class="col-12">
-                        <span class="h2">&#123;&#123;'get.started.p1' | ddrTranslate&#125;&#125;</span>
+                        <span class="h2">{{'get.started.p1' | ddrTranslate}}</span>
                     </div>
                 </div>
 
                 <div class="row mt-3">
                     <div class="col-12">
-                        <span>&#123;&#123;'get.started.p2' | ddrTranslate&#125;&#125;</span>
+                        <span class="fs-5">{{'get.started.p2' | ddrTranslate}}</span>
                     </div>
                 </div>
                 
                 <div class="row mt-3">
                     <div class="col-12">
-                        <span class="h2">&#123;&#123;'get.started.p3' | ddrTranslate&#125;&#125;</span>
+                        <span class="h2">{{'get.started.p3' | ddrTranslate}}</span>
                     </div>
                 </div>
 
                 <div class="row mt-3">
                     <div class="col-12">
-                        <span>&#123;&#123;'get.started.p4' | ddrTranslate&#125;&#125;</span>
-                        <pre class="language-bash"><code class="language-bash">npm install ddr-ng@21.0.2</code></pre>
+                        <span class="fs-5">{{'get.started.p4' | ddrTranslate}}</span>
+                        <pre class="language-bash"><code class="language-bash">npm install ddr-ng&#64;22.0.0</code></pre>
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="col-12 text-end">
                         <ddr-button 
-                            text="get.started.copy" 
+                            [text]="'get.started.copy' | ddrTranslate" 
                             icon="bi bi-copy" 
                             size="medium"
                             ddrClipboard 
@@ -43,13 +43,13 @@
 
                 <div class="row mt-3">
                     <div class="col-12">
-                        <span class="h2">&#123;&#123;'get.started.p5' | ddrTranslate&#125;&#125;</span>
+                        <span class="h2">{{'get.started.p5' | ddrTranslate}}</span>
                     </div>
                 </div>
 
                 <div class="row mt-3">
                     <div class="col-12">
-                        <span>&#123;&#123;'get.started.p6' | ddrTranslate&#125;&#125;</span>
+                        <span class="fs-5">{{'get.started.p6' | ddrTranslate}}</span>
 
                             <pre class="language-typescript"><code class="language-typescript">"styles": [
   "node_modules/ddr-ng/resources/themes/ddr-blue.scss",
@@ -63,7 +63,7 @@
                 <div class="row">
                     <div class="col-12 text-end">
                         <ddr-button 
-                            text="get.started.copy" 
+                            [text]="'get.started.copy' | ddrTranslate" 
                             icon="bi bi-copy" 
                             size="medium"
                             ddrClipboard 
@@ -74,7 +74,7 @@
 
                 <div class="row mt-3">
                     <div class="col-12">
-                        <span>&#123;&#123;'get.started.p7' | ddrTranslate&#125;&#125;</span>
+                        <span class="fs-5">{{'get.started.p7' | ddrTranslate}}</span>
                                 <pre class="language-typescript"><code class="language-typescript">"styles": [
   "node_modules/ddr-ng/resources/themes/ddr-blue.scss",
   "node_modules/ddr-ng/resources/themes/ddr-dark.scss",
@@ -89,7 +89,7 @@
                 <div class="row">
                     <div class="col-12 text-end">
                         <ddr-button 
-                            text="get.started.copy" 
+                            [text]="'get.started.copy' | ddrTranslate" 
                             icon="bi bi-copy" 
                             size="medium"
                             ddrClipboard 
@@ -98,52 +98,100 @@
                     </div>
                 </div>
 
-                <div class="row mt-3">
-                    <div class="col-12">
-                        <span>&#123;&#123;'get.started.p8' | ddrTranslate&#125;&#125;</span>
-                        <pre class="language-html"><code class="language-html"><p>&lt;body class="ddr-blue"&gt;&lt;/body&gt;</p></code></pre>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-12 text-end">
-                        <ddr-button 
-                            text="get.started.copy" 
-                            icon="bi bi-copy" 
-                            size="medium"
-                            ddrClipboard 
-                            [clipboard]="stylesEx3"
-                            (action)="copyText()" />
-                    </div>
-                </div>
-
                 <div class="row">
                     <div class="col-12">
-                        <span>&#123;&#123;'get.started.p9' | ddrTranslate&#125;&#125;</span>
+                        <span class="fs-5">{{'get.started.p9' | ddrTranslate}}</span>
                     </div>
                 </div>
 
                                 <div class="row">
                     <div class="col-12">
-                        <pre class="language-typescript"><code class="language-typescript">import &#123; ApplicationConfig, provideBrowserGlobalErrorListeners &#125; from '&#64;angular/core';
+                        <pre class="language-typescript"><code class="language-typescript">import &#123;
+  ApplicationConfig,
+  provideBrowserGlobalErrorListeners
+&#125; from '&#64;angular/core';
 import &#123; provideRouter &#125; from '&#64;angular/router';
-
 import &#123; routes &#125; from './app.routes';
-import &#123; provideAnimations &#125; from '@angular/platform-browser/animations';
+import &#123; provideDdr &#125; from 'ddr-ng/providers/config';
+import &#123; provideAnimations &#125; from '&#64;angular/platform-browser/animations';
 
 export const appConfig: ApplicationConfig = &#123;
   providers: [
     provideBrowserGlobalErrorListeners(),
-    provideAnimations(), // add this
-    provideRouter(routes)
+    provideRouter(routes),
+    provideAnimations(),
+    provideDdr(&#123;
+      theme: &#123;
+        name: 'ddr-blue'
+      &#125;,
+      translate: &#123;
+        path: `/assets/i18n/`,
+        language: 'en'
+      &#125;
+    &#125;)
   ]
-&#125;;</code></pre>
+&#125;;
+</code></pre>
                     </div>
                 </div>
 
-                <div class="row mt-3">
+                <div class="row mt-4 mb-4">
                     <div class="col-12">
-                        <span>&#123;&#123;'get.started.p10' | ddrTranslate&#125;&#125;</span>
+                        <span class="h3">DdrConfig</span>
+                        <ddr-table 
+                            [cols]="colsDdrConfig"
+                            [items]="itemsDdrConfig"
+                            [showPagination]="false" 
+                            [showFooter]="false"
+                            [allowChangeRows]="false" 
+                            [canSelectItems]="false" >
+
+                            <ng-template #templateCell let-item="item" let-col="col">
+                                {{ item[col.property] | ddrTranslate }}
+                            </ng-template>
+                        </ddr-table>
+                    </div>
+                </div>
+
+                <div class="row mt-4 mb-4">
+                    <div class="col-12">
+                        <span class="h3">DdrThemeConfig</span>
+                        <ddr-table 
+                            [cols]="colsDdrThemeConfig"
+                            [items]="itemsDdrThemeConfig"
+                            [showPagination]="false" 
+                            [showFooter]="false"
+                            [allowChangeRows]="false" 
+                            [canSelectItems]="false" >
+
+                            <ng-template #templateCell let-item="item" let-col="col">
+                                {{ item[col.property] | ddrTranslate }}
+                            </ng-template>
+                        </ddr-table>
+                    </div>
+                </div>
+
+                <div class="row mt-4 mb-4">
+                    <div class="col-12">
+                        <span class="h3">DdrTranslateConfig</span>
+                        <ddr-table 
+                            [cols]="colsDdrTranslateConfig"
+                            [items]="itemsDdrTranslateConfig"
+                            [showPagination]="false" 
+                            [showFooter]="false"
+                            [allowChangeRows]="false" 
+                            [canSelectItems]="false" >
+
+                            <ng-template #templateCell let-item="item" let-col="col">
+                                {{ item[col.property] | ddrTranslate }}
+                            </ng-template>
+                        </ddr-table>
+                    </div>
+                </div>
+
+                <div class="row mt-3 mb-3">
+                    <div class="col-12">
+                        <span class="fs-5">{{'get.started.p10' | ddrTranslate}}</span>
                     </div>
                 </div>
 

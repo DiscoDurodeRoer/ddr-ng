@@ -1,0 +1,1 @@
+export { DdrSkeletonDirective } from './src/ddr-skeleton.directive';

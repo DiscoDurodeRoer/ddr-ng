@@ -1,0 +1,13 @@
+<ddr-dropdown-multiple
+    [options]="options()" 
+    [placeholder]="'dropdown.multiple.placeholder' | ddrTranslate" 
+    [labelNoResults]="'dropdown.multiple.no.items' | ddrTranslate"
+    [labelPlaceholderFilter]="'dropdown.multiple.filter.placeholder' | ddrTranslate" 
+    [compareFn]="compareFn"
+    name="dropdown-multiple-12">
+
+        <ng-template #itemTemplate let-item="item">
+            <span>{{item.value | json}}</span>
+        </ng-template>
+
+</ddr-dropdown-multiple>

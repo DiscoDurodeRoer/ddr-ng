@@ -1,0 +1,12 @@
+<ddr-dropdown-multiple 
+    [options]="options()" 
+    [placeholder]="'dropdown.multiple.placeholder' | ddrTranslate" 
+    [labelNoResults]="'dropdown.multiple.no.items' | ddrTranslate"
+    [labelPlaceholderFilter]="'dropdown.multiple.filter.placeholder' | ddrTranslate"
+    name="dropdown-multiple-1"
+    [(value)]="value" 
+    (selectItems)="selectItems($event)" />
+
+<div class="mt-2">
+    <span>{{'dropdown.multiple.value' | ddrTranslate}}: {{value() | json}}</span>
+</div>

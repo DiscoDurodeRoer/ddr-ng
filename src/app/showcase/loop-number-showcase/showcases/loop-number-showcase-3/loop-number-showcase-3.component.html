@@ -1,0 +1,9 @@
+<table class="table table-bordered">
+    @for (i of 10 | ddrLoopNumber; track i) {
+    <tr>
+        @for (j of 10 | ddrLoopNumber; track j) {
+        <td> {{i}} {{j}}</td>
+        }
+    </tr>
+    }
+</table>

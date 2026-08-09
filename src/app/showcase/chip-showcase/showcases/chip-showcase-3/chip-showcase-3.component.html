@@ -1,0 +1,11 @@
+<p class="mt-2">{{'chip.enter' | ddrTranslate}}</p>
+
+<ddr-chip 
+    [label]="'chip.example' | ddrTranslate"
+    separator=","
+    name="chip-3"
+    [(value)]="value" />
+
+<div class="mt-2">
+    <span>{{'chip.elements' | ddrTranslate}}: {{value() | json}}</span>
+</div>

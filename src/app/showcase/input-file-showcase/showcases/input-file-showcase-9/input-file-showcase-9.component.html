@@ -1,0 +1,11 @@
+<form [formGroup]="fileForm">
+    <ddr-input-file 
+        [label]="'input.file' | ddrTranslate"
+        formControlName="file"
+        name="input-file-9" />
+
+    <div class="mt-2">
+        <span class="d-block">{{'input.file.name' | ddrTranslate}}: {{controlFile?.length ? controlFile[0].name : ''}}</span>
+        <span class="d-block">{{'input.file.type' | ddrTranslate}}: {{controlFile?.length ? controlFile[0].type : ''}}</span>
+    </div>
+</form>

@@ -1,0 +1,10 @@
+<ddr-button 
+    [text]="'input.focus' | ddrTranslate"
+    (action)="focusInput()" />
+
+<ddr-input 
+    [label]="'input.label' | ddrTranslate" 
+    [placeholder]="'input.placeholder' | ddrTranslate"
+    [focus]="focus()"
+    name="input-14"
+    (focusLost)="focusLost()" />

@@ -1,166 +1,37 @@
-<base-showcase component="ddr-progress-bar" type="component" [showPossibleValues]="false" [showOutputs]="false" [showStyles]="true">
+<base-showcase 
+  component="ddr-progress-bar" 
+  type="component" 
+  [documentation]="documentation" 
+  [showPossibleValues]="false" 
+  [showOutputs]="false" 
+  [showStyles]="true">
 
   <div description>
     <p>{{'progressbar.description' | ddrTranslate}}</p>
   </div>
 
-  <div examples>
+  <ng-template #example>
+    <progress-bar-showcase-1 />
+  </ng-template>
 
-<div class="row mt-3 mb-2">
-  <div class="col-12">
-    <span class="h3">{{'progressbar.example.1' | ddrTranslate}}</span>
-  </div>
-</div>
+  <ng-template #example>
+    <progress-bar-showcase-2 />
+  </ng-template>
 
-<div class="row mt-3">
-  <div class="col-12">
-    <ddr-progress-bar 
-      [value]="valueEx1" />
-  </div>
-</div>
+  <ng-template #example>
+    <progress-bar-showcase-3 />
+  </ng-template>
 
-<div class="row mt-3">
-  <div class="col-12">
-    <ddr-button
-      text="progressbar.increase"
-      (action)="increaseEx1()" />
-    <ddr-button
-      text="progressbar.decrease"
-      (action)="decreaseEx1()" />
-  </div>
-</div>
+  <ng-template #example>
+    <progress-bar-showcase-4 />
+  </ng-template>
 
-<div class="row mt-3">
-  <div class="col-12">
-    <span class="h3">{{'progressbar.example.2' | ddrTranslate}}</span>
-  </div>
-</div>
+  <ng-template #example>
+    <progress-bar-showcase-5 />
+  </ng-template>
 
-<div class="row mt-3">
-  <div class="col-12">
-    <ddr-progress-bar 
-      [value]="valueEx2"
-      [label]="valueEx2 + '%'" />
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <ddr-button
-      text="progressbar.increase"
-      (action)="increaseEx2()" />
-    <ddr-button
-      text="progressbar.decrease"
-      (action)="decreaseEx2()" />
-  </div>
-</div>
-  
-<div class="row mt-3">
-  <div class="col-12">
-    <span class="h3">{{'progressbar.example.3' | ddrTranslate}}</span>
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <ddr-progress-bar 
-      [value]="valueEx3"
-      [label]="valueEx3 + '%'"
-      [striped]="true" />
-  </div>
-</div>
-  
-<div class="row mt-3">
-  <div class="col-12">
-    <ddr-button
-      text="progressbar.increase"
-      (action)="increaseEx3()" />
-    <ddr-button
-      text="progressbar.decrease"
-      (action)="decreaseEx3()" />
-  </div>
-</div>
-  
-<div class="row mt-3">
-  <div class="col-12">
-    <span class="h3">{{'progressbar.example.3' | ddrTranslate}}</span>
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <ddr-progress-bar 
-      [value]="valueEx4"
-      [label]="valueEx4 + '%'"
-      [height]="200"
-      [striped]="true" />
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12 mt-3">
-    <ddr-button
-      text="progressbar.increase"
-      (action)="increaseEx4()" />
-    <ddr-button
-      text="progressbar.decrease"
-      (action)="decreaseEx4()" />
-  </div>
-</div>
-  
-<div class="row mt-3">
-  <div class="col-12">
-    <span class="h3">{{'progressbar.example.5' | ddrTranslate}}</span>
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12 mt-3">
-    <ddr-progress-bar 
-      [value]="valueEx5"
-      [label]="valueEx5 + '%'"
-      [animated]="true"
-      [striped]="true" />
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12 mt-3">
-    <ddr-button
-      text="progressbar.increase"
-      (action)="increaseEx5()" />
-    <ddr-button
-      text="progressbar.decrease"
-      (action)="decreaseEx5()" />
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <span class="h3">{{'progressbar.example.6' | ddrTranslate}}</span>
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12 mt-3">
-    <ddr-progress-bar 
-      [value]="valueEx6"
-      [label]="valueEx6 + '%'"
-      [floatText]="true" />
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12 mt-3">
-    <ddr-button
-      text="progressbar.increase"
-      (action)="increaseEx6()" />
-    <ddr-button
-      text="progressbar.decrease"
-      (action)="decreaseEx6()" />
-  </div>
-</div>
-
-  </div>
+  <ng-template #example>
+    <progress-bar-showcase-6 />
+  </ng-template>
 
 </base-showcase>

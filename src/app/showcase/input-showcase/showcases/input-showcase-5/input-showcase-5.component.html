@@ -1,0 +1,22 @@
+<ddr-input 
+    [label]="'input.label' | ddrTranslate"
+    [placeholder]="'input.placeholder' | ddrTranslate"
+    [required]="true" 
+    [validate]="true"
+    name="input-5"
+    (hasErrors)="hasErrors($event)" >
+
+    <ng-template #templateValid>
+        <span>{{'input.ok' | ddrTranslate}}</span>
+    </ng-template>
+
+    <ng-template #templateErrors let-errors="errors">
+        @for (error of errors(); track error.kind) {
+            @switch(error.kind){
+                @case('required'){
+                    <span>{{ 'input.value.required' | ddrTranslate }}</span>
+                }
+            }
+        }
+    </ng-template>
+</ddr-input>

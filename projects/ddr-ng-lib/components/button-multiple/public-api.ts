@@ -1,0 +1,1 @@
+export { DdrButtonMultipleComponent } from './src/ddr-button-multiple.component';

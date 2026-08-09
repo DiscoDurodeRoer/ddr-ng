@@ -1,39 +1,22 @@
-<base-showcase component="ddrSpinnerService" type="service" [showInputs]="false" [showOutputs]="false" [showStyles]="true">
+<base-showcase 
+  component="ddr-spinner-service" 
+  type="service" 
+  [documentation]="documentation" 
+  [showInputs]="false" 
+  [showOutputs]="false" 
+  [showService]="true" 
+  [showStyles]="true">
 
   <div description>
     <p>{{'spinner.description' | ddrTranslate}}</p>
   </div>
 
-<div examples>
+  <ng-template #example>
+    <spinner-showcase-1 />
+  </ng-template>
 
-<div class="row">
-  <div class="col-12">
-    <span class="h3">{{'spinner.example.1' | ddrTranslate}}</span>
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <ddr-button 
-      text="spinner.show"
-      (action)="showSpinner()"  />
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <span class="h3">{{'spinner.example.2' | ddrTranslate}}</span>
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <ddr-button 
-      text="spinner.show"
-      (action)="showSpinnerImg()"  />
-  </div>
-</div>
-
-</div>
+  <ng-template #example>
+    <spinner-showcase-2 />
+  </ng-template>
 
 </base-showcase>

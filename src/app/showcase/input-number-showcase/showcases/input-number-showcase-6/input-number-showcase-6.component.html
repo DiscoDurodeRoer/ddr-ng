@@ -1,0 +1,30 @@
+<ddr-input-number
+    [label]="'input.number.label' | ddrTranslate"
+    [min]="5"
+    [max]="10"
+    [validate]="true"
+    name="input-number-6"
+    [(value)]="value">
+
+    <ng-template #templateValid>
+        <span>{{'input.ok' | ddrTranslate}}</span>
+    </ng-template>
+
+    <ng-template #templateErrors let-errors="errors">
+        @for (error of errors(); track error.kind) {
+            @switch(error.kind){
+                @case('min'){
+                    <span>{{ 'input.number.min' | ddrTranslate }}</span>
+                }
+                @case('max'){
+                    <span>{{ 'input.number.max' | ddrTranslate }}</span>
+                }
+            }
+        }
+    </ng-template>
+
+</ddr-input-number>
+
+<div class="mt-2">
+    <span>{{'input.number.value' | ddrTranslate}}: {{value()}}</span>
+</div>

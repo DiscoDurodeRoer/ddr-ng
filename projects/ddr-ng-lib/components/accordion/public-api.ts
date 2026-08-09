@@ -1,0 +1,1 @@
+export { DdrAccordionComponent } from './src/ddr-accordion.component';

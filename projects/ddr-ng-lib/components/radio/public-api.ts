@@ -1,0 +1,1 @@
+export { DdrRadioComponent } from './src/ddr-radio.component';

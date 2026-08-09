@@ -1,0 +1,8 @@
+<ddr-radio
+    [options]="options()"
+    [label]="'radio.label' | ddrTranslate"
+    [(value)]="value" />
+
+<div class="mt-2">
+    <span>{{'radio.value' | ddrTranslate}}: {{value() | json}}</span>
+</div>

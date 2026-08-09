@@ -46,12 +46,6 @@ export const MENU_ITEMS: DdrTreeNode<any>[] = [
             }
           },
           {
-            "name": "Steps",
-            "data": {
-              "route": "/ddr-steps"
-            }
-          },
-          {
             "name": "Tabs",
             "data": {
               "route": "/ddr-tabs"
@@ -109,6 +103,12 @@ export const MENU_ITEMS: DdrTreeNode<any>[] = [
             "name": "Input",
             "data": {
               "route": "/ddr-input"
+            }
+          },
+          {
+            "name": "Input number",
+            "data": {
+              "route": "/ddr-input-number"
             }
           },
           {
@@ -172,19 +172,31 @@ export const MENU_ITEMS: DdrTreeNode<any>[] = [
             }
           },
           {
+            "name": "Toggle",
+            "data": {
+              "route": "/ddr-toggle"
+            }
+          },
+          {
+            "name": "Steps",
+            "data": {
+              "route": "/ddr-steps"
+            }
+          }
+        ]
+      },
+      {
+        name: 'menu.composite',
+        icon: 'bi bi-collection',
+        children: [
+          {
             "name": "Login",
             "data": {
               "route": "/ddr-login"
             }
           },
-          {
-            "name": "Toggle",
-            "data": {
-              "route": "/ddr-toggle"
-            }
-          }
         ]
-      },
+      }
     ]
   },
   {

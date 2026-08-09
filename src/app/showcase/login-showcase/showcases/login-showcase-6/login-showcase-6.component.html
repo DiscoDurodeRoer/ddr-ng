@@ -1,0 +1,14 @@
+<ddr-login 
+    [labelUsername]="'login.component.username' | ddrTranslate"
+    [labelPlaceholderUsername]="'login.component.placeholder.username' | ddrTranslate"
+    [labelPassword]="'login.component.password' | ddrTranslate"
+    [labelPlaceholderPassword]="'login.component.placeholder.password' | ddrTranslate"
+    [labelSubmit]="'login.component.submit' | ddrTranslate"
+    [showHeader]="true" 
+    (doLogin)="login($event)">
+    
+        <div login-header class="text-center">
+            <span>{{'login.component.header' | ddrTranslate}}</span>
+        </div>
+
+</ddr-login>

@@ -1,0 +1,35 @@
+<div class="ddr-input-number" [class.d-none]="hidden()">
+    <ddr-input class="ddr-input-number__input" 
+        [border]="border()" 
+        [label]="label()"
+        [size]="size()"
+        [validate]="validate()"
+        [disabled]="disabled()"
+        [readonly]="readonly()"
+        [labelBold]="labelBold()"
+        [inline]="inline()" 
+        [errors]="errors()"
+        [name]="name()" 
+        [tooltipOrientation]="tooltipOrientation()"
+        [tooltipText]="tooltipText()"
+        [transparent]="transparent()"
+        [focus]="focus()"
+        [autocomplete]="autocomplete()"
+        [value]="valueInput()" 
+        (keyPressed)="onKeyPressed()"
+        (inputText)="onInput($event)"
+        (clickInput)="onClickInput($event)"
+        (focusLost)="onFocusLost()">
+
+        <ng-template #templateValid>
+            <ng-container [ngTemplateOutlet]="templateValidOutside()" />
+        </ng-template>
+
+        <ng-template #templateErrors let-errors="errors">
+            <ng-container 
+            [ngTemplateOutlet]="templateErrorsOutside()"
+            [ngTemplateOutletContext]="{ errors }" />
+        </ng-template>
+
+    </ddr-input>
+</div>

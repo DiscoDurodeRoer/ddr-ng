@@ -1,0 +1,27 @@
+<ddr-input
+    [label]="'input.label' | ddrTranslate" 
+    [placeholder]="'input.placeholder' | ddrTranslate"
+    [minLength]="3" 
+    [maxLength]="10"
+    [validate]="true"
+    name="input-9"
+    [(value)]="value">
+
+    <ng-template #templateValid>
+        <span>{{'input.ok' | ddrTranslate}}</span>
+    </ng-template>
+
+    <ng-template #templateErrors let-errors="errors">
+        @for (error of errors(); track error.kind) {
+            @switch(error.kind){
+                @case('minLength'){
+                    <span class="me-2">{{ 'input.minlength.required' | ddrTranslate }}: {{ error.minLength }}</span>
+                }
+                @case('maxLength'){
+                    <span class="me-2">{{ 'input.maxlength.required' | ddrTranslate }}: {{ error.maxLength }}</span>
+                }
+            }
+        }
+    </ng-template>
+
+</ddr-input>

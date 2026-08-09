@@ -1,0 +1,9 @@
+<ddr-radio
+    [options]="options()"
+    [label]="'radio.label' | ddrTranslate"
+    [compareFn]="compareFn"
+    [formField]="radioForm.language" />
+
+<div class="mt-2">
+    <span>{{'radio.value' | ddrTranslate}}: {{radioForm.language().value() | json}}</span>
+</div>    

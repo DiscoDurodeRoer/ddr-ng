@@ -1,0 +1,14 @@
+<div class="mb-2">
+    <p>{{'no.data.size' | ddrTranslate}}: </p>
+    <ddr-button-multiple
+        [buttons]="buttonsSize()"
+        [showSelectedButton]="true"
+        [(value)]="size" />
+</div>
+
+<div class="mb-2">
+    <ddr-no-data 
+        icon="bi bi-database-fill-x"
+        [text]="'no.data.text' | ddrTranslate"
+        [size]="size()" />
+</div>

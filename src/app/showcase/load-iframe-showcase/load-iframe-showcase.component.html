@@ -1,24 +1,16 @@
-<base-showcase component="ddrLoadIframe" type="directive"  [showInputs]="false">
+<base-showcase 
+  component="ddr-load-iframe-directive" 
+  type="directive" 
+  [documentation]="documentation" 
+  [showInputs]="false">
 
   <div description>
     <p>{{'load.iframe.description' | ddrTranslate}}</p>
   </div>
 
-  <div examples>
-
-<div class="row">
-  <div class="col-12">
-    <span class="h3">{{'load.iframe.example.1' | ddrTranslate}}</span>
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <iframe src="https://discoduroderoer.es" ddrLoadIframe (loadIframe)="load()" width="100%" height="500px"></iframe>
-  </div>
-</div>
-
-  </div>
+  <ng-template #example>
+    <load-iframe-showcase-1 />
+  </ng-template>
 
 </base-showcase>
 

@@ -1,43 +1,21 @@
-<base-showcase component="ddr-detail" type="component"  [showSlots]="true" [showService]="true" [showStyles]="true">
+<base-showcase 
+  component="ddr-detail" 
+  type="component" 
+  [documentation]="documentation" 
+  [showSlots]="true" 
+  [showService]="true" 
+  [showStyles]="true">
+  
   <div description>
     <p>{{'detail.description' | ddrTranslate}}</p>
   </div>
-  <div examples>
 
-<div class="mb-2">
-  <ddr-button 
-    [text]="'detail.open' | ddrTranslate" 
-    size="medium"
-    (action)="openDetail()"/>
-</div>
-<div>
-  <p>{{'detail.orientation' | ddrTranslate}}: </p>
-  <ddr-button-multiple
-    [buttons]="buttonsOrientation"
-    [showSelectedButton]="true"
-    [(value)]="orientation" />
-</div>
-
-<ddr-detail 
-  [id]="ID_DETAIL" 
-  [orientation]="orientation" 
-  (close)="closeDetail()">
-  <div detail-title>
-    <span>{{'detail.title.example' | ddrTranslate}}</span>
-  </div>
-  <div detail-content>
-    <div class="row">
-      <div class="col-12">
-        <span>{{'detail.content.example.1' | ddrTranslate}}</span>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-12">
-        <span>{{'detail.content.example.2' | ddrTranslate}}</span>
-      </div>
-    </div>
-  </div>
-</ddr-detail>
-  </div>
+  <ng-template #example>
+    <detail-showcase-1 />
+  </ng-template>
+  
+  <ng-template #example>
+    <detail-showcase-2 />
+  </ng-template>
 
 </base-showcase>

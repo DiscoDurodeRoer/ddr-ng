@@ -1,169 +1,58 @@
-<base-showcase component="ddr-tree" type="component" [showTranslations]="true" [showClasses]="true" [showTemplates]="true" [showPossibleValues]="false" [showStyles]="true" [showCodeCSS]="true">
+<base-showcase 
+  component="ddr-tree" 
+  type="component" 
+  [documentation]="documentation" 
+  [showTranslations]="true" 
+  [showTemplates]="true" 
+  [showPossibleValues]="false" 
+  [showStyles]="true">
 
   <div description>
     <p>{{'tree.description' | ddrTranslate}}</p>
   </div>
 
-  <div examples>
-      
-<div class="row">
-  <div class="col-12">
-    <span class="h3">{{'tree.example.1' | ddrTranslate}}</span>
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <ddr-tree 
-      [nodes]="nodesEx1" />
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <span class="h3">{{'tree.example.2' | ddrTranslate}}</span>
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <ddr-tree 
-      [nodes]="nodesEx2" 
-      [border]="true" />
-  </div>
-</div>
-
-
-<div class="row mt-3">
-  <div class="col-12">
-    <span class="h3">{{'tree.example.3' | ddrTranslate}}</span>
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <ddr-tree
-      [nodes]="nodesEx3" />
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <span class="h3">{{'tree.example.4' | ddrTranslate}}</span>
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <ddr-tree
-      [nodes]="nodesEx4" 
-      (selectAction)="selectAction($event)" />
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <span class="h3">{{'tree.example.5' | ddrTranslate}}</span>
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <ddr-tree 
-      [nodes]="nodesEx5" 
-      [actionsOnlyLeafs]="true"
-      (selectAction)="selectAction($event)" />
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <span class="h3">{{'tree.example.6' | ddrTranslate}}</span>
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <ddr-tree 
-      [nodes]="nodesEx6" >
-      <ng-template #templateNode let-item="item">
-        <div class="mt-2">{{'tree.value' | ddrTranslate}}: {{ item.value }}</div>
-      </ng-template>
-    </ddr-tree>
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <span class="h3">{{'tree.example.7' | ddrTranslate}}</span>
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <ddr-tree 
-      [nodes]="nodesEx7"
-      (clickNode)="clickNode($event)" />
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <span class="h3">{{'tree.example.8' | ddrTranslate}}</span>
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <ddr-tree 
-      [nodes]="nodesEx8"
-      [canClick]="false"
-      (clickNode)="clickNode($event)" />
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <span class="h3">{{'tree.example.9' | ddrTranslate}}</span>
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-     <ddr-tree 
-      [nodes]="[]"
-      [labelNoData]="'tree.empty' | ddrTranslate" />
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <span class="h3">{{'tree.example.10' | ddrTranslate}}</span>
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12 background-test-transparent">
-     <ddr-tree 
-      [nodes]="nodesEx10"
-      [transparent]="true" />
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <span class="h3">{{'tree.example.11' | ddrTranslate}}</span>
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-     <ddr-tree 
-      [nodes]="nodesEx11"
-      [showIconArrow]="false" />
-  </div>
-</div>
-
-  </div>
+  <ng-template #example>
+    <tree-showcase-1 />
+  </ng-template>
+  
+  <ng-template #example>
+    <tree-showcase-2 />
+  </ng-template>
+  
+  <ng-template #example>
+    <tree-showcase-3 />
+  </ng-template>
+  
+  <ng-template #example>
+    <tree-showcase-4 />
+  </ng-template>
+  
+  <ng-template #example>
+    <tree-showcase-5 />
+  </ng-template>
+  
+  <ng-template #example>
+    <tree-showcase-6 />
+  </ng-template>
+  
+  <ng-template #example>
+    <tree-showcase-7 />
+  </ng-template>
+  
+  <ng-template #example>
+    <tree-showcase-8 />
+  </ng-template>
+  
+  <ng-template #example>
+    <tree-showcase-9 />
+  </ng-template>
+  
+  <ng-template #example>
+    <tree-showcase-10 />
+  </ng-template>
+  
+  <ng-template #example>
+    <tree-showcase-11 />
+  </ng-template>
 
 </base-showcase>

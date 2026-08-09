@@ -1,0 +1,25 @@
+<ddr-dropdown-multiple
+    [options]="options()" 
+    [placeholder]="'dropdown.multiple.placeholder' | ddrTranslate" 
+    [labelNoResults]="'dropdown.multiple.no.items' | ddrTranslate"
+    [labelPlaceholderFilter]="'dropdown.multiple.filter.placeholder' | ddrTranslate" 
+    [compareFn]="compareFn"
+    [required]="true"
+    [validate]="true"
+    name="dropdown-multiple-14" >
+
+        <ng-template #templateValid>
+            <span>{{'dropdown.multiple.ok' | ddrTranslate}}</span>
+        </ng-template>
+
+        <ng-template #templateErrors let-errors="errors">
+            @for (error of errors(); track error.kind) {
+                @switch(error.kind){
+                    @case('required'){
+                        <span>{{ 'dropdown.multiple.value.required' | ddrTranslate }}</span>
+                    }
+                }
+            }
+        </ng-template>
+
+</ddr-dropdown-multiple>

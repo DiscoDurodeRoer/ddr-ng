@@ -1,0 +1,1 @@
+export { DdrToggleComponent } from './src/ddr-toggle.component';

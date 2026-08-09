@@ -1,271 +1,58 @@
-<base-showcase component="ddr-table" type="component" [showTemplates]="true" [showTranslations]="true" [showPossibleValues]="false" [showClasses]="true" [showStyles]="true">
+<base-showcase 
+  component="ddr-table" 
+  type="component" 
+  [documentation]="documentation" 
+  [showTemplates]="true" 
+  [showTranslations]="true" 
+  [showPossibleValues]="false" 
+  [showStyles]="true">
 
   <div description>
     <p>{{'table.description' | ddrTranslate}}</p>
   </div>
 
-  <div examples>
+  <ng-template #example>
+    <table-showcase-1 />
+  </ng-template>
 
-<div class="row">
-  <div class="col-12">
-    <span class="h3">{{'table.example.1' | ddrTranslate}}</span>
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <ddr-table 
-          [cols]="cols" 
-          [items]="items" 
-          [labelRegisters]="'table.registers' | ddrTranslate"
-          [labelRegister]="'table.register' | ddrTranslate"
-          [labelToPagination]="'table.to' | ddrTranslate"
-          [labelOfPagination]="'table.of' | ddrTranslate"
-          (selectItem)="selectItem($event)" />
-  </div>
-</div>
+  <ng-template #example>
+    <table-showcase-2 />
+  </ng-template>
   
-<div class="row mt-3">
-  <div class="col-12">
-    <span class="h3">{{'table.example.2' | ddrTranslate}}</span>
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <ddr-table 
-          [cols]="cols" 
-          [items]="items"
-          [showPagination]="false"
-          [allowChangeRows]="false"
-          (selectItem)="selectItem($event)" />
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <span class="h3">{{'table.example.3' | ddrTranslate}}</span>
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <ddr-table 
-          [cols]="cols" 
-          [items]="items"
-          [canSelectItems]="false"
-          [labelRegisters]="'table.registers' | ddrTranslate"
-          [labelRegister]="'table.register' | ddrTranslate"
-          [labelToPagination]="'table.to' | ddrTranslate"
-          [labelOfPagination]="'table.of' | ddrTranslate"
-          (selectItem)="selectItem($event)" />
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <span class="h3">{{'table.example.4' | ddrTranslate}}</span>
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <ddr-table 
-          [cols]="cols" 
-          [items]="items"
-          [showBorder]="false"
-          [labelRegisters]="'table.registers' | ddrTranslate"
-          [labelRegister]="'table.register' | ddrTranslate"
-          [labelToPagination]="'table.to' | ddrTranslate"
-          [labelOfPagination]="'table.of' | ddrTranslate"
-          (selectItem)="selectItem($event)" />
-  </div>
-</div>
+  <ng-template #example>
+    <table-showcase-3 />
+  </ng-template>
   
-<div class="row mt-3">
-  <div class="col-12">
-    <span class="h3">{{'table.example.5' | ddrTranslate}}</span>
-  </div>
-</div>
+  <ng-template #example>
+    <table-showcase-4 />
+  </ng-template>
+  
+  <ng-template #example>
+    <table-showcase-5 />
+  </ng-template>
+  
+  <ng-template #example>
+    <table-showcase-6 />
+  </ng-template>
+  
+  <ng-template #example>
+    <table-showcase-7 />
+  </ng-template>
+  
+  <ng-template #example>
+    <table-showcase-8 />
+  </ng-template>
+  
+  <ng-template #example>
+    <table-showcase-9 />
+  </ng-template>
+  
+  <ng-template #example>
+    <table-showcase-10 />
+  </ng-template>
+  
+  <ng-template #example>
+    <table-showcase-11 />
+  </ng-template>
 
-<div class="row mt-3">
-  <div class="col-12">
-    <ddr-table 
-          [cols]="cols" 
-          [items]="items" 
-          [multiple]="true"
-          [labelRegisters]="'table.registers' | ddrTranslate"
-          [labelRegister]="'table.register' | ddrTranslate"
-          [labelToPagination]="'table.to' | ddrTranslate"
-          [labelOfPagination]="'table.of' | ddrTranslate"
-          [labelNoResults]="'table.empty' | ddrTranslate"
-          (selectItem)="selectItem($event)" 
-          (selectMultipleItem)="selectMultipleItem($event)" />
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <span class="h3">{{'table.example.6' | ddrTranslate}}</span>
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <ddr-table 
-          [cols]="cols" 
-          [items]="items"
-          [labelRegisters]="'table.registers' | ddrTranslate"
-          [labelRegister]="'table.register' | ddrTranslate"
-          [labelToPagination]="'table.to' | ddrTranslate"
-          [labelOfPagination]="'table.of' | ddrTranslate"
-          [labelNoResults]="'table.empty' | ddrTranslate"
-          (selectItem)="selectItem($event)" 
-          (selectMultipleItem)="selectMultipleItem($event)">
-      <ng-template #templateCell let-item="item" let-col="col">
-        {{ item[col.property] }}
-      </ng-template>
-    </ddr-table>
-  </div>
-</div>
-
-
-<div class="row mt-3">
-  <div class="col-12">
-    <span class="h3">{{'table.example.7' | ddrTranslate}}</span>
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <ddr-table 
-          [cols]="colsNested" 
-          [items]="itemsNested"
-          [labelRegisters]="'table.registers' | ddrTranslate"
-          [labelRegister]="'table.register' | ddrTranslate"
-          [labelToPagination]="'table.to' | ddrTranslate"
-          [labelOfPagination]="'table.of' | ddrTranslate"
-          [labelNoResults]="'table.empty' | ddrTranslate"
-          (selectItem)="selectItem($event)" 
-          (selectMultipleItem)="selectMultipleItem($event)">
-      <ng-template #templateCell let-item="item" let-col="col">
-        {{ item | ddrNestedProperty: col.property }}
-      </ng-template>
-    </ddr-table>
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <span class="h3">{{'table.example.8' | ddrTranslate}}</span>
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <ddr-table 
-          [cols]="cols" 
-          [items]="itemsWithActions" 
-          [showActions]="true"
-          [labelRegisters]="'table.registers' | ddrTranslate"
-          [labelRegister]="'table.register' | ddrTranslate"
-          [labelToPagination]="'table.to' | ddrTranslate"
-          [labelOfPagination]="'table.of' | ddrTranslate"
-          [labelNoResults]="'table.empty' | ddrTranslate"
-          (selectItem)="selectItem($event)" 
-          (selectAction)="selectAction($event)"
-          (selectMultipleItem)="selectMultipleItem($event)"  />
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <span class="h3">{{'table.example.9' | ddrTranslate}}</span>
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <ddr-table 
-          [cols]="cols" 
-          [items]="[]"
-          [labelRegisters]="'table.registers' | ddrTranslate"
-          [labelRegister]="'table.register' | ddrTranslate"
-          [labelToPagination]="'table.to' | ddrTranslate"
-          [labelOfPagination]="'table.of' | ddrTranslate"
-          [labelNoResults]="'table.empty' | ddrTranslate" />
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <span class="h3">{{'table.example.10' | ddrTranslate}}</span>
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <ddr-table 
-          [cols]="cols" 
-          [items]="itemsWithActions" 
-          [showActions]="true" 
-          [labelRegisters]="'table.registers' | ddrTranslate"
-          [labelRegister]="'table.register' | ddrTranslate"
-          [labelToPagination]="'table.to' | ddrTranslate"
-          [labelOfPagination]="'table.of' | ddrTranslate"
-          [labelNoResults]="'table.empty' | ddrTranslate"
-          (selectItem)="selectItem($event)" 
-          (changePage)="onChangePage($event)"
-          (changeRow)="onChangeTotalItemsPerPage($event)"  />
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <span class="h3">{{'table.example.11' | ddrTranslate}}</span>
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <ddr-table 
-          [cols]="colsSort" 
-          [items]="items" 
-          [canSort]="true"
-          [labelRegisters]="'table.registers' | ddrTranslate"
-          [labelRegister]="'table.register' | ddrTranslate"
-          [labelToPagination]="'table.to' | ddrTranslate"
-          [labelOfPagination]="'table.of' | ddrTranslate"
-          [labelNoResults]="'table.empty' | ddrTranslate"
-          (selectItem)="selectItem($event)"
-          (sort)="sortItems($event)" />
-  </div>
-</div>
-
-</div>
-
-  <div translations>
-    <table class="table">
-      <thead class="thead-dark">
-        <tr>
-          <th>Label</th>
-          <th>Descripción</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>to</td>
-          <td>Label 'a' en el total de la paginacion</td>
-        </tr>
-        <tr>
-          <td>of</td>
-          <td>Label 'de' en el total de la paginacion</td>
-        </tr>
-        <tr>
-          <td>registers</td>
-          <td>Label registros en la paginacion</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
 </base-showcase>

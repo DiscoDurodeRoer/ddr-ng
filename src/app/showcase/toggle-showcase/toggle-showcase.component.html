@@ -1,187 +1,52 @@
-<base-showcase component="ddr-toggle" type="component" [showStyles]="true">
+<base-showcase 
+  component="ddr-toggle" 
+  type="component" 
+  [documentation]="documentation" 
+  [showInputsOutputs]="true"
+  [showStyles]="true">
 
   <div description>
     <p>{{'toggle.description' | ddrTranslate}}</p>
   </div>
 
-  <div examples>
+  <ng-template #example>
+    <toggle-showcase-1 />
+  </ng-template>
 
-<div class="row">
-  <div class="col-12">
-    <span class="h3">{{'toggle.example.1' | ddrTranslate}}</span>
-  </div>
-</div>
+  <ng-template #example>
+    <toggle-showcase-2 />
+  </ng-template>
 
-<div class="row mt-3">
-  <div class="col-12">
-    <span class="h5">{{'without.form.signal' | ddrTranslate}}</span>
-  </div>
-</div>
+  <ng-template #example>
+    <toggle-showcase-3 />
+  </ng-template>
 
-<div class="row mt-3">
-  <div class="col-12">
-    <ddr-toggle 
-      [(value)]="value1" 
-      (toggled)="toggleValue($event)" />
-  </div>
-</div>
+  <ng-template #example>
+    <toggle-showcase-4 />
+  </ng-template>
 
-<div class="row mt-3">
-  <div class="col-12">
-    <div class="col-12">
-      <span>{{'toggle.value' | ddrTranslate}}: {{value1}}</span>
-    </div>  
-  </div>
-</div>
+  <ng-template #example>
+    <toggle-showcase-5 />
+  </ng-template>
 
-<div class="row mt-3">
-  <div class="col-12">
-    <span class="h5">{{'with.form.signal' | ddrTranslate}}</span>
-  </div>
-</div>
+  <ng-template #example>
+    <toggle-showcase-6 />
+  </ng-template>
 
-<div class="row mt-3">
-  <div class="col-12">
-    <ddr-toggle 
-      [formField]="formToggleEx1.example1"
-      (toggled)="toggleValue($event)" />
-  </div>
-</div>
+  <ng-template #example>
+    <toggle-showcase-7 />
+  </ng-template>
 
-<div class="row mt-3">
-  <div class="col-12">
-    <div class="col-12">
-      <span>{{'toggle.value' | ddrTranslate}}: {{formToggleEx1.example1().value()}}</span>
-    </div>  
-  </div>
-</div>
+  <ng-template #example>
+    <toggle-showcase-8 />
+  </ng-template>
 
-<div class="row mt-3">
-  <div class="col-12">
-    <span class="h3">{{'toggle.example.2' | ddrTranslate}}</span>
-  </div>
-</div>
+  <ng-template #example>
+    <toggle-showcase-9 />
+  </ng-template>
 
-<div class="row mt-3">
-  <div class="col-12">
-    <ddr-toggle 
-      [label]="'toggle.label' | ddrTranslate" 
-      [(value)]="value2" 
-      (toggled)="toggleValue($event)" />
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <span>{{'toggle.value' | ddrTranslate}}: {{value2}}</span>
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <span class="h3">{{'toggle.example.3' | ddrTranslate}}</span>
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <ddr-toggle 
-      [label]="'toggle.label' | ddrTranslate" 
-      [inline]="true" 
-      [(value)]="value3" 
-      (toggled)="toggleValue($event)" />
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <span>{{'toggle.value' | ddrTranslate}}: {{value3}}</span>
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <span class="h3">{{'toggle.example.4' | ddrTranslate}}</span>
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <ddr-toggle 
-      class="me-2"
-      size="small" />
-    <ddr-toggle 
-      class="me-2"
-      size="medium" />
-    <ddr-toggle 
-      class="me-2"
-      size="large" />
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <span class="h3">{{'toggle.example.5' | ddrTranslate}}</span>
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <ddr-toggle 
-      [label]="'toggle.label' | ddrTranslate"
-      [tooltipText]="'toggle.tooltip' | ddrTranslate"
-      (toggled)="toggleValue($event)" />
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <span class="h3">{{'toggle.example.6' | ddrTranslate}}</span>
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <span class="h5">{{'without.form.signal' | ddrTranslate}}</span>
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <ddr-toggle 
-      [label]="'toggle.label' | ddrTranslate" 
-      [(value)]="value6" 
-      (toggled)="toggleValue($event)" />
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <span>{{'toggle.value' | ddrTranslate}}: {{value6}}</span>
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <span class="h5">{{'with.form.signal' | ddrTranslate}}</span>
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <ddr-toggle 
-      [label]="'toggle.label' | ddrTranslate" 
-      [formField]="formToggleEx6.example6" 
-      (toggled)="toggleValue($event)" />
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <span>{{'toggle.value' | ddrTranslate}}: {{formToggleEx6.example6().value()}}</span>
-  </div>
-</div>
-      
-  </div>
+  <ng-template #example>
+    <toggle-showcase-10 />
+  </ng-template>
 
 </base-showcase>

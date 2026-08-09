@@ -1,129 +1,40 @@
-<base-showcase component="ddr-badge-pill" type="component"  [showCodeCSS]="true" [showTemplates]="true" [showStyles]="true">
+<base-showcase 
+  component="ddr-badge-pill" 
+  type="component" 
+  [documentation]="documentation"
+  [showTemplates]="true" 
+  [showStyles]="true">
 
   <div description>
     <p>{{'badge.description' | ddrTranslate}}</p>
   </div>
 
-  <div examples>
+  <ng-template #example>
+    <badge-showcase-1 />
+  </ng-template>
 
-<div class="row">
-  <div class="col-12 ">
-    <span class="h3">{{'badge.example.1' | ddrTranslate}}</span>
-  </div>
-</div>
+  <ng-template #example>
+    <badge-showcase-2 />
+  </ng-template>
 
-<div class="row mt-3">
-  <div class="col-12">
-    <ddr-badge-pill 
-      text="Badge" 
-      type="info" 
-      (clickBadge)="clickBadge($event)" />
-    <ddr-badge-pill 
-      text="Badge" 
-      type="danger" 
-      (clickBadge)="clickBadge($event)" />
-    <ddr-badge-pill 
-      text="Badge" 
-      type="warning" 
-      (clickBadge)="clickBadge($event)" />
-    <ddr-badge-pill 
-      text="Badge" 
-      type="success" 
-      (clickBadge)="clickBadge($event)" />
-  </div>
-</div>
+  <ng-template #example>
+    <badge-showcase-3 />
+  </ng-template>
 
-<div class="row mt-3">
-  <div class="col-12">
-    <span class="h3">{{'badge.example.2' | ddrTranslate}}</span>
-  </div>
-</div>
+  <ng-template #example>
+    <badge-showcase-4 />
+  </ng-template>
 
-<div class="row mt-3">
-  <div class="col-12">
-    <ddr-badge-pill 
-      text="Badge" 
-      size="small" 
-      type="info" 
-      (clickBadge)="clickBadge($event)" />
-    <ddr-badge-pill 
-      text="Badge" 
-      size="medium" 
-      type="info" 
-      (clickBadge)="clickBadge($event)" />
-    <ddr-badge-pill 
-      text="Badge" 
-      size="large" 
-      type="info" 
-      (clickBadge)="clickBadge($event)" />
-  </div>
-</div>
+  <ng-template #example>
+    <badge-showcase-5 />
+  </ng-template>
 
-<div class="row mt-3">
-  <div class="col-12">
-    <span class="h3">{{'badge.example.3' | ddrTranslate}}</span>
-  </div>
-</div>
+  <ng-template #example>
+    <badge-showcase-6 />
+  </ng-template>
 
-<div class="row mt-3">
-  <div class="col-12">
-    <ddr-badge-pill 
-      text="Badge"
-      customClass="myclass" 
-      (clickBadge)="clickBadge($event)" />
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <span class="h3">{{'badge.example.4' | ddrTranslate}}</span>
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <ddr-badge-pill 
-      text="Badge"
-      background="cyan" 
-      (clickBadge)="clickBadge($event)" />
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <span class="h3">{{'badge.example.5' | ddrTranslate}}</span>
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <ddr-badge-pill 
-      [canClick]="false"
-      text="Badge"
-      type="info" />
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <span class="h3">{{'badge.example.6' | ddrTranslate}}</span>
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <ddr-badge-pill 
-      type="info" 
-      (clickBadge)="clickBadge($event)">
-      <ng-template #templateContent>
-        <span>Badge</span>
-      </ng-template>
-    </ddr-badge-pill>
-  </div>
-</div>
-
-
-
-  </div>
+  <ng-template #example>
+    <badge-showcase-7 />
+  </ng-template>
 
 </base-showcase>

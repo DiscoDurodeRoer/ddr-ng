@@ -1,0 +1,1 @@
+export { DdrInputPasswordComponent } from './src/ddr-input-password.component';

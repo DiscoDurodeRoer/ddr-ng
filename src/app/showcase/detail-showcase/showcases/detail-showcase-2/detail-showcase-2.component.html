@@ -1,0 +1,36 @@
+<div class="mb-2">
+  <p>{{'detail.position' | ddrTranslate}}: </p>
+  <ddr-button-multiple
+    [buttons]="buttonsPosition()"
+    [showSelectedButton]="true"
+    [(value)]="position" />
+</div>
+
+<div class="mb-2">
+  <ddr-button 
+    [text]="'detail.open' | ddrTranslate" 
+    size="medium"
+    (action)="openDetail()"/>
+</div>
+
+<ddr-detail 
+  [id]="ID_DETAIL()" 
+  [position]="position()"
+  [orientation]="position()"
+  (close)="closeDetail()">
+  <div detail-title>
+    <span>{{'detail.title.example' | ddrTranslate}}</span>
+  </div>
+  <div detail-content>
+    <div class="row">
+      <div class="col-12">
+        <span>{{'detail.content.example.1' | ddrTranslate}}</span>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <span>{{'detail.content.example.2' | ddrTranslate}}</span>
+      </div>
+    </div>
+  </div>
+</ddr-detail>

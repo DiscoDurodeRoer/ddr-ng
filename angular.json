@@ -98,7 +98,7 @@
       },
       "projectType": "library",
       "root": "projects/ddr-ng-lib",
-      "sourceRoot": "projects/ddr-ng-lib/src",
+      "sourceRoot": "projects/ddr-ng-lib",
       "prefix": "ddr",
       "architect": {
         "build": {

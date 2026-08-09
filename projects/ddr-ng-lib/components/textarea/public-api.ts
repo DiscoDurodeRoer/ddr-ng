@@ -1,0 +1,1 @@
+export { DdrTextareaComponent } from './src/ddr-textarea.component';

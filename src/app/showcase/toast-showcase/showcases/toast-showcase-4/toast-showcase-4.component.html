@@ -1,0 +1,9 @@
+<ddr-input-number
+    [label]="'toast.timeout' | ddrTranslate"
+    [min]="1"
+    name="input-4"
+    [(value)]="toastTimeout" />
+
+<ddr-button
+    [text]="'toast.show.toast' | ddrTranslate"
+    (action)="showToast()" />

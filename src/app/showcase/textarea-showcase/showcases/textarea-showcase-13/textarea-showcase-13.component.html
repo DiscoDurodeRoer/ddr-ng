@@ -1,0 +1,8 @@
+<ddr-textarea 
+    [label]="'textarea.label' | ddrTranslate" 
+    [placeholder]="'textarea.placeholder' | ddrTranslate"
+    [formField]="textareaForm.textarea" />
+
+<div class="mt-2">
+    <span>{{'textarea.value' | ddrTranslate}}: {{textareaForm.textarea().value()}}</span>
+</div>

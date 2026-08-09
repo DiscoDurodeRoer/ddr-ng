@@ -1,0 +1,1 @@
+export { DdrInputComponent } from './src/ddr-input.component';

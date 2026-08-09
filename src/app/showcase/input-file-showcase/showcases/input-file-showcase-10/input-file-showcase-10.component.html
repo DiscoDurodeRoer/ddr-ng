@@ -1,0 +1,8 @@
+<ddr-input-file 
+    [label]="'input.file' | ddrTranslate"
+    [formField]="inputFileForm.file" />
+
+<div class="mt-2">
+    <span class="d-block">{{'input.file.name' | ddrTranslate}}: {{fileSelected() ? fileSelected()?.name : ''}}</span>
+    <span class="d-block">{{'input.file.type' | ddrTranslate}}: {{fileSelected() ? fileSelected()?.type : ''}}</span>
+</div>

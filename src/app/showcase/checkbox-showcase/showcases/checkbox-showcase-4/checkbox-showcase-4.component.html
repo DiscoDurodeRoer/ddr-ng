@@ -1,0 +1,10 @@
+<ddr-checkbox
+    [options]="options()"
+    [label]="'checkbox.label' | ddrTranslate"
+    [compareFn]="compareFn"
+    [(value)]="value" />
+
+<div class="mt-2">
+    <span>{{'checkbox.value' | ddrTranslate}}: {{value() | json}}</span>
+</div>
+    

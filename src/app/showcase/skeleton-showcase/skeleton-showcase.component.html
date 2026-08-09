@@ -1,122 +1,20 @@
-<base-showcase component="ddrSkeleton" type="directive" [showOutputs]="false" [showPossibleValues]="false">
+<base-showcase 
+  component="ddr-skeleton-directive" 
+  type="directive" 
+  [documentation]="documentation" 
+  [showOutputs]="false" 
+  [showPossibleValues]="false">
+
   <div description>
     <p>{{'skeleton.description' | ddrTranslate}}</p>
   </div>
-<div examples>
 
-<div class="row mt-3">
-  <div class="col-12">
-    <ddr-radio
-      [options]="options"
-      [inline]="true"
-      [(value)]="mode"/>
+  <ng-template #example>
+    <skeleton-showcase-1 />
+  </ng-template>
 
-      <ddr-button class="me-2" 
-        text="skeleton.load.data" 
-        (action)="loadData()" />
-
-      <ddr-input class="me-2" 
-        [label]="'skeleton.number.elements' | ddrTranslate" 
-        type="number" 
-        [min]="1" 
-        name="number-elements"
-        [(value)]="nElements" />
-
-      <ddr-input class="me-2" 
-        [label]="'skeleton.time.load' | ddrTranslate" 
-        type="number" 
-        name="time-load"
-        [(value)]="timeout" />
-
-      <div class="mt-3">
-        <ddr-card [showHeader]="false">
-          
-          <div card-content>
-            @if (!load) {
-              <div>
-                @switch(mode) {
-                  @case('circle') {
-                    @for (e of nElements | ddrLoopNumber; track e) {
-                      <div class="mb-2" ddrSkeleton skeletonWidth="50px" skeletonBorderRadius="50%" skeletonHeight="3rem"></div>
-                    }
-                  }
-                  @case('rectangle') {
-                    @for (e of nElements | ddrLoopNumber; track e) {
-                      <div class="mb-2" ddrSkeleton skeletonHeight="3rem"></div>
-                    }
-                  }
-                  @case('square') {
-                    @for (e of nElements | ddrLoopNumber; track e) {
-                      <div class="mb-2" ddrSkeleton skeletonWidth="50px" skeletonHeight="3rem"></div>
-                    }
-                  }
-                  @case('card') {
-                    <div>
-                      <div class="row mb-3">
-                        <div class="col-2 text-center">
-                          <div ddrSkeleton skeletonWidth="80px" skeletonBorderRadius="50%"  skeletonHeight="5rem"></div>
-                        </div>
-                        <div class="col-10">
-                          <div>
-                            <div class="mb-3" ddrSkeleton skeletonHeight="1rem"></div>
-                          </div>
-                          <div>
-                            <div class="mb-3" ddrSkeleton skeletonHeight="1rem"></div>
-                          </div>
-                          <div>
-                            <div ddrSkeleton skeletonHeight="1rem">
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="row mb-3">
-                        @for (e of nElements | ddrLoopNumber; track e) {
-                          <div class="col-12">
-                            <div class="mb-3" ddrSkeleton skeletonHeight="2rem"></div>
-                          </div>
-                        }
-                      </div>
-                    </div>
-                  }
-                  @case('list') {
-                    <div>
-                      @for (e of nElements | ddrLoopNumber; track e) {
-                        <div class="mb-3 d-flex flex-nowrap">
-                          <div class="flex-grow-0 ">
-                            <div ddrSkeleton skeletonWidth="50px" skeletonBorderRadius="50%"  skeletonHeight="3rem"></div>
-                          </div>
-                          <div class="flex-grow-1">
-                            <div class="mb-3" ddrSkeleton skeletonWidth="100%"  skeletonHeight="1rem"></div>
-                            <div ddrSkeleton skeletonWidth="100%" skeletonHeight="1rem"></div>
-                          </div>
-                        </div>
-                      }
-                    </div>
-                  }
-                  @case('graphic') {
-                    <div class="d-flex flex-nowrap align-items-end">
-                      @for (e of nElements | ddrLoopNumber; track e) {
-                        <div class="ms-1 flex-grow-1" ddrSkeleton skeletonWidth="10%"  skeletonHeight="16rem"></div>
-                        <div class="ms-1 flex-grow-1" ddrSkeleton skeletonWidth="10%"  skeletonHeight="3rem"></div>
-                        <div class="ms-1 flex-grow-1" ddrSkeleton skeletonWidth="10%"  skeletonHeight="12rem"></div>
-                        <div class="ms-1 flex-grow-1" ddrSkeleton skeletonWidth="10%"  skeletonHeight="9rem"></div>
-                      }
-                    </div>
-                  }
-                }
-                
-              </div>
-            } @else {
-              <p>{{'skeleton.data.loaded' | ddrTranslate}}</p>
-            }
-          </div>
-        </ddr-card>
-      </div>
-
-
-  </div>
-</div>
-
-</div>
-
+  <ng-template #example>
+    <skeleton-showcase-2 />
+  </ng-template>
+  
 </base-showcase>

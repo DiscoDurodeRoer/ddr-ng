@@ -1,0 +1,11 @@
+<ddr-input-group
+    [label]="'input.group.label' | ddrTranslate"
+    [placeholder]="'input.group.placeholder' | ddrTranslate"
+    icon="bi bi-send"
+    name="input-group-1"
+    [(value)]="value"
+    (action)="clickButton($event)" />
+
+<div class="mt-2">
+    <span>{{'input.group.value' | ddrTranslate}}: {{value() | json}}</span>
+</div>

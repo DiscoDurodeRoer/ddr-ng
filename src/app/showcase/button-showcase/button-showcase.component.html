@@ -1,214 +1,59 @@
-<base-showcase component="ddr-button" type="component" [showStyles]="true">
+<base-showcase 
+  component="ddr-button" 
+  type="component" 
+  [documentation]="documentation"
+  [showStyles]="true">
 
   <div description>
     <p>{{'button.description' | ddrTranslate}}</p>
   </div>
 
-  <div examples>
+  <ng-template #example>
+    <button-showcase-1 />
+  </ng-template>
+  
+  <ng-template #example>
+    <button-showcase-2 />
+  </ng-template>
+  
+  <ng-template #example>
+    <button-showcase-3 />
+  </ng-template>
+  
+  <ng-template #example>
+    <button-showcase-4 />
+  </ng-template>
 
-<div class="row">
-  <div class="col-12">
-    <span class="h3">{{'button.example.1' | ddrTranslate}}</span>
-  </div>
-</div>
+  <ng-template #example>
+    <button-showcase-5 />
+  </ng-template>
 
-<div class="row mt-3">
-  <div class="col-12">
-    <ddr-button
-      text="button.text"
-      [border]="false"
-      (action)="clickButton($event)" />
-  </div>
-</div>
+  <ng-template #example>
+    <button-showcase-6 />
+  </ng-template>
 
-<div class="row mt-3">
-  <div class="col-12">
-    <span class="h3">{{'button.example.2' | ddrTranslate}}</span>
-  </div>
-</div>
+  <ng-template #example>
+    <button-showcase-7 />
+  </ng-template>
 
-<div class="row mt-3">
-  <div class="col-12">
-    <ddr-button
-      icon="bi bi-person"
-      text="button.text"
-      (action)="clickButton($event)" />
-  </div>
-</div>
+  <ng-template #example>
+    <button-showcase-8 />
+  </ng-template>
 
+  <ng-template #example>
+    <button-showcase-9 />
+  </ng-template>
 
-<div class="row mt-3">
-  <div class="col-12">
-    <span class="h3">{{'button.example.3' | ddrTranslate}}</span>
-  </div>
-</div>
+  <ng-template #example>
+    <button-showcase-10 />
+  </ng-template>
 
-<div class="row mt-3">
-  <div class="col-12">
-    <ddr-button
-      class="me-1"
-      mode="save"
-      text="button.text"
-      (action)="clickButton($event)" />
-    
-     <ddr-button
-      mode="danger"
-      text="button.text"
-      (action)="clickButton($event)" />
-  </div>
-</div>
+  <ng-template #example>
+    <button-showcase-11 />
+  </ng-template>
 
-<div class="row mt-3">
-  <div class="col-12">
-    <span class="h3">{{'button.example.4' | ddrTranslate}}</span>
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <ddr-button
-      text="button.text"
-      [disabled]="true"
-      (action)="clickButton($event)" />
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <span class="h3">{{'button.example.5' | ddrTranslate}}</span>
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <ddr-button
-      [floatButton]="true"
-      position="bottom-right"
-      icon="bi bi-person"
-      (action)="clickButton($event)" />
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <span class="h3">{{'button.example.6' | ddrTranslate}}</span>
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <form (ngSubmit)="submitForm()">
-      <ddr-button
-        type="submit"
-        text="button.text" />
-    </form>
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <span class="h3">{{'button.example.7' | ddrTranslate}}</span>
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <ddr-button
-      [block]="true"
-      text="button.text"
-      (action)="clickButton($event)" />
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <span class="h3">{{'button.example.8' | ddrTranslate}}</span>
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <ddr-button
-      class="me-1"
-      size="large"
-      text="button.text"
-      (action)="clickButton($event)" />
-
-    <ddr-button
-      class="me-1"
-      size="medium"
-      text="button.text"
-      (action)="clickButton($event)" />
-
-    <ddr-button
-      class="me-1"
-      size="small"
-      text="button.text"
-      (action)="clickButton($event)" />
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <span class="h3">{{'button.example.9' | ddrTranslate}}</span>
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <ddr-button
-      text="button.text"
-      [tooltipText]="'button.tooltip' | ddrTranslate"
-      (action)="clickButton($event)" />
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <span class="h3">{{'button.example.10' | ddrTranslate}}</span>
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <ddr-button
-      [transparent]="true"
-      text="button.text"
-      (action)="clickButton($event)" />
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <span class="h3">{{'button.example.11' | ddrTranslate}}</span>
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <ddr-button
-      icon="bi bi-person"
-      text="button.text"
-      iconPosition="right"
-      (action)="clickButton($event)" />
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <span class="h3">{{'button.example.12' | ddrTranslate}}</span>
-  </div>
-</div>
-
-<div class="row mt-3">
-  <div class="col-12">
-    <ddr-button
-      img="img/button/star.png"
-      text="button.text"
-      (action)="clickButton($event)" />
-  </div>
-</div>
-
-  </div>
+  <ng-template #example>
+    <button-showcase-12 />
+  </ng-template>
 
 </base-showcase>

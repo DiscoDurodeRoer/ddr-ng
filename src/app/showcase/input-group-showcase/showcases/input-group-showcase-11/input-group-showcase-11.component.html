@@ -1,0 +1,11 @@
+<ddr-button 
+    [text]="'input.group.focus' | ddrTranslate"
+    (action)="focusInputGroup()" />
+
+<ddr-input-group
+    [label]="'input.group.label' | ddrTranslate"
+    [placeholder]="'input.group.placeholder' | ddrTranslate"
+    icon="bi bi-send"
+    [focus]="focus()"
+    name="input-group-11" 
+    (focusLost)="focusLost()"  />

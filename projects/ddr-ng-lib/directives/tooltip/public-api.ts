@@ -1,0 +1,1 @@
+export { DdrTooltipDirective } from './src/ddr-tooltip.directive';

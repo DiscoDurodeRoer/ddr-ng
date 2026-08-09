@@ -1,0 +1,12 @@
+<ddr-table 
+    [cols]="cols()" 
+    [items]="items()"
+    [labelRegisters]="'table.registers' | ddrTranslate"
+    [labelRegister]="'table.register' | ddrTranslate"
+    [labelToPagination]="'table.to' | ddrTranslate"
+    [labelOfPagination]="'table.of' | ddrTranslate"
+    (selectItem)="selectItem($event)" >
+    <ng-template #templateCell let-item="item" let-col="col">
+        {{ item | ddrNestedProperty: col.property }}
+    </ng-template>
+</ddr-table>

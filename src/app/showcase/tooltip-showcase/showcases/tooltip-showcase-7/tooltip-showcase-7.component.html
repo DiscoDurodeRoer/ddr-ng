@@ -1,0 +1,13 @@
+<ng-template #tooltipTemplate let-value="value">
+    <div>
+        <p>{{'tooltip.template' | ddrTranslate}}</p>
+        <p>{{value}}</p>
+    </div>
+</ng-template>
+
+<p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Enim animi quae vero sint iure dignissimos inventore,
+    quasi, <span ddrTooltip 
+        [tooltipTemplate]="tooltipTemplate" 
+        [tooltipTemplateData]="tooltipTemplateData"
+        [tooltipUnderline]="true">cum veritatis</span> nulla dolores vel iusto, libero natus pariatur ad quo deleniti
+    necessitatibus.</p>

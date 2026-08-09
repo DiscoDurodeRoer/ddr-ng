@@ -1,0 +1,1 @@
+export { DdrInputFileComponent } from './src/ddr-input-file.component';

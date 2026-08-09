@@ -1,0 +1,26 @@
+<ddr-textarea 
+    [label]="'textarea.label' | ddrTranslate" 
+    [placeholder]="'textarea.placeholder' | ddrTranslate"
+    [validate]="true"
+    [formField]="textareaForm.textarea">
+
+    <ng-template #templateValid>
+    <span>{{'textarea.ok' | ddrTranslate}}</span>
+    </ng-template>
+
+    <ng-template #templateErrors let-errors="errors">
+    @for (error of errors(); track error.kind) {
+        @switch(error.kind){
+            @case('minLength'){
+                <span class="me-2">{{ error.message | ddrTranslate }} {{ error.minLength }}</span>
+            }
+            @case('maxLength'){
+                <span class="me-2">{{ error.message | ddrTranslate }} {{ error.maxLength }}</span>
+            }
+            @default {
+                <span>{{ error.message | ddrTranslate }}</span>
+            }
+        }
+        }
+    </ng-template>
+</ddr-textarea>

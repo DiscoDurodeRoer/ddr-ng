@@ -1,0 +1,14 @@
+<ddr-button 
+    [text]="'spinner.block.data.load' | ddrTranslate" 
+    (action)="onLoadData()" />
+
+<ddr-card [showHeader]="false">
+    <div card-content 
+        ddrSpinnerBlock 
+        [spinnerShow]="!loadData()" 
+        spinnerPathImg="/img/spinner/spinner.gif">
+    @if(loadData()){
+        <span>{{'spinner.block.data.loaded' | ddrTranslate}}</span>
+    }
+    </div>
+</ddr-card>

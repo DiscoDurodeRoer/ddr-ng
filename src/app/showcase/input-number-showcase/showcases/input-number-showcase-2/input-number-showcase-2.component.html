@@ -1,0 +1,9 @@
+<ddr-input-number
+    [label]="'input.number.label' | ddrTranslate" 
+    [inline]="true"
+    name="input-number-2"
+    [(value)]="value" />
+
+<div class="mt-2">
+    <span>{{'input.number.value' | ddrTranslate}}: {{value()}}</span>
+</div>

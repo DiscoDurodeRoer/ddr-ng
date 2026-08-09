@@ -1,0 +1,1 @@
+export { DdrClickOutsideDirective } from './src/ddr-click-outside.directive';
