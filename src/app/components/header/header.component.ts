@@ -1,6 +1,7 @@
 import {
   ChangeDetectorRef,
   Component,
+  effect,
   inject,
   OnInit,
   ViewEncapsulation,
@@ -54,8 +55,7 @@ export class HeaderComponent implements OnInit {
   private themeService: DdrThemeService = inject(DdrThemeService);
   private ddrDetailService: DdrDetailService = inject(DdrDetailService);
   private ddrModalService: DdrModalService = inject(DdrModalService);
-  private ddrTranslateService: DdrTranslateService =
-    inject(DdrTranslateService);
+  private ddrTranslateService: DdrTranslateService = inject(DdrTranslateService);
   private dataService: DataService = inject(DataService);
   private changeDetectorRef: ChangeDetectorRef = inject(ChangeDetectorRef);
 
@@ -75,7 +75,7 @@ export class HeaderComponent implements OnInit {
   ];
   public themeActual: DdrTheme = 'ddr-blue';
 
-  public version: string = '22.0.0';
+  public version: string = '22.0.1';
   public versions: DdrSelectItem<string>[] = [];
   public components: DdrSelectItem<ItemSearch>[] = [];
   public search: string = '';
@@ -119,19 +119,26 @@ export class HeaderComponent implements OnInit {
   public MENU_DETAIL: string = 'menu-detail';
   public MODAL_SEARCH: string = 'modal-search';
 
+  constructor() {
+    effect(() => {
+      if (this.themeService.currentTheme()) {
+        const currentTheme = this.themes.find((t) => t.item == this.themeService.currentTheme());
+        this.themes = this.themes.filter((t) => t.item != this.themeService.currentTheme());
+        this.themes.unshift(currentTheme!);
+      }
+    })
+  }
+
   async ngOnInit() {
-    this.versions =
-      (await this.dataService.getVersions()) as DdrSelectItem<string>[];
-    this.languages =
-      (await this.dataService.getLanguages()) as DdrAction<string>[];
+    this.versions = (await this.dataService.getVersions()) as DdrSelectItem<string>[];
+    this.languages = (await this.dataService.getLanguages()) as DdrAction<string>[];
 
     this.changeDetectorRef.markForCheck();
   }
 
   changeTheme(theme: DdrAction<DdrTheme>) {
     this.themeService.setTheme(theme.item!);
-    this.themes = this.themes.filter((t) => t.item != theme.item);
-    this.themes.unshift(theme);
+    console.log(this.themeService.currentTheme());
   }
 
   changeVersion(version: DdrAction<string>) {

@@ -469,6 +469,10 @@ $color-warning: #b4894b;
   }
 
   ddr-badge-pill {
+
+    display: inline-block;
+    margin-bottom: 10px;
+
     .ddr-badge {
       &--info {
         background: $primary;

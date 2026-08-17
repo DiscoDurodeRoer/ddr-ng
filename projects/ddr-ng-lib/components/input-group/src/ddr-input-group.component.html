@@ -2,6 +2,7 @@
   <ddr-input class="ddr-input-group__input" 
     [border]="true" 
     [label]="label()"
+    [ariaLabel]="ariaLabel()"
     [size]="size()"
     [dirty]="dirty()"
     [validate]="validate()" 
@@ -48,5 +49,6 @@
     [transparent]="transparent()"
     [disabled]="disabled() || disabledButton()"
     [size]="size()"
+    [ariaLabel]="ariaLabel()"
     (action)="clickButton($event)" />
 </div>

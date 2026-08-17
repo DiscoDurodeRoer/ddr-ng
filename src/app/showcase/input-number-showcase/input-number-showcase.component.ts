@@ -936,6 +936,15 @@ export class InputNumberShowcase21Component {
           required: false,
           type: 'number'
         }
+      },
+      {
+        item: {
+          name: 'ariaLabel',
+          description: 'input.number.input.aria.label',
+          default: 'undefined',
+          required: false,
+          type: 'string | undefined'
+        }
       }
     ],
     inputsOutputs: [

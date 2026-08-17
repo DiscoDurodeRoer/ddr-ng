@@ -49,6 +49,7 @@ export class DdrButtonComponent {
   readonly tooltipText = input<string>();
   readonly tooltipOrientation = input<DdrOrientationTooltip>(this.constants.ORIENTATION.TOP);
   readonly transparent: InputSignal<boolean> = input<boolean>(false);
+  readonly ariaLabel: InputSignal<string | undefined> = input<string | undefined>(undefined)
 
   readonly action = output<MouseEvent>();
 

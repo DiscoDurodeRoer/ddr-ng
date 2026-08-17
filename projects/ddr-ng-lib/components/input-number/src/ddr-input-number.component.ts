@@ -62,6 +62,7 @@ export class DdrInputNumberComponent implements AfterViewInit, FormValueControl<
   readonly allowNegative: InputSignal<boolean> = input<boolean>(true);
   readonly allowDecimals: InputSignal<boolean> = input<boolean>(true);
   readonly step: InputSignal<number> = input<number>(1);
+  readonly ariaLabel: InputSignal<string | undefined> = input<string | undefined>(undefined);
 
   public value: ModelSignal<number> = model<number>(this.minimunValue());
 

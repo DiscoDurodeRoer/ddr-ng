@@ -58,6 +58,7 @@ export class DdrTextareaComponent implements FormValueControl<string> {
   public dirty: InputSignal<boolean> = input<boolean>(false);
   public minLength: InputSignal<number | undefined> = input<number | undefined>(undefined);
   public maxLength: InputSignal<number | undefined> = input<number | undefined>(undefined);
+  readonly ariaLabel: InputSignal<string | undefined> = input<string | undefined>(undefined);
 
   public value: ModelSignal<string> = model<string>('');
 

@@ -17,6 +17,7 @@
   <textarea #textarea
     class="ddr-textarea__textarea"
     [attr.id]="name()"
+    [attr.aria-label]="label() ? null : ariaLabel()"
     [name]="name()"
     [placeholder]="placeholder()"
     [disabled]="disabled()"

@@ -51,6 +51,7 @@ export class DdrDropdownMultipleComponent<T> implements FormValueControl<T[]> {
   readonly tooltipText: InputSignal<string | undefined> = input<string | undefined>();
   readonly compareFn: InputSignal<Function> = input<Function>((a: T, b: T) => a === b);
   readonly transparent: InputSignal<boolean> = input<boolean>(false);
+  readonly ariaLabel: InputSignal<string | undefined> = input<string | undefined>(undefined)
 
   public value: ModelSignal<T[]> = model<T[]>([]);
 

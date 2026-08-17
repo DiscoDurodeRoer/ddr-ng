@@ -18,6 +18,7 @@
               [labelPlaceholderFilter]="'versions.filter' | ddrTranslate"
               [allowDeselect]="true"
               [options]="versions"
+              name="changelog"
               [(value)]="version"
               (selectItem)="filterVersion($event)" />
           </div>

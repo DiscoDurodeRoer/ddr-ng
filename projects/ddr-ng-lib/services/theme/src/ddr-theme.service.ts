@@ -1,4 +1,4 @@
-import { inject, PLATFORM_ID, Renderer2, RendererFactory2, Service } from '@angular/core';
+import { computed, inject, PLATFORM_ID, Renderer2, RendererFactory2, Service, signal, Signal, WritableSignal } from '@angular/core';
 import { DdrTheme } from 'ddr-ng/types';
 import { DdrConstantsService } from 'ddr-ng/constants';
 import { isPlatformBrowser, DOCUMENT } from '@angular/common';
@@ -12,32 +12,27 @@ export class DdrThemeService {
   private readonly platformId = inject(PLATFORM_ID);
   private readonly document = inject(DOCUMENT);
 
-  private theme!: DdrTheme;
-  private themes: DdrTheme[] = [];
-  private isBrowser: boolean;
+  private theme: WritableSignal<DdrTheme | null> = signal<DdrTheme | null>(null);
+  private themes: DdrTheme[] = this.constants.THEMES;
+  private isBrowser: boolean = isPlatformBrowser(this.platformId);
 
-  constructor() {
-    this.themes = this.constants.THEMES;
-    this.isBrowser = isPlatformBrowser(this.platformId);
-    if (this.isBrowser) {
-      const bodyClasses = Array.from(this.document.body.classList);
-      const theme = bodyClasses.find(cls => this.themes.includes(cls as DdrTheme)) ?? null;
-      if (theme) {
-        this.theme = theme as DdrTheme;
-      }
-    }
-  }
+  public currentTheme: Signal<DdrTheme | null> = computed(() => this.theme() != null ? this.theme() : this.getTheme())
 
   setTheme(theme: DdrTheme): void {
-    if (this.isBrowser) {
-      const body = this.document.body;
-      this.themes.forEach(theme => this.renderer.removeClass(body, theme));
-      this.renderer.addClass(body, theme);
-      this.theme = theme;
-    }
+    if (!this.isBrowser) return;
+    const body = this.document.body;
+    this.themes.forEach(theme => this.renderer.removeClass(body, theme));
+    this.renderer.addClass(body, theme);
+    this.theme.set(theme);
   }
 
-  getTheme() {
-    return this.theme;
+  private getTheme() {
+    if (!this.isBrowser) return null;
+
+    const body = this.document.body;
+
+    return this.themes.find(theme =>
+      body.classList.contains(theme)
+    ) ?? null;
   }
 }

@@ -1,11 +1,12 @@
 <div class="ddr-input" [class.d-none]="hidden()">
   <div class="ddr-input__input-container" [class.ddr-input__input-container--inline]="inline()">
     @if (label()) {
-      <label [class]="{
-        'ddr-input__input-container__label--inline': inline(),
-        'ddr-input__input-container__label--transparent': transparent(),
-        'fw-bold': labelBold()
-        }" class="ddr-input__input-container__label user-select-none" [attr.for]="name()">
+      <label 
+        [class.ddr-input__input-container__label--inline]="inline()"
+        [class.ddr-input__input-container__label--transparent]="transparent()"
+        [class.fw-bold]="labelBold()" 
+        class="ddr-input__input-container__label user-select-none" 
+        [attr.for]="name()">
         {{ label() + (required() ? "(*)" : "") }}
         @if (tooltipText()) {
           <i
@@ -21,6 +22,7 @@
       class="ddr-input__input-container__input"
       [attr.id]="name() ? name() : null"
       type="text"
+      [attr.aria-label]="label() ? null : ariaLabel()"
       [attr.placeholder]="placeholder()"
       [attr.autocomplete]="autocomplete()"
       [attr.required]="required()"

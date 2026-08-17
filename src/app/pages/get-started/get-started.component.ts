@@ -41,7 +41,7 @@ export class GetStartedComponent implements AfterViewInit {
   public stylesEx1 = `
               "node_modules/ddr-ng/resources/themes/ddr-blue.scss",
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
-              "node_modules/bootstrap-icons/font/bootstrap-icons.css",
+              "node_modules/bootstrap-icons/font/bootstrap-icons.min.css",
               "src/styles.scss"`;
 
   public stylesEx2 = `
@@ -49,7 +49,7 @@ export class GetStartedComponent implements AfterViewInit {
               "node_modules/ddr-ng/resources/themes/ddr-dark.scss",
               "node_modules/ddr-ng/resources/themes/ddr-purple.scss",
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
-              "node_modules/bootstrap-icons/font/bootstrap-icons.css",
+              "node_modules/bootstrap-icons/font/bootstrap-icons.min.css",
               "src/styles.scss"`;
 
   public colsDdrConfig: DdrTableCol[] = [

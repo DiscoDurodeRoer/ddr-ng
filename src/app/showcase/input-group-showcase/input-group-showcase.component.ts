@@ -940,6 +940,15 @@ export class InputGroupShowcase17Component {
           required: false,
           type: 'WithOptionalFieldTree<ValidationError>[]>'
         }
+      },
+      {
+        item: {
+          name: 'ariaLabel',
+          description: 'input.group.aria.label',
+          required: false,
+          type: 'string | undefined',
+          default: 'undefined'
+        }
       }
     ],
     inputsOutputs: [

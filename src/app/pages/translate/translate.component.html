@@ -131,6 +131,12 @@ export class ExampleComponent implements OnInit &#123;
                     </div>
                 </div>
 
+                 <div class="row mt-3">
+                    <div class="col-12">
+                        <span class="fs-5">{{'translate.page.p9.1' | ddrTranslate}}</span>
+                    </div>
+                </div>
+
                 <div class="row mt-3">
                     <div class="col-12">
 <pre class="language-typescript"><code class="language-typescript" ngNonBindable>import &#123; Component, inject &#125; from '&#64;angular/core';
@@ -140,7 +146,7 @@ import &#123; DdrButtonComponent, DdrTranslateService &#125; from 'ddr-ng/transl
   selector: 'app-example',
   template: `
     &lt;div&gt;
-        &lt;ddr-button [text]="Change to Spanish" (action)="changeToSpanish()" /&gt;
+        &lt;ddr-button text="Change to Spanish" (action)="changeToSpanish()" /&gt;
         &lt;ddr-button text="Change to English" (action)="changeToEnglish()" /&gt;
     &lt;/div&gt;
     `,
@@ -153,10 +159,14 @@ export class ExampleComponent &#123;
 
     changeToSpanish() &#123;
         this.ddrTranslateService.getData('/i18n/', 'es')
+        // You can use too
+        // this.ddrTranslateService.changeLanguage('es')
     &#125;
 
     changeToEnglish() &#123;
         this.ddrTranslateService.getData('/i18n/', 'en')
+        // You can use too
+        // this.ddrTranslateService.changeLanguage('en')
     &#125;
 &#125;
 </code></pre>
@@ -216,7 +226,7 @@ import &#123;
     [text]="'change.language' | ddrTranslate"
     (action)="changeLanguage()"
 /&gt;
-&lt;p&gt;&#123;&#123;'standalone.translation' | ddrTranslate&#125;&#125;&lt;/p&gt;`,
+&lt;p&gt;{{'standalone.translation' | ddrTranslate}}&lt;/p&gt;`,
   imports: [
     DdrButtonComponent,
     DdrTranslatePipe
@@ -225,7 +235,7 @@ import &#123;
     DdrTranslateService
   ]
 &#125;)
-export class TranslateShowcase3Component &#123;
+export class ExampleComponent &#123;
 
   private ddrTranslateService: DdrTranslateService = inject(DdrTranslateService);
 
@@ -252,6 +262,66 @@ export class TranslateShowcase3Component &#123;
 </code></pre>
                 </div>
             </div>
+
+                <div class="row mt-3">
+                    <div class="col-12">
+                        <span class="h3">{{'translate.page.p13' | ddrTranslate}}</span>
+                    </div>
+                </div>
+
+                <div class="row mt-3">
+                    <div class="col-12">
+                        <span class="fs-5">{{'translate.page.p14' | ddrTranslate}}</span>
+                    </div>
+                </div>
+
+                <div class="row mt-3">
+                    <div class="col-12">
+<pre class="language-typescript"><code class="language-typescript" ngNonBindable>import &#123;
+  Component,
+  effect,
+  inject
+&#125; from '&#64;angular/core';
+import &#123; DdrButtonComponent &#125; from 'ddr-ng/components/button';
+import &#123;
+  DdrTranslateService,
+  DdrTranslatePipe
+&#125; from 'ddr-ng/translate';
+
+&#64;Component(&#123;
+  selector: 'app-example-component',
+  template: `
+    &lt;div&gt;
+        &lt;ddr-button text="Change to Spanish" (action)="changeToSpanish()" /&gt;
+        &lt;ddr-button text="Change to English" (action)="changeToEnglish()" /&gt;
+    &lt;/div&gt;
+  `,
+  imports: [
+    DdrButtonComponent,
+    DdrTranslatePipe
+  ]
+&#125;)
+export class ExampleComponent &#123;
+
+  private ddrTranslateService: DdrTranslateService = inject(DdrTranslateService)
+
+  constructor() &#123;
+    this.ddrTranslateService.getData('/data/i18n/translate-showcase/', 'en')
+    effect(() => console.log(`Current language: $&#123;this.ddrTranslateService.currentLanguage()&#125;`))
+  &#125;
+
+  changeToSpanish() &#123;
+    this.ddrTranslateService.changeLanguage('es')
+  &#125;
+
+  changeToEnglish() &#123;
+    this.ddrTranslateService.changeLanguage('en')
+  &#125;
+
+&#125;
+</code></pre>
+                    </div>
+                </div>
 
             </div>
 

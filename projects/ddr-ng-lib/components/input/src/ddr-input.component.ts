@@ -68,6 +68,7 @@ export class DdrInputComponent implements FormValueControl<string> {
   readonly name: InputSignal<string> = input<string>('');
   readonly dirty: InputSignal<boolean> = input<boolean>(false);
   readonly hidden: InputSignal<boolean> | InputSignalWithTransform<boolean, unknown> = input<boolean>(false);
+  readonly ariaLabel: InputSignal<string | undefined> = input<string | undefined>(undefined);
 
   public value: ModelSignal<string> = model<string>('');
 

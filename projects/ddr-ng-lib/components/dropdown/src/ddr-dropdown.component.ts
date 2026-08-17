@@ -121,6 +121,7 @@ export class DdrDropdownComponent<T> implements FormValueControl<T | null> {
   readonly transparent: InputSignal<boolean> = input<boolean>(false);
   readonly textInput: InputSignal<string | undefined> = input<string | undefined>();
   readonly errors: InputSignal<readonly WithOptionalFieldTree<ValidationError>[]> = input<readonly WithOptionalFieldTree<ValidationError>[]>([]);
+  readonly ariaLabel: InputSignal<string | undefined> = input<string | undefined>(undefined)
 
   public value: ModelSignal<T | null> = model<T | null>(null);
 

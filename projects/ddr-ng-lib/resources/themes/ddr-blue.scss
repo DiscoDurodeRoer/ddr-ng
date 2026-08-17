@@ -440,6 +440,10 @@ $color-warning: #f0ad4e;
   }
 
   ddr-badge-pill {
+
+    display: inline-block;
+    margin-bottom: 10px;
+
     .ddr-badge {
       &--info {
         background: $primary;
@@ -614,7 +618,7 @@ $color-warning: #f0ad4e;
     .ddr-steps {
       &__horizontal {
         &__info-step {
-          
+
           &__number-step {
 
             &--open {
@@ -642,7 +646,7 @@ $color-warning: #f0ad4e;
 
       &__vertical {
         &__info-step {
-         
+
           &__number-step {
 
             &--open {

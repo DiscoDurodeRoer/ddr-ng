@@ -424,6 +424,15 @@ export class ToggleShowcase10Component {
           default: "'medium'",
           values: "'small' | 'medium' | 'large'"
         }
+      },
+      {
+        item: {
+          name: 'ariaLabel',
+          description: 'toggle.input.aria.label',
+          required: false,
+          type: 'string | undefined',
+          default: "undefined"
+        }
       }
     ],
     inputsOutputs: [

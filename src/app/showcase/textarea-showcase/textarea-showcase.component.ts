@@ -814,6 +814,15 @@ export class TextareaShowcase17Component {
           required: false,
           type: 'WithOptionalFieldTree<ValidationError>[]'
         }
+      },
+      {
+        item: {
+          name: 'ariaLabel',
+          description: 'textarea.input.aria.label',
+          default: 'string | undefined',
+          required: false,
+          type: 'string | undefined'
+        }
       }
     ],
     inputsOutputs: [

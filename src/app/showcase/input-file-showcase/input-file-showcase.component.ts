@@ -628,6 +628,15 @@ export class InputFileShowcaseComponent {
           type: 'string'
         }
       },
+      {
+        item: {
+          name: 'ariaLabel',
+          description: 'input.file.input.aria.label',
+          default: "undefined",
+          required: false,
+          type: 'string | undefined'
+        }
+      }
     ],
     outputs: [
       {

@@ -2381,6 +2381,15 @@ export class DropdownMultipleShowcaseComponent {
           default: "''"
         }
       },
+      {
+        item: {
+          name: 'ariaLabel',
+          description: 'dropdown.multiple.input.aria.label',
+          required: false,
+          type: 'string | undefined',
+          default: "undefined"
+        }
+      },
     ],
     outputs: [
       {

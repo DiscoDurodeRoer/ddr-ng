@@ -679,6 +679,15 @@ export class ButtonShowcase12Component {
           default: "false",
           type: 'boolean'
         },
+      },
+      {
+        item: {
+          name: 'ariaLabel',
+          description: 'button.input.aria.label',
+          required: false,
+          default: "undefined",
+          type: 'string | undefined'
+        },
       }
     ],
     outputs: [

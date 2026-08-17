@@ -41,6 +41,7 @@ export class DdrInputFileComponent implements FormValueControl<File[]> {
   readonly required: InputSignal<boolean> = input<boolean>(false);
   readonly multiple: InputSignal<boolean> = input<boolean>(false);
   readonly accept: InputSignal<string> = input<string>('*');
+  readonly ariaLabel: InputSignal<string | undefined> = input<string | undefined>(undefined);
 
   public value: ModelSignal<File[]> = model<File[]>([]);
 

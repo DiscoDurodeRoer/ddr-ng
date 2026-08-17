@@ -34,7 +34,7 @@ import { DdrAutocompleteType, DdrInputError, DdrOrientationTooltip, DdrSize } fr
   imports: [DdrButtonComponent, DdrInputComponent, NgTemplateOutlet],
 })
 export class DdrInputGroupComponent implements FormValueControl<string> {
-  
+
   public readonly constants: DdrConstantsService = inject(DdrConstantsService);
 
   readonly label: InputSignal<string | undefined> = input<string | undefined>();
@@ -59,6 +59,7 @@ export class DdrInputGroupComponent implements FormValueControl<string> {
   readonly pattern: InputSignal<readonly RegExp[]> = input<readonly RegExp[]>([],);
   readonly errors: InputSignal<readonly WithOptionalFieldTree<ValidationError>[]> = input<readonly WithOptionalFieldTree<ValidationError>[]>([]);
   readonly dirty: InputSignal<boolean> = input<boolean>(false);
+  readonly ariaLabel: InputSignal<string | undefined> = input<string | undefined>(undefined);
 
   public value: ModelSignal<string> = model<string>('');
 

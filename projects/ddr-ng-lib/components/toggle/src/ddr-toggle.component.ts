@@ -35,6 +35,7 @@ export class DdrToggleComponent implements FormValueControl<boolean> {
   readonly tooltipText: InputSignal<string | undefined> = input<string | undefined>();
   readonly tooltipOrientation: InputSignal<DdrOrientationTooltip> = input<DdrOrientationTooltip>(this.constants.ORIENTATION.BOTTOM);
   readonly size: InputSignal<DdrSize> = input<DdrSize>(this.constants.SIZE.MEDIUM);
+  readonly ariaLabel: InputSignal<string | undefined> = input<string | undefined>(undefined)
 
   public value: ModelSignal<boolean> = model<boolean>(false);
 

@@ -2548,6 +2548,15 @@ export class DropdownShowcaseComponent {
           required: false,
           type: 'WithOptionalFieldTree<ValidationError>[]'
         }
+      },
+      {
+        item: {
+          name: 'ariaLabel',
+          description: 'dropdown.input.aria.label',
+          default: 'string | undefined',
+          required: false,
+          type: 'undefined'
+        }
       }
     ],
     inputsOutputs: [

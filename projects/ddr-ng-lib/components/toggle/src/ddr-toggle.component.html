@@ -19,6 +19,7 @@
     [class.ddr-toggle__button--medium]="size() == constants.SIZE.MEDIUM"
     [class.ddr-toggle__button--large]="size() == constants.SIZE.LARGE"
     [attr.aria-expanded]="value()"
+    [attr.aria-label]="label() ? null : ariaLabel()"
     (click)="onClick()">
   </button>
 </div>

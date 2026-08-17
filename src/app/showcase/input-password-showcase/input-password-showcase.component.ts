@@ -735,6 +735,15 @@ export class InputPasswordShowcase15Component {
           required: false,
           type: 'WithOptionalFieldTree<ValidationError>[]>'
         }
+      },
+      {
+        item: {
+          name: 'ariaLabel',
+          description: 'input.password.input.aria.label',
+          default: 'undefined',
+          required: false,
+          type: 'string | undefined'
+        }
       }
     ],
     inputsOutputs: [

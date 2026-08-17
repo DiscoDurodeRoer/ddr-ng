@@ -1142,7 +1142,7 @@ export class InputShowcase23Component {
           type: 'DdrAutocompleteType',
           default: "'off'",
           required: false,
-          values: "'on' | 'off' | 'username' | 'current-password' | 'new-password' | 'name' | 'given-name' | 'family-name' | 'email' | 'tel' | 'street-address' | 'address-line1' | 'address-line2' | 'postal-code' | 'country' | 'country-name';"
+          values: "'on' | 'off' | 'username' | 'current-password' | 'new-password' | 'name' | 'given-name' | 'family-name' | 'email' | 'tel' | 'street-address' | 'address-line1' | 'address-line2' | 'postal-code' | 'country' | 'country-name'"
         }
       },
       {
@@ -1170,6 +1170,15 @@ export class InputShowcase23Component {
           required: false,
           type: 'WithOptionalFieldTree<ValidationError>[]',
           default: '[]'
+        }
+      },
+      {
+        item: {
+          name: 'ariaLabel',
+          description: 'input.input.aria.label',
+          required: false,
+          type: 'string | undefined',
+          default: 'undefined'
         }
       }
     ],

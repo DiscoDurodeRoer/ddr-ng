@@ -23,11 +23,12 @@
   [class.btn-ddr--transparent]="transparent()"
   [disabled]="disabled()"
   [type]="type()"
+  [attr.aria-label]="text() ? null : ariaLabel()"
   (click)="clickButton($event)">
   @if (icon() && iconPosition() == 'left') {
     <i
       [class]="'btn-ddr--icon ' + icon() + ' btn-ddr--icon-left'"
-      [class.btn-ddr--float-button--items]="floatButton()">
+      [class.btn-ddr--float-button--items]="floatButton()" aria-hidden="true">
     </i>
   }
   @if (img()) {

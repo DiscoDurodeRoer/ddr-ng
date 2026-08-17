@@ -1,6 +1,6 @@
 # DDR-NG
 
-![npm version](https://img.shields.io/badge/npm-22.0.0-blue)
+![npm version](https://img.shields.io/badge/npm-1-blue)
 
 [![Discord](https://img.shields.io/badge/discord-ddr--ng-5865F2?logo=discord&logoColor=white)](https://discord.gg/Drgv4JRqxu)
 
@@ -12,6 +12,7 @@
 
 |ddr-ng | Compatibility   |
 |-------|-----------------|
+|22.x.x | ✅ Full support |
 |21.x.x | ✅ Full support |
 |20.x.x | ✅ Full support |
 |19.x.x | ✅ Full support |
@@ -26,7 +27,7 @@ It is a set of reusable components, services, pipes and directives for our proje
 To install the ddr library, run the following command:
 
 ```bash
-npm install ddr-ng@22.0.0
+npm install ddr-ng@22.0.1
 ```
 
 ## 🛠️ What should we include in the angular.json file?
@@ -37,7 +38,7 @@ We will add the following in **styles**:
 "styles": [
   "node_modules/ddr-ng/resources/themes/ddr-blue.scss",
   "node_modules/bootstrap/dist/css/bootstrap.min.css",
-  "node_modules/bootstrap-icons/font/bootstrap-icons.css",
+  "node_modules/bootstrap-icons/font/bootstrap-icons.min.css",
   "src/styles.scss"
 ]
 ```
@@ -55,14 +56,32 @@ If you want to have all available themes, you can add them all in styles
 ]
 ```
 
-## 🎨 Applying a theme
+## ⚙️ Provider Ddr
 
-In the main container, you must add the class of the theme being used. For example:
+To configure the library, you must add the "provideDdr" provider to the providers in app.config, specifying the theme to use and the i18n configuration (optional).
 
-```html
-<body class="ddr-blue">
-  <!-- Your app content -->
-</body>
+```ts
+import { ApplicationConfig } from '@angular/core';
+import { provideRouter } from '@angular/router';
+import { routes } from './app.routes';
+import { provideAnimations } from '@angular/platform-browser/animations';
+import { provideDdr } from 'ddr-ng/providers/config';
+
+export const appConfig: ApplicationConfig = {
+  providers: [
+    provideRouter(routes),
+    provideAnimations(),
+    provideDdr({
+      theme: {
+        name: 'ddr-blue'
+      },
+      translate: {
+        path: `/i18n/`,
+        language: 'en'
+      }
+    })
+  ]
+}; 
 ```
 
 Now you can use everything exported from the library, check the [showcases](https://ddr-ng.com) for examples.

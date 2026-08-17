@@ -53,6 +53,7 @@ export class DdrInputPasswordComponent implements FormValueControl<string> {
   readonly labelBold: InputSignal<boolean> = input<boolean>(false);
   readonly showPassword: InputSignal<boolean> = input<boolean>(false);
   readonly errors: InputSignal<readonly WithOptionalFieldTree<ValidationError>[]> = input<readonly WithOptionalFieldTree<ValidationError>[]>([]);
+  readonly ariaLabel: InputSignal<string | undefined> = input<string | undefined>(undefined);
 
   public value: ModelSignal<string> = model<string>('');
 
