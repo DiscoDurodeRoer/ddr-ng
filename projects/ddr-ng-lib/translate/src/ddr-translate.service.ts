@@ -8,14 +8,14 @@ export class DdrTranslateService {
 
   private readonly document = inject(DOCUMENT);
   private readonly http = inject(HttpClient);
-  private readonly config = inject(DDR_TRANSLATE_CONFIG);
+  private readonly config = inject(DDR_TRANSLATE_CONFIG, { optional: true });
 
   private data = signal<{ [key: string]: string }>({});
   private language = signal<string | null>(null);
   private path = signal<string | null>(null);
 
   public currentLanguage: Signal<string | null> = this.language.asReadonly();
-  public availableLanguages: Signal<string[]> = signal<string[]>(this.config.availableLanguages || []);
+  public availableLanguages: Signal<string[]> = signal<string[]>(this.config?.availableLanguages || []);
 
   public async getData(path: string, language?: string): Promise<boolean> {
     try {
