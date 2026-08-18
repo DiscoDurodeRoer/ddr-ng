@@ -9,7 +9,7 @@
     "test": "ng test",
     "test-library": "ng test ddr-ng-lib --watch false",
     "build-library": "ng build ddr-ng-lib --watch",
-    "test-build-library": "npm run test-library && ng build ddr-ng-lib",
+    "test-build-library": "ng build ddr-ng-lib && npm run test-library",
     "start-library": "ng serve --watch --port 5200",
     "install-library-local": "ng build ddr-ng-lib && npm i ./dist/ddr-ng",
     "publish": "npm run test-build-library && cd dist && npm publish ddr-ng",
