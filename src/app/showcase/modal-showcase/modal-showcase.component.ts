@@ -538,14 +538,14 @@ export class ModalShowcase4Component {
         item: {
           name: 'close',
           description: 'modal.output.close',
-          type: 'MouseEvent'
+          type: 'void'
         }
       },
       {
         item: {
           name: 'accept',
           description: 'modal.output.accept',
-          type: 'MouseEvent'
+          type: 'void'
         }
       },
       {

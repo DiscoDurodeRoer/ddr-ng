@@ -203,6 +203,7 @@
     "modal.open": "Abrir modal",
     "modal.opened": "Modal abierto",
     "modal.closed": "Modal cerrado",
+    "modal.accept": "Click en aceptar",
     "modal.size": "Tamaño modal",
     "modal.type": "Tipo",
     "modal.size.button": "Tamaño botón",
@@ -1577,5 +1578,8 @@
     "22.0.1.change.5": "Al cambiar de idioma se cambia el atributo lang de la etiqueta html",
     "22.0.1.change.6": "Añadido atributo (signal) currentTheme",
     "22.0.1.change.7": "Añadido estilo display inline block por defecto",
-    "22.0.1.change.8": "Añadido input ariaLabel"
+    "22.0.1.change.8": "Añadido input ariaLabel",
+    "22.0.2.change.1": "Output close no devuelve un tipo (void)",
+    "22.0.2.change.2": "Output accept no devuelve un tipo (void)",
+    "22.0.2.change.3": "Arreglo en la emisión del evento close"
 }

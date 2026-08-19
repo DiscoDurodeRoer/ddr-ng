@@ -42,8 +42,9 @@ export class DdrModalComponent implements OnInit, OnDestroy {
   readonly size: InputSignal<DdrSize> = input<DdrSize>(this.constants.SIZE.MEDIUM);
   readonly sizeButton: InputSignal<DdrSize> = input<DdrSize>(this.constants.SIZE.SMALL);
 
-  readonly close: OutputEmitterRef<MouseEvent> = output<MouseEvent>();
-  readonly accept: OutputEmitterRef<MouseEvent> = output<MouseEvent>();
+  readonly close: OutputEmitterRef<void> = output<void>();
+  // readonly closeModal: OutputEmitterRef<void> = output<void>();
+  readonly accept: OutputEmitterRef<void> = output<void>();
   readonly clickOutside: OutputEmitterRef<MouseEvent> = output<MouseEvent>();
 
   public show: WritableSignal<boolean> = signal<boolean>(false);
@@ -58,15 +59,15 @@ export class DdrModalComponent implements OnInit, OnDestroy {
 
   closeModal() {
     this.show.set(false);
+    this.close.emit();
   }
 
-  onConfirm($event?: any) {
-    this.accept.emit($event);
+  onConfirm() {
+    this.accept.emit();
     this.ddrModalService.close(this.id());
   }
 
-  onClose($event?: any) {
-    this.close.emit($event);
+  onClose() {
     this.ddrModalService.close(this.id());
   }
 

@@ -1,6 +1,6 @@
 {
   "name": "ddr-ng-documentation",
-  "version": "22.0.1",
+  "version": "22.0.2",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -28,6 +28,7 @@
     "@angular/router": "^22.0.0",
     "bootstrap": "^5.3.8",
     "bootstrap-icons": "^1.13.1",
+    "ddr-ng": "file:dist/ddr-ng",
     "ngx-pagination": "^6.0.3",
     "rxjs": "~7.8.1"
   },
@@ -35,7 +36,6 @@
     "@angular/build": "^22.0.0",
     "@angular/cli": "~22.0.0",
     "@angular/compiler-cli": "^22.0.0",
-    "@types/jasmine": "^5.1.4",
     "@types/prismjs": "^1.26.5",
     "@vitest/coverage-v8": "^4.1.9",
     "jsdom": "^29.1.1",

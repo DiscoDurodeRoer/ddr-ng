@@ -11,7 +11,7 @@
               <ng-content select="[modal-title]" />
             </div>
             <div class="ddr-modal__content--close">
-              <i class="bi bi-x " (click)="onClose($event)"></i>
+              <i class="bi bi-x" (click)="onClose()"></i>
             </div>
           </div>
           <div class="card-body">
@@ -25,7 +25,7 @@
                   [text]="labelConfirm()"
                   [mode]="constants.MODES_BUTTON.DANGER"
                   [size]="sizeButton()"
-                  (click)="onConfirm($event)"
+                  (click)="onConfirm()"
                    />
               }
               @if (type() === constants.MODAL.CONFIRM) {
@@ -34,7 +34,7 @@
                   [text]="labelClose()"
                   [mode]="constants.MODES_BUTTON.DEFAULT"
                   [size]="sizeButton()"
-                  (click)="onClose($event)"
+                  (click)="onClose()"
                    />
               }
             </div>

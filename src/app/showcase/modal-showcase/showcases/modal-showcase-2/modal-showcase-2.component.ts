@@ -61,6 +61,13 @@ export class ModalShowcase2Component {
     );
   }
 
+  accept() {
+    this.ddrToastService.addSuccessMessage(
+      this.ddrTranslateService.getTranslate('success'),
+      this.ddrTranslateService.getTranslate('modal.accept'),
+    );
+  }
+
   openModal() {
     this.ddrModalService.open(this.ID_MODAL());
     this.ddrToastService.addSuccessMessage(
