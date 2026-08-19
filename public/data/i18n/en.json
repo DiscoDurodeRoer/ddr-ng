@@ -1579,5 +1579,5 @@
     "22.0.1.change.8": "Added ariaLabel input",
     "22.0.2.change.1": "Close output does not return a type (void)",
     "22.0.2.change.2": "Accept output does not return a type (void)",
-    "22.0.2.change.3": "Fixed the close event emission when clicking the accept button"
+    "22.0.2.change.3": "Fixed the close event emission"
 }
