@@ -7,7 +7,7 @@ import {
 } from '@angular/core';
 import { DdrButtonComponent } from 'ddr-ng/components/button';
 import { DdrButtonMultipleComponent } from 'ddr-ng/components/button-multiple';
-import { DdrButton } from 'ddr-ng/models';
+import { DdrButtonSelectable } from 'ddr-ng/models';
 import { DdrToastService } from 'ddr-ng/toast';
 import {
   DdrTranslatePipe,
@@ -31,7 +31,7 @@ export class ToastShowcase2Component {
   private ddrToastService: DdrToastService = inject(DdrToastService);
   private ddrTranslateService: DdrTranslateService = inject(DdrTranslateService);
 
-  public buttons: Signal<DdrButton[]> = signal<DdrButton[]>([
+  public buttons: Signal<DdrButtonSelectable[]> = signal<DdrButtonSelectable[]>([
     {
       text: 'toast.info',
       value: 'info',

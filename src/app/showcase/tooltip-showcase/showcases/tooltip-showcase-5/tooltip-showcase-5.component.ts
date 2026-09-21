@@ -6,7 +6,7 @@ import {
 } from '@angular/core';
 import { DdrButtonMultipleComponent } from 'ddr-ng/components/button-multiple';
 import { DdrTooltipDirective } from 'ddr-ng/directives/tooltip';
-import { DdrButton } from 'ddr-ng/models';
+import { DdrButton, DdrButtonSelectable } from 'ddr-ng/models';
 import { DdrOrientationTooltip } from 'ddr-ng/types';
 
 @Component({
@@ -19,7 +19,7 @@ import { DdrOrientationTooltip } from 'ddr-ng/types';
 })
 export class TooltipShowcase5Component {
 
-  public buttonsOrientation: Signal<DdrButton[]> = signal<DdrButton[]>([
+  public buttonsOrientation: Signal<DdrButtonSelectable[]> = signal<DdrButtonSelectable[]>([
     {
       icon: 'bi bi-arrow-up',
       value: 'top',

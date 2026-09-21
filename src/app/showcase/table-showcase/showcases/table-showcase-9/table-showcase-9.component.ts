@@ -8,14 +8,12 @@ import {
   DdrTableCol,
   DdrTableComponent
 } from 'ddr-ng/components/table';
-import { DdrTranslatePipe } from 'ddr-ng/translate';
 
 @Component({
   selector: 'table-showcase-9',
   templateUrl: './table-showcase-9.component.html',
   imports: [
-    DdrTableComponent,
-    DdrTranslatePipe
+    DdrTableComponent
   ],
   providers: [
     DdrToastService

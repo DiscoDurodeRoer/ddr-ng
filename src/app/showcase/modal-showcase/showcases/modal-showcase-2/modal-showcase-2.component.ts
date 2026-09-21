@@ -11,7 +11,7 @@ import {
   DdrModalComponent,
   DdrModalService
 } from 'ddr-ng/modal';
-import { DdrButton } from 'ddr-ng/models';
+import { DdrButtonSelectable } from 'ddr-ng/models';
 import { DdrToastService } from 'ddr-ng/toast';
 import { DdrTranslatePipe, DdrTranslateService } from 'ddr-ng/translate';
 import { DdrSize } from 'ddr-ng/types';
@@ -37,7 +37,7 @@ export class ModalShowcase2Component {
   public readonly ddrTranslateService: DdrTranslateService = inject(DdrTranslateService);
 
   public sizeButton: WritableSignal<DdrSize> = signal<DdrSize>('small');
-  public buttonsSizeButton: Signal<DdrButton[]> = signal<DdrButton[]>([
+  public buttonsSizeButton: Signal<DdrButtonSelectable[]> = signal<DdrButtonSelectable[]>([
     {
       text: 'small',
       value: 'small',

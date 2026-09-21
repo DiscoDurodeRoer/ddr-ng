@@ -30,7 +30,7 @@
               <ng-content select="[params]" content-accordion />
               <div content-accordion>
                 <ddr-table [cols]="colsParams" [items]="itemsParams()" [showPagination]="false" [showFooter]="false"
-                  [allowChangeRows]="false" [canSelectItems]="false">
+                  [allowChangePageSize]="false" [canSelectItems]="false">
 
                   <ng-template #templateCell let-item="item" let-col="col">
                     {{ item | ddrNestedProperty: col.property | ddrTranslate }}
@@ -46,10 +46,14 @@
               <ng-content select="[inputs]" content-accordion />
               <div content-accordion>
                 <ddr-table [cols]="colsInputs" [items]="itemsInputs()" [showPagination]="false" [showFooter]="false"
-                  [allowChangeRows]="false" [canSelectItems]="false">
+                  [allowChangePageSize]="false" [canSelectItems]="false">
 
                   <ng-template #templateCell let-item="item" let-col="col">
-                    {{ item | ddrNestedProperty: col.property | ddrTranslate }}
+                    @if(col.property == 'default'){
+                      {{ item[col.property] }}
+                    }@else{
+                      {{ item | ddrNestedProperty: col.property | ddrTranslate }}
+                    }
                   </ng-template>
 
                 </ddr-table>
@@ -61,7 +65,7 @@
               <ng-content select="[inputs-outputs]" content-accordion />
               <div content-accordion>
                 <ddr-table [cols]="colsInputsOutputs" [items]="itemsInputsOutputs()" [showPagination]="false" [showFooter]="false"
-                  [allowChangeRows]="false" [canSelectItems]="false">
+                  [allowChangePageSize]="false" [canSelectItems]="false">
 
                   <ng-template #templateCell let-item="item" let-col="col">
                     {{ item | ddrNestedProperty: col.property | ddrTranslate }}
@@ -75,7 +79,7 @@
             <ddr-accordion [titleAccordion]="'outputs.showcase' | ddrTranslate" [open]="true">
               <div content-accordion>
                 <ddr-table [cols]="colsOutputs" [items]="itemsOutputs()" [showPagination]="false" [showFooter]="false"
-                  [allowChangeRows]="false" [canSelectItems]="false">
+                  [allowChangePageSize]="false" [canSelectItems]="false">
                   <ng-template #templateCell let-item="item" let-col="col">
                     {{ item | ddrNestedProperty: col.property | ddrTranslate }}
                   </ng-template>
@@ -90,7 +94,7 @@
                 <span class="h4">{{documentation().service!.name}}</span>
                 }
                 <ddr-table [cols]="colsService" [items]="itemsServiceMethods()" [showPagination]="false" [showFooter]="false"
-                  [allowChangeRows]="false" [canSelectItems]="false">
+                  [allowChangePageSize]="false" [canSelectItems]="false">
                   <ng-template #templateCell let-item="item" let-col="col">
                     {{ item | ddrNestedProperty: col.property | ddrTranslate }}
                   </ng-template>
@@ -102,7 +106,7 @@
             <ddr-accordion [titleAccordion]="'templates.showcase' | ddrTranslate" [open]="true">
               <div content-accordion>
                 <ddr-table [cols]="colsTemplates" [items]="itemsTemplates()" [showPagination]="false" [showFooter]="false"
-                  [allowChangeRows]="false" [canSelectItems]="false">
+                  [allowChangePageSize]="false" [canSelectItems]="false">
                   <ng-template #templateCell let-item="item" let-col="col">
                     {{ item | ddrNestedProperty: col.property | ddrTranslate }}
                   </ng-template>
@@ -115,7 +119,7 @@
             <ddr-accordion [titleAccordion]="'slots.showcase' | ddrTranslate" [open]="true">
               <div content-accordion>
                 <ddr-table [cols]="colsSlots" [items]="itemsSlots()" [showPagination]="false" [showFooter]="false"
-                  [allowChangeRows]="false" [canSelectItems]="false">
+                  [allowChangePageSize]="false" [canSelectItems]="false">
                   <ng-template #templateCell let-item="item" let-col="col">
                     {{ item | ddrNestedProperty: col.property | ddrTranslate }}
                   </ng-template>
@@ -220,7 +224,7 @@
             <ddr-accordion [titleAccordion]="'styles.showcase' | ddrTranslate" [open]="true">
               <div content-accordion>
                 <ddr-table [cols]="colsStyles" [items]="itemsStyles()" [showPagination]="false" [showFooter]="false"
-                  [allowChangeRows]="false" [canSelectItems]="false">
+                  [allowChangePageSize]="false" [canSelectItems]="false">
                   <ng-template #templateCell let-item="item" let-col="col">
                     {{ item | ddrNestedProperty: col.property | ddrTranslate }}
                   </ng-template>
@@ -236,9 +240,14 @@
             <ddr-accordion [titleAccordion]="'translations.showcase' | ddrTranslate" [open]="true">
               <div content-accordion>
                 <ddr-table [cols]="colsTranslations" [items]="itemsTranslations()" [showPagination]="false" [showFooter]="false"
-                  [allowChangeRows]="false" [canSelectItems]="false">
+                  [allowChangePageSize]="false" [canSelectItems]="false">
                   <ng-template #templateCell let-item="item" let-col="col">
-                    {{ item | ddrNestedProperty: col.property | ddrTranslate }}
+                    @if(col.property == 'name'){
+                      {{ item[col.property] }}
+                    }@else{
+                      {{ item | ddrNestedProperty: col.property | ddrTranslate }}
+                    }
+                    
                   </ng-template>
                 </ddr-table>
               </div>

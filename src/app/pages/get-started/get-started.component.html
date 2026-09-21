@@ -25,7 +25,7 @@
                 <div class="row mt-3">
                     <div class="col-12">
                         <span class="fs-5">{{'get.started.p4' | ddrTranslate}}</span>
-                        <pre class="language-bash"><code class="language-bash">npm install ddr-ng&#64;22.0.2</code></pre>
+                        <pre class="language-bash"><code class="language-bash">npm install ddr-ng&#64;22.0.3</code></pre>
                     </div>
                 </div>
 
@@ -143,7 +143,7 @@ export const appConfig: ApplicationConfig = &#123;
                             [items]="itemsDdrConfig"
                             [showPagination]="false" 
                             [showFooter]="false"
-                            [allowChangeRows]="false" 
+                            [allowChangePageSize]="false" 
                             [canSelectItems]="false" >
 
                             <ng-template #templateCell let-item="item" let-col="col">
@@ -161,7 +161,7 @@ export const appConfig: ApplicationConfig = &#123;
                             [items]="itemsDdrThemeConfig"
                             [showPagination]="false" 
                             [showFooter]="false"
-                            [allowChangeRows]="false" 
+                            [allowChangePageSize]="false" 
                             [canSelectItems]="false" >
 
                             <ng-template #templateCell let-item="item" let-col="col">
@@ -179,7 +179,7 @@ export const appConfig: ApplicationConfig = &#123;
                             [items]="itemsDdrTranslateConfig"
                             [showPagination]="false" 
                             [showFooter]="false"
-                            [allowChangeRows]="false" 
+                            [allowChangePageSize]="false" 
                             [canSelectItems]="false" >
 
                             <ng-template #templateCell let-item="item" let-col="col">

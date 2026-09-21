@@ -1,0 +1,26 @@
+<base-showcase 
+  component="ddr-paginator-pipe" 
+  type="pipe" 
+  [documentation]="documentation"
+  [showInputs]="false" 
+  [showParams]="true" 
+  [showPossibleValues]="false"
+  [showOutputs]="false">
+
+  <div description>
+    <p>{{'paginator.pipe.description' | ddrTranslate}}</p>
+  </div>
+
+  <ng-template #example>
+    <paginator-pipe-showcase-1 />
+  </ng-template>
+
+  <ng-template #example>
+    <paginator-pipe-showcase-2 />
+  </ng-template>
+  
+  <ng-template #example>
+    <paginator-pipe-showcase-3 />
+  </ng-template>  
+
+</base-showcase>

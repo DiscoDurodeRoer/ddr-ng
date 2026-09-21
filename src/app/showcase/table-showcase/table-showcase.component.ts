@@ -13,6 +13,10 @@ import { TableShowcase7Component } from './showcases/table-showcase-7/table-show
 import { TableShowcase8Component } from './showcases/table-showcase-8/table-showcase-8.component';
 import { TableShowcase9Component } from './showcases/table-showcase-9/table-showcase-9.component';
 import { CLASSES, Documentation } from '../base-showcase/bean/documentation';
+import { TableShowcase12Component } from './showcases/table-showcase-12/table-showcase-12.component';
+import { TableShowcase13Component } from './showcases/table-showcase-13/table-showcase-13.component';
+import { TableShowcase14Component } from './showcases/table-showcase-14/table-showcase-14.component';
+import { TableShowcase15Component } from './showcases/table-showcase-15/table-showcase-15.component';
 
 @Component({
   selector: 'table-showcase',
@@ -30,6 +34,10 @@ import { CLASSES, Documentation } from '../base-showcase/bean/documentation';
     TableShowcase9Component,
     TableShowcase10Component,
     TableShowcase11Component,
+    TableShowcase12Component,
+    TableShowcase13Component,
+    TableShowcase14Component,
+    TableShowcase15Component,
     DdrTranslatePipe,
   ]
 })
@@ -39,194 +47,186 @@ export class TableShowcaseComponent {
     examples: [
       {
         htmlCode: `<ddr-table 
-      [cols]="cols()" 
-      [items]="items()" 
-      [labelRegisters]="'table.registers' | ddrTranslate"
-      [labelRegister]="'table.register' | ddrTranslate"
-      [labelToPagination]="'table.to' | ddrTranslate"
-      [labelOfPagination]="'table.of' | ddrTranslate"
-      (selectItem)="selectItem($event)" />`,
+    [cols]="cols()" 
+    [items]="items()" 
+    (selectItem)="selectItem($event)" />`,
         tsCode: `import {
-    Component,
-    inject,
-    Signal,
-    signal
-  } from '@angular/core';
-  import {
-    DdrTableCol,
-    DdrTableComponent,
-    DdrTableItem
-  } from 'ddr-ng/components/table';
-  import { DdrToastService } from 'ddr-ng/toast';
-  import {
-    DdrTranslatePipe,
-    DdrTranslateService
-  } from 'ddr-ng/translate';
-  import { Person } from './bean/person';
-  
-  @Component({
-    selector: 'table-showcase-1',
-    templateUrl: './table-showcase-1.component.html',
-    imports: [
-      DdrTableComponent,
-      DdrTranslatePipe
-    ],
-    providers: [
-      DdrToastService
-    ]
-  })
-  export class TableShowcase1Component {
-  
-    private readonly ddrToastService: DdrToastService = inject(DdrToastService);
-    private readonly ddrTranslateService: DdrTranslateService = inject(DdrTranslateService);
-  
-    public cols: Signal<DdrTableCol[]> = signal<DdrTableCol[]>([
-      {
-        label: 'table.name',
-        property: 'name',
-        tooltip: 'table.name.tooltip',
+  Component,
+  inject,
+  Signal,
+  signal
+} from '@angular/core';
+import {
+  DdrTableCol,
+  DdrTableComponent,
+  DdrTableItem
+} from 'ddr-ng/components/table';
+import { DdrToastService } from 'ddr-ng/toast';
+import { DdrTranslateService } from 'ddr-ng/translate';
+import { Person } from './bean/person';
+
+@Component({
+  selector: 'table-showcase-1',
+  templateUrl: './table-showcase-1.component.html',
+  imports: [
+    DdrTableComponent
+  ],
+  providers: [
+    DdrToastService
+  ]
+})
+export class TableShowcase1Component {
+
+  private readonly ddrToastService: DdrToastService = inject(DdrToastService);
+  private readonly ddrTranslateService: DdrTranslateService = inject(DdrTranslateService);
+
+  public cols: Signal<DdrTableCol[]> = signal<DdrTableCol[]>([
+    {
+      label: 'table.name',
+      property: 'name',
+      tooltip: 'table.name.tooltip',
+    },
+    {
+      label: 'table.surname',
+      property: 'surname',
+      tooltip: 'table.surname.tooltip',
+    },
+    {
+      label: 'table.age',
+      property: 'age',
+      tooltip: 'table.age.tooltip',
+    },
+    {
+      label: 'table.weight',
+      property: 'weight',
+      tooltip: 'table.weight.tooltip',
+    },
+  ]);
+
+  public items: Signal<DdrTableItem<Person>[]> = signal<DdrTableItem<Person>[]>([
+    {
+      item: {
+        name: 'Fernando',
+        surname: 'Ureña',
+        age: 35,
+        weight: 78,
       },
-      {
-        label: 'table.surname',
-        property: 'surname',
-        tooltip: 'table.surname.tooltip',
+    },
+    {
+      item: {
+        name: 'Manuel',
+        surname: 'Gómez',
+        age: 30,
+        weight: 72,
       },
-      {
-        label: 'table.age',
-        property: 'age',
-        tooltip: 'table.age.tooltip',
+    },
+    {
+      item: {
+        name: 'Fernando',
+        surname: 'Ureña',
+        age: 35,
+        weight: 78,
       },
-      {
-        label: 'table.weight',
-        property: 'weight',
-        tooltip: 'table.weight.tooltip',
+    },
+    {
+      item: {
+        name: 'Manuel',
+        surname: 'Gómez',
+        age: 30,
+        weight: 72,
       },
-    ]);
-  
-    public items: Signal<DdrTableItem<Person>[]> = signal<DdrTableItem<Person>[]>([
-      {
-        item: {
-          name: 'Fernando',
-          surname: 'Ureña',
-          age: 35,
-          weight: 78,
-        },
+    },
+    {
+      item: {
+        name: 'Fernando',
+        surname: 'Ureña',
+        age: 35,
+        weight: 78,
       },
-      {
-        item: {
-          name: 'Manuel',
-          surname: 'Gómez',
-          age: 30,
-          weight: 72,
-        },
+    },
+    {
+      item: {
+        name: 'Manuel',
+        surname: 'Gómez',
+        age: 30,
+        weight: 72,
       },
-      {
-        item: {
-          name: 'Fernando',
-          surname: 'Ureña',
-          age: 35,
-          weight: 78,
-        },
+    },
+    {
+      item: {
+        name: 'Fernando',
+        surname: 'Ureña',
+        age: 35,
+        weight: 78,
       },
-      {
-        item: {
-          name: 'Manuel',
-          surname: 'Gómez',
-          age: 30,
-          weight: 72,
-        },
+    },
+    {
+      item: {
+        name: 'Fernando',
+        surname: 'Ureña',
+        age: 35,
+        weight: 78,
       },
-      {
-        item: {
-          name: 'Fernando',
-          surname: 'Ureña',
-          age: 35,
-          weight: 78,
-        },
+    },
+    {
+      item: {
+        name: 'Manuel',
+        surname: 'Gómez',
+        age: 30,
+        weight: 72,
       },
-      {
-        item: {
-          name: 'Manuel',
-          surname: 'Gómez',
-          age: 30,
-          weight: 72,
-        },
+    },
+    {
+      item: {
+        name: 'Fernando',
+        surname: 'Ureña',
+        age: 35,
+        weight: 78,
       },
-      {
-        item: {
-          name: 'Fernando',
-          surname: 'Ureña',
-          age: 35,
-          weight: 78,
-        },
+    },
+    {
+      item: {
+        name: 'Manuel',
+        surname: 'Gómez',
+        age: 30,
+        weight: 72,
       },
-      {
-        item: {
-          name: 'Fernando',
-          surname: 'Ureña',
-          age: 35,
-          weight: 78,
-        },
+    },
+    {
+      item: {
+        name: 'Fernando',
+        surname: 'Ureña',
+        age: 35,
+        weight: 78,
       },
-      {
-        item: {
-          name: 'Manuel',
-          surname: 'Gómez',
-          age: 30,
-          weight: 72,
-        },
+    },
+    {
+      item: {
+        name: 'Fernando',
+        surname: 'Ureña',
+        age: 35,
+        weight: 78,
       },
-      {
-        item: {
-          name: 'Fernando',
-          surname: 'Ureña',
-          age: 35,
-          weight: 78,
-        },
+    },
+    {
+      item: {
+        name: 'Manuel',
+        surname: 'Gómez',
+        age: 30,
+        weight: 72,
       },
-      {
-        item: {
-          name: 'Manuel',
-          surname: 'Gómez',
-          age: 30,
-          weight: 72,
-        },
-      },
-      {
-        item: {
-          name: 'Fernando',
-          surname: 'Ureña',
-          age: 35,
-          weight: 78,
-        },
-      },
-      {
-        item: {
-          name: 'Fernando',
-          surname: 'Ureña',
-          age: 35,
-          weight: 78,
-        },
-      },
-      {
-        item: {
-          name: 'Manuel',
-          surname: 'Gómez',
-          age: 30,
-          weight: 72,
-        },
-      },
-    ]);
-  
-    selectItem(item: DdrTableItem<Person>) {
-      this.ddrToastService.addSuccessMessage(
-        this.ddrTranslateService.getTranslate('table.select.item'),
-        JSON.stringify(item),
-      );
-    }
-  
+    },
+  ]);
+
+  selectItem(item: DdrTableItem<Person>) {
+    this.ddrToastService.addSuccessMessage(
+      this.ddrTranslateService.getTranslate('table.select.item'),
+      JSON.stringify(item),
+    );
   }
-  `,
+
+}
+`,
         classes: [
           CLASSES['DdrTableCol'],
           CLASSES['DdrTableItem'],
@@ -235,188 +235,188 @@ export class TableShowcaseComponent {
       },
       {
         htmlCode: `<ddr-table 
-      [cols]="cols()" 
-      [items]="items()"
-      [showPagination]="false"
-      [allowChangeRows]="false"
-      (selectItem)="selectItem($event)" />`,
+    [cols]="cols()" 
+    [items]="items()"
+    [showPagination]="false"
+    [allowChangePageSize]="false"
+    (selectItem)="selectItem($event)" />`,
         tsCode: `import {
-    Component,
-    inject,
-    signal,
-    Signal
-  } from '@angular/core';
-  import {
-    DdrTableCol,
-    DdrTableComponent,
-    DdrTableItem
-  } from 'ddr-ng/components/table';
-  import { DdrTranslateService } from 'ddr-ng/translate';
-  import { DdrToastService } from 'ddr-ng/toast';
-  import { Person } from './bean/person';
-  
-  @Component({
-    selector: 'table-showcase-2',
-    templateUrl: './table-showcase-2.component.html',
-    imports: [
-      DdrTableComponent
-    ],
-    providers: [
-      DdrToastService
-    ]
-  })
-  export class TableShowcase2Component {
-  
-    private readonly ddrToastService: DdrToastService = inject(DdrToastService);
-    private readonly ddrTranslateService: DdrTranslateService = inject(DdrTranslateService);
-  
-    public cols: Signal<DdrTableCol[]> = signal<DdrTableCol[]>([
-      {
-        label: 'table.name',
-        property: 'name',
-        tooltip: 'table.name.tooltip',
+  Component,
+  inject,
+  signal,
+  Signal
+} from '@angular/core';
+import {
+  DdrTableCol,
+  DdrTableComponent,
+  DdrTableItem
+} from 'ddr-ng/components/table';
+import { DdrTranslateService } from 'ddr-ng/translate';
+import { DdrToastService } from 'ddr-ng/toast';
+import { Person } from './bean/person';
+
+@Component({
+  selector: 'table-showcase-2',
+  templateUrl: './table-showcase-2.component.html',
+  imports: [
+    DdrTableComponent
+  ],
+  providers: [
+    DdrToastService
+  ]
+})
+export class TableShowcase2Component {
+
+  private readonly ddrToastService: DdrToastService = inject(DdrToastService);
+  private readonly ddrTranslateService: DdrTranslateService = inject(DdrTranslateService);
+
+  public cols: Signal<DdrTableCol[]> = signal<DdrTableCol[]>([
+    {
+      label: 'table.name',
+      property: 'name',
+      tooltip: 'table.name.tooltip',
+    },
+    {
+      label: 'table.surname',
+      property: 'surname',
+      tooltip: 'table.surname.tooltip',
+    },
+    {
+      label: 'table.age',
+      property: 'age',
+      tooltip: 'table.age.tooltip',
+    },
+    {
+      label: 'table.weight',
+      property: 'weight',
+      tooltip: 'table.weight.tooltip',
+    },
+  ]);
+
+  public items: Signal<DdrTableItem<Person>[]> = signal<DdrTableItem<Person>[]>([
+    {
+      item: {
+        name: 'Fernando',
+        surname: 'Ureña',
+        age: 35,
+        weight: 78,
       },
-      {
-        label: 'table.surname',
-        property: 'surname',
-        tooltip: 'table.surname.tooltip',
+    },
+    {
+      item: {
+        name: 'Manuel',
+        surname: 'Gómez',
+        age: 30,
+        weight: 72,
       },
-      {
-        label: 'table.age',
-        property: 'age',
-        tooltip: 'table.age.tooltip',
+    },
+    {
+      item: {
+        name: 'Fernando',
+        surname: 'Ureña',
+        age: 35,
+        weight: 78,
       },
-      {
-        label: 'table.weight',
-        property: 'weight',
-        tooltip: 'table.weight.tooltip',
+    },
+    {
+      item: {
+        name: 'Manuel',
+        surname: 'Gómez',
+        age: 30,
+        weight: 72,
       },
-    ]);
-  
-    public items: Signal<DdrTableItem<Person>[]> = signal<DdrTableItem<Person>[]>([
-      {
-        item: {
-          name: 'Fernando',
-          surname: 'Ureña',
-          age: 35,
-          weight: 78,
-        },
+    },
+    {
+      item: {
+        name: 'Fernando',
+        surname: 'Ureña',
+        age: 35,
+        weight: 78,
       },
-      {
-        item: {
-          name: 'Manuel',
-          surname: 'Gómez',
-          age: 30,
-          weight: 72,
-        },
+    },
+    {
+      item: {
+        name: 'Manuel',
+        surname: 'Gómez',
+        age: 30,
+        weight: 72,
       },
-      {
-        item: {
-          name: 'Fernando',
-          surname: 'Ureña',
-          age: 35,
-          weight: 78,
-        },
+    },
+    {
+      item: {
+        name: 'Fernando',
+        surname: 'Ureña',
+        age: 35,
+        weight: 78,
       },
-      {
-        item: {
-          name: 'Manuel',
-          surname: 'Gómez',
-          age: 30,
-          weight: 72,
-        },
+    },
+    {
+      item: {
+        name: 'Fernando',
+        surname: 'Ureña',
+        age: 35,
+        weight: 78,
       },
-      {
-        item: {
-          name: 'Fernando',
-          surname: 'Ureña',
-          age: 35,
-          weight: 78,
-        },
+    },
+    {
+      item: {
+        name: 'Manuel',
+        surname: 'Gómez',
+        age: 30,
+        weight: 72,
       },
-      {
-        item: {
-          name: 'Manuel',
-          surname: 'Gómez',
-          age: 30,
-          weight: 72,
-        },
+    },
+    {
+      item: {
+        name: 'Fernando',
+        surname: 'Ureña',
+        age: 35,
+        weight: 78,
       },
-      {
-        item: {
-          name: 'Fernando',
-          surname: 'Ureña',
-          age: 35,
-          weight: 78,
-        },
+    },
+    {
+      item: {
+        name: 'Manuel',
+        surname: 'Gómez',
+        age: 30,
+        weight: 72,
       },
-      {
-        item: {
-          name: 'Fernando',
-          surname: 'Ureña',
-          age: 35,
-          weight: 78,
-        },
+    },
+    {
+      item: {
+        name: 'Fernando',
+        surname: 'Ureña',
+        age: 35,
+        weight: 78,
       },
-      {
-        item: {
-          name: 'Manuel',
-          surname: 'Gómez',
-          age: 30,
-          weight: 72,
-        },
+    },
+    {
+      item: {
+        name: 'Fernando',
+        surname: 'Ureña',
+        age: 35,
+        weight: 78,
       },
-      {
-        item: {
-          name: 'Fernando',
-          surname: 'Ureña',
-          age: 35,
-          weight: 78,
-        },
+    },
+    {
+      item: {
+        name: 'Manuel',
+        surname: 'Gómez',
+        age: 30,
+        weight: 72,
       },
-      {
-        item: {
-          name: 'Manuel',
-          surname: 'Gómez',
-          age: 30,
-          weight: 72,
-        },
-      },
-      {
-        item: {
-          name: 'Fernando',
-          surname: 'Ureña',
-          age: 35,
-          weight: 78,
-        },
-      },
-      {
-        item: {
-          name: 'Fernando',
-          surname: 'Ureña',
-          age: 35,
-          weight: 78,
-        },
-      },
-      {
-        item: {
-          name: 'Manuel',
-          surname: 'Gómez',
-          age: 30,
-          weight: 72,
-        },
-      },
-    ]);
-  
-    selectItem(item: DdrTableItem<Person>) {
-      this.ddrToastService.addSuccessMessage(
-        this.ddrTranslateService.getTranslate('table.select.item'),
-        JSON.stringify(item),
-      );
-    }
-  
+    },
+  ]);
+
+  selectItem(item: DdrTableItem<Person>) {
+    this.ddrToastService.addSuccessMessage(
+      this.ddrTranslateService.getTranslate('table.select.item'),
+      JSON.stringify(item),
+    );
   }
-  `,
+
+}
+`,
         classes: [
           CLASSES['DdrTableCol'],
           CLASSES['DdrTableItem'],
@@ -425,194 +425,186 @@ export class TableShowcaseComponent {
       },
       {
         htmlCode: `<ddr-table 
-      [cols]="cols()" 
-      [items]="items()"
-      [canSelectItems]="false"
-      [labelRegisters]="'table.registers' | ddrTranslate"
-      [labelRegister]="'table.register' | ddrTranslate"
-      [labelToPagination]="'table.to' | ddrTranslate"
-      [labelOfPagination]="'table.of' | ddrTranslate"
-      (selectItem)="selectItem($event)" />`,
+    [cols]="cols()" 
+    [items]="items()"
+    [canSelectItems]="false"
+    (selectItem)="selectItem($event)" />`,
         tsCode: `import {
-    Component,
-    inject,
-    signal,
-    Signal
-  } from '@angular/core';
-  import {
-    DdrTableCol,
-    DdrTableComponent,
-    DdrTableItem
-  } from 'ddr-ng/components/table';
-  import { DdrToastService } from 'ddr-ng/toast';
-  import {
-    DdrTranslatePipe,
-    DdrTranslateService
-  } from 'ddr-ng/translate';
-  import { Person } from './bean/person';
-  
-  @Component({
-    selector: 'table-showcase-3',
-    templateUrl: './table-showcase-3.component.html',
-    imports: [
-      DdrTableComponent,
-      DdrTranslatePipe
-    ],
-    providers: [
-      DdrToastService
-    ]
-  })
-  export class TableShowcase3Component {
-  
-    private readonly ddrToastService: DdrToastService = inject(DdrToastService);
-    private readonly ddrTranslateService: DdrTranslateService = inject(DdrTranslateService);
-  
-    public cols: Signal<DdrTableCol[]> = signal<DdrTableCol[]>([
-      {
-        label: 'table.name',
-        property: 'name',
-        tooltip: 'table.name.tooltip',
+  Component,
+  inject,
+  signal,
+  Signal
+} from '@angular/core';
+import {
+  DdrTableCol,
+  DdrTableComponent,
+  DdrTableItem
+} from 'ddr-ng/components/table';
+import { DdrToastService } from 'ddr-ng/toast';
+import { DdrTranslateService } from 'ddr-ng/translate';
+import { Person } from './bean/person';
+
+@Component({
+  selector: 'table-showcase-3',
+  templateUrl: './table-showcase-3.component.html',
+  imports: [
+    DdrTableComponent
+  ],
+  providers: [
+    DdrToastService
+  ]
+})
+export class TableShowcase3Component {
+
+  private readonly ddrToastService: DdrToastService = inject(DdrToastService);
+  private readonly ddrTranslateService: DdrTranslateService = inject(DdrTranslateService);
+
+  public cols: Signal<DdrTableCol[]> = signal<DdrTableCol[]>([
+    {
+      label: 'table.name',
+      property: 'name',
+      tooltip: 'table.name.tooltip',
+    },
+    {
+      label: 'table.surname',
+      property: 'surname',
+      tooltip: 'table.surname.tooltip',
+    },
+    {
+      label: 'table.age',
+      property: 'age',
+      tooltip: 'table.age.tooltip',
+    },
+    {
+      label: 'table.weight',
+      property: 'weight',
+      tooltip: 'table.weight.tooltip',
+    },
+  ]);
+
+  public items: Signal<DdrTableItem<Person>[]> = signal<DdrTableItem<Person>[]>([
+    {
+      item: {
+        name: 'Fernando',
+        surname: 'Ureña',
+        age: 35,
+        weight: 78,
       },
-      {
-        label: 'table.surname',
-        property: 'surname',
-        tooltip: 'table.surname.tooltip',
+    },
+    {
+      item: {
+        name: 'Manuel',
+        surname: 'Gómez',
+        age: 30,
+        weight: 72,
       },
-      {
-        label: 'table.age',
-        property: 'age',
-        tooltip: 'table.age.tooltip',
+    },
+    {
+      item: {
+        name: 'Fernando',
+        surname: 'Ureña',
+        age: 35,
+        weight: 78,
       },
-      {
-        label: 'table.weight',
-        property: 'weight',
-        tooltip: 'table.weight.tooltip',
+    },
+    {
+      item: {
+        name: 'Manuel',
+        surname: 'Gómez',
+        age: 30,
+        weight: 72,
       },
-    ]);
-  
-    public items: Signal<DdrTableItem<Person>[]> = signal<DdrTableItem<Person>[]>([
-      {
-        item: {
-          name: 'Fernando',
-          surname: 'Ureña',
-          age: 35,
-          weight: 78,
-        },
+    },
+    {
+      item: {
+        name: 'Fernando',
+        surname: 'Ureña',
+        age: 35,
+        weight: 78,
       },
-      {
-        item: {
-          name: 'Manuel',
-          surname: 'Gómez',
-          age: 30,
-          weight: 72,
-        },
+    },
+    {
+      item: {
+        name: 'Manuel',
+        surname: 'Gómez',
+        age: 30,
+        weight: 72,
       },
-      {
-        item: {
-          name: 'Fernando',
-          surname: 'Ureña',
-          age: 35,
-          weight: 78,
-        },
+    },
+    {
+      item: {
+        name: 'Fernando',
+        surname: 'Ureña',
+        age: 35,
+        weight: 78,
       },
-      {
-        item: {
-          name: 'Manuel',
-          surname: 'Gómez',
-          age: 30,
-          weight: 72,
-        },
+    },
+    {
+      item: {
+        name: 'Fernando',
+        surname: 'Ureña',
+        age: 35,
+        weight: 78,
       },
-      {
-        item: {
-          name: 'Fernando',
-          surname: 'Ureña',
-          age: 35,
-          weight: 78,
-        },
+    },
+    {
+      item: {
+        name: 'Manuel',
+        surname: 'Gómez',
+        age: 30,
+        weight: 72,
       },
-      {
-        item: {
-          name: 'Manuel',
-          surname: 'Gómez',
-          age: 30,
-          weight: 72,
-        },
+    },
+    {
+      item: {
+        name: 'Fernando',
+        surname: 'Ureña',
+        age: 35,
+        weight: 78,
       },
-      {
-        item: {
-          name: 'Fernando',
-          surname: 'Ureña',
-          age: 35,
-          weight: 78,
-        },
+    },
+    {
+      item: {
+        name: 'Manuel',
+        surname: 'Gómez',
+        age: 30,
+        weight: 72,
       },
-      {
-        item: {
-          name: 'Fernando',
-          surname: 'Ureña',
-          age: 35,
-          weight: 78,
-        },
+    },
+    {
+      item: {
+        name: 'Fernando',
+        surname: 'Ureña',
+        age: 35,
+        weight: 78,
       },
-      {
-        item: {
-          name: 'Manuel',
-          surname: 'Gómez',
-          age: 30,
-          weight: 72,
-        },
+    },
+    {
+      item: {
+        name: 'Fernando',
+        surname: 'Ureña',
+        age: 35,
+        weight: 78,
       },
-      {
-        item: {
-          name: 'Fernando',
-          surname: 'Ureña',
-          age: 35,
-          weight: 78,
-        },
+    },
+    {
+      item: {
+        name: 'Manuel',
+        surname: 'Gómez',
+        age: 30,
+        weight: 72,
       },
-      {
-        item: {
-          name: 'Manuel',
-          surname: 'Gómez',
-          age: 30,
-          weight: 72,
-        },
-      },
-      {
-        item: {
-          name: 'Fernando',
-          surname: 'Ureña',
-          age: 35,
-          weight: 78,
-        },
-      },
-      {
-        item: {
-          name: 'Fernando',
-          surname: 'Ureña',
-          age: 35,
-          weight: 78,
-        },
-      },
-      {
-        item: {
-          name: 'Manuel',
-          surname: 'Gómez',
-          age: 30,
-          weight: 72,
-        },
-      },
-    ]);
-  
-    selectItem(item: DdrTableItem<Person>) {
-      this.ddrToastService.addSuccessMessage(
-        this.ddrTranslateService.getTranslate('table.select.item'),
-        JSON.stringify(item),
-      );
-    }
+    },
+  ]);
+
+  selectItem(item: DdrTableItem<Person>) {
+    this.ddrToastService.addSuccessMessage(
+      this.ddrTranslateService.getTranslate('table.select.item'),
+      JSON.stringify(item),
+    );
   }
-  `,
+}
+`,
         classes: [
           CLASSES['DdrTableCol'],
           CLASSES['DdrTableItem'],
@@ -621,14 +613,10 @@ export class TableShowcaseComponent {
       },
       {
         htmlCode: `<ddr-table 
-      [cols]="cols()" 
-      [items]="items()"
-      [showBorder]="false"
-      [labelRegisters]="'table.registers' | ddrTranslate"
-      [labelRegister]="'table.register' | ddrTranslate"
-      [labelToPagination]="'table.to' | ddrTranslate"
-      [labelOfPagination]="'table.of' | ddrTranslate"
-      (selectItem)="selectItem($event)" />`,
+    [cols]="cols()" 
+    [items]="items()"
+    [showBorder]="false"
+    (selectItem)="selectItem($event)" />`,
         tsCode: `import { Component, inject, Signal, signal } from '@angular/core';
   import {
     DdrTableCol,
@@ -812,940 +800,194 @@ export class TableShowcaseComponent {
       },
       {
         htmlCode: `<ddr-table 
-      [cols]="cols()" 
-      [items]="items()" 
-      [multiple]="true"
-      [labelRegisters]="'table.registers' | ddrTranslate"
-      [labelRegister]="'table.register' | ddrTranslate"
-      [labelToPagination]="'table.to' | ddrTranslate"
-      [labelOfPagination]="'table.of' | ddrTranslate"
-      [labelNoResults]="'table.empty' | ddrTranslate"
-      (selectItem)="selectItem($event)" 
-      (selectMultipleItem)="selectMultipleItem($event)" />`,
+    [cols]="cols()" 
+    [items]="items()" 
+    [multiple]="true"
+    (selectItem)="selectItem($event)" 
+    (selectMultipleItem)="selectMultipleItem($event)" />`,
         tsCode: `import {
-    Component,
-    inject,
-    signal,
-    Signal
-  } from '@angular/core';
-  import {
-    DdrTableCol,
-    DdrTableComponent,
-    DdrTableItem
-  } from 'ddr-ng/components/table';
-  import { DdrToastService } from 'ddr-ng/toast';
-  import {
-    DdrTranslatePipe,
-    DdrTranslateService
-  } from 'ddr-ng/translate';
-  import { Person } from './bean/person';
-  
-  @Component({
-    selector: 'table-showcase-5',
-    templateUrl: './table-showcase-5.component.html',
-    imports: [
-      DdrTableComponent,
-      DdrTranslatePipe
-    ],
-    providers: [
-      DdrToastService
-    ]
-  })
-  export class TableShowcase5Component {
-  
-    private readonly ddrToastService: DdrToastService = inject(DdrToastService);
-    private readonly ddrTranslateService: DdrTranslateService = inject(DdrTranslateService);
-  
-    public cols: Signal<DdrTableCol[]> = signal<DdrTableCol[]>([
-      {
-        label: 'table.name',
-        property: 'name',
-        tooltip: 'table.name.tooltip',
-      },
-      {
-        label: 'table.surname',
-        property: 'surname',
-        tooltip: 'table.surname.tooltip',
-      },
-      {
-        label: 'table.age',
-        property: 'age',
-        tooltip: 'table.age.tooltip',
-      },
-      {
-        label: 'table.weight',
-        property: 'weight',
-        tooltip: 'table.weight.tooltip',
-      },
-    ]);
-  
-    public items: Signal<DdrTableItem<Person>[]> = signal<DdrTableItem<Person>[]>([
-      {
-        item: {
-          name: 'Fernando',
-          surname: 'Ureña',
-          age: 35,
-          weight: 78,
-        },
-      },
-      {
-        item: {
-          name: 'Manuel',
-          surname: 'Gómez',
-          age: 30,
-          weight: 72,
-        },
-      },
-      {
-        item: {
-          name: 'Fernando',
-          surname: 'Ureña',
-          age: 35,
-          weight: 78,
-        },
-      },
-      {
-        item: {
-          name: 'Manuel',
-          surname: 'Gómez',
-          age: 30,
-          weight: 72,
-        },
-      },
-      {
-        item: {
-          name: 'Fernando',
-          surname: 'Ureña',
-          age: 35,
-          weight: 78,
-        },
-      },
-      {
-        item: {
-          name: 'Manuel',
-          surname: 'Gómez',
-          age: 30,
-          weight: 72,
-        },
-      },
-      {
-        item: {
-          name: 'Fernando',
-          surname: 'Ureña',
-          age: 35,
-          weight: 78,
-        },
-      },
-      {
-        item: {
-          name: 'Fernando',
-          surname: 'Ureña',
-          age: 35,
-          weight: 78,
-        },
-      },
-      {
-        item: {
-          name: 'Manuel',
-          surname: 'Gómez',
-          age: 30,
-          weight: 72,
-        },
-      },
-      {
-        item: {
-          name: 'Fernando',
-          surname: 'Ureña',
-          age: 35,
-          weight: 78,
-        },
-      },
-      {
-        item: {
-          name: 'Manuel',
-          surname: 'Gómez',
-          age: 30,
-          weight: 72,
-        },
-      },
-      {
-        item: {
-          name: 'Fernando',
-          surname: 'Ureña',
-          age: 35,
-          weight: 78,
-        },
-      },
-      {
-        item: {
-          name: 'Fernando',
-          surname: 'Ureña',
-          age: 35,
-          weight: 78,
-        },
-      },
-      {
-        item: {
-          name: 'Manuel',
-          surname: 'Gómez',
-          age: 30,
-          weight: 72,
-        },
-      },
-    ]);
-  
-    selectItem(item: DdrTableItem<Person>) {
-      this.ddrToastService.addSuccessMessage(
-        this.ddrTranslateService.getTranslate('table.select.item'),
-        JSON.stringify(item),
-      );
-    }
-  
-    selectMultipleItem(items: Person[]) {
-      this.ddrToastService.addSuccessMessage(
-        this.ddrTranslateService.getTranslate('table.multiple.select.item'),
-        JSON.stringify(items),
-      );
-    }
-  }
-  `,
-        classes: [
-          CLASSES['DdrTableCol'],
-          CLASSES['DdrTableItem'],
-          CLASSES['PersonTable']
-        ]
-      },
-      {
-        htmlCode: `<ddr-table 
-      [cols]="cols()" 
-      [items]="items()"
-      [labelRegisters]="'table.registers' | ddrTranslate"
-      [labelRegister]="'table.register' | ddrTranslate"
-      [labelToPagination]="'table.to' | ddrTranslate"
-      [labelOfPagination]="'table.of' | ddrTranslate"
-      (selectItem)="selectItem($event)">
-          <ng-template #templateCell let-item="item" let-col="col">
-              {{ item[col.property] }}
-          </ng-template>
-  </ddr-table>`,
-        tsCode: `import {
-    Component,
-    inject,
-    signal,
-    Signal
-  } from '@angular/core';
-  import {
-    DdrTableCol,
-    DdrTableComponent,
-    DdrTableItem
-  } from 'ddr-ng/components/table';
-  import { DdrToastService } from 'ddr-ng/toast';
-  import {
-    DdrTranslatePipe,
-    DdrTranslateService
-  } from 'ddr-ng/translate';
-  import { Person } from './bean/person';
-  
-  @Component({
-    selector: 'table-showcase-6',
-    templateUrl: './table-showcase-6.component.html',
-    imports: [
-      DdrTableComponent,
-      DdrTranslatePipe
-    ],
-    providers: [
-      DdrToastService
-    ]
-  })
-  export class TableShowcase6Component {
-  
-    private readonly ddrToastService: DdrToastService = inject(DdrToastService);
-    private readonly ddrTranslateService: DdrTranslateService = inject(DdrTranslateService);
-  
-    public cols: Signal<DdrTableCol[]> = signal<DdrTableCol[]>([
-      {
-        label: 'table.name',
-        property: 'name',
-        tooltip: 'table.name.tooltip',
-      },
-      {
-        label: 'table.surname',
-        property: 'surname',
-        tooltip: 'table.surname.tooltip',
-      },
-      {
-        label: 'table.age',
-        property: 'age',
-        tooltip: 'table.age.tooltip',
-      },
-      {
-        label: 'table.weight',
-        property: 'weight',
-        tooltip: 'table.weight.tooltip',
-      },
-    ]);
-  
-    public items: Signal<DdrTableItem<Person>[]> = signal<DdrTableItem<Person>[]>([
-      {
-        item: {
-          name: 'Fernando',
-          surname: 'Ureña',
-          age: 35,
-          weight: 78,
-        },
-      },
-      {
-        item: {
-          name: 'Manuel',
-          surname: 'Gómez',
-          age: 30,
-          weight: 72,
-        },
-      },
-      {
-        item: {
-          name: 'Fernando',
-          surname: 'Ureña',
-          age: 35,
-          weight: 78,
-        },
-      },
-      {
-        item: {
-          name: 'Manuel',
-          surname: 'Gómez',
-          age: 30,
-          weight: 72,
-        },
-      },
-      {
-        item: {
-          name: 'Fernando',
-          surname: 'Ureña',
-          age: 35,
-          weight: 78,
-        },
-      },
-      {
-        item: {
-          name: 'Manuel',
-          surname: 'Gómez',
-          age: 30,
-          weight: 72,
-        },
-      },
-      {
-        item: {
-          name: 'Fernando',
-          surname: 'Ureña',
-          age: 35,
-          weight: 78,
-        },
-      },
-      {
-        item: {
-          name: 'Fernando',
-          surname: 'Ureña',
-          age: 35,
-          weight: 78,
-        },
-      },
-      {
-        item: {
-          name: 'Manuel',
-          surname: 'Gómez',
-          age: 30,
-          weight: 72,
-        },
-      },
-      {
-        item: {
-          name: 'Fernando',
-          surname: 'Ureña',
-          age: 35,
-          weight: 78,
-        },
-      },
-      {
-        item: {
-          name: 'Manuel',
-          surname: 'Gómez',
-          age: 30,
-          weight: 72,
-        },
-      },
-      {
-        item: {
-          name: 'Fernando',
-          surname: 'Ureña',
-          age: 35,
-          weight: 78,
-        },
-      },
-      {
-        item: {
-          name: 'Fernando',
-          surname: 'Ureña',
-          age: 35,
-          weight: 78,
-        },
-      },
-      {
-        item: {
-          name: 'Manuel',
-          surname: 'Gómez',
-          age: 30,
-          weight: 72,
-        },
-      },
-    ]);
-  
-    selectItem(item: DdrTableItem<Person>) {
-      this.ddrToastService.addSuccessMessage(
-        this.ddrTranslateService.getTranslate('table.select.item'),
-        JSON.stringify(item),
-      );
-    }
-  
-  }
-  `,
-        classes: [
-          CLASSES['DdrTableCol'],
-          CLASSES['DdrTableItem'],
-          CLASSES['PersonTable']
-        ]
-      },
-      {
-        htmlCode: `<ddr-table 
-      [cols]="cols()" 
-      [items]="items()"
-      [labelRegisters]="'table.registers' | ddrTranslate"
-      [labelRegister]="'table.register' | ddrTranslate"
-      [labelToPagination]="'table.to' | ddrTranslate"
-      [labelOfPagination]="'table.of' | ddrTranslate"
-      (selectItem)="selectItem($event)" >
-      <ng-template #templateCell let-item="item" let-col="col">
-          {{ item | ddrNestedProperty: col.property }}
-      </ng-template>
-  </ddr-table>`,
-        tsCode: `import {
-    Component,
-    inject,
-    Signal,
-    signal
-  } from '@angular/core';
-  import {
-    DdrTableCol,
-    DdrTableComponent,
-    DdrTableItem
-  } from 'ddr-ng/components/table';
-  import { DdrNestedPropertyPipe } from 'ddr-ng/pipes/nested-property';
-  import { DdrToastService } from 'ddr-ng/toast';
-  import {
-    DdrTranslatePipe,
-    DdrTranslateService
-  } from 'ddr-ng/translate';
-  import { Person } from './bean/person';
-  
-  @Component({
-    selector: 'table-showcase-7',
-    templateUrl: './table-showcase-7.component.html',
-    imports: [
-      DdrTableComponent,
-      DdrTranslatePipe,
-      DdrNestedPropertyPipe
-    ],
-    providers: [
-      DdrToastService
-    ]
-  })
-  export class TableShowcase7Component {
-  
-    private readonly ddrToastService: DdrToastService = inject(DdrToastService);
-    private readonly ddrTranslateService: DdrTranslateService = inject(DdrTranslateService);
-  
-    public cols: Signal<DdrTableCol[]> = signal<DdrTableCol[]>([
-      {
-        label: 'table.name',
-        property: 'name',
-        tooltip: 'table.name.tooltip',
-      },
-      {
-        label: 'table.surname',
-        property: 'surname',
-        tooltip: 'table.surname.tooltip',
-      },
-      {
-        label: 'table.age',
-        property: 'age',
-        tooltip: 'table.age.tooltip',
-      },
-      {
-        label: 'table.weight',
-        property: 'weight',
-        tooltip: 'table.weight.tooltip',
-      },
-      {
-        label: 'table.documentation',
-        property: 'documentation.nif',
-        tooltip: 'table.documentation.nif',
-      }
-    ]);
-  
-    public items: Signal<DdrTableItem<Person>[]> = signal<DdrTableItem<Person>[]>([
-      {
-        item: {
-          name: 'Fernando',
-          surname: 'Ureña',
-          age: 35,
-          weight: 78,
-          documentation: {
-            nif: '123456789A',
-          },
-        },
-      },
-      {
-        item: {
-          name: 'Manuel',
-          surname: 'Gómez',
-          age: 30,
-          weight: 72,
-          documentation: {
-            nif: '987654321B',
-          },
-        },
-      },
-      {
-        item: {
-          name: 'Fernando',
-          surname: 'Ureña',
-          age: 35,
-          weight: 78,
-          documentation: {
-            nif: '123456789A',
-          },
-        },
-      },
-      {
-        item: {
-          name: 'Fernando',
-          surname: 'Ureña',
-          age: 35,
-          weight: 78,
-          documentation: {
-            nif: '123456789A',
-          },
-        },
-      },
-      {
-        item: {
-          name: 'Manuel',
-          surname: 'Gómez',
-          age: 30,
-          weight: 72,
-          documentation: {
-            nif: '987654321B',
-          },
-        },
-      },
-      {
-        item: {
-          name: 'Fernando',
-          surname: 'Ureña',
-          age: 35,
-          weight: 78,
-          documentation: {
-            nif: '123456789A',
-          },
-        },
-      },
-      {
-        item: {
-          name: 'Manuel',
-          surname: 'Gómez',
-          age: 30,
-          weight: 72,
-          documentation: {
-            nif: '987654321B',
-          },
-        },
-      },
-      {
-        item: {
-          name: 'Fernando',
-          surname: 'Ureña',
-          age: 35,
-          weight: 78,
-          documentation: {
-            nif: '123456789A',
-          },
-        },
-      },
-      {
-        item: {
-          name: 'Fernando',
-          surname: 'Ureña',
-          age: 35,
-          weight: 78,
-          documentation: {
-            nif: '123456789A',
-          },
-        },
-      },
-      {
-        item: {
-          name: 'Manuel',
-          surname: 'Gómez',
-          age: 30,
-          weight: 72,
-          documentation: {
-            nif: '987654321B',
-          },
-        }
-      },
-      {
-        item: {
-          name: 'Fernando',
-          surname: 'Ureña',
-          age: 35,
-          weight: 78,
-          documentation: {
-            nif: '123456789A',
-          },
-        },
-      },
-      {
-        item: {
-          name: 'Fernando',
-          surname: 'Ureña',
-          age: 35,
-          weight: 78,
-          documentation: {
-            nif: '123456789A',
-          },
-        },
-      },
-      {
-        item: {
-          name: 'Fernando',
-          surname: 'Ureña',
-          age: 35,
-          weight: 78,
-          documentation: {
-            nif: '123456789A',
-          },
-        },
-      },
-      {
-        item: {
-          name: 'Manuel',
-          surname: 'Gómez',
-          age: 30,
-          weight: 72,
-          documentation: {
-            nif: '987654321B',
-          },
-        },
-      },
-    ]);
-  
-    selectItem(item: DdrTableItem<Person>) {
-      this.ddrToastService.addSuccessMessage(
-        this.ddrTranslateService.getTranslate('table.select.item'),
-        JSON.stringify(item),
-      );
-    }
-  
-  }
-  `,
-        classes: [
-          CLASSES['DdrTableCol'],
-          CLASSES['DdrTableItem'],
-          CLASSES['PersonTable']
-        ]
-      },
-      {
-        htmlCode: `<ddr-table 
-      [cols]="cols()" 
-      [items]="items()" 
-      [showActions]="true"
-      [labelRegisters]="'table.registers' | ddrTranslate"
-      [labelRegister]="'table.register' | ddrTranslate"
-      [labelToPagination]="'table.to' | ddrTranslate"
-      [labelOfPagination]="'table.of' | ddrTranslate"
-      [labelNoResults]="'table.empty' | ddrTranslate"
-      (selectItem)="selectItem($event)" 
-      (selectAction)="selectAction($event)" />`,
-        tsCode: `import { Component, inject, signal, Signal } from '@angular/core';
-  import { DdrTableCol, DdrTableComponent, DdrTableItem } from 'ddr-ng/components/table';
-  import { DdrToastService } from 'ddr-ng/toast';
-  import { DdrTranslatePipe, DdrTranslateService } from 'ddr-ng/translate';
-  import { DdrAction } from 'ddr-ng/models';
-  import { Person } from './bean/person';
-  
-  @Component({
-    selector: 'table-showcase-8',
-    templateUrl: './table-showcase-8.component.html',
-    imports: [
-      DdrTableComponent,
-      DdrTranslatePipe
-    ],
-    providers: [
-      DdrToastService
-    ]
-  })
-  export class TableShowcase8Component {
-  
-    private readonly ddrToastService: DdrToastService = inject(DdrToastService);
-    private readonly ddrTranslateService: DdrTranslateService = inject(DdrTranslateService);
-  
-    public cols: Signal<DdrTableCol[]> = signal<DdrTableCol[]>([
-      {
-        label: 'table.name',
-        property: 'name',
-        tooltip: 'table.name.tooltip',
-      },
-      {
-        label: 'table.surname',
-        property: 'surname',
-        tooltip: 'table.surname.tooltip',
-      },
-      {
-        label: 'table.age',
-        property: 'age',
-        tooltip: 'table.age.tooltip',
-      },
-      {
-        label: 'table.weight',
-        property: 'weight',
-        tooltip: 'table.weight.tooltip',
-      },
-    ]);
-  
-    public actions: Signal<DdrAction<Person>[]> = signal<DdrAction<Person>[]>([
-      {
-        label: 'table.action.save',
-        value: 'SAVE',
-        icon: 'bi bi-floppy',
-      },
-      {
-        label: 'table.action.update',
-        value: 'UPDATE',
-        icon: 'bi bi-arrow-clockwise',
-      },
-      {
-        label: 'table.action.delete',
-        value: 'DELETE',
-        icon: 'bi bi-trash',
-      },
-    ]);
-  
-    public items: Signal<DdrTableItem<Person>[]> = signal<DdrTableItem<Person>[]>([
-      {
-        item: {
-          name: 'Fernando',
-          surname: 'Ureña',
-          age: 35,
-          weight: 78,
-        },
-        actions: this.actions(),
-      },
-      {
-        item: {
-          name: 'Manuel',
-          surname: 'Gómez',
-          age: 30,
-          weight: 72,
-        },
-        actions: this.actions(),
-      },
-      {
-        item: {
-          name: 'Fernando',
-          surname: 'Ureña',
-          age: 35,
-          weight: 78,
-        },
-        actions: this.actions(),
-      },
-      {
-        item: {
-          name: 'Fernando',
-          surname: 'Ureña',
-          age: 35,
-          weight: 78,
-        },
-        actions: this.actions(),
-      },
-      {
-        item: {
-          name: 'Manuel',
-          surname: 'Gómez',
-          age: 30,
-          weight: 72,
-        },
-        actions: this.actions(),
-      },
-      {
-        item: {
-          name: 'Fernando',
-          surname: 'Ureña',
-          age: 35,
-          weight: 78,
-        },
-        actions: this.actions(),
-      },
-      {
-        item: {
-          name: 'Manuel',
-          surname: 'Gómez',
-          age: 30,
-          weight: 72,
-        },
-        actions: this.actions(),
-      },
-      {
-        item: {
-          name: 'Fernando',
-          surname: 'Ureña',
-          age: 35,
-          weight: 78,
-        },
-        actions: this.actions(),
-      },
-      {
-        item: {
-          name: 'Fernando',
-          surname: 'Ureña',
-          age: 35,
-          weight: 78,
-        },
-        actions: this.actions(),
-      },
-      {
-        item: {
-          name: 'Manuel',
-          surname: 'Gómez',
-          age: 30,
-          weight: 72,
-        },
-        actions: this.actions(),
-      },
-      {
-        item: {
-          name: 'Fernando',
-          surname: 'Ureña',
-          age: 35,
-          weight: 78,
-        },
-        actions: this.actions(),
-      },
-      {
-        item: {
-          name: 'Fernando',
-          surname: 'Ureña',
-          age: 35,
-          weight: 78,
-        },
-        actions: this.actions(),
-      },
-      {
-        item: {
-          name: 'Fernando',
-          surname: 'Ureña',
-          age: 35,
-          weight: 78,
-        },
-        actions: this.actions(),
-      },
-      {
-        item: {
-          name: 'Manuel',
-          surname: 'Gómez',
-          age: 30,
-          weight: 72,
-        }
-      },
-  
-    ]);
-  
-    selectItem(item: DdrTableItem<Person>) {
-      this.ddrToastService.addSuccessMessage(
-        this.ddrTranslateService.getTranslate('table.select.item'),
-        JSON.stringify(item),
-      );
-    }
-  
-    selectAction(action: DdrAction<Person>) {
-      this.ddrToastService.addSuccessMessage(
-        this.ddrTranslateService.getTranslate('table.select.action'),
-        JSON.stringify(action),
-      );
-    }
-  
-  }
-  `,
-        classes: [
-          CLASSES['DdrTableCol'],
-          CLASSES['DdrTableItem'],
-          CLASSES['DdrAction'],
-          CLASSES['PersonTable']
-        ]
-      },
-      {
-        htmlCode: `<ddr-table 
-      [cols]="cols()" 
-      [items]="[]"
-      [labelNoResults]="'table.empty' | ddrTranslate" />`,
-        tsCode: `import {
-    Component,
-    Signal,
-    signal
-  } from '@angular/core';
-  import { DdrToastService } from 'ddr-ng/toast';
-  import {
-    DdrTableCol,
+  Component,
+  inject,
+  signal,
+  Signal
+} from '@angular/core';
+import {
+  DdrTableCol,
+  DdrTableComponent,
+  DdrTableItem
+} from 'ddr-ng/components/table';
+import { DdrToastService } from 'ddr-ng/toast';
+import { DdrTranslateService } from 'ddr-ng/translate';
+import { Person } from './bean/person';
+
+@Component({
+  selector: 'table-showcase-5',
+  templateUrl: './table-showcase-5.component.html',
+  imports: [
     DdrTableComponent
-  } from 'ddr-ng/components/table';
-  import { DdrTranslatePipe } from 'ddr-ng/translate';
-  
-  @Component({
-    selector: 'table-showcase-9',
-    templateUrl: './table-showcase-9.component.html',
-    imports: [
-      DdrTableComponent,
-      DdrTranslatePipe
-    ],
-    providers: [
-      DdrToastService
-    ]
-  })
-  export class TableShowcase9Component {
-  
-    public cols: Signal<DdrTableCol[]> = signal<DdrTableCol[]>([
-      {
-        label: 'table.name',
-        property: 'name',
-        tooltip: 'table.name.tooltip',
+  ],
+  providers: [
+    DdrToastService
+  ]
+})
+export class TableShowcase5Component {
+
+  private readonly ddrToastService: DdrToastService = inject(DdrToastService);
+  private readonly ddrTranslateService: DdrTranslateService = inject(DdrTranslateService);
+
+  public cols: Signal<DdrTableCol[]> = signal<DdrTableCol[]>([
+    {
+      label: 'table.name',
+      property: 'name',
+      tooltip: 'table.name.tooltip',
+    },
+    {
+      label: 'table.surname',
+      property: 'surname',
+      tooltip: 'table.surname.tooltip',
+    },
+    {
+      label: 'table.age',
+      property: 'age',
+      tooltip: 'table.age.tooltip',
+    },
+    {
+      label: 'table.weight',
+      property: 'weight',
+      tooltip: 'table.weight.tooltip',
+    },
+  ]);
+
+  public items: Signal<DdrTableItem<Person>[]> = signal<DdrTableItem<Person>[]>([
+    {
+      item: {
+        name: 'Fernando',
+        surname: 'Ureña',
+        age: 35,
+        weight: 78,
       },
-      {
-        label: 'table.surname',
-        property: 'surname',
-        tooltip: 'table.surname.tooltip',
+    },
+    {
+      item: {
+        name: 'Manuel',
+        surname: 'Gómez',
+        age: 30,
+        weight: 72,
       },
-      {
-        label: 'table.age',
-        property: 'age',
-        tooltip: 'table.age.tooltip',
+    },
+    {
+      item: {
+        name: 'Fernando',
+        surname: 'Ureña',
+        age: 35,
+        weight: 78,
       },
-      {
-        label: 'table.weight',
-        property: 'weight',
-        tooltip: 'table.weight.tooltip',
+    },
+    {
+      item: {
+        name: 'Manuel',
+        surname: 'Gómez',
+        age: 30,
+        weight: 72,
       },
-    ]);
+    },
+    {
+      item: {
+        name: 'Fernando',
+        surname: 'Ureña',
+        age: 35,
+        weight: 78,
+      },
+    },
+    {
+      item: {
+        name: 'Manuel',
+        surname: 'Gómez',
+        age: 30,
+        weight: 72,
+      },
+    },
+    {
+      item: {
+        name: 'Fernando',
+        surname: 'Ureña',
+        age: 35,
+        weight: 78,
+      },
+    },
+    {
+      item: {
+        name: 'Fernando',
+        surname: 'Ureña',
+        age: 35,
+        weight: 78,
+      },
+    },
+    {
+      item: {
+        name: 'Manuel',
+        surname: 'Gómez',
+        age: 30,
+        weight: 72,
+      },
+    },
+    {
+      item: {
+        name: 'Fernando',
+        surname: 'Ureña',
+        age: 35,
+        weight: 78,
+      },
+    },
+    {
+      item: {
+        name: 'Manuel',
+        surname: 'Gómez',
+        age: 30,
+        weight: 72,
+      },
+    },
+    {
+      item: {
+        name: 'Fernando',
+        surname: 'Ureña',
+        age: 35,
+        weight: 78,
+      },
+    },
+    {
+      item: {
+        name: 'Fernando',
+        surname: 'Ureña',
+        age: 35,
+        weight: 78,
+      },
+    },
+    {
+      item: {
+        name: 'Manuel',
+        surname: 'Gómez',
+        age: 30,
+        weight: 72,
+      },
+    },
+  ]);
+
+  selectItem(item: DdrTableItem<Person>) {
+    this.ddrToastService.addSuccessMessage(
+      this.ddrTranslateService.getTranslate('table.select.item'),
+      JSON.stringify(item),
+    );
   }
-  `,
+
+  selectMultipleItem(items: Person[]) {
+    this.ddrToastService.addSuccessMessage(
+      this.ddrTranslateService.getTranslate('table.multiple.select.item'),
+      JSON.stringify(items),
+    );
+  }
+}
+`,
         classes: [
           CLASSES['DdrTableCol'],
           CLASSES['DdrTableItem'],
@@ -1754,247 +996,661 @@ export class TableShowcaseComponent {
       },
       {
         htmlCode: `<ddr-table 
-      [cols]="cols()" 
-      [items]="items()" 
-      [showActions]="true" 
-      [labelRegisters]="'table.registers' | ddrTranslate"
-      [labelRegister]="'table.register' | ddrTranslate"
-      [labelToPagination]="'table.to' | ddrTranslate"
-      [labelOfPagination]="'table.of' | ddrTranslate"
-      (selectItem)="selectItem($event)" 
-      (changePage)="onChangePage($event)"
-      (changeRow)="onChangeTotalItemsPerPage($event)"  />`,
+    [cols]="cols()" 
+    [items]="items()"
+    (selectItem)="selectItem($event)">
+        <ng-template #templateCell let-item="item" let-col="col">
+            {{ item[col.property] }}
+        </ng-template>
+</ddr-table>`,
         tsCode: `import {
-    Component,
-    inject,
-    Signal,
-    signal
-  } from '@angular/core';
-  import { DdrAction } from 'ddr-ng/models';
-  import {
-    DdrTableCol,
-    DdrTableComponent,
-    DdrTableItem
-  } from 'ddr-ng/components/table';
-  import { DdrToastService } from 'ddr-ng/toast';
-  import {
-    DdrTranslatePipe,
-    DdrTranslateService
-  } from 'ddr-ng/translate';
-  import { Person } from './bean/person';
-  
-  @Component({
-    selector: 'table-showcase-10',
-    templateUrl: './table-showcase-10.component.html',
-    imports: [
-      DdrTableComponent,
-      DdrTranslatePipe
-    ],
-    providers: [
-      DdrToastService
-    ]
-  })
-  export class TableShowcase10Component {
-  
-    private readonly ddrToastService: DdrToastService = inject(DdrToastService);
-    private readonly ddrTranslateService: DdrTranslateService = inject(DdrTranslateService);
-  
-    public cols: Signal<DdrTableCol[]> = signal<DdrTableCol[]>([
-      {
-        label: 'table.name',
-        property: 'name',
-        tooltip: 'table.name.tooltip',
+  Component,
+  inject,
+  signal,
+  Signal
+} from '@angular/core';
+import {
+  DdrTableCol,
+  DdrTableComponent,
+  DdrTableItem
+} from 'ddr-ng/components/table';
+import { DdrToastService } from 'ddr-ng/toast';
+import { DdrTranslateService } from 'ddr-ng/translate';
+import { Person } from './bean/person';
+
+@Component({
+  selector: 'table-showcase-6',
+  templateUrl: './table-showcase-6.component.html',
+  imports: [
+    DdrTableComponent
+  ],
+  providers: [
+    DdrToastService
+  ]
+})
+export class TableShowcase6Component {
+
+  private readonly ddrToastService: DdrToastService = inject(DdrToastService);
+  private readonly ddrTranslateService: DdrTranslateService = inject(DdrTranslateService);
+
+  public cols: Signal<DdrTableCol[]> = signal<DdrTableCol[]>([
+    {
+      label: 'table.name',
+      property: 'name',
+      tooltip: 'table.name.tooltip',
+    },
+    {
+      label: 'table.surname',
+      property: 'surname',
+      tooltip: 'table.surname.tooltip',
+    },
+    {
+      label: 'table.age',
+      property: 'age',
+      tooltip: 'table.age.tooltip',
+    },
+    {
+      label: 'table.weight',
+      property: 'weight',
+      tooltip: 'table.weight.tooltip',
+    },
+  ]);
+
+  public items: Signal<DdrTableItem<Person>[]> = signal<DdrTableItem<Person>[]>([
+    {
+      item: {
+        name: 'Fernando',
+        surname: 'Ureña',
+        age: 35,
+        weight: 78,
       },
-      {
-        label: 'table.surname',
-        property: 'surname',
-        tooltip: 'table.surname.tooltip',
+    },
+    {
+      item: {
+        name: 'Manuel',
+        surname: 'Gómez',
+        age: 30,
+        weight: 72,
       },
-      {
-        label: 'table.age',
-        property: 'age',
-        tooltip: 'table.age.tooltip',
+    },
+    {
+      item: {
+        name: 'Fernando',
+        surname: 'Ureña',
+        age: 35,
+        weight: 78,
       },
-      {
-        label: 'table.weight',
-        property: 'weight',
-        tooltip: 'table.weight.tooltip',
+    },
+    {
+      item: {
+        name: 'Manuel',
+        surname: 'Gómez',
+        age: 30,
+        weight: 72,
       },
-    ]);
-  
-    public actions: Signal<DdrAction<Person>[]> = signal<DdrAction<Person>[]>([
-      {
-        label: 'table.action.save',
-        value: 'SAVE',
-        icon: 'bi bi-floppy',
+    },
+    {
+      item: {
+        name: 'Fernando',
+        surname: 'Ureña',
+        age: 35,
+        weight: 78,
       },
-      {
-        label: 'table.action.update',
-        value: 'UPDATE',
-        icon: 'bi bi-arrow-clockwise',
+    },
+    {
+      item: {
+        name: 'Manuel',
+        surname: 'Gómez',
+        age: 30,
+        weight: 72,
       },
-      {
-        label: 'table.action.delete',
-        value: 'DELETE',
-        icon: 'bi bi-trash',
+    },
+    {
+      item: {
+        name: 'Fernando',
+        surname: 'Ureña',
+        age: 35,
+        weight: 78,
       },
-    ]);
-  
-    public items: Signal<DdrTableItem<Person>[]> = signal<DdrTableItem<Person>[]>([
-      {
-        item: {
-          name: 'Fernando',
-          surname: 'Ureña',
-          age: 35,
-          weight: 78,
-        },
-        actions: this.actions(),
+    },
+    {
+      item: {
+        name: 'Fernando',
+        surname: 'Ureña',
+        age: 35,
+        weight: 78,
       },
-      {
-        item: {
-          name: 'Manuel',
-          surname: 'Gómez',
-          age: 30,
-          weight: 72,
-        },
-        actions: this.actions(),
+    },
+    {
+      item: {
+        name: 'Manuel',
+        surname: 'Gómez',
+        age: 30,
+        weight: 72,
       },
-      {
-        item: {
-          name: 'Fernando',
-          surname: 'Ureña',
-          age: 35,
-          weight: 78,
-        },
-        actions: this.actions(),
+    },
+    {
+      item: {
+        name: 'Fernando',
+        surname: 'Ureña',
+        age: 35,
+        weight: 78,
       },
-      {
-        item: {
-          name: 'Fernando',
-          surname: 'Ureña',
-          age: 35,
-          weight: 78,
-        },
-        actions: this.actions(),
+    },
+    {
+      item: {
+        name: 'Manuel',
+        surname: 'Gómez',
+        age: 30,
+        weight: 72,
       },
-      {
-        item: {
-          name: 'Manuel',
-          surname: 'Gómez',
-          age: 30,
-          weight: 72,
-        },
-        actions: this.actions(),
+    },
+    {
+      item: {
+        name: 'Fernando',
+        surname: 'Ureña',
+        age: 35,
+        weight: 78,
       },
-      {
-        item: {
-          name: 'Fernando',
-          surname: 'Ureña',
-          age: 35,
-          weight: 78,
-        },
-        actions: this.actions(),
+    },
+    {
+      item: {
+        name: 'Fernando',
+        surname: 'Ureña',
+        age: 35,
+        weight: 78,
       },
-      {
-        item: {
-          name: 'Manuel',
-          surname: 'Gómez',
-          age: 30,
-          weight: 72,
-        },
-        actions: this.actions(),
+    },
+    {
+      item: {
+        name: 'Manuel',
+        surname: 'Gómez',
+        age: 30,
+        weight: 72,
       },
-      {
-        item: {
-          name: 'Fernando',
-          surname: 'Ureña',
-          age: 35,
-          weight: 78,
-        },
-        actions: this.actions(),
-      },
-      {
-        item: {
-          name: 'Fernando',
-          surname: 'Ureña',
-          age: 35,
-          weight: 78,
-        },
-        actions: this.actions(),
-      },
-      {
-        item: {
-          name: 'Manuel',
-          surname: 'Gómez',
-          age: 30,
-          weight: 72,
-        },
-        actions: this.actions(),
-      },
-      {
-        item: {
-          name: 'Fernando',
-          surname: 'Ureña',
-          age: 35,
-          weight: 78,
-        },
-        actions: this.actions(),
-      },
-      {
-        item: {
-          name: 'Fernando',
-          surname: 'Ureña',
-          age: 35,
-          weight: 78,
-        },
-        actions: this.actions(),
-      },
-      {
-        item: {
-          name: 'Fernando',
-          surname: 'Ureña',
-          age: 35,
-          weight: 78,
-        },
-        actions: this.actions(),
-      },
-      {
-        item: {
-          name: 'Manuel',
-          surname: 'Gómez',
-          age: 30,
-          weight: 72,
-        }
-      },
-  
-    ]);
-  
-    selectItem(item: DdrTableItem<Person>) {
-      this.ddrToastService.addSuccessMessage(
-        this.ddrTranslateService.getTranslate('table.select.item'),
-        JSON.stringify(item),
-      );
-    }
-  
-    onChangePage(page: number) {
-      this.ddrToastService.addSuccessMessage(
-        this.ddrTranslateService.getTranslate('success'),
-        this.ddrTranslateService.getTranslate('table.change.page') +
-        ' :' +
-        page.toString(),
-      );
-    }
-  
-    onChangeTotalItemsPerPage(rows: number) {
-      this.ddrToastService.addSuccessMessage(
-        this.ddrTranslateService.getTranslate('success'),
-        this.ddrTranslateService.getTranslate('table.change.rows') +
-        ' :' +
-        rows.toString(),
-      );
-    }
+    },
+  ]);
+
+  selectItem(item: DdrTableItem<Person>) {
+    this.ddrToastService.addSuccessMessage(
+      this.ddrTranslateService.getTranslate('table.select.item'),
+      JSON.stringify(item),
+    );
   }
-  `,
+
+}
+`,
+        classes: [
+          CLASSES['DdrTableCol'],
+          CLASSES['DdrTableItem'],
+          CLASSES['PersonTable']
+        ]
+      },
+      {
+        htmlCode: `<ddr-table 
+    [cols]="cols()" 
+    [items]="items()"
+    (selectItem)="selectItem($event)" >
+    <ng-template #templateCell let-item="item" let-col="col">
+        {{ item | ddrNestedProperty: col.property }}
+    </ng-template>
+</ddr-table>`,
+        tsCode: `import {
+  Component,
+  inject,
+  Signal,
+  signal
+} from '@angular/core';
+import {
+  DdrTableCol,
+  DdrTableComponent,
+  DdrTableItem
+} from 'ddr-ng/components/table';
+import { DdrNestedPropertyPipe } from 'ddr-ng/pipes/nested-property';
+import { DdrToastService } from 'ddr-ng/toast';
+import { DdrTranslateService } from 'ddr-ng/translate';
+import { Person } from './bean/person';
+
+@Component({
+  selector: 'table-showcase-7',
+  templateUrl: './table-showcase-7.component.html',
+  imports: [
+    DdrTableComponent,
+    DdrNestedPropertyPipe
+  ],
+  providers: [
+    DdrToastService
+  ]
+})
+export class TableShowcase7Component {
+
+  private readonly ddrToastService: DdrToastService = inject(DdrToastService);
+  private readonly ddrTranslateService: DdrTranslateService = inject(DdrTranslateService);
+
+  public cols: Signal<DdrTableCol[]> = signal<DdrTableCol[]>([
+    {
+      label: 'table.name',
+      property: 'name',
+      tooltip: 'table.name.tooltip',
+    },
+    {
+      label: 'table.surname',
+      property: 'surname',
+      tooltip: 'table.surname.tooltip',
+    },
+    {
+      label: 'table.age',
+      property: 'age',
+      tooltip: 'table.age.tooltip',
+    },
+    {
+      label: 'table.weight',
+      property: 'weight',
+      tooltip: 'table.weight.tooltip',
+    },
+    {
+      label: 'table.documentation',
+      property: 'documentation.nif',
+      tooltip: 'table.documentation.nif',
+    }
+  ]);
+
+  public items: Signal<DdrTableItem<Person>[]> = signal<DdrTableItem<Person>[]>([
+    {
+      item: {
+        name: 'Fernando',
+        surname: 'Ureña',
+        age: 35,
+        weight: 78,
+        documentation: {
+          nif: '123456789A',
+        },
+      },
+    },
+    {
+      item: {
+        name: 'Manuel',
+        surname: 'Gómez',
+        age: 30,
+        weight: 72,
+        documentation: {
+          nif: '987654321B',
+        },
+      },
+    },
+    {
+      item: {
+        name: 'Fernando',
+        surname: 'Ureña',
+        age: 35,
+        weight: 78,
+        documentation: {
+          nif: '123456789A',
+        },
+      },
+    },
+    {
+      item: {
+        name: 'Fernando',
+        surname: 'Ureña',
+        age: 35,
+        weight: 78,
+        documentation: {
+          nif: '123456789A',
+        },
+      },
+    },
+    {
+      item: {
+        name: 'Manuel',
+        surname: 'Gómez',
+        age: 30,
+        weight: 72,
+        documentation: {
+          nif: '987654321B',
+        },
+      },
+    },
+    {
+      item: {
+        name: 'Fernando',
+        surname: 'Ureña',
+        age: 35,
+        weight: 78,
+        documentation: {
+          nif: '123456789A',
+        },
+      },
+    },
+    {
+      item: {
+        name: 'Manuel',
+        surname: 'Gómez',
+        age: 30,
+        weight: 72,
+        documentation: {
+          nif: '987654321B',
+        },
+      },
+    },
+    {
+      item: {
+        name: 'Fernando',
+        surname: 'Ureña',
+        age: 35,
+        weight: 78,
+        documentation: {
+          nif: '123456789A',
+        },
+      },
+    },
+    {
+      item: {
+        name: 'Fernando',
+        surname: 'Ureña',
+        age: 35,
+        weight: 78,
+        documentation: {
+          nif: '123456789A',
+        },
+      },
+    },
+    {
+      item: {
+        name: 'Manuel',
+        surname: 'Gómez',
+        age: 30,
+        weight: 72,
+        documentation: {
+          nif: '987654321B',
+        },
+      }
+    },
+    {
+      item: {
+        name: 'Fernando',
+        surname: 'Ureña',
+        age: 35,
+        weight: 78,
+        documentation: {
+          nif: '123456789A',
+        },
+      },
+    },
+    {
+      item: {
+        name: 'Fernando',
+        surname: 'Ureña',
+        age: 35,
+        weight: 78,
+        documentation: {
+          nif: '123456789A',
+        },
+      },
+    },
+    {
+      item: {
+        name: 'Fernando',
+        surname: 'Ureña',
+        age: 35,
+        weight: 78,
+        documentation: {
+          nif: '123456789A',
+        },
+      },
+    },
+    {
+      item: {
+        name: 'Manuel',
+        surname: 'Gómez',
+        age: 30,
+        weight: 72,
+        documentation: {
+          nif: '987654321B',
+        },
+      },
+    },
+  ]);
+
+  selectItem(item: DdrTableItem<Person>) {
+    this.ddrToastService.addSuccessMessage(
+      this.ddrTranslateService.getTranslate('table.select.item'),
+      JSON.stringify(item),
+    );
+  }
+
+}
+`,
+        classes: [
+          CLASSES['DdrTableCol'],
+          CLASSES['DdrTableItem'],
+          CLASSES['PersonTable']
+        ]
+      },
+      {
+        htmlCode: `<ddr-table 
+    [cols]="cols()" 
+    [items]="items()" 
+    [showActions]="true"
+    (selectItem)="selectItem($event)" 
+    (selectAction)="selectAction($event)" />`,
+        tsCode: `import {
+  Component,
+  inject,
+  signal,
+  Signal
+} from '@angular/core';
+import {
+  DdrTableCol,
+  DdrTableComponent,
+  DdrTableItem
+} from 'ddr-ng/components/table';
+import { DdrToastService } from 'ddr-ng/toast';
+import { DdrTranslateService } from 'ddr-ng/translate';
+import { DdrAction } from 'ddr-ng/models';
+import { Person } from './bean/person';
+
+@Component({
+  selector: 'table-showcase-8',
+  templateUrl: './table-showcase-8.component.html',
+  imports: [
+    DdrTableComponent
+  ],
+  providers: [
+    DdrToastService
+  ]
+})
+export class TableShowcase8Component {
+
+  private readonly ddrToastService: DdrToastService = inject(DdrToastService);
+  private readonly ddrTranslateService: DdrTranslateService = inject(DdrTranslateService);
+
+  public cols: Signal<DdrTableCol[]> = signal<DdrTableCol[]>([
+    {
+      label: 'table.name',
+      property: 'name',
+      tooltip: 'table.name.tooltip',
+    },
+    {
+      label: 'table.surname',
+      property: 'surname',
+      tooltip: 'table.surname.tooltip',
+    },
+    {
+      label: 'table.age',
+      property: 'age',
+      tooltip: 'table.age.tooltip',
+    },
+    {
+      label: 'table.weight',
+      property: 'weight',
+      tooltip: 'table.weight.tooltip',
+    },
+  ]);
+
+  public actions: Signal<DdrAction<Person>[]> = signal<DdrAction<Person>[]>([
+    {
+      label: 'table.action.save',
+      value: 'SAVE',
+      icon: 'bi bi-floppy',
+    },
+    {
+      label: 'table.action.update',
+      value: 'UPDATE',
+      icon: 'bi bi-arrow-clockwise',
+    },
+    {
+      label: 'table.action.delete',
+      value: 'DELETE',
+      icon: 'bi bi-trash',
+    },
+  ]);
+
+  public items: Signal<DdrTableItem<Person>[]> = signal<DdrTableItem<Person>[]>([
+    {
+      item: {
+        name: 'Fernando',
+        surname: 'Ureña',
+        age: 35,
+        weight: 78,
+      },
+      actions: this.actions(),
+    },
+    {
+      item: {
+        name: 'Manuel',
+        surname: 'Gómez',
+        age: 30,
+        weight: 72,
+      },
+      actions: this.actions(),
+    },
+    {
+      item: {
+        name: 'Fernando',
+        surname: 'Ureña',
+        age: 35,
+        weight: 78,
+      },
+      actions: this.actions(),
+    },
+    {
+      item: {
+        name: 'Fernando',
+        surname: 'Ureña',
+        age: 35,
+        weight: 78,
+      },
+      actions: this.actions(),
+    },
+    {
+      item: {
+        name: 'Manuel',
+        surname: 'Gómez',
+        age: 30,
+        weight: 72,
+      },
+      actions: this.actions(),
+    },
+    {
+      item: {
+        name: 'Fernando',
+        surname: 'Ureña',
+        age: 35,
+        weight: 78,
+      },
+      actions: this.actions(),
+    },
+    {
+      item: {
+        name: 'Manuel',
+        surname: 'Gómez',
+        age: 30,
+        weight: 72,
+      },
+      actions: this.actions(),
+    },
+    {
+      item: {
+        name: 'Fernando',
+        surname: 'Ureña',
+        age: 35,
+        weight: 78,
+      },
+      actions: this.actions(),
+    },
+    {
+      item: {
+        name: 'Fernando',
+        surname: 'Ureña',
+        age: 35,
+        weight: 78,
+      },
+      actions: this.actions(),
+    },
+    {
+      item: {
+        name: 'Manuel',
+        surname: 'Gómez',
+        age: 30,
+        weight: 72,
+      },
+      actions: this.actions(),
+    },
+    {
+      item: {
+        name: 'Fernando',
+        surname: 'Ureña',
+        age: 35,
+        weight: 78,
+      },
+      actions: this.actions(),
+    },
+    {
+      item: {
+        name: 'Fernando',
+        surname: 'Ureña',
+        age: 35,
+        weight: 78,
+      },
+      actions: this.actions(),
+    },
+    {
+      item: {
+        name: 'Fernando',
+        surname: 'Ureña',
+        age: 35,
+        weight: 78,
+      },
+      actions: this.actions(),
+    },
+    {
+      item: {
+        name: 'Manuel',
+        surname: 'Gómez',
+        age: 30,
+        weight: 72,
+      }
+    },
+
+  ]);
+
+  selectItem(item: DdrTableItem<Person>) {
+    this.ddrToastService.addSuccessMessage(
+      this.ddrTranslateService.getTranslate('table.select.item'),
+      JSON.stringify(item),
+    );
+  }
+
+  selectAction(action: DdrAction<Person>) {
+    this.ddrToastService.addSuccessMessage(
+      this.ddrTranslateService.getTranslate('table.select.action'),
+      JSON.stringify(action),
+    );
+  }
+
+}
+`,
         classes: [
           CLASSES['DdrTableCol'],
           CLASSES['DdrTableItem'],
@@ -2004,213 +1660,1315 @@ export class TableShowcaseComponent {
       },
       {
         htmlCode: `<ddr-table 
-      [cols]="cols()" 
-      [items]="items()" 
-      [canSort]="true"
-      [labelRegisters]="'table.registers' | ddrTranslate"
-      [labelRegister]="'table.register' | ddrTranslate"
-      [labelToPagination]="'table.to' | ddrTranslate"
-      [labelOfPagination]="'table.of' | ddrTranslate"
-      (selectItem)="selectItem($event)"
-      (sort)="sortItems($event)" />`,
+    [cols]="cols()" 
+    [items]="[]" />`,
         tsCode: `import {
-    Component,
-    inject,
-    Signal,
-    signal
-  } from '@angular/core';
-  import {
-    DdrTableCol,
-    DdrTableComponent,
-    DdrTableItem
-  } from 'ddr-ng/components/table';
-  import { DdrToastService } from 'ddr-ng/toast';
-  import {
-    DdrTranslatePipe,
-    DdrTranslateService
-  } from 'ddr-ng/translate';
-  import { Person } from './bean/person';
-  
-  @Component({
-    selector: 'table-showcase-11',
-    templateUrl: './table-showcase-11.component.html',
-    imports: [
-      DdrTableComponent,
-      DdrTranslatePipe
-    ],
-    providers: [
-      DdrToastService
-    ]
-  })
-  export class TableShowcase11Component {
-  
-    private readonly ddrToastService: DdrToastService = inject(DdrToastService);
-    private readonly ddrTranslateService: DdrTranslateService = inject(DdrTranslateService);
-  
-    public cols: Signal<DdrTableCol[]> = signal<DdrTableCol[]>([
-      {
-        label: 'table.name',
-        property: 'name',
-        tooltip: 'table.name.tooltip',
-        canSort: true,
-      },
-      {
-        label: 'table.surname',
-        property: 'surname',
-        tooltip: 'table.surname.tooltip',
-        canSort: true,
-      },
-      {
-        label: 'table.age',
-        property: 'age',
-        tooltip: 'table.age.tooltip',
-        canSort: true,
-      },
-      {
-        label: 'table.weight',
-        property: 'weight',
-        tooltip: 'table.weight.tooltip',
-        canSort: true,
-      },
-    ]);
-  
-    public items: Signal<DdrTableItem<Person>[]> = signal<DdrTableItem<Person>[]>([
-      {
-        item: {
-          name: 'Fernando',
-          surname: 'Ureña',
-          age: 35,
-          weight: 78,
-        },
-      },
-      {
-        item: {
-          name: 'Manuel',
-          surname: 'Gómez',
-          age: 30,
-          weight: 72,
-        }
-      },
-      {
-        item: {
-          name: 'Fernando',
-          surname: 'Ureña',
-          age: 35,
-          weight: 78,
-        }
-      },
-      {
-        item: {
-          name: 'Fernando',
-          surname: 'Ureña',
-          age: 35,
-          weight: 78,
-        }
-      },
-      {
-        item: {
-          name: 'Manuel',
-          surname: 'Gómez',
-          age: 30,
-          weight: 72,
-        }
-      },
-      {
-        item: {
-          name: 'Fernando',
-          surname: 'Ureña',
-          age: 35,
-          weight: 78,
-        }
-      },
-      {
-        item: {
-          name: 'Manuel',
-          surname: 'Gómez',
-          age: 30,
-          weight: 72,
-        }
-      },
-      {
-        item: {
-          name: 'Fernando',
-          surname: 'Ureña',
-          age: 35,
-          weight: 78,
-        }
-      },
-      {
-        item: {
-          name: 'Fernando',
-          surname: 'Ureña',
-          age: 35,
-          weight: 78,
-        }
-      },
-      {
-        item: {
-          name: 'Manuel',
-          surname: 'Gómez',
-          age: 30,
-          weight: 72,
-        }
-      },
-      {
-        item: {
-          name: 'Fernando',
-          surname: 'Ureña',
-          age: 35,
-          weight: 78,
-        }
-      },
-      {
-        item: {
-          name: 'Fernando',
-          surname: 'Ureña',
-          age: 35,
-          weight: 78,
-        }
-      },
-      {
-        item: {
-          name: 'Fernando',
-          surname: 'Ureña',
-          age: 35,
-          weight: 78,
-        }
-      },
-      {
-        item: {
-          name: 'Manuel',
-          surname: 'Gómez',
-          age: 30,
-          weight: 72,
-        }
-      },
-  
-    ]);
-  
-    selectItem(item: DdrTableItem<Person>) {
-      this.ddrToastService.addSuccessMessage(
-        this.ddrTranslateService.getTranslate('table.select.item'),
-        JSON.stringify(item),
-      );
-    }
-  
-    sortItems(col: DdrTableCol) {
-      this.ddrToastService.addSuccessMessage(
-        this.ddrTranslateService.getTranslate('table.sort'),
-        JSON.stringify(col),
-      );
-    }
-  }
-  `,
+  Component,
+  Signal,
+  signal
+} from '@angular/core';
+import { DdrToastService } from 'ddr-ng/toast';
+import {
+  DdrTableCol,
+  DdrTableComponent
+} from 'ddr-ng/components/table';
+
+@Component({
+  selector: 'table-showcase-9',
+  templateUrl: './table-showcase-9.component.html',
+  imports: [
+    DdrTableComponent
+  ],
+  providers: [
+    DdrToastService
+  ]
+})
+export class TableShowcase9Component {
+
+  public cols: Signal<DdrTableCol[]> = signal<DdrTableCol[]>([
+    {
+      label: 'table.name',
+      property: 'name',
+      tooltip: 'table.name.tooltip',
+    },
+    {
+      label: 'table.surname',
+      property: 'surname',
+      tooltip: 'table.surname.tooltip',
+    },
+    {
+      label: 'table.age',
+      property: 'age',
+      tooltip: 'table.age.tooltip',
+    },
+    {
+      label: 'table.weight',
+      property: 'weight',
+      tooltip: 'table.weight.tooltip',
+    },
+  ]);
+}
+`,
         classes: [
           CLASSES['DdrTableCol'],
           CLASSES['DdrTableItem'],
           CLASSES['PersonTable']
         ]
+      },
+      {
+        htmlCode: `<ddr-table 
+    [cols]="cols()" 
+    [items]="items()" 
+    [showActions]="true" 
+    (selectItem)="selectItem($event)" 
+    (changePage)="onChangePage($event)"
+    (changePageSize)="onChangeTotalItemsPerPage($event)"  />`,
+        tsCode: `import {
+  Component,
+  inject,
+  Signal,
+  signal
+} from '@angular/core';
+import { DdrAction } from 'ddr-ng/models';
+import {
+  DdrTableCol,
+  DdrTableComponent,
+  DdrTableItem
+} from 'ddr-ng/components/table';
+import { DdrToastService } from 'ddr-ng/toast';
+import { DdrTranslateService } from 'ddr-ng/translate';
+import { Person } from './bean/person';
+
+@Component({
+  selector: 'table-showcase-10',
+  templateUrl: './table-showcase-10.component.html',
+  imports: [
+    DdrTableComponent
+  ],
+  providers: [
+    DdrToastService
+  ]
+})
+export class TableShowcase10Component {
+
+  private readonly ddrToastService: DdrToastService = inject(DdrToastService);
+  private readonly ddrTranslateService: DdrTranslateService = inject(DdrTranslateService);
+
+  public cols: Signal<DdrTableCol[]> = signal<DdrTableCol[]>([
+    {
+      label: 'table.name',
+      property: 'name',
+      tooltip: 'table.name.tooltip',
+    },
+    {
+      label: 'table.surname',
+      property: 'surname',
+      tooltip: 'table.surname.tooltip',
+    },
+    {
+      label: 'table.age',
+      property: 'age',
+      tooltip: 'table.age.tooltip',
+    },
+    {
+      label: 'table.weight',
+      property: 'weight',
+      tooltip: 'table.weight.tooltip',
+    },
+  ]);
+
+  public actions: Signal<DdrAction<Person>[]> = signal<DdrAction<Person>[]>([
+    {
+      label: 'table.action.save',
+      value: 'SAVE',
+      icon: 'bi bi-floppy',
+    },
+    {
+      label: 'table.action.update',
+      value: 'UPDATE',
+      icon: 'bi bi-arrow-clockwise',
+    },
+    {
+      label: 'table.action.delete',
+      value: 'DELETE',
+      icon: 'bi bi-trash',
+    },
+  ]);
+
+  public items: Signal<DdrTableItem<Person>[]> = signal<DdrTableItem<Person>[]>([
+    {
+      item: {
+        name: 'Fernando',
+        surname: 'Ureña',
+        age: 35,
+        weight: 78,
+      },
+      actions: this.actions(),
+    },
+    {
+      item: {
+        name: 'Manuel',
+        surname: 'Gómez',
+        age: 30,
+        weight: 72,
+      },
+      actions: this.actions(),
+    },
+    {
+      item: {
+        name: 'Fernando',
+        surname: 'Ureña',
+        age: 35,
+        weight: 78,
+      },
+      actions: this.actions(),
+    },
+    {
+      item: {
+        name: 'Fernando',
+        surname: 'Ureña',
+        age: 35,
+        weight: 78,
+      },
+      actions: this.actions(),
+    },
+    {
+      item: {
+        name: 'Manuel',
+        surname: 'Gómez',
+        age: 30,
+        weight: 72,
+      },
+      actions: this.actions(),
+    },
+    {
+      item: {
+        name: 'Fernando',
+        surname: 'Ureña',
+        age: 35,
+        weight: 78,
+      },
+      actions: this.actions(),
+    },
+    {
+      item: {
+        name: 'Manuel',
+        surname: 'Gómez',
+        age: 30,
+        weight: 72,
+      },
+      actions: this.actions(),
+    },
+    {
+      item: {
+        name: 'Fernando',
+        surname: 'Ureña',
+        age: 35,
+        weight: 78,
+      },
+      actions: this.actions(),
+    },
+    {
+      item: {
+        name: 'Fernando',
+        surname: 'Ureña',
+        age: 35,
+        weight: 78,
+      },
+      actions: this.actions(),
+    },
+    {
+      item: {
+        name: 'Manuel',
+        surname: 'Gómez',
+        age: 30,
+        weight: 72,
+      },
+      actions: this.actions(),
+    },
+    {
+      item: {
+        name: 'Fernando',
+        surname: 'Ureña',
+        age: 35,
+        weight: 78,
+      },
+      actions: this.actions(),
+    },
+    {
+      item: {
+        name: 'Fernando',
+        surname: 'Ureña',
+        age: 35,
+        weight: 78,
+      },
+      actions: this.actions(),
+    },
+    {
+      item: {
+        name: 'Fernando',
+        surname: 'Ureña',
+        age: 35,
+        weight: 78,
+      },
+      actions: this.actions(),
+    },
+    {
+      item: {
+        name: 'Manuel',
+        surname: 'Gómez',
+        age: 30,
+        weight: 72,
       }
+    },
+
+  ]);
+
+  selectItem(item: DdrTableItem<Person>) {
+    this.ddrToastService.addSuccessMessage(
+      this.ddrTranslateService.getTranslate('table.select.item'),
+      JSON.stringify(item),
+    );
+  }
+
+  onChangePage(page: number) {
+    this.ddrToastService.addSuccessMessage(
+      this.ddrTranslateService.getTranslate('success'),
+      this.ddrTranslateService.getTranslate('table.change.page') +
+      ' :' +
+      page.toString(),
+    );
+  }
+
+  onChangeTotalItemsPerPage(rows: number) {
+    this.ddrToastService.addSuccessMessage(
+      this.ddrTranslateService.getTranslate('success'),
+      this.ddrTranslateService.getTranslate('table.change.rows') +
+      ' :' +
+      rows.toString(),
+    );
+  }
+}
+`,
+        classes: [
+          CLASSES['DdrTableCol'],
+          CLASSES['DdrTableItem'],
+          CLASSES['DdrAction'],
+          CLASSES['PersonTable']
+        ]
+      },
+      {
+        htmlCode: `<ddr-table 
+    [cols]="cols()" 
+    [items]="items()" 
+    [allowSort]="true"
+    (sort)="sortItems($event)" />`,
+        tsCode: `import {
+  Component,
+  inject,
+  Signal,
+  signal,
+  WritableSignal
+} from '@angular/core';
+import {
+  DdrTableCol,
+  DdrTableComponent,
+  DdrTableItem
+} from 'ddr-ng/components/table';
+import { DdrToastService } from 'ddr-ng/toast';
+import { DdrTranslateService } from 'ddr-ng/translate';
+import { Person } from './bean/person';
+
+@Component({
+  selector: 'table-showcase-11',
+  templateUrl: './table-showcase-11.component.html',
+  imports: [
+    DdrTableComponent
+  ],
+  providers: [
+    DdrToastService
+  ]
+})
+export class TableShowcase11Component {
+
+  private readonly ddrToastService: DdrToastService = inject(DdrToastService);
+  private readonly ddrTranslateService: DdrTranslateService = inject(DdrTranslateService);
+
+  public cols: Signal<DdrTableCol[]> = signal<DdrTableCol[]>([
+    {
+      label: 'table.name',
+      property: 'name',
+      tooltip: 'table.name.tooltip'
+    },
+    {
+      label: 'table.surname',
+      property: 'surname',
+      tooltip: 'table.surname.tooltip'
+    },
+    {
+      label: 'table.age',
+      property: 'age',
+      tooltip: 'table.age.tooltip'
+    },
+    {
+      label: 'table.weight',
+      property: 'weight',
+      tooltip: 'table.weight.tooltip'
+    },
+  ]);
+
+  public itemsOri: Signal<DdrTableItem<Person>[]> = signal<DdrTableItem<Person>[]>([
+    {
+      item: {
+        name: 'Fernando',
+        surname: 'Ureña',
+        age: 35,
+        weight: 78,
+      },
+    },
+    {
+      item: {
+        name: 'Manuel',
+        surname: 'Gómez',
+        age: 30,
+        weight: 72,
+      }
+    },
+    {
+      item: {
+        name: 'Fernando',
+        surname: 'Ureña',
+        age: 35,
+        weight: 78,
+      }
+    },
+    {
+      item: {
+        name: 'Fernando',
+        surname: 'Ureña',
+        age: 35,
+        weight: 78,
+      }
+    },
+    {
+      item: {
+        name: 'Manuel',
+        surname: 'Gómez',
+        age: 30,
+        weight: 72,
+      }
+    },
+    {
+      item: {
+        name: 'Fernando',
+        surname: 'Ureña',
+        age: 35,
+        weight: 78,
+      }
+    },
+    {
+      item: {
+        name: 'Manuel',
+        surname: 'Gómez',
+        age: 30,
+        weight: 72,
+      }
+    },
+    {
+      item: {
+        name: 'Fernando',
+        surname: 'Ureña',
+        age: 35,
+        weight: 78,
+      }
+    },
+    {
+      item: {
+        name: 'Fernando',
+        surname: 'Ureña',
+        age: 35,
+        weight: 78,
+      }
+    },
+    {
+      item: {
+        name: 'Manuel',
+        surname: 'Gómez',
+        age: 30,
+        weight: 72,
+      }
+    },
+    {
+      item: {
+        name: 'Fernando',
+        surname: 'Ureña',
+        age: 35,
+        weight: 78,
+      }
+    },
+    {
+      item: {
+        name: 'Fernando',
+        surname: 'Ureña',
+        age: 35,
+        weight: 78,
+      }
+    },
+    {
+      item: {
+        name: 'Fernando',
+        surname: 'Ureña',
+        age: 35,
+        weight: 78,
+      }
+    },
+    {
+      item: {
+        name: 'Manuel',
+        surname: 'Gómez',
+        age: 30,
+        weight: 72,
+      }
+    },
+
+  ]);
+
+  public items: WritableSignal<DdrTableItem<Person>[]> = signal<DdrTableItem<Person>[]>([...this.itemsOri()]);
+
+  sortItems(cols: DdrTableCol[]) {
+    this.ddrToastService.addSuccessMessage(
+      this.ddrTranslateService.getTranslate('table.sort'),
+      JSON.stringify(cols),
+    );
+
+    const items = [...this.itemsOri()];
+
+    items.sort((a, b) => {
+      const valueA = String(a.item[cols[0].property as keyof Person]);
+      const valueB = String(b.item[cols[0].property as keyof Person]);
+
+      const result = valueA.localeCompare(valueB);
+
+      return cols[0].modeSort === 'DESC' ? -result : result;
+    });
+
+    this.items.set(items);
+  }
+}
+`,
+        classes: [
+          CLASSES['DdrTableCol'],
+          CLASSES['DdrTableItem'],
+          CLASSES['PersonTable']
+        ]
+      },
+      {
+        htmlCode: `<ddr-table 
+    [cols]="cols()" 
+    [items]="items()" 
+    [allowSort]="true"
+    (sort)="sortItems($event)" />`,
+        tsCode: `import {
+  Component,
+  inject,
+  OnInit,
+  Signal,
+  signal,
+  WritableSignal
+} from '@angular/core';
+import {
+  DdrTableCol,
+  DdrTableComponent,
+  DdrTableItem,
+} from 'ddr-ng/components/table';
+import { DdrTranslateService } from 'ddr-ng/translate';
+import { Person } from './bean/person';
+import { DdrToastService } from 'ddr-ng/toast';
+
+@Component({
+  selector: 'table-showcase-12',
+  templateUrl: './table-showcase-12.component.html',
+  imports: [
+    DdrTableComponent
+  ]
+})
+export class TableShowcase12Component implements OnInit {
+
+  private readonly ddrToastService: DdrToastService = inject(DdrToastService);
+  private readonly ddrTranslateService: DdrTranslateService = inject(DdrTranslateService);
+
+  public cols: Signal<DdrTableCol[]> = signal<DdrTableCol[]>([
+    {
+      label: 'table.name',
+      property: 'name',
+      tooltip: 'table.name.tooltip',
+      modeSort: 'ASC'
+    },
+    {
+      label: 'table.surname',
+      property: 'surname',
+      tooltip: 'table.surname.tooltip'
+    },
+    {
+      label: 'table.age',
+      property: 'age',
+      tooltip: 'table.age.tooltip'
+    },
+    {
+      label: 'table.weight',
+      property: 'weight',
+      tooltip: 'table.weight.tooltip'
+    },
+  ]);
+
+  public itemsOri: Signal<DdrTableItem<Person>[]> = signal<DdrTableItem<Person>[]>([
+    {
+      item: {
+        name: 'Fernando',
+        surname: 'Ureña',
+        age: 35,
+        weight: 78,
+      },
+    },
+    {
+      item: {
+        name: 'Manuel',
+        surname: 'Gómez',
+        age: 30,
+        weight: 72,
+      }
+    },
+    {
+      item: {
+        name: 'Fernando',
+        surname: 'Ureña',
+        age: 35,
+        weight: 78,
+      }
+    },
+    {
+      item: {
+        name: 'Fernando',
+        surname: 'Ureña',
+        age: 35,
+        weight: 78,
+      }
+    },
+    {
+      item: {
+        name: 'Manuel',
+        surname: 'Gómez',
+        age: 30,
+        weight: 72,
+      }
+    },
+    {
+      item: {
+        name: 'Fernando',
+        surname: 'Ureña',
+        age: 35,
+        weight: 78,
+      }
+    },
+    {
+      item: {
+        name: 'Manuel',
+        surname: 'Gómez',
+        age: 30,
+        weight: 72,
+      }
+    },
+    {
+      item: {
+        name: 'Fernando',
+        surname: 'Ureña',
+        age: 35,
+        weight: 78,
+      }
+    },
+    {
+      item: {
+        name: 'Fernando',
+        surname: 'Ureña',
+        age: 35,
+        weight: 78,
+      }
+    },
+    {
+      item: {
+        name: 'Manuel',
+        surname: 'Gómez',
+        age: 30,
+        weight: 72,
+      }
+    },
+    {
+      item: {
+        name: 'Fernando',
+        surname: 'Ureña',
+        age: 35,
+        weight: 78,
+      }
+    },
+    {
+      item: {
+        name: 'Fernando',
+        surname: 'Ureña',
+        age: 35,
+        weight: 78,
+      }
+    },
+    {
+      item: {
+        name: 'Fernando',
+        surname: 'Ureña',
+        age: 35,
+        weight: 78,
+      }
+    },
+    {
+      item: {
+        name: 'Manuel',
+        surname: 'Gómez',
+        age: 30,
+        weight: 72,
+      }
+    },
+
+  ]);
+
+  public items: WritableSignal<DdrTableItem<Person>[]> = signal<DdrTableItem<Person>[]>([...this.itemsOri()]);
+
+  ngOnInit(): void {
+    this.sortItems([this.cols()[0]]);
+  }
+
+  sortItems(cols: DdrTableCol[]) {
+    this.ddrToastService.addSuccessMessage(
+      this.ddrTranslateService.getTranslate('table.sort'),
+      JSON.stringify(cols),
+    );
+
+    const items = [...this.itemsOri()];
+
+    items.sort((a, b) => {
+      const valueA = String(a.item[cols[0].property as keyof Person]);
+      const valueB = String(b.item[cols[0].property as keyof Person]);
+
+      const result = valueA.localeCompare(valueB);
+
+      return cols[0].modeSort === 'DESC' ? -result : result;
+    });
+
+    this.items.set(items);
+  }
+  
+}
+`,
+        classes: [
+          CLASSES['DdrTableCol'],
+          CLASSES['DdrTableItem'],
+          CLASSES['PersonTable']
+        ]
+      },
+      {
+        htmlCode: `<ddr-table 
+    [cols]="cols()" 
+    [items]="items()" 
+    [allowSort]="true"
+    (sort)="sortItems($event)" />`,
+        tsCode: `import {
+  Component,
+  inject,
+  Signal,
+  signal,
+  WritableSignal
+} from '@angular/core';
+import {
+  DdrTableCol,
+  DdrTableComponent,
+  DdrTableItem
+} from 'ddr-ng/components/table';
+import { DdrTranslateService } from 'ddr-ng/translate';
+import { Person } from './bean/person';
+import { DdrToastService } from 'ddr-ng/toast';
+
+@Component({
+  selector: 'table-showcase-13',
+  templateUrl: './table-showcase-13.component.html',
+  imports: [
+    DdrTableComponent
+  ]
+})
+export class TableShowcase13Component {
+
+  private readonly ddrToastService: DdrToastService = inject(DdrToastService);
+  private readonly ddrTranslateService: DdrTranslateService = inject(DdrTranslateService);
+
+  public cols: Signal<DdrTableCol[]> = signal<DdrTableCol[]>([
+    {
+      label: 'table.name',
+      property: 'name',
+      tooltip: 'table.name.tooltip'
+    },
+    {
+      label: 'table.surname',
+      property: 'surname',
+      tooltip: 'table.surname.tooltip',
+      sortable: false
+    },
+    {
+      label: 'table.age',
+      property: 'age',
+      tooltip: 'table.age.tooltip',
+      sortable: false
+    },
+    {
+      label: 'table.weight',
+      property: 'weight',
+      tooltip: 'table.weight.tooltip'
+    },
+  ]);
+
+  public itemsOri: Signal<DdrTableItem<Person>[]> = signal<DdrTableItem<Person>[]>([
+    {
+      item: {
+        name: 'Fernando',
+        surname: 'Ureña',
+        age: 35,
+        weight: 78,
+      },
+    },
+    {
+      item: {
+        name: 'Manuel',
+        surname: 'Gómez',
+        age: 30,
+        weight: 72,
+      }
+    },
+    {
+      item: {
+        name: 'Fernando',
+        surname: 'Ureña',
+        age: 35,
+        weight: 78,
+      }
+    },
+    {
+      item: {
+        name: 'Fernando',
+        surname: 'Ureña',
+        age: 35,
+        weight: 78,
+      }
+    },
+    {
+      item: {
+        name: 'Manuel',
+        surname: 'Gómez',
+        age: 30,
+        weight: 72,
+      }
+    },
+    {
+      item: {
+        name: 'Fernando',
+        surname: 'Ureña',
+        age: 35,
+        weight: 78,
+      }
+    },
+    {
+      item: {
+        name: 'Manuel',
+        surname: 'Gómez',
+        age: 30,
+        weight: 72,
+      }
+    },
+    {
+      item: {
+        name: 'Fernando',
+        surname: 'Ureña',
+        age: 35,
+        weight: 78,
+      }
+    },
+    {
+      item: {
+        name: 'Fernando',
+        surname: 'Ureña',
+        age: 35,
+        weight: 78,
+      }
+    },
+    {
+      item: {
+        name: 'Manuel',
+        surname: 'Gómez',
+        age: 30,
+        weight: 72,
+      }
+    },
+    {
+      item: {
+        name: 'Fernando',
+        surname: 'Ureña',
+        age: 35,
+        weight: 78,
+      }
+    },
+    {
+      item: {
+        name: 'Fernando',
+        surname: 'Ureña',
+        age: 35,
+        weight: 78,
+      }
+    },
+    {
+      item: {
+        name: 'Fernando',
+        surname: 'Ureña',
+        age: 35,
+        weight: 78,
+      }
+    },
+    {
+      item: {
+        name: 'Manuel',
+        surname: 'Gómez',
+        age: 30,
+        weight: 72,
+      }
+    },
+
+  ]);
+
+  public items: WritableSignal<DdrTableItem<Person>[]> = signal<DdrTableItem<Person>[]>([...this.itemsOri()]);
+
+  sortItems(cols: DdrTableCol[]) {
+    this.ddrToastService.addSuccessMessage(
+      this.ddrTranslateService.getTranslate('table.sort'),
+      JSON.stringify(cols),
+    );
+
+    const items = [...this.itemsOri()];
+
+    items.sort((a, b) => {
+      for (const col of cols) {
+        const valueA = String(a.item[col.property as keyof Person]);
+        const valueB = String(b.item[col.property as keyof Person]);
+
+        const result = valueA.localeCompare(valueB);
+
+        if (result !== 0) {
+          return col.modeSort === 'DESC' ? -result : result;
+        }
+      }
+
+      return 0;
+    });
+
+    this.items.set(items);
+  }
+
+}
+`,      
+        classes: [
+          CLASSES['DdrTableCol'],
+          CLASSES['DdrTableItem'],
+          CLASSES['PersonTable']
+        ]
+      },
+      {
+        htmlCode: `<ddr-table 
+    [cols]="cols()" 
+    [items]="items()" 
+    [allowSort]="true"
+    [multipleSort]="true"
+    (sort)="sortItems($event)" />`,
+        tsCode: `import {
+  Component,
+  inject,
+  Signal,
+  signal,
+  WritableSignal
+} from '@angular/core';
+
+import { DdrTableCol, DdrTableComponent, DdrTableItem } from 'ddr-ng/components/table';
+import { Person } from './bean/person';
+import { DdrTranslateService } from 'ddr-ng/translate';
+import { DdrToastService } from 'ddr-ng/toast';
+
+@Component({
+  selector: 'table-showcase-14',
+  templateUrl: './table-showcase-14.component.html',
+  imports: [
+    DdrTableComponent
+  ]
+})
+export class TableShowcase14Component {
+
+  private readonly ddrToastService: DdrToastService = inject(DdrToastService);
+  private readonly ddrTranslateService: DdrTranslateService = inject(DdrTranslateService);
+
+  public cols: Signal<DdrTableCol[]> = signal<DdrTableCol[]>([
+    {
+      label: 'table.name',
+      property: 'name',
+      tooltip: 'table.name.tooltip'
+    },
+    {
+      label: 'table.surname',
+      property: 'surname',
+      tooltip: 'table.surname.tooltip'
+    },
+    {
+      label: 'table.age',
+      property: 'age',
+      tooltip: 'table.age.tooltip'
+    },
+    {
+      label: 'table.weight',
+      property: 'weight',
+      tooltip: 'table.weight.tooltip'
+    },
+  ]);
+
+  public itemsOri: Signal<DdrTableItem<Person>[]> = signal<DdrTableItem<Person>[]>([
+    {
+      item: {
+        name: 'Fernando',
+        surname: 'Ureña',
+        age: 35,
+        weight: 78,
+      },
+    },
+    {
+      item: {
+        name: 'Manuel',
+        surname: 'Gómez',
+        age: 30,
+        weight: 72,
+      },
+    },
+    {
+      item: {
+        name: 'Fernando',
+        surname: 'García',
+        age: 35,
+        weight: 80,
+      },
+    },
+    {
+      item: {
+        name: 'Ana',
+        surname: 'López',
+        age: 28,
+        weight: 60,
+      },
+    },
+    {
+      item: {
+        name: 'Fernando',
+        surname: 'Ureña',
+        age: 30,
+        weight: 75,
+      },
+    },
+    {
+      item: {
+        name: 'Manuel',
+        surname: 'Gómez',
+        age: 35,
+        weight: 72,
+      },
+    },
+    {
+      item: {
+        name: 'Ana',
+        surname: 'García',
+        age: 28,
+        weight: 65,
+      },
+    },
+    {
+      item: {
+        name: 'Fernando',
+        surname: 'García',
+        age: 35,
+        weight: 75,
+      },
+    },
+    {
+      item: {
+        name: 'Manuel',
+        surname: 'Pérez',
+        age: 30,
+        weight: 80,
+      },
+    },
+    {
+      item: {
+        name: 'Ana',
+        surname: 'López',
+        age: 32,
+        weight: 60,
+      },
+    },
+    {
+      item: {
+        name: 'Fernando',
+        surname: 'Ureña',
+        age: 35,
+        weight: 82,
+      },
+    },
+    {
+      item: {
+        name: 'Manuel',
+        surname: 'Gómez',
+        age: 30,
+        weight: 75,
+      },
+    },
+    {
+      item: {
+        name: 'Ana',
+        surname: 'García',
+        age: 28,
+        weight: 60,
+      },
+    },
+    {
+      item: {
+        name: 'Fernando',
+        surname: 'García',
+        age: 30,
+        weight: 78,
+      },
+    },
+    {
+      item: {
+        name: 'Manuel',
+        surname: 'Pérez',
+        age: 35,
+        weight: 80,
+      },
+    },
+  ]);
+
+  public items: WritableSignal<DdrTableItem<Person>[]> = signal<DdrTableItem<Person>[]>([...this.itemsOri()]);
+
+  sortItems(cols: DdrTableCol[]) {
+    this.ddrToastService.addSuccessMessage(
+      this.ddrTranslateService.getTranslate('table.sort'),
+      JSON.stringify(cols),
+    );
+
+    const items = [...this.itemsOri()];
+
+    items.sort((a, b) => {
+      for (const col of cols) {
+        const valueA = String(a.item[col.property as keyof Person]);
+        const valueB = String(b.item[col.property as keyof Person]);
+
+        const result = valueA.localeCompare(valueB);
+
+        if (result !== 0) {
+          return col.modeSort === 'DESC' ? -result : result;
+        }
+      }
+
+      return 0;
+    });
+
+    this.items.set(items);
+  }
+
+}
+`,      
+        classes: [
+          CLASSES['DdrTableCol'],
+          CLASSES['DdrTableItem'],
+          CLASSES['PersonTable']
+        ]
+      },
+      {
+        htmlCode: `<ddr-table 
+    [cols]="cols()" 
+    [items]="items()"
+    [canSelectItems]="false"
+    [pageSize]="25" />`,
+        tsCode: `import {
+  Component,
+  Signal,
+  signal
+} from '@angular/core';
+import {
+  DdrTableCol,
+  DdrTableComponent,
+  DdrTableItem
+} from 'ddr-ng/components/table';
+import { Person } from './bean/person';
+
+@Component({
+  selector: 'table-showcase-15',
+  templateUrl: './table-showcase-15.component.html',
+  imports: [
+    DdrTableComponent
+  ]
+})
+export class TableShowcase15Component {
+
+  public cols: Signal<DdrTableCol[]> = signal<DdrTableCol[]>([
+    {
+      label: 'table.name',
+      property: 'name',
+      tooltip: 'table.name.tooltip',
+    },
+    {
+      label: 'table.surname',
+      property: 'surname',
+      tooltip: 'table.surname.tooltip',
+    },
+    {
+      label: 'table.age',
+      property: 'age',
+      tooltip: 'table.age.tooltip',
+    },
+    {
+      label: 'table.weight',
+      property: 'weight',
+      tooltip: 'table.weight.tooltip',
+    },
+  ]);
+
+  public items: Signal<DdrTableItem<Person>[]> = signal<DdrTableItem<Person>[]>([
+    {
+      item: {
+        name: 'Fernando',
+        surname: 'Ureña',
+        age: 35,
+        weight: 78,
+      },
+    },
+    {
+      item: {
+        name: 'Manuel',
+        surname: 'Gómez',
+        age: 30,
+        weight: 72,
+      },
+    },
+    {
+      item: {
+        name: 'Fernando',
+        surname: 'Ureña',
+        age: 35,
+        weight: 78,
+      },
+    },
+    {
+      item: {
+        name: 'Manuel',
+        surname: 'Gómez',
+        age: 30,
+        weight: 72,
+      },
+    },
+    {
+      item: {
+        name: 'Fernando',
+        surname: 'Ureña',
+        age: 35,
+        weight: 78,
+      },
+    },
+    {
+      item: {
+        name: 'Manuel',
+        surname: 'Gómez',
+        age: 30,
+        weight: 72,
+      },
+    },
+    {
+      item: {
+        name: 'Fernando',
+        surname: 'Ureña',
+        age: 35,
+        weight: 78,
+      },
+    },
+    {
+      item: {
+        name: 'Fernando',
+        surname: 'Ureña',
+        age: 35,
+        weight: 78,
+      },
+    },
+    {
+      item: {
+        name: 'Manuel',
+        surname: 'Gómez',
+        age: 30,
+        weight: 72,
+      },
+    },
+    {
+      item: {
+        name: 'Fernando',
+        surname: 'Ureña',
+        age: 35,
+        weight: 78,
+      },
+    },
+    {
+      item: {
+        name: 'Manuel',
+        surname: 'Gómez',
+        age: 30,
+        weight: 72,
+      },
+    },
+    {
+      item: {
+        name: 'Fernando',
+        surname: 'Ureña',
+        age: 35,
+        weight: 78,
+      },
+    },
+    {
+      item: {
+        name: 'Fernando',
+        surname: 'Ureña',
+        age: 35,
+        weight: 78,
+      },
+    },
+    {
+      item: {
+        name: 'Manuel',
+        surname: 'Gómez',
+        age: 30,
+        weight: 72,
+      },
+    },
+  ]);
+
+}
+`,      
+        classes: [
+          CLASSES['DdrTableCol'],
+          CLASSES['DdrTableItem'],
+          CLASSES['PersonTable']
+        ]
+      },
     ],
     inputs: [
       {
@@ -2242,7 +3000,7 @@ export class TableShowcaseComponent {
       },
       {
         item: {
-          name: 'optionsRowsPagination',
+          name: 'optionsPageSizePagination',
           description: 'table.input.optionsrowspagination',
           required: false,
           default: '[]',
@@ -2251,26 +3009,17 @@ export class TableShowcaseComponent {
       },
       {
         item: {
-          name: 'showTotal',
-          description: 'table.input.showtotal',
+          name: 'showSummary',
+          description: 'table.input.showsummary',
           required: false,
-          default: '[]',
-          type: 'number[]'
+          default: 'true',
+          type: 'boolean'
         }
       },
       {
         item: {
-          name: 'allowChangeRows',
-          description: 'table.input.allowchangerows',
-          required: false,
-          default: '[]',
-          type: 'number[]'
-        }
-      },
-      {
-        item: {
-          name: 'allowChangeRows',
-          description: 'table.input.allowchangerows',
+          name: 'allowChangePageSize',
+          description: 'table.input.allowChangePageSize',
           required: false,
           default: 'true',
           type: 'boolean'
@@ -2305,8 +3054,17 @@ export class TableShowcaseComponent {
       },
       {
         item: {
-          name: 'canSort',
+          name: 'allowSort',
           description: 'table.input.cansort',
+          required: false,
+          default: 'false',
+          type: 'boolean'
+        }
+      },
+      {
+        item: {
+          name: 'multipleSort',
+          description: 'table.input.multiplesort',
           required: false,
           default: 'false',
           type: 'boolean'
@@ -2363,34 +3121,16 @@ export class TableShowcaseComponent {
           name: 'labelNoResults',
           description: 'table.input.labelnoresults',
           required: false,
-          default: 'undefined',
+          default: 'table.no.results',
           type: 'string'
         }
       },
       {
         item: {
-          name: 'labelRegisters',
-          description: 'table.input.labelregisters',
+          name: 'labelRegistersPagination',
+          description: 'table.input.labelregisterspagination',
           required: false,
-          default: 'undefined',
-          type: 'string'
-        }
-      },
-      {
-        item: {
-          name: 'labelRegister',
-          description: 'table.input.labelregister',
-          required: false,
-          default: 'undefined',
-          type: 'string'
-        }
-      },
-      {
-        item: {
-          name: 'labelToPagination',
-          description: 'table.input.labeltopagination',
-          required: false,
-          default: 'undefined',
+          default: 'paginator.items',
           type: 'string'
         }
       },
@@ -2399,7 +3139,16 @@ export class TableShowcaseComponent {
           name: 'labelOfPagination',
           description: 'table.input.labelofpagination',
           required: false,
-          default: 'undefined',
+          default: 'paginator.of',
+          type: 'string'
+        }
+      },
+      {
+        item: {
+          name: 'labelPageSizePagination',
+          description: 'table.input.labelpagesizepagination',
+          required: false,
+          default: 'paginator.pagesize',
           type: 'string'
         }
       },
@@ -2435,7 +3184,7 @@ export class TableShowcaseComponent {
       },
       {
         item: {
-          name: 'changeRow',
+          name: 'changePageSize',
           description: 'table.output.changerow',
           type: 'number'
         }
@@ -2459,26 +3208,26 @@ export class TableShowcaseComponent {
     translations: [
       {
         item: {
-          name: 'to',
-          description: 'table.translation.to'
+          name: 'table.no.results',
+          description: 'table.translation.no.results'
         }
       },
       {
         item: {
-          name: 'of',
+          name: 'paginator.of',
           description: 'table.translation.of'
         }
       },
       {
         item: {
-          name: 'register',
-          description: 'table.translation.register'
+          name: 'paginator.items',
+          description: 'table.translation.items'
         }
       },
       {
         item: {
-          name: 'registers',
-          description: 'table.translation.registers'
+          name: 'paginator.pagesize',
+          description: 'table.translation.pagesize'
         }
       },
     ],

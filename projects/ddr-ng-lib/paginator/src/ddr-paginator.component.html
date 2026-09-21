@@ -1,0 +1,50 @@
+<div class="ddr-paginator"
+    [class.ddr-paginator--center]="alignment() == constants.PAGINATOR_ALIGNMENT.CENTER"
+    [class.ddr-paginator--left]="alignment() == constants.PAGINATOR_ALIGNMENT.LEFT"
+    [class.ddr-paginator--right]="alignment() == constants.PAGINATOR_ALIGNMENT.RIGHT">
+    @if(showSummary() && normalizedTotalItems() > 0){
+        <div class="ddr-paginator__summary">
+            <span>{{startSummary()}}-{{endSummary()}} {{labelOf() | ddrTranslate}} {{normalizedTotalItems()}} {{labelItems() | ddrTranslate}}</span>
+        </div>
+    }
+    @if(totalPages() > 1){
+    <div class="ddr-paginator__buttons">
+        <ddr-button-multiple 
+            [buttons]="buttons()"
+            [showSelectedButton]="true"
+            [value]="valuePage()"
+            [size]="size()"
+            (action)="onPageChange($event)" />
+        </div>
+    }
+    @if(showGoToPage()){
+        <div class="ddr-paginator__gotopage">
+            <ddr-input-number
+                [label]="labelGoToPage() | ddrTranslate"
+                [size]="size()"
+                [min]="1"
+                [max]="totalPages()"
+                [name]="goToPageName()"
+                [(value)]="valueInputPage" />
+            <ddr-button 
+                [text]="labelButtonGoToPage() | ddrTranslate"
+                [disabled]="disabledButtonGoToPage()"
+                [size]="size()"
+                (action)="goToPage()" />
+        </div>
+    }
+    @if(allowChangePageSize() && pageSizeOptions().length){
+        <div class="ddr-paginator__pagesize">
+            <ddr-dropdown 
+                [label]="labelPageSize() | ddrTranslate"
+                [options]="pageSizeOptions()"
+                [showFilter]="false"
+                [orientation]="constants.ORIENTATION_DROPDOWN.TOP"
+                [name]="pageSizeName()"
+                [size]="size()"
+                [(value)]="pageSize"
+                (selectItem)="onChangePageSize($event)"        
+            />
+        </div>
+    }
+</div>

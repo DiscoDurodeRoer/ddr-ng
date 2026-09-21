@@ -1,0 +1,76 @@
+.ddr-paginator {
+    display: flex;
+    flex-direction: row;
+    align-items: end;
+    flex-wrap: wrap;
+
+    &--center {
+        justify-content: center;
+    }
+
+    &--left {
+        justify-content: flex-start;
+    }
+
+    &--right {
+        justify-content: flex-end;
+    }
+
+    &__summary {
+        display: inline-block;
+        font-size: 1.2rem;
+    }
+
+    &__buttons {
+        display: inline-block;
+    }
+
+    &__summary + &__buttons {
+        margin-left: 1rem;
+    }
+
+    &__gotopage {
+
+        display: flex;
+        flex-wrap: wrap;
+        align-items: flex-end;
+        margin-left: 1rem;
+
+        ddr-button {
+            margin-left: 0.5rem;
+        }
+
+        .ddr-input__input-container__label {
+            margin-bottom: 5px;
+        }
+
+        .ddr-input {
+            margin-top: 0px;
+            margin-bottom: 0px;
+            width: 100px;
+        }
+
+    }
+
+    &__pagesize {
+        display: inline-block;
+        margin-left: 1rem;
+
+        .ddr-dropdown {
+
+            .ddr-input-group {
+                margin-bottom: 0px;
+
+                .ddr-input__input-container__label {
+                    margin-bottom: 5px;
+                }
+
+                .ddr-input {
+                    margin-top: 0px;
+                    width: 100px;
+                }
+            }
+        }
+
+    }
+}

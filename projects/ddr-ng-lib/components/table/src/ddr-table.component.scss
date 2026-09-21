@@ -4,6 +4,7 @@
     &__table {
         width: 100%;
         margin: auto;
+        table-layout: fixed;
 
         &--header-row {
             &--checkbox {
@@ -36,7 +37,9 @@
             }
 
             td {
-                padding: 10px 0px;
+                padding: 10px 5px 10px 0px;
+                overflow-wrap: break-word;
+                word-break: break-word;
             }
 
             &--actions {

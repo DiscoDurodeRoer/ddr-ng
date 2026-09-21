@@ -1,0 +1,66 @@
+
+<form (submit)="submitForm($event)">
+    <ddr-steps 
+        [labelNext]="'steps.next' | ddrTranslate" 
+        [labelPrevious]="'steps.previous' | ddrTranslate"
+        [vertical]="true"
+        [submitButton]="submitButton()">
+
+        <ddr-step 
+            [titleStep]="'step.1' | ddrTranslate" 
+            [canGoNext]="!!personModel().name">
+            <ng-template #stepContent>
+                <ddr-input 
+                    [label]="'step.name' | ddrTranslate" 
+                    [formField]="personForm.name"
+                    [validate]="true">
+                    
+                        <ng-template #templateValid>
+                            <span>{{'input.ok' | ddrTranslate}}</span>
+                        </ng-template>
+
+                        <ng-template #templateErrors let-errors="errors">
+                            @for (error of errors(); track error.kind) {
+                                @switch(error.kind){
+                                    @case('required'){
+                                        <span>{{ 'input.value.required' | ddrTranslate }}</span>
+                                    }
+                                }
+                            }
+                        </ng-template>
+                    </ddr-input>
+            </ng-template>
+        </ddr-step>
+
+        <ddr-step 
+            [titleStep]="'step.2' | ddrTranslate" 
+            [canGoNext]="!!personModel().age">
+            <ng-template #stepContent>
+                <ddr-input-number 
+                    [label]="'step.age' | ddrTranslate" 
+                    [formField]="personForm.age"
+                    [validate]="true">
+                
+                        <ng-template #templateValid>
+                            <span>{{'input.ok' | ddrTranslate}}</span>
+                        </ng-template>
+
+                        <ng-template #templateErrors let-errors="errors">
+                            @for (error of errors(); track error.kind) {
+                                <span>{{error.message | ddrTranslate}} </span>
+                                @switch(error.kind){
+                                    @case('min'){
+                                        <span>{{error.min}}</span>
+                                    }
+                                    @case('max'){
+                                         <span>{{error.max}}</span>
+                                    }
+                                }
+                            }
+                        </ng-template>
+                </ddr-input-number>
+            </ng-template>
+        </ddr-step>
+
+    </ddr-steps>
+</form>

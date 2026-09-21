@@ -1,0 +1,7 @@
+export interface Person {
+    name: string;
+    surname: string;
+    age: number;
+    weight: number
+    documentation?: { nif: string }
+}

@@ -10,7 +10,6 @@
   "allowedNonPeerDependencies": [
     "bootstrap",
     "jquery",
-    "ngx-pagination",
     "bootstrap-icons"
   ]
 }

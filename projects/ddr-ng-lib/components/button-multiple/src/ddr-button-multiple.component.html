@@ -6,6 +6,8 @@
         [icon]="buttons()[0].icon"
         [tooltipText]="buttons()[0].tooltipText | ddrTranslate"
         [size]="size()"
+        [iconPosition]="buttons()[0].iconPosition || 'left'"
+        [disabled]="buttons()[0].disabled || false"
         [transparent]="transparent()"
         (action)="clickButton(buttons()[0])"
        />
@@ -23,6 +25,8 @@
           [icon]="button.icon"
           [tooltipText]="button.tooltipText | ddrTranslate"
           [size]="size()"
+          [iconPosition]="button.iconPosition || 'left'"
+          [disabled]="button.disabled || false"
           [transparent]="transparent()"
           (action)="clickButton(button)"
          />

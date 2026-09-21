@@ -3,6 +3,7 @@
     &__horizontal {
 
         display: flex;
+        flex-wrap: wrap;
         height: 36px;
 
         &__info-step {
@@ -42,7 +43,7 @@
                 flex: 1;
                 display: inline-block;
                 width: calc(100% - 30px);
-                padding-left: 15px;
+                padding-left: 12px;
 
                 span {
                     display: inline-block;
@@ -92,7 +93,7 @@
 
                 display: inline-block;
                 width: calc(100% - 30px);
-                padding-left: 15px;
+                padding-left: 12px;
 
                 span {
                     display: inline-block;
@@ -118,8 +119,7 @@
 
         &__content {
             display: inline-block;
-            width: calc(100% - 30px);
-            padding-left: 30px;
+            width: 100%;
             padding-top: 15px;
             padding-bottom: 15px;
         }

@@ -1,7 +1,16 @@
-import { Component, inject, signal, Signal } from '@angular/core';
-import { DdrTableCol, DdrTableComponent, DdrTableItem } from 'ddr-ng/components/table';
+import {
+  Component,
+  inject,
+  signal,
+  Signal
+} from '@angular/core';
+import {
+  DdrTableCol,
+  DdrTableComponent,
+  DdrTableItem
+} from 'ddr-ng/components/table';
 import { DdrToastService } from 'ddr-ng/toast';
-import { DdrTranslatePipe, DdrTranslateService } from 'ddr-ng/translate';
+import { DdrTranslateService } from 'ddr-ng/translate';
 import { DdrAction } from 'ddr-ng/models';
 import { Person } from './bean/person';
 
@@ -9,8 +18,7 @@ import { Person } from './bean/person';
   selector: 'table-showcase-8',
   templateUrl: './table-showcase-8.component.html',
   imports: [
-    DdrTableComponent,
-    DdrTranslatePipe
+    DdrTableComponent
   ],
   providers: [
     DdrToastService

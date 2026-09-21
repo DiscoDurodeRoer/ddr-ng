@@ -794,7 +794,10 @@ export class DropdownShowcaseComponent {
     WritableSignal
   } from '@angular/core';
   import { DdrDropdownComponent } from 'ddr-ng/components/dropdown';
-  import { DdrButton, DdrSelectItem } from 'ddr-ng/models';
+  import { 
+    DdrButtonSelectable, 
+    DdrSelectItem 
+  } from 'ddr-ng/models';
   import { DdrTranslatePipe } from 'ddr-ng/translate';
   import { DdrOrientationDropdown } from 'ddr-ng/types';
   import { ProgrammingLanguage } from './bean/programming-language';
@@ -850,7 +853,7 @@ export class DropdownShowcaseComponent {
       },
     ]);
   
-    public buttonsOrientation: Signal<DdrButton[]> = signal<DdrButton[]>([
+    public buttonsOrientation: Signal<DdrButtonSelectable[]> = signal<DdrButtonSelectable[]>([
       {
         text: 'bottom',
         value: 'bottom',

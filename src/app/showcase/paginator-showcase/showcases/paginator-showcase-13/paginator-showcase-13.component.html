@@ -1,0 +1,26 @@
+<div class="row mt-3 mb-3">
+    <div class="col-12">
+        <p>{{'paginator.alignment' | ddrTranslate}}:</p>
+        <ddr-button-multiple 
+            [buttons]="buttonsAlignment()" 
+            [showSelectedButton]="true" 
+            [(value)]="alignment" />
+    </div>
+</div>
+
+<ul>
+    @for(item of data() | ddrPaginator: page() : pageSize(); track item){
+        <li>{{item}}</li>
+    }
+</ul>
+
+<ddr-paginator
+    [(page)]="page"
+    [(pageSize)]="pageSize"
+    [totalItems]="data().length"
+    [showSummary]="true"    
+    [allowChangePageSize]="true"
+    [pageSizeValues]="pageSizeOptions()"
+    pageSizeName="page-size-13"
+    [alignment]="alignment()"
+/>

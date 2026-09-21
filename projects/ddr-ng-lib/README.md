@@ -27,7 +27,7 @@ It is a set of reusable components, services, pipes and directives for our proje
 To install the ddr library, run the following command:
 
 ```bash
-npm install ddr-ng@22.0.2
+npm install ddr-ng@22.0.3
 ```
 
 ## 🛠️ What should we include in the angular.json file?

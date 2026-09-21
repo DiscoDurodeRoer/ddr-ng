@@ -5,18 +5,14 @@ import {
   DdrTableItem
 } from 'ddr-ng/components/table';
 import { DdrToastService } from 'ddr-ng/toast';
-import {
-  DdrTranslatePipe,
-  DdrTranslateService
-} from 'ddr-ng/translate';
+import { DdrTranslateService } from 'ddr-ng/translate';
 import { Person } from './bean/person';
 
 @Component({
   selector: 'table-showcase-4',
   templateUrl: './table-showcase-4.component.html',
   imports: [
-    DdrTableComponent,
-    DdrTranslatePipe
+    DdrTableComponent
   ],
   providers: [
     DdrToastService

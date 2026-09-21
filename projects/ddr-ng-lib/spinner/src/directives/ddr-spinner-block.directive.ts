@@ -1,10 +1,10 @@
-import { Directive, ViewContainerRef, ComponentRef, OnChanges, SimpleChanges, inject, Renderer2, ElementRef, input, InputSignal } from '@angular/core';
+import { Directive, ViewContainerRef, ComponentRef, inject, Renderer2, ElementRef, input, InputSignal, effect } from '@angular/core';
 import { DdrSpinnerComponent } from '../ddr-spinner.component';
 
 @Directive({
   selector: '[ddrSpinnerBlock]'
 })
-export class DdrSpinnerBlockDirective implements OnChanges {
+export class DdrSpinnerBlockDirective {
 
   private viewContainerRef: ViewContainerRef = inject(ViewContainerRef);
   private renderer: Renderer2 = inject(Renderer2);
@@ -15,14 +15,14 @@ export class DdrSpinnerBlockDirective implements OnChanges {
 
   private spinnerRef?: ComponentRef<DdrSpinnerComponent>;
 
-  ngOnChanges(changes: SimpleChanges): void {
-    if (changes['spinnerShow']) {
+  constructor() {
+    effect(() => {
       if (this.spinnerShow()) {
         this.createSpinner();
       } else {
         this.removeSpinner();
       }
-    }
+    })
   }
 
   private createSpinner(): void {

@@ -2,7 +2,8 @@ import {
   Component,
   inject,
   Signal,
-  signal
+  signal,
+  WritableSignal
 } from '@angular/core';
 import {
   DdrTableCol,
@@ -10,18 +11,14 @@ import {
   DdrTableItem
 } from 'ddr-ng/components/table';
 import { DdrToastService } from 'ddr-ng/toast';
-import {
-  DdrTranslatePipe,
-  DdrTranslateService
-} from 'ddr-ng/translate';
+import { DdrTranslateService } from 'ddr-ng/translate';
 import { Person } from './bean/person';
 
 @Component({
   selector: 'table-showcase-11',
   templateUrl: './table-showcase-11.component.html',
   imports: [
-    DdrTableComponent,
-    DdrTranslatePipe
+    DdrTableComponent
   ],
   providers: [
     DdrToastService
@@ -36,30 +33,26 @@ export class TableShowcase11Component {
     {
       label: 'table.name',
       property: 'name',
-      tooltip: 'table.name.tooltip',
-      canSort: true,
+      tooltip: 'table.name.tooltip'
     },
     {
       label: 'table.surname',
       property: 'surname',
-      tooltip: 'table.surname.tooltip',
-      canSort: true,
+      tooltip: 'table.surname.tooltip'
     },
     {
       label: 'table.age',
       property: 'age',
-      tooltip: 'table.age.tooltip',
-      canSort: true,
+      tooltip: 'table.age.tooltip'
     },
     {
       label: 'table.weight',
       property: 'weight',
-      tooltip: 'table.weight.tooltip',
-      canSort: true,
+      tooltip: 'table.weight.tooltip'
     },
   ]);
 
-  public items: Signal<DdrTableItem<Person>[]> = signal<DdrTableItem<Person>[]>([
+  public itemsOri: Signal<DdrTableItem<Person>[]> = signal<DdrTableItem<Person>[]>([
     {
       item: {
         name: 'Fernando',
@@ -175,17 +168,25 @@ export class TableShowcase11Component {
 
   ]);
 
-  selectItem(item: DdrTableItem<Person>) {
-    this.ddrToastService.addSuccessMessage(
-      this.ddrTranslateService.getTranslate('table.select.item'),
-      JSON.stringify(item),
-    );
-  }
+  public items: WritableSignal<DdrTableItem<Person>[]> = signal<DdrTableItem<Person>[]>([...this.itemsOri()]);
 
-  sortItems(col: DdrTableCol) {
+  sortItems(cols: DdrTableCol[]) {
     this.ddrToastService.addSuccessMessage(
       this.ddrTranslateService.getTranslate('table.sort'),
-      JSON.stringify(col),
+      JSON.stringify(cols),
     );
+
+    const items = [...this.itemsOri()];
+
+    items.sort((a, b) => {
+      const valueA = String(a.item[cols[0].property as keyof Person]);
+      const valueB = String(b.item[cols[0].property as keyof Person]);
+
+      const result = valueA.localeCompare(valueB);
+
+      return cols[0].modeSort === 'DESC' ? -result : result;
+    });
+
+    this.items.set(items);
   }
 }

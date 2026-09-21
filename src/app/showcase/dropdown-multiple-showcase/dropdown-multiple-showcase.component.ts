@@ -986,7 +986,7 @@ export class DropdownMultipleShowcaseComponent {
     WritableSignal
   } from '@angular/core';
   import {
-    DdrButton,
+    DdrButtonSelectable,
     DdrSelectItem
   } from 'ddr-ng/models';
   import { DdrDropdownMultipleComponent } from 'ddr-ng/components/dropdown-multiple';
@@ -1050,7 +1050,7 @@ export class DropdownMultipleShowcaseComponent {
   
     public value: WritableSignal<ProgrammingLanguage[]> = signal<ProgrammingLanguage[]>([]);
   
-    public buttonsOrientation: Signal<DdrButton[]> = signal<DdrButton[]>([
+    public buttonsOrientation: Signal<DdrButtonSelectable[]> = signal<DdrButtonSelectable[]>([
       {
         text: 'bottom',
         value: 'bottom',

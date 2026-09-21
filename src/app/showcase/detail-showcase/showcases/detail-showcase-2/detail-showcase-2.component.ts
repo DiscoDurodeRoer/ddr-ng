@@ -11,7 +11,7 @@ import {
   DdrDetailComponent,
   DdrDetailService
 } from 'ddr-ng/components/detail';
-import { DdrButton } from 'ddr-ng/models';
+import { DdrButton, DdrButtonSelectable } from 'ddr-ng/models';
 import { DdrToastService } from 'ddr-ng/toast';
 import {
   DdrTranslatePipe,
@@ -40,7 +40,7 @@ export class DetailShowcase2Component {
   public readonly ddrDetailService: DdrDetailService = inject(DdrDetailService);
 
   public position: WritableSignal<DdrPositionDetail> = signal<DdrPositionDetail>('right');
-  public buttonsPosition: WritableSignal<DdrButton[]> = signal<DdrButton[]>([
+  public buttonsPosition: WritableSignal<DdrButtonSelectable[]> = signal<DdrButtonSelectable[]>([
     {
       icon: 'bi bi-arrow-left',
       value: 'left',

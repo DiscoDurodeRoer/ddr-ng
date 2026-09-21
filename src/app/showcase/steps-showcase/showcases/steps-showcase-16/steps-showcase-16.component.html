@@ -1,0 +1,37 @@
+<div class="mb-3">
+    <ddr-button-multiple
+        [buttons]="buttons()"
+        [showSelectedButton]="true"
+        [(value)]="sizeButton" />
+</div>
+
+<ddr-steps 
+    [labelNext]="'steps.next' | ddrTranslate" 
+    [labelPrevious]="'steps.previous' | ddrTranslate"
+    [sizeButtons]="sizeButton()">
+
+    <ddr-step 
+        [titleStep]="'step.1' | ddrTranslate" 
+        [canGoNext]="true">
+        <ng-template #stepContent>
+            <p>{{'step.1' | ddrTranslate}}</p>
+        </ng-template>
+    </ddr-step>
+
+    <ddr-step 
+        [titleStep]="'step.2' | ddrTranslate" 
+        [canGoNext]="true">
+        <ng-template #stepContent>
+            <p>{{'step.2' | ddrTranslate}}</p>
+        </ng-template>
+    </ddr-step>
+
+    <ddr-step 
+        [titleStep]="'step.3' | ddrTranslate" 
+        [canGoNext]="true">
+        <ng-template #stepContent>
+            <p>{{'step.3' | ddrTranslate}}</p>
+        </ng-template>
+    </ddr-step>
+
+</ddr-steps>

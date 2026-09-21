@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { BaseShowcaseComponent } from '../base-showcase/base-showcase.component';
 import { DdrTranslatePipe } from 'ddr-ng/translate';
 import { ClickOutsideShowcase1Component } from './showcases/click-outside-showcase-1/click-outside-showcase-1.component';
-import { Documentation } from '../base-showcase/bean/documentation';
+import { CLASSES, Documentation } from '../base-showcase/bean/documentation';
 
 @Component({
   selector: 'click-outside-showcase',
@@ -58,7 +58,7 @@ export class ClickOutsideShowcaseComponent {
 } from '@angular/core';
 import { DdrButtonMultipleComponent } from 'ddr-ng/components/button-multiple';
 import { DdrClickOutsideDirective } from 'ddr-ng/directives/click-outside';
-import { DdrButton } from 'ddr-ng/models';
+import { DdrButtonSelectable } from 'ddr-ng/models';
 import { DdrToastService } from 'ddr-ng/toast';
 import {
   DdrTranslatePipe,
@@ -84,7 +84,7 @@ export class ClickOutsideShowcase1Component {
   private readonly ddrTranslateService: DdrTranslateService =
     inject(DdrTranslateService);
 
-  public buttonsModes: Signal<DdrButton[]> = signal<DdrButton[]>([
+  public buttonsModes: Signal<DdrButtonSelectable[]> = signal<DdrButtonSelectable[]>([
     {
       text: 'clickoutside.standard',
       value: 'standard',
@@ -116,7 +116,11 @@ export class ClickOutsideShowcase1Component {
     border: 1px solid #000;
     margin-top: 20px;
     user-select: none;
-}`
+}`,
+        classes: [
+          CLASSES['DdrButtonSelectable'],
+          CLASSES['DdrButton']
+        ]
       }
     ],
     inputs: [

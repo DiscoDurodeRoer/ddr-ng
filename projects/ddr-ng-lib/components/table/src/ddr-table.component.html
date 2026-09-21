@@ -1,148 +1,115 @@
-<div class="row ddr-table">
-  <div class="col-12">
-    <table class="ddr-table__table">
-      <thead>
-        <tr class="ddr-table__table--header-row">
-          @if (multiple() && items() && items().length > 0) {
-            <th class="ddr-table__table--header-row--checkbox" [style.width.%]="10">
-              <ddr-checkbox-binary
-                [(value)]="checkAll"
-                (clickCheck)="selectAll()"/>
-            </th>
-          }
-          @for (col of cols(); track col.property) {
-            <th class="ddr-table__table--header-cell" [style.width.%]="widthCells">
-              @if (col.tooltip) {
-                <i ddrTooltip [tooltipText]="col.tooltip | ddrTranslate" [tooltipOrientation]="constants.ORIENTATION.BOTTOM" class="bi bi-info-circle ddr-table__table--header-cell--tooltip"></i>
-              }
-              {{ col.label | ddrTranslate }}
-              @if (canSort() && col.canSort) {
-                <i class="bi d-inline-block me-1 cursor-pointer ddr-table__table--header-cell--sort"
-                  [class.bi-arrow-down-up]="!col.modeSort || col.modeSort == constants.MODE_SORT.NO_SORT"
-                  [class.bi-sort-down-alt]="col.modeSort == constants.MODE_SORT.DESCENDING"
-                  [class.bi-sort-up]="col.modeSort == constants.MODE_SORT.ASCENDING"
-                  (click)="onSort(col)"></i>
-              }
-            </th>
-          }
-          @if (showActions() && items().length > 0) {
-            <th [style.width.%]="10"></th>
-          }
+<div class="ddr-table">
+  <table class="ddr-table__table">
+    <thead>
+      <tr class="ddr-table__table--header-row">
+        @if (multiple() && items() && items().length > 0) {
+          <th class="ddr-table__table--header-row--checkbox" [style.width.%]="10">
+            <ddr-checkbox-binary
+              [(value)]="checkAll"
+              (clickCheck)="selectAll()"/>
+          </th>
+        }
+        @for (col of cols(); track col.property) {
+          <th class="ddr-table__table--header-cell" [style.width.%]="widthCells()">
+            @if (col.tooltip) {
+              <i ddrTooltip [tooltipText]="col.tooltip | ddrTranslate" [tooltipOrientation]="constants.ORIENTATION.BOTTOM" class="bi bi-info-circle ddr-table__table--header-cell--tooltip"></i>
+            }
+            {{ col.label | ddrTranslate }}
+            @if (allowSort() && col.sortable !== false) {
+              <i class="bi d-inline-block me-1 cursor-pointer ddr-table__table--header-cell--sort"
+                [class.bi-arrow-down-up]="!col.modeSort || col.modeSort == constants.MODE_SORT.NO_SORT"
+                [class.bi-sort-down-alt]="col.modeSort == constants.MODE_SORT.DESCENDING"
+                [class.bi-sort-up]="col.modeSort == constants.MODE_SORT.ASCENDING"
+                (click)="onSort(col)"></i>
+            }
+          </th>
+        }
+        @if (showActions() && items().length > 0) {
+          <th [style.width.%]="15"></th>
+        }
+      </tr>
+    </thead>
+    <tbody>
+      @if (items().length == 0) {
+        <tr class="ddr-table__table--body-row text-center" [class.ddr-table__table--border]="showBorder()">
+          <td [style.width.%]="100" [attr.colspan]="colspan()">{{ labelNoResults() | ddrTranslate}}</td>
         </tr>
-      </thead>
-      <tbody>
-        @if (items().length == 0) {
-          <tr class="ddr-table__table--body-row text-center" [class.ddr-table__table--border]="showBorder()">
-            <td [style.width.%]="100" [attr.colspan]="colspan()">{{ labelNoResults() }}</td>
-          </tr>
-        }
-        @if (items() && items().length > 0) {
-          @for (
-            it of items()
-            | paginate: { id, itemsPerPage: rows(), currentPage: pageTable(), totalItems: totalItemsTable() }; track
-            index; let index = $index) {
-            <tr class="ddr-table__table--body-row" 
-              [class.ddr-table__table--body-row--hoveable]="canSelectItems()"
-              [class.ddr-table__table--border]="showBorder()"
-              (click)="onSelectItem($event, it)">
-              @if (multiple()) {
-                <td class="ddr-table__table--body-row--checkbox">
-                  <ddr-checkbox-binary
-                    [(value)]="it.selected!"
-                    (clickCheck)="sendMultipleItems()" />
-                </td>
-              }
-              
-              @for (col of cols(); track col.property) {
-                <td class="ddr-table__table--body-cell">
-                  <span class="ddr-table__table--body-cell--title-mobile">
-                    {{ col.label | ddrTranslate }}
-                    @if (col.tooltip) {
-                      <i ddrTooltip [tooltipText]="col.tooltip | ddrTranslate" [tooltipOrientation]="constants.ORIENTATION.BOTTOM" class="bi bi-info-circle ddr-table__table--body-cell--title-mobile__tooltip"></i>
-                    } 
-                  </span>
-                  <span class="ddr-table__table--body-cell--text-mobile">
-                    @if (templateCell()) {
-                      <ng-template 
-                        [ngTemplateOutlet]="templateCell()" 
-                        [ngTemplateOutletContext]="{ item: it.item, col }" />
-                    } @else {
-                      {{ it.item | ddrNestedProperty: col.property }}
-                    }
-                  </span>
-                </td>
-              }
-              
-              @if (showActions() && it.actions && it.actions.length > 0) {
-                <td class="ddr-table__table--body-row--actions">
-                  <ddr-button-split
-                    [actions]="it.actions"
-                    position="bottom-left"
-                    [showFirstOnlyIcon]="true"
-                    (selectAction)="onSelectAction($event, it.item, index)"/>
-                </td>
-              }
-            </tr>
-          }
-        }
-      </tbody>
-      @if (showFooter()) {
-        <tfoot>
-          <tr class="ddr-table__table--foot-row">
-            <td [attr.colspan]="colspan()" class="ddr-table__table--foot-cell">
-              <div class="row">
-                @if (allowChangeRows() && items() && items().length > 0) {
-                  <div class="col-6 text-start"
-                    [class.col-md-6]="(showTotal() || showPagination()) && items().length > 0"
-                    [class.col-12]="!((showTotal() || showPagination()) && items().length > 0)">
-                    <ddr-dropdown
-                      [inline]="true"
-                      [options]="optionsRows()"
-                      [showFilter]="false"
-                      [name]="id"
-                      [orientation]="constants.ORIENTATION_DROPDOWN.TOP"
-                      [(value)]="rows"
-                      (selectItem)="changeRows($event)">
-                      <ng-template #itemTemplate let-item="item">
-                        <div class="text-center">{{ item.label }}</div>
-                      </ng-template>
-                    </ddr-dropdown>
-                  </div>
-                }
-                @if ((showTotal() || showPagination()) && items().length > 0) {
-                  <div class="text-end mt-4"
-                    [class.col-md-6]="allowChangeRows() && items() && items().length > 0"
-                    [class.col-md-6]="!(allowChangeRows() && items() && items().length > 0)">
-                    @if (showTotal() && showPagination() && totalItemsTable() > rows()) {
-                      <span class="d-inline-block">
-                        {{ rows() * (pageTable() - 1) + 1 }}
-                        {{ labelToPagination() || ("to" | ddrTranslate) }}
-                        {{ totalItemsTable() < (rows() * pageTable()) ? totalItemsTable() : (rows() * pageTable()) }} {{ labelOfPagination() || ("of" | ddrTranslate) }}
-                        {{ totalItemsTable() }} {{ labelRegisters() }}
-                      </span>
-                    }
-                    @if (showTotal() && showPagination() && (!totalItemsTable() || totalItemsTable() <= rows())) {
-                      <span class="d-inline-block">
-                        {{ items().length }}
-                        @if (items().length == 1) {
-                          {{ labelRegister() || ("register" | ddrTranslate) }}
-                        }
-                        @if (items().length > 1) {
-                          {{ labelRegisters() || ("registers" | ddrTranslate) }}
-                        }
-                      </span>
-                    }
-                    @if (showPagination()) {
-                      <pagination-controls class="d-inline-block" [id]="id" [autoHide]="true"
-                        [previousLabel]="''" [nextLabel]="''" (pageChange)="onPageChange($event)" />
-                    }
-                  </div>
-                }
-              </div>
-            </td>
-          </tr>
-        </tfoot>
       }
-    </table>
-  </div>
+      @if (items() && items().length > 0) {
+        @for (
+          it of items()
+          | ddrPaginator: pageTable(): rows() : startPageZero() ; track
+          index; let index = $index) {
+          <tr class="ddr-table__table--body-row" 
+            [class.ddr-table__table--body-row--hoveable]="canSelectItems()"
+            [class.ddr-table__table--border]="showBorder()"
+            (click)="onSelectItem($event, it)">
+            @if (multiple()) {
+              <td class="ddr-table__table--body-row--checkbox">
+                <ddr-checkbox-binary
+                  [(value)]="it.selected!"
+                  (clickCheck)="sendMultipleItems()" />
+              </td>
+            }
+            
+            @for (col of cols(); track col.property) {
+              <td class="ddr-table__table--body-cell">
+                <span class="ddr-table__table--body-cell--title-mobile">
+                  {{ col.label | ddrTranslate }}
+                  @if (col.tooltip) {
+                    <i ddrTooltip [tooltipText]="col.tooltip | ddrTranslate" [tooltipOrientation]="constants.ORIENTATION.BOTTOM" class="bi bi-info-circle ddr-table__table--body-cell--title-mobile__tooltip"></i>
+                  } 
+                </span>
+                <span class="ddr-table__table--body-cell--text-mobile">
+                  @if (templateCell()) {
+                    <ng-template 
+                      [ngTemplateOutlet]="templateCell()" 
+                      [ngTemplateOutletContext]="{ item: it.item, col }" />
+                  } @else {
+                    {{ it.item | ddrNestedProperty: col.property }}
+                  }
+                </span>
+              </td>
+            }
+            
+            @if (showActions() && it.actions && it.actions.length > 0) {
+              <td class="ddr-table__table--body-row--actions">
+                <ddr-button-split
+                  [actions]="it.actions"
+                  position="bottom-left"
+                  [showFirstOnlyIcon]="true"
+                  (selectAction)="onSelectAction($event, it.item, index)"/>
+              </td>
+            }
+          </tr>
+        }
+      }
+    </tbody>
+    @if (showFooter()) {
+      <tfoot>
+        <tr class="ddr-table__table--foot-row">
+          <td [attr.colspan]="colspan()" class="ddr-table__table--foot-cell">
+              @if ((showSummary() || showPagination()) && items().length > 0) {
+                <ddr-paginator
+                  [(page)]="pageTable"
+                  [(pageSize)]="rows"
+                  [totalItems]="totalItemsTable()"
+                  [allowChangePageSize]="allowChangePageSize()"
+                  [showSummary]="showSummary()"
+                  [pageSizeValues]="optionsPageSizePagination()"
+                  [labelOf]="labelOfPagination()"
+                  [labelItems]="labelRegistersPagination()"
+                  [labelPageSize]="labelPageSizePagination()"
+                  alignment="right"
+                  [pageSizeName]="`change-page-size-${id}`"
+                  [goToPageName]="`go-to-page-${id}`"
+                  (changePage)="onPageChange($event)"
+                  (changePageSize)="onChangePageSize($event)"
+                />
+              }
+          </td>
+        </tr>
+      </tfoot>
+    }
+  </table>
 </div>

@@ -87,7 +87,7 @@ export class ToastShowcase1Component {
 } from '@angular/core';
 import { DdrButtonComponent } from 'ddr-ng/components/button';
 import { DdrButtonMultipleComponent } from 'ddr-ng/components/button-multiple';
-import { DdrButton } from 'ddr-ng/models';
+import { DdrButtonSelectable } from 'ddr-ng/models';
 import { DdrToastService } from 'ddr-ng/toast';
 import {
   DdrTranslatePipe,
@@ -111,7 +111,7 @@ export class ToastShowcase2Component {
   private ddrToastService: DdrToastService = inject(DdrToastService);
   private ddrTranslateService: DdrTranslateService = inject(DdrTranslateService);
 
-  public buttons: Signal<DdrButton[]> = signal<DdrButton[]>([
+  public buttons: Signal<DdrButtonSelectable[]> = signal<DdrButtonSelectable[]>([
     {
       text: 'toast.info',
       value: 'info',
@@ -190,7 +190,7 @@ export class ToastShowcase2Component {
 } from '@angular/core';
 import { DdrButtonComponent } from 'ddr-ng/components/button';
 import { DdrButtonMultipleComponent } from 'ddr-ng/components/button-multiple';
-import { DdrButton } from 'ddr-ng/models';
+import { DdrButtonSelectable } from 'ddr-ng/models';
 import { DdrToastService } from 'ddr-ng/toast';
 import {
   DdrTranslatePipe,
@@ -219,7 +219,7 @@ export class ToastShowcase3Component {
     effect(() => this.ddrToastService.orientation = this.toastOrientation())
   }
 
-  public buttonsOrientation: Signal<DdrButton[]> = signal<DdrButton[]>([
+  public buttonsOrientation: Signal<DdrButtonSelectable[]> = signal<DdrButtonSelectable[]>([
     {
       icon: 'bi bi-arrow-up-right',
       value: 'top-right',

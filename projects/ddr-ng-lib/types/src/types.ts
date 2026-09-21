@@ -65,3 +65,9 @@ export type DdrAutocompleteType =
     | 'country-name';
 
 export type DdrSafeType = 'html' | 'style' | 'url' | 'resourceUrl'
+
+export type DdrPaginatorNavigationDisplay = 'icon' | 'text' | 'both';
+
+export type DdrPaginatorAlignment = 'center' | 'left' | 'right';
+
+export type DdrTableModeSort = null | 'ASC' | 'DESC';

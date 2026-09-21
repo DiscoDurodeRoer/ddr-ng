@@ -52,7 +52,7 @@ export class DdrInputNumberComponent implements AfterViewInit, FormValueControl<
   readonly focus: InputSignal<boolean> = input<boolean>(false);
   readonly transparent: InputSignal<boolean> = input<boolean>(false);
   readonly autocomplete: InputSignal<DdrAutocompleteType> = input<DdrAutocompleteType>('off');
-  readonly errors: InputSignal<readonly ValidationError.WithOptionalFieldTree[]> | InputSignalWithTransform<readonly ValidationError.WithOptionalFieldTree[], unknown> = input<readonly WithOptionalFieldTree<ValidationError>[]>([]);;
+  readonly errors: InputSignal<readonly ValidationError.WithOptionalFieldTree[]> | InputSignalWithTransform<readonly ValidationError.WithOptionalFieldTree[], unknown> = input<readonly WithOptionalFieldTree<ValidationError>[]>([]);
   readonly disabled: InputSignal<boolean> | InputSignalWithTransform<boolean, unknown> = input<boolean>(false);
   readonly name: InputSignal<string> | InputSignalWithTransform<string, unknown> = input<string>('');
   readonly dirty: InputSignal<boolean> | InputSignalWithTransform<boolean, unknown> = input<boolean>(false);
@@ -86,14 +86,18 @@ export class DdrInputNumberComponent implements AfterViewInit, FormValueControl<
   constructor() {
     effect(() => this.dirtyInput.set(this.dirty()));
     effect(() => this.ddrInput().input().nativeElement.step = this.step().toString())
+    effect(() => {
+      const input = this.ddrInput().input().nativeElement;
+      if (input) {
+        input.min = this.min() ? this.min()!.toString() : '';
+        input.max = this.max() ? this.max()!.toString() : '';
+      }
+    })
   }
 
   ngAfterViewInit(): void {
     const input = this.ddrInput().input().nativeElement;
-
     input.type = this.constants.TYPE_INPUT.NUMBER;
-    input.min = this.min() ? this.min()!.toString() : '';
-    input.max = this.max() ? this.max()!.toString() : '';
 
     input.addEventListener('keydown', (event: KeyboardEvent) => {
       if (this.invalidCharacters().includes(event.key)) event.preventDefault();

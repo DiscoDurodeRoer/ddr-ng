@@ -68,6 +68,9 @@ export * from './components/steps/src/ddr-steps.component';
 export * from './components/steps/src/components/ddr-step/ddr-step.component';
 // no data
 export * from './components/no-data/src/ddr-no-data.component';
+// paginator
+export * from './paginator/src/ddr-paginator.component';
+export * from './paginator/src/pipes/ddr-paginator.pipe';
 // Services
 export * from './services/theme/src/ddr-theme.service';
 // Pipes

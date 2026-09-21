@@ -195,6 +195,12 @@ export const MENU_ITEMS: DdrTreeNode<any>[] = [
               "route": "/ddr-login"
             }
           },
+          {
+            "name": "Paginator",
+            "data": {
+              "route": "/ddr-paginator"
+            }
+          }
         ]
       }
     ]
@@ -249,6 +255,12 @@ export const MENU_ITEMS: DdrTreeNode<any>[] = [
         "name": "Translate pipe",
         "data": {
           "route": "/ddr-translate-pipe"
+        }
+      },
+      {
+        "name": "Paginator pipe",
+        "data": {
+          "route": "/ddr-paginator-pipe"
         }
       }
     ]

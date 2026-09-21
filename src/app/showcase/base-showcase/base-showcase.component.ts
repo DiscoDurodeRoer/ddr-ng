@@ -111,6 +111,8 @@ export class BaseShowcaseComponent implements OnInit, AfterViewInit {
         return 'login.component'
       case 'click.outside':
         return 'clickoutside'
+      case 'paginator':
+        return this.component().includes('pipe') ? 'paginator.pipe' : component;
       default:
         return component;
     }
@@ -188,10 +190,6 @@ export class BaseShowcaseComponent implements OnInit, AfterViewInit {
     {
       label: 'inputs.required.showcase',
       property: 'required',
-    },
-    {
-      label: 'inputs.default.showcase',
-      property: 'default',
     }
   ];
 
@@ -218,7 +216,7 @@ export class BaseShowcaseComponent implements OnInit, AfterViewInit {
     {
       label: 'translations.description.showcase',
       property: 'description',
-    },
+    }
   ];
 
   public colsTemplates: DdrTableCol[] = [

@@ -377,5 +377,21 @@ export const routes: Routes = [
             type: 'directive'
         }
     },
+    {
+        path: 'ddr-paginator',
+        loadComponent: () => import('./showcase/paginator-showcase/paginator-showcase.component').then(c => c.PaginatorShowcaseComponent),
+        data: {
+            title: 'Paginator',
+            type: 'component'
+        }
+    },
+    {
+        path: 'ddr-paginator-pipe',
+        loadComponent: () => import('./showcase/paginator-pipe-showcase/paginator-pipe-showcase.component').then(c => c.PaginatorPipeShowcaseComponent),
+        data: {
+            title: 'Paginator Pipe',
+            type: 'pipe'
+        }
+    },
     { path: '**', pathMatch: 'full', redirectTo: 'get-started' },
 ];

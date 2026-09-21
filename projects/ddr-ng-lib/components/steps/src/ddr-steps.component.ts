@@ -12,12 +12,18 @@ import {
   effect,
   ModelSignal,
   model,
+  contentChild,
+  computed,
+  inject,
 } from '@angular/core';
 import { DdrButtonComponent } from 'ddr-ng/components/button';
 import { NgTemplateOutlet } from '@angular/common';
 import { FormValueControl } from '@angular/forms/signals';
 import { DdrTranslatePipe } from 'ddr-ng/translate';
 import { DdrStepComponent } from './components/ddr-step/ddr-step.component';
+import { DdrSize } from 'ddr-ng/types';
+import { DdrConstantsService } from 'ddr-ng/constants';
+import { DdrButton } from 'ddr-ng/models'
 
 @Component({
   selector: 'ddr-steps',
@@ -27,6 +33,9 @@ import { DdrStepComponent } from './components/ddr-step/ddr-step.component';
   imports: [DdrButtonComponent, DdrTranslatePipe, NgTemplateOutlet],
 })
 export class DdrStepsComponent implements FormValueControl<number>, AfterViewInit {
+
+  private constants: DdrConstantsService = inject(DdrConstantsService);
+
   readonly steps = contentChildren(DdrStepComponent);
 
   readonly openAll: InputSignal<boolean> = input<boolean>(false);
@@ -36,6 +45,8 @@ export class DdrStepsComponent implements FormValueControl<number>, AfterViewIni
   readonly validateIcon: InputSignal<boolean> = input<boolean>(false);
   readonly labelNext: InputSignal<string | undefined> = input<string | undefined>();
   readonly labelPrevious: InputSignal<string | undefined> = input<string | undefined>();
+  readonly sizeButtons: InputSignal<DdrSize> = input<DdrSize>(this.constants.SIZE.SMALL);
+  readonly submitButton: InputSignal<DdrButton | undefined> = input<DdrButton | undefined>(undefined);
 
   public value: ModelSignal<number> = model<number>(1);
 
@@ -43,6 +54,7 @@ export class DdrStepsComponent implements FormValueControl<number>, AfterViewIni
   readonly lastStep: OutputEmitterRef<void> = output<void>();
 
   public canJump: WritableSignal<boolean> = signal<boolean>(false);
+  public stepsLength = computed(() => this.steps()?.length || 0);
 
   constructor() {
     effect(() => this.canJump.set(
@@ -63,7 +75,7 @@ export class DdrStepsComponent implements FormValueControl<number>, AfterViewIni
   }
 
   ngAfterViewInit() {
-    for (let index = 0; index < this.steps().length; index++) {
+    for (let index = 0; index < this.stepsLength(); index++) {
       const step = this.steps()[index];
       if (
         (this.openAll() && this.vertical()) ||
@@ -74,7 +86,7 @@ export class DdrStepsComponent implements FormValueControl<number>, AfterViewIni
       }
       step.step.set(index + 1);
       step.firstStep.set(step.step() == 1);
-      step.lastStep.set(step.step() == this.steps().length);
+      step.lastStep.set(step.step() == this.stepsLength());
     }
   }
 
@@ -88,7 +100,7 @@ export class DdrStepsComponent implements FormValueControl<number>, AfterViewIni
       }
       this.value.set(step.step());
       this.changeStep.emit(this.value());
-      if (this.steps().length == this.value()) {
+      if (this.stepsLength() == this.value()) {
         this.lastStep.emit();
       }
     }
@@ -97,7 +109,7 @@ export class DdrStepsComponent implements FormValueControl<number>, AfterViewIni
   previous(step: DdrStepComponent) {
     this.value.set(step.step() - 1);
     this.changeStep.emit(this.value());
-    if (this.steps().length == this.value()) {
+    if (this.stepsLength() == this.value()) {
       this.lastStep.emit();
     }
   }
@@ -105,7 +117,7 @@ export class DdrStepsComponent implements FormValueControl<number>, AfterViewIni
   next(step: DdrStepComponent) {
     this.value.set(step.step() + 1);
     this.changeStep.emit(this.value());
-    if (this.steps().length == this.value()) {
+    if (this.stepsLength() == this.value()) {
       this.lastStep.emit();
     }
   }

@@ -11,10 +11,7 @@ import {
 } from 'ddr-ng/components/table';
 import { DdrNestedPropertyPipe } from 'ddr-ng/pipes/nested-property';
 import { DdrToastService } from 'ddr-ng/toast';
-import {
-  DdrTranslatePipe,
-  DdrTranslateService
-} from 'ddr-ng/translate';
+import { DdrTranslateService } from 'ddr-ng/translate';
 import { Person } from './bean/person';
 
 @Component({
@@ -22,7 +19,6 @@ import { Person } from './bean/person';
   templateUrl: './table-showcase-7.component.html',
   imports: [
     DdrTableComponent,
-    DdrTranslatePipe,
     DdrNestedPropertyPipe
   ],
   providers: [

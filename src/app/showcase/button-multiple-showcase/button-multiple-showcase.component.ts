@@ -8,6 +8,7 @@ import { ButtonMultipleShowcase4Component } from './showcases/button-multiple-sh
 import { ButtonMultipleShowcase5Component } from './showcases/button-multiple-showcase-5/button-multiple-showcase-5.component';
 import { ButtonMultipleShowcase6Component } from './showcases/button-multiple-showcase-6/button-multiple-showcase-6.component';
 import { CLASSES, Documentation } from '../base-showcase/bean/documentation';
+import { ButtonMultipleShowcase7Component } from './showcases/button-multiple-showcase-7/button-multiple-showcase-7.component';
 
 @Component({
   selector: 'button-multiple-showcase',
@@ -20,6 +21,7 @@ import { CLASSES, Documentation } from '../base-showcase/bean/documentation';
     ButtonMultipleShowcase4Component,
     ButtonMultipleShowcase5Component,
     ButtonMultipleShowcase6Component,
+    ButtonMultipleShowcase7Component,
     DdrTranslatePipe,
   ]
 })
@@ -32,53 +34,54 @@ export class ButtonMultipleShowcaseComponent {
       [buttons]="buttons"
       (action)="clickButton($event)" />`,
         tsCode: `import { Component, inject } from '@angular/core';
-  import { DdrButtonMultipleComponent } from 'ddr-ng/components/button-multiple';
-  import { DdrButton } from 'ddr-ng/models';
-  import { DdrToastService } from 'ddr-ng/toast';
-  import { DdrTranslateService } from 'ddr-ng/translate';
-  
-  @Component({
-    selector: 'button-multiple-showcase-1',
-    templateUrl: './button-multiple-showcase-1.component.html',
-    imports: [
-      DdrButtonMultipleComponent
-    ],
-    providers: [
-      DdrToastService
-    ]
-  })
-  export class ButtonMultipleShowcase1Component {
-  
-    private ddrToastService: DdrToastService = inject(DdrToastService);
-    private ddrTranslateService: DdrTranslateService = inject(DdrTranslateService);
-  
-    public buttons: DdrButton[] = [
-      {
-        text: 'button.multiple.1',
-        icon: 'bi bi-check',
-        value: 'BUTTON_1',
-      },
-      {
-        text: 'button.multiple.2',
-        icon: 'bi bi-x',
-        value: 'BUTTON_2',
-      },
-      {
-        text: 'button.multiple.3',
-        icon: 'bi bi-trash',
-        value: 'BUTTON_3',
-      },
-    ];
-  
-    clickButton(button: DdrButton) {
-      this.ddrToastService.addSuccessMessage(
-        this.ddrTranslateService.getTranslate('success'),
-        JSON.stringify(button),
-      );
-    }
+import { DdrButtonMultipleComponent } from 'ddr-ng/components/button-multiple';
+import { DdrButtonSelectable } from 'ddr-ng/models';
+import { DdrToastService } from 'ddr-ng/toast';
+import { DdrTranslateService } from 'ddr-ng/translate';
+
+@Component({
+  selector: 'button-multiple-showcase-1',
+  templateUrl: './button-multiple-showcase-1.component.html',
+  imports: [
+    DdrButtonMultipleComponent
+  ],
+  providers: [
+    DdrToastService
+  ]
+})
+export class ButtonMultipleShowcase1Component {
+
+  private ddrToastService: DdrToastService = inject(DdrToastService);
+  private ddrTranslateService: DdrTranslateService = inject(DdrTranslateService);
+
+  public buttons: DdrButtonSelectable[] = [
+    {
+      text: 'button.multiple.1',
+      icon: 'bi bi-check',
+      value: 'BUTTON_1',
+    },
+    {
+      text: 'button.multiple.2',
+      icon: 'bi bi-x',
+      value: 'BUTTON_2',
+    },
+    {
+      text: 'button.multiple.3',
+      icon: 'bi bi-trash',
+      value: 'BUTTON_3',
+    },
+  ];
+
+  clickButton(button: DdrButtonSelectable) {
+    this.ddrToastService.addSuccessMessage(
+      this.ddrTranslateService.getTranslate('success'),
+      JSON.stringify(button),
+    );
   }
+}
   `,
         classes: [
+          CLASSES['DdrButtonSelectable'],
           CLASSES['DdrButton']
         ],
       },
@@ -87,51 +90,52 @@ export class ButtonMultipleShowcaseComponent {
       [buttons]="buttons"
       (action)="clickButton($event)" />`,
         tsCode: `import { Component, inject } from '@angular/core';
-  import { DdrButtonMultipleComponent } from 'ddr-ng/components/button-multiple';
-  import { DdrButton } from 'ddr-ng/models';
-  import { DdrToastService } from 'ddr-ng/toast';
-  import { DdrTranslateService } from 'ddr-ng/translate';
-  
-  @Component({
-    selector: 'button-multiple-showcase-2',
-    templateUrl: './button-multiple-showcase-2.component.html',
-    imports: [
-      DdrButtonMultipleComponent
-    ],
-    providers: [
-      DdrToastService
-    ]
-  })
-  export class ButtonMultipleShowcase2Component {
-  
-    private ddrToastService: DdrToastService = inject(DdrToastService);
-    private ddrTranslateService: DdrTranslateService = inject(DdrTranslateService);
-  
-    public buttons: DdrButton[] = [
-      {
-        icon: 'bi bi-check',
-        value: 'BUTTON_1',
-      },
-      {
-        icon: 'bi bi-x',
-        value: 'BUTTON_2',
-      },
-      {
-        icon: 'bi bi-trash',
-        value: 'BUTTON_3',
-      },
-    ];
-  
-    clickButton(button: DdrButton) {
-      this.ddrToastService.addSuccessMessage(
-        this.ddrTranslateService.getTranslate('success'),
-        JSON.stringify(button),
-      );
-    }
-  
+import { DdrButtonMultipleComponent } from 'ddr-ng/components/button-multiple';
+import { DdrButtonSelectable } from 'ddr-ng/models';
+import { DdrToastService } from 'ddr-ng/toast';
+import { DdrTranslateService } from 'ddr-ng/translate';
+
+@Component({
+  selector: 'button-multiple-showcase-2',
+  templateUrl: './button-multiple-showcase-2.component.html',
+  imports: [
+    DdrButtonMultipleComponent
+  ],
+  providers: [
+    DdrToastService
+  ]
+})
+export class ButtonMultipleShowcase2Component {
+
+  private ddrToastService: DdrToastService = inject(DdrToastService);
+  private ddrTranslateService: DdrTranslateService = inject(DdrTranslateService);
+
+  public buttons: DdrButtonSelectable[] = [
+    {
+      icon: 'bi bi-check',
+      value: 'BUTTON_1',
+    },
+    {
+      icon: 'bi bi-x',
+      value: 'BUTTON_2',
+    },
+    {
+      icon: 'bi bi-trash',
+      value: 'BUTTON_3',
+    },
+  ];
+
+  clickButton(button: DdrButtonSelectable) {
+    this.ddrToastService.addSuccessMessage(
+      this.ddrTranslateService.getTranslate('success'),
+      JSON.stringify(button),
+    );
   }
+
+}
   `,
         classes: [
+          CLASSES['DdrButtonSelectable'],
           CLASSES['DdrButton']
         ]
       },
@@ -140,44 +144,45 @@ export class ButtonMultipleShowcaseComponent {
       [buttons]="buttons"
       (action)="clickButton($event)" />`,
         tsCode: `import { Component, inject } from '@angular/core';
-  import { DdrButtonMultipleComponent } from 'ddr-ng/components/button-multiple';
-  import { DdrButton } from 'ddr-ng/models';
-  import { DdrToastService } from 'ddr-ng/toast';
-  import { DdrTranslateService } from 'ddr-ng/translate';
-  
-  @Component({
-    selector: 'button-multiple-showcase-3',
-    templateUrl: './button-multiple-showcase-3.component.html',
-    imports: [
-      DdrButtonMultipleComponent
-    ],
-    providers: [
-      DdrToastService
-    ]
-  })
-  export class ButtonMultipleShowcase3Component {
-  
-    private ddrToastService: DdrToastService = inject(DdrToastService);
-    private ddrTranslateService: DdrTranslateService =
-      inject(DdrTranslateService);
-  
-    public buttons: DdrButton[] = [
-      {
-        text: 'button.multiple.1',
-        icon: 'bi bi-check',
-        value: 'BUTTON_1',
-      },
-    ];
-  
-    clickButton(button: DdrButton) {
-      this.ddrToastService.addSuccessMessage(
-        this.ddrTranslateService.getTranslate('success'),
-        JSON.stringify(button),
-      );
-    }
+import { DdrButtonMultipleComponent } from 'ddr-ng/components/button-multiple';
+import { DdrButtonSelectable } from 'ddr-ng/models';
+import { DdrToastService } from 'ddr-ng/toast';
+import { DdrTranslateService } from 'ddr-ng/translate';
+
+@Component({
+  selector: 'button-multiple-showcase-3',
+  templateUrl: './button-multiple-showcase-3.component.html',
+  imports: [
+    DdrButtonMultipleComponent
+  ],
+  providers: [
+    DdrToastService
+  ]
+})
+export class ButtonMultipleShowcase3Component {
+
+  private ddrToastService: DdrToastService = inject(DdrToastService);
+  private ddrTranslateService: DdrTranslateService =
+    inject(DdrTranslateService);
+
+  public buttons: DdrButtonSelectable[] = [
+    {
+      text: 'button.multiple.1',
+      icon: 'bi bi-check',
+      value: 'BUTTON_1',
+    },
+  ];
+
+  clickButton(button: DdrButtonSelectable) {
+    this.ddrToastService.addSuccessMessage(
+      this.ddrTranslateService.getTranslate('success'),
+      JSON.stringify(button),
+    );
   }
+}
   `,
         classes: [
+          CLASSES['DdrButtonSelectable'],
           CLASSES['DdrButton']
         ]
       },
@@ -188,56 +193,57 @@ export class ButtonMultipleShowcaseComponent {
       [(value)]="valueButton"
       (action)="clickButton($event)" />`,
         tsCode: `import { Component, inject, signal, Signal, WritableSignal } from '@angular/core';
-  import { DdrButtonMultipleComponent } from 'ddr-ng/components/button-multiple';
-  import { DdrButton } from 'ddr-ng/models';
-  import { DdrToastService } from 'ddr-ng/toast';
-  import { DdrTranslateService } from 'ddr-ng/translate';
+import { DdrButtonMultipleComponent } from 'ddr-ng/components/button-multiple';
+import { DdrButtonSelectable } from 'ddr-ng/models';
+import { DdrToastService } from 'ddr-ng/toast';
+import { DdrTranslateService } from 'ddr-ng/translate';
+
+@Component({
+  selector: 'button-multiple-showcase-4',
+  templateUrl: './button-multiple-showcase-4.component.html',
+  imports: [
+    DdrButtonMultipleComponent
+  ],
+  providers: [
+    DdrToastService
+  ]
+})
+export class ButtonMultipleShowcase4Component {
+
+  private ddrToastService: DdrToastService = inject(DdrToastService);
+  private ddrTranslateService: DdrTranslateService =
+    inject(DdrTranslateService)
+
+  public buttons: DdrButtonSelectable[] = [
+    {
+      text: 'button.multiple.1',
+      icon: 'bi bi-check',
+      value: 'BUTTON_1',
+    },
+    {
+      text: 'button.multiple.2',
+      icon: 'bi bi-x',
+      value: 'BUTTON_2',
+    },
+    {
+      text: 'button.multiple.3',
+      icon: 'bi bi-trash',
+      value: 'BUTTON_3',
+    },
+  ]
+
+  public valueButton: WritableSignal<string> = signal('BUTTON_3');
   
-  @Component({
-    selector: 'button-multiple-showcase-4',
-    templateUrl: './button-multiple-showcase-4.component.html',
-    imports: [
-      DdrButtonMultipleComponent
-    ],
-    providers: [
-      DdrToastService
-    ]
-  })
-  export class ButtonMultipleShowcase4Component {
-  
-    private ddrToastService: DdrToastService = inject(DdrToastService);
-    private ddrTranslateService: DdrTranslateService =
-      inject(DdrTranslateService)
-  
-    public buttons: DdrButton[] = [
-      {
-        text: 'button.multiple.1',
-        icon: 'bi bi-check',
-        value: 'BUTTON_1',
-      },
-      {
-        text: 'button.multiple.2',
-        icon: 'bi bi-x',
-        value: 'BUTTON_2',
-      },
-      {
-        text: 'button.multiple.3',
-        icon: 'bi bi-trash',
-        value: 'BUTTON_3',
-      },
-    ]
-  
-    public valueButton: WritableSignal<string> = signal('BUTTON_3');
-    
-    clickButton(button: DdrButton) {
-      this.ddrToastService.addSuccessMessage(
-        this.ddrTranslateService.getTranslate('success'),
-        JSON.stringify(button),
-      );
-    }
+  clickButton(button: DdrButtonSelectable) {
+    this.ddrToastService.addSuccessMessage(
+      this.ddrTranslateService.getTranslate('success'),
+      JSON.stringify(button),
+    );
   }
+}
   `,
         classes: [
+          CLASSES['DdrButtonSelectable'],
           CLASSES['DdrButton']
         ]
       },
@@ -266,58 +272,59 @@ export class ButtonMultipleShowcaseComponent {
           (action)="clickButton($event)" />
   </div>`,
         tsCode: `import { Component, inject } from '@angular/core';
-  import { DdrButtonMultipleComponent } from 'ddr-ng/components/button-multiple';
-  import { DdrButton } from 'ddr-ng/models';
-  import { DdrToastService } from 'ddr-ng/toast';
-  import {
-    DdrTranslatePipe,
-    DdrTranslateService
-  } from 'ddr-ng/translate';
-  
-  @Component({
-    selector: 'button-multiple-showcase-5',
-    templateUrl: './button-multiple-showcase-5.component.html',
-    imports: [
-      DdrButtonMultipleComponent,
-      DdrTranslatePipe
-    ],
-    providers: [
-      DdrToastService
-    ]
-  })
-  export class ButtonMultipleShowcase5Component {
-  
-    private ddrToastService: DdrToastService = inject(DdrToastService);
-    private ddrTranslateService: DdrTranslateService =
-      inject(DdrTranslateService);
-  
-    public buttons: DdrButton[] = [
-      {
-        text: 'button.multiple.1',
-        icon: 'bi bi-check',
-        value: 'BUTTON_1',
-      },
-      {
-        text: 'button.multiple.2',
-        icon: 'bi bi-x',
-        value: 'BUTTON_2',
-      },
-      {
-        text: 'button.multiple.3',
-        icon: 'bi bi-trash',
-        value: 'BUTTON_3',
-      },
-    ];
-  
-    clickButton(button: DdrButton) {
-      this.ddrToastService.addSuccessMessage(
-        this.ddrTranslateService.getTranslate('success'),
-        JSON.stringify(button),
-      );
-    }
+import { DdrButtonMultipleComponent } from 'ddr-ng/components/button-multiple';
+import { DdrButtonSelectable } from 'ddr-ng/models';
+import { DdrToastService } from 'ddr-ng/toast';
+import {
+  DdrTranslatePipe,
+  DdrTranslateService
+} from 'ddr-ng/translate';
+
+@Component({
+  selector: 'button-multiple-showcase-5',
+  templateUrl: './button-multiple-showcase-5.component.html',
+  imports: [
+    DdrButtonMultipleComponent,
+    DdrTranslatePipe
+  ],
+  providers: [
+    DdrToastService
+  ]
+})
+export class ButtonMultipleShowcase5Component {
+
+  private ddrToastService: DdrToastService = inject(DdrToastService);
+  private ddrTranslateService: DdrTranslateService =
+    inject(DdrTranslateService);
+
+  public buttons: DdrButtonSelectable[] = [
+    {
+      text: 'button.multiple.1',
+      icon: 'bi bi-check',
+      value: 'BUTTON_1',
+    },
+    {
+      text: 'button.multiple.2',
+      icon: 'bi bi-x',
+      value: 'BUTTON_2',
+    },
+    {
+      text: 'button.multiple.3',
+      icon: 'bi bi-trash',
+      value: 'BUTTON_3',
+    },
+  ];
+
+  clickButton(button: DdrButtonSelectable) {
+    this.ddrToastService.addSuccessMessage(
+      this.ddrTranslateService.getTranslate('success'),
+      JSON.stringify(button),
+    );
   }
+}
   `,
         classes: [
+          CLASSES['DdrButtonSelectable'],
           CLASSES['DdrButton']
         ]
       },
@@ -327,54 +334,116 @@ export class ButtonMultipleShowcaseComponent {
       [transparent]="true"
       (action)="clickButton($event)" />`,
         tsCode: `import { Component, inject } from '@angular/core';
-  import { DdrButtonMultipleComponent } from 'ddr-ng/components/button-multiple';
-  import { DdrButton } from 'ddr-ng/models';
-  import { DdrToastService } from 'ddr-ng/toast';
-  import { DdrTranslateService } from 'ddr-ng/translate';
-  
-  @Component({
-    selector: 'button-multiple-showcase-6',
-    templateUrl: './button-multiple-showcase-6.component.html',
-    imports: [
-      DdrButtonMultipleComponent
-    ],
-    providers: [
-      DdrToastService
-    ]
-  })
-  export class ButtonMultipleShowcase6Component {
-  
-    private ddrToastService: DdrToastService = inject(DdrToastService);
-    private ddrTranslateService: DdrTranslateService =
-      inject(DdrTranslateService);
-  
-    public buttons: DdrButton[] = [
-      {
-        text: 'button.multiple.1',
-        icon: 'bi bi-check',
-        value: 'BUTTON_1',
-      },
-      {
-        text: 'button.multiple.2',
-        icon: 'bi bi-x',
-        value: 'BUTTON_2',
-      },
-      {
-        text: 'button.multiple.3',
-        icon: 'bi bi-trash',
-        value: 'BUTTON_3',
-      },
-    ];
-  
-    clickButton(button: DdrButton) {
-      this.ddrToastService.addSuccessMessage(
-        this.ddrTranslateService.getTranslate('success'),
-        JSON.stringify(button),
-      );
-    }
+import { DdrButtonMultipleComponent } from 'ddr-ng/components/button-multiple';
+import { DdrButtonSelectable } from 'ddr-ng/models';
+import { DdrToastService } from 'ddr-ng/toast';
+import { DdrTranslateService } from 'ddr-ng/translate';
+
+@Component({
+  selector: 'button-multiple-showcase-6',
+  templateUrl: './button-multiple-showcase-6.component.html',
+  imports: [
+    DdrButtonMultipleComponent
+  ],
+  providers: [
+    DdrToastService
+  ]
+})
+export class ButtonMultipleShowcase6Component {
+
+  private ddrToastService: DdrToastService = inject(DdrToastService);
+  private ddrTranslateService: DdrTranslateService =
+    inject(DdrTranslateService);
+
+  public buttons: DdrButtonSelectable[] = [
+    {
+      text: 'button.multiple.1',
+      icon: 'bi bi-check',
+      value: 'BUTTON_1',
+    },
+    {
+      text: 'button.multiple.2',
+      icon: 'bi bi-x',
+      value: 'BUTTON_2',
+    },
+    {
+      text: 'button.multiple.3',
+      icon: 'bi bi-trash',
+      value: 'BUTTON_3',
+    },
+  ];
+
+  clickButton(button: DdrButtonSelectable) {
+    this.ddrToastService.addSuccessMessage(
+      this.ddrTranslateService.getTranslate('success'),
+      JSON.stringify(button),
+    );
   }
+}
   `,
         classes: [
+          CLASSES['DdrButtonSelectable'],
+          CLASSES['DdrButton']
+        ]
+      },
+      {
+        htmlCode: `<ddr-button-multiple
+    [buttons]="buttons"
+    (action)="clickButton($event)" />`,
+        tsCode: `import {
+  Component,
+  inject
+} from '@angular/core';
+import { DdrButtonMultipleComponent } from 'ddr-ng/components/button-multiple';
+import { DdrButtonSelectable } from 'ddr-ng/models';
+import { DdrToastService } from 'ddr-ng/toast';
+import { DdrTranslateService } from 'ddr-ng/translate';
+
+@Component({
+  selector: 'button-multiple-showcase-7',
+  templateUrl: './button-multiple-showcase-7.component.html',
+  imports: [
+    DdrButtonMultipleComponent
+  ],
+  providers: [
+    DdrToastService
+  ]
+})
+export class ButtonMultipleShowcase7Component {
+
+  private ddrToastService: DdrToastService = inject(DdrToastService);
+  private ddrTranslateService: DdrTranslateService = inject(DdrTranslateService);
+
+  public buttons: DdrButtonSelectable[] = [
+    {
+      text: 'button.multiple.1',
+      icon: 'bi bi-check',
+      value: 'BUTTON_1'
+    },
+    {
+      text: 'button.multiple.2',
+      icon: 'bi bi-x',
+      value: 'BUTTON_2',
+    },
+    {
+      text: 'button.multiple.3',
+      icon: 'bi bi-trash',
+      value: 'BUTTON_3',
+      disabled: true
+    },
+  ];
+
+  clickButton(button: DdrButtonSelectable) {
+    this.ddrToastService.addSuccessMessage(
+      this.ddrTranslateService.getTranslate('success'),
+      JSON.stringify(button),
+    );
+  }
+
+}
+`,
+        classes: [
+          CLASSES['DdrButtonSelectable'],
           CLASSES['DdrButton']
         ]
       }
@@ -395,7 +464,7 @@ export class ButtonMultipleShowcaseComponent {
         item: {
           name: 'buttons',
           description: 'button.multiple.input.buttons',
-          type: 'DdrButton[]',
+          type: 'DdrButtonSelectable[]',
           default: '[]',
           required: false
         }
@@ -434,7 +503,7 @@ export class ButtonMultipleShowcaseComponent {
         item: {
           name: 'action',
           description: 'button.multiple.output.action',
-          type: 'DdrButton'
+          type: 'DdrButtonSelectable'
         }
       }
     ],

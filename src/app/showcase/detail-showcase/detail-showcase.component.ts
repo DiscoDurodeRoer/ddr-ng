@@ -3,7 +3,7 @@ import { BaseShowcaseComponent } from '../base-showcase/base-showcase.component'
 import { DdrTranslatePipe } from 'ddr-ng/translate';
 import { DetailShowcase1Component } from './showcases/detail-showcase-1/detail-showcase-1.component';
 import { DetailShowcase2Component } from './showcases/detail-showcase-2/detail-showcase-2.component';
-import { Documentation } from '../base-showcase/bean/documentation';
+import { CLASSES, Documentation } from '../base-showcase/bean/documentation';
 
 @Component({
   selector: 'detail-showcase',
@@ -68,7 +68,7 @@ import {
   DdrDetailComponent,
   DdrDetailService
 } from 'ddr-ng/components/detail';
-import { DdrButton } from 'ddr-ng/models';
+import { DdrButtonSelectable } from 'ddr-ng/models';
 import { DdrToastService } from 'ddr-ng/toast';
 import {
   DdrTranslatePipe,
@@ -98,7 +98,7 @@ export class DetailShowcase1Component {
   public readonly ddrDetailService: DdrDetailService = inject(DdrDetailService);
 
   public orientation: WritableSignal<DdrOrientationDetail> = signal<DdrOrientationDetail>('right');
-  public buttonsOrientation: WritableSignal<DdrButton[]> = signal<DdrButton[]>([
+  public buttonsOrientation: WritableSignal<DdrButtonSelectable[]> = signal<DdrButtonSelectable[]>([
     {
       icon: 'bi bi-arrow-up',
       value: 'top',
@@ -134,7 +134,11 @@ export class DetailShowcase1Component {
     );
   }
 }
-`
+`,
+        classes: [
+          CLASSES['DdrButtonSelectable'],
+          CLASSES['DdrButton'],
+        ]
       },
       {
         htmlCode: `<div class="mb-2">
@@ -186,7 +190,7 @@ import {
   DdrDetailComponent,
   DdrDetailService
 } from 'ddr-ng/components/detail';
-import { DdrButton } from 'ddr-ng/models';
+import { DdrButtonSelectable } from 'ddr-ng/models';
 import { DdrToastService } from 'ddr-ng/toast';
 import {
   DdrTranslatePipe,
@@ -215,7 +219,7 @@ export class DetailShowcase2Component {
   public readonly ddrDetailService: DdrDetailService = inject(DdrDetailService);
 
   public position: WritableSignal<DdrPositionDetail> = signal<DdrPositionDetail>('right');
-  public buttonsPosition: WritableSignal<DdrButton[]> = signal<DdrButton[]>([
+  public buttonsPosition: WritableSignal<DdrButtonSelectable[]> = signal<DdrButtonSelectable[]>([
     {
       icon: 'bi bi-arrow-left',
       value: 'left',
@@ -243,7 +247,11 @@ export class DetailShowcase2Component {
     );
   }
 }
-`
+`,
+        classes: [
+          CLASSES['DdrButtonSelectable'],
+          CLASSES['DdrButton'],
+        ]
       }
     ],
     inputs: [

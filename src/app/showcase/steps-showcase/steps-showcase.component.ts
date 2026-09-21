@@ -15,6 +15,9 @@ import { StepsShowcase11Component } from './showcases/steps-showcase-11/steps-sh
 import { StepsShowcase12Component } from './showcases/steps-showcase-12/steps-showcase-12.component';
 import { StepsShowcase9Component } from './showcases/steps-showcase-9/steps-showcase-9.component';
 import { StepsShowcase13Component } from './showcases/steps-showcase-13/steps-showcase-13.component';
+import { StepsShowcase14Component } from './showcases/steps-showcase-14/steps-showcase-14.component';
+import { StepsShowcase15Component } from './showcases/steps-showcase-15/steps-showcase-15.component';
+import { StepsShowcase16Component } from './showcases/steps-showcase-16/steps-showcase-16.component';
 
 @Component({
   selector: 'steps-showcase',
@@ -34,6 +37,9 @@ import { StepsShowcase13Component } from './showcases/steps-showcase-13/steps-sh
     StepsShowcase11Component,
     StepsShowcase12Component,
     StepsShowcase13Component,
+    StepsShowcase14Component,
+    StepsShowcase15Component,
+    StepsShowcase16Component,
     DdrTranslatePipe
   ],
 })
@@ -749,6 +755,378 @@ export class StepsShowcase13Component {
 
 }
 `
+      },
+      {
+        htmlCode: `
+<form (submit)="submitForm($event)">
+    <ddr-steps 
+        [labelNext]="'steps.next' | ddrTranslate" 
+        [labelPrevious]="'steps.previous' | ddrTranslate"
+        [submitButton]="submitButton()">
+
+        <ddr-step 
+            [titleStep]="'step.1' | ddrTranslate" 
+            [canGoNext]="!!personModel().name">
+            <ng-template #stepContent>
+                <ddr-input 
+                    [label]="'step.name' | ddrTranslate" 
+                    [formField]="personForm.name"
+                    [validate]="true">
+                    
+                        <ng-template #templateValid>
+                            <span>{{'input.ok' | ddrTranslate}}</span>
+                        </ng-template>
+
+                        <ng-template #templateErrors let-errors="errors">
+                            @for (error of errors(); track error.kind) {
+                                @switch(error.kind){
+                                    @case('required'){
+                                        <span>{{ 'input.value.required' | ddrTranslate }}</span>
+                                    }
+                                }
+                            }
+                        </ng-template>
+                    </ddr-input>
+            </ng-template>
+        </ddr-step>
+
+        <ddr-step 
+            [titleStep]="'step.2' | ddrTranslate" 
+            [canGoNext]="!!personModel().age">
+            <ng-template #stepContent>
+                <ddr-input-number 
+                    [label]="'step.age' | ddrTranslate" 
+                    [formField]="personForm.age"
+                    [validate]="true">
+                
+                        <ng-template #templateValid>
+                            <span>{{'input.ok' | ddrTranslate}}</span>
+                        </ng-template>
+
+                        <ng-template #templateErrors let-errors="errors">
+                            @for (error of errors(); track error.kind) {
+                                <span>{{error.message | ddrTranslate}} </span>
+                                @switch(error.kind){
+                                    @case('min'){
+                                        <span>{{error.min}}</span>
+                                    }
+                                    @case('max'){
+                                         <span>{{error.max}}</span>
+                                    }
+                                }
+                            }
+                        </ng-template>
+                </ddr-input-number>
+            </ng-template>
+        </ddr-step>
+
+    </ddr-steps>
+</form>`,
+        tsCode: `import {
+  Component,
+  computed,
+  inject,
+  signal,
+  WritableSignal
+} from '@angular/core';
+import { DdrInputComponent } from 'ddr-ng/components/input';
+import { DdrInputNumberComponent } from 'ddr-ng/components/input-number';
+import {
+  DdrStepComponent,
+  DdrStepsComponent,
+  DdrStepsSubmitButton
+} from 'ddr-ng/components/steps';
+import {
+  form,
+  FormField,
+  max,
+  min,
+  required
+} from '@angular/forms/signals';
+import {
+  DdrTranslatePipe,
+  DdrTranslateService
+} from 'ddr-ng/translate';
+import { DdrToastService } from 'ddr-ng/toast';
+import { Person } from './bean/person';
+
+@Component({
+  selector: 'steps-showcase-14',
+  templateUrl: './steps-showcase-14.component.html',
+  imports: [
+    DdrStepsComponent,
+    DdrStepComponent,
+    DdrInputComponent,
+    DdrInputNumberComponent,
+    DdrTranslatePipe,
+    FormField
+  ],
+  providers: [
+    DdrToastService
+  ]
+})
+export class StepsShowcase14Component {
+
+  private ddrToastService: DdrToastService = inject(DdrToastService);
+  private ddrTranslateService: DdrTranslateService = inject(DdrTranslateService);
+
+  public personModel: WritableSignal<Person> = signal<Person>({
+    name: '',
+    age: 0
+  })
+  public personForm = form(this.personModel, (control) => {
+    required(control.name, { message: 'input.value.required' }),
+      min(control.age, 18, { message: 'input.number.min' }),
+      max(control.age, 99, { message: 'input.number.max' })
+  });
+
+  public submitButton = computed<DdrStepsSubmitButton>(() => ({
+    text: 'Button submit',
+    disabled: this.personForm().invalid()
+  }));
+
+  submitForm(event: Event) {
+    event.preventDefault();
+    this.ddrToastService.addSuccessMessage(
+      this.ddrTranslateService.getTranslate('success'),
+      this.ddrTranslateService.getTranslate('button.form.submit'),
+    );
+  }
+}
+`,
+        classes: [
+          CLASSES['DdrStepsSubmitButton']
+        ]
+      },
+      {
+        htmlCode: `
+<form (submit)="submitForm($event)">
+    <ddr-steps 
+        [labelNext]="'steps.next' | ddrTranslate" 
+        [labelPrevious]="'steps.previous' | ddrTranslate"
+        [vertical]="true"
+        [submitButton]="submitButton()">
+
+        <ddr-step 
+            [titleStep]="'step.1' | ddrTranslate" 
+            [canGoNext]="!!personModel().name">
+            <ng-template #stepContent>
+                <ddr-input 
+                    [label]="'step.name' | ddrTranslate" 
+                    [formField]="personForm.name"
+                    [validate]="true">
+                    
+                        <ng-template #templateValid>
+                            <span>{{'input.ok' | ddrTranslate}}</span>
+                        </ng-template>
+
+                        <ng-template #templateErrors let-errors="errors">
+                            @for (error of errors(); track error.kind) {
+                                @switch(error.kind){
+                                    @case('required'){
+                                        <span>{{ 'input.value.required' | ddrTranslate }}</span>
+                                    }
+                                }
+                            }
+                        </ng-template>
+                    </ddr-input>
+            </ng-template>
+        </ddr-step>
+
+        <ddr-step 
+            [titleStep]="'step.2' | ddrTranslate" 
+            [canGoNext]="!!personModel().age">
+            <ng-template #stepContent>
+                <ddr-input-number 
+                    [label]="'step.age' | ddrTranslate" 
+                    [formField]="personForm.age"
+                    [validate]="true">
+                
+                        <ng-template #templateValid>
+                            <span>{{'input.ok' | ddrTranslate}}</span>
+                        </ng-template>
+
+                        <ng-template #templateErrors let-errors="errors">
+                            @for (error of errors(); track error.kind) {
+                                <span>{{error.message | ddrTranslate}} </span>
+                                @switch(error.kind){
+                                    @case('min'){
+                                        <span>{{error.min}}</span>
+                                    }
+                                    @case('max'){
+                                         <span>{{error.max}}</span>
+                                    }
+                                }
+                            }
+                        </ng-template>
+                </ddr-input-number>
+            </ng-template>
+        </ddr-step>
+
+    </ddr-steps>
+</form>`,
+        tsCode: `import {
+  Component,
+  computed,
+  inject,
+  signal,
+  WritableSignal
+} from '@angular/core';
+import {
+  form,
+  FormField,
+  max,
+  min,
+  required
+} from '@angular/forms/signals';
+import { DdrInputComponent } from 'ddr-ng/components/input';
+import { DdrInputNumberComponent } from 'ddr-ng/components/input-number';
+import {
+  DdrStepComponent,
+  DdrStepsComponent,
+  DdrStepsSubmitButton
+} from 'ddr-ng/components/steps';
+import { DdrToastService } from 'ddr-ng/toast';
+import {
+  DdrTranslatePipe,
+  DdrTranslateService
+} from 'ddr-ng/translate';
+import { Person } from './bean/person';
+
+@Component({
+  selector: 'steps-showcase-15',
+  templateUrl: './steps-showcase-15.component.html',
+  imports: [
+    DdrStepsComponent,
+    DdrStepComponent,
+    DdrInputComponent,
+    DdrInputNumberComponent,
+    DdrTranslatePipe,
+    FormField
+  ],
+  providers: [
+    DdrToastService
+  ]
+})
+export class StepsShowcase15Component {
+
+  private ddrToastService: DdrToastService = inject(DdrToastService);
+  private ddrTranslateService: DdrTranslateService = inject(DdrTranslateService);
+
+  public personModel: WritableSignal<Person> = signal<Person>({
+    name: '',
+    age: 0
+  })
+  public personForm = form(this.personModel, (control) => {
+    required(control.name, { message: 'input.value.required' }),
+      min(control.age, 18, { message: 'input.number.min' }),
+      max(control.age, 99, { message: 'input.number.max' })
+  });
+
+  public submitButton = computed<DdrStepsSubmitButton>(() => ({
+    text: 'Button submit',
+    disabled: this.personForm().invalid()
+  }));
+
+  submitForm(event: Event) {
+    event.preventDefault();
+    this.ddrToastService.addSuccessMessage(
+      this.ddrTranslateService.getTranslate('success'),
+      this.ddrTranslateService.getTranslate('button.form.submit'),
+    );
+  }
+}
+`,
+        classes: [
+          CLASSES['DdrStepsSubmitButton']
+        ]
+      },
+      {
+        htmlCode: `<div class="mb-3">
+    <ddr-button-multiple
+        [buttons]="buttons()"
+        [showSelectedButton]="true"
+        [(value)]="sizeButton" />
+</div>
+
+<ddr-steps 
+    [labelNext]="'steps.next' | ddrTranslate" 
+    [labelPrevious]="'steps.previous' | ddrTranslate"
+    [sizeButtons]="sizeButton()">
+
+    <ddr-step 
+        [titleStep]="'step.1' | ddrTranslate" 
+        [canGoNext]="true">
+        <ng-template #stepContent>
+            <p>{{'step.1' | ddrTranslate}}</p>
+        </ng-template>
+    </ddr-step>
+
+    <ddr-step 
+        [titleStep]="'step.2' | ddrTranslate" 
+        [canGoNext]="true">
+        <ng-template #stepContent>
+            <p>{{'step.2' | ddrTranslate}}</p>
+        </ng-template>
+    </ddr-step>
+
+    <ddr-step 
+        [titleStep]="'step.3' | ddrTranslate" 
+        [canGoNext]="true">
+        <ng-template #stepContent>
+            <p>{{'step.3' | ddrTranslate}}</p>
+        </ng-template>
+    </ddr-step>
+
+</ddr-steps>`,
+        tsCode: `import {
+  Component,
+  signal,
+  WritableSignal
+} from '@angular/core';
+import { DdrButtonMultipleComponent } from 'ddr-ng/components/button-multiple';
+import {
+  DdrStepComponent,
+  DdrStepsComponent
+} from 'ddr-ng/components/steps';
+import { DdrButtonSelectable } from 'ddr-ng/models';
+import { DdrTranslatePipe } from 'ddr-ng/translate';
+import { DdrSize } from 'ddr-ng/types';
+
+@Component({
+  selector: 'steps-showcase-16',
+  templateUrl: './steps-showcase-16.component.html',
+  imports: [
+    DdrStepsComponent,
+    DdrStepComponent,
+    DdrButtonMultipleComponent,
+    DdrTranslatePipe
+  ]
+})
+export class StepsShowcase16Component {
+
+  public buttons: WritableSignal<DdrButtonSelectable[]> = signal([
+    {
+      text: 'small',
+      value: 'small',
+    },
+    {
+      text: 'medium',
+      value: 'medium',
+    },
+    {
+      text: 'large',
+      value: 'large',
+    },
+  ])
+
+  public sizeButton: WritableSignal<DdrSize> = signal('small');
+}
+`,
+        classes: [
+          CLASSES['DdrButtonSelectable'],
+          CLASSES['DdrButton'],
+        ]
       }
     ],
     inputs: [
@@ -820,6 +1198,27 @@ export class StepsShowcase13Component {
           default: 'false',
           required: false,
           type: 'boolean'
+        }
+      },
+      {
+        item: {
+          name: 'sizeButtons',
+          component: 'ddr-steps',
+          description: 'steps.input.sizebuttons',
+          type: 'DdrSize',
+          default: '"small"',
+          required: false,
+          values: '"small" | "medium" | "large"' 
+        }
+      },
+      {
+        item: {
+          name: 'submitButton',
+          component: 'ddr-steps',
+          description: 'steps.input.submitbutton',
+          type: 'DdrStepsSubmitButton | undefined',
+          default: 'undefined',
+          required: false,
         }
       },
       {

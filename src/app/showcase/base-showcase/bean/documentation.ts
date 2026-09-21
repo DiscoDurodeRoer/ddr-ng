@@ -6,7 +6,7 @@ export interface DocumentationInput {
   description: string
   type: string
   required: boolean
-  default: string
+  default?: string
   values?: string
 }
 
@@ -101,51 +101,56 @@ export const CLASSES: Record<string, DocumentationClass> = {
   'DdrTableCol': {
     htmlCode: `
 export interface DdrTableCol {
-    property: string;
-    label: string;
-    tooltip?: string;
-    modeSort?: string;
-    canSort?: boolean;
+    property: string
+    label: string
+    tooltip?: string
+    modeSort?: DdrTableModeSort
+    sortable?: boolean
 }`
   },
   'DdrTableItem': {
     htmlCode: `
 export interface DdrTableItem<T> {
-    item: T;
-    actions?: DdrAction<T>[];
-    index?: number;
-    selected?: boolean;
+    item: T
+    actions?: DdrAction<T>[]
+    index?: number
+    selected?: boolean
 }`
   },
   'DdrAction': {
     htmlCode: `
 export interface DdrAction<T> {
-  label: string;
-  value?: string;
-  icon?: string;
-  img?: string;
-  item?: T;
-  index?: number;
+  label: string
+  value?: string
+  icon?: string
+  img?: string
+  item?: T
+  index?: number
 }`
   },
   'DdrTreeNode': {
     htmlCode: `
 export interface DdrTreeNode<T> {
-  name: string;
-  icon?: string;
-  open?: boolean;
-  children?: DdrTreeNode<T>[];
-  data?: T;
-  actions?: DdrAction<T>[];
+  name: string
+  icon?: string
+  open?: boolean
+  children?: DdrTreeNode<T>[]
+  data?: T
+  actions?: DdrAction<T>[]
 }`
   },
   'DdrButton': {
     htmlCode: `
 export interface DdrButton {
-    text?: string;
-    icon?: string;
-    value: string;
-    tooltipText?: string;
+    text?: string
+    icon?: string
+    tooltipText?: string
+    disabled?: boolean
+}`
+  },
+  'DdrButtonSelectable': {
+    htmlCode: `export interface DdrButtonSelectable extends DdrButton {
+    value: string
 }`
   },
   'DdrFileHandle': {
@@ -207,6 +212,14 @@ export interface DdrLoopNumberParams {
   'TreeData': {
     htmlCode: `export interface TreeData {
     value: string
-}`    
+}`,
+  },
+  'DdrStepsSubmitButton': {
+    htmlCode: `export interface DdrStepsSubmitButton {
+    text?: string;
+    icon?: string;
+    tooltipText?: string
+    disabled?: boolean
+}`
   }
 }

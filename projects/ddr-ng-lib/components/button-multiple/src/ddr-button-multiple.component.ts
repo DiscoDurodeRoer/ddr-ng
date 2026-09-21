@@ -13,7 +13,7 @@ import { FormValueControl } from '@angular/forms/signals';
 import { DdrTranslatePipe } from 'ddr-ng/translate';
 import { DdrConstantsService } from 'ddr-ng/constants';
 import { DdrSize } from 'ddr-ng/types';
-import { DdrButton } from 'ddr-ng/models';
+import { DdrButtonSelectable } from 'ddr-ng/models';
 
 @Component({
   selector: 'ddr-button-multiple',
@@ -26,12 +26,12 @@ export class DdrButtonMultipleComponent implements OnInit, FormValueControl<stri
   
   private constants: DdrConstantsService = inject(DdrConstantsService);
 
-  readonly buttons = input<DdrButton[]>([]);
+  readonly buttons = input<DdrButtonSelectable[]>([]);
   readonly showSelectedButton = input<boolean>(false);
   readonly size = input<DdrSize>(this.constants.SIZE.MEDIUM);
   readonly transparent = input<boolean>(false);
 
-  readonly action = output<DdrButton>();
+  readonly action = output<DdrButtonSelectable>();
 
   public value: ModelSignal<string> = model<string>('');
 
@@ -45,7 +45,7 @@ export class DdrButtonMultipleComponent implements OnInit, FormValueControl<stri
     }
   }
 
-  clickButton(button: DdrButton) {
+  clickButton(button: DdrButtonSelectable) {
     this.value.set(button.value);
     this.action.emit(button);
   }

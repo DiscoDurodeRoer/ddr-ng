@@ -109,7 +109,13 @@ export const SKELETON = {
 } as const;
 
 export const MODE_SORT = {
-    NO_SORT: '-',
-    ASCENDING: 'ascending',
-    DESCENDING: 'descending'
+    NO_SORT: null,
+    ASCENDING: 'ASC',
+    DESCENDING: 'DESC'
+} as const;
+
+export const PAGINATOR_ALIGNMENT = {
+    CENTER: 'center',
+    LEFT: 'left',
+    RIGHT: 'right'
 } as const;

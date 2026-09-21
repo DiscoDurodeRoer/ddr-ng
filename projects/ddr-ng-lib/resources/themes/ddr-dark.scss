@@ -586,21 +586,6 @@ $color-warning: #b4894b;
 
   }
 
-  pagination-controls {
-    .ngx-pagination {
-
-      li,
-      li a {
-        color: $text-color-primary;
-      }
-
-      li.current {
-        background: $primary;
-        color: $text-color-primary;
-      }
-    }
-  }
-
   ddr-chip {
 
     .ddr-chip {

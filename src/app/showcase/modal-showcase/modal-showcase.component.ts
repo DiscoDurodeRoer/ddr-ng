@@ -72,7 +72,7 @@ import {
   DdrModalComponent,
   DdrModalService
 } from 'ddr-ng/modal';
-import { DdrButton } from 'ddr-ng/models';
+import { DdrButtonSelectable } from 'ddr-ng/models';
 import { DdrToastService } from 'ddr-ng/toast';
 import {
   DdrTranslatePipe,
@@ -101,7 +101,7 @@ export class ModalShowcase1Component {
   public readonly ddrTranslateService: DdrTranslateService = inject(DdrTranslateService);
 
   public size: WritableSignal<DdrSize> = signal<DdrSize>('medium');
-  public buttonsSize: Signal<DdrButton[]> = signal<DdrButton[]>([
+  public buttonsSize: Signal<DdrButtonSelectable[]> = signal<DdrButtonSelectable[]>([
     {
       text: 'small',
       value: 'small',
@@ -185,7 +185,7 @@ import {
   DdrModalComponent,
   DdrModalService
 } from 'ddr-ng/modal';
-import { DdrButton } from 'ddr-ng/models';
+import { DdrButtonSelectable } from 'ddr-ng/models';
 import { DdrToastService } from 'ddr-ng/toast';
 import { DdrTranslatePipe, DdrTranslateService } from 'ddr-ng/translate';
 import { DdrSize } from 'ddr-ng/types';
@@ -211,7 +211,7 @@ export class ModalShowcase2Component {
   public readonly ddrTranslateService: DdrTranslateService = inject(DdrTranslateService);
 
   public sizeButton: WritableSignal<DdrSize> = signal<DdrSize>('small');
-  public buttonsSizeButton: Signal<DdrButton[]> = signal<DdrButton[]>([
+  public buttonsSizeButton: Signal<DdrButtonSelectable[]> = signal<DdrButtonSelectable[]>([
     {
       text: 'small',
       value: 'small',
@@ -303,7 +303,7 @@ import {
   DdrModalComponent,
   DdrModalService
 } from 'ddr-ng/modal';
-import { DdrButton } from 'ddr-ng/models';
+import { DdrButtonSelectable } from 'ddr-ng/models';
 import { DdrToastService } from 'ddr-ng/toast';
 import {
   DdrTranslatePipe,
@@ -331,7 +331,7 @@ export class ModalShowcase3Component {
   public readonly ddrTranslateService: DdrTranslateService = inject(DdrTranslateService);
 
   public type: WritableSignal<DdrModalType> = signal<DdrModalType>('info');
-  public buttonsType: Signal<DdrButton[]> = signal<DdrButton[]>([
+  public buttonsType: Signal<DdrButtonSelectable[]> = signal<DdrButtonSelectable[]>([
     {
       text: 'info',
       value: 'info',

@@ -7,7 +7,7 @@ import {
 } from '@angular/core';
 import { DdrButtonMultipleComponent } from 'ddr-ng/components/button-multiple';
 import { DdrClickOutsideDirective } from 'ddr-ng/directives/click-outside';
-import { DdrButton } from 'ddr-ng/models';
+import { DdrButton, DdrButtonSelectable } from 'ddr-ng/models';
 import { DdrToastService } from 'ddr-ng/toast';
 import {
   DdrTranslatePipe,
@@ -33,7 +33,7 @@ export class ClickOutsideShowcase1Component {
   private readonly ddrTranslateService: DdrTranslateService =
     inject(DdrTranslateService);
 
-  public buttonsModes: Signal<DdrButton[]> = signal<DdrButton[]>([
+  public buttonsModes: Signal<DdrButtonSelectable[]> = signal<DdrButtonSelectable[]>([
     {
       text: 'clickoutside.standard',
       value: 'standard',

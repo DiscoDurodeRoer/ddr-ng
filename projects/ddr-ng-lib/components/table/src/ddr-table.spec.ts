@@ -1,9 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { NgxPaginationModule } from 'ngx-pagination';
 import { CommonModule } from '@angular/common';
 import { provideAnimations } from '@angular/platform-browser/animations';
-import { SimpleChange } from '@angular/core';
 import { expect, describe, it, vi, beforeEach } from 'vitest';
 import { DdrButtonSplitComponent } from 'ddr-ng/components/button-split';
 import { DdrTranslatePipe } from 'ddr-ng/translate';
@@ -13,7 +11,7 @@ import { DdrCheckboxBinaryComponent } from 'ddr-ng/components/checkbox-binary';
 import { DdrNestedPropertyPipe } from 'ddr-ng/pipes/nested-property';
 import { DdrTableItem } from './bean/ddr-table-item';
 import { DdrAction } from 'ddr-ng/models';
-import { DdrDropdownComponent } from 'ddr-ng/components/dropdown';
+import { DdrPaginatorComponent } from 'ddr-ng/paginator';
 
 describe('DdrTableComponent', () => {
     let fixture: ComponentFixture<DdrTableComponent<{
@@ -28,8 +26,7 @@ describe('DdrTableComponent', () => {
         await TestBed.configureTestingModule({
             imports: [
                 CommonModule,
-                NgxPaginationModule,
-                DdrDropdownComponent,
+                DdrPaginatorComponent,
                 DdrCheckboxBinaryComponent,
                 DdrButtonSplitComponent,
                 DdrTranslatePipe,
@@ -88,7 +85,7 @@ describe('DdrTableComponent', () => {
 
     it('should select element', () => {
         fixture.detectChanges();
-        
+
         let firstRow = fixture.debugElement.query(By.css('tbody .ddr-table__table--body-row:first-child'));
         vi.spyOn(component.selectItem, "emit");
         firstRow.triggerEventHandler('click', {
@@ -109,7 +106,7 @@ describe('DdrTableComponent', () => {
     it('should not select element', () => {
         fixture.componentRef.setInput('canSelectItems', false);
         fixture.detectChanges();
-        
+
         let firstRow = fixture.debugElement.query(By.css('tbody .ddr-table__table--body-row:first-child'));
         vi.spyOn(component.selectItem, "emit");
         firstRow.triggerEventHandler('click', {
@@ -123,7 +120,7 @@ describe('DdrTableComponent', () => {
     it('should select an action', () => {
         fixture.componentRef.setInput('showActions', true);
         fixture.detectChanges();
-        
+
         let splitButton = fixture.debugElement.query(By.css('tbody .ddr-table__table--body-row:first-child .ddr-table__table--body-row--actions ddr-button-split'));
         let splitButtonComponent: DdrButtonSplitComponent<string> = splitButton.componentInstance;
         vi.spyOn(component.selectAction, "emit");
@@ -143,30 +140,24 @@ describe('DdrTableComponent', () => {
     it('shouldn`t select an action', () => {
         fixture.componentRef.setInput('showActions', false);
         fixture.detectChanges();
-        
+
         let splitButton = fixture.debugElement.query(By.css('tbody .ddr-table__table--body-row:first-child .ddr-table__table--body-row--actions ddr-button-split'));
         expect(splitButton).toBeNull();
     });
 
     it('should has a specific numbers of columns', () => {
         fixture.detectChanges();
-        
+
         let columns = fixture.debugElement.queryAll(By.css('.ddr-table__table--header-row th'));
         expect(columns.length).toBe(1);
 
         fixture.componentRef.setInput('showActions', true);
-        component.ngOnChanges({
-            showActions: new SimpleChange(false, true, false)
-        });
         fixture.detectChanges();
 
         columns = fixture.debugElement.queryAll(By.css('.ddr-table__table--header-row th'));
         expect(columns.length).toBe(2);
 
         fixture.componentRef.setInput('multiple', true);
-        component.ngOnChanges({
-            multiple: new SimpleChange(false, true, false)
-        });
         fixture.detectChanges();
 
         columns = fixture.debugElement.queryAll(By.css('.ddr-table__table--header-row th'));
@@ -175,30 +166,30 @@ describe('DdrTableComponent', () => {
 
     it('should change number rows', () => {
         fixture.detectChanges();
-        
 
-        const dropdownComponent = fixture.debugElement.query(By.directive(DdrDropdownComponent)).componentInstance;
+        const paginatorComponent: DdrPaginatorComponent = fixture.debugElement.query(By.directive(DdrPaginatorComponent)).componentInstance;
 
         let rows = fixture.debugElement.queryAll(By.css('tr.ddr-table__table--body-row'));
         expect(rows.length).toBe(10);
+        expect(component.rows()).toBe(10);
 
-        dropdownComponent.selectItem.emit({ label: '5', value: 5 });
+        paginatorComponent.changePageSize.emit(25);
         fixture.detectChanges();
-
-        rows = fixture.debugElement.queryAll(By.css('tr.ddr-table__table--body-row'));
-        expect(rows.length).toBe(5);
-
-        dropdownComponent.selectItem.emit({ label: '20', value: 20 });
-        fixture.detectChanges();
-
         rows = fixture.debugElement.queryAll(By.css('tr.ddr-table__table--body-row'));
         expect(rows.length).toBe(20);
+        expect(component.rows()).toBe(25);
+
+        paginatorComponent.changePageSize.emit(50);
+        fixture.detectChanges();
+        rows = fixture.debugElement.queryAll(By.css('tr.ddr-table__table--body-row'));
+        expect(rows.length).toBe(20);
+        expect(component.rows()).toBe(50);
     });
 
     it('should select multiple items', () => {
         fixture.componentRef.setInput('multiple', true);
         fixture.detectChanges();
-        
+
 
         vi.spyOn(component.selectMultipleItem, "emit");
 
@@ -229,7 +220,7 @@ describe('DdrTableComponent', () => {
     it('should select all items', () => {
         fixture.componentRef.setInput('multiple', true);
         fixture.detectChanges();
-        
+
 
         vi.spyOn(component.selectMultipleItem, "emit");
 
@@ -270,12 +261,11 @@ describe('DdrTableComponent', () => {
     });
 
     it('should sort items', () => {
-        fixture.componentRef.setInput('canSort', true);
+        fixture.componentRef.setInput('allowSort', true);
         fixture.componentRef.setInput('cols', [
-            { label: '', property: 'rowNumber', canSort: true },
+            { label: '', property: 'rowNumber', sortable: true },
         ]);
         fixture.detectChanges();
-        
 
         vi.spyOn(component.sort, "emit");
 
@@ -283,27 +273,26 @@ describe('DdrTableComponent', () => {
         iconSort.triggerEventHandler("click");
         fixture.detectChanges();
 
-        expect(component.sort.emit, 'Debe lanzar el evento sort').toHaveBeenCalledWith({ label: '', property: 'rowNumber', canSort: true, modeSort: ddrConstantsService.MODE_SORT.ASCENDING });
+        expect(component.sort.emit, 'Debe lanzar el evento sort').toHaveBeenCalledWith([{ label: '', property: 'rowNumber', sortable: true, modeSort: ddrConstantsService.MODE_SORT.ASCENDING }]);
 
         iconSort.triggerEventHandler("click");
         fixture.detectChanges();
 
-        expect(component.sort.emit, 'Debe lanzar el evento sort').toHaveBeenCalledWith({ label: '', property: 'rowNumber', canSort: true, modeSort: ddrConstantsService.MODE_SORT.DESCENDING });
+        expect(component.sort.emit, 'Debe lanzar el evento sort').toHaveBeenCalledWith([{ label: '', property: 'rowNumber', sortable: true, modeSort: ddrConstantsService.MODE_SORT.DESCENDING }]);
 
         iconSort.triggerEventHandler("click");
         fixture.detectChanges();
 
-        expect(component.sort.emit, 'Debe lanzar el evento sort').toHaveBeenCalledWith({ label: '', property: 'rowNumber', canSort: true, modeSort: ddrConstantsService.MODE_SORT.NO_SORT });
+        expect(component.sort.emit, 'Debe lanzar el evento sort').toHaveBeenCalledWith([{ label: '', property: 'rowNumber', sortable: true, modeSort: ddrConstantsService.MODE_SORT.NO_SORT }]);
 
     });
 
     it('should sort items (initial status)', () => {
-        fixture.componentRef.setInput('canSort', true);
+        fixture.componentRef.setInput('allowSort', true);
         fixture.componentRef.setInput('cols', [
-            { label: '', property: 'rowNumber', canSort: true, modeSort: ddrConstantsService.MODE_SORT.ASCENDING },
+            { label: '', property: 'rowNumber', sortable: true, modeSort: ddrConstantsService.MODE_SORT.ASCENDING },
         ]);
         fixture.detectChanges();
-        
 
         vi.spyOn(component.sort, "emit");
 
@@ -311,17 +300,63 @@ describe('DdrTableComponent', () => {
         iconSort.triggerEventHandler("click");
         fixture.detectChanges();
 
-        expect(component.sort.emit, 'Debe lanzar el evento sort').toHaveBeenCalledWith({ label: '', property: 'rowNumber', canSort: true, modeSort: ddrConstantsService.MODE_SORT.DESCENDING });
+        expect(component.sort.emit, 'Debe lanzar el evento sort').toHaveBeenCalledWith([{ label: '', property: 'rowNumber', sortable: true, modeSort: ddrConstantsService.MODE_SORT.DESCENDING }]);
 
         iconSort.triggerEventHandler("click");
         fixture.detectChanges();
 
-        expect(component.sort.emit, 'Debe lanzar el evento sort').toHaveBeenCalledWith({ label: '', property: 'rowNumber', canSort: true, modeSort: ddrConstantsService.MODE_SORT.NO_SORT });
+        expect(component.sort.emit, 'Debe lanzar el evento sort').toHaveBeenCalledWith([{ label: '', property: 'rowNumber', sortable: true, modeSort: ddrConstantsService.MODE_SORT.NO_SORT }]);
 
         iconSort.triggerEventHandler("click");
         fixture.detectChanges();
 
-        expect(component.sort.emit, 'Debe lanzar el evento sort').toHaveBeenCalledWith({ label: '', property: 'rowNumber', canSort: true, modeSort: ddrConstantsService.MODE_SORT.ASCENDING });
+        expect(component.sort.emit, 'Debe lanzar el evento sort').toHaveBeenCalledWith([{ label: '', property: 'rowNumber', sortable: true, modeSort: ddrConstantsService.MODE_SORT.ASCENDING }]);
+    });
+
+    it('should sort multiple items', () => {
+        fixture.componentRef.setInput('allowSort', true);
+        fixture.componentRef.setInput('multipleSort', true);
+        fixture.componentRef.setInput('cols', [
+            { label: 'Name', property: 'name', sortable: true },
+            { label: 'Surname', property: 'surname', sortable: true },
+        ]);
+        fixture.detectChanges();
+
+        vi.spyOn(component.sort, 'emit');
+
+        const iconsSort = fixture.debugElement.queryAll(
+            By.css('.ddr-table__table--header-cell--sort')
+        );
+
+        iconsSort[0].triggerEventHandler('click');
+        fixture.detectChanges();
+
+        expect(component.sort.emit).toHaveBeenCalledWith([
+            {
+                label: 'Name',
+                property: 'name',
+                sortable: true,
+                modeSort: ddrConstantsService.MODE_SORT.ASCENDING
+            }
+        ]);
+
+        iconsSort[1].triggerEventHandler('click');
+        fixture.detectChanges();
+
+        expect(component.sort.emit).toHaveBeenCalledWith([
+            {
+                label: 'Name',
+                property: 'name',
+                sortable: true,
+                modeSort: ddrConstantsService.MODE_SORT.ASCENDING
+            },
+            {
+                label: 'Surname',
+                property: 'surname',
+                sortable: true,
+                modeSort: ddrConstantsService.MODE_SORT.ASCENDING
+            }
+        ]);
     });
 
 });

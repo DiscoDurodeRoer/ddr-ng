@@ -40,7 +40,7 @@ export class NoDataShowcaseComponent {
 } from '@angular/core';
 import { DdrButtonMultipleComponent } from 'ddr-ng/components/button-multiple';
 import { DdrNoDataComponent } from 'ddr-ng/components/no-data';
-import { DdrButton } from 'ddr-ng/models';
+import { DdrButtonSelectable } from 'ddr-ng/models';
 import { DdrTranslatePipe } from 'ddr-ng/translate';
 import { DdrSize } from 'ddr-ng/types';
 
@@ -55,7 +55,7 @@ import { DdrSize } from 'ddr-ng/types';
 })
 export class NoDataShowcase1Component {
   public size: WritableSignal<DdrSize> = signal<DdrSize>('large');
-  public buttonsSize: Signal<DdrButton[]> = signal<DdrButton[]>([
+  public buttonsSize: Signal<DdrButtonSelectable[]> = signal<DdrButtonSelectable[]>([
     {
       text: 'small',
       value: 'small',

@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { DdrButtonMultipleComponent } from 'ddr-ng/components/button-multiple';
-import { DdrButton } from 'ddr-ng/models';
+import { DdrButton, DdrButtonSelectable } from 'ddr-ng/models';
 import { DdrToastService } from 'ddr-ng/toast';
 import {
   DdrTranslatePipe,
@@ -24,7 +24,7 @@ export class ButtonMultipleShowcase5Component {
   private ddrTranslateService: DdrTranslateService =
     inject(DdrTranslateService);
 
-  public buttons: DdrButton[] = [
+  public buttons: DdrButtonSelectable[] = [
     {
       text: 'button.multiple.1',
       icon: 'bi bi-check',
@@ -42,7 +42,7 @@ export class ButtonMultipleShowcase5Component {
     },
   ];
 
-  clickButton(button: DdrButton) {
+  clickButton(button: DdrButtonSelectable) {
     this.ddrToastService.addSuccessMessage(
       this.ddrTranslateService.getTranslate('success'),
       JSON.stringify(button),

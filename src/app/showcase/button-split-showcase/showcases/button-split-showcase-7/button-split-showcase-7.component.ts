@@ -1,7 +1,7 @@
 import { Component, inject, Signal, signal, WritableSignal } from '@angular/core';
 import { DdrButtonMultipleComponent } from 'ddr-ng/components/button-multiple';
 import { DdrButtonSplitComponent } from 'ddr-ng/components/button-split';
-import { DdrAction, DdrButton } from 'ddr-ng/models';
+import { DdrAction, DdrButtonSelectable } from 'ddr-ng/models';
 import { DdrToastService } from 'ddr-ng/toast';
 import { DdrTranslateService } from 'ddr-ng/translate';
 import { DdrOrientationButtonSplit } from 'ddr-ng/types';
@@ -44,7 +44,7 @@ export class ButtonSplitShowcase7Component {
     },
   ]);
 
-  public buttons: Signal<DdrButton[]> = signal([
+  public buttons: Signal<DdrButtonSelectable[]> = signal([
     {
       text: 'bottom-right',
       value: 'bottom-right',

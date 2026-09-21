@@ -29,23 +29,34 @@
           }
         }
       </div>
-      <div class="ddr-steps__template">
+      <div class="ddr-steps__template ms-5 me-2">
         @for (step of steps(); track step) {
           @if (step.open()) {
             <div class="ddr-steps__template__content">
               <ng-container [ngTemplateOutlet]="step.stepContentTemplate()"/>
-              @if (showButtons() && !openAll() && !step.firstStep()) {
-                <ddr-button class="me-1"
-                  [text]="labelPrevious() || ('previous' | ddrTranslate)"
-                  (action)="previous(step)" />
-              }
-              @if (showButtons() && !openAll() && !step.lastStep()) {
-                <ddr-button class="me-1"
-                  [disabled]="!step.canGoNext()"
-                  [text]="labelNext() || ('next' | ddrTranslate)"
-                  (action)="next(step)" />
-              }
             </div>
+            @if (showButtons() && !openAll() && !step.firstStep()) {
+              <ddr-button class="me-1 mt-1 mb-1"
+                [size]="sizeButtons()"
+                [text]="labelPrevious() || ('previous' | ddrTranslate)"
+                (action)="previous(step)" />
+            }
+            @if (showButtons() && !openAll() && !step.lastStep()) {
+              <ddr-button class="me-1 mt-1 mb-1"
+                [size]="sizeButtons()"
+                [disabled]="!step.canGoNext()"
+                [text]="labelNext() || ('next' | ddrTranslate)"
+                (action)="next(step)" />
+            }
+            @if(showButtons() && submitButton() && step.lastStep()){
+              <ddr-button
+                class="me-1 mt-1 mb-1"
+                type="submit"
+                [size]="sizeButtons()"
+                [icon]="submitButton()?.icon || ''"
+                [disabled]="submitButton()?.disabled || false"
+                [text]="submitButton()?.text || ('submit' | ddrTranslate)" />
+            }
           }
         }
       </div>
@@ -77,24 +88,36 @@
         </div>
         <div class="ddr-steps__template" [class.ddr-steps__template--line]="!step.lastStep()">
           @if (step.open()) {
-            <div class="ddr-steps__template__content">
+            <div class="ddr-steps__template__content ps-4 pe-4">
               @if(step.stepContentTemplate()){
                 <ng-container [ngTemplateOutlet]="step.stepContentTemplate()"/>
               }
-              @if (showButtons() && !openAll() && !step.firstStep()) {
-                <ddr-button
-                  class="me-1 mt-1 mb-1"
-                  [text]="labelPrevious() || ('previous' | ddrTranslate)"
-                  (action)="previous(step)" />
-              }
-              @if (showButtons() && !openAll() && !step.lastStep()) {
-                <ddr-button
-                  class="me-1 mt-1 mb-1"
-                  [disabled]="!step.canGoNext()"
-                  [text]="labelNext() || ('next' | ddrTranslate)"
-                  (action)="next(step)" />
-              }
             </div>
+            @if (showButtons() && !openAll() && !step.firstStep()) {
+              <ddr-button
+                class="d-inline-block ms-4 me-1 mt-1 mb-3"
+                [size]="sizeButtons()"
+                [text]="labelPrevious() || ('previous' | ddrTranslate)"
+                (action)="previous(step)" />
+            }
+            @if (showButtons() && !openAll() && !step.lastStep()) {
+              <ddr-button
+                class="d-inline-block me-1 mt-1 mb-3"
+                [class.ms-4]="step.firstStep()"
+                [size]="sizeButtons()"
+                [disabled]="!step.canGoNext()"
+                [text]="labelNext() || ('next' | ddrTranslate)"
+                (action)="next(step)" />
+            }
+            @if(showButtons() && submitButton() && step.lastStep()){
+              <ddr-button
+                class="d-inline-block me-1 mt-1 mb-3"
+                type="submit"
+                [size]="sizeButtons()"
+                [icon]="submitButton()?.icon || ''"
+                [disabled]="submitButton()?.disabled || false"
+                [text]="submitButton()?.text || ('submit' | ddrTranslate)" />
+            }
           }
         </div>
       }

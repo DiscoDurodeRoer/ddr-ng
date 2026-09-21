@@ -1,0 +1,15 @@
+<ul>
+    @for(item of data() | ddrPaginator: page() : pageSize(); track item){
+        <li>{{item}}</li>
+    }
+</ul>
+
+<ddr-paginator
+    [(page)]="page"
+    [(pageSize)]="pageSize"
+    [totalItems]="data().length"
+    [showSummary]="true"
+    [allowChangePageSize]="true"
+    pageSizeName="page-size-12"
+    [pageSizeValues]="pageSizeOptions()"
+/>
